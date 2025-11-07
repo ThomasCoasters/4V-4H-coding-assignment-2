@@ -10,8 +10,9 @@ size = Vector2(24, 68)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("jump_timer")]
 script = ExtResource("1_8uh7m")
+jump_timer = NodePath("timers/jump_timer")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 position = Vector2(-7.1525574e-07, -11.499998)
@@ -20,3 +21,11 @@ texture = ExtResource("1_37kl0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_mf4mk")
+
+[node name="timers" type="Node" parent="CharacterBody2D"]
+
+[node name="jump_timer" type="Timer" parent="CharacterBody2D/timers"]
+wait_time = 0.7
+one_shot = true
+
+[connection signal="timeout" from="CharacterBody2D/timers/jump_timer" to="CharacterBody2D" method="_on_jump_timer_timeout"]
