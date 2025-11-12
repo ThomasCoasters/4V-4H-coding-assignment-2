@@ -11,9 +11,21 @@ config_version=5
 [application]
 
 config/name="zoteboat"
-run/main_scene="res://test.tscn"
+run/main_scene="res://Game/test.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Game/icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
+window/size/borderless=true
+window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg")
 
 [input]
 
