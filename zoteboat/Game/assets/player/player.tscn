@@ -1,0 +1,162 @@
+[gd_scene load_steps=12 format=3 uid="uid://rvhtgi81sikt"]
+
+[ext_resource type="Script" uid="uid://bilmy6u5xo8fm" path="res://Game/assets/player/player_controller.gd" id="1_d2shb"]
+[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://Game/assets/temp assest/icon.svg" id="2_uahac"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_3x76d"]
+[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="4_gr1j3"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="5_rl7lv"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="6_o581y"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_67ne4"]
+[ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="8_8ca2v"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="9_klxdg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8u8lh"]
+size = Vector2(24, 66)
+
+[sub_resource type="Resource" id="Resource_bnygi"]
+script = ExtResource("8_8ca2v")
+expression = "jumps_amount > 0"
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Camera")]
+z_index = 999
+script = ExtResource("1_d2shb")
+gravity = 12
+max_jump_time = 0.5
+jumping_speed = -550
+max_jumps_amount = 2
+max_fall_speed = 700
+move_speed = 400
+Camera = NodePath("Camera")
+lookahead = 50
+lookahead_cooldown = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-7.1525574e-07, -11.499998)
+scale = Vector2(0.265625, 0.7109375)
+texture = ExtResource("2_uahac")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_8u8lh")
+debug_color = Color(1, 0.5411765, 0, 0.41960785)
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("3_3x76d")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="ParallelState" type="Node" parent="StateChart"]
+script = ExtResource("4_gr1j3")
+
+[node name="Jumping" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("5_rl7lv")
+initial_state = NodePath("on_ground")
+
+[node name="jump" type="Node" parent="StateChart/ParallelState/Jumping"]
+script = ExtResource("6_o581y")
+
+[node name="Transition" type="Node" parent="StateChart/ParallelState/Jumping/jump"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../falling")
+event = &"jump_released"
+delay_in_seconds = "0.0"
+
+[node name="falling" type="Node" parent="StateChart/ParallelState/Jumping"]
+script = ExtResource("6_o581y")
+
+[node name="to_jumping" type="Node" parent="StateChart/ParallelState/Jumping/falling"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../jump")
+event = &"jump_clicked"
+guard = SubResource("Resource_bnygi")
+delay_in_seconds = "0.0"
+
+[node name="to_on_ground" type="Node" parent="StateChart/ParallelState/Jumping/falling"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../on_ground")
+event = &"on_ground"
+delay_in_seconds = "0.0"
+
+[node name="on_ground" type="Node" parent="StateChart/ParallelState/Jumping"]
+script = ExtResource("6_o581y")
+
+[node name="to_jumping" type="Node" parent="StateChart/ParallelState/Jumping/on_ground"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../jump")
+event = &"jump_clicked"
+delay_in_seconds = "0.0"
+
+[node name="to_falling" type="Node" parent="StateChart/ParallelState/Jumping/on_ground"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../falling")
+event = &"fell_of_platform"
+delay_in_seconds = "0.15"
+
+[node name="moving" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("5_rl7lv")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/ParallelState/moving"]
+script = ExtResource("6_o581y")
+
+[node name="to_moving" type="Node" parent="StateChart/ParallelState/moving/Idle"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../Moving")
+event = &"moving_clicked"
+delay_in_seconds = "0.0"
+
+[node name="Moving" type="Node" parent="StateChart/ParallelState/moving"]
+script = ExtResource("6_o581y")
+
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/moving/Moving"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../Idle")
+event = &"moving_released"
+delay_in_seconds = "0.0"
+
+[node name="attacking" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("5_rl7lv")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/ParallelState/attacking"]
+script = ExtResource("6_o581y")
+
+[node name="to_attacking" type="Node" parent="StateChart/ParallelState/attacking/Idle"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../attacking")
+event = &"attack_start"
+delay_in_seconds = "0.0"
+
+[node name="attacking" type="Node" parent="StateChart/ParallelState/attacking"]
+script = ExtResource("6_o581y")
+
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/attacking/attacking"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../Idle")
+event = &"attack_stop"
+delay_in_seconds = "0.0"
+
+[node name="Camera" type="Camera2D" parent="."]
+offset = Vector2(0, -220)
+zoom = Vector2(1.35, 1.35)
+process_callback = 0
+limit_enabled = false
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+drag_vertical_enabled = true
+drag_top_margin = 0.38
+drag_bottom_margin = 0.0
+
+[node name="StateChartDebugger" parent="Camera" instance=ExtResource("9_klxdg")]
+offset_left = 262.0
+offset_top = -400.0
+offset_right = 710.5
+offset_bottom = -80.0
+initial_node_to_watch = NodePath("../../StateChart")
+
+[connection signal="state_entered" from="StateChart/ParallelState/Jumping/jump" to="." method="_on_jump_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/Jumping/falling" to="." method="_on_falling_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/Jumping/on_ground" to="." method="_on_on_ground_state_entered"]
+[connection signal="state_processing" from="StateChart/ParallelState/moving/Moving" to="." method="_on_moving_state_processing"]
+[connection signal="state_entered" from="StateChart/ParallelState/attacking/attacking" to="." method="_on_attacking_state_entered"]
