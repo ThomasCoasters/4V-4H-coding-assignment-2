@@ -30,6 +30,7 @@ move_speed = 400
 Camera = NodePath("Camera")
 lookahead = 50
 lookahead_cooldown = 0.1
+attack_cooldown = 0.41
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-7.1525574e-07, -11.499998)

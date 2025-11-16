@@ -15,8 +15,8 @@ var jumps_amount : int = max_jumps_amount
 
 @export var max_fall_speed : int
 
-var direction := 0
-var last_direction := 1
+var direction := Vector2(0,0)
+var last_direction := Vector2(1,0)
 @export var move_speed : int
 
 @export var Camera : Camera2D
@@ -41,6 +41,11 @@ func _ready() -> void:
 	lookahead_timer.one_shot = true
 	lookahead_timer.timeout.connect(_on_lookahead_timer_timeout)
 	add_child(lookahead_timer)
+	
+	attack_timer.wait_time = attack_cooldown
+	attack_timer.one_shot = true
+	attack_timer.timeout.connect(_on_attack_timer_timeout)
+	add_child(attack_timer)
 	#endregion
 
 
@@ -53,7 +58,7 @@ func _physics_process(_delta: float) -> void:
 	#endregion
 	
 	#region moving
-	velocity.x = direction*move_speed
+	velocity.x = direction.x*move_speed
 
 	
 	move_and_slide()
@@ -74,6 +79,9 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("left") || Input.is_action_just_pressed("right"):
 		$StateChart.send_event("moving_clicked")
 	
+	if !Input.is_action_pressed("left") && !Input.is_action_pressed("right"):
+		$StateChart.send_event("moving_released")
+	
 	if Input.is_action_just_pressed("attack"):
 		$StateChart.send_event("attack_start")
 	#endregion
@@ -90,36 +98,27 @@ func _process(_delta: float) -> void:
 	#endregion
 	#endregion
 	
-	#region camera
-	if current_camera_type != "free":
-		Camera.set_as_top_level(true)
-		Camera.position = forced_position
-		return
-		
-	Camera.set_as_top_level(false)
 	
-	if Camera.position.x == last_direction*lookahead:
-		return
-	if lookahead_timer.is_stopped():
-		lookahead_timer.start()
-	#endregion
-
-#region direction inputs
-func _on_moving_state_processing(_delta: float) -> void:
-	direction = 0
+	camera_movement()
+	
+	
+	#region direction inputs
+	direction = Vector2(0,0)
 	
 	if Input.is_action_pressed("left"):
-		direction -= 1
+		direction.x -= 1
 	if Input.is_action_pressed("right"):
-		direction += 1
+		direction.x += 1
 	
-	if !Input.is_action_pressed("left") && !Input.is_action_pressed("right"):
-		$StateChart.send_event("moving_released")
-		return
+	if Input.is_action_pressed("down"):
+		direction.y -= 1
+	if Input.is_action_pressed("up"):
+		direction.y += 1
 	
-	if direction != 0:
-		last_direction = direction
-#endregion
+	if direction.x != 0:
+		last_direction.x = direction.x
+	#endregion
+	
 
 
 
@@ -163,11 +162,44 @@ func _on_on_ground_state_entered() -> void:
 #endregion
 
 
+#region camera
 func _on_lookahead_timer_timeout():
-	Camera.position.x = last_direction*lookahead
+	Camera.position.x = last_direction.x*lookahead
 
+func camera_movement():
+	if current_camera_type != "free":
+		Camera.set_as_top_level(true)
+		Camera.position = forced_position
+		return
+		
+	Camera.set_as_top_level(false)
+	
+	if Camera.position.x == last_direction.x*lookahead:
+		return
+	if lookahead_timer.is_stopped():
+		lookahead_timer.start()
+#endregion
 
 
 
 func _on_attacking_state_entered() -> void:
-	pass # Replace with function body.
+	attack_timer.start()
+	
+	if direction.y == 1:
+		start_up_attack()
+	elif direction.y == -1 && !is_on_floor():
+		start_down_attack()
+	else:
+		start_normal_attack()
+
+func _on_attack_timer_timeout():
+	$StateChart.send_event("attack_stop")
+
+func start_up_attack():
+	print("up attack")
+	
+func start_down_attack():
+	print("down attack")
+	
+func start_normal_attack():
+	print("normal attack " + str(last_direction.x))
