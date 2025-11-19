@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="6_o581y"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_67ne4"]
 [ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="8_8ca2v"]
-[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="9_klxdg"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="9_d2shb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8u8lh"]
 size = Vector2(24, 66)
@@ -24,8 +24,8 @@ script = ExtResource("1_d2shb")
 gravity = 12
 max_jump_time = 0.5
 jumping_speed = -550
-max_jumps_amount = 2
-max_fall_speed = 700
+max_jumps_amount = 1
+max_fall_speed = 1200
 move_speed = 400
 Camera = NodePath("Camera")
 lookahead = 50
@@ -91,7 +91,7 @@ delay_in_seconds = "0.0"
 script = ExtResource("7_67ne4")
 to = NodePath("../../falling")
 event = &"fell_of_platform"
-delay_in_seconds = "0.15"
+delay_in_seconds = "0.1"
 
 [node name="moving" type="Node" parent="StateChart/ParallelState"]
 script = ExtResource("5_rl7lv")
@@ -149,11 +149,11 @@ drag_vertical_enabled = true
 drag_top_margin = 0.38
 drag_bottom_margin = 0.0
 
-[node name="StateChartDebugger" parent="Camera" instance=ExtResource("9_klxdg")]
-offset_left = 262.0
-offset_top = -400.0
-offset_right = 710.5
-offset_bottom = -80.0
+[node name="StateChartDebugger" parent="Camera" instance=ExtResource("9_d2shb")]
+offset_left = 312.0
+offset_top = -620.0
+offset_right = 717.0
+offset_bottom = -203.0
 initial_node_to_watch = NodePath("../../StateChart")
 
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/jump" to="." method="_on_jump_state_entered"]
