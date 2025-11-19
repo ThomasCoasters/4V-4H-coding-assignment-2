@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="9_d2shb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8u8lh"]
-size = Vector2(24, 66)
+size = Vector2(24, 80)
 
 [sub_resource type="Resource" id="Resource_bnygi"]
 script = ExtResource("8_8ca2v")
@@ -31,6 +31,7 @@ Camera = NodePath("Camera")
 lookahead = 50
 lookahead_cooldown = 0.1
 attack_cooldown = 0.41
+attack_linger = 0.15
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-7.1525574e-07, -11.499998)
@@ -38,7 +39,7 @@ scale = Vector2(0.265625, 0.7109375)
 texture = ExtResource("2_uahac")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_8u8lh")
 debug_color = Color(1, 0.5411765, 0, 0.41960785)
 
@@ -160,4 +161,5 @@ initial_node_to_watch = NodePath("../../StateChart")
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/falling" to="." method="_on_falling_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/on_ground" to="." method="_on_on_ground_state_entered"]
 [connection signal="state_processing" from="StateChart/ParallelState/moving/Moving" to="." method="_on_moving_state_processing"]
+[connection signal="state_entered" from="StateChart/ParallelState/attacking/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attacking/attacking" to="." method="_on_attacking_state_entered"]

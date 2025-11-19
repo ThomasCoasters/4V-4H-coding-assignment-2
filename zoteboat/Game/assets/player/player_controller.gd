@@ -23,11 +23,12 @@ var last_direction := Vector2(1,0)
 @export var lookahead : int
 var current_camera_type := "free" #"free" of "locked"
 var forced_position = Vector2(0,0)
-var lookahead_timer := Timer.new()
 @export var lookahead_cooldown : float
 
-var attack_timer := Timer.new()
 @export var attack_cooldown : float
+@export var attack_linger : float
+
+var normal_attack = preload("res://Game/assets/player/attacks/normal attack.tscn")
 #endregion
 
 func _ready() -> void:
@@ -36,16 +37,6 @@ func _ready() -> void:
 	jump_timer.one_shot = true
 	jump_timer.timeout.connect(_on_jump_timer_timeout)
 	add_child(jump_timer)
-	
-	lookahead_timer.wait_time = lookahead_cooldown
-	lookahead_timer.one_shot = true
-	lookahead_timer.timeout.connect(_on_lookahead_timer_timeout)
-	add_child(lookahead_timer)
-	
-	attack_timer.wait_time = attack_cooldown
-	attack_timer.one_shot = true
-	attack_timer.timeout.connect(_on_attack_timer_timeout)
-	add_child(attack_timer)
 	#endregion
 
 
@@ -163,9 +154,6 @@ func _on_on_ground_state_entered() -> void:
 
 
 #region camera
-func _on_lookahead_timer_timeout():
-	Camera.position.x = last_direction.x*lookahead
-
 func camera_movement():
 	if current_camera_type != "free":
 		Camera.set_as_top_level(true)
@@ -176,24 +164,31 @@ func camera_movement():
 	
 	if Camera.position.x == last_direction.x*lookahead:
 		return
-	if lookahead_timer.is_stopped():
-		lookahead_timer.start()
+	
+	await get_tree().create_timer(lookahead_cooldown).timeout
+	
+	Camera.position.x = last_direction.x*lookahead
 #endregion
 
 
 
+#region attacking
 func _on_attacking_state_entered() -> void:
-	attack_timer.start()
-	
 	if direction.y == 1:
 		start_up_attack()
 	elif direction.y == -1 && !is_on_floor():
 		start_down_attack()
 	else:
 		start_normal_attack()
-
-func _on_attack_timer_timeout():
+	
+	await get_tree().create_timer(attack_cooldown).timeout
+	
 	$StateChart.send_event("attack_stop")
+
+func delete_attack() -> void:
+	for attack in get_tree().get_nodes_in_group("attacks"):
+		attack.queue_free()
+
 
 func start_up_attack():
 	print("up attack")
@@ -202,4 +197,15 @@ func start_down_attack():
 	print("down attack")
 	
 func start_normal_attack():
-	print("normal attack " + str(last_direction.x))
+	var attack = normal_attack.instantiate()
+	attack.position.x = last_direction.x * 15
+	attack.position.y = -10
+	attack.scale.x = last_direction.x
+	
+	attack.add_to_group("attacks")
+	self.add_child(attack)
+	
+	await get_tree().create_timer(attack_linger).timeout
+	
+	delete_attack()
+#endregion

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5t45rn5r4jr4"]
+
+[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://Game/assets/temp assest/icon.svg" id="1_smmjh"]
+
+[node name="NormalAttack" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(45.75, 0.9999981)
+scale = Vector2(0.70703125, 0.625)
+texture = ExtResource("1_smmjh")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(1.364242e-12, 3.8146973e-06)
+scale = Vector2(1.1231447, 1.517742)
+polygon = PackedVector2Array(0.8903632, 21.116894, 6.4516115, 16.238806, 11.612901, -12.179104, 6.4516115, -25.711443, 46.451607, -25.711443, 68.387085, -14.885572, 80.132164, -2.1587298, 80.132164, 8.924901, 63.215374, 21.116894, 37.39501, 26.658709)
