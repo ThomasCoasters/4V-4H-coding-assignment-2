@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://hoyxcaqbicl3"]
+
+[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://Game/assets/temp assest/icon.svg" id="1_xsqvh"]
+
+[node name="UpAttack" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.38554764, -39.63853)
+rotation = 1.5707964
+scale = Vector2(0.6076333, 0.950302)
+texture = ExtResource("1_xsqvh")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-0.99999666, 1.0883025)
+scale = Vector2(0.875, 1.1754032)
+polygon = PackedVector2Array(-58, -2, -70, -21, -70, -37, -54, -56, -27, -64, 25, -64, 51, -56, 70, -39, 70, -22, 53, -2)

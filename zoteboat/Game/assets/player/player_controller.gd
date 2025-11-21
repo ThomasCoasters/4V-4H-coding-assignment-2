@@ -29,9 +29,12 @@ var forced_position = Vector2(0,0)
 @export var attack_linger : float
 
 var normal_attack = preload("res://Game/assets/player/attacks/normal attack.tscn")
+var up_attack = preload("res://Game/assets/player/attacks/up attack.tscn")
+var down_attack = preload("res://Game/assets/player/attacks/pogo.tscn")
 #endregion
 
 func _ready() -> void:
+	add_to_group("player")
 	#region timers setup
 	jump_timer.wait_time = max_jump_time
 	jump_timer.one_shot = true
@@ -191,10 +194,27 @@ func delete_attack() -> void:
 
 
 func start_up_attack():
-	print("up attack")
+	var attack = up_attack.instantiate()
+	attack.position.y = -50
+	attack.scale.x = last_direction.x
+	
+	attack.add_to_group("attacks")
+	self.add_child(attack)
+	
+	await get_tree().create_timer(attack_linger).timeout
+	
+	delete_attack()
 	
 func start_down_attack():
-	print("down attack")
+	var attack = down_attack.instantiate()
+	attack.position = position
+	attack.scale.x = last_direction.x
+	attack.scale.y = -1
+	
+	attack.add_to_group("attacks")
+	get_tree().root.add_child(attack)
+	
+	velocity.y = jumping_speed
 	
 func start_normal_attack():
 	var attack = normal_attack.instantiate()
