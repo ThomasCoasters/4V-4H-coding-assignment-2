@@ -78,7 +78,7 @@ func _process(_delta: float) -> void:
 	if !Input.is_action_pressed("left") && !Input.is_action_pressed("right"):
 		$StateChart.send_event("moving_released")
 	
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") && can_attack:
 		$StateChart.send_event("attack_start")
 	#endregion
 		#region checks

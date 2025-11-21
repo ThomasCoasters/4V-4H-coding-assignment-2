@@ -9,17 +9,20 @@ signal pogo_returned
 
 func _physics_process(delta: float) -> void:
 	if returning:
-		speed += 0.2
+		speed += 0.15
 		var player = get_tree().get_first_node_in_group("player")
 		return_target = player.global_position
 		# Smooth movement back to the player
 		global_position = global_position.lerp(return_target, speed * delta)
+		
+		look_at(return_target)
 		
 		return
 
 	# Normal falling behavior
 	speed += acceleration
 	position.y += speed
+	rotate(0.3)
 
 
 func _on_body_entered(body: Node2D) -> void:

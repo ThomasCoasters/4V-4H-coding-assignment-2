@@ -9,12 +9,12 @@ acceleration = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0.38554478, -0.13853455)
-rotation = 1.5707964
 scale = Vector2(0.3498208, 0.15342703)
 texture = ExtResource("2_ej178")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, 23)
+position = Vector2(-23, 0)
+rotation = 1.5707964
 polygon = PackedVector2Array(0, -2, -8, -2, -8, -24, 0, -45, 8, -24, 8, -2)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
