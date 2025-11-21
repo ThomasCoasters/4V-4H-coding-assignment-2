@@ -31,6 +31,8 @@ var forced_position = Vector2(0,0)
 var normal_attack = preload("res://Game/assets/player/attacks/normal attack.tscn")
 var up_attack = preload("res://Game/assets/player/attacks/up attack.tscn")
 var down_attack = preload("res://Game/assets/player/attacks/pogo.tscn")
+
+var can_attack : bool = true
 #endregion
 
 func _ready() -> void:
@@ -214,8 +216,12 @@ func start_down_attack():
 	attack.add_to_group("attacks")
 	get_tree().root.add_child(attack)
 	
+	attack.pogo_returned.connect(_on_pogo_returned)
+	
 	velocity.y = jumping_speed
 	
+	can_attack = false
+
 func start_normal_attack():
 	var attack = normal_attack.instantiate()
 	attack.position.x = last_direction.x * 15
@@ -228,4 +234,10 @@ func start_normal_attack():
 	await get_tree().create_timer(attack_linger).timeout
 	
 	delete_attack()
+
+
+func _on_pogo_returned():
+	delete_attack()
+	
+	can_attack = true
 #endregion
