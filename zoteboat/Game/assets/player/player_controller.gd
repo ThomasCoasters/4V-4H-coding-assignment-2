@@ -34,8 +34,12 @@ var down_attack = preload("res://Game/assets/player/attacks/pogo.tscn")
 
 var can_attack : bool = true
 var can_move : bool = true
+var can_walk : int = 1
 
 @export var hardfall_stun_time : float
+
+@export var can_walljump : bool = true
+var forced_move : Vector2
 #endregion
 
 func _ready() -> void:
@@ -60,7 +64,11 @@ func _physics_process(_delta: float) -> void:
 	#endregion
 	
 	#region moving
-	velocity.x = direction.x*move_speed
+	if can_walk:
+		velocity.x = direction.x*move_speed
+	else:
+		velocity.x = forced_move.x
+	
 	
 	move_and_slide()
 	#endregion
@@ -97,8 +105,14 @@ func _process(_delta: float) -> void:
 	if is_on_ceiling():
 		$StateChart.send_event("jump_released")
 	
+	if is_on_wall_only() && velocity.y >0:
+		$StateChart.send_event("on_wall")
+	
 	if !is_jumping && !is_on_floor():
 		$StateChart.send_event("fell_of_platform")
+	
+	if !is_on_wall() || (is_on_wall() && !test_move(transform, direction)):
+		$StateChart.send_event("fell_of_wall")
 	
 	#endregion
 	#endregion
@@ -137,7 +151,7 @@ func _on_jump_timer_timeout() -> void:
 
 
 func _on_jump_state_entered() -> void:
-	if is_jumping || !can_move:
+	if is_jumping || !can_move || (is_on_wall_only() && velocity.y < 0):
 		return
 	
 	velocity.y = jumping_speed
@@ -157,11 +171,11 @@ func _on_falling_state_entered() -> void:
 	
 	is_jumping = false
 	
-	gravity_multiplier = 4
+	gravity_multiplier = 3
 	
 	if !is_jumping:
 		return
-	velocity.y *= 0.5
+	velocity.y = 0
 
 
 func _on_on_ground_state_entered() -> void:
@@ -177,6 +191,34 @@ func _on_landed(speed):
 		await get_tree().create_timer(hardfall_stun_time).timeout
 		
 		can_move = true
+
+func _on_wall_slide_state_entered() -> void:
+	velocity.y = 0
+	
+	gravity_multiplier = 1
+	
+	jumps_amount = max_jumps_amount
+	
+	max_fall_speed /= 3
+
+func _on_wall_slide_state_exited() -> void:
+	max_fall_speed *= 3
+	
+	position.x -= last_direction.x
+
+func _on_to_jumping_form_wall_taken() -> void:
+	forced_move.x = -last_direction.x * 500
+	
+	can_walk = 0
+	
+	await get_tree().create_timer(max_jump_time/2).timeout
+	
+	forced_move.x = 0
+	
+	can_walk = 1
+	
+	print("aaaaaaaaaaa")
+
 #endregion
 
 
