@@ -24,7 +24,7 @@ script = ExtResource("1_d2shb")
 gravity = 12
 max_jump_time = 0.5
 jumping_speed = -550
-max_jumps_amount = 1
+max_jumps_amount = 3
 max_fall_speed = 1200
 move_speed = 400
 Camera = NodePath("Camera")
@@ -32,6 +32,7 @@ lookahead = 50
 lookahead_cooldown = 0.1
 attack_cooldown = 0.41
 attack_linger = 0.15
+hardfall_stun_time = 0.6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-7.1525574e-07, -11.499998)
@@ -40,6 +41,7 @@ texture = ExtResource("2_uahac")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
+scale = Vector2(0.9908129, 0.9952922)
 shape = SubResource("RectangleShape2D_8u8lh")
 debug_color = Color(1, 0.5411765, 0, 0.41960785)
 
@@ -79,6 +81,11 @@ to = NodePath("../../on_ground")
 event = &"on_ground"
 delay_in_seconds = "0.0"
 
+[node name="to_hardfall" type="Node" parent="StateChart/ParallelState/Jumping/falling"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../hardfall")
+delay_in_seconds = "2"
+
 [node name="on_ground" type="Node" parent="StateChart/ParallelState/Jumping"]
 script = ExtResource("6_o581y")
 
@@ -93,6 +100,22 @@ script = ExtResource("7_67ne4")
 to = NodePath("../../falling")
 event = &"fell_of_platform"
 delay_in_seconds = "0.1"
+
+[node name="hardfall" type="Node" parent="StateChart/ParallelState/Jumping"]
+script = ExtResource("6_o581y")
+
+[node name="to_jumping" type="Node" parent="StateChart/ParallelState/Jumping/hardfall"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../jump")
+event = &"jump_clicked"
+guard = SubResource("Resource_bnygi")
+delay_in_seconds = "0.0"
+
+[node name="to_on_ground" type="Node" parent="StateChart/ParallelState/Jumping/hardfall"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../on_ground")
+event = &"on_ground"
+delay_in_seconds = "0.0"
 
 [node name="moving" type="Node" parent="StateChart/ParallelState"]
 script = ExtResource("5_rl7lv")
@@ -147,7 +170,7 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
 drag_vertical_enabled = true
-drag_top_margin = 0.38
+drag_top_margin = 0.25
 drag_bottom_margin = 0.0
 
 [node name="StateChartDebugger" parent="Camera" instance=ExtResource("9_d2shb")]

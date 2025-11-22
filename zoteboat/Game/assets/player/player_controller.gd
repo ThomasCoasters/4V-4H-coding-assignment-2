@@ -33,6 +33,9 @@ var up_attack = preload("res://Game/assets/player/attacks/up attack.tscn")
 var down_attack = preload("res://Game/assets/player/attacks/pogo.tscn")
 
 var can_attack : bool = true
+var can_move : bool = true
+
+@export var hardfall_stun_time : float
 #endregion
 
 func _ready() -> void:
@@ -47,7 +50,10 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	#region jumping
+	
+	#region jumping/falling
+	var last_vertical_velocity = velocity.y
+	
 	velocity.y += gravity*gravity_multiplier
 	
 	velocity.y = clamp(velocity.y, jumping_speed, max_fall_speed)
@@ -55,13 +61,16 @@ func _physics_process(_delta: float) -> void:
 	
 	#region moving
 	velocity.x = direction.x*move_speed
-
 	
 	move_and_slide()
 	#endregion
+	
+	if is_on_floor() && last_vertical_velocity > 0:
+		_on_landed(last_vertical_velocity)
 
 
 func _process(_delta: float) -> void:
+	
 	#region state machine events
 		#region inputs
 	
@@ -101,6 +110,9 @@ func _process(_delta: float) -> void:
 	#region direction inputs
 	direction = Vector2(0,0)
 	
+	if !can_move:
+		return
+	
 	if Input.is_action_pressed("left"):
 		direction.x -= 1
 	if Input.is_action_pressed("right"):
@@ -113,6 +125,7 @@ func _process(_delta: float) -> void:
 	
 	if direction.x != 0:
 		last_direction.x = direction.x
+	
 	#endregion
 	
 
@@ -124,7 +137,7 @@ func _on_jump_timer_timeout() -> void:
 
 
 func _on_jump_state_entered() -> void:
-	if is_jumping:
+	if is_jumping || !can_move:
 		return
 	
 	velocity.y = jumping_speed
@@ -155,6 +168,15 @@ func _on_on_ground_state_entered() -> void:
 	jumps_amount = max_jumps_amount
 	
 	#current_camera_type = "free"
+
+
+func _on_landed(speed):
+	if $StateChart/ParallelState/Jumping/hardfall.active && speed >= max_fall_speed:
+		can_move = false
+		
+		await get_tree().create_timer(hardfall_stun_time).timeout
+		
+		can_move = true
 #endregion
 
 
@@ -167,18 +189,44 @@ func camera_movement():
 		
 	Camera.set_as_top_level(false)
 	
+	camera_movement_y()
+	
 	if Camera.position.x == last_direction.x*lookahead:
 		return
+	
 	
 	await get_tree().create_timer(lookahead_cooldown).timeout
 	
 	Camera.position.x = last_direction.x*lookahead
+
+
+func camera_movement_y():
+	if !is_on_floor():
+		Camera.position.y = 0
+		Camera.drag_top_margin = 0.25
+		return
+	Camera.drag_top_margin = 0
+	
+	if Camera.position.y == direction.y*lookahead*2:
+		Camera.position.y = 0
+		return
+	
+	await get_tree().create_timer(lookahead_cooldown).timeout
+	
+	if direction.y == 1:
+		Camera.position.y = -direction.y*lookahead*2
+	else: 
+		Camera.position.y = -direction.y*lookahead*5
 #endregion
 
 
 
 #region attacking
 func _on_attacking_state_entered() -> void:
+	if !can_move:
+		$StateChart.send_event("attack_stop")
+		return
+	
 	if direction.y == 1:
 		start_up_attack()
 	elif direction.y == -1 && !is_on_floor():
