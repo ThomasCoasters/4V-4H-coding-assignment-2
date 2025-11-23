@@ -17,7 +17,7 @@ config/icon="res://Game/assets/temp assest/icon.svg"
 
 [autoload]
 
-Global="*res://Game/assets/misc/scripts/global.gd"
+Global="*res://Game/MISC/scripts/global.gd"
 
 [debug]
 

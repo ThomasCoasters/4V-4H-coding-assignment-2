@@ -267,7 +267,6 @@ func _on_attacking_state_entered() -> void:
 		$StateChart.send_event("attack_stop")
 		return
 	
-	Global.map_holder.change_2d_scene("res://Game/assets/maps/test2.tscn")
 	if direction.y == 1:
 		start_UP_ATTACK()
 	elif direction.y == -1 && !is_on_floor():

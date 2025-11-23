@@ -23,14 +23,28 @@ func change_gui_scene(new_scene: String, delete: bool = true, keep_running: bool
 	gui.add_child(new)
 	current_GUI = new
 
-func change_2d_scene(new_scene: String, delete: bool = true, keep_running: bool = false) -> void:
+func change_2d_scene(new_scene: String, new_location_group: String, delete: bool = true, keep_running: bool = false) -> void:
+	call_deferred("_change_2d_scene_internal", new_scene, new_location_group, delete, keep_running)
+
+func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_running):
 	if current_map != null:
 		if delete:
-			current_map.queue_free() # full remove
+			current_map.queue_free()
 		elif keep_running:
-			current_map.visible = false # keep in memory and running
+			current_map.visible = false
 		else:
 			map.remove_child(current_map)
+
+	if new_scene == "none":
+		return
+
 	var new = load(new_scene).instantiate()
 	map.add_child(new)
 	current_map = new
+
+	for child in new.get_children():
+		if child.is_in_group(new_location_group):
+			player.position = child.position
+			return
+	
+	print_debug("no location to warp to " + str(new_location_group))
