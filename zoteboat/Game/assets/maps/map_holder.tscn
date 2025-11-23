@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bah08g4ftmni4"]
+
+[ext_resource type="PackedScene" uid="uid://rvhtgi81sikt" path="res://Game/assets/player/player.tscn" id="1_3hwdp"]
+[ext_resource type="Script" uid="uid://d0iq3xl6p8yrv" path="res://Game/assets/maps/map_holder.gd" id="1_3ofuw"]
+[ext_resource type="PackedScene" uid="uid://dcc5x1snxgepn" path="res://Game/assets/maps/rooms/test.tscn" id="2_3ofuw"]
+
+[node name="MapHolder" type="Node" node_paths=PackedStringArray("map", "player", "gui")]
+script = ExtResource("1_3ofuw")
+map = NodePath("map")
+player = NodePath("player/Player")
+gui = NodePath("gui")
+
+[node name="map" type="Node2D" parent="."]
+
+[node name="TestMap" parent="map" instance=ExtResource("2_3ofuw")]
+
+[node name="player" type="Node" parent="."]
+
+[node name="Player" parent="player" instance=ExtResource("1_3hwdp")]
+
+[node name="gui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

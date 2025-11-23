@@ -22,18 +22,9 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Camera")]
 z_index = 999
 script = ExtResource("1_d2shb")
-gravity = 12
-max_jump_time = 0.5
-jumping_speed = -550
-max_jumps_amount = 3
 max_fall_speed = 1200
-move_speed = 400
 Camera = NodePath("Camera")
-lookahead = 50
-lookahead_cooldown = 0.1
-attack_cooldown = 0.41
-attack_linger = 0.15
-hardfall_stun_time = 0.6
+can_walljump = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-7.1525574e-07, -11.499998)

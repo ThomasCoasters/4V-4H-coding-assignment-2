@@ -1,51 +1,51 @@
 extends CharacterBody2D
 
 #region vars setup
-@export var gravity : int;
+const GRAVITY : int = 12
 
 var gravity_multiplier := 0.0
 
 
 var is_jumping = false
 var jump_timer := Timer.new()
-@export var max_jump_time : float
-@export var jumping_speed : int
-@export var max_jumps_amount : int
+const MAX_JUMP_TIME : float = 0.5
+const JUMPING_SPEED : int = -550
+@export var max_jumps_amount : int = 1
 var jumps_amount : int = max_jumps_amount
 
 @export var max_fall_speed : int
 
 var direction := Vector2(0,0)
 var last_direction := Vector2(1,0)
-@export var move_speed : int
+const MOVE_SPEED : int = 400
 
 @export var Camera : Camera2D
-@export var lookahead : int
+const LOOKAHEAD : int = 50
 var current_camera_type := "free" #"free" of "locked"
 var forced_position = Vector2(0,0)
-@export var lookahead_cooldown : float
+const LOOKAHEAD_COOLDOWN : float = 0.1
 
-@export var attack_cooldown : float
-@export var attack_linger : float
+const ATTACK_COOLDOWN : float = 0.41
+const ATTACK_LINGER : float = 0.15
 
-var normal_attack = preload("res://Game/assets/player/attacks/normal attack.tscn")
-var up_attack = preload("res://Game/assets/player/attacks/up attack.tscn")
-var down_attack = preload("res://Game/assets/player/attacks/pogo.tscn")
+const NORMAL_ATTACK = preload("res://Game/assets/player/attacks/normal attack.tscn")
+const UP_ATTACK = preload("res://Game/assets/player/attacks/up attack.tscn")
+const DOWN_ATTACK = preload("res://Game/assets/player/attacks/pogo.tscn")
 
 var can_attack : bool = true
 var can_move : bool = true
 var can_walk : int = 1
 
-@export var hardfall_stun_time : float
+const HARDFALL_STUN_TIME : float = 0.6
 
-@export var can_walljump : bool = true
+@export var can_walljump : bool
 var forced_move : Vector2
 #endregion
 
 func _ready() -> void:
 	add_to_group("player")
 	#region timers setup
-	jump_timer.wait_time = max_jump_time
+	jump_timer.wait_time = MAX_JUMP_TIME
 	jump_timer.one_shot = true
 	jump_timer.timeout.connect(_on_jump_timer_timeout)
 	add_child(jump_timer)
@@ -58,14 +58,14 @@ func _physics_process(_delta: float) -> void:
 	#region jumping/falling
 	var last_vertical_velocity = velocity.y
 	
-	velocity.y += gravity*gravity_multiplier
+	velocity.y += GRAVITY*gravity_multiplier
 	
-	velocity.y = clamp(velocity.y, jumping_speed, max_fall_speed)
+	velocity.y = clamp(velocity.y, JUMPING_SPEED, max_fall_speed)
 	#endregion
 	
 	#region moving
 	if can_walk:
-		velocity.x = direction.x*move_speed
+		velocity.x = direction.x*MOVE_SPEED
 	else:
 		velocity.x = forced_move.x
 	
@@ -154,7 +154,7 @@ func _on_jump_state_entered() -> void:
 	if is_jumping || !can_move || (is_on_wall_only() && velocity.y < 0):
 		return
 	
-	velocity.y = jumping_speed
+	velocity.y = JUMPING_SPEED
 	is_jumping = true
 	
 	jump_timer.start()
@@ -188,7 +188,7 @@ func _on_landed(speed):
 	if $StateChart/ParallelState/Jumping/hardfall.active && speed >= max_fall_speed:
 		can_move = false
 		
-		await get_tree().create_timer(hardfall_stun_time).timeout
+		await get_tree().create_timer(HARDFALL_STUN_TIME).timeout
 		
 		can_move = true
 
@@ -211,13 +211,11 @@ func _on_to_jumping_form_wall_taken() -> void:
 	
 	can_walk = 0
 	
-	await get_tree().create_timer(max_jump_time/2).timeout
+	await get_tree().create_timer(MAX_JUMP_TIME/2).timeout
 	
 	forced_move.x = 0
 	
 	can_walk = 1
-	
-	print("aaaaaaaaaaa")
 
 #endregion
 
@@ -233,13 +231,13 @@ func camera_movement():
 	
 	camera_movement_y()
 	
-	if Camera.position.x == last_direction.x*lookahead:
+	if Camera.position.x == last_direction.x*LOOKAHEAD:
 		return
 	
 	
-	await get_tree().create_timer(lookahead_cooldown).timeout
+	await get_tree().create_timer(LOOKAHEAD_COOLDOWN).timeout
 	
-	Camera.position.x = last_direction.x*lookahead
+	Camera.position.x = last_direction.x*LOOKAHEAD
 
 
 func camera_movement_y():
@@ -249,16 +247,16 @@ func camera_movement_y():
 		return
 	Camera.drag_top_margin = 0
 	
-	if Camera.position.y == direction.y*lookahead*2:
+	if Camera.position.y == direction.y*LOOKAHEAD*2:
 		Camera.position.y = 0
 		return
 	
-	await get_tree().create_timer(lookahead_cooldown).timeout
+	await get_tree().create_timer(LOOKAHEAD_COOLDOWN).timeout
 	
 	if direction.y == 1:
-		Camera.position.y = -direction.y*lookahead*2
+		Camera.position.y = -direction.y*LOOKAHEAD*2
 	else: 
-		Camera.position.y = -direction.y*lookahead*5
+		Camera.position.y = -direction.y*LOOKAHEAD*5
 #endregion
 
 
@@ -269,14 +267,15 @@ func _on_attacking_state_entered() -> void:
 		$StateChart.send_event("attack_stop")
 		return
 	
+	Global.map_holder.change_2d_scene("res://Game/assets/maps/test2.tscn")
 	if direction.y == 1:
-		start_up_attack()
+		start_UP_ATTACK()
 	elif direction.y == -1 && !is_on_floor():
-		start_down_attack()
+		start_DOWN_ATTACK()
 	else:
-		start_normal_attack()
+		start_NORMAL_ATTACK()
 	
-	await get_tree().create_timer(attack_cooldown).timeout
+	await get_tree().create_timer(ATTACK_COOLDOWN).timeout
 	
 	$StateChart.send_event("attack_stop")
 
@@ -285,20 +284,20 @@ func delete_attack() -> void:
 		attack.queue_free()
 
 
-func start_up_attack():
-	var attack = up_attack.instantiate()
+func start_UP_ATTACK():
+	var attack = UP_ATTACK.instantiate()
 	attack.position.y = -50
 	attack.scale.x = last_direction.x
 	
 	attack.add_to_group("attacks")
 	self.add_child(attack)
 	
-	await get_tree().create_timer(attack_linger).timeout
+	await get_tree().create_timer(ATTACK_LINGER).timeout
 	
 	delete_attack()
 	
-func start_down_attack():
-	var attack = down_attack.instantiate()
+func start_DOWN_ATTACK():
+	var attack = DOWN_ATTACK.instantiate()
 	attack.position = position
 	attack.scale.x = last_direction.x
 	attack.scale.y = -1
@@ -308,12 +307,12 @@ func start_down_attack():
 	
 	attack.pogo_returned.connect(_on_pogo_returned)
 	
-	velocity.y = jumping_speed
+	velocity.y = JUMPING_SPEED
 	
 	can_attack = false
 
-func start_normal_attack():
-	var attack = normal_attack.instantiate()
+func start_NORMAL_ATTACK():
+	var attack = NORMAL_ATTACK.instantiate()
 	attack.position.x = last_direction.x * 15
 	attack.position.y = -10
 	attack.scale.x = last_direction.x
@@ -321,7 +320,7 @@ func start_normal_attack():
 	attack.add_to_group("attacks")
 	self.add_child(attack)
 	
-	await get_tree().create_timer(attack_linger).timeout
+	await get_tree().create_timer(ATTACK_LINGER).timeout
 	
 	delete_attack()
 
