@@ -27,6 +27,10 @@ func change_2d_scene(new_scene: String, new_location_group: String, delete: bool
 	call_deferred("_change_2d_scene_internal", new_scene, new_location_group, delete, keep_running)
 
 func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_running):
+	fading()
+	
+	await transition.on_transition_finished
+	
 	if current_map != null:
 		if delete:
 			current_map.queue_free()
@@ -45,6 +49,15 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	for child in new.get_children():
 		if child.is_in_group(new_location_group):
 			player.position = child.position
+			
+			await transition.on_transition_finished
+			
+			player.can_move = true
 			return
 	
 	print_debug("no location to warp to " + str(new_location_group))
+
+
+func fading():
+	transition.transition()
+	player.can_move = false

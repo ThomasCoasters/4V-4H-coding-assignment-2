@@ -18,6 +18,7 @@ config/icon="res://Game/assets/temp assest/icon.svg"
 [autoload]
 
 Global="*res://Game/MISC/scripts/global.gd"
+transition="*res://Game/assets/maps/warp_zone/fading_anim/transition.tscn"
 
 [debug]
 
