@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdw42gptmfjdm"]
 
-[ext_resource type="Script" uid="uid://dyexyw66crn2v" path="res://Game/assets/maps/warp_zone/warping/warp_zone.gd" id="1_h8t7x"]
+[ext_resource type="Script" uid="uid://dyexyw66crn2v" path="res://maps/warp_zone/warping/warp_zone.gd" id="1_h8t7x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8t7x"]
 

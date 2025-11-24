@@ -40,6 +40,8 @@ const HARDFALL_STUN_TIME : float = 0.6
 
 @export var can_walljump : bool
 var forced_move : Vector2
+
+@export var attack_damage : int
 #endregion
 
 func _ready() -> void:
@@ -289,6 +291,8 @@ func start_UP_ATTACK():
 	attack.scale.x = last_direction.x
 	
 	attack.add_to_group("attacks")
+	attack.area_entered.connect(_on_attack_entered)
+	
 	self.add_child(attack)
 	
 	await get_tree().create_timer(ATTACK_LINGER).timeout
@@ -302,6 +306,8 @@ func start_DOWN_ATTACK():
 	attack.scale.y = -1
 	
 	attack.add_to_group("attacks")
+	attack.area_entered.connect(_on_attack_entered)
+	
 	get_tree().root.add_child(attack)
 	
 	attack.pogo_returned.connect(_on_pogo_returned)
@@ -317,6 +323,8 @@ func start_NORMAL_ATTACK():
 	attack.scale.x = last_direction.x
 	
 	attack.add_to_group("attacks")
+	attack.area_entered.connect(_on_attack_entered)
+	
 	self.add_child(attack)
 	
 	await get_tree().create_timer(ATTACK_LINGER).timeout
@@ -328,4 +336,11 @@ func _on_pogo_returned():
 	delete_attack()
 	
 	can_attack = true
+
+
+func _on_attack_entered(area: Area2D):
+	if !area.is_in_group("enemy"):
+		return
+	
+	area.damage(attack_damage)
 #endregion

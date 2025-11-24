@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://clob4nu8siv5p"]
 
-[ext_resource type="Script" uid="uid://cjuni3884f1x0" path="res://Game/assets/maps/warp_zone/warping/spawn_location.gd" id="1_qyqih"]
+[ext_resource type="Script" uid="uid://cjuni3884f1x0" path="res://maps/warp_zone/warping/spawn_location.gd" id="1_qyqih"]
 
 [node name="SpawnLocation" type="ColorRect"]
 custom_minimum_size = Vector2(30, 30)

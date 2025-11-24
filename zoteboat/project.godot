@@ -18,7 +18,7 @@ config/icon="res://Game/assets/temp assest/icon.svg"
 [autoload]
 
 Global="*res://Game/MISC/scripts/global.gd"
-transition="*res://Game/assets/maps/warp_zone/fading_anim/transition.tscn"
+transition="*res://maps/warp_zone/fading_anim/transition.tscn"
 
 [debug]
 
@@ -35,6 +35,10 @@ window/stretch/mode="viewport"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
+
+[global_group]
+
+enemy=""
 
 [input]
 

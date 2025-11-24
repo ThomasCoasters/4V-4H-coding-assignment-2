@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://dcc5x1snxgepn"]
+[gd_scene load_steps=7 format=4 uid="uid://dcc5x1snxgepn"]
 
-[ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://Game/assets/maps/warp_zone/warping/Warp_Zone.tscn" id="2_7pfcn"]
-[ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://Game/assets/maps/warp_zone/warping/spawn_location.tscn" id="3_arhpg"]
+[ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="2_7pfcn"]
+[ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="3_arhpg"]
+[ext_resource type="PackedScene" uid="uid://d2a2qb1xnuxa4" path="res://Game/assets/enemies/normal/test_dummy/test_dummy.tscn" id="4_gyhbf"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://Game/assets/temp assest/Dungeon Tile Set.png" id="9_sx31g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkdps"]
@@ -101,7 +102,7 @@ tile_set = SubResource("TileSet_a186h")
 [node name="WarpZone" parent="." instance=ExtResource("2_7pfcn")]
 position = Vector2(1292, 103)
 scale = Vector2(-1, 5.668914)
-warp_to = "res://Game/assets/maps/rooms/test2.tscn"
+warp_to = "res://maps/rooms/test2.tscn"
 new_location_group = "left_1"
 
 [node name="SpawnLocation" parent="." instance=ExtResource("3_arhpg")]
@@ -110,3 +111,7 @@ offset_top = 104.0
 offset_right = 1276.0
 offset_bottom = 134.0
 own_group = "right_1"
+
+[node name="TestDummy" parent="." instance=ExtResource("4_gyhbf")]
+position = Vector2(424, -335)
+scale = Vector2(0.68, 1)

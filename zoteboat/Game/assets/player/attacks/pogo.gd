@@ -9,13 +9,16 @@ signal pogo_returned
 
 func _physics_process(delta: float) -> void:
 	if returning:
-		speed += 0.15
+		speed += 10
 		var player = get_tree().get_first_node_in_group("player")
 		return_target = player.global_position
 		# Smooth movement back to the player
-		global_position = global_position.lerp(return_target, speed * delta)
+		global_position = global_position.move_toward(return_target, speed * delta)
 		
 		look_at(return_target)
+		
+		if global_position.distance_to(return_target) < 35:
+			pogo_returned.emit()
 		
 		return
 
@@ -24,16 +27,19 @@ func _physics_process(delta: float) -> void:
 	position.y += speed
 	rotate(0.3)
 
+func _on_area_entered(area: Area2D) -> void:
+	something_entered(area)
 
 func _on_body_entered(body: Node2D) -> void:
+	something_entered(body)
+
+func something_entered(thing):
 	# Ignore player
-	if body.is_in_group("player"):
-		if returning:
-			pogo_returned.emit()
+	if thing.is_in_group("player"):
 		return
 
 	# Start return process
 	var player = get_tree().get_first_node_in_group("player")
 	if player && !returning:
 		returning = true
-		speed = 0
+		speed = 100

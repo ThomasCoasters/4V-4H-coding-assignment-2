@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c8sotovabwdkk"]
 
-[ext_resource type="Script" uid="uid://ctxaaltyiu3de" path="res://Game/assets/maps/warp_zone/fading_anim/transition.gd" id="1_u50wc"]
+[ext_resource type="Script" uid="uid://ctxaaltyiu3de" path="res://maps/warp_zone/fading_anim/transition.gd" id="1_u50wc"]
 
 [sub_resource type="Animation" id="Animation_ahcok"]
 resource_name = "fade_to_black"
