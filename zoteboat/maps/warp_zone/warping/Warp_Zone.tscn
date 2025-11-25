@@ -5,6 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8t7x"]
 
 [node name="WarpZone" type="Area2D"]
+collision_layer = 4
 script = ExtResource("1_h8t7x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

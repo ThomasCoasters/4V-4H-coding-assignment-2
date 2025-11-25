@@ -7,9 +7,17 @@ class_name MapHolder extends Node
 var current_map
 var current_GUI
 
+var killed_enemies : Dictionary
+var respawnable_enemies : Dictionary
+
 func _ready() -> void:
 	Global.map_holder = self
+	
+	Global.map.enemy_died.connect(_on_enemy_killed)
+	
 	current_map = $map/TestMap
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func change_gui_scene(new_scene: String, delete: bool = true, keep_running: bool = false) -> void:
 	if current_GUI != null:
@@ -61,3 +69,23 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 func fading():
 	transition.transition()
 	player.can_move = false
+
+
+
+
+
+func _on_enemy_killed(enemy: Node2D):
+	var map_path = current_map.scene_file_path
+	var enemy_path = str(enemy.get_path())
+	
+	if !killed_enemies.has(map_path):
+		killed_enemies[map_path] = []
+	if !respawnable_enemies.has(map_path):
+		respawnable_enemies[map_path] = []
+	
+	if !enemy.stats.respawn_every_room:
+		if enemy.stats.respawn_every_save:
+			respawnable_enemies[map_path].append(enemy_path)
+		killed_enemies[map_path].append(enemy_path)
+		
+		print("Killed:", enemy_path)

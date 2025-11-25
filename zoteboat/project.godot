@@ -13,13 +13,12 @@ config_version=5
 config/name="zoteboat"
 run/main_scene="uid://bah08g4ftmni4"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://Game/assets/temp assest/icon.svg"
+config/icon="res://assets/temp assest/icon.svg"
 
 [autoload]
 
 Global="*res://Game/MISC/scripts/global.gd"
 transition="*res://maps/warp_zone/fading_anim/transition.tscn"
-MapGlobal="*res://maps/map_global.gd"
 
 [debug]
 

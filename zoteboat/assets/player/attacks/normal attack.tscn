@@ -1,8 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://b5t45rn5r4jr4"]
 
-[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://Game/assets/temp assest/icon.svg" id="1_smmjh"]
+[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="1_smmjh"]
 
 [node name="NormalAttack" type="Area2D"]
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(45.75, 0.9999981)

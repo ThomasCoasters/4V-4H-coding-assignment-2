@@ -9,7 +9,7 @@ signal pogo_returned
 
 func _physics_process(delta: float) -> void:
 	if returning:
-		speed += 10
+		speed += 12
 		var player = get_tree().get_first_node_in_group("player")
 		return_target = player.global_position
 		# Smooth movement back to the player
@@ -42,4 +42,4 @@ func something_entered(thing):
 	var player = get_tree().get_first_node_in_group("player")
 	if player && !returning:
 		returning = true
-		speed = 100
+		speed = 300

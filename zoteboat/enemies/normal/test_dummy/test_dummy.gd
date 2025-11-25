@@ -1,10 +1,13 @@
-extends Area2D
+extends CharacterBody2D
 
 @export var stats: Stats
 
 signal killed(node: Node2D)
 
 func _ready() -> void:
+	if stats != null:
+		stats = stats.duplicate(true)
+	
 	stats.health_changed.connect(_on_health_changed)
 	stats.health_depleted.connect(_on_health_depleted)
 

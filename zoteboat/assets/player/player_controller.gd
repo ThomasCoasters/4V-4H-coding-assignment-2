@@ -28,9 +28,9 @@ const LOOKAHEAD_COOLDOWN : float = 0.1
 const ATTACK_COOLDOWN : float = 0.41
 const ATTACK_LINGER : float = 0.15
 
-const NORMAL_ATTACK = preload("res://Game/assets/player/attacks/normal attack.tscn")
-const UP_ATTACK = preload("res://Game/assets/player/attacks/up attack.tscn")
-const DOWN_ATTACK = preload("res://Game/assets/player/attacks/pogo.tscn")
+const NORMAL_ATTACK = preload("res://assets/player/attacks/normal attack.tscn")
+const UP_ATTACK = preload("res://assets/player/attacks/up attack.tscn")
+const DOWN_ATTACK = preload("res://assets/player/attacks/pogo.tscn")
 
 var can_attack : bool = true
 var can_move : bool = true
@@ -291,7 +291,7 @@ func start_UP_ATTACK():
 	attack.scale.x = last_direction.x
 	
 	attack.add_to_group("attacks")
-	attack.area_entered.connect(_on_attack_entered)
+	attack.body_entered.connect(_on_attack_entered)
 	
 	self.add_child(attack)
 	
@@ -306,7 +306,7 @@ func start_DOWN_ATTACK():
 	attack.scale.y = -1
 	
 	attack.add_to_group("attacks")
-	attack.area_entered.connect(_on_attack_entered)
+	attack.body_entered.connect(_on_attack_entered)
 	
 	get_tree().root.add_child(attack)
 	
@@ -323,7 +323,7 @@ func start_NORMAL_ATTACK():
 	attack.scale.x = last_direction.x
 	
 	attack.add_to_group("attacks")
-	attack.area_entered.connect(_on_attack_entered)
+	attack.body_entered.connect(_on_attack_entered)
 	
 	self.add_child(attack)
 	
@@ -338,9 +338,9 @@ func _on_pogo_returned():
 	can_attack = true
 
 
-func _on_attack_entered(area: Area2D):
-	if !area.is_in_group("enemy"):
+func _on_attack_entered(body: Node2D):
+	if !body.is_in_group("enemy"):
 		return
 	
-	area.damage(attack_damage)
+	body.damage(attack_damage)
 #endregion

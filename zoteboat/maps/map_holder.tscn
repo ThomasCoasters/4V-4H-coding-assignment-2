@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bah08g4ftmni4"]
 
-[ext_resource type="PackedScene" uid="uid://rvhtgi81sikt" path="res://Game/assets/player/player.tscn" id="1_3hwdp"]
+[ext_resource type="PackedScene" uid="uid://rvhtgi81sikt" path="res://assets/player/player.tscn" id="1_3hwdp"]
 [ext_resource type="Script" uid="uid://d4jiec105wvyu" path="res://maps/MapHolder.gd" id="1_3ofuw"]
 [ext_resource type="PackedScene" uid="uid://dcc5x1snxgepn" path="res://maps/rooms/test.tscn" id="2_3ofuw"]
 
