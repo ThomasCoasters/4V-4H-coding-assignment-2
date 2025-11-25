@@ -22,10 +22,8 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Camera")]
 z_index = 999
 script = ExtResource("1_d2shb")
-max_fall_speed = 1200
 Camera = NodePath("Camera")
 can_walljump = true
-attack_damage = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-7.1525574e-07, -11.499998)

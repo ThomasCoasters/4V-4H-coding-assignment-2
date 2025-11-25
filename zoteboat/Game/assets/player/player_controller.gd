@@ -13,7 +13,7 @@ const JUMPING_SPEED : int = -550
 @export var max_jumps_amount : int = 1
 var jumps_amount : int = max_jumps_amount
 
-@export var max_fall_speed : int
+@export var max_fall_speed : int = 1200
 
 var direction := Vector2(0,0)
 var last_direction := Vector2(1,0)
@@ -38,10 +38,10 @@ var can_walk : int = 1
 
 const HARDFALL_STUN_TIME : float = 0.6
 
-@export var can_walljump : bool
+@export var can_walljump : bool = false
 var forced_move : Vector2
 
-@export var attack_damage : int
+@export var attack_damage : int = 5
 #endregion
 
 func _ready() -> void:
@@ -107,7 +107,7 @@ func _process(_delta: float) -> void:
 	if is_on_ceiling():
 		$StateChart.send_event("jump_released")
 	
-	if is_on_wall_only() && velocity.y >0:
+	if is_on_wall_only() && velocity.y >0 && can_walljump:
 		$StateChart.send_event("on_wall")
 	
 	if !is_jumping && !is_on_floor():
