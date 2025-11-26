@@ -53,7 +53,9 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	var new = load(new_scene).instantiate()
 	map.add_child(new)
 	current_map = new
-
+	
+	map_just_loaded()
+	
 	for child in new.get_children():
 		if child.is_in_group(new_location_group):
 			player.position = child.position
@@ -70,7 +72,8 @@ func fading():
 	transition.transition()
 	player.can_move = false
 
-
+func map_just_loaded():
+	Global.map.enemy_died.connect(_on_enemy_killed)
 
 
 

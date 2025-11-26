@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://cvwh5iemjyfao"]
+[gd_scene load_steps=8 format=4 uid="uid://cvwh5iemjyfao"]
 
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="1_fbel4"]
+[ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_sarst"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="2_g1no2"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="3_g1no2"]
 [ext_resource type="PackedScene" uid="uid://d2a2qb1xnuxa4" path="res://enemies/normal/test_dummy/test_dummy.tscn" id="4_vnfxb"]
@@ -93,6 +94,7 @@ terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
 [node name="Test2" type="Node2D"]
+script = ExtResource("1_sarst")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-3, -107)
