@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://nrti44ntukc1"]
+
+[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="1_lku6q"]
+
+[node name="hp" type="TextureRect"]
+modulate = Color(1, 0, 0, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_lku6q")

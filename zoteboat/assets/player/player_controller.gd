@@ -1,4 +1,6 @@
 extends CharacterBody2D
+class_name Player
+
 
 #region vars setup
 const GRAVITY : int = 12
@@ -42,17 +44,23 @@ const HARDFALL_STUN_TIME : float = 0.6
 var forced_move : Vector2
 
 @export var attack_damage : int = 5
+
+@export var max_health : int = 5
+var health : int: set = _on_health_set
+signal player_health_changed(health: int, max_health: int)
 #endregion
 
 func _ready() -> void:
-	add_to_group("player")
+	Global.player = self
 	#region timers setup
 	jump_timer.wait_time = MAX_JUMP_TIME
 	jump_timer.one_shot = true
 	jump_timer.timeout.connect(_on_jump_timer_timeout)
 	add_child(jump_timer)
 	#endregion
-
+	health = max_health
+	
+	$Area2D.body_entered.connect(_on_player_entered)
 
 
 func _physics_process(_delta: float) -> void:
@@ -343,4 +351,17 @@ func _on_attack_entered(body: Node2D):
 		return
 	
 	body.damage(attack_damage)
+#endregion
+
+
+#region getting hit
+func _on_player_entered(body: Node2D):
+	if body.is_in_group("enemy"):
+		health -= 1
+		
+		print(health)
+
+func _on_health_set(new_health):
+	player_health_changed.emit(new_health, max_health)
+
 #endregion

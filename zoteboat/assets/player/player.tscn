@@ -19,7 +19,7 @@ script = ExtResource("8_8ca2v")
 expression = "jumps_amount > 0"
 metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Camera")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Camera") groups=["player"]]
 z_index = 999
 collision_mask = 6
 script = ExtResource("1_d2shb")
@@ -36,6 +36,15 @@ position = Vector2(0, -6)
 scale = Vector2(0.9908129, 0.9952922)
 shape = SubResource("RectangleShape2D_8u8lh")
 debug_color = Color(1, 0.5411765, 0, 0.41960785)
+
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -6)
+scale = Vector2(0.9908129, 0.9952922)
+shape = SubResource("RectangleShape2D_8u8lh")
+debug_color = Color(0.8374295, 0.63514006, 0.3968584, 0.41960785)
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("3_3x76d")
