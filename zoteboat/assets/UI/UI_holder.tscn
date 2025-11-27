@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://doeteha3810mt"]
 
-[ext_resource type="PackedScene" uid="uid://7cdtgxgfo0wa" path="res://assets/player/UI/HP/HP.tscn" id="1_nmpck"]
+[ext_resource type="PackedScene" uid="uid://7cdtgxgfo0wa" path="res://assets/UI/HP/HP.tscn" id="1_nmpck"]
 
 [node name="UiHolder" type="CanvasLayer"]
 

@@ -9,6 +9,8 @@ signal health_changed(current_health: int, max_health: int)
 @export var respawn_every_room: bool = false
 @export var respawn_every_save: bool = true
 
+@export var attack_damage: int = 1
+
 var health: int = 0: set = _on_health_set
 
 func _init() -> void:

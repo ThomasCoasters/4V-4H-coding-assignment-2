@@ -47,7 +47,7 @@ var forced_move : Vector2
 
 @export var max_health : int = 5
 var health : int: set = _on_health_set
-signal player_health_changed(health: int, max_health: int)
+signal player_health_changed(health: int)
 #endregion
 
 func _ready() -> void:
@@ -353,23 +353,22 @@ func _on_attack_entered(body: Node2D):
 	if !body.is_in_group("enemy"):
 		return
 	
+	health += 2
 	body.damage(attack_damage)
 #endregion
 
 
-#region getting hit
+#region HP
 func _on_player_entered(body: Node2D):
 	if body.is_in_group("enemy"):
-		health -= 1
-		
-		print("current hp ", health)
+		health -= body.stats.attack_damage
 
 func _on_health_set(new_health):
 	await get_tree().process_frame
 	
 	health = clamp(new_health, 0, max_health)
 	
-	print("changed ", new_health)
-	player_health_changed.emit(health, max_health)
+	player_health_changed.emit(health)
+
 
 #endregion
