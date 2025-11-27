@@ -52,6 +52,10 @@ signal player_health_changed(health: int, max_health: int)
 
 func _ready() -> void:
 	Global.player = self
+	setup.call_deferred()
+	
+
+func setup():
 	#region timers setup
 	jump_timer.wait_time = MAX_JUMP_TIME
 	jump_timer.one_shot = true
@@ -61,7 +65,6 @@ func _ready() -> void:
 	health = max_health
 	
 	$Area2D.body_entered.connect(_on_player_entered)
-
 
 func _physics_process(_delta: float) -> void:
 	
@@ -359,9 +362,14 @@ func _on_player_entered(body: Node2D):
 	if body.is_in_group("enemy"):
 		health -= 1
 		
-		print(health)
+		print("current hp ", health)
 
 func _on_health_set(new_health):
-	player_health_changed.emit(new_health, max_health)
+	await get_tree().process_frame
+	
+	health = clamp(new_health, 0, max_health)
+	
+	print("changed ", new_health)
+	player_health_changed.emit(health, max_health)
 
 #endregion
