@@ -14,15 +14,15 @@ script = ExtResource("1_ki6s7")
 
 [node name="Full" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 128.0
+offset_bottom = 128.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_w2mmi")
 
 [node name="Empty" type="TextureRect" parent="."]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 128.0
+offset_bottom = 128.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_w2mmi")

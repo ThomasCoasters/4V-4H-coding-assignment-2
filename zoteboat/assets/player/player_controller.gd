@@ -36,7 +36,7 @@ const DOWN_ATTACK = preload("res://assets/player/attacks/pogo.tscn")
 
 var can_attack : bool = true
 var can_move : bool = true
-var can_walk : int = 1
+var can_walk : bool = true
 
 const HARDFALL_STUN_TIME : float = 0.6
 
@@ -222,13 +222,13 @@ func _on_wall_slide_state_exited() -> void:
 func _on_to_jumping_form_wall_taken() -> void:
 	forced_move.x = -last_direction.x * 500
 	
-	can_walk = 0
+	can_walk = false
 	
 	await get_tree().create_timer(MAX_JUMP_TIME/2).timeout
 	
 	forced_move.x = 0
 	
-	can_walk = 1
+	can_walk = true
 
 #endregion
 
@@ -353,15 +353,19 @@ func _on_attack_entered(body: Node2D):
 	if !body.is_in_group("enemy"):
 		return
 	
-	health += 2
+	change_health(2)
 	body.damage(attack_damage)
+
+
+func change_health(amount):
+	health += amount
 #endregion
 
 
 #region HP
 func _on_player_entered(body: Node2D):
 	if body.is_in_group("enemy"):
-		health -= body.stats.attack_damage
+		change_health(-body.stats.attack_damage)
 
 func _on_health_set(new_health):
 	await get_tree().process_frame

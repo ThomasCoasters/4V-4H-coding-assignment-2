@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_kef7e"]
 script = ExtResource("2_mab7a")
-max_health = 100
+max_health = 1
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
