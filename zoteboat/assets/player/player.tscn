@@ -25,6 +25,8 @@ collision_mask = 6
 script = ExtResource("1_d2shb")
 Camera = NodePath("Camera")
 can_walljump = true
+i_frames_hit_time = 0.6
+hitstun_time = 0.05
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-7.1525574e-07, -11.499998)
@@ -228,6 +230,4 @@ initial_node_to_watch = NodePath("../../StateChart")
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/wall_slide" to="." method="_on_wall_slide_state_entered"]
 [connection signal="state_exited" from="StateChart/ParallelState/Jumping/wall_slide" to="." method="_on_wall_slide_state_exited"]
 [connection signal="taken" from="StateChart/ParallelState/Jumping/wall_slide/to_jumping_form_wall" to="." method="_on_to_jumping_form_wall_taken"]
-[connection signal="state_processing" from="StateChart/ParallelState/moving/Moving" to="." method="_on_moving_state_processing"]
-[connection signal="state_entered" from="StateChart/ParallelState/attacking/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attacking/attacking" to="." method="_on_attacking_state_entered"]

@@ -49,6 +49,14 @@ var forced_move : Vector2
 var health : int: set = _on_health_set
 signal player_health_changed(health: int)
 signal player_max_health_changed()
+
+@export var i_frames_hit_time: float
+@export var hitstun_time: float
+
+const GET_HIT_KNOCKBACK_FORCE = 300
+const GET_HIT_KNOCKBACK_TIME = 0.1
+
+var can_get_hit = true
 #endregion
 
 func _ready() -> void:
@@ -64,11 +72,8 @@ func setup():
 	add_child(jump_timer)
 	#endregion
 	health = max_health
-	
-	$Area2D.body_entered.connect(_on_player_entered)
 
 func _physics_process(_delta: float) -> void:
-	
 	#region jumping/falling
 	var last_vertical_velocity = velocity.y
 	
@@ -89,6 +94,9 @@ func _physics_process(_delta: float) -> void:
 	
 	if is_on_floor() && last_vertical_velocity > 0:
 		_on_landed(last_vertical_velocity)
+	
+	for body in $Area2D.get_overlapping_bodies():
+		_on_player_entered(body)
 
 
 func _process(_delta: float) -> void:
@@ -354,9 +362,6 @@ func _on_attack_entered(body: Node2D):
 	if !body.is_in_group("enemy"):
 		return
 	
-	max_health += 1
-	
-	change_health(2)
 	body.damage(attack_damage)
 
 
@@ -367,8 +372,15 @@ func change_health(amount):
 
 #region HP
 func _on_player_entered(body: Node2D):
+	if !can_get_hit:
+		return
+	
 	if body.is_in_group("enemy"):
 		change_health(-body.stats.attack_damage)
+		
+		hitstop_manager(hitstun_time)
+		knockback(GET_HIT_KNOCKBACK_FORCE, GET_HIT_KNOCKBACK_TIME, body)
+		i_frames(i_frames_hit_time)
 
 func _on_health_set(new_health):
 	health = clamp(new_health, 0, max_health)
@@ -381,4 +393,40 @@ func _on_max_health_set(new_max_health):
 	health = max_health
 	
 	player_max_health_changed.emit()
+#endregion
+
+#region juice
+func hitstop_manager(time):
+	Engine.time_scale = 0
+	await get_tree().create_timer(time, true, false, true).timeout
+	Engine.time_scale = 1
+
+func knockback(force, time, body):
+	can_move = false
+	can_walk = false
+	
+	var knockback_dir = (body.global_position - global_position).normalized()
+	
+	if knockback_dir.x < 0:
+		knockback_dir.x = -1
+	else:
+		knockback_dir.x = 1
+	
+	forced_move.x = -force * knockback_dir.x
+	@warning_ignore("integer_division")
+	velocity.y = int(JUMPING_SPEED/2)
+	
+	await get_tree().create_timer(time).timeout
+	
+	can_move = true
+	can_walk = true
+
+func i_frames(time):
+	can_get_hit = false
+	$Sprite2D.set_modulate(Color8(255,0,0))
+	
+	await get_tree().create_timer(time).timeout
+	
+	$Sprite2D.set_modulate(Color8(255,255,255))
+	can_get_hit = true
 #endregion
