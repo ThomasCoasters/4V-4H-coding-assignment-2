@@ -50,13 +50,18 @@ var health : int: set = _on_health_set
 signal player_health_changed(health: int)
 signal player_max_health_changed()
 
-@export var i_frames_hit_time: float
-@export var hitstun_time: float
+@export var i_frames_hit_time: float = 0.6
+@export var hitstun_time: float = 0.05
 
 const GET_HIT_KNOCKBACK_FORCE = 300
 const GET_HIT_KNOCKBACK_TIME = 0.1
 
-var can_get_hit = true
+const ATTACK_KNOCKBACK_FORCE = 300
+const ATTACK_KNOCKBACK_TIME = 0.05
+
+var mana_amount: int = 0
+@export var mana_per_attack: int = 11
+@export var max_mana: int = 99
 #endregion
 
 func _ready() -> void:
@@ -359,10 +364,15 @@ func _on_pogo_returned():
 
 
 func _on_attack_entered(body: Node2D):
-	if !body.is_in_group("enemy"):
+	if !body.is_in_group("enemy") || body.is_in_group("invincible"):
 		return
 	
+	knockback(ATTACK_KNOCKBACK_FORCE, ATTACK_KNOCKBACK_TIME, body, false)
+	
 	body.damage(attack_damage)
+	body.i_frames(ATTACK_COOLDOWN)
+	
+	add_mana(mana_per_attack)
 
 
 func change_health(amount):
@@ -372,14 +382,14 @@ func change_health(amount):
 
 #region HP
 func _on_player_entered(body: Node2D):
-	if !can_get_hit:
+	if self.is_in_group("invincible"):
 		return
 	
 	if body.is_in_group("enemy"):
 		change_health(-body.stats.attack_damage)
 		
 		hitstop_manager(hitstun_time)
-		knockback(GET_HIT_KNOCKBACK_FORCE, GET_HIT_KNOCKBACK_TIME, body)
+		knockback(GET_HIT_KNOCKBACK_FORCE, GET_HIT_KNOCKBACK_TIME, body, true)
 		i_frames(i_frames_hit_time)
 
 func _on_health_set(new_health):
@@ -401,7 +411,7 @@ func hitstop_manager(time):
 	await get_tree().create_timer(time, true, false, true).timeout
 	Engine.time_scale = 1
 
-func knockback(force, time, body):
+func knockback(force, time, body, knockback_up: bool = true):
 	can_move = false
 	can_walk = false
 	
@@ -413,8 +423,9 @@ func knockback(force, time, body):
 		knockback_dir.x = 1
 	
 	forced_move.x = -force * knockback_dir.x
-	@warning_ignore("integer_division")
-	velocity.y = int(JUMPING_SPEED/2)
+	if knockback_up:
+		@warning_ignore("integer_division")
+		velocity.y = int(JUMPING_SPEED/2)
 	
 	await get_tree().create_timer(time).timeout
 	
@@ -422,11 +433,19 @@ func knockback(force, time, body):
 	can_walk = true
 
 func i_frames(time):
-	can_get_hit = false
+	self.add_to_group("invincible")
 	$Sprite2D.set_modulate(Color8(255,0,0))
 	
 	await get_tree().create_timer(time).timeout
 	
 	$Sprite2D.set_modulate(Color8(255,255,255))
-	can_get_hit = true
+	self.remove_from_group("invincible")
+#endregion
+
+#region mana
+func add_mana(add_amount):
+	mana_amount = clamp(mana_amount + add_amount, 0, max_mana)
+	
+	print(mana_amount, " ", max_mana)
+
 #endregion
