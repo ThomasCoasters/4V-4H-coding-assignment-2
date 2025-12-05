@@ -2,7 +2,7 @@ extends Control
 
 var HeartScene := preload("res://assets/UI/HP/Heart.tscn")
 var hearts: Array[Control] = []
-var space_between := 60
+var space_between := 50
 
 func _ready() -> void:
 	await get_tree().process_frame

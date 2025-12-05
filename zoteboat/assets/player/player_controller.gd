@@ -50,7 +50,7 @@ var health : int: set = _on_health_set
 signal player_health_changed(health: int)
 signal player_max_health_changed()
 
-@export var i_frames_hit_time: float = 0.6
+@export var i_frames_hit_time: float = 1.2
 @export var hitstun_time: float = 0.05
 
 const GET_HIT_KNOCKBACK_FORCE = 300

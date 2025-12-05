@@ -25,8 +25,7 @@ collision_mask = 6
 script = ExtResource("1_d2shb")
 Camera = NodePath("Camera")
 can_walljump = true
-i_frames_hit_time = 0.6
-hitstun_time = 0.05
+i_frames_hit_time = 1.2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-7.1525574e-07, -11.499998)

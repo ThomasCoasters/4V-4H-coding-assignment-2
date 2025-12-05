@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://hkpp3jyx1isp"]
+[gd_scene load_steps=4 format=3 uid="uid://hkpp3jyx1isp"]
 
 [ext_resource type="Script" uid="uid://oycdkkcebbx8" path="res://assets/UI/HP/heart.gd" id="1_ki6s7"]
-[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="2_w2mmi"]
+[ext_resource type="Texture2D" uid="uid://bljsisjcbkwy1" path="res://assets/UI/HP/HP_FULL.png" id="2_r0onj"]
+[ext_resource type="Texture2D" uid="uid://dvj0m8wpi4ovj" path="res://assets/UI/HP/HP_EMPTY.png" id="3_xw8q7"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,19 +11,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.15, 0.15)
 script = ExtResource("1_ki6s7")
 
 [node name="Full" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 128.0
 offset_bottom = 128.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_w2mmi")
+texture = ExtResource("2_r0onj")
 
 [node name="Empty" type="TextureRect" parent="."]
-modulate = Color(1, 0, 0, 1)
 layout_mode = 0
 offset_right = 128.0
 offset_bottom = 128.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_w2mmi")
+texture = ExtResource("3_xw8q7")
