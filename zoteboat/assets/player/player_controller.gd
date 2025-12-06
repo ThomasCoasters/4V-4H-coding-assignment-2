@@ -59,9 +59,12 @@ const GET_HIT_KNOCKBACK_TIME = 0.1
 const ATTACK_KNOCKBACK_FORCE = 300
 const ATTACK_KNOCKBACK_TIME = 0.05
 
-var mana_amount: int = 0
+
 @export var mana_per_attack: int = 11
-@export var max_mana: int = 99
+@export var max_mana : int = 99: set = _on_max_mana_set
+var mana : int: set = _on_mana_set
+signal player_mana_changed(mana: int)
+signal player_max_mana_changed()
 #endregion
 
 func _ready() -> void:
@@ -444,8 +447,19 @@ func i_frames(time):
 
 #region mana
 func add_mana(add_amount):
-	mana_amount = clamp(mana_amount + add_amount, 0, max_mana)
+	mana = clamp(mana + add_amount, 0, max_mana)
 	
-	print(mana_amount, " ", max_mana)
+	print(mana, " ", max_mana)
 
+func _on_mana_set(new_mana):
+	mana = clamp(new_mana, 0, max_mana)
+	
+	player_mana_changed.emit(mana)
+
+func _on_max_mana_set(new_max_mana):
+	max_mana = new_max_mana
+	
+	mana = max_health
+	
+	player_max_mana_changed.emit()
 #endregion
