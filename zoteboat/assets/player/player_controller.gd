@@ -65,6 +65,13 @@ const ATTACK_KNOCKBACK_TIME = 0.05
 var mana : int: set = _on_mana_set
 signal player_mana_changed(mana: int)
 signal player_max_mana_changed()
+
+@export var mana_to_heal : int = 33
+@export var heal_time : float = 1.2
+
+var heal_time_expired: float = 0
+
+var mana_float = float(mana)
 #endregion
 
 func _ready() -> void:
@@ -127,6 +134,11 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("attack") && can_attack:
 		$StateChart.send_event("attack_start")
+	
+	
+	if Input.is_action_just_pressed("specials"):
+		if $StateChart/ParallelState/Jumping/on_ground.active && $StateChart/ParallelState/moving/Idle.active && $StateChart/ParallelState/attacking/Idle.active && mana >= mana_to_heal:
+			$StateChart.send_event("heal_start")
 	#endregion
 		#region checks
 	
@@ -406,6 +418,18 @@ func _on_max_health_set(new_max_health):
 	health = max_health
 	
 	player_max_health_changed.emit()
+
+func _on_heal_start_state_physics_processing(delta: float) -> void:
+	add_mana(-mana_to_heal * (delta/heal_time))
+	
+	heal_time_expired += delta
+	
+	if heal_time_expired >= heal_time-delta:
+		$StateChart.send_event("heal_finished")
+
+func _on_heal_start_state_entered() -> void:
+	heal_time_expired = 0
+	scale = Vector2(2,2)
 #endregion
 
 #region juice
@@ -447,7 +471,8 @@ func i_frames(time):
 
 #region mana
 func add_mana(add_amount):
-	mana = clamp(mana + add_amount, 0, max_mana)
+	mana_float = clamp(mana_float + add_amount, 0, max_mana)
+	mana = int(mana_float)
 	
 	print(mana, " ", max_mana)
 
