@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://rvhtgi81sikt"]
 
 [ext_resource type="Script" uid="uid://bilmy6u5xo8fm" path="res://assets/player/player_controller.gd" id="1_d2shb"]
-[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="2_uahac"]
+[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="2_m2mll"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_3x76d"]
 [ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="4_gr1j3"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="5_rl7lv"]
@@ -29,7 +29,7 @@ can_walljump = true
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-7.1525574e-07, -11.499998)
 scale = Vector2(0.265625, 0.7109375)
-texture = ExtResource("2_uahac")
+texture = ExtResource("2_m2mll")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
@@ -228,6 +228,4 @@ initial_node_to_watch = NodePath("../../StateChart")
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/wall_slide" to="." method="_on_wall_slide_state_entered"]
 [connection signal="state_exited" from="StateChart/ParallelState/Jumping/wall_slide" to="." method="_on_wall_slide_state_exited"]
 [connection signal="taken" from="StateChart/ParallelState/Jumping/wall_slide/to_jumping_form_wall" to="." method="_on_to_jumping_form_wall_taken"]
-[connection signal="state_processing" from="StateChart/ParallelState/moving/Moving" to="." method="_on_moving_state_processing"]
-[connection signal="state_entered" from="StateChart/ParallelState/attacking/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attacking/attacking" to="." method="_on_attacking_state_entered"]

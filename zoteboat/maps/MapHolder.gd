@@ -90,5 +90,3 @@ func _on_enemy_killed(enemy: Node2D):
 		if enemy.stats.respawn_every_save:
 			respawnable_enemies[map_path].append(enemy_path)
 		killed_enemies[map_path].append(enemy_path)
-		
-		print("Killed:", enemy_path)

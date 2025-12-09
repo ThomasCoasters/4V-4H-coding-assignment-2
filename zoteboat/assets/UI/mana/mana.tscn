@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://4n2vr8ph3efl"]
+
+[ext_resource type="Texture2D" uid="uid://xg2h7j002afa" path="res://assets/UI/mana/background.png" id="1_b6kif"]
+[ext_resource type="Script" uid="uid://cmode8orme4xn" path="res://assets/UI/mana/mana.gd" id="1_d87fl"]
+[ext_resource type="Texture2D" uid="uid://1wdgjn2qcw0l" path="res://assets/UI/mana/mana full.png" id="3_d87fl"]
+
+[node name="Mana" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1416.0
+offset_bottom = -880.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_d87fl")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 502.0
+offset_bottom = 200.0
+texture = ExtResource("1_b6kif")
+
+[node name="ball" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.09900001
+anchor_top = 0.26000002
+anchor_right = 0.323
+anchor_bottom = 0.81500006
+offset_left = 0.10399628
+offset_right = 0.20799255
+offset_bottom = -1.5258789e-05
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_d87fl")

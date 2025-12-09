@@ -36,7 +36,7 @@ const DOWN_ATTACK = preload("res://assets/player/attacks/pogo.tscn")
 
 var can_attack : bool = true
 var can_move : bool = true
-var can_walk : int = 1
+var can_walk : bool = true
 
 const HARDFALL_STUN_TIME : float = 0.6
 
@@ -45,9 +45,26 @@ var forced_move : Vector2
 
 @export var attack_damage : int = 5
 
-@export var max_health : int = 5
+@export var max_health : int = 5: set = _on_max_health_set
 var health : int: set = _on_health_set
 signal player_health_changed(health: int)
+signal player_max_health_changed()
+
+@export var i_frames_hit_time: float = 1.2
+@export var hitstun_time: float = 0.05
+
+const GET_HIT_KNOCKBACK_FORCE = 300
+const GET_HIT_KNOCKBACK_TIME = 0.1
+
+const ATTACK_KNOCKBACK_FORCE = 300
+const ATTACK_KNOCKBACK_TIME = 0.05
+
+
+@export var mana_per_attack: int = 11
+@export var max_mana : int = 99: set = _on_max_mana_set
+var mana : int: set = _on_mana_set
+signal player_mana_changed(mana: int)
+signal player_max_mana_changed()
 #endregion
 
 func _ready() -> void:
@@ -63,11 +80,8 @@ func setup():
 	add_child(jump_timer)
 	#endregion
 	health = max_health
-	
-	$Area2D.body_entered.connect(_on_player_entered)
 
 func _physics_process(_delta: float) -> void:
-	
 	#region jumping/falling
 	var last_vertical_velocity = velocity.y
 	
@@ -88,6 +102,9 @@ func _physics_process(_delta: float) -> void:
 	
 	if is_on_floor() && last_vertical_velocity > 0:
 		_on_landed(last_vertical_velocity)
+	
+	for body in $Area2D.get_overlapping_bodies():
+		_on_player_entered(body)
 
 
 func _process(_delta: float) -> void:
@@ -222,13 +239,13 @@ func _on_wall_slide_state_exited() -> void:
 func _on_to_jumping_form_wall_taken() -> void:
 	forced_move.x = -last_direction.x * 500
 	
-	can_walk = 0
+	can_walk = false
 	
 	await get_tree().create_timer(MAX_JUMP_TIME/2).timeout
 	
 	forced_move.x = 0
 	
-	can_walk = 1
+	can_walk = true
 
 #endregion
 
@@ -350,25 +367,99 @@ func _on_pogo_returned():
 
 
 func _on_attack_entered(body: Node2D):
-	if !body.is_in_group("enemy"):
+	if !body.is_in_group("enemy") || body.is_in_group("invincible"):
 		return
 	
-	health += 2
+	knockback(ATTACK_KNOCKBACK_FORCE, ATTACK_KNOCKBACK_TIME, body, false)
+	
 	body.damage(attack_damage)
+	body.i_frames(ATTACK_COOLDOWN)
+	
+	add_mana(mana_per_attack)
+
+
+func change_health(amount):
+	health += amount
 #endregion
 
 
 #region HP
 func _on_player_entered(body: Node2D):
+	if self.is_in_group("invincible"):
+		return
+	
 	if body.is_in_group("enemy"):
-		health -= body.stats.attack_damage
+		change_health(-body.stats.attack_damage)
+		
+		hitstop_manager(hitstun_time)
+		knockback(GET_HIT_KNOCKBACK_FORCE, GET_HIT_KNOCKBACK_TIME, body, true)
+		i_frames(i_frames_hit_time)
 
 func _on_health_set(new_health):
-	await get_tree().process_frame
-	
 	health = clamp(new_health, 0, max_health)
 	
 	player_health_changed.emit(health)
 
+func _on_max_health_set(new_max_health):
+	max_health = new_max_health
+	
+	health = max_health
+	
+	player_max_health_changed.emit()
+#endregion
 
+#region juice
+func hitstop_manager(time):
+	Engine.time_scale = 0
+	await get_tree().create_timer(time, true, false, true).timeout
+	Engine.time_scale = 1
+
+func knockback(force, time, body, knockback_up: bool = true):
+	can_move = false
+	can_walk = false
+	
+	var knockback_dir = (body.global_position - global_position).normalized()
+	
+	if knockback_dir.x < 0:
+		knockback_dir.x = -1
+	else:
+		knockback_dir.x = 1
+	
+	forced_move.x = -force * knockback_dir.x
+	if knockback_up:
+		@warning_ignore("integer_division")
+		velocity.y = int(JUMPING_SPEED/2)
+	
+	await get_tree().create_timer(time).timeout
+	
+	can_move = true
+	can_walk = true
+
+func i_frames(time):
+	self.add_to_group("invincible")
+	$Sprite2D.set_modulate(Color8(255,0,0))
+	
+	await get_tree().create_timer(time).timeout
+	
+	$Sprite2D.set_modulate(Color8(255,255,255))
+	self.remove_from_group("invincible")
+#endregion
+
+#region mana
+func add_mana(add_amount):
+	mana = clamp(mana + add_amount, 0, max_mana)
+	
+	print(mana, " ", max_mana)
+
+func _on_mana_set(new_mana):
+	mana = clamp(new_mana, 0, max_mana)
+	
+	player_mana_changed.emit(mana)
+
+func _on_max_mana_set(new_max_mana):
+	max_mana = new_max_mana
+	
+	mana = max_health
+	
+	player_max_mana_changed.emit()
 #endregion
