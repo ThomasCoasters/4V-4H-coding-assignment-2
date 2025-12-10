@@ -72,6 +72,8 @@ signal player_max_mana_changed()
 var heal_time_expired: float = 0
 
 var mana_float = float(mana)
+
+@export var heal_health: int = 1
 #endregion
 
 func _ready() -> void:
@@ -136,9 +138,12 @@ func _process(_delta: float) -> void:
 		$StateChart.send_event("attack_start")
 	
 	
-	if Input.is_action_just_pressed("specials"):
-		if $StateChart/ParallelState/Jumping/on_ground.active && $StateChart/ParallelState/moving/Idle.active && $StateChart/ParallelState/attacking/Idle.active && mana >= mana_to_heal:
+	if Input.is_action_just_pressed("specials") && can_move:
+		if $StateChart/ParallelState/attacking/Idle.active && mana >= mana_to_heal:
 			$StateChart.send_event("heal_start")
+	
+	if Input.is_action_just_released("specials"):
+		$StateChart.send_event("heal_cancel")
 	#endregion
 		#region checks
 	
@@ -389,13 +394,17 @@ func _on_attack_entered(body: Node2D):
 	
 	add_mana(mana_per_attack)
 
-
-func change_health(amount):
-	health += amount
 #endregion
 
 
 #region HP
+func change_health(amount: int, type: String = "normal"):
+	if type == "max":
+		max_health += amount
+	else:
+		health += amount
+
+
 func _on_player_entered(body: Node2D):
 	if self.is_in_group("invincible"):
 		return
@@ -428,8 +437,20 @@ func _on_heal_start_state_physics_processing(delta: float) -> void:
 		$StateChart.send_event("heal_finished")
 
 func _on_heal_start_state_entered() -> void:
+	$Sprite2D.set_modulate(Color8(0,255,0))
+	
 	heal_time_expired = 0
-	scale = Vector2(2,2)
+	
+	can_move = false
+
+func _on_heal_finished_state_entered() -> void:
+	can_move = true
+	change_health(heal_health)
+	$Sprite2D.set_modulate(Color8(255,255,255))
+
+func _on_idle_state_entered() -> void:
+	can_move = true
+	$Sprite2D.set_modulate(Color8(255,255,255))
 #endregion
 
 #region juice
@@ -453,6 +474,8 @@ func knockback(force, time, body, knockback_up: bool = true):
 	if knockback_up:
 		@warning_ignore("integer_division")
 		velocity.y = int(JUMPING_SPEED/2)
+	
+	$StateChart.send_event("heal_cancel")
 	
 	await get_tree().create_timer(time).timeout
 	

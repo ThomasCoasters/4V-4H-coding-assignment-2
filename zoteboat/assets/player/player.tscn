@@ -23,18 +23,9 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 z_index = 999
 collision_mask = 6
 script = ExtResource("1_d2shb")
-max_jumps_amount = null
-max_fall_speed = null
 Camera = NodePath("Camera")
 can_walljump = true
-attack_damage = null
-max_health = null
-i_frames_hit_time = null
-hitstun_time = null
-mana_per_attack = null
-max_mana = null
-mana_to_heal = null
-heal_time = null
+heal_health = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-7.1525574e-07, -11.499998)
@@ -275,5 +266,7 @@ initial_node_to_watch = NodePath("../../StateChart")
 [connection signal="state_exited" from="StateChart/ParallelState/Jumping/wall_slide" to="." method="_on_wall_slide_state_exited"]
 [connection signal="taken" from="StateChart/ParallelState/Jumping/wall_slide/to_jumping_form_wall" to="." method="_on_to_jumping_form_wall_taken"]
 [connection signal="state_entered" from="StateChart/ParallelState/attacking/attacking" to="." method="_on_attacking_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/healing/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/healing/heal start" to="." method="_on_heal_start_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/healing/heal start" to="." method="_on_heal_start_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/ParallelState/healing/heal finished" to="." method="_on_heal_finished_state_entered"]
