@@ -16,6 +16,7 @@ const JUMPING_SPEED : int = -550
 var jumps_amount : int = max_jumps_amount
 
 @export var max_fall_speed : int = 1200
+var normal_max_fall_speed: int = max_fall_speed
 
 var direction := Vector2(0,0)
 var last_direction := Vector2(1,0)
@@ -74,6 +75,8 @@ var heal_time_expired: float = 0
 var mana_float = float(mana)
 
 @export var heal_health: int = 1
+
+var healing_max_fall_speed_multiplier: int = 6
 #endregion
 
 func _ready() -> void:
@@ -442,14 +445,20 @@ func _on_heal_start_state_entered() -> void:
 	heal_time_expired = 0
 	
 	can_move = false
+	
+	max_fall_speed /= healing_max_fall_speed_multiplier
+	velocity.y = 50
 
 func _on_heal_finished_state_entered() -> void:
-	can_move = true
 	change_health(heal_health)
 	$Sprite2D.set_modulate(Color8(255,255,255))
 
 func _on_idle_state_entered() -> void:
 	can_move = true
+	max_fall_speed = normal_max_fall_speed
+	
+	
+	
 	$Sprite2D.set_modulate(Color8(255,255,255))
 #endregion
 
