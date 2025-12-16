@@ -28,7 +28,7 @@ var current_camera_type := "free" #"free" of "locked"
 var forced_position = Vector2(0,0)
 const LOOKAHEAD_COOLDOWN : float = 0.1
 
-const ATTACK_COOLDOWN : float = 0.41
+var attack_cooldown : float = 0.41
 const ATTACK_LINGER : float = 0.15
 
 const NORMAL_ATTACK = preload("res://assets/player/attacks/normal attack.tscn")
@@ -245,14 +245,14 @@ func _on_landed(speed):
 func _on_wall_slide_state_entered() -> void:
 	velocity.y = 0
 	
-	gravity_multiplier = 1
+	gravity_multiplier = 0.1
 	
 	jumps_amount = max_jumps_amount
 	
-	max_fall_speed /= 3
+	max_fall_speed /= 5
 
 func _on_wall_slide_state_exited() -> void:
-	max_fall_speed *= 3
+	max_fall_speed *= 5
 	
 	position.x -= last_direction.x
 
@@ -319,12 +319,12 @@ func _on_attacking_state_entered() -> void:
 	
 	if direction.y == 1:
 		start_UP_ATTACK()
-	elif direction.y == -1 && !is_on_floor():
+	elif direction.y == -1 && !is_on_floor() && !$StateChart/ParallelState/Jumping/wall_slide.active:
 		start_DOWN_ATTACK()
 	else:
 		start_NORMAL_ATTACK()
 	
-	await get_tree().create_timer(ATTACK_COOLDOWN).timeout
+	await get_tree().create_timer(attack_cooldown).timeout
 	
 	$StateChart.send_event("attack_stop")
 
@@ -366,9 +366,14 @@ func start_DOWN_ATTACK():
 
 func start_NORMAL_ATTACK():
 	var attack = NORMAL_ATTACK.instantiate()
-	attack.position.x = last_direction.x * 15
+	if !$StateChart/ParallelState/Jumping/wall_slide.active:
+		attack.position.x = last_direction.x * 15
+		attack.scale.x = last_direction.x
+	else:
+		attack.position.x = -last_direction.x * 15
+		attack.scale.x = -last_direction.x
+	
 	attack.position.y = -10
-	attack.scale.x = last_direction.x
 	
 	attack.add_to_group("attacks")
 	attack.body_entered.connect(_on_attack_entered)
@@ -393,7 +398,7 @@ func _on_attack_entered(body: Node2D):
 	knockback(ATTACK_KNOCKBACK_FORCE, ATTACK_KNOCKBACK_TIME, body, false)
 	
 	body.damage(attack_damage)
-	body.i_frames(ATTACK_COOLDOWN)
+	body.i_frames(attack_cooldown)
 	
 	add_mana(mana_per_attack)
 
@@ -452,6 +457,8 @@ func _on_heal_start_state_entered() -> void:
 func _on_heal_finished_state_entered() -> void:
 	change_health(heal_health)
 	$Sprite2D.set_modulate(Color8(255,255,255))
+	
+	attack_speed_buff()
 
 func _on_idle_state_entered() -> void:
 	can_move = true
@@ -499,6 +506,14 @@ func i_frames(time):
 	
 	$Sprite2D.set_modulate(Color8(255,255,255))
 	self.remove_from_group("invincible")
+
+
+func attack_speed_buff(mult: int = 2.5, time: float = 2):
+	attack_cooldown = clamp(attack_cooldown/mult, ATTACK_LINGER, 999999)
+	
+	await get_tree().create_timer(time).timeout
+	
+	attack_cooldown *= mult
 #endregion
 
 #region mana
