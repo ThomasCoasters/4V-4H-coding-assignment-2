@@ -508,7 +508,7 @@ func i_frames(time):
 	self.remove_from_group("invincible")
 
 
-func attack_speed_buff(mult: int = 2.5, time: float = 2):
+func attack_speed_buff(mult: float = 2.5, time: float = 2.0):
 	attack_cooldown = clamp(attack_cooldown/mult, ATTACK_LINGER, 999999)
 	
 	await get_tree().create_timer(time).timeout
@@ -520,8 +520,6 @@ func attack_speed_buff(mult: int = 2.5, time: float = 2):
 func add_mana(add_amount):
 	mana_float = clamp(mana_float + add_amount, 0, max_mana)
 	mana = int(mana_float)
-	
-	print(mana, " ", max_mana)
 
 func _on_mana_set(new_mana):
 	mana = clamp(new_mana, 0, max_mana)
