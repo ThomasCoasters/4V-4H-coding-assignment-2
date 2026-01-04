@@ -1,28 +1,32 @@
 extends Area2D
 
-@onready var doors: TileMapLayer = $"../TileMapLayer"
+@export var doors: TileMapLayer
 
 var arena_started: bool = false
 var arena_finished: bool = false
 
-@onready var camera_pos: Node2D = $"../Camera pos"
+@export var camera_pos: Node2D
 const TEST_DUMMY = preload("res://enemies/normal/test_dummy/test_dummy.tscn")
 
 var current_wave: int = 0
 
-var wave_to_node := {
-	1: NodePath("../enemy spawns/phase1"),
-	2: NodePath("../enemy spawns/phase2")
-}
+var wave_to_node : Dictionary = {}
+@export var wave_holder : Node
 
 var player
 
 var alive_enemies := 0
 
 
+signal arena_won(node: Node)
+
 func _ready() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
+	
+	for wave_number in range(wave_holder.get_child_count()):
+		wave_to_node[wave_number+1] = wave_holder.get_child(wave_number)
+	
 	
 	player = Global.player
 
@@ -53,6 +57,9 @@ func finish_arena():
 	doors.enabled = false
 	
 	player.current_camera_type = "free"
+	
+	
+	arena_won.emit(self.get_parent())
 
 func spawn_wave():
 	current_wave += 1
@@ -60,7 +67,7 @@ func spawn_wave():
 		finish_arena()
 		return
 	
-	var spawn_node: Node = get_node(wave_to_node[current_wave])
+	var spawn_node: Node = wave_to_node[current_wave]
 	
 	for spawner in spawn_node.get_children():
 		if "dummy" in spawner.name:

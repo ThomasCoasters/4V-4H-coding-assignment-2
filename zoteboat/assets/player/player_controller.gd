@@ -52,10 +52,11 @@ signal player_health_changed(health: int)
 signal player_max_health_changed()
 
 @export var i_frames_hit_time: float = 1.2
-@export var hitstun_time: float = 0.05
+var hitstun_time: float = 0.25
+var hitstop_time: float = 0.075
 
-const GET_HIT_KNOCKBACK_FORCE = 300
-const GET_HIT_KNOCKBACK_TIME = 0.1
+const GET_HIT_KNOCKBACK_FORCE = 450
+const GET_HIT_KNOCKBACK_TIME = 0.15
 
 const ATTACK_KNOCKBACK_FORCE = 300
 const ATTACK_KNOCKBACK_TIME = 0.05
@@ -141,11 +142,11 @@ func _process(_delta: float) -> void:
 		$StateChart.send_event("attack_start")
 	
 	
-	if Input.is_action_just_pressed("specials") && can_move:
+	if Input.is_action_just_pressed("heal") && can_move:
 		if $StateChart/ParallelState/attacking/Idle.active && mana >= mana_to_heal:
 			$StateChart.send_event("heal_start")
 	
-	if Input.is_action_just_released("specials"):
+	if Input.is_action_just_released("heal") && heal_time_expired <= heal_time - 0.2:
 		$StateChart.send_event("heal_cancel")
 	#endregion
 		#region checks
@@ -303,10 +304,14 @@ func camera_movement_y():
 	
 	await get_tree().create_timer(LOOKAHEAD_COOLDOWN).timeout
 	
+	
 	if direction.y == 1:
 		Camera.position.y = -direction.y*LOOKAHEAD*2
 	else: 
 		Camera.position.y = -direction.y*LOOKAHEAD*5
+	
+	if $StateChart/ParallelState/moving/Moving.active:
+		Camera.position.y = 0
 #endregion
 
 
@@ -401,6 +406,8 @@ func _on_attack_entered(body: Node2D):
 	body.i_frames(attack_cooldown)
 	
 	add_mana(mana_per_attack)
+	
+	hitstop_manager(hitstop_time, 3, "soft")
 
 #endregion
 
@@ -420,7 +427,7 @@ func _on_player_entered(body: Node2D):
 	if body.is_in_group("enemy"):
 		change_health(-body.stats.attack_damage)
 		
-		hitstop_manager(hitstun_time)
+		hitstop_manager(hitstun_time, 1.3, "hard")
 		knockback(GET_HIT_KNOCKBACK_FORCE, GET_HIT_KNOCKBACK_TIME, body, true)
 		i_frames(i_frames_hit_time)
 
@@ -453,6 +460,9 @@ func _on_heal_start_state_entered() -> void:
 	
 	max_fall_speed /= healing_max_fall_speed_multiplier
 	velocity.y = 50
+	
+	
+	vibrate_controller(heal_time, "extremely soft")
 
 func _on_heal_finished_state_entered() -> void:
 	change_health(heal_health)
@@ -470,10 +480,32 @@ func _on_idle_state_entered() -> void:
 #endregion
 
 #region juice
-func hitstop_manager(time):
+func hitstop_manager(time, vibration_time_mult: float = 1.0, vibration_type: String = "off"):
 	Engine.time_scale = 0
+	
+	vibrate_controller(time*vibration_time_mult, vibration_type)
+	
 	await get_tree().create_timer(time, true, false, true).timeout
 	Engine.time_scale = 1
+
+func vibrate_controller(time, vibration_type: String = "off"):
+	var soft_vibration_amount := 0.0
+	var hard_vibration_amount := 0.0
+	
+	match vibration_type:
+		"extremely soft":
+			soft_vibration_amount = 0.05
+		"soft":
+			soft_vibration_amount = 1.0
+		"medium":
+			soft_vibration_amount = 0.5
+			hard_vibration_amount = 0.5
+		"hard":
+			hard_vibration_amount = 1.0
+	
+	Input.start_joy_vibration(0, soft_vibration_amount, hard_vibration_amount, time)
+
+
 
 func knockback(force, time, body, knockback_up: bool = true):
 	can_move = false
@@ -508,7 +540,7 @@ func i_frames(time):
 	self.remove_from_group("invincible")
 
 
-func attack_speed_buff(mult: float = 2.5, time: float = 2.0):
+func attack_speed_buff(mult: float = 2.0, time: float = 0.6):
 	attack_cooldown = clamp(attack_cooldown/mult, ATTACK_LINGER, 999999)
 	
 	await get_tree().create_timer(time).timeout

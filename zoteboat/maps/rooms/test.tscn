@@ -105,7 +105,7 @@ tile_set = SubResource("TileSet_a186h")
 [node name="WarpZone" parent="." instance=ExtResource("2_7pfcn")]
 position = Vector2(1292, 103)
 scale = Vector2(-1, 5.668914)
-warp_to = "res://maps/rooms/test2.tscn"
+warp_to = "res://maps/rooms/test3.tscn"
 new_location_group = "left_1"
 
 [node name="SpawnLocation" parent="." instance=ExtResource("3_arhpg")]

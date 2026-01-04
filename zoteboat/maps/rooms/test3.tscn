@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://c5gh7lv4nyhjq"]
+[gd_scene load_steps=10 format=4 uid="uid://c5gh7lv4nyhjq"]
 
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_p5iet"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="2_1aqmc"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="3_jv3j1"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="4_kavg3"]
-[ext_resource type="Script" uid="uid://dirquph6nfgas" path="res://maps/rooms/test3/area_arena_trigger.gd" id="5_en7hx"]
+[ext_resource type="Script" uid="uid://dirquph6nfgas" path="res://maps/enemy arena/universal_arena_script.gd" id="5_en7hx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("2_1aqmc")
@@ -93,6 +93,14 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
+[sub_resource type="GDScript" id="GDScript_p5iet"]
+script/source = "extends Node
+
+signal arena_won(node: Node)
+
+
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80f00"]
 size = Vector2(36, 633)
 
@@ -123,9 +131,13 @@ offset_bottom = 18.0
 own_group = "left_1"
 
 [node name="area arena" type="Node" parent="."]
+script = SubResource("GDScript_p5iet")
 
-[node name="area arena trigger" type="Area2D" parent="area arena"]
+[node name="area arena trigger" type="Area2D" parent="area arena" node_paths=PackedStringArray("doors", "camera_pos", "wave_holder") groups=["enemy arena"]]
 script = ExtResource("5_en7hx")
+doors = NodePath("../TileMapLayer")
+camera_pos = NodePath("../Camera pos")
+wave_holder = NodePath("../enemy spawns")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area arena/area arena trigger"]
 position = Vector2(8, -265.5)

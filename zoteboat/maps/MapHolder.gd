@@ -10,6 +10,8 @@ var current_GUI
 var killed_enemies : Dictionary
 var respawnable_enemies : Dictionary
 
+var finished_arenas : Dictionary
+
 func _ready() -> void:
 	Global.map_holder = self
 	
@@ -74,6 +76,8 @@ func fading():
 
 func map_just_loaded():
 	Global.map.enemy_died.connect(_on_enemy_killed)
+	
+	Global.map.arena_won.connect(_on_arena_won)
 
 
 
@@ -90,3 +94,13 @@ func _on_enemy_killed(enemy: Node2D):
 		if enemy.stats.respawn_every_save:
 			respawnable_enemies[map_path].append(enemy_path)
 		killed_enemies[map_path].append(enemy_path)
+
+
+func _on_arena_won(arena):
+	var map_path = current_map.scene_file_path
+	var enemy_path = str(arena.get_path())
+	
+	if !finished_arenas.has(map_path):
+		finished_arenas[map_path] = []
+	
+	finished_arenas[map_path].append(enemy_path)
