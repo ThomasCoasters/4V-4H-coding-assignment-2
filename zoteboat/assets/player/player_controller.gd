@@ -400,14 +400,14 @@ func _on_attack_entered(body: Node2D):
 	if !body.is_in_group("enemy") || body.is_in_group("invincible"):
 		return
 	
-	knockback(ATTACK_KNOCKBACK_FORCE, ATTACK_KNOCKBACK_TIME, body, false)
+	await hitstop_manager(hitstop_time, 3, "soft")
 	
 	body.damage(attack_damage)
-	body.i_frames(attack_cooldown)
+	body.i_frames(ATTACK_LINGER)
 	
 	add_mana(mana_per_attack)
 	
-	hitstop_manager(hitstop_time, 3, "soft")
+	knockback(ATTACK_KNOCKBACK_FORCE, ATTACK_KNOCKBACK_TIME, body, false)
 
 #endregion
 
@@ -426,10 +426,11 @@ func _on_player_entered(body: Node2D):
 	
 	if body.is_in_group("enemy"):
 		change_health(-body.stats.attack_damage)
-		
-		hitstop_manager(hitstun_time, 1.3, "hard")
-		knockback(GET_HIT_KNOCKBACK_FORCE, GET_HIT_KNOCKBACK_TIME, body, true)
 		i_frames(i_frames_hit_time)
+		
+		await hitstop_manager(hitstun_time, 1.3, "hard")
+		
+		knockback(GET_HIT_KNOCKBACK_FORCE, GET_HIT_KNOCKBACK_TIME, body, true)
 
 func _on_health_set(new_health):
 	health = clamp(new_health, 0, max_health)
@@ -482,6 +483,8 @@ func _on_idle_state_entered() -> void:
 #region juice
 func hitstop_manager(time, vibration_time_mult: float = 1.0, vibration_type: String = "off"):
 	Engine.time_scale = 0
+	
+	$StateChart.send_event("jump_released")
 	
 	vibrate_controller(time*vibration_time_mult, vibration_type)
 	
