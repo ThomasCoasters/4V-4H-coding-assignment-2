@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cctfjk3xkcwcg"]
+
+[ext_resource type="PackedScene" uid="uid://bmeiv1c8q5tey" path="res://addons/dialogue/scenes/dialogue_manager.tscn" id="1_8aaim"]
+[ext_resource type="PackedScene" uid="uid://dnrcj1mhyy4b3" path="res://addons/dialogue/scenes/dialogue.tscn" id="2_mfygf"]
+
+[node name="DialogueMain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="dialogue_manager" parent="." instance=ExtResource("1_8aaim")]
+show_name = false
+show_avatar_ = false
+
+[node name="test" parent="dialogue_manager" instance=ExtResource("2_mfygf")]

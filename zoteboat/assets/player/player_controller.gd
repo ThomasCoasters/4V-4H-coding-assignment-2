@@ -428,9 +428,9 @@ func _on_player_entered(body: Node2D):
 		change_health(-body.stats.attack_damage)
 		i_frames(i_frames_hit_time)
 		
-		await hitstop_manager(hitstun_time, 1.3, "hard")
-		
 		knockback(GET_HIT_KNOCKBACK_FORCE, GET_HIT_KNOCKBACK_TIME, body, true)
+		
+		await hitstop_manager(hitstun_time, 1.3, "hard")
 
 func _on_health_set(new_health):
 	health = clamp(new_health, 0, max_health)

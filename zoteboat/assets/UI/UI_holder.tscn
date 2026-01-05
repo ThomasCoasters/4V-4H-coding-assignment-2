@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://doeteha3810mt"]
+[gd_scene load_steps=4 format=3 uid="uid://doeteha3810mt"]
 
 [ext_resource type="PackedScene" uid="uid://7cdtgxgfo0wa" path="res://assets/UI/HP/HP.tscn" id="1_nmpck"]
 [ext_resource type="PackedScene" uid="uid://4n2vr8ph3efl" path="res://assets/UI/mana/mana.tscn" id="2_wsaw0"]
+[ext_resource type="PackedScene" uid="uid://cctfjk3xkcwcg" path="res://assets/dialogue/in-game dialouge/DialogueMain.tscn" id="3_57uuq"]
 
 [node name="UiHolder" type="CanvasLayer"]
 
@@ -16,3 +17,5 @@ offset_left = 184.0
 offset_top = 107.0
 offset_right = -1672.0
 offset_bottom = -909.0
+
+[node name="DialogueMain" parent="." instance=ExtResource("3_57uuq")]
