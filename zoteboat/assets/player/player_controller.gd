@@ -307,6 +307,7 @@ func camera_movement_y():
 	
 	if direction.y == 1:
 		Camera.position.y = -direction.y*LOOKAHEAD*2
+		Global.dialogue.start("test")
 	else: 
 		Camera.position.y = -direction.y*LOOKAHEAD*5
 	

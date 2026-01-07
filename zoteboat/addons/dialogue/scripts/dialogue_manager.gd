@@ -103,6 +103,7 @@ func advance_message():
 
 	if message_position >= messages.size():
 		queue_free()
+		Global.player.can_move = true
 		return
 
 	var dialogue = messages[message_position].split(separator)
@@ -164,11 +165,11 @@ func _adjust_textbox_layout(speaker_id: int):
 	if speaker_id == 1:
 		text_boxes_content.move_to_front()
 		text_boxes_name.set_h_size_flags(Control.SIZE_SHRINK_BEGIN)
-		text_boxes_message.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_LEFT)
+		text_boxes_message.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_CENTER)
 	else:
 		text_boxes_avatar.move_to_front()
 		text_boxes_name.set_h_size_flags(Control.SIZE_SHRINK_END)
-		text_boxes_message.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_RIGHT)
+		text_boxes_message.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_CENTER)
 
 func auto_advance_message():
 	advance_message()
