@@ -105,7 +105,7 @@ tile_set = SubResource("TileSet_7r8rt")
 [node name="WarpZone2" parent="." instance=ExtResource("2_g1no2")]
 position = Vector2(683.9995, -25)
 scale = Vector2(61.82185, 4.003995)
-warp_to = "res://maps/examples/enemy arena.tscn"
+warp_to = "res://maps/examples/enemy arena/enemy arena.tscn"
 new_location_group = "left_1"
 
 [node name="SpawnLocation" parent="." instance=ExtResource("3_g1no2")]

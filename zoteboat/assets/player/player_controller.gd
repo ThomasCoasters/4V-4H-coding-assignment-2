@@ -292,7 +292,7 @@ func camera_movement():
 
 
 func camera_movement_y():
-	if !is_on_floor():
+	if !is_on_floor() || $StateChart/ParallelState/moving/Moving.active:
 		Camera.position.y = 0
 		Camera.drag_top_margin = 0.25
 		return
@@ -310,9 +310,6 @@ func camera_movement_y():
 		Global.dialogue.start("test")
 	else: 
 		Camera.position.y = -direction.y*LOOKAHEAD*5
-	
-	if $StateChart/ParallelState/moving/Moving.active:
-		Camera.position.y = 0
 #endregion
 
 
