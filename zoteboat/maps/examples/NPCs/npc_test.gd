@@ -6,7 +6,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if !body.is_in_group("player"):
 		return
 	
-	process_mode = Node.PROCESS_MODE_INHERIT
+	entered = true
 
 
 
@@ -14,11 +14,12 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if !body.is_in_group("player"):
 		return
 	
-	process_mode = Node.PROCESS_MODE_PAUSABLE
+	entered = false
 
 
 func _process(_delta: float) -> void:
 	if !entered:
 		return
 	
-	
+	if Global.player.direction.y == 1:
+		Global.dialogue.start("test")

@@ -121,6 +121,7 @@ own_group = "left_1"
 [node name="area arena" type="Node" parent="."]
 
 [node name="area arena trigger" type="Area2D" parent="area arena" node_paths=PackedStringArray("doors", "camera_pos", "wave_holder") groups=["enemy arena"]]
+collision_layer = 0
 script = ExtResource("5_wxu3b")
 doors = NodePath("../TileMapLayer")
 camera_pos = NodePath("../Camera pos")

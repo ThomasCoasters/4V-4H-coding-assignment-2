@@ -11,6 +11,9 @@ func _ready() -> void:
 
 
 func start(dialogue_name: String = "none"):
+	if !Global.player.is_on_floor():
+		return
+	
 	Global.player.can_move = false
 	
 	var dialogue_main = DIALOGUE_MAIN.instantiate()
