@@ -78,6 +78,9 @@ var mana_float = float(mana)
 @export var heal_health: int = 1
 
 var healing_max_fall_speed_multiplier: int = 6
+
+var dash_force:int = 1000
+var dash_time:float = 0.3
 #endregion
 
 func _ready() -> void:
@@ -148,6 +151,9 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_released("heal") && heal_time_expired <= heal_time - 0.2:
 		$StateChart.send_event("heal_cancel")
+	
+	if Input.is_action_just_pressed("dash") && can_move:
+		$StateChart.send_event("dash_start")
 	#endregion
 		#region checks
 	
@@ -564,4 +570,20 @@ func _on_max_mana_set(new_max_mana):
 	mana = max_health
 	
 	player_max_mana_changed.emit()
+#endregion
+
+#region dashing
+
+func _on_dashing_state_entered() -> void:
+	can_move = false
+	can_walk = false
+	
+	forced_move.x = last_direction.x * dash_force
+	
+	await get_tree().create_timer(dash_time).timeout
+	
+	can_move = true
+	can_walk = true
+	
+	$StateChart.send_event("dash_finished")
 #endregion
