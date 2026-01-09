@@ -65,6 +65,8 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 			await transition.on_transition_finished
 			
 			player.can_move = true
+			player.set_process_mode(Node.PROCESS_MODE_INHERIT)
+			player.Camera.set_process_mode(Node.PROCESS_MODE_INHERIT)
 			return
 	
 	print_debug("no location to warp to " + str(new_location_group))
@@ -73,6 +75,8 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 func fading():
 	transition.transition()
 	player.can_move = false
+	player.set_process_mode(Node.PROCESS_MODE_DISABLED)
+	player.Camera.set_process_mode(Node.PROCESS_MODE_ALWAYS)
 
 func map_just_loaded():
 	Global.map.enemy_died.connect(_on_enemy_killed)

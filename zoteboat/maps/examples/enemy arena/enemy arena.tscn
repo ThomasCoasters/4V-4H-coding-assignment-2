@@ -151,10 +151,24 @@ position = Vector2(464, 0)
 
 [node name="phase2" type="Node" parent="area arena/enemy spawns"]
 
-[node name="dummy1" type="Node2D" parent="area arena/enemy spawns/phase2"]
-position = Vector2(646, 0)
+[node name="dvd1" type="Node2D" parent="area arena/enemy spawns/phase2"]
+position = Vector2(563, -185)
 
 [node name="dummy2" type="Node2D" parent="area arena/enemy spawns/phase2"]
 position = Vector2(-200, 0)
+
+[node name="phase3" type="Node" parent="area arena/enemy spawns"]
+
+[node name="dvd1" type="Node2D" parent="area arena/enemy spawns/phase3"]
+position = Vector2(563, -185)
+
+[node name="dvd2" type="Node2D" parent="area arena/enemy spawns/phase3"]
+position = Vector2(-164, -393)
+
+[node name="dvd3" type="Node2D" parent="area arena/enemy spawns/phase3"]
+position = Vector2(375, -442)
+
+[node name="dvd4" type="Node2D" parent="area arena/enemy spawns/phase3"]
+position = Vector2(-118, -148)
 
 [connection signal="body_entered" from="area arena/area arena trigger" to="area arena/area arena trigger" method="_on_body_entered"]

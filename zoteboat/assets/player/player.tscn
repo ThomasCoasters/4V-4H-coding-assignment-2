@@ -266,7 +266,7 @@ script = ExtResource("6_o581y")
 [node name="to_idle" type="Node" parent="StateChart/ParallelState/dash/dash_recharge"]
 script = ExtResource("7_67ne4")
 to = NodePath("../../idle")
-delay_in_seconds = "1"
+delay_in_seconds = "0.7"
 
 [node name="Camera" type="Camera2D" parent="."]
 offset = Vector2(0, -220)
