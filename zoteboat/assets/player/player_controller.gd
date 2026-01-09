@@ -15,7 +15,7 @@ const JUMPING_SPEED : int = -550
 @export var max_jumps_amount : int = 1
 var jumps_amount : int = max_jumps_amount
 
-@export var max_fall_speed : int = 1200
+var max_fall_speed : int = 1200
 var normal_max_fall_speed: int = max_fall_speed
 
 var direction := Vector2(0,0)
@@ -44,14 +44,14 @@ const HARDFALL_STUN_TIME : float = 0.6
 @export var can_walljump : bool = false
 var forced_move : Vector2
 
-@export var attack_damage : int = 5
+var attack_damage : int = 5
 
-@export var max_health : int = 5: set = _on_max_health_set
+var max_health : int = 5: set = _on_max_health_set
 var health : int: set = _on_health_set
 signal player_health_changed(health: int)
 signal player_max_health_changed()
 
-@export var i_frames_hit_time: float = 1.2
+var i_frames_hit_time: float = 1.2
 var hitstun_time: float = 0.25
 var hitstop_time: float = 0.075
 
@@ -62,20 +62,20 @@ const ATTACK_KNOCKBACK_FORCE = 300
 const ATTACK_KNOCKBACK_TIME = 0.05
 
 
-@export var mana_per_attack: int = 11
-@export var max_mana : int = 99: set = _on_max_mana_set
+var mana_per_attack: int = 11
+var max_mana : int = 99: set = _on_max_mana_set
 var mana : int: set = _on_mana_set
 signal player_mana_changed(mana: int)
 signal player_max_mana_changed()
 
-@export var mana_to_heal : int = 33
-@export var heal_time : float = 1.2
+var mana_to_heal : int = 33
+var heal_time : float = 1.2
 
 var heal_time_expired: float = 0
 
 var mana_float = float(mana)
 
-@export var heal_health: int = 1
+var heal_health: int = 1
 
 var healing_max_fall_speed_multiplier: int = 6
 
@@ -405,8 +405,8 @@ func _on_attack_entered(body: Node2D):
 	
 	await hitstop_manager(hitstop_time, 3, "soft")
 	
-	body.damage(attack_damage)
 	body.i_frames(ATTACK_LINGER)
+	body.damage(attack_damage)
 	
 	add_mana(mana_per_attack)
 	
@@ -500,7 +500,7 @@ func vibrate_controller(time, vibration_type: String = "off"):
 	
 	match vibration_type:
 		"extremely soft":
-			soft_vibration_amount = 0.05
+			soft_vibration_amount = 0.5
 		"soft":
 			soft_vibration_amount = 1.0
 		"medium":
@@ -510,6 +510,8 @@ func vibrate_controller(time, vibration_type: String = "off"):
 			hard_vibration_amount = 1.0
 	
 	Input.start_joy_vibration(0, soft_vibration_amount, hard_vibration_amount, time)
+	
+	Camera.screen_shake((soft_vibration_amount*3)+(hard_vibration_amount*7), time)
 
 
 
