@@ -81,6 +81,10 @@ var healing_max_fall_speed_multiplier: int = 6
 
 var dash_force:int = 1000
 var dash_time:float = 0.3
+
+
+@onready var state_chart: StateChart = $StateChart
+@onready var moving: AtomicState = $StateChart/ParallelState/moving/Moving
 #endregion
 
 func _ready() -> void:
@@ -129,47 +133,47 @@ func _process(_delta: float) -> void:
 		#region inputs
 	
 	if Input.is_action_just_pressed("jump"):
-		$StateChart.set_expression_property("jumps_amount", jumps_amount)
-		$StateChart.send_event("jump_clicked")
+		state_chart.set_expression_property("jumps_amount", jumps_amount)
+		state_chart.send_event("jump_clicked")
 	
 	if Input.is_action_just_released("jump"):
-		$StateChart.send_event("jump_released")
+		state_chart.send_event("jump_released")
 	
 	if Input.is_action_just_pressed("left") || Input.is_action_just_pressed("right"):
-		$StateChart.send_event("moving_clicked")
+		state_chart.send_event("moving_clicked")
 	
 	if !Input.is_action_pressed("left") && !Input.is_action_pressed("right"):
-		$StateChart.send_event("moving_released")
+		state_chart.send_event("moving_released")
 	
 	if Input.is_action_just_pressed("attack") && can_attack:
-		$StateChart.send_event("attack_start")
+		state_chart.send_event("attack_start")
 	
 	
 	if Input.is_action_just_pressed("heal") && can_move:
 		if $StateChart/ParallelState/attacking/Idle.active && mana >= mana_to_heal:
-			$StateChart.send_event("heal_start")
+			state_chart.send_event("heal_start")
 	
 	if Input.is_action_just_released("heal") && heal_time_expired <= heal_time - 0.2:
-		$StateChart.send_event("heal_cancel")
+		state_chart.send_event("heal_cancel")
 	
 	if Input.is_action_just_pressed("dash") && can_move:
-		$StateChart.send_event("dash_start")
+		state_chart.send_event("dash_start")
 	#endregion
 		#region checks
 	
 	if is_on_floor():
-		$StateChart.send_event("on_ground")
+		state_chart.send_event("on_ground")
 	if is_on_ceiling():
-		$StateChart.send_event("jump_released")
+		state_chart.send_event("jump_released")
 	
 	if is_on_wall_only() && velocity.y >0 && can_walljump:
-		$StateChart.send_event("on_wall")
+		state_chart.send_event("on_wall")
 	
 	if !is_jumping && !is_on_floor():
-		$StateChart.send_event("fell_of_platform")
+		state_chart.send_event("fell_of_platform")
 	
 	if !is_on_wall() || (is_on_wall() && !test_move(transform, direction)):
-		$StateChart.send_event("fell_of_wall")
+		state_chart.send_event("fell_of_wall")
 	
 	#endregion
 	#endregion
@@ -204,7 +208,7 @@ func _process(_delta: float) -> void:
 
 #region jumping/falling/on_ground
 func _on_jump_timer_timeout() -> void:
-	$StateChart.send_event("jump_released")
+	state_chart.send_event("jump_released")
 
 
 func _on_jump_state_entered() -> void:
@@ -245,6 +249,7 @@ func _on_landed(speed):
 	if $StateChart/ParallelState/Jumping/hardfall.active && speed >= max_fall_speed:
 		can_move = false
 		
+		vibrate_controller(HARDFALL_STUN_TIME, "hard")
 		await get_tree().create_timer(HARDFALL_STUN_TIME).timeout
 		
 		can_move = true
@@ -322,7 +327,7 @@ func camera_movement_y():
 #region attacking
 func _on_attacking_state_entered() -> void:
 	if !can_move:
-		$StateChart.send_event("attack_stop")
+		state_chart.send_event("attack_stop")
 		return
 	
 	if direction.y == 1:
@@ -334,7 +339,7 @@ func _on_attacking_state_entered() -> void:
 	
 	await get_tree().create_timer(attack_cooldown).timeout
 	
-	$StateChart.send_event("attack_stop")
+	state_chart.send_event("attack_stop")
 
 func delete_attack() -> void:
 	for attack in get_tree().get_nodes_in_group("attacks"):
@@ -453,7 +458,7 @@ func _on_heal_start_state_physics_processing(delta: float) -> void:
 	heal_time_expired += delta
 	
 	if heal_time_expired >= heal_time-delta:
-		$StateChart.send_event("heal_finished")
+		state_chart.send_event("heal_finished")
 
 func _on_heal_start_state_entered() -> void:
 	$Sprite2D.set_modulate(Color8(0,255,0))
@@ -487,7 +492,7 @@ func _on_idle_state_entered() -> void:
 func hitstop_manager(time, vibration_time_mult: float = 1.0, vibration_type: String = "off"):
 	Engine.time_scale = 0
 	
-	$StateChart.send_event("jump_released")
+	state_chart.send_event("jump_released")
 	
 	vibrate_controller(time*vibration_time_mult, vibration_type)
 	
@@ -531,7 +536,7 @@ func knockback(force, time, body, knockback_up: bool = true):
 		@warning_ignore("integer_division")
 		velocity.y = int(JUMPING_SPEED/2)
 	
-	$StateChart.send_event("heal_cancel")
+	state_chart.send_event("heal_cancel")
 	
 	await get_tree().create_timer(time).timeout
 	
@@ -587,5 +592,5 @@ func _on_dashing_state_entered() -> void:
 	can_move = true
 	can_walk = true
 	
-	$StateChart.send_event("dash_finished")
+	state_chart.send_event("dash_finished")
 #endregion

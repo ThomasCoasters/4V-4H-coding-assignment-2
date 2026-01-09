@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwuq11frhyumx"]
 
 [ext_resource type="PackedScene" uid="uid://bmeiv1c8q5tey" path="res://addons/dialogue/scenes/dialogue_manager.tscn" id="1_4tvia"]
-[ext_resource type="Script" uid="uid://d2eqhu8naa8vd" path="res://assets/dialogue/example/dialogue test.gd" id="1_tpx21"]
+[ext_resource type="Script" uid="uid://d2eqhu8naa8vd" path="res://assets/dialogue/dialogue test.gd" id="1_tpx21"]
 [ext_resource type="PackedScene" uid="uid://dnrcj1mhyy4b3" path="res://addons/dialogue/scenes/dialogue.tscn" id="3_swb3r"]
 [ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="3_yxptw"]
 

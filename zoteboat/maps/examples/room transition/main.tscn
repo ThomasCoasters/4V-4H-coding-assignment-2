@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="2_7pfcn"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="3_arhpg"]
 [ext_resource type="PackedScene" uid="uid://d2a2qb1xnuxa4" path="res://enemies/normal/test_dummy/test_dummy.tscn" id="4_gyhbf"]
-[ext_resource type="PackedScene" uid="uid://j3ij42xvwk6f" path="res://maps/examples/NPCs/npc_test.tscn" id="6_7vhbi"]
+[ext_resource type="PackedScene" uid="uid://e03auo7ekd6c" path="res://enemies/normal/dvd_logo/dvd_enemy.tscn" id="6_7vhbi"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="9_sx31g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkdps"]
@@ -128,5 +128,50 @@ scale = Vector2(0.39796528, 0.83759606)
 position = Vector2(792, -322)
 scale = Vector2(0.32000244, 1)
 
-[node name="NPC test" parent="." instance=ExtResource("6_7vhbi")]
-position = Vector2(-203, -52)
+[node name="DvdEnemy" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(-281, -68)
+
+[node name="DvdEnemy2" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(-327, -588)
+
+[node name="DvdEnemy3" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(338, -490)
+
+[node name="DvdEnemy4" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(396, -1672)
+
+[node name="DvdEnemy5" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(-201, -820)
+
+[node name="DvdEnemy6" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(904, -611)
+
+[node name="DvdEnemy7" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(190, -843)
+
+[node name="DvdEnemy8" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(-129, -486)
+
+[node name="DvdEnemy9" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(-175, -1006)
+
+[node name="DvdEnemy10" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(812, -1363)
+
+[node name="DvdEnemy11" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(667, -1088)
+
+[node name="DvdEnemy12" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(-49, -1238)
+
+[node name="DvdEnemy13" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(1056, -1029)
+
+[node name="DvdEnemy14" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(342, -1261)
+
+[node name="DvdEnemy15" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(1582, -3086)
+
+[node name="DvdEnemy16" parent="." instance=ExtResource("6_7vhbi")]
+position = Vector2(-169, -1639)

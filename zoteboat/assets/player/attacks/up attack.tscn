@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="1_xsqvh"]
 
 [node name="UpAttack" type="Area2D"]
-collision_mask = 3
+collision_mask = 11
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0.38554764, -39.63853)

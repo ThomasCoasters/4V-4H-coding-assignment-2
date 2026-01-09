@@ -21,5 +21,5 @@ func _process(_delta: float) -> void:
 	if !entered:
 		return
 	
-	if Global.player.direction.y == 1:
+	if Global.player.direction.y == 1 && !Global.player.moving.active:
 		Global.dialogue.start("test")

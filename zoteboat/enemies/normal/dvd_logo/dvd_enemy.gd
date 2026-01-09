@@ -20,6 +20,8 @@ func _ready() -> void:
 		randf_range(-1.0, 1.0),
 		randf_range(-1.0, 1.0)
 	).normalized()
+	
+	add_to_group("dvd_enemy")
 
 func damage(damage_value: int):
 	stats.health -= damage_value
