@@ -125,6 +125,8 @@ func _physics_process(_delta: float) -> void:
 	
 	for body in $Area2D.get_overlapping_bodies():
 		_on_player_entered(body)
+	for area in $Area2D.get_overlapping_areas():
+		_on_player_entered(area)
 
 
 func _process(_delta: float) -> void:
@@ -432,8 +434,12 @@ func _on_player_entered(body: Node2D):
 	if self.is_in_group("invincible"):
 		return
 	
-	if body.is_in_group("enemy"):
-		change_health(-body.stats.attack_damage)
+	if (body.is_in_group("enemy") || body.is_in_group("enemy_attack")):
+		if body is Attack:
+			change_health(-1)
+		else:
+			change_health(-body.stats.attack_damage)
+		
 		i_frames(i_frames_hit_time)
 		
 		knockback(GET_HIT_KNOCKBACK_FORCE, GET_HIT_KNOCKBACK_TIME, body, true)

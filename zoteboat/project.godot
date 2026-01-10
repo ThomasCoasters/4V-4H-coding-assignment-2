@@ -42,6 +42,7 @@ enemy=""
 player=""
 invincible=""
 "enemy arena"=""
+enemy_attack=""
 
 [input]
 

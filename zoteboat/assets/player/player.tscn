@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://rvhtgi81sikt"]
+[gd_scene load_steps=13 format=3 uid="uid://rvhtgi81sikt"]
 
 [ext_resource type="Script" uid="uid://bilmy6u5xo8fm" path="res://assets/player/player_controller.gd" id="1_d2shb"]
 [ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="2_m2mll"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_67ne4"]
 [ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="8_8ca2v"]
 [ext_resource type="PackedScene" uid="uid://doeteha3810mt" path="res://assets/UI/UI_holder.tscn" id="9_d2shb"]
-[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="10_uahac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8u8lh"]
 size = Vector2(24, 80)
@@ -41,7 +40,7 @@ debug_color = Color(1, 0.5411765, 0, 0.41960785)
 
 [node name="Area2D" type="Area2D" parent="." groups=["player"]]
 collision_layer = 3
-collision_mask = 8
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -6)
@@ -273,13 +272,6 @@ to = NodePath("../../idle")
 delay_in_seconds = "0.7"
 
 [node name="UiHolder" parent="." instance=ExtResource("9_d2shb")]
-
-[node name="StateChartDebugger2" parent="UiHolder" instance=ExtResource("10_uahac")]
-offset_left = 1337.0
-offset_top = 6.0
-offset_right = 3.0
-offset_bottom = -633.0
-initial_node_to_watch = NodePath("../../StateChart")
 
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/jump" to="." method="_on_jump_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/falling" to="." method="_on_falling_state_entered"]

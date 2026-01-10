@@ -9,6 +9,12 @@ signal killed(node: Node2D)
 @export var nav_agent: NavigationAgent2D
 
 @onready var state_chart: StateChart = $StateChart
+@onready var attack_cooldown: Timer = $"attack cooldown"
+
+var can_attack: bool = true
+
+
+const ASPID_ATTACK = preload("uid://c2ur5fk7pwnlj")
 
 func _ready() -> void:
 	if stats != null:
@@ -75,7 +81,7 @@ func _on_attack_and_stop_body_entered(body: Node2D) -> void:
 		return
 	
 	state_chart.send_event("stop_move")
-	state_chart.send_event("can_attack")
+	state_chart.send_event("attack")
 
 func _on_attack_and_stop_body_exited(body: Node2D) -> void:
 	if !body.is_in_group("player"):
@@ -100,4 +106,28 @@ func _on_retreat_body_exited(body: Node2D) -> void:
 	
 	state_chart.send_event("stop_move")
 
+#endregion
+
+
+#region attacking
+func _on_attacking_state_physics_processing(_delta: float) -> void:
+	if can_attack:
+		attack()
+		attack_cooldown.start()
+		can_attack = false
+
+
+func _on_attack_cooldown_timeout() -> void:
+	can_attack = true
+
+
+func attack():
+	var projectile = ASPID_ATTACK.instantiate()
+	get_tree().current_scene.add_child(projectile)
+	
+	projectile.global_position = global_position
+	
+	var dir = (Global.player.global_position - global_position).normalized()
+	projectile.direction = dir
+	projectile.rotation = dir.angle()
 #endregion

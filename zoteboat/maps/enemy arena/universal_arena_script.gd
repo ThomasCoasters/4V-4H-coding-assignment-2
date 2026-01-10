@@ -7,8 +7,9 @@ var arena_finished: bool = false
 
 @export var camera_pos: Node2D
 
-const TEST_DUMMY = preload("res://enemies/normal/test_dummy/test_dummy.tscn")
+const TEST_DUMMY = preload("res://enemies/examples/test_dummy/test_dummy.tscn")
 const DVD_ENEMY = preload("res://enemies/normal/dvd_logo/dvd_enemy.tscn")
+const ASPID_ENEMY = preload("uid://3dmnl1rv4c6f")
 
 var current_wave: int = 0
 
@@ -73,9 +74,11 @@ func spawn_wave():
 	
 	for spawner in spawn_node.get_children():
 		if "dummy" in spawner.name:
-				spawn_dummy(spawner.global_position)
+			spawn_dummy(spawner.global_position)
 		elif "dvd" in spawner.name:
-				spawn_dvd(spawner.global_position)
+			spawn_dvd(spawner.global_position)
+		elif "aspid" in spawner.name:
+			spawn_aspid(spawner.global_position)
 
 
 
@@ -122,6 +125,29 @@ func spawn_dvd(pos: Vector2) -> void:
 func _on_dvd_killed(dvd):
 	alive_enemies -= 1
 	dvd.call_deferred("queue_free")
+
+	if alive_enemies <= 0:
+		print("wave done")
+		spawn_wave()
+
+
+
+func spawn_aspid(pos: Vector2) -> void:
+	var aspid := ASPID_ENEMY.instantiate()
+	
+	# Add to the same parent as the arena (or a dedicated enemy container)
+	get_tree().current_scene.call_deferred("add_child", aspid)
+	
+	aspid.global_position = pos
+	
+	alive_enemies += 1
+	
+	aspid.killed.connect(_on_dvd_killed)
+
+
+func _on_aspid_killed(aspid):
+	alive_enemies -= 1
+	aspid.call_deferred("queue_free")
 
 	if alive_enemies <= 0:
 		print("wave done")
