@@ -408,14 +408,14 @@ func _on_attack_entered(body: Node2D):
 	if !body.is_in_group("enemy") || body.is_in_group("invincible"):
 		return
 	
-	await hitstop_manager(hitstop_time, 3, "soft")
-	
 	body.i_frames(ATTACK_LINGER)
 	body.damage(attack_damage)
 	
 	add_mana(mana_per_attack)
 	
 	knockback(ATTACK_KNOCKBACK_FORCE, ATTACK_KNOCKBACK_TIME, body, false)
+	
+	hitstop_manager(hitstop_time, 3, "soft")
 
 #endregion
 

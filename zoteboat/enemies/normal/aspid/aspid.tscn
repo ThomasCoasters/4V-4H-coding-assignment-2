@@ -1,0 +1,159 @@
+[gd_scene load_steps=13 format=3 uid="uid://3dmnl1rv4c6f"]
+
+[ext_resource type="Script" uid="uid://dtiwpvilyewjq" path="res://enemies/normal/aspid/aspid.gd" id="1_kmhe3"]
+[ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_v8ve2"]
+[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="3_sqio4"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="4_csx73"]
+[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="5_hp1al"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="6_hk8o1"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="7_7gfk1"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="8_g81kc"]
+
+[sub_resource type="Resource" id="Resource_4f5pw"]
+script = ExtResource("2_v8ve2")
+max_health = 15
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
+size = Vector2(60, 60)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kmhe3"]
+radius = 348.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v8ve2"]
+radius = 174.04597
+
+[node name="aspid" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent") groups=["enemy"]]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_kmhe3")
+stats = SubResource("Resource_4f5pw")
+nav_agent = NodePath("NavigationAgent2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_sqio4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pst0k")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("4_csx73")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="ParallelState" type="Node" parent="StateChart"]
+script = ExtResource("5_hp1al")
+
+[node name="attack" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("6_hk8o1")
+initial_state = NodePath("can_not_attack")
+
+[node name="can_not_attack" type="Node" parent="StateChart/ParallelState/attack"]
+script = ExtResource("7_7gfk1")
+
+[node name="to_can_attack" type="Node" parent="StateChart/ParallelState/attack/can_not_attack"]
+script = ExtResource("8_g81kc")
+to = NodePath("../../attacking")
+event = &"can_attack"
+delay_in_seconds = "0.0"
+
+[node name="can_attack" type="Node" parent="StateChart/ParallelState/attack"]
+script = ExtResource("7_7gfk1")
+
+[node name="to_attacking" type="Node" parent="StateChart/ParallelState/attack/can_attack"]
+script = ExtResource("8_g81kc")
+to = NodePath("../../attacking")
+event = &"attack"
+delay_in_seconds = "0.0"
+
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/can_attack"]
+script = ExtResource("8_g81kc")
+to = NodePath("../../can_not_attack")
+event = &"can_not_attack"
+delay_in_seconds = "0.0"
+
+[node name="attacking" type="Node" parent="StateChart/ParallelState/attack"]
+script = ExtResource("7_7gfk1")
+
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/attacking"]
+script = ExtResource("8_g81kc")
+to = NodePath("../../can_not_attack")
+event = &"can_not_attack"
+delay_in_seconds = "0.0"
+
+[node name="to_can_attack" type="Node" parent="StateChart/ParallelState/attack/attacking"]
+script = ExtResource("8_g81kc")
+to = NodePath("..")
+event = &"attack_done"
+delay_in_seconds = "0.0"
+
+[node name="moving" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("6_hk8o1")
+initial_state = NodePath("move_towards")
+
+[node name="move_towards" type="Node" parent="StateChart/ParallelState/moving"]
+script = ExtResource("7_7gfk1")
+
+[node name="to_stop" type="Node" parent="StateChart/ParallelState/moving/move_towards"]
+script = ExtResource("8_g81kc")
+to = NodePath("../../stop_move")
+event = &"stop_move"
+delay_in_seconds = "0.0"
+
+[node name="to_retreat" type="Node" parent="StateChart/ParallelState/moving/move_towards"]
+script = ExtResource("8_g81kc")
+to = NodePath("../../retreat")
+event = &"retreat"
+delay_in_seconds = "0.0"
+
+[node name="stop_move" type="Node" parent="StateChart/ParallelState/moving"]
+script = ExtResource("7_7gfk1")
+
+[node name="to_towards" type="Node" parent="StateChart/ParallelState/moving/stop_move"]
+script = ExtResource("8_g81kc")
+to = NodePath("../../move_towards")
+event = &"move_toward"
+delay_in_seconds = "0.0"
+
+[node name="to_retreat" type="Node" parent="StateChart/ParallelState/moving/stop_move"]
+script = ExtResource("8_g81kc")
+to = NodePath("../../retreat")
+event = &"retreat"
+delay_in_seconds = "0.0"
+
+[node name="retreat" type="Node" parent="StateChart/ParallelState/moving"]
+script = ExtResource("7_7gfk1")
+
+[node name="to_stop" type="Node" parent="StateChart/ParallelState/moving/retreat"]
+script = ExtResource("8_g81kc")
+to = NodePath("../../stop_move")
+event = &"stop_move"
+delay_in_seconds = "0.0"
+
+[node name="to_towards" type="Node" parent="StateChart/ParallelState/moving/retreat"]
+script = ExtResource("8_g81kc")
+to = NodePath("../../move_towards")
+event = &"move_toward"
+delay_in_seconds = "0.0"
+
+[node name="attack_and_stop" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_and_stop"]
+shape = SubResource("CircleShape2D_kmhe3")
+
+[node name="retreat" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="retreat"]
+shape = SubResource("CircleShape2D_v8ve2")
+debug_color = Color(1, 0.6313726, 0.10980392, 0.41960785)
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="body_entered" from="attack_and_stop" to="." method="_on_attack_and_stop_body_entered"]
+[connection signal="body_exited" from="attack_and_stop" to="." method="_on_attack_and_stop_body_exited"]
+[connection signal="body_entered" from="retreat" to="." method="_on_retreat_body_entered"]
+[connection signal="body_exited" from="retreat" to="." method="_on_retreat_body_exited"]

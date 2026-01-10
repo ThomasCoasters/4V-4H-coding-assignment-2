@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d2a2qb1xnuxa4"]
 
 [ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="1_e2b1d"]
-[ext_resource type="Script" uid="uid://cc37ef37mc1ri" path="res://enemies/normal/test_dummy/test_dummy.gd" id="1_pst0k"]
+[ext_resource type="Script" uid="uid://cc37ef37mc1ri" path="res://enemies/examples/test_dummy/test_dummy.gd" id="1_pst0k"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_mab7a"]
 
 [sub_resource type="Resource" id="Resource_kef7e"]
@@ -10,7 +10,7 @@ max_health = 20
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
-size = Vector2(121, 113)
+size = Vector2(60, 60)
 
 [node name="TestDummy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 8

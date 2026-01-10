@@ -67,7 +67,10 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 			player.can_move = true
 			player.set_process_mode(Node.PROCESS_MODE_INHERIT)
 			player.Camera.set_process_mode(Node.PROCESS_MODE_INHERIT)
-			return
+			continue
+		
+		if child is NavigationAgent2D:
+			Global.navigation_agent_2d = child
 	
 	print_debug("no location to warp to " + str(new_location_group))
 
