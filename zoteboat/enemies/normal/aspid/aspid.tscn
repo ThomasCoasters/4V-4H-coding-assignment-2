@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://3dmnl1rv4c6f"]
+[gd_scene load_steps=14 format=3 uid="uid://3dmnl1rv4c6f"]
 
 [ext_resource type="Script" uid="uid://dtiwpvilyewjq" path="res://enemies/normal/aspid/aspid.gd" id="1_kmhe3"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_v8ve2"]
@@ -15,19 +15,24 @@ max_health = 15
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
-size = Vector2(60, 60)
+size = Vector2(42, 38)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kmhe3"]
-radius = 299.16718
+radius = 236.01907
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v8ve2"]
-radius = 256.0703
+radius = 227.0088
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sqio4"]
+radius = 350.8219
 
 [node name="aspid" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent") groups=["enemy"]]
 collision_layer = 8
-collision_mask = 10
+collision_mask = 2
 script = ExtResource("1_kmhe3")
 stats = SubResource("Resource_4f5pw")
+move_speed = 250.0
+retreat_speed_mult = 0.6
 nav_agent = NodePath("NavigationAgent2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -40,7 +45,7 @@ debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-debug_enabled = true
+radius = 30.0
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("4_csx73")
@@ -73,7 +78,7 @@ delay_in_seconds = "0.0"
 
 [node name="moving" type="Node" parent="StateChart/ParallelState"]
 script = ExtResource("6_hk8o1")
-initial_state = NodePath("move_towards")
+initial_state = NodePath("stop_move")
 
 [node name="move_towards" type="Node" parent="StateChart/ParallelState/moving"]
 script = ExtResource("7_7gfk1")
@@ -134,8 +139,15 @@ shape = SubResource("CircleShape2D_v8ve2")
 debug_color = Color(1, 0.6313726, 0.10980392, 0.41960785)
 
 [node name="attack cooldown" type="Timer" parent="."]
-wait_time = 2.5
+wait_time = 2.0
 one_shot = true
+
+[node name="move_towards" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="move_towards"]
+shape = SubResource("CircleShape2D_sqio4")
+debug_color = Color(1, 0.46666667, 0.29411766, 0.41960785)
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/attacking" to="." method="_on_attacking_state_entered"]
@@ -145,3 +157,5 @@ one_shot = true
 [connection signal="body_entered" from="retreat" to="." method="_on_retreat_body_entered"]
 [connection signal="body_exited" from="retreat" to="." method="_on_retreat_body_exited"]
 [connection signal="timeout" from="attack cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="body_entered" from="move_towards" to="." method="_on_move_towards_body_entered"]
+[connection signal="body_exited" from="move_towards" to="." method="_on_move_towards_body_exited"]

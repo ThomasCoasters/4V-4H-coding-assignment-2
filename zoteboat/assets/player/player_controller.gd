@@ -503,7 +503,9 @@ func hitstop_manager(time, vibration_time_mult: float = 1.0, vibration_type: Str
 	vibrate_controller(time*vibration_time_mult, vibration_type)
 	
 	await get_tree().create_timer(time, true, false, true).timeout
+	
 	Engine.time_scale = 1
+
 
 func vibrate_controller(time, vibration_type: String = "off"):
 	var soft_vibration_amount := 0.0

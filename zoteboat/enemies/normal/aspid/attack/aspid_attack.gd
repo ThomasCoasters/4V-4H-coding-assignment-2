@@ -2,7 +2,7 @@ extends Area2D
 
 class_name Attack
 
-@export var speed: float = 1600.0
+@export var speed: float = 600.0
 var direction: Vector2
 
 func _ready() -> void:

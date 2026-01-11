@@ -4,7 +4,9 @@ extends CharacterBody2D
 
 signal killed(node: Node2D)
 
-@export var move_speed: float = 200.0
+@export var move_speed: float = 150.0
+
+@export var retreat_speed_mult: float = 1.5
 
 @export var nav_agent: NavigationAgent2D
 
@@ -25,6 +27,12 @@ func _ready() -> void:
 #region pathfinding
 
 func _physics_process(_delta: float) -> void:
+	if is_nan(position.x) || is_nan(position.y):
+		push_error("Enemy position became NaN")
+		killed.emit(self)
+		return
+	
+	
 	var current_pos: Vector2 = self.global_transform.origin
 	var next_path_pos: Vector2 = nav_agent.get_next_path_position()
 	var new_velocity = current_pos.direction_to(next_path_pos)
@@ -48,7 +56,14 @@ func update_target_pos(target_pos: Vector2):
 	nav_agent.target_position = target_pos
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
-	velocity = velocity.move_toward(safe_velocity * move_speed, 12.0)
+	if is_nan(safe_velocity.x) || is_nan(safe_velocity.y):
+		velocity = Vector2.ZERO
+		return
+	
+	var moving_speed = move_speed
+	if $StateChart/ParallelState/moving/retreat.active:
+		moving_speed *= retreat_speed_mult
+	velocity = velocity.move_toward(safe_velocity * moving_speed, 12.0)
 	move_and_slide()
 
 func stop_movement() -> void:
@@ -106,6 +121,13 @@ func _on_retreat_body_exited(body: Node2D) -> void:
 	
 	state_chart.send_event("stop_move")
 
+
+
+func _on_move_towards_body_entered(body: Node2D) -> void:
+	if !body.is_in_group("player"):
+		return
+	
+	state_chart.send_event("move_toward")
 #endregion
 
 
@@ -122,12 +144,22 @@ func _on_attack_cooldown_timeout() -> void:
 
 
 func attack():
-	var projectile = ASPID_ATTACK.instantiate()
-	get_tree().current_scene.add_child(projectile)
-	
-	projectile.global_position = global_position
-	
-	var dir = (Global.player.global_position - global_position).normalized()
-	projectile.direction = dir
-	projectile.rotation = dir.angle()
+	var count := 1
+	var angle_per_shot := deg_to_rad(10) # angle between each projectile
+
+	var base_dir = (Global.player.global_position - global_position).normalized()
+	var base_angle = base_dir.angle()
+
+	for i in range(count):
+		var projectile = ASPID_ATTACK.instantiate()
+		get_tree().current_scene.add_child(projectile)
+		projectile.global_position = global_position
+		
+		var offset_index := i - (count - 1) / 2.0
+		var angle = base_angle + offset_index * angle_per_shot
+		
+		var dir := Vector2.RIGHT.rotated(angle)
+		projectile.direction = dir
+		projectile.rotation = angle
+
 #endregion

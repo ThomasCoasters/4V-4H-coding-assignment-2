@@ -8,9 +8,10 @@ radius = 8.0
 height = 24.0
 
 [node name="AspidAttack" type="Area2D" groups=["enemy_attack"]]
-collision_layer = 8
+collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_ko1wu")
+speed = 500.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.5707964

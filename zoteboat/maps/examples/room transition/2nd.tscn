@@ -117,8 +117,6 @@ own_group = "left_1"
 
 [node name="TestDummy3" parent="." instance=ExtResource("4_vnfxb")]
 position = Vector2(-484.00003, -34)
-scale = Vector2(0.9265534, 0.38133445)
 
 [node name="TestDummy4" parent="." instance=ExtResource("4_vnfxb")]
 position = Vector2(-368.00006, -36)
-scale = Vector2(0.85850126, 0.34541595)
