@@ -1,15 +1,65 @@
-[gd_scene load_steps=2 format=3 uid="uid://hoyxcaqbicl3"]
+[gd_scene load_steps=9 format=3 uid="uid://hoyxcaqbicl3"]
 
-[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="1_xsqvh"]
+[ext_resource type="Texture2D" uid="uid://bqey7722p3rnc" path="res://assets/player/attacks/sprites/Browser Games - Google Doodles - Easter Eggs - Hollow Knight_ Silksong.png" id="1_lb8r2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8btvh"]
+atlas = ExtResource("1_lb8r2")
+region = Rect2(0, 0, 348, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qiid"]
+atlas = ExtResource("1_lb8r2")
+region = Rect2(348, 0, 348, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xpns"]
+atlas = ExtResource("1_lb8r2")
+region = Rect2(696, 0, 348, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00hyy"]
+atlas = ExtResource("1_lb8r2")
+region = Rect2(0, 208, 348, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kt3yk"]
+atlas = ExtResource("1_lb8r2")
+region = Rect2(348, 208, 348, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyc3n"]
+atlas = ExtResource("1_lb8r2")
+region = Rect2(696, 208, 348, 208)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_telyw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8btvh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qiid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xpns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00hyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kt3yk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyc3n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 40.0
+}]
 
 [node name="UpAttack" type="Area2D"]
 collision_mask = 11
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.38554764, -39.63853)
 rotation = 1.5707964
 scale = Vector2(0.6076333, 0.950302)
-texture = ExtResource("1_xsqvh")
+sprite_frames = SubResource("SpriteFrames_telyw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-0.99999666, 1.0883025)
