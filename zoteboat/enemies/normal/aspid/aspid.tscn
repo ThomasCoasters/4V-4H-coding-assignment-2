@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://3dmnl1rv4c6f"]
+[gd_scene load_steps=21 format=3 uid="uid://3dmnl1rv4c6f"]
 
 [ext_resource type="Script" uid="uid://dtiwpvilyewjq" path="res://enemies/normal/aspid/aspid.gd" id="1_kmhe3"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_v8ve2"]
-[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="3_sqio4"]
+[ext_resource type="Texture2D" uid="uid://dqw2uqkfpjoqy" path="res://enemies/normal/aspid/sprites/Aspid Hunter.png" id="3_kmhe3"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="4_csx73"]
 [ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="5_hp1al"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="6_hk8o1"]
@@ -13,6 +13,56 @@
 script = ExtResource("2_v8ve2")
 max_health = 15
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8ve2"]
+atlas = ExtResource("3_kmhe3")
+region = Rect2(4, 23, 140, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqio4"]
+atlas = ExtResource("3_kmhe3")
+region = Rect2(149, 23, 140, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csx73"]
+atlas = ExtResource("3_kmhe3")
+region = Rect2(294, 23, 140, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp1al"]
+atlas = ExtResource("3_kmhe3")
+region = Rect2(439, 23, 140, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk8o1"]
+atlas = ExtResource("3_kmhe3")
+region = Rect2(584, 23, 140, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gfk1"]
+atlas = ExtResource("3_kmhe3")
+region = Rect2(729, 23, 140, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g81kc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8ve2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqio4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_csx73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hp1al")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk8o1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gfk1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
 size = Vector2(42, 38)
@@ -35,9 +85,10 @@ move_speed = 250.0
 retreat_speed_mult = 0.6
 nav_agent = NodePath("NavigationAgent2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_sqio4")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_g81kc")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_pst0k")
@@ -126,12 +177,14 @@ event = &"move_toward"
 delay_in_seconds = "0.0"
 
 [node name="attack_and_stop" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_and_stop"]
 shape = SubResource("CircleShape2D_kmhe3")
 
 [node name="retreat" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="retreat"]
@@ -143,6 +196,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="move_towards" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="move_towards"]

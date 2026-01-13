@@ -10,10 +10,11 @@ var gravity_multiplier := 0.0
 
 var is_jumping = false
 var jump_timer := Timer.new()
-const MAX_JUMP_TIME : float = 0.5
-const JUMPING_SPEED : int = -550
+const MAX_JUMP_TIME : float = 0.3
+const JUMPING_SPEED : int = -750
 @export var max_jumps_amount : int = 1
 var jumps_amount : int = max_jumps_amount
+var jump_max_held: bool = false
 
 var max_fall_speed : int = 1200
 var normal_max_fall_speed: int = max_fall_speed
@@ -32,7 +33,7 @@ var attack_cooldown : float = 0.41
 const ATTACK_LINGER : float = 0.15
 
 const NORMAL_ATTACK = preload("res://assets/player/attacks/normal attack.tscn")
-const UP_ATTACK = preload("res://assets/player/attacks/up attack.tscn")
+const UP_ATTACK = preload("res://assets/player/attacks/up_attack/up attack.tscn")
 const DOWN_ATTACK = preload("res://assets/player/attacks/pogo.tscn")
 
 var can_attack : bool = true
@@ -165,11 +166,13 @@ func _process(_delta: float) -> void:
 	
 	if is_on_floor():
 		state_chart.send_event("on_ground")
+		state_chart.send_event("dash_rechagering")
 	if is_on_ceiling():
 		state_chart.send_event("jump_released")
 	
 	if is_on_wall_only() && velocity.y >0 && can_walljump:
 		state_chart.send_event("on_wall")
+		state_chart.send_event("dash_recharged")
 	
 	if !is_jumping && !is_on_floor():
 		state_chart.send_event("fell_of_platform")
@@ -210,6 +213,7 @@ func _process(_delta: float) -> void:
 
 #region jumping/falling/on_ground
 func _on_jump_timer_timeout() -> void:
+	jump_max_held = true
 	state_chart.send_event("jump_released")
 
 
@@ -222,7 +226,9 @@ func _on_jump_state_entered() -> void:
 	
 	jump_timer.start()
 	
-	gravity_multiplier = 0.5
+	gravity_multiplier = 1
+	
+	jump_max_held = false
 	
 	#current_camera_type = "locked"
 
@@ -232,13 +238,12 @@ func _on_falling_state_entered() -> void:
 	
 	jump_timer.stop()
 	
+	if is_jumping && !jump_max_held:
+		velocity.y /= 2
+	
 	is_jumping = false
 	
 	gravity_multiplier = 3
-	
-	if !is_jumping:
-		return
-	velocity.y = 0
 
 
 func _on_on_ground_state_entered() -> void:

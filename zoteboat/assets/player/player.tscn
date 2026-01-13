@@ -266,10 +266,22 @@ delay_in_seconds = "0.0"
 [node name="dash_recharge" type="Node" parent="StateChart/ParallelState/dash"]
 script = ExtResource("6_o581y")
 
-[node name="to_idle" type="Node" parent="StateChart/ParallelState/dash/dash_recharge"]
+[node name="to_idle_auto" type="Node" parent="StateChart/ParallelState/dash/dash_recharge"]
 script = ExtResource("7_67ne4")
 to = NodePath("../../idle")
 delay_in_seconds = "0.7"
+
+[node name="to_idle_manual" type="Node" parent="StateChart/ParallelState/dash/dash_recharge"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../idle")
+event = &"dash_recharged"
+delay_in_seconds = "0.0"
+
+[node name="to_idle_fast" type="Node" parent="StateChart/ParallelState/dash/dash_recharge"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../idle")
+event = &"dash_rechagering"
+delay_in_seconds = "0.2"
 
 [node name="UiHolder" parent="." instance=ExtResource("9_d2shb")]
 

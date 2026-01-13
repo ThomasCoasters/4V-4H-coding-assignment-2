@@ -23,6 +23,8 @@ func _ready() -> void:
 		stats = stats.duplicate(true)
 	
 	stats.health_depleted.connect(_on_health_depleted)
+	
+	$Sprite2D.play("idle")
 
 #region pathfinding
 
@@ -134,9 +136,12 @@ func _on_move_towards_body_entered(body: Node2D) -> void:
 #region attacking
 func _on_attacking_state_physics_processing(_delta: float) -> void:
 	if can_attack:
-		attack()
 		attack_cooldown.start()
 		can_attack = false
+		await attack()
+	
+	else:
+		$Sprite2D.play("idle")
 
 
 func _on_attack_cooldown_timeout() -> void:
@@ -144,9 +149,9 @@ func _on_attack_cooldown_timeout() -> void:
 
 
 func attack():
-	var count := 5
+	var count := 1
 	var angle_per_shot := deg_to_rad(20) # angle between each projectile
-
+	
 	var base_dir = (Global.player.global_position - global_position).normalized()
 	var base_angle = base_dir.angle()
 
