@@ -144,8 +144,8 @@ func _on_attack_cooldown_timeout() -> void:
 
 
 func attack():
-	var count := 1
-	var angle_per_shot := deg_to_rad(10) # angle between each projectile
+	var count := 5
+	var angle_per_shot := deg_to_rad(20) # angle between each projectile
 
 	var base_dir = (Global.player.global_position - global_position).normalized()
 	var base_angle = base_dir.angle()
