@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://hoyxcaqbicl3"]
+[gd_scene load_steps=9 format=3 uid="uid://hoyxcaqbicl3"]
 
-[ext_resource type="Script" uid="uid://cm8gunsw85rpj" path="res://assets/player/attacks/up_attack/up_attack.gd" id="1_qykc5"]
 [ext_resource type="Texture2D" uid="uid://bqey7722p3rnc" path="res://assets/player/attacks/up_attack/sprite.png" id="2_co1se"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hvlry"]
@@ -55,13 +54,13 @@ animations = [{
 
 [node name="UpAttack" type="Area2D"]
 collision_mask = 11
-script = ExtResource("1_qykc5")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-3.0553338e-13, -42.999996)
 rotation = 3.1415927
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_337pe")
+autoplay = "default"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 scale = Vector2(0.8035714, 1.0535454)

@@ -1,12 +1,14 @@
 extends CharacterBody2D
 
+#region setup
+
 @export var stats: Stats
 
 signal killed(node: Node2D)
 
-@export var move_speed: float = 150.0
+@export var move_speed: float = 250.0
 
-@export var retreat_speed_mult: float = 1.5
+@export var retreat_speed_mult: float = 0.6
 
 @export var nav_agent: NavigationAgent2D
 
@@ -15,8 +17,21 @@ signal killed(node: Node2D)
 
 var can_attack: bool = true
 
+var facing_dir: int = -1 # -1 = left           1 = right
+
 
 const ASPID_ATTACK = preload("uid://c2ur5fk7pwnlj")
+
+var current_anim: String
+
+enum ANIM_PRIORITY {
+	IDLE,
+	TURN,
+	ATTACK,
+	DEATH
+}
+
+var current_anim_priority: int = 0
 
 func _ready() -> void:
 	if stats != null:
@@ -24,11 +39,17 @@ func _ready() -> void:
 	
 	stats.health_depleted.connect(_on_health_depleted)
 	
-	$Sprite2D.play("idle")
+	$Sprite2D.animation_finished.connect(_on_animation_finished)
+#endregion
 
 #region pathfinding
 
 func _physics_process(_delta: float) -> void:
+	play_anim("idle", ANIM_PRIORITY.IDLE)
+	
+	update_facing()
+	$Sprite2D.flip_h = facing_dir == 1
+	
 	if is_nan(position.x) || is_nan(position.y):
 		push_error("Enemy position became NaN")
 		killed.emit(self)
@@ -75,6 +96,7 @@ func stop_movement() -> void:
 	move_and_slide()
 #endregion
 
+#region basic enemy stuff
 
 func damage(damage_value: int):
 	stats.health -= damage_value
@@ -90,7 +112,17 @@ func i_frames(time):
 	#print(str(current_health) + " out of " + str(max_health))
 
 func _on_health_depleted():
-	killed.emit(self)
+	process_mode = Node.PROCESS_MODE_DISABLED
+	
+	$Sprite2D.process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	velocity = Vector2.ZERO
+	
+	$CollisionShape2D.set_deferred("disabled", true)
+	attack_cooldown.stop()
+	
+	play_anim("death", ANIM_PRIORITY.DEATH)
+#endregion
 
 #region behaviour
 func _on_attack_and_stop_body_entered(body: Node2D) -> void:
@@ -136,12 +168,8 @@ func _on_move_towards_body_entered(body: Node2D) -> void:
 #region attacking
 func _on_attacking_state_physics_processing(_delta: float) -> void:
 	if can_attack:
-		attack_cooldown.start()
 		can_attack = false
-		await attack()
-	
-	else:
-		$Sprite2D.play("idle")
+		play_anim("attack", ANIM_PRIORITY.ATTACK)
 
 
 func _on_attack_cooldown_timeout() -> void:
@@ -167,4 +195,45 @@ func attack():
 		projectile.direction = dir
 		projectile.rotation = angle
 
+#endregion
+
+#region animations
+func play_anim(anim_name: String = "idle", priority: int = 0):
+	if priority < current_anim_priority:
+		return
+	
+	current_anim_priority = priority
+	
+	
+	current_anim = anim_name
+	
+	$Sprite2D.play(anim_name)
+
+func _on_animation_finished():
+	current_anim_priority = 0
+	
+	if current_anim == "attack":
+		attack_cooldown.start()
+		attack()
+	
+	if current_anim == "death":
+		killed.emit(self)
+
+
+
+func update_facing():
+	if current_anim == "attack" || current_anim == "death":
+		return
+	
+	
+	var new_dir = sign(Global.player.global_position.x - global_position.x)
+	
+	# Player exactly on top → ignore
+	if new_dir == 0:
+		return
+	
+	# Only react when direction changes
+	if new_dir != facing_dir:
+		facing_dir = new_dir
+		play_anim("turn", ANIM_PRIORITY.TURN)
 #endregion

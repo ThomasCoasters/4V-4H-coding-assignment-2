@@ -7,9 +7,9 @@
 [ext_resource type="Script" uid="uid://dirquph6nfgas" path="res://maps/enemy arena/universal_arena_script.gd" id="5_wxu3b"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b85t1"]
-vertices = PackedVector2Array(-289.5703, -29, -292.1797, -121, -273, -121, 793.2969, -29, 747, -121, 793.75, -121, 747, -505, -273, -505)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 3), PackedInt32Array(4, 3, 2), PackedInt32Array(6, 4, 2, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-355, -572, -338, 27, 843, 30, 846, -572)])
+vertices = PackedVector2Array(943, -121, 1748.7578, -29, -869.3594, -29, 747, -121, 1702.5234, -893.3828, 943, -669, -862.3672, -969.5, -437, -669, -437, -121, -273, -121, -273, -505, 747, -505)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(2, 6, 7, 8), PackedInt32Array(9, 10, 11, 3), PackedInt32Array(9, 3, 2), PackedInt32Array(2, 8, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-912, -1021, -920, 57, 1803, 49, 1750, -942)])
 agent_radius = 50.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]

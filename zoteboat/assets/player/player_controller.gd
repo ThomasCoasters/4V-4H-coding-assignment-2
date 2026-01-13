@@ -34,7 +34,7 @@ const ATTACK_LINGER : float = 0.15
 
 const NORMAL_ATTACK = preload("res://assets/player/attacks/normal attack.tscn")
 const UP_ATTACK = preload("res://assets/player/attacks/up_attack/up attack.tscn")
-const DOWN_ATTACK = preload("res://assets/player/attacks/pogo.tscn")
+const DOWN_ATTACK = preload("res://assets/player/attacks/pogo/pogo.tscn")
 
 var can_attack : bool = true
 var can_move : bool = true
