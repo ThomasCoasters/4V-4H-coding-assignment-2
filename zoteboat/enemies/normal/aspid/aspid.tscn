@@ -229,13 +229,14 @@ radius = 560.0036
 radius = 320.00626
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v8ve2"]
-radius = 227.10791
+radius = 148.12157
 
 [node name="aspid" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent") groups=["enemy"]]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_kmhe3")
 stats = SubResource("Resource_4f5pw")
+retreat_speed_mult = 1.5
 nav_agent = NodePath("NavigationAgent2D")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]

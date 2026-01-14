@@ -12,6 +12,7 @@ var noise := FastNoiseLite.new()
 
 var last_time := 0.0
 
+var camera: Camera2D = self
 
 func _ready():
 	last_time = Time.get_ticks_usec()

@@ -193,15 +193,18 @@ func _process(_delta: float) -> void:
 	if !can_move:
 		return
 	
-	if Input.is_action_pressed("left"):
-		direction.x -= 1
-	if Input.is_action_pressed("right"):
-		direction.x += 1
+	direction = Vector2(
+		Input.get_action_strength("right") - Input.get_action_strength("left"),
+		Input.get_action_strength("up") - Input.get_action_strength("down")
+	).limit_length(1.0)
 	
-	if Input.is_action_pressed("down"):
-		direction.y -= 1
-	if Input.is_action_pressed("up"):
-		direction.y += 1
+	if Input.get_action_strength("left") >= 0.5 || Input.get_action_strength("right") >= 0.5:
+		direction.x = sign(direction.x)
+	
+	if Input.get_action_strength("up") >= 0.2 || Input.get_action_strength("down") >= 0.2:
+		direction.y = sign(direction.y)
+	else:
+		direction.y = 0
 	
 	if direction.x != 0:
 		last_direction.x = direction.x
@@ -271,12 +274,16 @@ func _on_wall_slide_state_entered() -> void:
 	max_fall_speed /= 5
 
 func _on_wall_slide_state_exited() -> void:
+	var dir = sign(last_direction.x)
+	
 	max_fall_speed *= 5
 	
-	position.x -= last_direction.x
+	position.x -= dir
 
 func _on_to_jumping_form_wall_taken() -> void:
-	forced_move.x = -last_direction.x * 500
+	var dir = sign(last_direction.x)
+	
+	forced_move.x = -dir * 500
 	
 	can_walk = false
 	
@@ -295,18 +302,20 @@ func camera_movement():
 		Camera.set_as_top_level(true)
 		Camera.position = forced_position
 		return
-		
+	
+	var dir = sign(last_direction)
+	
 	Camera.set_as_top_level(false)
 	
 	camera_movement_y()
 	
-	if Camera.position.x == last_direction.x*LOOKAHEAD:
+	if Camera.position.x == dir.x*LOOKAHEAD:
 		return
 	
 	
 	await get_tree().create_timer(LOOKAHEAD_COOLDOWN).timeout
 	
-	Camera.position.x = last_direction.x*LOOKAHEAD
+	Camera.position.x = dir.x*LOOKAHEAD
 
 
 func camera_movement_y():
@@ -314,19 +323,22 @@ func camera_movement_y():
 		Camera.position.y = 0
 		Camera.drag_top_margin = 0.25
 		return
+	
+	var dir = sign(direction)
+	
 	Camera.drag_top_margin = 0
 	
-	if Camera.position.y == direction.y*LOOKAHEAD*2:
+	if Camera.position.y == dir.y*LOOKAHEAD*2:
 		Camera.position.y = 0
 		return
 	
 	await get_tree().create_timer(LOOKAHEAD_COOLDOWN).timeout
 	
 	
-	if direction.y == 1:
-		Camera.position.y = -direction.y*LOOKAHEAD*2
+	if dir.y == 1:
+		Camera.position.y = -dir.y*LOOKAHEAD*2
 	else: 
-		Camera.position.y = -direction.y*LOOKAHEAD*5
+		Camera.position.y = -dir.y*LOOKAHEAD*5
 #endregion
 
 
@@ -336,10 +348,10 @@ func _on_attacking_state_entered() -> void:
 	if !can_move:
 		state_chart.send_event("attack_stop")
 		return
-	
-	if direction.y == 1:
+	var dir = sign(direction)
+	if dir.y == 1:
 		start_UP_ATTACK()
-	elif direction.y == -1 && !is_on_floor() && !$StateChart/ParallelState/Jumping/wall_slide.active:
+	elif dir.y == -1 && !is_on_floor() && !$StateChart/ParallelState/Jumping/wall_slide.active:
 		start_DOWN_ATTACK()
 	else:
 		start_NORMAL_ATTACK()
@@ -355,8 +367,10 @@ func delete_attack() -> void:
 
 func start_UP_ATTACK():
 	var attack = UP_ATTACK.instantiate()
+	var dir = sign(last_direction.x)
+	
 	attack.position.y = -50
-	attack.scale.x = last_direction.x
+	attack.scale.x = dir
 	
 	attack.add_to_group("attacks")
 	attack.body_entered.connect(_on_attack_entered)
@@ -369,8 +383,10 @@ func start_UP_ATTACK():
 	
 func start_DOWN_ATTACK():
 	var attack = DOWN_ATTACK.instantiate()
+	var dir = sign(last_direction.x)
+	
 	attack.position = position
-	attack.scale.x = last_direction.x
+	attack.scale.x = dir
 	attack.scale.y = -1
 	
 	attack.add_to_group("attacks")
@@ -386,12 +402,14 @@ func start_DOWN_ATTACK():
 
 func start_NORMAL_ATTACK():
 	var attack = NORMAL_ATTACK.instantiate()
+	var dir = sign(last_direction.x)
+	
 	if !$StateChart/ParallelState/Jumping/wall_slide.active:
-		attack.position.x = last_direction.x * 15
-		attack.scale.x = last_direction.x
+		attack.position.x = dir * 15
+		attack.scale.x = dir
 	else:
-		attack.position.x = -last_direction.x * 15
-		attack.scale.x = -last_direction.x
+		attack.position.x = -dir * 15
+		attack.scale.x = -dir
 	
 	attack.position.y = -10
 	
@@ -598,7 +616,8 @@ func _on_dashing_state_entered() -> void:
 	can_move = false
 	can_walk = false
 	
-	forced_move.x = last_direction.x * dash_force
+	var dir = sign(last_direction.x)
+	forced_move.x = dir * dash_force
 	
 	await get_tree().create_timer(dash_time).timeout
 	

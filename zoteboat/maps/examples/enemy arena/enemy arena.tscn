@@ -132,7 +132,7 @@ own_group = "left_1"
 [node name="area arena trigger" type="Area2D" parent="area arena" node_paths=PackedStringArray("doors", "camera_pos", "wave_holder") groups=["enemy arena"]]
 collision_layer = 0
 script = ExtResource("5_wxu3b")
-doors = NodePath("../TileMapLayer")
+doors = NodePath("../doors")
 camera_pos = NodePath("../Camera pos")
 wave_holder = NodePath("../enemy spawns")
 
@@ -141,7 +141,7 @@ position = Vector2(8, -265.5)
 shape = SubResource("RectangleShape2D_80f00")
 debug_color = Color(1, 0.5764706, 0, 0.41960785)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="area arena"]
+[node name="doors" type="TileMapLayer" parent="area arena"]
 position = Vector2(-3, -107)
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAD1/wMAAAADAAcAAAD1/wIAAAADAAYAAAD1/wEAAAADAAYAAAD1/wAAAAADAAYAAAD1////AAADAAYAAAD1//7/AAADAAUAAAD0/wMAAAABAAcAAAD0/wIAAAABAAYAAAD0/wEAAAABAAYAAAD0/wAAAAABAAYAAAD0////AAABAAYAAAD0//7/AAABAAUAAAAbAAMAAAADAAcAAAAbAAIAAAADAAYAAAAbAAEAAAADAAYAAAAbAAAAAAADAAYAAAAbAP//AAADAAYAAAAbAP7/AAADAAYAAAAbAP3/AAADAAUAAAAaAAMAAAACAAcAAAAaAAIAAAACAAYAAAAaAAEAAAACAAYAAAAaAAAAAAACAAYAAAAaAP//AAACAAYAAAAaAP7/AAACAAYAAAAaAP3/AAACAAUAAAAZAAMAAAABAAcAAAAZAAIAAAABAAYAAAAZAAEAAAABAAYAAAAZAAAAAAABAAYAAAAZAP//AAABAAYAAAAZAP7/AAABAAYAAAAZAP3/AAABAAUAAAA=")
