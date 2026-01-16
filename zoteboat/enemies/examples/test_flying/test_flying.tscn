@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dofcedq7frng5"]
+
+[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="1_ga5i6"]
+[ext_resource type="Script" uid="uid://dbdkpk1a3wg8v" path="res://enemies/examples/test_flying/test_flying.gd" id="1_x5ljo"]
+[ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_82o7g"]
+
+[sub_resource type="Resource" id="Resource_l15iq"]
+script = ExtResource("2_82o7g")
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
+size = Vector2(60, 60)
+
+[node name="Testfly" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent") groups=["enemy"]]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_x5ljo")
+stats = SubResource("Resource_l15iq")
+nav_agent = NodePath("NavigationAgent2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ga5i6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pst0k")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

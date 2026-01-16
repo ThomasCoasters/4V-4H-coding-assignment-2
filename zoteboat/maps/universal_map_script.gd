@@ -2,6 +2,7 @@ extends Node2D
 class_name Map
 
 signal enemy_died(enemy: Node2D)
+signal arena_won(arena: Node)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,8 +20,25 @@ func _ready() -> void:
 				continue
 			
 		enemy.killed.connect(_on_enemy_killed)
+	
+	for arena in get_tree().get_nodes_in_group("enemy arena"):
+		
+		var full_path = str(arena.get_parent().get_path())
+		
+		if Global.map_holder.finished_arenas.has(map_path):
+			if full_path in Global.map_holder.finished_arenas[map_path]:
+				arena.queue_free()
+				continue
+			
+		arena.arena_won.connect(_on_arena_won)
+	
 
 
 func _on_enemy_killed(enemy: Node2D):
 	enemy_died.emit(enemy)
 	enemy.queue_free()
+
+
+func _on_arena_won(arena):
+	arena_won.emit(arena)
+	arena.queue_free()

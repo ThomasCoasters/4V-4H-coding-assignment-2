@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://bilmy6u5xo8fm" path="res://assets/player/player_controller.gd" id="1_d2shb"]
 [ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="2_m2mll"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_3x76d"]
+[ext_resource type="PackedScene" uid="uid://dkenb6wogtc55" path="res://assets/player/camera/Camera.tscn" id="3_hai6l"]
 [ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="4_gr1j3"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="5_rl7lv"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="6_o581y"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_67ne4"]
 [ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="8_8ca2v"]
 [ext_resource type="PackedScene" uid="uid://doeteha3810mt" path="res://assets/UI/UI_holder.tscn" id="9_d2shb"]
-[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="10_uahac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8u8lh"]
 size = Vector2(24, 80)
@@ -23,6 +23,7 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 z_index = 999
 collision_mask = 6
 script = ExtResource("1_d2shb")
+max_jumps_amount = 2
 Camera = NodePath("Camera")
 can_walljump = true
 
@@ -39,12 +40,15 @@ debug_color = Color(1, 0.5411765, 0, 0.41960785)
 
 [node name="Area2D" type="Area2D" parent="." groups=["player"]]
 collision_layer = 3
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -6)
 scale = Vector2(0.9908129, 0.9952922)
 shape = SubResource("RectangleShape2D_8u8lh")
 debug_color = Color(0.8374295, 0.63514006, 0.3968584, 0.41960785)
+
+[node name="Camera" parent="." instance=ExtResource("3_hai6l")]
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("3_3x76d")
@@ -237,26 +241,49 @@ script = ExtResource("7_67ne4")
 to = NodePath("../../Idle")
 delay_in_seconds = "0.0"
 
-[node name="Camera" type="Camera2D" parent="."]
-offset = Vector2(0, -220)
-zoom = Vector2(1.35, 1.35)
-process_callback = 0
-limit_enabled = false
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 7.0
-drag_vertical_enabled = true
-drag_top_margin = 0.25
-drag_bottom_margin = 0.0
+[node name="dash" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("5_rl7lv")
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="StateChart/ParallelState/dash"]
+script = ExtResource("6_o581y")
+
+[node name="to_dashing" type="Node" parent="StateChart/ParallelState/dash/idle"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../dashing")
+event = &"dash_start"
+delay_in_seconds = "0.0"
+
+[node name="dashing" type="Node" parent="StateChart/ParallelState/dash"]
+script = ExtResource("6_o581y")
+
+[node name="to_recharge" type="Node" parent="StateChart/ParallelState/dash/dashing"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../dash_recharge")
+event = &"dash_finished"
+delay_in_seconds = "0.0"
+
+[node name="dash_recharge" type="Node" parent="StateChart/ParallelState/dash"]
+script = ExtResource("6_o581y")
+
+[node name="to_idle_auto" type="Node" parent="StateChart/ParallelState/dash/dash_recharge"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../idle")
+delay_in_seconds = "0.7"
+
+[node name="to_idle_manual" type="Node" parent="StateChart/ParallelState/dash/dash_recharge"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../idle")
+event = &"dash_recharged"
+delay_in_seconds = "0.0"
+
+[node name="to_idle_fast" type="Node" parent="StateChart/ParallelState/dash/dash_recharge"]
+script = ExtResource("7_67ne4")
+to = NodePath("../../idle")
+event = &"dash_rechagering"
+delay_in_seconds = "0.2"
 
 [node name="UiHolder" parent="." instance=ExtResource("9_d2shb")]
-
-[node name="StateChartDebugger2" parent="UiHolder" instance=ExtResource("10_uahac")]
-offset_left = 1337.0
-offset_top = 6.0
-offset_right = 3.0
-offset_bottom = -633.0
-initial_node_to_watch = NodePath("../../StateChart")
 
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/jump" to="." method="_on_jump_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/falling" to="." method="_on_falling_state_entered"]
@@ -269,3 +296,4 @@ initial_node_to_watch = NodePath("../../StateChart")
 [connection signal="state_entered" from="StateChart/ParallelState/healing/heal start" to="." method="_on_heal_start_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/healing/heal start" to="." method="_on_heal_start_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/ParallelState/healing/heal finished" to="." method="_on_heal_finished_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/dash/dashing" to="." method="_on_dashing_state_entered"]

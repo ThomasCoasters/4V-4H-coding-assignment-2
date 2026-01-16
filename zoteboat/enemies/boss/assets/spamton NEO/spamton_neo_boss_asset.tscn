@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbui1wdbwnbpo"]
+
+[ext_resource type="Texture2D" uid="uid://bckxprfhv0crk" path="res://enemies/boss/assets/spamton NEO/PC _ Computer - Deltarune - Enemies & Bosses - Spamton NEO (1) (1).png" id="1_2ihdu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbfrb"]
+atlas = ExtResource("1_2ihdu")
+region = Rect2(560, 20, 27, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bs11u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbfrb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bs11u"]
+radius = 21.0
+height = 132.0
+
+[sub_resource type="Animation" id="Animation_mbfrb"]
+resource_name = "test swing"
+
+[sub_resource type="Animation" id="Animation_bs11u"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cdvrm"]
+_data = {
+&"RESET": SubResource("Animation_bs11u"),
+&"test swing": SubResource("Animation_mbfrb")
+}
+
+[node name="spamtonNEO_boss_asset" type="Node2D"]
+
+[node name="body" type="Node" parent="."]
+
+[node name="main" type="Area2D" parent="body"]
+
+[node name="body" type="AnimatedSprite2D" parent="body/main"]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_bs11u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body/main"]
+shape = SubResource("CapsuleShape2D_bs11u")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cdvrm")
+}
+autoplay = "test swing"

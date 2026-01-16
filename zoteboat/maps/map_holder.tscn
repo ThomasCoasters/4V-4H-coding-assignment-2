@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://rvhtgi81sikt" path="res://assets/player/player.tscn" id="1_3hwdp"]
 [ext_resource type="Script" uid="uid://d4jiec105wvyu" path="res://maps/MapHolder.gd" id="1_3ofuw"]
-[ext_resource type="PackedScene" uid="uid://dcc5x1snxgepn" path="res://maps/rooms/test.tscn" id="2_3ofuw"]
+[ext_resource type="PackedScene" uid="uid://dcc5x1snxgepn" path="res://maps/examples/room transition/main.tscn" id="2_3ofuw"]
 
 [node name="MapHolder" type="Node" node_paths=PackedStringArray("map", "player", "gui")]
 script = ExtResource("1_3ofuw")

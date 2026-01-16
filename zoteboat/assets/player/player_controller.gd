@@ -10,12 +10,13 @@ var gravity_multiplier := 0.0
 
 var is_jumping = false
 var jump_timer := Timer.new()
-const MAX_JUMP_TIME : float = 0.5
-const JUMPING_SPEED : int = -550
+const MAX_JUMP_TIME : float = 0.3
+const JUMPING_SPEED : int = -750
 @export var max_jumps_amount : int = 1
 var jumps_amount : int = max_jumps_amount
+var jump_max_held: bool = false
 
-@export var max_fall_speed : int = 1200
+var max_fall_speed : int = 1200
 var normal_max_fall_speed: int = max_fall_speed
 
 var direction := Vector2(0,0)
@@ -32,8 +33,8 @@ var attack_cooldown : float = 0.41
 const ATTACK_LINGER : float = 0.15
 
 const NORMAL_ATTACK = preload("res://assets/player/attacks/normal attack.tscn")
-const UP_ATTACK = preload("res://assets/player/attacks/up attack.tscn")
-const DOWN_ATTACK = preload("res://assets/player/attacks/pogo.tscn")
+const UP_ATTACK = preload("res://assets/player/attacks/up_attack/up attack.tscn")
+const DOWN_ATTACK = preload("res://assets/player/attacks/pogo/pogo.tscn")
 
 var can_attack : bool = true
 var can_move : bool = true
@@ -44,39 +45,47 @@ const HARDFALL_STUN_TIME : float = 0.6
 @export var can_walljump : bool = false
 var forced_move : Vector2
 
-@export var attack_damage : int = 5
+var attack_damage : int = 5
 
-@export var max_health : int = 5: set = _on_max_health_set
+var max_health : int = 5: set = _on_max_health_set
 var health : int: set = _on_health_set
 signal player_health_changed(health: int)
 signal player_max_health_changed()
 
-@export var i_frames_hit_time: float = 1.2
-@export var hitstun_time: float = 0.05
+var i_frames_hit_time: float = 1.2
+var hitstun_time: float = 0.25
+var hitstop_time: float = 0.075
 
-const GET_HIT_KNOCKBACK_FORCE = 300
-const GET_HIT_KNOCKBACK_TIME = 0.1
+const GET_HIT_KNOCKBACK_FORCE = 450
+const GET_HIT_KNOCKBACK_TIME = 0.15
 
 const ATTACK_KNOCKBACK_FORCE = 300
 const ATTACK_KNOCKBACK_TIME = 0.05
 
 
-@export var mana_per_attack: int = 11
-@export var max_mana : int = 99: set = _on_max_mana_set
+var mana_per_attack: int = 11
+var max_mana : int = 99: set = _on_max_mana_set
 var mana : int: set = _on_mana_set
 signal player_mana_changed(mana: int)
 signal player_max_mana_changed()
 
-@export var mana_to_heal : int = 33
-@export var heal_time : float = 1.2
+var mana_to_heal : int = 33
+var heal_time : float = 1.2
 
 var heal_time_expired: float = 0
 
 var mana_float = float(mana)
 
-@export var heal_health: int = 1
+var heal_health: int = 1
 
 var healing_max_fall_speed_multiplier: int = 6
+
+var dash_force:int = 1000
+var dash_time:float = 0.3
+
+
+@onready var state_chart: StateChart = $StateChart
+@onready var moving: AtomicState = $StateChart/ParallelState/moving/Moving
 #endregion
 
 func _ready() -> void:
@@ -117,6 +126,8 @@ func _physics_process(_delta: float) -> void:
 	
 	for body in $Area2D.get_overlapping_bodies():
 		_on_player_entered(body)
+	for area in $Area2D.get_overlapping_areas():
+		_on_player_entered(area)
 
 
 func _process(_delta: float) -> void:
@@ -125,44 +136,49 @@ func _process(_delta: float) -> void:
 		#region inputs
 	
 	if Input.is_action_just_pressed("jump"):
-		$StateChart.set_expression_property("jumps_amount", jumps_amount)
-		$StateChart.send_event("jump_clicked")
+		state_chart.set_expression_property("jumps_amount", jumps_amount)
+		state_chart.send_event("jump_clicked")
 	
 	if Input.is_action_just_released("jump"):
-		$StateChart.send_event("jump_released")
+		state_chart.send_event("jump_released")
 	
 	if Input.is_action_just_pressed("left") || Input.is_action_just_pressed("right"):
-		$StateChart.send_event("moving_clicked")
+		state_chart.send_event("moving_clicked")
 	
 	if !Input.is_action_pressed("left") && !Input.is_action_pressed("right"):
-		$StateChart.send_event("moving_released")
+		state_chart.send_event("moving_released")
 	
 	if Input.is_action_just_pressed("attack") && can_attack:
-		$StateChart.send_event("attack_start")
+		state_chart.send_event("attack_start")
 	
 	
-	if Input.is_action_just_pressed("specials") && can_move:
+	if Input.is_action_just_pressed("heal") && can_move:
 		if $StateChart/ParallelState/attacking/Idle.active && mana >= mana_to_heal:
-			$StateChart.send_event("heal_start")
+			state_chart.send_event("heal_start")
 	
-	if Input.is_action_just_released("specials"):
-		$StateChart.send_event("heal_cancel")
+	if Input.is_action_just_released("heal") && heal_time_expired <= heal_time - 0.2:
+		state_chart.send_event("heal_cancel")
+	
+	if Input.is_action_just_pressed("dash") && can_move:
+		state_chart.send_event("dash_start")
 	#endregion
 		#region checks
 	
 	if is_on_floor():
-		$StateChart.send_event("on_ground")
+		state_chart.send_event("on_ground")
+		state_chart.send_event("dash_rechagering")
 	if is_on_ceiling():
-		$StateChart.send_event("jump_released")
+		state_chart.send_event("jump_released")
 	
 	if is_on_wall_only() && velocity.y >0 && can_walljump:
-		$StateChart.send_event("on_wall")
+		state_chart.send_event("on_wall")
+		state_chart.send_event("dash_recharged")
 	
 	if !is_jumping && !is_on_floor():
-		$StateChart.send_event("fell_of_platform")
+		state_chart.send_event("fell_of_platform")
 	
 	if !is_on_wall() || (is_on_wall() && !test_move(transform, direction)):
-		$StateChart.send_event("fell_of_wall")
+		state_chart.send_event("fell_of_wall")
 	
 	#endregion
 	#endregion
@@ -177,15 +193,18 @@ func _process(_delta: float) -> void:
 	if !can_move:
 		return
 	
-	if Input.is_action_pressed("left"):
-		direction.x -= 1
-	if Input.is_action_pressed("right"):
-		direction.x += 1
+	direction = Vector2(
+		Input.get_action_strength("right") - Input.get_action_strength("left"),
+		Input.get_action_strength("up") - Input.get_action_strength("down")
+	).limit_length(1.0)
 	
-	if Input.is_action_pressed("down"):
-		direction.y -= 1
-	if Input.is_action_pressed("up"):
-		direction.y += 1
+	if Input.get_action_strength("left") >= 0.5 || Input.get_action_strength("right") >= 0.5:
+		direction.x = sign(direction.x)
+	
+	if Input.get_action_strength("up") >= 0.2 || Input.get_action_strength("down") >= 0.2:
+		direction.y = sign(direction.y)
+	else:
+		direction.y = 0
 	
 	if direction.x != 0:
 		last_direction.x = direction.x
@@ -197,7 +216,8 @@ func _process(_delta: float) -> void:
 
 #region jumping/falling/on_ground
 func _on_jump_timer_timeout() -> void:
-	$StateChart.send_event("jump_released")
+	jump_max_held = true
+	state_chart.send_event("jump_released")
 
 
 func _on_jump_state_entered() -> void:
@@ -209,7 +229,9 @@ func _on_jump_state_entered() -> void:
 	
 	jump_timer.start()
 	
-	gravity_multiplier = 0.5
+	gravity_multiplier = 1
+	
+	jump_max_held = false
 	
 	#current_camera_type = "locked"
 
@@ -219,13 +241,12 @@ func _on_falling_state_entered() -> void:
 	
 	jump_timer.stop()
 	
+	if is_jumping && !jump_max_held:
+		velocity.y /= 2
+	
 	is_jumping = false
 	
 	gravity_multiplier = 3
-	
-	if !is_jumping:
-		return
-	velocity.y = 0
 
 
 func _on_on_ground_state_entered() -> void:
@@ -238,6 +259,7 @@ func _on_landed(speed):
 	if $StateChart/ParallelState/Jumping/hardfall.active && speed >= max_fall_speed:
 		can_move = false
 		
+		vibrate_controller(HARDFALL_STUN_TIME, "hard")
 		await get_tree().create_timer(HARDFALL_STUN_TIME).timeout
 		
 		can_move = true
@@ -252,12 +274,16 @@ func _on_wall_slide_state_entered() -> void:
 	max_fall_speed /= 5
 
 func _on_wall_slide_state_exited() -> void:
+	var dir = sign(last_direction.x)
+	
 	max_fall_speed *= 5
 	
-	position.x -= last_direction.x
+	position.x -= dir
 
 func _on_to_jumping_form_wall_taken() -> void:
-	forced_move.x = -last_direction.x * 500
+	var dir = sign(last_direction.x)
+	
+	forced_move.x = -dir * 500
 	
 	can_walk = false
 	
@@ -276,37 +302,43 @@ func camera_movement():
 		Camera.set_as_top_level(true)
 		Camera.position = forced_position
 		return
-		
+	
+	var dir = sign(last_direction)
+	
 	Camera.set_as_top_level(false)
 	
 	camera_movement_y()
 	
-	if Camera.position.x == last_direction.x*LOOKAHEAD:
+	if Camera.position.x == dir.x*LOOKAHEAD:
 		return
 	
 	
 	await get_tree().create_timer(LOOKAHEAD_COOLDOWN).timeout
 	
-	Camera.position.x = last_direction.x*LOOKAHEAD
+	Camera.position.x = dir.x*LOOKAHEAD
 
 
 func camera_movement_y():
-	if !is_on_floor():
+	if !is_on_floor() || $StateChart/ParallelState/moving/Moving.active:
 		Camera.position.y = 0
 		Camera.drag_top_margin = 0.25
 		return
+	
+	var dir = sign(direction)
+	
 	Camera.drag_top_margin = 0
 	
-	if Camera.position.y == direction.y*LOOKAHEAD*2:
+	if Camera.position.y == dir.y*LOOKAHEAD*2:
 		Camera.position.y = 0
 		return
 	
 	await get_tree().create_timer(LOOKAHEAD_COOLDOWN).timeout
 	
-	if direction.y == 1:
-		Camera.position.y = -direction.y*LOOKAHEAD*2
+	
+	if dir.y == 1:
+		Camera.position.y = -dir.y*LOOKAHEAD*2
 	else: 
-		Camera.position.y = -direction.y*LOOKAHEAD*5
+		Camera.position.y = -dir.y*LOOKAHEAD*5
 #endregion
 
 
@@ -314,19 +346,19 @@ func camera_movement_y():
 #region attacking
 func _on_attacking_state_entered() -> void:
 	if !can_move:
-		$StateChart.send_event("attack_stop")
+		state_chart.send_event("attack_stop")
 		return
-	
-	if direction.y == 1:
+	var dir = sign(direction)
+	if dir.y == 1:
 		start_UP_ATTACK()
-	elif direction.y == -1 && !is_on_floor() && !$StateChart/ParallelState/Jumping/wall_slide.active:
+	elif dir.y == -1 && !is_on_floor() && !$StateChart/ParallelState/Jumping/wall_slide.active:
 		start_DOWN_ATTACK()
 	else:
 		start_NORMAL_ATTACK()
 	
 	await get_tree().create_timer(attack_cooldown).timeout
 	
-	$StateChart.send_event("attack_stop")
+	state_chart.send_event("attack_stop")
 
 func delete_attack() -> void:
 	for attack in get_tree().get_nodes_in_group("attacks"):
@@ -335,8 +367,10 @@ func delete_attack() -> void:
 
 func start_UP_ATTACK():
 	var attack = UP_ATTACK.instantiate()
+	var dir = sign(last_direction.x)
+	
 	attack.position.y = -50
-	attack.scale.x = last_direction.x
+	attack.scale.x = dir
 	
 	attack.add_to_group("attacks")
 	attack.body_entered.connect(_on_attack_entered)
@@ -349,8 +383,10 @@ func start_UP_ATTACK():
 	
 func start_DOWN_ATTACK():
 	var attack = DOWN_ATTACK.instantiate()
+	var dir = sign(last_direction.x)
+	
 	attack.position = position
-	attack.scale.x = last_direction.x
+	attack.scale.x = dir
 	attack.scale.y = -1
 	
 	attack.add_to_group("attacks")
@@ -366,12 +402,14 @@ func start_DOWN_ATTACK():
 
 func start_NORMAL_ATTACK():
 	var attack = NORMAL_ATTACK.instantiate()
+	var dir = sign(last_direction.x)
+	
 	if !$StateChart/ParallelState/Jumping/wall_slide.active:
-		attack.position.x = last_direction.x * 15
-		attack.scale.x = last_direction.x
+		attack.position.x = dir * 15
+		attack.scale.x = dir
 	else:
-		attack.position.x = -last_direction.x * 15
-		attack.scale.x = -last_direction.x
+		attack.position.x = -dir * 15
+		attack.scale.x = -dir
 	
 	attack.position.y = -10
 	
@@ -395,12 +433,14 @@ func _on_attack_entered(body: Node2D):
 	if !body.is_in_group("enemy") || body.is_in_group("invincible"):
 		return
 	
-	knockback(ATTACK_KNOCKBACK_FORCE, ATTACK_KNOCKBACK_TIME, body, false)
-	
+	body.i_frames(ATTACK_LINGER)
 	body.damage(attack_damage)
-	body.i_frames(attack_cooldown)
 	
 	add_mana(mana_per_attack)
+	
+	knockback(ATTACK_KNOCKBACK_FORCE, ATTACK_KNOCKBACK_TIME, body, false)
+	
+	hitstop_manager(hitstop_time, 3, "soft")
 
 #endregion
 
@@ -417,12 +457,17 @@ func _on_player_entered(body: Node2D):
 	if self.is_in_group("invincible"):
 		return
 	
-	if body.is_in_group("enemy"):
-		change_health(-body.stats.attack_damage)
+	if (body.is_in_group("enemy") || body.is_in_group("enemy_attack")):
+		if body is Attack:
+			change_health(-1)
+		else:
+			change_health(-body.stats.attack_damage)
 		
-		hitstop_manager(hitstun_time)
-		knockback(GET_HIT_KNOCKBACK_FORCE, GET_HIT_KNOCKBACK_TIME, body, true)
 		i_frames(i_frames_hit_time)
+		
+		knockback(GET_HIT_KNOCKBACK_FORCE, GET_HIT_KNOCKBACK_TIME, body, true)
+		
+		await hitstop_manager(hitstun_time, 1.3, "hard")
 
 func _on_health_set(new_health):
 	health = clamp(new_health, 0, max_health)
@@ -442,7 +487,7 @@ func _on_heal_start_state_physics_processing(delta: float) -> void:
 	heal_time_expired += delta
 	
 	if heal_time_expired >= heal_time-delta:
-		$StateChart.send_event("heal_finished")
+		state_chart.send_event("heal_finished")
 
 func _on_heal_start_state_entered() -> void:
 	$Sprite2D.set_modulate(Color8(0,255,0))
@@ -453,6 +498,9 @@ func _on_heal_start_state_entered() -> void:
 	
 	max_fall_speed /= healing_max_fall_speed_multiplier
 	velocity.y = 50
+	
+	
+	vibrate_controller(heal_time, "extremely soft")
 
 func _on_heal_finished_state_entered() -> void:
 	change_health(heal_health)
@@ -470,10 +518,38 @@ func _on_idle_state_entered() -> void:
 #endregion
 
 #region juice
-func hitstop_manager(time):
+func hitstop_manager(time, vibration_time_mult: float = 1.0, vibration_type: String = "off"):
 	Engine.time_scale = 0
+	
+	state_chart.send_event("jump_released")
+	
+	vibrate_controller(time*vibration_time_mult, vibration_type)
+	
 	await get_tree().create_timer(time, true, false, true).timeout
+	
 	Engine.time_scale = 1
+
+
+func vibrate_controller(time, vibration_type: String = "off"):
+	var soft_vibration_amount := 0.0
+	var hard_vibration_amount := 0.0
+	
+	match vibration_type:
+		"extremely soft":
+			soft_vibration_amount = 0.5
+		"soft":
+			soft_vibration_amount = 1.0
+		"medium":
+			soft_vibration_amount = 0.5
+			hard_vibration_amount = 0.5
+		"hard":
+			hard_vibration_amount = 1.0
+	
+	Input.start_joy_vibration(0, soft_vibration_amount, hard_vibration_amount, time)
+	
+	Camera.screen_shake((soft_vibration_amount*3)+(hard_vibration_amount*7), time)
+
+
 
 func knockback(force, time, body, knockback_up: bool = true):
 	can_move = false
@@ -491,7 +567,7 @@ func knockback(force, time, body, knockback_up: bool = true):
 		@warning_ignore("integer_division")
 		velocity.y = int(JUMPING_SPEED/2)
 	
-	$StateChart.send_event("heal_cancel")
+	state_chart.send_event("heal_cancel")
 	
 	await get_tree().create_timer(time).timeout
 	
@@ -508,7 +584,7 @@ func i_frames(time):
 	self.remove_from_group("invincible")
 
 
-func attack_speed_buff(mult: float = 2.5, time: float = 2.0):
+func attack_speed_buff(mult: float = 2.0, time: float = 0.6):
 	attack_cooldown = clamp(attack_cooldown/mult, ATTACK_LINGER, 999999)
 	
 	await get_tree().create_timer(time).timeout
@@ -532,4 +608,21 @@ func _on_max_mana_set(new_max_mana):
 	mana = max_health
 	
 	player_max_mana_changed.emit()
+#endregion
+
+#region dashing
+
+func _on_dashing_state_entered() -> void:
+	can_move = false
+	can_walk = false
+	
+	var dir = sign(last_direction.x)
+	forced_move.x = dir * dash_force
+	
+	await get_tree().create_timer(dash_time).timeout
+	
+	can_move = true
+	can_walk = true
+	
+	state_chart.send_event("dash_finished")
 #endregion

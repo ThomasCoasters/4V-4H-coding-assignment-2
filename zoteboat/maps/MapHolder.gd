@@ -10,6 +10,8 @@ var current_GUI
 var killed_enemies : Dictionary
 var respawnable_enemies : Dictionary
 
+var finished_arenas : Dictionary
+
 func _ready() -> void:
 	Global.map_holder = self
 	
@@ -59,21 +61,28 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	for child in new.get_children():
 		if child.is_in_group(new_location_group):
 			player.position = child.position
-			
-			await transition.on_transition_finished
-			
-			player.can_move = true
-			return
+			continue
+		
+		if child is NavigationAgent2D:
+			Global.navigation_agent_2d = child
 	
-	print_debug("no location to warp to " + str(new_location_group))
+	await transition.on_transition_finished
+	
+	player.can_move = true
+	player.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	player.Camera.set_process_mode(Node.PROCESS_MODE_INHERIT)
 
 
 func fading():
 	transition.transition()
 	player.can_move = false
+	player.set_process_mode(Node.PROCESS_MODE_DISABLED)
+	player.Camera.set_process_mode(Node.PROCESS_MODE_ALWAYS)
 
 func map_just_loaded():
 	Global.map.enemy_died.connect(_on_enemy_killed)
+	
+	Global.map.arena_won.connect(_on_arena_won)
 
 
 
@@ -90,3 +99,13 @@ func _on_enemy_killed(enemy: Node2D):
 		if enemy.stats.respawn_every_save:
 			respawnable_enemies[map_path].append(enemy_path)
 		killed_enemies[map_path].append(enemy_path)
+
+
+func _on_arena_won(arena):
+	var map_path = current_map.scene_file_path
+	var enemy_path = str(arena.get_path())
+	
+	if !finished_arenas.has(map_path):
+		finished_arenas[map_path] = []
+	
+	finished_arenas[map_path].append(enemy_path)

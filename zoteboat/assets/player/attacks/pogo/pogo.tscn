@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://bwhdj2e02bbk2"]
 
-[ext_resource type="Script" uid="uid://cxsj1kiv77b36" path="res://assets/player/attacks/pogo.gd" id="1_wfj3i"]
+[ext_resource type="Script" uid="uid://cmh1qf3ybvdta" path="res://assets/player/attacks/pogo/pogo.gd" id="1_ng05e"]
 [ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="2_ej178"]
 
 [node name="Pogo" type="Area2D"]
-collision_mask = 3
-script = ExtResource("1_wfj3i")
+collision_mask = 11
+script = ExtResource("1_ng05e")
 acceleration = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://hoyxcaqbicl3"]
+
+[ext_resource type="Texture2D" uid="uid://bqey7722p3rnc" path="res://assets/player/attacks/up_attack/sprite.png" id="2_co1se"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvlry"]
+atlas = ExtResource("2_co1se")
+region = Rect2(0, 0, 348, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1xd3"]
+atlas = ExtResource("2_co1se")
+region = Rect2(348, 0, 348, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3irfj"]
+atlas = ExtResource("2_co1se")
+region = Rect2(696, 0, 348, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6y6q"]
+atlas = ExtResource("2_co1se")
+region = Rect2(0, 208, 348, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3x8iv"]
+atlas = ExtResource("2_co1se")
+region = Rect2(348, 208, 348, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncxp7"]
+atlas = ExtResource("2_co1se")
+region = Rect2(696, 208, 348, 208)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_337pe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvlry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1xd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3irfj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6y6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3x8iv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncxp7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 40.0
+}]
+
+[node name="UpAttack" type="Area2D"]
+collision_mask = 11
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3.0553338e-13, -42.999996)
+rotation = 3.1415927
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_337pe")
+autoplay = "default"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.8035714, 1.0535454)
+polygon = PackedVector2Array(-58, -2, -70, -21, -70, -37, -54, -56, -27, -64, 25, -64, 51, -56, 70, -39, 70, -22, 53, -2)

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwuq11frhyumx"]
+
+[ext_resource type="PackedScene" uid="uid://bmeiv1c8q5tey" path="res://addons/dialogue/scenes/dialogue_manager.tscn" id="1_4tvia"]
+[ext_resource type="Script" uid="uid://d2eqhu8naa8vd" path="res://assets/dialogue/dialogue test.gd" id="1_tpx21"]
+[ext_resource type="PackedScene" uid="uid://dnrcj1mhyy4b3" path="res://addons/dialogue/scenes/dialogue.tscn" id="3_swb3r"]
+[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="3_yxptw"]
+
+[node name="DialougeMain" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_tpx21")
+
+[node name="dialogue_manager" parent="." instance=ExtResource("1_4tvia")]
+style = 1
+show_name = false
+show_avatar_ = false
+name_ = "cheese"
+avatar_ = ExtResource("3_yxptw")
+
+[node name="test" parent="dialogue_manager" instance=ExtResource("3_swb3r")]
+messages = ["1;Hello!;1", "1;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non aliquam mi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi sed erat eget risus varius pulvinar ut a purus. Quisque nec dolor eu est luctus elementum vitae at massa. Nulla blandit, nulla nec consectetur blandit, sapien odio molestie lacus, vel aliquam lectus lacus eget elit. Pellentesque tincidunt augue ac ante convallis fermentum. Donec lacinia ex sollicitudin imperdiet tincidunt.
+
+Aliquam luctus finibus sapien non scelerisque. Vivamus pretium vulputate nibh, in condimentum arcu interdum sit amet. Aliquam quis arcu pulvinar, pulvinar sapien at, suscipit ex. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque egestas, velit id efficitur viverra, augue libero facilisis lacus, id ultrices purus velit sed nulla. Vivamus posuere sem turpis. Maecenas vel quam metus.
+
+In rhoncus augue ex, nec tincidunt orci luctus sit amet. Donec laoreet, velit vel gravida molestie, augue ante venenatis justo, et venenatis augue nunc eget dolor. Nunc malesuada placerat tristique. Suspendisse sapien leo, sodales vel vestibulum scelerisque, accumsan at odio. Vivamus vel porttitor sem, non tempus purus. Ut mollis ipsum ac tempus lacinia. Vestibulum consectetur, erat id aliquet tristique, neque elit laoreet ante, eget eleifend risus turpis eget ipsum. Fusce congue, nisl vitae ullamcorper ullamcorper, ligula ante imperdiet elit, eget pulvinar nisl mauris ut leo. Duis maximus vel arcu ut molestie. Cras mi leo, ultrices venenatis odio sed, ullamcorper tristique lacus. Etiam eget nisl id velit accumsan posuere quis eu urna. Donec ut luctus ligula, quis sollicitudin enim. Sed ac nulla iaculis nisi lacinia faucibus.
+
+Morbi quis elit massa. Etiam in convallis sapien, semper pulvinar ligula. Aliquam finibus tortor id vulputate fermentum. Donec non odio massa. Aliquam ac dolor dolor. Aliquam metus nulla, placerat non nunc et, luctus posuere sapien. Vestibulum pretium, diam sed pretium commodo, magna turpis congue massa, et tempus enim purus quis lacus. Mauris malesuada ornare ultricies. Curabitur lacus metus, hendrerit commodo turpis aliquet, vulputate mattis dui. Pellentesque quis cursus felis. Phasellus vitae luctus sem. Pellentesque in vestibulum leo. Donec ultricies cursus urna et mollis.
+
+Nam malesuada ipsum ac varius malesuada. Nam porttitor lectus maximus risus malesuada, sit amet tempor elit finibus. Maecenas placerat blandit dui non egestas. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In dui leo, maximus at odio vel, consequat interdum purus. Mauris laoreet dignissim hendrerit. Aenean egestas porttitor tincidunt. Duis id velit lorem. Ut et aliquet ante. Integer tristique porttitor turpis. Morbi ac imperdiet tortor, ut laoreet nibh. Nulla tempor a lectus et eleifend. In sit amet cursus metus, et sagittis lectus. Pellentesque eros felis, posuere ut lacus a, elementum maximus velit. Cras ut quam erat..;10", "1;How are you?;2"]
