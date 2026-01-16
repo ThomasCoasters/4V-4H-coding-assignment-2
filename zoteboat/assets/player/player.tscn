@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://rvhtgi81sikt"]
+[gd_scene load_steps=31 format=3 uid="uid://rvhtgi81sikt"]
 
 [ext_resource type="Script" uid="uid://bilmy6u5xo8fm" path="res://assets/player/player_controller.gd" id="1_d2shb"]
 [ext_resource type="Texture2D" uid="uid://c36d2cgop0mkc" path="res://assets/player/pictures/Zote the Mighty - atlas0 #0330045.png" id="2_m2mll"]
@@ -54,6 +54,18 @@ region = Rect2(180, 356, 168, 168)
 [sub_resource type="AtlasTexture" id="AtlasTexture_i44by"]
 atlas = ExtResource("2_m2mll")
 region = Rect2(356, 356, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y54wj"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(884, 356, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvphe"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(708, 356, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1x7r"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(532, 356, 168, 168)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m2mll"]
 atlas = ExtResource("2_m2mll")
@@ -119,11 +131,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": null
+"texture": SubResource("AtlasTexture_y54wj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvphe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1x7r")
 }],
-"loop": true,
-"name": &"none",
-"speed": 5.0
+"loop": false,
+"name": &"hardfall_land",
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -159,8 +177,10 @@ can_walljump = true
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_d61i2")
-animation = &"stand_up"
+animation = &"hardfall_land"
 autoplay = "fall"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)

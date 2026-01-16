@@ -94,10 +94,10 @@ enum ANIM_PRIORITY {
 	IDLE,
 	TURN,
 	FALL,
-	STAND,
 	WALL,
 	JUMP,
 	ATTACK,
+	STAND,
 	DASH,
 	DEATH
 }
@@ -150,7 +150,7 @@ func _physics_process(_delta: float) -> void:
 	for area in $Area2D.get_overlapping_areas():
 		_on_player_entered(area)
 	
-	play_anim("none", ANIM_PRIORITY.IDLE)
+	#play_anim("none", ANIM_PRIORITY.IDLE)
 
 
 func _process(_delta: float) -> void:
@@ -280,11 +280,13 @@ func _on_on_ground_state_entered() -> void:
 
 func _on_landed(speed):
 	if $StateChart/ParallelState/Jumping/hardfall.active && speed >= max_fall_speed:
+		play_anim("hardfall_land", ANIM_PRIORITY.STAND)
 		can_move = false
 		
 		vibrate_controller(HARDFALL_STUN_TIME, "hard")
 		await get_tree().create_timer(HARDFALL_STUN_TIME).timeout
 		
+		play_anim("stand_up", ANIM_PRIORITY.STAND)
 		can_move = true
 	
 	else:
@@ -660,6 +662,8 @@ func _on_dashing_state_entered() -> void:
 	play_anim("dash_start", ANIM_PRIORITY.DASH)
 	
 	await get_tree().create_timer(dash_time).timeout
+	if is_on_floor():
+		play_anim("stand_up", ANIM_PRIORITY.STAND)
 	
 	can_move = true
 	can_walk = true
