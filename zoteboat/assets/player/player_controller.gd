@@ -31,6 +31,7 @@ const LOOKAHEAD_COOLDOWN : float = 0.1
 
 var attack_cooldown : float = 0.41
 const ATTACK_LINGER : float = 0.15
+const ATTACK_ANIM_LINGER: float = 0.35
 
 const NORMAL_ATTACK = preload("res://assets/player/attacks/normal attack.tscn")
 const UP_ATTACK = preload("res://assets/player/attacks/up_attack/up attack.tscn")
@@ -86,12 +87,29 @@ var dash_time:float = 0.3
 
 @onready var state_chart: StateChart = $StateChart
 @onready var moving: AtomicState = $StateChart/ParallelState/moving/Moving
+
+var current_anim: String
+
+enum ANIM_PRIORITY {
+	IDLE,
+	TURN,
+	FALL,
+	STAND,
+	WALL,
+	JUMP,
+	ATTACK,
+	DASH,
+	DEATH
+}
+
+var current_anim_priority: int = 0
 #endregion
 
 func _ready() -> void:
 	Global.player = self
 	setup.call_deferred()
 	
+	$Sprite2D.animation_finished.connect(_on_animation_finished)
 
 func setup():
 	#region timers setup
@@ -109,6 +127,9 @@ func _physics_process(_delta: float) -> void:
 	velocity.y += GRAVITY*gravity_multiplier
 	
 	velocity.y = clamp(velocity.y, JUMPING_SPEED, max_fall_speed)
+	
+	if $StateChart/ParallelState/Jumping/falling.active:
+		play_anim("fall", ANIM_PRIORITY.FALL)
 	#endregion
 	
 	#region moving
@@ -128,6 +149,8 @@ func _physics_process(_delta: float) -> void:
 		_on_player_entered(body)
 	for area in $Area2D.get_overlapping_areas():
 		_on_player_entered(area)
+	
+	play_anim("none", ANIM_PRIORITY.IDLE)
 
 
 func _process(_delta: float) -> void:
@@ -263,6 +286,9 @@ func _on_landed(speed):
 		await get_tree().create_timer(HARDFALL_STUN_TIME).timeout
 		
 		can_move = true
+	
+	else:
+		play_anim("stand_up", ANIM_PRIORITY.STAND)
 
 func _on_wall_slide_state_entered() -> void:
 	velocity.y = 0
@@ -349,6 +375,7 @@ func _on_attacking_state_entered() -> void:
 		state_chart.send_event("attack_stop")
 		return
 	var dir = sign(direction)
+	
 	if dir.y == 1:
 		start_UP_ATTACK()
 	elif dir.y == -1 && !is_on_floor() && !$StateChart/ParallelState/Jumping/wall_slide.active:
@@ -377,10 +404,16 @@ func start_UP_ATTACK():
 	
 	self.add_child(attack)
 	
+	play_anim("attack", ANIM_PRIORITY.ATTACK)
 	await get_tree().create_timer(ATTACK_LINGER).timeout
 	
 	delete_attack()
 	
+	await get_tree().create_timer(ATTACK_ANIM_LINGER).timeout
+	
+	stop_anim("attack")
+
+
 func start_DOWN_ATTACK():
 	var attack = DOWN_ATTACK.instantiate()
 	var dir = sign(last_direction.x)
@@ -417,10 +450,15 @@ func start_NORMAL_ATTACK():
 	attack.body_entered.connect(_on_attack_entered)
 	
 	self.add_child(attack)
+	play_anim("attack", ANIM_PRIORITY.ATTACK)
 	
 	await get_tree().create_timer(ATTACK_LINGER).timeout
 	
 	delete_attack()
+	
+	await get_tree().create_timer(ATTACK_ANIM_LINGER).timeout
+	
+	stop_anim("attack")
 
 
 func _on_pogo_returned():
@@ -619,10 +657,37 @@ func _on_dashing_state_entered() -> void:
 	var dir = sign(last_direction.x)
 	forced_move.x = dir * dash_force
 	
+	play_anim("dash_start", ANIM_PRIORITY.DASH)
+	
 	await get_tree().create_timer(dash_time).timeout
 	
 	can_move = true
 	can_walk = true
 	
 	state_chart.send_event("dash_finished")
+#endregion
+
+
+#region animations
+
+func play_anim(anim_name: String = "idle", priority: int = 0):
+	if priority < current_anim_priority:
+		return
+	
+	current_anim_priority = priority
+	
+	
+	current_anim = anim_name
+	
+	$Sprite2D.play(anim_name)
+
+func stop_anim(wanted_anim: String):
+	if wanted_anim == "attack" && $StateChart/ParallelState/attacking/attacking.active:
+		return
+	
+	_on_animation_finished()
+
+
+func _on_animation_finished():
+	current_anim_priority = 0
 #endregion

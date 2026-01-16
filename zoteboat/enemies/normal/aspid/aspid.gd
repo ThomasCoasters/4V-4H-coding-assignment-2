@@ -228,7 +228,7 @@ func update_facing():
 	
 	var new_dir = sign(Global.player.global_position.x - global_position.x)
 	
-	# Player exactly on top → ignore
+	# Player exactly on top -> ignore
 	if new_dir == 0:
 		return
 	
