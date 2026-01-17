@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://rvhtgi81sikt"]
+[gd_scene load_steps=46 format=3 uid="uid://rvhtgi81sikt"]
 
 [ext_resource type="Script" uid="uid://bilmy6u5xo8fm" path="res://assets/player/player_controller.gd" id="1_d2shb"]
 [ext_resource type="Texture2D" uid="uid://c36d2cgop0mkc" path="res://assets/player/pictures/Zote the Mighty - atlas0 #0330045.png" id="2_m2mll"]
@@ -67,6 +67,58 @@ region = Rect2(708, 356, 168, 168)
 atlas = ExtResource("2_m2mll")
 region = Rect2(532, 356, 168, 168)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ea4fx"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(884, 4, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iol0l"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(708, 4, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tktwm"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(4, 532, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46pv7"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(1060, 4, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82wjp"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(356, 532, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1qdb"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(532, 532, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awgyn"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(708, 532, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bky8f"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(4, 532, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvut3"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(356, 532, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eedlp"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(532, 532, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khrko"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(708, 532, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evyxp"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(884, 532, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksgbb"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(1060, 532, 168, 168)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_m2mll"]
 atlas = ExtResource("2_m2mll")
 region = Rect2(708, 180, 168, 168)
@@ -78,6 +130,14 @@ region = Rect2(884, 180, 168, 168)
 [sub_resource type="AtlasTexture" id="AtlasTexture_yx3jh"]
 atlas = ExtResource("2_m2mll")
 region = Rect2(1060, 180, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vibpd"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(1236, 180, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhr4e"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(1412, 180, 168, 168)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d61i2"]
 animations = [{
@@ -96,7 +156,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
-"speed": 12.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -127,7 +187,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"fall",
-"speed": 16.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -141,7 +201,64 @@ animations = [{
 }],
 "loop": false,
 "name": &"hardfall_land",
-"speed": 9.0
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ea4fx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iol0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tktwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46pv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46pv7")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82wjp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1qdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awgyn")
+}],
+"loop": true,
+"name": &"roar_loop",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bky8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvut3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eedlp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khrko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evyxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksgbb")
+}],
+"loop": false,
+"name": &"roar_start",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -152,6 +269,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yx3jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vibpd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhr4e")
 }],
 "loop": false,
 "name": &"stand_up",
@@ -159,7 +282,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8u8lh"]
-size = Vector2(24, 80)
+size = Vector2(17, 59)
 
 [sub_resource type="Resource" id="Resource_bnygi"]
 script = ExtResource("8_8ca2v")
@@ -175,32 +298,29 @@ Camera = NodePath("Camera")
 can_walljump = true
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -24.999996)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_d61i2")
-animation = &"hardfall_land"
+animation = &"jump"
 autoplay = "fall"
-frame = 2
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
-scale = Vector2(0.9908129, 0.9952922)
+position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_8u8lh")
 debug_color = Color(1, 0.5411765, 0, 0.41960785)
 
 [node name="Area2D" type="Area2D" parent="." groups=["player"]]
-visible = false
 collision_layer = 3
 collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -6)
+position = Vector2(0, 5)
 scale = Vector2(0.9908129, 0.9952922)
 shape = SubResource("RectangleShape2D_8u8lh")
 debug_color = Color(0.8374295, 0.63514006, 0.3968584, 0.41960785)
 
 [node name="Camera" parent="." instance=ExtResource("3_hai6l")]
-visible = false
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("3_3x76d")
@@ -440,7 +560,6 @@ visible = false
 
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/jump" to="." method="_on_jump_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/falling" to="." method="_on_falling_state_entered"]
-[connection signal="taken" from="StateChart/ParallelState/Jumping/falling/to_on_ground" to="." method="_on_to_on_ground_taken"]
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/on_ground" to="." method="_on_on_ground_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/wall_slide" to="." method="_on_wall_slide_state_entered"]
 [connection signal="state_exited" from="StateChart/ParallelState/Jumping/wall_slide" to="." method="_on_wall_slide_state_exited"]

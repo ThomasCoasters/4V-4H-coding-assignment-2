@@ -31,9 +31,9 @@ const LOOKAHEAD_COOLDOWN : float = 0.1
 
 var attack_cooldown : float = 0.41
 const ATTACK_LINGER : float = 0.15
-const ATTACK_ANIM_LINGER: float = 0.35
+const ATTACK_ANIM_LINGER: float = 0.2
 
-const NORMAL_ATTACK = preload("res://assets/player/attacks/normal attack.tscn")
+const NORMAL_ATTACK = preload("res://assets/player/attacks/normal/normal attack.tscn")
 const UP_ATTACK = preload("res://assets/player/attacks/up_attack/up attack.tscn")
 const DOWN_ATTACK = preload("res://assets/player/attacks/pogo/pogo.tscn")
 
@@ -91,23 +91,31 @@ var dash_time:float = 0.3
 var current_anim: String
 
 enum ANIM_PRIORITY {
+	IDLE_START,
 	IDLE,
 	TURN,
 	FALL,
-	WALL,
 	JUMP,
 	ATTACK,
-	STAND,
+	WALL,
 	DASH,
+	STAND,
 	DEATH
 }
 
 var current_anim_priority: int = 0
+
+var roar_timer := Timer.new()
+const ROAR_START_TIMER: float = 1.0
+
+var collision_size
+
+var facing_dir: int = 1 # -1 = left           1 = right
 #endregion
 
 func _ready() -> void:
 	Global.player = self
-	setup.call_deferred()
+	setup()
 	
 	$Sprite2D.animation_finished.connect(_on_animation_finished)
 
@@ -117,8 +125,15 @@ func setup():
 	jump_timer.one_shot = true
 	jump_timer.timeout.connect(_on_jump_timer_timeout)
 	add_child(jump_timer)
+	
+	roar_timer.wait_time = ROAR_START_TIMER
+	roar_timer.one_shot = true
+	roar_timer.timeout.connect(_on_roar_timer_timeout)
+	add_child(roar_timer)
 	#endregion
 	health = max_health
+	
+	collision_size = $CollisionShape2D.shape.size
 
 func _physics_process(_delta: float) -> void:
 	#region jumping/falling
@@ -150,7 +165,15 @@ func _physics_process(_delta: float) -> void:
 	for area in $Area2D.get_overlapping_areas():
 		_on_player_entered(area)
 	
-	#play_anim("none", ANIM_PRIORITY.IDLE)
+	if velocity == Vector2.ZERO:
+		if roar_timer.is_stopped():
+			roar_timer.start()
+	else:
+		roar_timer.stop()
+	
+	
+	update_facing()
+	$Sprite2D.flip_h = facing_dir == -1
 
 
 func _process(_delta: float) -> void:
@@ -182,7 +205,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_released("heal") && heal_time_expired <= heal_time - 0.2:
 		state_chart.send_event("heal_cancel")
 	
-	if Input.is_action_just_pressed("dash") && can_move:
+	if Input.is_action_just_pressed("dash") && can_move && !is_on_wall_only():
 		state_chart.send_event("dash_start")
 	#endregion
 		#region checks
@@ -202,7 +225,6 @@ func _process(_delta: float) -> void:
 	
 	if !is_on_wall() || (is_on_wall() && !test_move(transform, direction)):
 		state_chart.send_event("fell_of_wall")
-	
 	#endregion
 	#endregion
 	
@@ -247,6 +269,8 @@ func _on_jump_state_entered() -> void:
 	if is_jumping || !can_move || (is_on_wall_only() && velocity.y < 0):
 		return
 	
+	play_anim("jump", 999)
+	
 	velocity.y = JUMPING_SPEED
 	is_jumping = true
 	
@@ -283,7 +307,7 @@ func _on_landed(speed):
 		play_anim("hardfall_land", ANIM_PRIORITY.STAND)
 		can_move = false
 		
-		vibrate_controller(HARDFALL_STUN_TIME, "hard")
+		vibrate(HARDFALL_STUN_TIME, "hard")
 		await get_tree().create_timer(HARDFALL_STUN_TIME).timeout
 		
 		play_anim("stand_up", ANIM_PRIORITY.STAND)
@@ -540,7 +564,7 @@ func _on_heal_start_state_entered() -> void:
 	velocity.y = 50
 	
 	
-	vibrate_controller(heal_time, "extremely soft")
+	vibrate(heal_time, "extremely soft")
 
 func _on_heal_finished_state_entered() -> void:
 	change_health(heal_health)
@@ -563,14 +587,14 @@ func hitstop_manager(time, vibration_time_mult: float = 1.0, vibration_type: Str
 	
 	state_chart.send_event("jump_released")
 	
-	vibrate_controller(time*vibration_time_mult, vibration_type)
+	vibrate(time*vibration_time_mult, vibration_type)
 	
 	await get_tree().create_timer(time, true, false, true).timeout
 	
 	Engine.time_scale = 1
 
 
-func vibrate_controller(time, vibration_type: String = "off"):
+func vibrate(time, vibration_type: String = "off"):
 	var soft_vibration_amount := 0.0
 	var hard_vibration_amount := 0.0
 	
@@ -588,6 +612,10 @@ func vibrate_controller(time, vibration_type: String = "off"):
 	Input.start_joy_vibration(0, soft_vibration_amount, hard_vibration_amount, time)
 	
 	Camera.screen_shake((soft_vibration_amount*3)+(hard_vibration_amount*7), time)
+
+func stop_vibrate():
+	Input.stop_joy_vibration(0)
+	Camera.stop_shake()
 
 
 
@@ -663,6 +691,7 @@ func _on_dashing_state_entered() -> void:
 	
 	await get_tree().create_timer(dash_time).timeout
 	if is_on_floor():
+		stop_anim("dash_start")
 		play_anim("stand_up", ANIM_PRIORITY.STAND)
 	
 	can_move = true
@@ -678,6 +707,29 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 	if priority < current_anim_priority:
 		return
 	
+	if current_anim == "roar_loop" || current_anim == "roar_start":
+		stop_vibrate()
+	
+	if anim_name == "roar_start" || anim_name == "roar_loop":
+		vibrate(999, "hard")
+	
+	if anim_name == "fall":
+		$CollisionShape2D.shape.size.y = 17
+		$Area2D/CollisionShape2D.shape.size.y = 17
+		
+		$CollisionShape2D.position.y = (collision_size.y-17)/2
+		$Area2D/CollisionShape2D.position.y = (collision_size.y-17)/2
+		
+		$Sprite2D.position.y = -10
+	else:
+		$CollisionShape2D.shape.size.y = collision_size.y
+		$Area2D/CollisionShape2D.shape.size.y = collision_size.y
+		
+		$CollisionShape2D.position.y = 4.5
+		$Area2D/CollisionShape2D.position.y = 4.5
+		
+		$Sprite2D.position.y = -25
+	
 	current_anim_priority = priority
 	
 	
@@ -685,13 +737,33 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 	
 	$Sprite2D.play(anim_name)
 
-func stop_anim(wanted_anim: String):
-	if wanted_anim == "attack" && $StateChart/ParallelState/attacking/attacking.active:
+func stop_anim(wanted_anim: String = "idle"):
+	if current_anim != wanted_anim:
 		return
-	
 	_on_animation_finished()
 
 
 func _on_animation_finished():
 	current_anim_priority = 0
+	
+	if current_anim == "roar_start":
+		play_anim("roar_loop", ANIM_PRIORITY.IDLE)
+	
+	if current_anim == "jump":
+		play_anim("fall", ANIM_PRIORITY.FALL)
+
+
+func _on_roar_timer_timeout():
+	play_anim("roar_start", ANIM_PRIORITY.IDLE_START)
+
+
+func update_facing():
+	var new_dir = sign(direction.x)
+	
+	if new_dir == 0:
+		return
+	
+	# Only react when direction changes
+	if new_dir != facing_dir:
+		facing_dir = new_dir
 #endregion

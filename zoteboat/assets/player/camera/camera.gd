@@ -51,3 +51,6 @@ func screen_shake(intensity: float, time: float):
 	shake_intensity = intensity
 	active_shake_time = time
 	shake_time = 0.0
+
+func stop_shake():
+	active_shake_time = -1

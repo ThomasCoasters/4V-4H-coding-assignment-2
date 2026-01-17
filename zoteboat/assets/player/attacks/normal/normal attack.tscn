@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5t45rn5r4jr4"]
+
+[ext_resource type="Texture2D" uid="uid://bqey7722p3rnc" path="res://assets/player/attacks/up_attack/sprite.png" id="1_exyso"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvlry"]
+atlas = ExtResource("1_exyso")
+region = Rect2(0, 0, 348, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1xd3"]
+atlas = ExtResource("1_exyso")
+region = Rect2(348, 0, 348, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3irfj"]
+atlas = ExtResource("1_exyso")
+region = Rect2(696, 0, 348, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6y6q"]
+atlas = ExtResource("1_exyso")
+region = Rect2(0, 208, 348, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3x8iv"]
+atlas = ExtResource("1_exyso")
+region = Rect2(348, 208, 348, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncxp7"]
+atlas = ExtResource("1_exyso")
+region = Rect2(696, 208, 348, 208)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cxpqi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvlry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1xd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3irfj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6y6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3x8iv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncxp7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 40.0
+}]
+
+[node name="NormalAttack" type="Area2D"]
+collision_mask = 11
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(1.364242e-12, 3.8146973e-06)
+scale = Vector2(1.1231447, 1.517742)
+polygon = PackedVector2Array(0.8903632, 21.116894, 6.4516115, 16.238806, 11.612901, -12.179104, 6.4516115, -25.711443, 46.451607, -25.711443, 68.387085, -14.885572, 80.132164, -2.1587298, 80.132164, 8.924901, 63.215374, 21.116894, 37.39501, 26.658709)
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(48.83358, -2.6286976)
+rotation = -1.5707964
+scale = Vector2(0.27777666, 0.47916904)
+sprite_frames = SubResource("SpriteFrames_cxpqi")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
