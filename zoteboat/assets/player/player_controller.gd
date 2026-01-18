@@ -93,13 +93,14 @@ var current_anim: String
 enum ANIM_PRIORITY {
 	IDLE_START,
 	IDLE,
-	TURN,
+	WALK,
 	FALL,
 	DASH,
 	STAND,
 	JUMP,
 	ATTACK,
 	WALL,
+	HEAL,
 	DEATH
 }
 
@@ -146,6 +147,9 @@ func _physics_process(_delta: float) -> void:
 	
 	if $StateChart/ParallelState/Jumping/falling.active:
 		play_anim("fall", ANIM_PRIORITY.FALL)
+	
+	if $StateChart/ParallelState/moving/Moving.active:
+		play_anim("walk", ANIM_PRIORITY.WALK)
 	#endregion
 	
 	#region moving
@@ -167,6 +171,8 @@ func _physics_process(_delta: float) -> void:
 		_on_player_entered(area)
 	
 	if velocity == Vector2.ZERO:
+		stop_anim("walk")
+		play_anim("he_just_standing_there__menacingly", ANIM_PRIORITY.IDLE_START)
 		if roar_timer.is_stopped():
 			roar_timer.start()
 	else:
@@ -314,7 +320,6 @@ func _on_landed(speed):
 		vibrate(HARDFALL_STUN_TIME, "hard")
 		await get_tree().create_timer(HARDFALL_STUN_TIME).timeout
 		
-		play_anim("stand_up", ANIM_PRIORITY.STAND)
 		can_move = true
 	
 	else:
@@ -563,6 +568,8 @@ func _on_heal_start_state_physics_processing(delta: float) -> void:
 func _on_heal_start_state_entered() -> void:
 	$Sprite2D.set_modulate(Color8(0,255,0))
 	
+	play_anim("roar_start", ANIM_PRIORITY.HEAL)
+	
 	heal_time_expired = 0
 	
 	can_move = false
@@ -583,7 +590,9 @@ func _on_idle_state_entered() -> void:
 	can_move = true
 	max_fall_speed = normal_max_fall_speed
 	
-	
+	stop_anim("roar_start")
+	stop_anim("roar_loop")
+	stop_vibrate()
 	
 	$Sprite2D.set_modulate(Color8(255,255,255))
 #endregion
@@ -714,13 +723,10 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 	if priority < current_anim_priority:
 		return
 	
+	var last_frame := 0
+	var last_frame_progress := 0.0
+	
 	#region anim specific
-	if current_anim == "roar_loop" || current_anim == "roar_start":
-		stop_vibrate()
-	
-	if anim_name == "roar_start" || anim_name == "roar_loop":
-		vibrate(999, "hard")
-	
 	if anim_name == "fall":
 		$CollisionShape2D.shape.size.y = 17
 		$Area2D/CollisionShape2D.shape.size.y = 17
@@ -741,9 +747,17 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 	if anim_name == "wall":
 		fliped_anim = true
 		$Sprite2D.position.x = -19 * sign(last_direction.x)
+	
+	elif anim_name == "attack":
+		fliped_anim = false
+		$Sprite2D.position.x = 20 * sign(last_direction.x)
 	else:
 		fliped_anim = false
 		$Sprite2D.position.x = 0
+	
+	if current_anim == "walk":
+		last_frame = $Sprite2D.frame
+		last_frame_progress = $Sprite2D.frame_progress
 	#endregion
 	
 	current_anim_priority = priority
@@ -752,6 +766,15 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 	current_anim = anim_name
 	
 	$Sprite2D.play(anim_name)
+	
+	
+	
+	if anim_name == "attack":
+		$Sprite2D.frame = min(
+			last_frame,
+			$Sprite2D.sprite_frames.get_frame_count("attack") - 1
+		)
+		$Sprite2D.frame_progress = last_frame_progress
 
 func stop_anim(wanted_anim: String = "idle"):
 	if current_anim != wanted_anim:
@@ -767,10 +790,13 @@ func _on_animation_finished():
 	current_anim_priority = 0
 	
 	if current_anim == "roar_start":
-		play_anim("roar_loop", ANIM_PRIORITY.IDLE)
+		play_anim("roar_loop", ANIM_PRIORITY.HEAL)
 	
 	if current_anim == "jump":
 		play_anim("fall", ANIM_PRIORITY.FALL)
+	
+	if current_anim == "hardfall_land":
+		play_anim("stand_up", ANIM_PRIORITY.FALL)
 	
 	if current_anim == "wall":
 		current_anim_priority = ANIM_PRIORITY.WALL

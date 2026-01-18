@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://rvhtgi81sikt"]
+[gd_scene load_steps=57 format=3 uid="uid://rvhtgi81sikt"]
 
 [ext_resource type="Script" uid="uid://bilmy6u5xo8fm" path="res://assets/player/player_controller.gd" id="1_d2shb"]
 [ext_resource type="Texture2D" uid="uid://c36d2cgop0mkc" path="res://assets/player/pictures/Zote the Mighty - atlas0 #0330045.png" id="2_m2mll"]
@@ -66,6 +66,10 @@ region = Rect2(708, 356, 168, 168)
 [sub_resource type="AtlasTexture" id="AtlasTexture_h1x7r"]
 atlas = ExtResource("2_m2mll")
 region = Rect2(532, 356, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhr4e"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(708, 4, 168, 168)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iblef"]
 atlas = ExtResource("2_m2mll")
@@ -147,9 +151,21 @@ region = Rect2(1060, 180, 168, 168)
 atlas = ExtResource("2_m2mll")
 region = Rect2(1236, 180, 168, 168)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xhr4e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_twg1a"]
 atlas = ExtResource("2_m2mll")
-region = Rect2(1412, 180, 168, 168)
+region = Rect2(1236, 4, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3cdd"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(1412, 4, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bisil"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(1588, 4, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akwsn"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(1764, 4, 168, 168)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0yxml"]
 atlas = ExtResource("2_m2mll")
@@ -230,6 +246,14 @@ animations = [{
 "loop": false,
 "name": &"hardfall_land",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhr4e")
+}],
+"loop": true,
+"name": &"he_just_standing_there__menacingly",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -317,12 +341,26 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vibpd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xhr4e")
 }],
 "loop": false,
 "name": &"stand_up",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twg1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3cdd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bisil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akwsn")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 10.0
 }, {
 "frames": [{
@@ -363,9 +401,8 @@ can_walljump = true
 position = Vector2(0, -25)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_d61i2")
-animation = &"idle"
+animation = &"he_just_standing_there__menacingly"
 autoplay = "fall"
-frame_progress = 0.42322934
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4.5)
