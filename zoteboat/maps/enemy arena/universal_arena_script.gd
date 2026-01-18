@@ -92,11 +92,15 @@ func spawn_wave():
 func spawn_enemy(enemy_scene: PackedScene, pos: Vector2) -> void:
 	var enemy := enemy_scene.instantiate()
 	
+	enemy.start_active = false
+	
 	get_tree().current_scene.call_deferred("add_child", enemy)
 	enemy.global_position = pos
 	
 	alive_enemies += 1
 	enemy.killed.connect(_on_enemy_killed)
+	
+	fade_in_enemy(enemy, 0.5)
 
 func _on_enemy_killed(enemy):
 	alive_enemies -= 1
@@ -105,4 +109,18 @@ func _on_enemy_killed(enemy):
 	if alive_enemies <= 0:
 		print("wave done")
 		spawn_wave()
+
+
+
+func fade_in_enemy(enemy: Node2D, duration: float) -> void:
+	var tween := get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(enemy, "modulate:a", 1.0, duration). from(0.0)
+	tween.parallel().tween_property(enemy, "scale", Vector2.ONE, duration).from(Vector2.ZERO)
+	tween.finished.connect(func():
+		if enemy.has_method("activate"):
+			enemy.activate()
+	)
 #endregion

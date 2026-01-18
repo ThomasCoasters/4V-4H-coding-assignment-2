@@ -112,7 +112,6 @@ const ROAR_START_TIMER: float = 1.0
 var collision_size
 
 var facing_dir: int = 1 # -1 = left           1 = right
-var fliped_anim: bool = false
 #endregion
 
 func _ready() -> void:
@@ -180,10 +179,8 @@ func _physics_process(_delta: float) -> void:
 	
 	
 	update_facing()
-	if fliped_anim:
-		$Sprite2D.flip_h = facing_dir == 1
-	else:
-		$Sprite2D.flip_h = facing_dir == -1
+	
+	$Sprite2D.flip_h = facing_dir == -1
 
 
 func _process(_delta: float) -> void:
@@ -506,7 +503,7 @@ func _on_pogo_returned():
 
 
 func _on_attack_entered(body: Node2D):
-	if !body.is_in_group("enemy") || body.is_in_group("invincible"):
+	if !body.is_in_group("enemy") || body.is_in_group("invincible") || body.is_in_group("deactive"):
 		return
 	
 	body.i_frames(ATTACK_LINGER)
@@ -530,7 +527,7 @@ func change_health(amount: int, type: String = "normal"):
 
 
 func _on_player_entered(body: Node2D):
-	if self.is_in_group("invincible"):
+	if self.is_in_group("invincible") || body.is_in_group("deactive"):
 		return
 	
 	if (body.is_in_group("enemy") || body.is_in_group("enemy_attack")):
@@ -700,12 +697,12 @@ func _on_dashing_state_entered() -> void:
 	can_move = false
 	can_walk = false
 	
-	var dir = sign(last_direction.x)
-	forced_move.x = dir * dash_force
+	forced_move.x = facing_dir * dash_force
 	
 	play_anim("dash_start", ANIM_PRIORITY.DASH)
 	
 	await get_tree().create_timer(dash_time).timeout
+	
 	if is_on_floor():
 		stop_anim("dash_start")
 		play_anim("stand_up", ANIM_PRIORITY.STAND)
@@ -745,14 +742,11 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 		$Sprite2D.position.y = -25
 	
 	if anim_name == "wall":
-		fliped_anim = true
 		$Sprite2D.position.x = -19 * sign(last_direction.x)
 	
 	elif anim_name == "attack":
-		fliped_anim = false
 		$Sprite2D.position.x = 20 * sign(last_direction.x)
 	else:
-		fliped_anim = false
 		$Sprite2D.position.x = 0
 	
 	if current_anim == "walk":
@@ -807,12 +801,11 @@ func _on_roar_timer_timeout():
 
 
 func update_facing():
-	var new_dir = sign(direction.x)
-	
-	if new_dir == 0:
+	if !can_move:
 		return
 	
-	# Only react when direction changes
-	if new_dir != facing_dir:
-		facing_dir = new_dir
+	if Input.is_action_pressed("left"):
+		facing_dir = -1
+	elif Input.is_action_pressed("right"):
+		facing_dir = 1
 #endregion

@@ -33,13 +33,37 @@ enum ANIM_PRIORITY {
 
 var current_anim_priority: int = 0
 
+@export var start_active := true
+
 func _ready() -> void:
+	if !start_active:
+		deactivate()
+	
+	
 	if stats != null:
 		stats = stats.duplicate(true)
 	
 	stats.health_depleted.connect(_on_health_depleted)
 	
 	$Sprite2D.animation_finished.connect(_on_animation_finished)
+
+
+
+func activate():
+	set_process(true)
+	set_physics_process(true)
+	
+	self.remove_from_group("deactive")
+
+func deactivate():
+	set_process(false)
+	set_physics_process(false)
+	
+	self.add_to_group("deactive")
+	
+	if nav_agent:
+		nav_agent.velocity = Vector2.ZERO
+		nav_agent.target_position = global_position
 #endregion
 
 #region pathfinding
@@ -167,6 +191,9 @@ func _on_move_towards_body_entered(body: Node2D) -> void:
 
 #region attacking
 func _on_attacking_state_physics_processing(_delta: float) -> void:
+	if !is_processing():
+		return
+	
 	if can_attack:
 		can_attack = false
 		play_anim("attack", ANIM_PRIORITY.ATTACK)

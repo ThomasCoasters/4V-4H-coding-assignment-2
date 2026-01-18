@@ -4,12 +4,31 @@ extends CharacterBody2D
 
 signal killed(node: Node2D)
 
+@export var start_active := true
+
 func _ready() -> void:
+	if !start_active:
+		deactivate()
+	
+	
 	if stats != null:
 		stats = stats.duplicate(true)
 	
 	#stats.health_changed.connect(_on_health_changed)
 	stats.health_depleted.connect(_on_health_depleted)
+
+func activate():
+	set_process(true)
+	set_physics_process(true)
+	
+	self.remove_from_group("deactive")
+
+func deactivate():
+	set_process(false)
+	set_physics_process(false)
+	
+	self.add_to_group("deactive")
+
 
 func damage(damage_value: int):
 	stats.health -= damage_value
