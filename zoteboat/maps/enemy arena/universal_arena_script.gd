@@ -7,10 +7,6 @@ var arena_finished: bool = false
 
 @export var camera_pos: Node2D
 
-const TEST_DUMMY = preload("res://enemies/examples/test_dummy/test_dummy.tscn")
-const DVD_ENEMY = preload("res://enemies/normal/dvd_logo/dvd_enemy.tscn")
-const ASPID_ENEMY = preload("uid://3dmnl1rv4c6f")
-
 var current_wave: int = 0
 
 var wave_to_node : Dictionary = {}
@@ -19,6 +15,19 @@ var wave_to_node : Dictionary = {}
 var player
 
 var alive_enemies := 0
+
+
+#region enemy scenes
+const TEST_DUMMY = preload("res://enemies/examples/test_dummy/test_dummy.tscn")
+const DVD_ENEMY = preload("res://enemies/normal/dvd_logo/dvd_enemy.tscn")
+const ASPID_ENEMY = preload("uid://3dmnl1rv4c6f")
+
+const ENEMY_SCENES := {
+	"dummy": TEST_DUMMY,
+	"dvd": DVD_ENEMY,
+	"aspid": ASPID_ENEMY,
+}
+#endregion
 
 
 signal arena_won(node: Node)
@@ -70,85 +79,29 @@ func spawn_wave():
 		finish_arena()
 		return
 	
-	var spawn_node: Node = wave_to_node[current_wave]
-	
-	for spawner in spawn_node.get_children():
-		if "dummy" in spawner.name:
-			spawn_dummy(spawner.global_position)
-		elif "dvd" in spawner.name:
-			spawn_dvd(spawner.global_position)
-		elif "aspid" in spawner.name:
-			spawn_aspid(spawner.global_position)
+	for spawner in wave_to_node[current_wave].get_children():
+		for key in ENEMY_SCENES:
+			if key in spawner.name:
+				spawn_enemy(ENEMY_SCENES[key], spawner.global_position)
 
 
 
 
 
 #region enemy spawning
-
-func spawn_dummy(pos: Vector2) -> void:
-	var dummy := TEST_DUMMY.instantiate()
+func spawn_enemy(enemy_scene: PackedScene, pos: Vector2) -> void:
+	var enemy := enemy_scene.instantiate()
 	
-	# Add to the same parent as the arena (or a dedicated enemy container)
-	get_tree().current_scene.call_deferred("add_child", dummy)
-	
-	dummy.global_position = pos
+	get_tree().current_scene.call_deferred("add_child", enemy)
+	enemy.global_position = pos
 	
 	alive_enemies += 1
-	
-	dummy.killed.connect(_on_dummy_killed)
+	enemy.killed.connect(_on_enemy_killed)
 
-
-func _on_dummy_killed(dummy):
+func _on_enemy_killed(enemy):
 	alive_enemies -= 1
-	dummy.call_deferred("queue_free")
-
-	if alive_enemies <= 0:
-		print("wave done")
-		spawn_wave()
-
-
-
-func spawn_dvd(pos: Vector2) -> void:
-	var dvd := DVD_ENEMY.instantiate()
+	enemy.call_deferred("queue_free")
 	
-	# Add to the same parent as the arena (or a dedicated enemy container)
-	get_tree().current_scene.call_deferred("add_child", dvd)
-	
-	dvd.global_position = pos
-	
-	alive_enemies += 1
-	
-	dvd.killed.connect(_on_dvd_killed)
-
-
-func _on_dvd_killed(dvd):
-	alive_enemies -= 1
-	dvd.call_deferred("queue_free")
-
-	if alive_enemies <= 0:
-		print("wave done")
-		spawn_wave()
-
-
-
-func spawn_aspid(pos: Vector2) -> void:
-	var aspid := ASPID_ENEMY.instantiate()
-	
-	# Add to the same parent as the arena (or a dedicated enemy container)
-	get_tree().current_scene.call_deferred("add_child", aspid)
-	
-	aspid.global_position = pos
-	
-	alive_enemies += 1
-	
-	aspid.killed.connect(_on_dvd_killed)
-
-
-func _on_aspid_killed(aspid):
-	alive_enemies -= 1
-	aspid.call_deferred("queue_free")
-
 	if alive_enemies <= 0:
 		print("wave done")
 		spawn_wave()

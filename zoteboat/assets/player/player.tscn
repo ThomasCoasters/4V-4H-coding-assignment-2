@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://rvhtgi81sikt"]
+[gd_scene load_steps=53 format=3 uid="uid://rvhtgi81sikt"]
 
 [ext_resource type="Script" uid="uid://bilmy6u5xo8fm" path="res://assets/player/player_controller.gd" id="1_d2shb"]
 [ext_resource type="Texture2D" uid="uid://c36d2cgop0mkc" path="res://assets/player/pictures/Zote the Mighty - atlas0 #0330045.png" id="2_m2mll"]
@@ -66,6 +66,18 @@ region = Rect2(708, 356, 168, 168)
 [sub_resource type="AtlasTexture" id="AtlasTexture_h1x7r"]
 atlas = ExtResource("2_m2mll")
 region = Rect2(532, 356, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iblef"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(708, 4, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyqrj"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(884, 4, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtr3g"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(4, 532, 168, 168)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ea4fx"]
 atlas = ExtResource("2_m2mll")
@@ -139,6 +151,22 @@ region = Rect2(1236, 180, 168, 168)
 atlas = ExtResource("2_m2mll")
 region = Rect2(1412, 180, 168, 168)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yxml"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(4, 708, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3iv7w"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(180, 708, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t54tc"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(356, 708, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8d5av"]
+atlas = ExtResource("2_m2mll")
+region = Rect2(532, 708, 168, 168)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_d61i2"]
 animations = [{
 "frames": [{
@@ -202,6 +230,23 @@ animations = [{
 "loop": false,
 "name": &"hardfall_land",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iblef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyqrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtr3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyqrj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -279,6 +324,23 @@ animations = [{
 "loop": false,
 "name": &"stand_up",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yxml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3iv7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t54tc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8d5av")
+}],
+"loop": true,
+"name": &"wall",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8u8lh"]
@@ -298,12 +360,12 @@ Camera = NodePath("Camera")
 can_walljump = true
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -24.999996)
+position = Vector2(0, -25)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_d61i2")
-animation = &"jump"
+animation = &"idle"
 autoplay = "fall"
-frame_progress = 1.0
+frame_progress = 0.42322934
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4.5)

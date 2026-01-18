@@ -95,11 +95,11 @@ enum ANIM_PRIORITY {
 	IDLE,
 	TURN,
 	FALL,
+	DASH,
+	STAND,
 	JUMP,
 	ATTACK,
 	WALL,
-	DASH,
-	STAND,
 	DEATH
 }
 
@@ -111,6 +111,7 @@ const ROAR_START_TIMER: float = 1.0
 var collision_size
 
 var facing_dir: int = 1 # -1 = left           1 = right
+var fliped_anim: bool = false
 #endregion
 
 func _ready() -> void:
@@ -173,7 +174,10 @@ func _physics_process(_delta: float) -> void:
 	
 	
 	update_facing()
-	$Sprite2D.flip_h = facing_dir == -1
+	if fliped_anim:
+		$Sprite2D.flip_h = facing_dir == 1
+	else:
+		$Sprite2D.flip_h = facing_dir == -1
 
 
 func _process(_delta: float) -> void:
@@ -269,7 +273,7 @@ func _on_jump_state_entered() -> void:
 	if is_jumping || !can_move || (is_on_wall_only() && velocity.y < 0):
 		return
 	
-	play_anim("jump", 999)
+	play_anim("jump", ANIM_PRIORITY.JUMP)
 	
 	velocity.y = JUMPING_SPEED
 	is_jumping = true
@@ -317,6 +321,8 @@ func _on_landed(speed):
 		play_anim("stand_up", ANIM_PRIORITY.STAND)
 
 func _on_wall_slide_state_entered() -> void:
+	play_anim("wall", ANIM_PRIORITY.WALL)
+	
 	velocity.y = 0
 	
 	gravity_multiplier = 0.1
@@ -326,6 +332,7 @@ func _on_wall_slide_state_entered() -> void:
 	max_fall_speed /= 5
 
 func _on_wall_slide_state_exited() -> void:
+	stop_anim("wall")
 	var dir = sign(last_direction.x)
 	
 	max_fall_speed *= 5
@@ -707,6 +714,7 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 	if priority < current_anim_priority:
 		return
 	
+	#region anim specific
 	if current_anim == "roar_loop" || current_anim == "roar_start":
 		stop_vibrate()
 	
@@ -730,6 +738,14 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 		
 		$Sprite2D.position.y = -25
 	
+	if anim_name == "wall":
+		fliped_anim = true
+		$Sprite2D.position.x = -19 * sign(last_direction.x)
+	else:
+		fliped_anim = false
+		$Sprite2D.position.x = 0
+	#endregion
+	
 	current_anim_priority = priority
 	
 	
@@ -740,6 +756,10 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 func stop_anim(wanted_anim: String = "idle"):
 	if current_anim != wanted_anim:
 		return
+	
+	if current_anim == "wall":
+		current_anim = "none"
+	
 	_on_animation_finished()
 
 
@@ -751,10 +771,13 @@ func _on_animation_finished():
 	
 	if current_anim == "jump":
 		play_anim("fall", ANIM_PRIORITY.FALL)
+	
+	if current_anim == "wall":
+		current_anim_priority = ANIM_PRIORITY.WALL
 
 
 func _on_roar_timer_timeout():
-	play_anim("roar_start", ANIM_PRIORITY.IDLE_START)
+	play_anim("idle", ANIM_PRIORITY.IDLE)
 
 
 func update_facing():
