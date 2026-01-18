@@ -655,7 +655,6 @@ event = &"dash_rechagering"
 delay_in_seconds = "0.2"
 
 [node name="UiHolder" parent="." instance=ExtResource("9_d2shb")]
-visible = false
 
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/jump" to="." method="_on_jump_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/falling" to="." method="_on_falling_state_entered"]

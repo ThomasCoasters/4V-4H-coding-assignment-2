@@ -38,6 +38,8 @@ var current_anim_priority: int = 0
 func _ready() -> void:
 	if !start_active:
 		deactivate()
+	else:
+		activate()
 	
 	
 	if stats != null:
