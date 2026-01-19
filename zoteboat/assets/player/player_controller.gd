@@ -582,6 +582,11 @@ func _on_heal_finished_state_entered() -> void:
 	$Sprite2D.set_modulate(Color8(255,255,255))
 	
 	attack_speed_buff()
+	
+	can_move = true
+	
+	if Input.is_action_pressed("heal") && $StateChart/ParallelState/attacking/Idle.active && mana >= mana_to_heal && can_move:
+		state_chart.send_event("heal_start")
 
 func _on_idle_state_entered() -> void:
 	can_move = true
