@@ -688,14 +688,14 @@ func attack_speed_buff(mult: float = 2.0, time: float = 0.6):
 	attack_cooldown *= mult
 
 
-func display_particle(pos: Vector2, particle_scene: PackedScene, oneshot: bool = false, max_amount: int = 1):
+func display_particle(pos: Vector2, particle_scene: PackedScene, max_amount: int = 1):
 	var particle = particle_scene.instantiate()
 	
 	get_tree().current_scene.call_deferred("add_child", particle)
 	
 	particle.global_position = pos
 	
-	if oneshot:
+	if particle.one_shot:
 		particle.emitting = true
 #endregion
 

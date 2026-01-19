@@ -71,16 +71,16 @@ func deactivate():
 #region pathfinding
 
 func _physics_process(_delta: float) -> void:
-	play_anim("idle", ANIM_PRIORITY.IDLE)
-	
-	update_facing()
-	$Sprite2D.flip_h = facing_dir == 1
-	
 	if is_nan(position.x) || is_nan(position.y):
 		push_error("Enemy position became NaN")
 		killed.emit(self)
 		return
 	
+	
+	play_anim("idle", ANIM_PRIORITY.IDLE)
+	
+	update_facing()
+	$Sprite2D.flip_h = facing_dir == 1
 	
 	var current_pos: Vector2 = self.global_transform.origin
 	var next_path_pos: Vector2 = nav_agent.get_next_path_position()
