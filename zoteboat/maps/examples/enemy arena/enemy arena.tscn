@@ -134,12 +134,53 @@ collision_layer = 0
 script = ExtResource("5_wxu3b")
 doors = NodePath("../doors")
 camera_pos = NodePath("../Camera pos")
-wave_holder = NodePath("../enemy spawns")
+wave_holder = NodePath("../wave holder")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area arena/area arena trigger"]
 position = Vector2(8, -265.5)
 shape = SubResource("RectangleShape2D_80f00")
 debug_color = Color(1, 0.5764706, 0, 0.41960785)
+
+[node name="Camera pos" type="Node2D" parent="area arena"]
+position = Vector2(254, -124)
+
+[node name="wave holder" type="Node2D" parent="area arena"]
+
+[node name="phase1" type="Node" parent="area arena/wave holder"]
+
+[node name="aspid" type="Node2D" parent="area arena/wave holder/phase1"]
+position = Vector2(428, -189)
+
+[node name="aspid2" type="Node2D" parent="area arena/wave holder/phase1"]
+position = Vector2(-93, -359)
+
+[node name="aspid3" type="Node2D" parent="area arena/wave holder/phase1"]
+position = Vector2(270, -382)
+
+[node name="aspid4" type="Node2D" parent="area arena/wave holder/phase1"]
+position = Vector2(527, -311)
+
+[node name="phase2" type="Node" parent="area arena/wave holder"]
+
+[node name="dvd1" type="Node2D" parent="area arena/wave holder/phase2"]
+position = Vector2(563, -185)
+
+[node name="dummy2" type="Node2D" parent="area arena/wave holder/phase2"]
+position = Vector2(-200, 0)
+
+[node name="phase3" type="Node" parent="area arena/wave holder"]
+
+[node name="dvd1" type="Node2D" parent="area arena/wave holder/phase3"]
+position = Vector2(563, -185)
+
+[node name="aspid" type="Node2D" parent="area arena/wave holder/phase3"]
+position = Vector2(-93, -359)
+
+[node name="dvd3" type="Node2D" parent="area arena/wave holder/phase3"]
+position = Vector2(375, -442)
+
+[node name="dvd4" type="Node2D" parent="area arena/wave holder/phase3"]
+position = Vector2(-118, -148)
 
 [node name="doors" type="TileMapLayer" parent="area arena"]
 position = Vector2(-3, -107)
@@ -147,46 +188,5 @@ scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAD1/wMAAAADAAcAAAD1/wIAAAADAAYAAAD1/wEAAAADAAYAAAD1/wAAAAADAAYAAAD1////AAADAAYAAAD1//7/AAADAAUAAAD0/wMAAAABAAcAAAD0/wIAAAABAAYAAAD0/wEAAAABAAYAAAD0/wAAAAABAAYAAAD0////AAABAAYAAAD0//7/AAABAAUAAAAbAAMAAAADAAcAAAAbAAIAAAADAAYAAAAbAAEAAAADAAYAAAAbAAAAAAADAAYAAAAbAP//AAADAAYAAAAbAP7/AAADAAYAAAAbAP3/AAADAAUAAAAaAAMAAAACAAcAAAAaAAIAAAACAAYAAAAaAAEAAAACAAYAAAAaAAAAAAACAAYAAAAaAP//AAACAAYAAAAaAP7/AAACAAYAAAAaAP3/AAACAAUAAAAZAAMAAAABAAcAAAAZAAIAAAABAAYAAAAZAAEAAAABAAYAAAAZAAAAAAABAAYAAAAZAP//AAABAAYAAAAZAP7/AAABAAYAAAAZAP3/AAABAAUAAAA=")
 enabled = false
 tile_set = SubResource("TileSet_7r8rt")
-
-[node name="Camera pos" type="Node2D" parent="area arena"]
-position = Vector2(254, -124)
-
-[node name="enemy spawns" type="Node" parent="area arena"]
-
-[node name="phase1" type="Node" parent="area arena/enemy spawns"]
-
-[node name="aspid" type="Node2D" parent="area arena/enemy spawns/phase1"]
-position = Vector2(428, -189)
-
-[node name="aspid2" type="Node2D" parent="area arena/enemy spawns/phase1"]
-position = Vector2(-93, -359)
-
-[node name="aspid3" type="Node2D" parent="area arena/enemy spawns/phase1"]
-position = Vector2(270, -382)
-
-[node name="aspid4" type="Node2D" parent="area arena/enemy spawns/phase1"]
-position = Vector2(527, -311)
-
-[node name="phase2" type="Node" parent="area arena/enemy spawns"]
-
-[node name="dvd1" type="Node2D" parent="area arena/enemy spawns/phase2"]
-position = Vector2(563, -185)
-
-[node name="dummy2" type="Node2D" parent="area arena/enemy spawns/phase2"]
-position = Vector2(-200, 0)
-
-[node name="phase3" type="Node" parent="area arena/enemy spawns"]
-
-[node name="dvd1" type="Node2D" parent="area arena/enemy spawns/phase3"]
-position = Vector2(563, -185)
-
-[node name="aspid" type="Node2D" parent="area arena/enemy spawns/phase3"]
-position = Vector2(-93, -359)
-
-[node name="dvd3" type="Node2D" parent="area arena/enemy spawns/phase3"]
-position = Vector2(375, -442)
-
-[node name="dvd4" type="Node2D" parent="area arena/enemy spawns/phase3"]
-position = Vector2(-118, -148)
 
 [connection signal="body_entered" from="area arena/area arena trigger" to="area arena/area arena trigger" method="_on_body_entered"]

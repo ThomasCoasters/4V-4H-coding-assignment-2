@@ -10,7 +10,7 @@ var arena_finished: bool = false
 var current_wave: int = 0
 
 var wave_to_node : Dictionary = {}
-@export var wave_holder : Node
+@export var wave_holder : Node2D
 
 var player
 
@@ -53,11 +53,12 @@ func _on_body_entered(body: Node2D) -> void:
 func start_arena():
 	arena_started = true
 	
-	doors.enabled = true
-	
 	player.forced_position = camera_pos.position
 	
 	player.current_camera_type = "locked"
+	
+	doors.enabled = true
+	
 	
 	spawn_wave()
 

@@ -523,7 +523,7 @@ func _on_attack_entered(body: Node2D):
 	
 	hitstop_manager(hitstop_time, 3, "soft")
 	
-	display_particle(body.global_position, HIT_EFFECT)
+	display_particle(HIT_EFFECT, body.global_position, Vector2(body.global_position - global_position).normalized())
 
 #endregion
 
@@ -595,7 +595,7 @@ func _on_heal_finished_state_entered() -> void:
 	
 	can_move = true
 	
-	if Input.is_action_pressed("heal") && $StateChart/ParallelState/attacking/Idle.active && mana >= mana_to_heal && can_move:
+	if Input.is_action_pressed("heal") && $StateChart/ParallelState/attacking/Idle.active && mana >= mana_to_heal && can_move && health != max_health:
 		state_chart.send_event("heal_start")
 
 func _on_idle_state_entered() -> void:
@@ -688,12 +688,13 @@ func attack_speed_buff(mult: float = 2.0, time: float = 0.6):
 	attack_cooldown *= mult
 
 
-func display_particle(pos: Vector2, particle_scene: PackedScene, max_amount: int = 1):
+func display_particle(particle_scene: PackedScene, pos: Vector2, dir: Vector2 = Vector2(0,0)):
 	var particle = particle_scene.instantiate()
 	
 	get_tree().current_scene.call_deferred("add_child", particle)
-	
 	particle.global_position = pos
+	
+	particle.rotation = dir.angle()
 	
 	if particle.one_shot:
 		particle.emitting = true
