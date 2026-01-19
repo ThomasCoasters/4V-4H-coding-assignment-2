@@ -112,6 +112,14 @@ const ROAR_START_TIMER: float = 1.0
 var collision_size
 
 var facing_dir: int = 1 # -1 = left           1 = right
+
+
+
+
+
+const HIT_EFFECT = preload("uid://ear4rb07owa4")
+
+var oneshot_loaded_particles := []
 #endregion
 
 func _ready() -> void:
@@ -514,6 +522,8 @@ func _on_attack_entered(body: Node2D):
 	knockback(ATTACK_KNOCKBACK_FORCE, ATTACK_KNOCKBACK_TIME, body, false)
 	
 	hitstop_manager(hitstop_time, 3, "soft")
+	
+	display_particle(body.global_position, HIT_EFFECT)
 
 #endregion
 
@@ -676,6 +686,17 @@ func attack_speed_buff(mult: float = 2.0, time: float = 0.6):
 	await get_tree().create_timer(time).timeout
 	
 	attack_cooldown *= mult
+
+
+func display_particle(pos: Vector2, particle_scene: PackedScene, oneshot: bool = false, max_amount: int = 1):
+	var particle = particle_scene.instantiate()
+	
+	get_tree().current_scene.call_deferred("add_child", particle)
+	
+	particle.global_position = pos
+	
+	if oneshot:
+		particle.emitting = true
 #endregion
 
 #region mana
