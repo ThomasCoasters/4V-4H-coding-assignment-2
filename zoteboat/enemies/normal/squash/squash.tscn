@@ -11,7 +11,6 @@
 [sub_resource type="Resource" id="Resource_7roff"]
 script = ExtResource("2_64wqx")
 max_health = 25
-attack_damage = 2
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqs84"]

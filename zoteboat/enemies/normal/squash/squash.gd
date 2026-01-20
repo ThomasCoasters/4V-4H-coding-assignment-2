@@ -98,6 +98,8 @@ func _on_attack_state_entered() -> void:
 func _physics_process(delta: float) -> void:
 	$body.flip_h = Global.player.global_position.x < global_position.x
 	
+	stats.attack_damage = 1
+	
 	#update_eyes()
 	
 	if player_in_attack_range:
@@ -145,6 +147,8 @@ func handle_attack_movement(delta: float) -> void:
 		
 		$body.scale.y = lerp($body.scale.y, 0.2, 0.1)
 		$body.position.y = lerp($body.position.y, 0.0, 0.1)
+		
+		stats.attack_damage = 2
 		
 		if is_on_floor():
 			$body.scale.y = lerp($body.scale.y, 0.35, 0.1)
