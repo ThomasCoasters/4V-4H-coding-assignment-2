@@ -55,22 +55,18 @@ func start_arena():
 	
 	player.forced_position = camera_pos.position
 	
-	player.current_camera_type = "locked"
-	
 	doors.enabled = true
 	
 	
 	spawn_wave()
 
 func finish_arena():
-	print("arena done")
 	arena_started = false
 	arena_finished = true
 	
 	doors.enabled = false
 	
 	player.current_camera_type = "free"
-	
 	
 	arena_won.emit(self.get_parent())
 
@@ -81,6 +77,10 @@ func spawn_wave():
 		return
 	
 	for spawner in wave_to_node[current_wave].get_children():
+		if "camera_mode" in spawner.name:
+			for mode in spawner.get_children():
+				player.current_camera_type = mode.name
+		
 		for key in ENEMY_SCENES:
 			if key in spawner.name:
 				spawn_enemy(ENEMY_SCENES[key], spawner.global_position)
@@ -108,7 +108,6 @@ func _on_enemy_killed(enemy):
 	enemy.call_deferred("queue_free")
 	
 	if alive_enemies <= 0:
-		print("wave done")
 		spawn_wave()
 
 
