@@ -19,9 +19,11 @@ var attack_direction: Vector2 = Vector2.ZERO
 @export var gravity: int = 1200
 @export var fall_speed: int = 4000
 
-@export var fall_mult: float = 1.5
+@export var fall_mult: float = 4
 
 var player_in_attack_range: bool = false
+
+@onready var eyes: AnimatedSprite2D = $eyes
 
 func _ready() -> void:
 	if !start_active:
@@ -86,18 +88,21 @@ func _on_attack_body_exited(body: Node2D) -> void:
 
 
 func _on_attack_state_entered() -> void:
-	jump_timer = max_jump_time
+	jump_timer = max_jump_time * randf_range(0.8, 1.2)
 	
 	# Direction toward player (horizontal only)
 	attack_direction = (Global.player.global_position - global_position).normalized()
 	attack_direction.y = 0
 	
-	# Initial jump impulse
-	velocity.y = jump_speed
-	velocity.x = attack_direction.x * move_speed
+	velocity.y = jump_speed * randf_range(0.8, 1.2)
 
 
 func _physics_process(delta: float) -> void:
+	$body.flip_h = Global.player.global_position.x < global_position.x
+	$angry.flip_h = Global.player.global_position.x < global_position.x
+	
+	update_eyes()
+	
 	if player_in_attack_range:
 		$StateChart.send_event("attack")
 	
@@ -110,14 +115,20 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+
 func handle_attack_movement(delta: float) -> void:
-	if jump_timer > 0 && !player_decector.is_colliding():
+	if jump_timer > 0:
 		velocity.y += gravity * delta
 		
-		if velocity.y > 0:
+		if velocity.y > 0 || player_decector.is_colliding():
 			velocity = Vector2.ZERO
 			
 			jump_timer -= delta
+			
+			
+		
+		else:
+			velocity.x = attack_direction.x * move_speed
 	else:
 		jump_timer = 0
 		
@@ -134,4 +145,22 @@ func handle_attack_movement(delta: float) -> void:
 func apply_gravity(delta: float) -> void:
 	if !is_on_floor():
 		velocity.y += gravity * delta
+#endregion
+
+
+
+#region eye tracking
+func update_eyes():
+	if Global.player == null:
+		return
+	
+	var to_player = (Global.player.global_position - global_position).normalized()
+	
+	var x_offset = lerp(-1.0, 3.0, to_player.x)
+	
+	# Vertical look
+	var y_offset = lerp(-15.0, -17.0, clamp(-to_player.y, 0.0, 1.0))
+	y_offset = lerp(y_offset, -13.0, clamp(to_player.y, 0.0, 1.0))
+	
+	eyes.position = eyes.position.lerp(Vector2(x_offset, y_offset), 0.15)
 #endregion

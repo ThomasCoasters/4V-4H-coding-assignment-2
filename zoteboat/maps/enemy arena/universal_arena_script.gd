@@ -21,11 +21,14 @@ var alive_enemies := 0
 const TEST_DUMMY = preload("res://enemies/examples/test_dummy/test_dummy.tscn")
 const DVD_ENEMY = preload("res://enemies/normal/dvd_logo/dvd_enemy.tscn")
 const ASPID_ENEMY = preload("uid://3dmnl1rv4c6f")
+const SQUASH_ENEMY = preload("uid://cd21npjsi1iei")
+
 
 const ENEMY_SCENES := {
 	"dummy": TEST_DUMMY,
 	"dvd": DVD_ENEMY,
 	"aspid": ASPID_ENEMY,
+	"squash": SQUASH_ENEMY,
 }
 #endregion
 

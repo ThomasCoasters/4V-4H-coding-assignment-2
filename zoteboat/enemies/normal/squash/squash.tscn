@@ -1,23 +1,64 @@
-[gd_scene load_steps=11 format=3 uid="uid://cd21npjsi1iei"]
+[gd_scene load_steps=15 format=3 uid="uid://cd21npjsi1iei"]
 
 [ext_resource type="Script" uid="uid://cwoyht270is50" path="res://enemies/normal/squash/squash.gd" id="1_m8w76"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_64wqx"]
-[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="3_63ibj"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="4_gqs84"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="5_jsk1k"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="6_f1j4s"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_dls5b"]
+[ext_resource type="Texture2D" uid="uid://l0q7mrco1nxx" path="res://enemies/normal/squash/squash sprite.png" id="7_gqs84"]
 
 [sub_resource type="Resource" id="Resource_7roff"]
 script = ExtResource("2_64wqx")
-max_health = 20
+max_health = 25
+attack_damage = 2
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqs84"]
-radius = 140.69826
+radius = 192.02344
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
-size = Vector2(62, 52.75)
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1j4s"]
+atlas = ExtResource("7_gqs84")
+region = Rect2(180, 4, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsk1k"]
+atlas = ExtResource("7_gqs84")
+region = Rect2(4, 4, 168, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqs84"]
+atlas = ExtResource("7_gqs84")
+region = Rect2(356, 4, 168, 168)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f1j4s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1j4s")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsk1k")
+}],
+"loop": true,
+"name": &"body",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqs84")
+}],
+"loop": true,
+"name": &"eyes",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jsk1k"]
+radius = 25.0
+height = 88.0
 
 [node name="squash" type="CharacterBody2D" node_paths=PackedStringArray("player_decector") groups=["enemy"]]
 collision_layer = 8
@@ -30,20 +71,12 @@ player_decector = NodePath("RayCast2D")
 target_position = Vector2(0, 562)
 
 [node name="attack" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
 shape = SubResource("CircleShape2D_gqs84")
 debug_color = Color(1, 0.46666667, 0.29411766, 0.41960785)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.60156256, 0.5)
-texture = ExtResource("3_63ibj")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3.625)
-shape = SubResource("RectangleShape2D_pst0k")
-debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
@@ -75,6 +108,36 @@ to = NodePath("../../idle")
 event = &"stop_attack"
 delay_in_seconds = "0.3"
 
+[node name="body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f1j4s")
+animation = &"body"
+
+[node name="eyes" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -16)
+sprite_frames = SubResource("SpriteFrames_f1j4s")
+animation = &"eyes"
+
+[node name="angry" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.3841858e-07, -21)
+rotation = -0.08552113
+sprite_frames = SubResource("SpriteFrames_f1j4s")
+animation = &"angry"
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_jsk1k")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_jsk1k")
+debug_color = Color(1, 0, 0, 0.41960785)
+
 [connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]
 [connection signal="body_exited" from="attack" to="." method="_on_attack_body_exited"]
+[connection signal="state_entered" from="StateChart/attacks/idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_entered" from="StateChart/attacks/attack" to="." method="_on_attack_state_entered"]
