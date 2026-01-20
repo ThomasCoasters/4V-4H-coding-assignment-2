@@ -120,6 +120,8 @@ var facing_dir: int = 1 # -1 = left           1 = right
 const HIT_EFFECT = preload("uid://ear4rb07owa4")
 
 var oneshot_loaded_particles := []
+
+signal jumping()
 #endregion
 
 func _ready() -> void:
@@ -286,6 +288,8 @@ func _on_jump_state_entered() -> void:
 	
 	play_anim("jump", ANIM_PRIORITY.JUMP)
 	
+	jumping.emit()
+	
 	velocity.y = JUMPING_SPEED
 	is_jumping = true
 	
@@ -367,7 +371,7 @@ func _on_to_jumping_form_wall_taken() -> void:
 
 #region camera
 func camera_movement():
-	if current_camera_type != "free":
+	if current_camera_type == "locked":
 		Camera.set_as_top_level(true)
 		Camera.position = forced_position
 		return
@@ -376,7 +380,14 @@ func camera_movement():
 	
 	Camera.set_as_top_level(false)
 	
-	camera_movement_y()
+	if current_camera_type == "lock_y":
+		Camera.global_position.y = forced_position.y
+	else:
+		camera_movement_y()
+	
+	if current_camera_type == "lock_x":
+		Camera.global_position.x = forced_position.x
+		return
 	
 	if Camera.position.x == dir.x*LOOKAHEAD:
 		return
