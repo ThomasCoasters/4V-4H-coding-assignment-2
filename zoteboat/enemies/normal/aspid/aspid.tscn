@@ -14,6 +14,12 @@ script = ExtResource("2_v8ve2")
 max_health = 15
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kmhe3"]
+radius = 320.00626
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v8ve2"]
+radius = 148.12157
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_kmhe3"]
 atlas = ExtResource("3_kmhe3")
 region = Rect2(4, 311, 152, 115)
@@ -225,12 +231,6 @@ size = Vector2(42, 38)
 [sub_resource type="CircleShape2D" id="CircleShape2D_sqio4"]
 radius = 560.0036
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kmhe3"]
-radius = 320.00626
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_v8ve2"]
-radius = 148.12157
-
 [node name="aspid" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent") groups=["enemy"]]
 collision_layer = 8
 collision_mask = 2
@@ -238,6 +238,19 @@ script = ExtResource("1_kmhe3")
 stats = SubResource("Resource_4f5pw")
 retreat_speed_mult = 1.5
 nav_agent = NodePath("NavigationAgent2D")
+
+[node name="attack_and_stop" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_and_stop"]
+shape = SubResource("CircleShape2D_kmhe3")
+
+[node name="retreat" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="retreat"]
+shape = SubResource("CircleShape2D_v8ve2")
+debug_color = Color(1, 0.6313726, 0.10980392, 0.41960785)
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
@@ -340,30 +353,17 @@ collision_layer = 0
 shape = SubResource("CircleShape2D_sqio4")
 debug_color = Color(1, 0.46666667, 0.29411766, 0.41960785)
 
-[node name="attack_and_stop" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_and_stop"]
-shape = SubResource("CircleShape2D_kmhe3")
-
-[node name="retreat" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="retreat"]
-shape = SubResource("CircleShape2D_v8ve2")
-debug_color = Color(1, 0.6313726, 0.10980392, 0.41960785)
-
 [node name="attack cooldown" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
 
+[connection signal="body_entered" from="attack_and_stop" to="." method="_on_attack_and_stop_body_entered"]
+[connection signal="body_exited" from="attack_and_stop" to="." method="_on_attack_and_stop_body_exited"]
+[connection signal="body_entered" from="retreat" to="." method="_on_retreat_body_entered"]
+[connection signal="body_exited" from="retreat" to="." method="_on_retreat_body_exited"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/attacking" to="." method="_on_attacking_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/attack/attacking" to="." method="_on_attacking_state_physics_processing"]
 [connection signal="body_entered" from="move_towards" to="." method="_on_move_towards_body_entered"]
 [connection signal="body_exited" from="move_towards" to="." method="_on_move_towards_body_exited"]
-[connection signal="body_entered" from="attack_and_stop" to="." method="_on_attack_and_stop_body_entered"]
-[connection signal="body_exited" from="attack_and_stop" to="." method="_on_attack_and_stop_body_exited"]
-[connection signal="body_entered" from="retreat" to="." method="_on_retreat_body_entered"]
-[connection signal="body_exited" from="retreat" to="." method="_on_retreat_body_exited"]
 [connection signal="timeout" from="attack cooldown" to="." method="_on_attack_cooldown_timeout"]
