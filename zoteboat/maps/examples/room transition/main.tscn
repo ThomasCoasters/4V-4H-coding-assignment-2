@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dcc5x1snxgepn"]
+[gd_scene load_steps=12 format=4 uid="uid://dcc5x1snxgepn"]
 
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_l627x"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="2_7pfcn"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d2a2qb1xnuxa4" path="res://enemies/examples/test_dummy/test_dummy.tscn" id="4_gyhbf"]
 [ext_resource type="PackedScene" uid="uid://3dmnl1rv4c6f" path="res://enemies/normal/aspid/aspid.tscn" id="6_7vhbi"]
 [ext_resource type="PackedScene" uid="uid://cd21npjsi1iei" path="res://enemies/normal/squash/squash.tscn" id="7_hya6h"]
+[ext_resource type="PackedScene" uid="uid://desufiot6ea2v" path="res://enemies/normal/peashooter/peashooter.tscn" id="8_n06jd"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="9_sx31g"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x21yj"]
@@ -138,3 +139,9 @@ tile_set = SubResource("TileSet_a186h")
 
 [node name="squash" parent="." instance=ExtResource("7_hya6h")]
 position = Vector2(206, -145)
+
+[node name="peashooter" parent="." instance=ExtResource("8_n06jd")]
+position = Vector2(-466, -385)
+
+[node name="peashooter2" parent="." instance=ExtResource("8_n06jd")]
+position = Vector2(-498, -701)
