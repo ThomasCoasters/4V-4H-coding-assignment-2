@@ -70,22 +70,25 @@ func _physics_process(delta: float) -> void:
 	
 	if $StateChart/attacks/idle.active:
 		$Sprite2D.play("idle")
+		$Sprite2D.scale = Vector2(0.1, 0.1)
 	
 
 
 
 
 func _on_attack_state_entered() -> void:
-	$Sprite2D.play("attack")
-	
-	await get_tree().create_timer(0.6).timeout
-	
-	
 	var count := 1
 	var angle_per_shot := deg_to_rad(20) # angle between each projectile
 	
 	var base_dir = (Global.player.global_position - global_position).normalized()
 	var base_angle = base_dir.angle()
+	
+	
+	$Sprite2D.play("attack")
+	$Sprite2D.scale = Vector2(0.0875, 0.0875)
+	
+	
+	await get_tree().create_timer(0.6).timeout
 	
 	for i in range(count):
 		var projectile = PEA_ATTACK.instantiate()
@@ -98,6 +101,10 @@ func _on_attack_state_entered() -> void:
 		var dir := Vector2.RIGHT.rotated(angle)
 		projectile.direction = dir
 		projectile.rotation = angle
-	
-	$StateChart.send_event("stop_attack")
+		
+		
 #endregion
+
+
+func _on_sprite_2d_animation_finished() -> void:
+	$StateChart.send_event("stop_attack")

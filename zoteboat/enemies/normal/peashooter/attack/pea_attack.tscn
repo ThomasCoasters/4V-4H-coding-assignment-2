@@ -18,7 +18,6 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_2sfa5")
 stats = SubResource("Resource_qmaa3")
-speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.5707964
@@ -28,3 +27,6 @@ texture = ExtResource("2_2ghq0")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_ko1wu")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-386, -430, 773, 895)
