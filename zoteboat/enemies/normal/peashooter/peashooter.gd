@@ -104,10 +104,10 @@ func _on_attack_state_entered() -> void:
 		var dir := Vector2.RIGHT.rotated(angle)
 		projectile.direction = dir
 		projectile.rotation = angle
-		
-		
 #endregion
 
 
 func _on_sprite_2d_animation_finished() -> void:
 	$StateChart.send_event("stop_attack")
+	$Sprite2D.play("idle")
+	$Sprite2D.scale = Vector2(0.1, 0.1)

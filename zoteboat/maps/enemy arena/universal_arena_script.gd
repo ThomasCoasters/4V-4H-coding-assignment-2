@@ -94,7 +94,7 @@ func spawn_wave():
 				if key == "peashooter":
 					if spawner.has_node("face_left"):
 						extra.face_left = true
-			
+				
 				spawn_enemy(
 					ENEMY_SCENES[key],
 					spawner.global_position,

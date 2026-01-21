@@ -916,7 +916,8 @@ script = ExtResource("7_ib4yx")
 script = ExtResource("8_6db3v")
 to = NodePath("../../idle")
 event = &"stop_attack"
-delay_in_seconds = "0.0
+delay_in_seconds = "1.0
+
 
 "
 

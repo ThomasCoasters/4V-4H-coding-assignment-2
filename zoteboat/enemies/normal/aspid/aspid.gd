@@ -15,6 +15,8 @@ signal killed(node: Node2D)
 @onready var state_chart: StateChart = $StateChart
 @onready var attack_cooldown: Timer = $"attack cooldown"
 
+@export var attack_count: int = 1
+
 var can_attack: bool = true
 
 var facing_dir: int = -1 # -1 = left           1 = right
@@ -206,7 +208,7 @@ func _on_attack_cooldown_timeout() -> void:
 
 
 func attack():
-	var count := 1
+	var count := attack_count
 	var angle_per_shot := deg_to_rad(20) # angle between each projectile
 	
 	var base_dir = (Global.player.global_position - global_position).normalized()
