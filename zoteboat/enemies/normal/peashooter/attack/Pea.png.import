@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbc4mafsprcol"
-path="res://.godot/imported/Transparent_squash-ezgif.com-gif-to-sprite-converter.png-dc999c7cef95b09e53b185075ac32da6.ctex"
+uid="uid://bhq2grwhowliw"
+path="res://.godot/imported/Pea.png-9294c011811ce42d28356ced60b6fe07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/normal/squash/Transparent_squash-ezgif.com-gif-to-sprite-converter.png"
-dest_files=["res://.godot/imported/Transparent_squash-ezgif.com-gif-to-sprite-converter.png-dc999c7cef95b09e53b185075ac32da6.ctex"]
+source_file="res://enemies/normal/peashooter/attack/Pea.png"
+dest_files=["res://.godot/imported/Pea.png-9294c011811ce42d28356ced60b6fe07.ctex"]
 
 [params]
 

@@ -1,17 +1,16 @@
 [gd_scene load_steps=6 format=3 uid="uid://qnsax8xwwgus"]
 
 [ext_resource type="Script" uid="uid://bnca07f4vhsxe" path="res://enemies/normal/peashooter/attack/pea_attack.gd" id="1_2sfa5"]
-[ext_resource type="Texture2D" uid="uid://bljsisjcbkwy1" path="res://assets/UI/HP/HP_FULL.png" id="2_2ghq0"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_ywpsu"]
+[ext_resource type="Texture2D" uid="uid://bhq2grwhowliw" path="res://enemies/normal/peashooter/attack/Pea.png" id="3_ywpsu"]
 
 [sub_resource type="Resource" id="Resource_qmaa3"]
 script = ExtResource("2_ywpsu")
 max_health = 999
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ko1wu"]
-radius = 8.0
-height = 24.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_qmaa3"]
+radius = 9.0
 
 [node name="peaAttack" type="Area2D" groups=["enemy_attack"]]
 collision_layer = 4
@@ -19,14 +18,13 @@ collision_mask = 2
 script = ExtResource("1_2sfa5")
 stats = SubResource("Resource_qmaa3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = -1.5707964
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_2ghq0")
-
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 rotation = -1.5707964
-shape = SubResource("CapsuleShape2D_ko1wu")
+shape = SubResource("CircleShape2D_qmaa3")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-386, -430, 773, 895)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_ywpsu")

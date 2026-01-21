@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c2ur5fk7pwnlj"]
 
 [ext_resource type="Script" uid="uid://dq07onjdmrkld" path="res://enemies/normal/aspid/attack/aspid_attack.gd" id="1_ko1wu"]
-[ext_resource type="Texture2D" uid="uid://bljsisjcbkwy1" path="res://assets/UI/HP/HP_FULL.png" id="1_m6dbg"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_xdbmq"]
+[ext_resource type="Texture2D" uid="uid://dccabs66fyf3l" path="res://enemies/normal/aspid/attack/aspid_asttack.png" id="3_xdbmq"]
 
 [sub_resource type="Resource" id="Resource_t38gb"]
 script = ExtResource("2_xdbmq")
@@ -20,11 +20,12 @@ script = ExtResource("1_ko1wu")
 stats = SubResource("Resource_t38gb")
 speed = 500.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = -1.5707964
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_m6dbg")
-
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_ko1wu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.8666667, 0.33333334, 0.105882354, 1)
+rotation = -1.5707964
+scale = Vector2(0.3, 0.45999956)
+texture = ExtResource("3_xdbmq")
