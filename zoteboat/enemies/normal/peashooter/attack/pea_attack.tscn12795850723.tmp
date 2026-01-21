@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://qnsax8xwwgus"]
+
+[ext_resource type="Script" uid="uid://bnca07f4vhsxe" path="res://enemies/normal/peashooter/attack/pea_attack.gd" id="1_2sfa5"]
+[ext_resource type="Texture2D" uid="uid://bljsisjcbkwy1" path="res://assets/UI/HP/HP_FULL.png" id="2_2ghq0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ko1wu"]
+radius = 8.0
+height = 24.0
+
+[node name="peaAttack" type="Area2D" groups=["enemy_attack"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_2sfa5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5707964
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_2ghq0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_ko1wu")

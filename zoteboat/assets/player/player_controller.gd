@@ -552,10 +552,7 @@ func _on_player_entered(body: Node2D):
 		return
 	
 	if (body.is_in_group("enemy") || body.is_in_group("enemy_attack")):
-		if body is Attack:
-			change_health(-1)
-		else:
-			change_health(-body.stats.attack_damage)
+		change_health(-body.stats.attack_damage)
 		
 		i_frames(i_frames_hit_time)
 		

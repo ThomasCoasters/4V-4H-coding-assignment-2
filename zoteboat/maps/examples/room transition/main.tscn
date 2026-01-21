@@ -142,6 +142,7 @@ position = Vector2(206, -145)
 
 [node name="peashooter" parent="." instance=ExtResource("8_n06jd")]
 position = Vector2(-466, -385)
+face_right = false
 
 [node name="peashooter2" parent="." instance=ExtResource("8_n06jd")]
 position = Vector2(-498, -701)

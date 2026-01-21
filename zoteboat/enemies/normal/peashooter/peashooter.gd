@@ -6,7 +6,14 @@ signal killed(node: Node2D)
 
 @export var start_active := true
 
+@export var face_right: bool = true 
+
+const PEA_ATTACK = preload("uid://qnsax8xwwgus")
+
 func _ready() -> void:
+	if !face_right:
+		scale.x = -1
+	
 	if !start_active:
 		deactivate()
 	
@@ -48,10 +55,39 @@ func _on_health_depleted():
 
 
 
+#region attack
+
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
 	if !is_on_floor():
 		velocity += get_gravity() * delta
 	
 	move_and_slide()
+	
+	if $RayCast2D.is_colliding():
+		$StateChart.send_event("attack")
+
+
+
+
+func _on_attack_state_entered() -> void:
+	var count := 3
+	var angle_per_shot := deg_to_rad(20) # angle between each projectile
+	
+	var base_dir = (Global.player.global_position - global_position).normalized()
+	var base_angle = base_dir.angle()
+	
+	for i in range(count):
+		var projectile = PEA_ATTACK.instantiate()
+		get_tree().current_scene.add_child(projectile)
+		projectile.global_position = global_position
+		
+		var offset_index := i - (count - 1) / 2.0
+		var angle = base_angle + offset_index * angle_per_shot
+		
+		var dir := Vector2.RIGHT.rotated(angle)
+		projectile.direction = dir
+		projectile.rotation = angle
+	
+	$StateChart.send_event("stop_attack")
+#endregion
