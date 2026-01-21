@@ -66,12 +66,22 @@ func _physics_process(delta: float) -> void:
 	
 	if $RayCast2D.is_colliding():
 		$StateChart.send_event("attack")
+	
+	
+	if $StateChart/attacks/idle.active:
+		$Sprite2D.play("idle")
+	
 
 
 
 
 func _on_attack_state_entered() -> void:
-	var count := 3
+	$Sprite2D.play("attack")
+	
+	await get_tree().create_timer(0.6).timeout
+	
+	
+	var count := 1
 	var angle_per_shot := deg_to_rad(20) # angle between each projectile
 	
 	var base_dir = (Global.player.global_position - global_position).normalized()

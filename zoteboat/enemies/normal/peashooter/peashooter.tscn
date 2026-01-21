@@ -916,7 +916,8 @@ script = ExtResource("7_ib4yx")
 script = ExtResource("8_6db3v")
 to = NodePath("../../idle")
 event = &"stop_attack"
-delay_in_seconds = "0.3"
+delay_in_seconds = "1.0
+"
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(13, -9)
