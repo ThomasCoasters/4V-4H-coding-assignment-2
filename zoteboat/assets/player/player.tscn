@@ -401,8 +401,9 @@ can_walljump = true
 position = Vector2(0, -25)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_d61i2")
-animation = &"wall"
+animation = &"idle"
 autoplay = "fall"
+frame_progress = 0.088772394
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4.5)

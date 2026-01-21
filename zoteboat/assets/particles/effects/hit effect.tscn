@@ -1,11 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ear4rb07owa4"]
+[gd_scene load_steps=5 format=3 uid="uid://ear4rb07owa4"]
 
-[ext_resource type="Texture2D" uid="uid://1wdgjn2qcw0l" path="res://assets/UI/mana/mana full.png" id="1_bqxlj"]
 [ext_resource type="Script" uid="uid://c61ii6efcvqml" path="res://assets/particles/code/one_shot_general.gd" id="2_ysd7i"]
 
 [sub_resource type="Gradient" id="Gradient_r66jn"]
-offsets = PackedFloat32Array(0, 0.41578948, 0.8842105)
-colors = PackedColorArray(0, 0, 0, 1, 0.14901961, 0.14901961, 0.14901961, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0.23278688, 0.9213115)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_h4atg"]
 gradient = SubResource("Gradient_r66jn")
@@ -26,20 +25,18 @@ linear_accel_max = -37.800003
 radial_accel_min = -100.0
 radial_accel_max = 99.99999
 damping_max = 100.00001
-scale_min = 0.01
-scale_max = 0.099999994
+scale_min = 5.0
+scale_max = 7.0
 scale_over_velocity_max = 1000.0
-color = Color(18.892157, 18.892157, 18.892157, 1)
 color_ramp = SubResource("GradientTexture1D_h4atg")
 collision_mode = 2
 
 [node name="HitEffect" type="GPUParticles2D"]
 emitting = false
 amount = 50
-texture = ExtResource("1_bqxlj")
 lifetime = 0.35000000000000003
 one_shot = true
-explosiveness = 1.0
+explosiveness = 0.8
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_kbpgp")
 script = ExtResource("2_ysd7i")

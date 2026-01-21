@@ -386,7 +386,7 @@ stats = SubResource("Resource_7roff")
 player_decector = NodePath("RayCast2D")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, 562)
+target_position = Vector2(0, 400)
 
 [node name="attack" type="Area2D" parent="."]
 visible = false

@@ -6,17 +6,16 @@ signal killed(node: Node2D)
 
 @export var start_active := true
 
-@export var face_right: bool = true 
+@export var face_left: bool = false 
 
 const PEA_ATTACK = preload("uid://qnsax8xwwgus")
 
 func _ready() -> void:
-	if !face_right:
-		scale.x = -1
-	
 	if !start_active:
 		deactivate()
 	
+	else:
+		activate()
 	
 	if stats != null:
 		stats = stats.duplicate(true)
@@ -29,6 +28,10 @@ func activate():
 	set_physics_process(true)
 	
 	self.remove_from_group("deactive")
+	
+	scale.x = abs(scale.x)
+	if face_left:
+		scale.x *= -1
 
 func deactivate():
 	set_process(false)
@@ -64,7 +67,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	if $RayCast2D.is_colliding():
+	if $RayCast2D.is_colliding() && $VisibleOnScreenNotifier2D.is_on_screen():
 		$StateChart.send_event("attack")
 	
 	

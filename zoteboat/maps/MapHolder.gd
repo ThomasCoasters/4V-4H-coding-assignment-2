@@ -48,15 +48,18 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 			current_map.visible = false
 		else:
 			map.remove_child(current_map)
-
+	
+	
 	if new_scene == "none":
 		return
-
+	
 	var new = load(new_scene).instantiate()
 	map.add_child(new)
 	current_map = new
 	
 	map_just_loaded()
+	
+	get_tree().call_group("projectiles", "queue_free")
 	
 	for child in new.get_children():
 		if child.is_in_group(new_location_group):
@@ -69,6 +72,7 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	await transition.on_transition_finished
 	
 	player.can_move = true
+	player.remove_from_group("invincible")
 	player.set_process_mode(Node.PROCESS_MODE_INHERIT)
 	player.Camera.set_process_mode(Node.PROCESS_MODE_INHERIT)
 
@@ -76,6 +80,7 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 func fading():
 	transition.transition()
 	player.can_move = false
+	player.add_to_group("invincible")
 	player.set_process_mode(Node.PROCESS_MODE_DISABLED)
 	player.Camera.set_process_mode(Node.PROCESS_MODE_ALWAYS)
 

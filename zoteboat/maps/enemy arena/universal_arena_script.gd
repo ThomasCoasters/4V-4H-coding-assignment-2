@@ -22,6 +22,7 @@ const TEST_DUMMY = preload("res://enemies/examples/test_dummy/test_dummy.tscn")
 const DVD_ENEMY = preload("res://enemies/normal/dvd_logo/dvd_enemy.tscn")
 const ASPID_ENEMY = preload("uid://3dmnl1rv4c6f")
 const SQUASH_ENEMY = preload("uid://cd21npjsi1iei")
+const PEASHOOTER_ENEMY = preload("uid://desufiot6ea2v")
 
 
 const ENEMY_SCENES := {
@@ -29,6 +30,7 @@ const ENEMY_SCENES := {
 	"dvd": DVD_ENEMY,
 	"aspid": ASPID_ENEMY,
 	"squash": SQUASH_ENEMY,
+	"peashooter": PEASHOOTER_ENEMY,
 }
 #endregion
 
@@ -86,18 +88,32 @@ func spawn_wave():
 		
 		for key in ENEMY_SCENES:
 			if key in spawner.name:
-				spawn_enemy(ENEMY_SCENES[key], spawner.global_position)
+				var extra := {}
+				
+				# Only peashooter cares about this
+				if key == "peashooter":
+					if spawner.has_node("face_left"):
+						extra.face_left = true
+			
+				spawn_enemy(
+					ENEMY_SCENES[key],
+					spawner.global_position,
+					extra
+				)
 
 
 
 
 
 #region enemy spawning
-func spawn_enemy(enemy_scene: PackedScene, pos: Vector2) -> void:
+func spawn_enemy(enemy_scene: PackedScene, pos: Vector2, extra := {}) -> void:
 	var enemy := enemy_scene.instantiate()
 	
-	enemy.start_active = false
+	for key in extra:
+		if key in enemy:
+			enemy.set(key, extra[key])
 	
+	enemy.start_active = false
 	get_tree().current_scene.call_deferred("add_child", enemy)
 	enemy.global_position = pos
 	

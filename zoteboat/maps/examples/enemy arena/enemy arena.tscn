@@ -157,6 +157,11 @@ position = Vector2(623, -61)
 [node name="squash2" type="Node2D" parent="area arena/wave holder/phase1"]
 position = Vector2(-183, -59)
 
+[node name="peashooter" type="Node2D" parent="area arena/wave holder/phase1"]
+position = Vector2(727, -59)
+
+[node name="face_left" type="Node2D" parent="area arena/wave holder/phase1/peashooter"]
+
 [node name="camera_mode" type="Node" parent="area arena/wave holder/phase1"]
 
 [node name="locked" type="Node2D" parent="area arena/wave holder/phase1/camera_mode"]

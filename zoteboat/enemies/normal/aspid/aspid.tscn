@@ -240,12 +240,14 @@ retreat_speed_mult = 1.5
 nav_agent = NodePath("NavigationAgent2D")
 
 [node name="attack_and_stop" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_and_stop"]
 shape = SubResource("CircleShape2D_kmhe3")
 
 [node name="retreat" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="retreat"]
@@ -347,6 +349,7 @@ event = &"move_toward"
 delay_in_seconds = "0.0"
 
 [node name="move_towards" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="move_towards"]

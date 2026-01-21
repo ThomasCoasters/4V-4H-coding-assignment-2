@@ -10,6 +10,8 @@ func _ready() -> void:
 	rotation = direction.angle()
 	body_entered.connect(_on_body_entered)
 	screen_notifier.screen_exited.connect(_on_screen_exited)
+	
+	add_to_group("projectiles")
 
 func _physics_process(delta: float) -> void:
 	global_position += direction * speed * delta
