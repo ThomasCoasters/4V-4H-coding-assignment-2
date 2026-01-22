@@ -7,12 +7,12 @@
 [ext_resource type="Script" uid="uid://dirquph6nfgas" path="res://maps/enemy arena/universal_arena_script.gd" id="5_wxu3b"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b85t1"]
-vertices = PackedVector2Array(943, -121, 1748.7578, -29, -869.3594, -29, 747, -121, 1702.5234, -893.3828, 943, -669, -862.3672, -969.5, -437, -669, -437, -121, -273, -121, -273, -505, 747, -505)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(2, 6, 7, 8), PackedInt32Array(9, 10, 11, 3), PackedInt32Array(9, 3, 2), PackedInt32Array(2, 8, 9)])
+vertices = PackedVector2Array(1748.7578, -29, -869.3594, -29, 79, -121, 427, -121, -117, -121, 1702.5234, -893.3828, 943, -121, 943, -669, -862.3672, -969.5, -437, -669, -437, -121, -273, -121, -273, -505, -117, -285, 747, -505, 79, -285, 427, -285, 747, -121, 591, -121, 591, -285)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1), PackedInt32Array(5, 0, 6, 7), PackedInt32Array(8, 5, 7, 9), PackedInt32Array(1, 8, 9, 10), PackedInt32Array(1, 10, 11), PackedInt32Array(4, 1, 11), PackedInt32Array(4, 11, 12, 13), PackedInt32Array(13, 12, 14, 15), PackedInt32Array(2, 15, 14, 16), PackedInt32Array(17, 6, 0), PackedInt32Array(17, 0, 18), PackedInt32Array(14, 17, 18, 19), PackedInt32Array(14, 19, 16), PackedInt32Array(2, 16, 3), PackedInt32Array(0, 3, 18)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-912, -1021, -920, 57, 1803, 49, 1750, -942)])
 agent_radius = 50.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b85t1"]
 texture = ExtResource("2_8nt8o")
 1:5/0 = 0
 1:5/0/terrain_set = 0
@@ -97,7 +97,7 @@ physics_layer_0/collision_mask = 3
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
-sources/0 = SubResource("TileSetAtlasSource_bk4vp")
+sources/0 = SubResource("TileSetAtlasSource_b85t1")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80f00"]
 size = Vector2(36, 633)
