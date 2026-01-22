@@ -17,7 +17,7 @@ gui = NodePath("gui")
 [node name="player" type="Node" parent="."]
 
 [node name="Player" parent="player" instance=ExtResource("1_3hwdp")]
-position = Vector2(0, -3935)
+position = Vector2(-1259, -5441)
 
 [node name="gui" type="Control" parent="."]
 layout_mode = 3
