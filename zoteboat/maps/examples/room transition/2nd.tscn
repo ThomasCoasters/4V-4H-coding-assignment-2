@@ -125,5 +125,5 @@ position = Vector2(-368.00006, -36)
 position = Vector2(-1552, -113.000244)
 rotation = 3.1415927
 scale = Vector2(61.82185, -22.698303)
-warp_to = "res://maps/examples/room transition/2nd.tscn"
-new_location_group = "left_1"
+warp_to = "res://maps/examples/room transition/main.tscn"
+new_location_group = "middle_1"

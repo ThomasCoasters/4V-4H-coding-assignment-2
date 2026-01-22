@@ -3,6 +3,12 @@ class_name Player
 
 
 #region vars setup
+@export var has_dash: bool
+@export var has_wall_cling: bool
+@export var has_double_jump: bool
+
+
+
 const GRAVITY : int = 12
 
 var gravity_multiplier := 0.0
@@ -12,7 +18,7 @@ var is_jumping = false
 var jump_timer := Timer.new()
 const MAX_JUMP_TIME : float = 0.3
 const JUMPING_SPEED : int = -750
-@export var max_jumps_amount : int = 1
+var max_jumps_amount : int = 1
 var jumps_amount : int = max_jumps_amount
 var jump_max_held: bool = false
 
@@ -25,7 +31,7 @@ const MOVE_SPEED : int = 400
 
 @export var Camera : Camera2D
 const LOOKAHEAD : int = 50
-var current_camera_type := "free" #"free" of "locked"
+var current_camera_type := "free" #"free" or "locked" or "lock_x" or "lock_y"
 var forced_position = Vector2(0,0)
 const LOOKAHEAD_COOLDOWN : float = 0.1
 
@@ -43,12 +49,11 @@ var can_walk : bool = true
 
 const HARDFALL_STUN_TIME : float = 0.6
 
-@export var can_walljump : bool = false
 var forced_move : Vector2
 
-var attack_damage : int = 5
+@export var attack_damage : int = 5
 
-var max_health : int = 5: set = _on_max_health_set
+@export var max_health : int = 5: set = _on_max_health_set
 var health : int: set = _on_health_set
 signal player_health_changed(health: int)
 signal player_max_health_changed()
@@ -64,8 +69,8 @@ const ATTACK_KNOCKBACK_FORCE = 300
 const ATTACK_KNOCKBACK_TIME = 0.05
 
 
-var mana_per_attack: int = 11
-var max_mana : int = 99: set = _on_max_mana_set
+@export var mana_per_attack: int = 11
+@export var max_mana : int = 99: set = _on_max_mana_set
 var mana : int: set = _on_mana_set
 signal player_mana_changed(mana: int)
 signal player_max_mana_changed()
@@ -77,7 +82,7 @@ var heal_time_expired: float = 0
 
 var mana_float = float(mana)
 
-var heal_health: int = 1
+@export var heal_health: int = 1
 
 var healing_max_fall_speed_multiplier: int = 6
 
@@ -222,7 +227,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_released("heal") && heal_time_expired <= heal_time - 0.2:
 		state_chart.send_event("heal_cancel")
 	
-	if Input.is_action_just_pressed("dash") && can_move && !is_on_wall_only():
+	if Input.is_action_just_pressed("dash") && can_move && !is_on_wall_only() && has_dash:
 		state_chart.send_event("dash_start")
 	#endregion
 		#region checks
@@ -233,7 +238,7 @@ func _process(_delta: float) -> void:
 	if is_on_ceiling():
 		state_chart.send_event("jump_released")
 	
-	if is_on_wall_only() && velocity.y >0 && can_walljump:
+	if is_on_wall_only() && velocity.y >0 && has_wall_cling:
 		state_chart.send_event("on_wall")
 		state_chart.send_event("dash_recharged")
 	
@@ -316,6 +321,11 @@ func _on_falling_state_entered() -> void:
 
 
 func _on_on_ground_state_entered() -> void:
+	if has_double_jump:
+		max_jumps_amount = 2
+	else:
+		max_jumps_amount = 1
+	
 	jumps_amount = max_jumps_amount
 	
 	#current_camera_type = "free"

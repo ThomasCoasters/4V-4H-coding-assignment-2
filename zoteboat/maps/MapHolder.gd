@@ -60,6 +60,14 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	map.add_child(new)
 	current_map = new
 	
+	var map_path = current_map.scene_file_path
+	if collected_items.has(map_path):
+		for path in collected_items[map_path]:
+			if current_map.has_node(path):
+				current_map.get_node(path).queue_free()
+
+	
+	
 	map_just_loaded()
 	
 	get_tree().call_group("projectiles", "queue_free")
@@ -89,8 +97,9 @@ func fading():
 
 func map_just_loaded():
 	Global.map.enemy_died.connect(_on_enemy_killed)
-	
 	Global.map.arena_won.connect(_on_arena_won)
+	
+	get_tree().call_group("collectables", "connect_collect_signal")
 
 
 
@@ -117,3 +126,13 @@ func _on_arena_won(arena):
 		finished_arenas[map_path] = []
 	
 	finished_arenas[map_path].append(enemy_path)
+
+
+func _on_collectable_collected(item: Node2D):
+	var map_path = current_map.scene_file_path
+	var item_path = str(item.get_path())
+	
+	if !collected_items.has(map_path):
+		collected_items[map_path] = []
+	
+	collected_items[map_path].append(item_path)

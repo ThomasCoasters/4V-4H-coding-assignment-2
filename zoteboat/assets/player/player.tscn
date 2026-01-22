@@ -393,9 +393,11 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 z_index = 999
 collision_mask = 6
 script = ExtResource("1_d2shb")
-max_jumps_amount = 2
+has_dash = true
+has_wall_cling = true
+has_double_jump = true
 Camera = NodePath("Camera")
-can_walljump = true
+max_health = 13
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -25)
