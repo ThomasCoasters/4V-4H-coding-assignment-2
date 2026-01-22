@@ -7,18 +7,18 @@ class_name MapHolder extends Node
 var current_map
 var current_GUI
 
-var killed_enemies : Dictionary
-var respawnable_enemies : Dictionary
+var killed_enemies : Dictionary = {}
+var respawnable_enemies : Dictionary = {}
 
-var finished_arenas : Dictionary
+var finished_arenas : Dictionary = {}
 
-var collected_items : Dictionary
+var collected_items : Dictionary = {}
 
 
 func _ready() -> void:
 	Global.map_holder = self
 	
-	Global.map.enemy_died.connect(_on_enemy_killed)
+	map_just_loaded()
 	
 	current_map = $map/TestMap
 	
@@ -60,12 +60,6 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	map.add_child(new)
 	current_map = new
 	
-	var map_path = current_map.scene_file_path
-	if collected_items.has(map_path):
-		for path in collected_items[map_path]:
-			if current_map.has_node(path):
-				current_map.get_node(path).queue_free()
-
 	
 	
 	map_just_loaded()
@@ -95,11 +89,23 @@ func fading():
 	player.set_process_mode(Node.PROCESS_MODE_DISABLED)
 	player.Camera.set_process_mode(Node.PROCESS_MODE_ALWAYS)
 
+
+
+
+#region respawn or not
 func map_just_loaded():
+	if Global.map.enemy_died.is_connected(_on_enemy_killed):
+		Global.map.enemy_died.disconnect(_on_enemy_killed)
+	if Global.map.arena_won.is_connected(_on_arena_won):
+		Global.map.arena_won.disconnect(_on_arena_won)
+	if Global.map.item_collected.is_connected(_on_item_collected):
+		Global.map.item_collected.disconnect(_on_item_collected)
+	
+	
+	
 	Global.map.enemy_died.connect(_on_enemy_killed)
 	Global.map.arena_won.connect(_on_arena_won)
-	
-	get_tree().call_group("collectables", "connect_collect_signal")
+	Global.map.item_collected.connect(_on_item_collected)
 
 
 
@@ -120,15 +126,14 @@ func _on_enemy_killed(enemy: Node2D):
 
 func _on_arena_won(arena):
 	var map_path = current_map.scene_file_path
-	var enemy_path = str(arena.get_path())
+	var arena_path = str(arena.get_path())
 	
 	if !finished_arenas.has(map_path):
 		finished_arenas[map_path] = []
 	
-	finished_arenas[map_path].append(enemy_path)
+	finished_arenas[map_path].append(arena_path)
 
-
-func _on_collectable_collected(item: Node2D):
+func _on_item_collected(item):
 	var map_path = current_map.scene_file_path
 	var item_path = str(item.get_path())
 	
@@ -136,3 +141,4 @@ func _on_collectable_collected(item: Node2D):
 		collected_items[map_path] = []
 	
 	collected_items[map_path].append(item_path)
+#endregion

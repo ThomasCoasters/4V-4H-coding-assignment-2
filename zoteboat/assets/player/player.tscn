@@ -397,7 +397,6 @@ has_dash = true
 has_wall_cling = true
 has_double_jump = true
 Camera = NodePath("Camera")
-max_health = 13
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -25)
@@ -405,7 +404,6 @@ scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_d61i2")
 animation = &"idle"
 autoplay = "fall"
-frame_progress = 0.088772394
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4.5)

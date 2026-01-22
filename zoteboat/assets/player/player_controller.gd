@@ -769,12 +769,12 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 	var last_frame_progress := 0.0
 	
 	#region anim specific
-	if anim_name == "fall":
-		$CollisionShape2D.shape.size.y = 17
-		$Area2D/CollisionShape2D.shape.size.y = 17
+	if !is_on_floor():
+		$CollisionShape2D.shape.size.y = 24
+		$Area2D/CollisionShape2D.shape.size.y = 24
 		
-		$CollisionShape2D.position.y = (collision_size.y-17)/2
-		$Area2D/CollisionShape2D.position.y = (collision_size.y-17)/2
+		$CollisionShape2D.position.y = (collision_size.y-24)/2
+		$Area2D/CollisionShape2D.position.y = (collision_size.y-24)/2
 		
 		$Sprite2D.position.y = -10
 	else:
@@ -787,12 +787,11 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 		$Sprite2D.position.y = -25
 	
 	if anim_name == "wall":
-		$Sprite2D.position.x = -19 * sign(last_direction.x)
-	
+		$Sprite2D.position = Vector2(-19 * sign(last_direction.x), 5)
 	elif anim_name == "attack":
-		$Sprite2D.position.x = 20 * sign(last_direction.x)
+		$Sprite2D.position = Vector2(20 * sign(last_direction.x), -25)
 	else:
-		$Sprite2D.position.x = 0
+		$Sprite2D.position = Vector2(0, -25)
 	
 	if current_anim == "walk":
 		last_frame = $Sprite2D.frame
