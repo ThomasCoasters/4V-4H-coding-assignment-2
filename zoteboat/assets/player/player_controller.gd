@@ -3,10 +3,15 @@ class_name Player
 
 
 #region vars setup
+@export_group("ability unlocks", "has_")
 @export var has_dash: bool
 @export var has_wall_cling: bool
 @export var has_double_jump: bool
 
+
+@export_group("QoL changes")
+@export_range(0.0, 1.0, 0.01) var controller_rumble_mult: float = 1.0
+@export_range(0.0, 1.0, 0.01) var screen_shake_mult: float = 1.0
 
 
 const GRAVITY : int = 12
@@ -29,6 +34,7 @@ var direction := Vector2(0,0)
 var last_direction := Vector2(1,0)
 const MOVE_SPEED : int = 400
 
+@export_group("nodes")
 @export var Camera : Camera2D
 const LOOKAHEAD : int = 50
 var current_camera_type := "free" #"free" or "locked" or "lock_x" or "lock_y"
@@ -51,8 +57,10 @@ const HARDFALL_STUN_TIME : float = 0.6
 
 var forced_move : Vector2
 
+@export_group("attack")
 @export var attack_damage : int = 5
 
+@export_group("health and mana")
 @export var max_health : int = 5: set = _on_max_health_set
 var health : int: set = _on_health_set
 signal player_health_changed(health: int)
@@ -655,9 +663,9 @@ func vibrate(time, vibration_type: String = "off"):
 		"hard":
 			hard_vibration_amount = 1.0
 	
-	Input.start_joy_vibration(0, soft_vibration_amount, hard_vibration_amount, time)
+	Input.start_joy_vibration(0, soft_vibration_amount * controller_rumble_mult, hard_vibration_amount * controller_rumble_mult, time)
 	
-	Camera.screen_shake((soft_vibration_amount*3)+(hard_vibration_amount*7), time)
+	Camera.screen_shake(((soft_vibration_amount*3)+(hard_vibration_amount*7)) * screen_shake_mult, time)
 
 func stop_vibrate():
 	Input.stop_joy_vibration(0)

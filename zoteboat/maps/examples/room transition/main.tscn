@@ -1,12 +1,18 @@
-[gd_scene load_steps=11 format=4 uid="uid://dcc5x1snxgepn"]
+[gd_scene load_steps=21 format=4 uid="uid://dcc5x1snxgepn"]
 
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_l627x"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="2_7pfcn"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="3_arhpg"]
+[ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="3_n06jd"]
 [ext_resource type="PackedScene" uid="uid://oqu7kbfguu6n" path="res://maps/pickups/hp_upgrades/increase_max_hp.tscn" id="8_cs804"]
 [ext_resource type="PackedScene" uid="uid://desufiot6ea2v" path="res://enemies/normal/peashooter/peashooter.tscn" id="8_n06jd"]
 [ext_resource type="PackedScene" uid="uid://e03auo7ekd6c" path="res://enemies/normal/dvd_logo/dvd_enemy.tscn" id="9_cs804"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="9_sx31g"]
+
+[sub_resource type="Resource" id="Resource_n06jd"]
+script = ExtResource("3_n06jd")
+respawn_every_room = true
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x21yj"]
 vertices = PackedVector2Array(655, -957, 299, -957, 175, -985, 175, -1213, -149, -1213, -241, -1241, -117, -1369, 943, -317, 267, -317, 239, -441, 239, -701, 299, -729, 655, -729, 687, -1369, 687, -1533, 1163, -2553, 1163, -125, -113, -505, -53, -701, -53, -441, -113, -413, -113, -669, -497, -2553, -117, -1533, 1035, 39, 1163, 39, 1163, 99, 527, 99, 527, -89, 943, -89, 1035, -125, 267, -157, 107, -157, -113, -185, 107, 3, -401, 3, -401, -185, -497, -413, -497, -569, -309, -505, -241, -1437, -337, -569, -309, -669, -337, -733, -149, -985, -469, -1241, -497, -733, -469, -1437)
@@ -101,11 +107,54 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_kkdps")
 
+[sub_resource type="Resource" id="Resource_cs804"]
+script = ExtResource("3_n06jd")
+respawn_every_room = true
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="Resource" id="Resource_v7ywc"]
+script = ExtResource("3_n06jd")
+respawn_every_room = true
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="Resource" id="Resource_fjb1t"]
+script = ExtResource("3_n06jd")
+respawn_every_room = true
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="Resource" id="Resource_kuqqh"]
+script = ExtResource("3_n06jd")
+respawn_every_room = true
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="Resource" id="Resource_bab1l"]
+script = ExtResource("3_n06jd")
+respawn_every_room = true
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="Resource" id="Resource_ahktq"]
+script = ExtResource("3_n06jd")
+respawn_every_room = true
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="Resource" id="Resource_7pxm5"]
+script = ExtResource("3_n06jd")
+respawn_every_room = true
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="Resource" id="Resource_bl7ow"]
+script = ExtResource("3_n06jd")
+respawn_every_room = true
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
 [node name="TestMap" type="Node2D"]
 script = ExtResource("1_l627x")
 
 [node name="DvdEnemy2" parent="." instance=ExtResource("9_cs804")]
-position = Vector2(-2636.3184, -797.30566)
+position = Vector2(-1854.0835, -904.1611)
+velocity = Vector2(-92.6592, -177.24072)
+stats = SubResource("Resource_n06jd")
+angle = -2.0525072
 
 [node name="map" type="NavigationRegion2D" parent="."]
 visible = false
@@ -142,25 +191,46 @@ warp_to = "res://maps/examples/room transition/2nd.tscn"
 new_location_group = "left_1"
 
 [node name="DvdEnemy" parent="." instance=ExtResource("9_cs804")]
-position = Vector2(-2580.3184, -1595.3057)
+position = Vector2(-911.8347, -1714.1354)
+velocity = Vector2(92.6592, 177.24072)
+stats = SubResource("Resource_cs804")
+angle = 2.3300145514124297
 
 [node name="DvdEnemy3" parent="." instance=ExtResource("9_cs804")]
-position = Vector2(-985, -1664)
+position = Vector2(-1939.0822, -1789.9646)
+velocity = Vector2(92.6592, -177.24072)
+stats = SubResource("Resource_v7ywc")
+angle = -1.0890855
 
 [node name="DvdEnemy4" parent="." instance=ExtResource("9_cs804")]
-position = Vector2(-1859.3184, -255.30579)
+position = Vector2(-3243.858, -255.92123)
+velocity = Vector2(-92.6592, -177.24072)
+stats = SubResource("Resource_fjb1t")
+angle = -2.0525072
 
 [node name="DvdEnemy5" parent="." instance=ExtResource("9_cs804")]
-position = Vector2(-2012.3184, -837.3058)
+position = Vector2(-2336.1763, 13.365767)
+velocity = Vector2(92.6592, -177.24072)
+stats = SubResource("Resource_kuqqh")
+angle = -1.0890855
 
 [node name="DvdEnemy6" parent="." instance=ExtResource("9_cs804")]
-position = Vector2(-1892.3184, -1739.3058)
+position = Vector2(5114.042, 4808.3877)
+velocity = Vector2(92.6592, 177.24072)
+stats = SubResource("Resource_bab1l")
 
 [node name="DvdEnemy7" parent="." instance=ExtResource("9_cs804")]
-position = Vector2(-2400.3184, -1348.3058)
+position = Vector2(4605.1563, 3789.2227)
+velocity = Vector2(92.6592, 177.24072)
+stats = SubResource("Resource_ahktq")
 
 [node name="DvdEnemy8" parent="." instance=ExtResource("9_cs804")]
-position = Vector2(-2647.3184, -273.3058)
+position = Vector2(-2380.9524, -1735.8046)
+velocity = Vector2(92.6592, -177.24072)
+stats = SubResource("Resource_7pxm5")
+angle = -1.0890855
 
 [node name="DvdEnemy9" parent="." instance=ExtResource("9_cs804")]
-position = Vector2(-2612.3184, 96.694214)
+position = Vector2(-2674.2942, -1910.2552)
+velocity = Vector2(92.6592, 177.24072)
+stats = SubResource("Resource_bl7ow")

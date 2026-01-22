@@ -1,3 +1,4 @@
+@tool
 extends CharacterBody2D
 
 @export var stats: Stats
@@ -10,7 +11,22 @@ var direction: Vector2
 
 @export var start_active := true
 
+
+@export_range(0, 360, 0.1, "radians_as_degrees")
+var angle: float : 
+	set(value):
+		angle = value
+		direction = Vector2.RIGHT.rotated(angle)
+		queue_redraw()
+
+
+
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		direction = Vector2.RIGHT.rotated(angle)
+		queue_redraw()
+		return
+	
 	if !start_active:
 		deactivate()
 	
@@ -19,12 +35,6 @@ func _ready() -> void:
 	
 	#stats.health_changed.connect(_on_health_changed)
 	stats.health_depleted.connect(_on_health_depleted)
-	
-	
-	direction = Vector2(
-		randf_range(-1.0, 1.0),
-		randf_range(-1.0, 1.0)
-	).normalized()
 	
 	add_to_group("dvd_enemy")
 
@@ -54,11 +64,42 @@ func i_frames(time):
 
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	
 	velocity = direction * speed
 	
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		direction = direction.bounce(collision.get_normal())
+		angle = direction.angle() # keep editor arrow in sync
+		queue_redraw()
 
 func _on_health_depleted():
 	killed.emit(self)
+
+
+
+
+
+
+
+func _draw():
+	if not Engine.is_editor_hint():
+		return
+	
+	var arrow_length := 32.0
+	var arrow_width := 6.0
+	
+	var dir := direction.normalized()
+	var end := dir * arrow_length
+	
+	# Main line
+	draw_line(Vector2.ZERO, end, Color.RED, 2)
+	
+	# Arrow head
+	var left := end + dir.rotated(PI * 0.75) * arrow_width
+	var right := end + dir.rotated(-PI * 0.75) * arrow_width
+	
+	draw_line(end, left, Color.RED, 2)
+	draw_line(end, right, Color.RED, 2)

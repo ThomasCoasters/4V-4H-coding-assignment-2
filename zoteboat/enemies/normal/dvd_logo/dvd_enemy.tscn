@@ -17,6 +17,7 @@ collision_layer = 8
 collision_mask = 10
 script = ExtResource("1_4ovew")
 stats = SubResource("Resource_6iunu")
+angle = 1.0890854532444616
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.35742188, 0.21484375)
