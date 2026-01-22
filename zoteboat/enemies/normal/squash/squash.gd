@@ -64,6 +64,15 @@ func i_frames(time):
 
 
 func _on_health_depleted():
+	process_mode = Node.PROCESS_MODE_DISABLED
+	
+	var tween := get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property($".", "scale:y", 0.0, 0.25)
+	
+	await tween.finished
 	killed.emit(self)
 #endregion
 

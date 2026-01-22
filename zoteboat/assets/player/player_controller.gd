@@ -332,7 +332,7 @@ func _on_on_ground_state_entered() -> void:
 
 
 func _on_landed(speed):
-	if $StateChart/ParallelState/Jumping/hardfall.active && speed >= max_fall_speed:
+	if $StateChart/ParallelState/Jumping/hardfall.active && speed >= max_fall_speed && !$StateChart/ParallelState/dash/dashing.active && !$"StateChart/ParallelState/healing/heal start".active:
 		play_anim("hardfall_land", ANIM_PRIORITY.STAND)
 		can_move = false
 		
