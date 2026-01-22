@@ -12,6 +12,9 @@ var respawnable_enemies : Dictionary
 
 var finished_arenas : Dictionary
 
+var collected_items : Dictionary
+
+
 func _ready() -> void:
 	Global.map_holder = self
 	

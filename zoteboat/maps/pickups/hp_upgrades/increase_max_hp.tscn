@@ -7,7 +7,7 @@
 radius = 18.0
 height = 56.0
 
-[node name="increase_max_hp" type="Area2D"]
+[node name="increase_max_hp" type="Area2D" groups=["collectable"]]
 script = ExtResource("1_fjlbp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -103,7 +103,7 @@ tile_map_data = PackedByteArray("AAAEADIAAAADAAcAAAAEADEAAAADAAYAAAAEADAAAAADAAY
 tile_set = SubResource("TileSet_7r8rt")
 
 [node name="WarpZone2" parent="." instance=ExtResource("2_g1no2")]
-position = Vector2(712, -764)
+position = Vector2(704, -12)
 scale = Vector2(61.82185, 4.003995)
 warp_to = "res://maps/examples/enemy arena/enemy arena.tscn"
 new_location_group = "left_1"
@@ -122,7 +122,7 @@ position = Vector2(-484.00003, -34)
 position = Vector2(-368.00006, -36)
 
 [node name="WarpZone" parent="." instance=ExtResource("2_g1no2")]
-position = Vector2(-897.99994, -2708.0002)
+position = Vector2(-1552, -113.000244)
 rotation = 3.1415927
 scale = Vector2(61.82185, -22.698303)
 warp_to = "res://maps/examples/room transition/2nd.tscn"

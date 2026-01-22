@@ -118,7 +118,7 @@ tile_set = SubResource("TileSet_7r8rt")
 position = Vector2(2051, -16.000002)
 scale = Vector2(61.82185, 4.003995)
 warp_to = "res://maps/examples/room transition/main.tscn"
-new_location_group = "right_1"
+new_location_group = "middle_1"
 
 [node name="SpawnLocation" parent="." instance=ExtResource("4_1ceh5")]
 offset_left = -705.0
