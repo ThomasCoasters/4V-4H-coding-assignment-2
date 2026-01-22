@@ -21,7 +21,7 @@ signal killed(node: Node2D)
 
 @export_range(1, 12, 1) var attack_count: int = 1
 
-@export_range(0, 360, 1, "radians_as_degrees") var angle_per_shot: int = 20
+@export_range(0, 360, 1, "radians_as_degrees") var shot_angle: int = 20
 
 var can_attack: bool = true
 
@@ -217,6 +217,7 @@ func _on_attack_cooldown_timeout() -> void:
 
 func attack():
 	var count := attack_count
+	var angle_per_shot := deg_to_rad(shot_angle)
 	
 	var base_dir = (Global.player.global_position - global_position).normalized()
 	var base_angle = base_dir.angle()

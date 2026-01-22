@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cru24svdcnf8s"]
+[gd_scene load_steps=13 format=4 uid="uid://cru24svdcnf8s"]
 
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_2psv1"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="2_s8j5p"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="6_g1w2y"]
 [ext_resource type="PackedScene" uid="uid://e03auo7ekd6c" path="res://enemies/normal/dvd_logo/dvd_enemy.tscn" id="7_s8j5p"]
 [ext_resource type="PackedScene" uid="uid://bbn2wfw15yc8n" path="res://enemies/normal/dvd_logo/dvd_wall.tscn" id="8_brumt"]
+[ext_resource type="PackedScene" uid="uid://3dmnl1rv4c6f" path="res://enemies/normal/aspid/aspid.tscn" id="9_de7l7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x21yj"]
 vertices = PackedVector2Array(655, -957, 299, -957, 175, -985, 175, -1213, -149, -1213, -241, -1241, -117, -1369, 943, -317, 267, -317, 239, -441, 239, -701, 299, -729, 655, -729, 687, -1369, 687, -1533, 1163, -2553, 1163, -125, -113, -505, -53, -701, -53, -441, -113, -413, -113, -669, -497, -2553, -117, -1533, 1035, 39, 1163, 39, 1163, 99, 527, 99, 527, -89, 943, -89, 1035, -125, 267, -157, 107, -157, -113, -185, 107, 3, -401, 3, -401, -185, -497, -413, -497, -569, -309, -505, -241, -1437, -337, -569, -309, -669, -337, -733, -149, -985, -469, -1241, -497, -733, -469, -1437)
@@ -157,3 +158,8 @@ scale = Vector2(20, 1)
 [node name="DVDwall3" parent="." instance=ExtResource("8_brumt")]
 position = Vector2(-1197, -1483)
 scale = Vector2(1, 13)
+
+[node name="aspid" parent="." instance=ExtResource("9_de7l7")]
+position = Vector2(185, -1513)
+attack_count = 3
+angle_per_shot = 1
