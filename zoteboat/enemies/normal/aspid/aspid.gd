@@ -44,6 +44,8 @@ var current_anim_priority: int = 0
 @export var start_active := true
 
 func _ready() -> void:
+	$"attack cooldown".wait_time = attack_cooldown_time
+	
 	if !start_active:
 		deactivate()
 	else:
