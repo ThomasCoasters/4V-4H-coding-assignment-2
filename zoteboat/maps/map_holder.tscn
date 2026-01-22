@@ -13,6 +13,7 @@ gui = NodePath("gui")
 [node name="map" type="Node2D" parent="."]
 
 [node name="TestMap" parent="map" instance=ExtResource("2_3ofuw")]
+visible = false
 
 [node name="player" type="Node" parent="."]
 
