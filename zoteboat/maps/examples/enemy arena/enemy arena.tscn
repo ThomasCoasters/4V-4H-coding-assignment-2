@@ -148,6 +148,10 @@ position = Vector2(254, -124)
 
 [node name="phase1" type="Node" parent="area arena/wave holder"]
 
+[node name="camera_mode" type="Node" parent="area arena/wave holder/phase1"]
+
+[node name="locked" type="Node2D" parent="area arena/wave holder/phase1/camera_mode"]
+
 [node name="aspid" type="Node2D" parent="area arena/wave holder/phase1"]
 position = Vector2(285, -344)
 
@@ -159,33 +163,27 @@ position = Vector2(727, -59)
 
 [node name="face_left" type="Node2D" parent="area arena/wave holder/phase1/peashooter"]
 
-[node name="camera_mode" type="Node" parent="area arena/wave holder/phase1"]
-
-[node name="locked" type="Node2D" parent="area arena/wave holder/phase1/camera_mode"]
-
 [node name="phase2" type="Node" parent="area arena/wave holder"]
-
-[node name="dvd1" type="Node2D" parent="area arena/wave holder/phase2"]
-position = Vector2(563, -185)
 
 [node name="camera_mode" type="Node" parent="area arena/wave holder/phase2"]
 
 [node name="locked" type="Node2D" parent="area arena/wave holder/phase2/camera_mode"]
 
-[node name="phase3" type="Node" parent="area arena/wave holder"]
-
-[node name="dvd1" type="Node2D" parent="area arena/wave holder/phase3"]
+[node name="dvd1" type="Node2D" parent="area arena/wave holder/phase2"]
 position = Vector2(563, -185)
 
-[node name="aspid" type="Node2D" parent="area arena/wave holder/phase3"]
-position = Vector2(-93, -359)
+[node name="angle" type="Node2D" parent="area arena/wave holder/phase2/dvd1"]
 
-[node name="dvd3" type="Node2D" parent="area arena/wave holder/phase3"]
-position = Vector2(375, -442)
+[node name="60" type="Node" parent="area arena/wave holder/phase2/dvd1/angle"]
+
+[node name="phase3" type="Node" parent="area arena/wave holder"]
 
 [node name="camera_mode" type="Node" parent="area arena/wave holder/phase3"]
 
 [node name="locked" type="Node2D" parent="area arena/wave holder/phase3/camera_mode"]
+
+[node name="aspid" type="Node2D" parent="area arena/wave holder/phase3"]
+position = Vector2(-93, -359)
 
 [node name="peashooter" type="Node2D" parent="area arena/wave holder/phase3"]
 position = Vector2(-243, -59)
@@ -193,7 +191,25 @@ position = Vector2(-243, -59)
 [node name="peashooter2" type="Node2D" parent="area arena/wave holder/phase3"]
 position = Vector2(-119, -52)
 
+[node name="dvd1" type="Node2D" parent="area arena/wave holder/phase3"]
+position = Vector2(563, -185)
+
+[node name="angle" type="Node2D" parent="area arena/wave holder/phase3/dvd1"]
+
+[node name="32" type="Node" parent="area arena/wave holder/phase3/dvd1/angle"]
+
+[node name="dvd2" type="Node2D" parent="area arena/wave holder/phase3"]
+position = Vector2(563, -185)
+
+[node name="angle" type="Node2D" parent="area arena/wave holder/phase3/dvd2"]
+
+[node name="205" type="Node" parent="area arena/wave holder/phase3/dvd2/angle"]
+
 [node name="phase4" type="Node" parent="area arena/wave holder"]
+
+[node name="camera_mode" type="Node" parent="area arena/wave holder/phase4"]
+
+[node name="locked" type="Node2D" parent="area arena/wave holder/phase4/camera_mode"]
 
 [node name="aspid" type="Node2D" parent="area arena/wave holder/phase4"]
 position = Vector2(285, -344)
@@ -201,15 +217,8 @@ position = Vector2(285, -344)
 [node name="squash2" type="Node2D" parent="area arena/wave holder/phase4"]
 position = Vector2(-183, -59)
 
-[node name="camera_mode" type="Node" parent="area arena/wave holder/phase4"]
-
-[node name="locked" type="Node2D" parent="area arena/wave holder/phase4/camera_mode"]
-
 [node name="aspid2" type="Node2D" parent="area arena/wave holder/phase4"]
 position = Vector2(-110, -325)
-
-[node name="aspid3" type="Node2D" parent="area arena/wave holder/phase4"]
-position = Vector2(572, -332)
 
 [node name="peashooter" type="Node2D" parent="area arena/wave holder/phase4"]
 position = Vector2(727, -59)

@@ -95,6 +95,13 @@ func spawn_wave():
 					if spawner.has_node("face_left"):
 						extra.face_left = true
 				
+				if spawner.has_node("angle"):
+					var angle_node = spawner.get_node("angle")
+					if angle_node.get_child_count() > 0:
+						var angle_child = angle_node.get_child(0)
+						extra.angle = deg_to_rad(float(angle_child.name))
+				
+				
 				spawn_enemy(
 					ENEMY_SCENES[key],
 					spawner.global_position,
