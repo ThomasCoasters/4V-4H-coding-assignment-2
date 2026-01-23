@@ -14,6 +14,7 @@ var finished_arenas : Dictionary = {}
 
 var collected_items : Dictionary = {}
 
+var is_transition: bool = false
 
 func _ready() -> void:
 	Global.map_holder = self
@@ -39,10 +40,15 @@ func change_gui_scene(new_scene: String, delete: bool = true, keep_running: bool
 func change_2d_scene(new_scene: String, new_location_group: String, delete: bool = true, keep_running: bool = false) -> void:
 	call_deferred("_change_2d_scene_internal", new_scene, new_location_group, delete, keep_running)
 
+
 func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_running):
+	is_transition = true
+	
 	fading()
 	
 	await transition.on_transition_finished
+	player.global_position = Vector2(-100000, -100000)
+	
 	
 	if current_map != null:
 		if delete:
@@ -60,19 +66,20 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	map.add_child(new)
 	current_map = new
 	
-	
-	
-	map_just_loaded()
+	_disable_map_transitions(new)
+
 	
 	get_tree().call_group("projectiles", "queue_free")
 	
 	for child in new.get_children():
 		if child.is_in_group(new_location_group):
-			player.position = child.position
+			player.global_position = child.global_position
 			continue
 		
 		if child is NavigationAgent2D:
 			Global.navigation_agent_2d = child
+	
+	map_just_loaded()
 	
 	await transition.on_transition_finished
 	
@@ -80,6 +87,13 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	player.remove_from_group("invincible")
 	player.set_process_mode(Node.PROCESS_MODE_INHERIT)
 	player.Camera.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	
+	await get_tree().physics_frame
+	get_tree().call_group("map_transitions", "set_deferred", "monitoring", true)
+	await get_tree().physics_frame
+	
+	is_transition = false
+
 
 
 func fading():
@@ -88,6 +102,8 @@ func fading():
 	player.add_to_group("invincible")
 	player.set_process_mode(Node.PROCESS_MODE_DISABLED)
 	player.Camera.set_process_mode(Node.PROCESS_MODE_ALWAYS)
+	
+	get_tree().call_group("map_transitions", "set_deferred", "monitoring", false)
 
 
 
@@ -142,3 +158,11 @@ func _on_item_collected(item):
 	
 	collected_items[map_path].append(item_path)
 #endregion
+
+
+
+
+
+func _disable_map_transitions(map_node: Node) -> void:
+	for t in map_node.get_tree().get_nodes_in_group("map_transitions"):
+		t.set_deferred("monitoring", false)

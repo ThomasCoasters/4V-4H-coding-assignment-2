@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://oqu7kbfguu6n" path="res://maps/pickups/hp_upgrades/increase_max_hp.tscn" id="5_wcrwb"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="6_g1w2y"]
 [ext_resource type="PackedScene" uid="uid://e03auo7ekd6c" path="res://enemies/normal/dvd_logo/dvd_enemy.tscn" id="7_s8j5p"]
-[ext_resource type="PackedScene" uid="uid://bbn2wfw15yc8n" path="res://enemies/normal/dvd_logo/dvd_wall.tscn" id="8_brumt"]
+[ext_resource type="PackedScene" uid="uid://bbn2wfw15yc8n" path="res://enemies/enemy_wall.tscn" id="8_brumt"]
 [ext_resource type="PackedScene" uid="uid://3dmnl1rv4c6f" path="res://enemies/normal/aspid/aspid.tscn" id="9_de7l7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x21yj"]

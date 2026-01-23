@@ -4,7 +4,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8t7x"]
 
-[node name="WarpZone" type="Area2D"]
+[node name="WarpZone" type="Area2D" groups=["map_transitions"]]
 collision_layer = 4
 script = ExtResource("1_h8t7x")
 

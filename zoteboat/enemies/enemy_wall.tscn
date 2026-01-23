@@ -2,7 +2,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phkyq"]
 
-[node name="DVDwall" type="StaticBody2D"]
+[node name="ENEMYwall" type="StaticBody2D"]
 collision_layer = 65536
 collision_mask = 0
 
