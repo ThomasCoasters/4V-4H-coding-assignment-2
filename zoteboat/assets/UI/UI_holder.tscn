@@ -1,10 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://doeteha3810mt"]
+[gd_scene load_steps=6 format=3 uid="uid://doeteha3810mt"]
 
 [ext_resource type="PackedScene" uid="uid://7cdtgxgfo0wa" path="res://assets/UI/HP/HP.tscn" id="1_nmpck"]
 [ext_resource type="PackedScene" uid="uid://4n2vr8ph3efl" path="res://assets/UI/mana/mana.tscn" id="2_wsaw0"]
 [ext_resource type="PackedScene" uid="uid://effmb8qebpvf" path="res://assets/dialogue/in-game dialouge/dialogue player.tscn" id="3_57uuq"]
+[ext_resource type="Shader" uid="uid://bwjvbeux7apnr" path="res://assets/UI/vignette.gdshader" id="4_d88u3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p2i4h"]
+shader = ExtResource("4_d88u3")
+shader_parameter/alpha = 0.25
+shader_parameter/inner_radius = 0.9
+shader_parameter/outer_radius = 1.1
 
 [node name="UiHolder" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_p2i4h")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Mana" parent="." instance=ExtResource("2_wsaw0")]
 offset_left = 60.0
