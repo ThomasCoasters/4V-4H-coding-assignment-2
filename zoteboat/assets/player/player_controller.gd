@@ -113,6 +113,7 @@ enum ANIM_PRIORITY {
 	DASH,
 	ATTACK,
 	WALL,
+	HARDFALL_LAND,
 	HEAL,
 	DEATH
 }
@@ -345,7 +346,7 @@ func _on_on_ground_state_entered() -> void:
 
 func _on_landed(speed):
 	if $StateChart/ParallelState/Jumping/hardfall.active && speed >= max_fall_speed && !$StateChart/ParallelState/dash/dashing.active && !$"StateChart/ParallelState/healing/heal start".active:
-		play_anim("hardfall_land", ANIM_PRIORITY.STAND)
+		play_anim("hardfall_land", ANIM_PRIORITY.HARDFALL_LAND)
 		can_move = false
 		
 		vibrate(HARDFALL_STUN_TIME, "hard")
@@ -357,23 +358,25 @@ func _on_landed(speed):
 		play_anim("stand_up", ANIM_PRIORITY.STAND)
 
 func _on_wall_slide_state_entered() -> void:
+	var wall_dir = get_wall_direction()  # -1 = left wall, 1 = right wall
+	
 	play_anim("wall", ANIM_PRIORITY.WALL)
 	
+	$Sprite2D.position = Vector2(-19 * wall_dir, 5)
+	$Sprite2D.flip_h = wall_dir == -1
+	
 	velocity.y = 0
-	
 	gravity_multiplier = 0.1
-	
 	jumps_amount = max_jumps_amount
-	
 	max_fall_speed /= 5
 
 func _on_wall_slide_state_exited() -> void:
 	stop_anim("wall")
-	var dir = sign(last_direction.x)
+	
+	var wall_dir = get_wall_direction()
+	position.x -= wall_dir
 	
 	max_fall_speed *= 5
-	
-	position.x -= dir
 
 func _on_to_jumping_form_wall_taken() -> void:
 	var dir = sign(last_direction.x)
@@ -867,6 +870,17 @@ func update_facing():
 		facing_dir = -1
 	elif Input.is_action_pressed("right"):
 		facing_dir = 1
+
+
+func get_wall_direction() -> int:
+	if is_on_wall():
+		var wall_dir = 0
+		if test_move(global_transform, Vector2(-1, 0)):
+			wall_dir = -1
+		elif test_move(global_transform, Vector2(1, 0)):
+			wall_dir = 1
+		return wall_dir
+	return sign(last_direction.x)
 #endregion
 
 #region hazards
