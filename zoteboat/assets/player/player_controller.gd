@@ -710,7 +710,12 @@ func i_frames(time):
 	self.add_to_group("invincible")
 	$Sprite2D.set_modulate(Color8(255,0,0))
 	
-	await get_tree().create_timer(time).timeout
+	vignette_shrink(0.2, 0.8, time/3)
+	
+	await get_tree().create_timer(time/3).timeout
+	vignette_return(0.9, 1.3, time/3*2)
+	
+	await get_tree().create_timer(time/3*2).timeout
 	
 	$Sprite2D.set_modulate(Color8(255,255,255))
 	self.remove_from_group("invincible")
@@ -881,6 +886,32 @@ func get_wall_direction() -> int:
 			wall_dir = 1
 		return wall_dir
 	return sign(last_direction.x)
+
+
+#region vignette
+
+func vignette_shrink(target_inner: float = 0.2, target_outer: float = 0.5, duration: float = 0.3):
+	var mat = Global.vignette.material as ShaderMaterial
+	if mat == null:
+		return
+	
+	var tween = create_tween()
+	tween.tween_property(mat, "shader_parameter/inner_radius", target_inner, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(mat, "shader_parameter/outer_radius", target_outer, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.play()
+
+
+func vignette_return(target_inner: float = 1.0, target_outer: float = 1.0, duration: float = 0.3):
+	var mat = Global.vignette.material as ShaderMaterial
+	if mat == null:
+		return
+	
+	var tween = create_tween()
+	tween.tween_property(mat, "shader_parameter/inner_radius", target_inner, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(mat, "shader_parameter/outer_radius", target_outer, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.play()
+
+#endregion
 #endregion
 
 #region hazards

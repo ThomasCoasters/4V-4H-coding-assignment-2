@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://doeteha3810mt"]
+[gd_scene load_steps=7 format=3 uid="uid://doeteha3810mt"]
 
 [ext_resource type="PackedScene" uid="uid://7cdtgxgfo0wa" path="res://assets/UI/HP/HP.tscn" id="1_nmpck"]
+[ext_resource type="Script" uid="uid://bdmver5aamu1w" path="res://assets/UI/vignette.gd" id="2_p2i4h"]
 [ext_resource type="PackedScene" uid="uid://4n2vr8ph3efl" path="res://assets/UI/mana/mana.tscn" id="2_wsaw0"]
 [ext_resource type="PackedScene" uid="uid://effmb8qebpvf" path="res://assets/dialogue/in-game dialouge/dialogue player.tscn" id="3_57uuq"]
 [ext_resource type="Shader" uid="uid://bwjvbeux7apnr" path="res://assets/UI/vignette.gdshader" id="4_d88u3"]
@@ -20,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_p2i4h")
 
 [node name="Mana" parent="." instance=ExtResource("2_wsaw0")]
 offset_left = 60.0
