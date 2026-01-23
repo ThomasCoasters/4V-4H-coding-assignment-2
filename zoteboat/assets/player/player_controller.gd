@@ -657,6 +657,9 @@ func vibrate(time, vibration_type: String = "off"):
 			soft_vibration_amount = 0.5
 		"soft":
 			soft_vibration_amount = 1.0
+		"mid-soft":
+			soft_vibration_amount = 0.75
+			hard_vibration_amount = 0.25
 		"medium":
 			soft_vibration_amount = 0.5
 			hard_vibration_amount = 0.5

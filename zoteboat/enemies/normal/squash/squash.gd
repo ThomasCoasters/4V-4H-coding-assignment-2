@@ -160,6 +160,8 @@ func handle_attack_movement(delta: float) -> void:
 		stats.attack_damage = 2
 		
 		if is_on_floor():
+			Global.player.vibrate(0.01, "mid-soft")
+			
 			stats.attack_damage = 1
 			$body.scale.y = lerp($body.scale.y, 0.35, 0.1)
 			$body.position.y = lerp($body.position.y, -17.0, 0.1)
