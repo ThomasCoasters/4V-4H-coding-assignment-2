@@ -135,11 +135,15 @@ const HIT_EFFECT = preload("uid://ear4rb07owa4")
 var oneshot_loaded_particles := []
 
 signal jumping()
+
+var hazard_respawn_location: Vector2
 #endregion
 
 func _ready() -> void:
 	Global.player = self
 	setup()
+	
+	hazard_respawn_location = global_position
 	
 	$Sprite2D.animation_finished.connect(_on_animation_finished)
 
@@ -875,7 +879,7 @@ func on_spikes_entered(damage):
 	
 	await transition.on_transition_finished
 	
-	global_position = Vector2(0, -3972.0)
+	global_position = hazard_respawn_location
 	
 	await transition.on_transition_finished
 	
@@ -903,4 +907,8 @@ func fading():
 	get_tree().call_group("map_transitions", "set_deferred", "monitoring", false)
 
 
+
+
+func set_hazard_respawn():
+	hazard_respawn_location = global_position
 #endregion

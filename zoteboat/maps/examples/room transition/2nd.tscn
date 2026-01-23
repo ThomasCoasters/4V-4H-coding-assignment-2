@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cvwh5iemjyfao"]
+[gd_scene load_steps=15 format=4 uid="uid://cvwh5iemjyfao"]
 
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="1_fbel4"]
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_sarst"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://oqu7kbfguu6n" path="res://maps/pickups/hp_upgrades/increase_max_hp.tscn" id="6_j6246"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="6_jreq0"]
 [ext_resource type="PackedScene" uid="uid://3dmnl1rv4c6f" path="res://enemies/normal/aspid/aspid.tscn" id="6_mlmr6"]
+[ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.tscn" id="8_kdi8c"]
+[ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/hazards + respawns/respawns/hazard_respawn.tscn" id="9_axwb5"]
+[ext_resource type="PackedScene" uid="uid://bbn2wfw15yc8n" path="res://enemies/enemy_wall.tscn" id="10_8l1f0"]
 
 [sub_resource type="Resource" id="Resource_j6246"]
 script = ExtResource("6_jreq0")
@@ -117,9 +120,9 @@ warp_to = "res://maps/examples/enemy arena/enemy arena.tscn"
 new_location_group = "left_1"
 
 [node name="SpawnLocation" parent="." instance=ExtResource("3_g1no2")]
-offset_left = -885.0
+offset_left = -1003.0
 offset_top = -13.0
-offset_right = -855.0
+offset_right = -973.0
 offset_bottom = 17.0
 own_group = "left_1"
 
@@ -144,23 +147,11 @@ shot_angle = 15
 [node name="aspid2" parent="." instance=ExtResource("6_mlmr6")]
 position = Vector2(860, -349)
 
-[node name="WarpZone3" parent="." instance=ExtResource("2_g1no2")]
-position = Vector2(-953, -3344)
-scale = Vector2(1, 170)
-warp_to = "res://maps/examples/room transition/2nd.tscn"
-new_location_group = "left_1"
-
 [node name="increase_max_hp" parent="." instance=ExtResource("6_j6246")]
 position = Vector2(2077, -4916)
 
 [node name="aspid3" parent="." instance=ExtResource("6_mlmr6")]
 position = Vector2(1203, -356)
-
-[node name="WarpZone4" parent="." instance=ExtResource("2_g1no2")]
-position = Vector2(1495, -2386.0002)
-scale = Vector2(1, 95)
-warp_to = "res://maps/examples/room transition/2nd.tscn"
-new_location_group = "left_1.1"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-3, -107)
@@ -179,15 +170,50 @@ position = Vector2(-511, -1901)
 [node name="aspid5" parent="." instance=ExtResource("6_mlmr6")]
 position = Vector2(210, -2062)
 
-[node name="aspid2" parent="aspid5" instance=ExtResource("6_mlmr6")]
-position = Vector2(-11, -808)
-
-[node name="aspid2" parent="aspid5/aspid2" instance=ExtResource("6_mlmr6")]
-position = Vector2(-602, 134)
-
 [node name="SpawnLocation2" parent="." instance=ExtResource("3_g1no2")]
-offset_left = 2083.0
+offset_left = 2242.0
 offset_top = -31.0
-offset_right = 2113.0
+offset_right = 2272.0
 offset_bottom = -1.0
 own_group = "left_1.1"
+
+[node name="aspid6" parent="." instance=ExtResource("6_mlmr6")]
+position = Vector2(199, -2870)
+
+[node name="aspid7" parent="." instance=ExtResource("6_mlmr6")]
+position = Vector2(-403, -2736)
+
+[node name="ENEMYwall" parent="." instance=ExtResource("10_8l1f0")]
+position = Vector2(1486, -4876)
+scale = Vector2(1.3097398, 12.70974)
+
+[node name="hazards" type="Node" parent="."]
+
+[node name="SpikesCollision" parent="hazards" instance=ExtResource("8_kdi8c")]
+position = Vector2(-884, -2367)
+
+[node name="CollisionPolygon2D" parent="hazards/SpikesCollision/StaticBody2D" index="0"]
+position = Vector2(1, -1)
+polygon = PackedVector2Array(-80, -2667, -47, -2667, -47, -1922, 1813, -1922, 1813, -1694, -47.286713, -1694.3638, -48, 725, -80, 725)
+
+[node name="HazardRespawn" parent="hazards" instance=ExtResource("9_axwb5")]
+position = Vector2(-941, -113)
+scale = Vector2(0.73159456, 19.058561)
+
+[node name="HazardRespawn2" parent="hazards" instance=ExtResource("9_axwb5")]
+position = Vector2(2190, -94)
+scale = Vector2(1, 14.999997)
+
+[node name="HazardRespawn3" parent="hazards" instance=ExtResource("9_axwb5")]
+position = Vector2(1634, -4884)
+scale = Vector2(1, 12.36002)
+
+[node name="SpikesCollision2" parent="hazards" instance=ExtResource("8_kdi8c")]
+position = Vector2(1555, -2146)
+
+[node name="CollisionPolygon2D" parent="hazards/SpikesCollision2/StaticBody2D" index="0"]
+position = Vector2(1, -1)
+polygon = PackedVector2Array(-76, -2573, -43, -2573, -48, 725, -80, 725)
+
+[editable path="hazards/SpikesCollision"]
+[editable path="hazards/SpikesCollision2"]
