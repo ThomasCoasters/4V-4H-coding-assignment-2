@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://rvhtgi81sikt" path="res://assets/player/player.tscn" id="1_3hwdp"]
 [ext_resource type="Script" uid="uid://d4jiec105wvyu" path="res://maps/MapHolder.gd" id="1_3ofuw"]
-[ext_resource type="PackedScene" uid="uid://dcc5x1snxgepn" path="res://maps/examples/room transition/main.tscn" id="2_3ofuw"]
+[ext_resource type="PackedScene" uid="uid://cru24svdcnf8s" path="res://maps/examples/THOMAS TEST RAAK NIET AAN/RAAK NIET AAN.tscn" id="2_0qde3"]
 
 [node name="MapHolder" type="Node" node_paths=PackedStringArray("map", "player", "gui")]
 script = ExtResource("1_3ofuw")
@@ -12,7 +12,7 @@ gui = NodePath("gui")
 
 [node name="map" type="Node2D" parent="."]
 
-[node name="TestMap" parent="map" instance=ExtResource("2_3ofuw")]
+[node name="TestMap" parent="map" instance=ExtResource("2_0qde3")]
 
 [node name="player" type="Node" parent="."]
 

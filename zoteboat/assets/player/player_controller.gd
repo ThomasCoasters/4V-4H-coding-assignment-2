@@ -864,3 +864,43 @@ func update_facing():
 	elif Input.is_action_pressed("right"):
 		facing_dir = 1
 #endregion
+
+#region hazards
+func on_spikes_entered(damage):
+	change_health(-damage)
+	
+	await hitstop_manager(hitstun_time, 1.3, "hard")
+	
+	fading()
+	
+	await transition.on_transition_finished
+	
+	global_position = Vector2(0, -3972.0)
+	
+	await transition.on_transition_finished
+	
+	can_move = true
+	remove_from_group("invincible")
+	set_process_mode(Node.PROCESS_MODE_INHERIT)
+	Camera.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	
+	await get_tree().physics_frame
+	get_tree().call_group("map_transitions", "set_deferred", "monitoring", true)
+	await get_tree().physics_frame
+	
+	Global.map_holder.is_transition = false
+
+
+func fading():
+	Global.map_holder.is_transition = true
+	
+	transition.transition()
+	can_move = false
+	add_to_group("invincible")
+	set_process_mode(Node.PROCESS_MODE_DISABLED)
+	Camera.set_process_mode(Node.PROCESS_MODE_ALWAYS)
+	
+	get_tree().call_group("map_transitions", "set_deferred", "monitoring", false)
+
+
+#endregion
