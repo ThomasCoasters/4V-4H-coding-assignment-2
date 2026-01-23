@@ -665,7 +665,7 @@ func vibrate(time, vibration_type: String = "off"):
 	
 	Input.start_joy_vibration(0, soft_vibration_amount * controller_rumble_mult, hard_vibration_amount * controller_rumble_mult, time)
 	
-	Camera.screen_shake(((soft_vibration_amount*3)+(hard_vibration_amount*7)) * screen_shake_mult, time)
+	Camera.screen_shake(((soft_vibration_amount*6)+(hard_vibration_amount*14)) * screen_shake_mult, time)
 
 func stop_vibrate():
 	Input.stop_joy_vibration(0)

@@ -6,18 +6,22 @@ extends CharacterBody2D
 signal killed(node: Node2D)
 
 @export var speed: int = 200
-
-var direction: Vector2
-
 @export var start_active := true
 
+var direction: Vector2 = Vector2.RIGHT
 
-@export_range(0, 360, 0.1, "radians_as_degrees")
-var angle: float : 
+@export_range(0, 360, 0.1)
+var angle: float:
 	set(value):
-		angle = value
-		direction = Vector2.RIGHT.rotated(angle)
+		_angle_deg = value
+		var rad := deg_to_rad(_angle_deg)
+		direction = Vector2.RIGHT.rotated(rad)
 		queue_redraw()
+	get:
+		return _angle_deg
+
+var _angle_deg := 0.0
+
 
 
 
@@ -72,8 +76,8 @@ func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		direction = direction.bounce(collision.get_normal())
-		angle = direction.angle() # keep editor arrow in sync
-		queue_redraw()
+		angle = rad_to_deg(direction.angle())
+
 
 func _on_health_depleted():
 	killed.emit(self)

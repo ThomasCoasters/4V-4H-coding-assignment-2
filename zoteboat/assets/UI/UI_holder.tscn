@@ -7,9 +7,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p2i4h"]
 shader = ExtResource("4_d88u3")
-shader_parameter/alpha = 0.25
+shader_parameter/alpha = 0.3
 shader_parameter/inner_radius = 0.9
-shader_parameter/outer_radius = 1.1
+shader_parameter/outer_radius = 1.3
 
 [node name="UiHolder" type="CanvasLayer"]
 

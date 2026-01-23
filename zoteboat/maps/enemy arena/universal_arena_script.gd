@@ -91,8 +91,9 @@ func spawn_wave():
 		
 		var extra := {}
 		
-		if spawner.has_method("get_extras"):
-			for kv in spawner.get_extras():
+		var extra_node = spawner.get_node_or_null("extra")
+		if extra_node and extra_node.has_method("get_extras"):
+			for kv in extra_node.get_extras():
 				extra[kv.key] = kv.value
 		
 		for key in ENEMY_SCENES:
@@ -113,9 +114,10 @@ func spawn_wave():
 func spawn_enemy(enemy_scene: PackedScene, pos: Vector2, extra := {}) -> void:
 	var enemy := enemy_scene.instantiate()
 	
+	
 	for key in extra:
-		if enemy.has_method("set") and enemy.has_property(key):
-			enemy.set(key, extra[key])
+		enemy.set(key, extra[key])
+	
 	
 	enemy.start_active = false
 	get_tree().current_scene.call_deferred("add_child", enemy)

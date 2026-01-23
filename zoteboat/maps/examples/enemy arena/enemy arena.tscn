@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://c5gh7lv4nyhjq"]
+[gd_scene load_steps=17 format=4 uid="uid://c5gh7lv4nyhjq"]
 
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_5epxj"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="2_8nt8o"]
@@ -104,10 +104,34 @@ sources/0 = SubResource("TileSetAtlasSource_b85t1")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80f00"]
 size = Vector2(36, 633)
 
-[sub_resource type="Resource" id="Resource_oc3c5"]
+[sub_resource type="Resource" id="Resource_e726g"]
+script = ExtResource("7_ksdkh")
+key = "attack_count"
+value = 3
+metadata/_custom_type_script = "uid://domk3qfwgxh7i"
+
+[sub_resource type="Resource" id="Resource_ksdkh"]
 script = ExtResource("7_ksdkh")
 key = "face_left"
 value = true
+metadata/_custom_type_script = "uid://domk3qfwgxh7i"
+
+[sub_resource type="Resource" id="Resource_oc3c5"]
+script = ExtResource("7_ksdkh")
+key = "angle"
+value = 60.0
+metadata/_custom_type_script = "uid://domk3qfwgxh7i"
+
+[sub_resource type="Resource" id="Resource_d110b"]
+script = ExtResource("7_ksdkh")
+key = "angle"
+value = 32.0
+metadata/_custom_type_script = "uid://domk3qfwgxh7i"
+
+[sub_resource type="Resource" id="Resource_u3s44"]
+script = ExtResource("7_ksdkh")
+key = "angle"
+value = 42.0
 metadata/_custom_type_script = "uid://domk3qfwgxh7i"
 
 [node name="Test3" type="Node2D"]
@@ -167,6 +191,10 @@ position = Vector2(254, -124)
 [node name="aspid" type="Node2D" parent="area arena/wave holder/phase1"]
 position = Vector2(285, -344)
 
+[node name="extra" type="Node2D" parent="area arena/wave holder/phase1/aspid"]
+script = ExtResource("6_e726g")
+extras = Array[ExtResource("7_ksdkh")]([SubResource("Resource_e726g")])
+
 [node name="squash2" type="Node2D" parent="area arena/wave holder/phase1"]
 position = Vector2(-183, -59)
 
@@ -175,7 +203,7 @@ position = Vector2(727, -59)
 
 [node name="extra" type="Node2D" parent="area arena/wave holder/phase1/peashooter"]
 script = ExtResource("6_e726g")
-extras = Array[ExtResource("7_ksdkh")]([SubResource("Resource_oc3c5")])
+extras = Array[ExtResource("7_ksdkh")]([SubResource("Resource_ksdkh")])
 
 [node name="phase2" type="Node" parent="area arena/wave holder"]
 
@@ -186,9 +214,9 @@ extras = Array[ExtResource("7_ksdkh")]([SubResource("Resource_oc3c5")])
 [node name="dvd1" type="Node2D" parent="area arena/wave holder/phase2"]
 position = Vector2(563, -185)
 
-[node name="angle" type="Node2D" parent="area arena/wave holder/phase2/dvd1"]
-
-[node name="60" type="Node" parent="area arena/wave holder/phase2/dvd1/angle"]
+[node name="extra" type="Node2D" parent="area arena/wave holder/phase2/dvd1"]
+script = ExtResource("6_e726g")
+extras = Array[ExtResource("7_ksdkh")]([SubResource("Resource_oc3c5")])
 
 [node name="phase3" type="Node" parent="area arena/wave holder"]
 
@@ -206,18 +234,18 @@ position = Vector2(-243, -59)
 position = Vector2(-131, -59)
 
 [node name="dvd1" type="Node2D" parent="area arena/wave holder/phase3"]
-position = Vector2(563, -185)
+position = Vector2(620, -218)
 
-[node name="angle" type="Node2D" parent="area arena/wave holder/phase3/dvd1"]
-
-[node name="32" type="Node" parent="area arena/wave holder/phase3/dvd1/angle"]
+[node name="extra" type="Node2D" parent="area arena/wave holder/phase3/dvd1"]
+script = ExtResource("6_e726g")
+extras = Array[ExtResource("7_ksdkh")]([SubResource("Resource_d110b")])
 
 [node name="dvd2" type="Node2D" parent="area arena/wave holder/phase3"]
-position = Vector2(563, -185)
+position = Vector2(564, -300)
 
-[node name="angle" type="Node2D" parent="area arena/wave holder/phase3/dvd2"]
-
-[node name="205" type="Node" parent="area arena/wave holder/phase3/dvd2/angle"]
+[node name="extra" type="Node2D" parent="area arena/wave holder/phase3/dvd2"]
+script = ExtResource("6_e726g")
+extras = Array[ExtResource("7_ksdkh")]([SubResource("Resource_u3s44")])
 
 [node name="phase4" type="Node" parent="area arena/wave holder"]
 
@@ -237,7 +265,9 @@ position = Vector2(-110, -325)
 [node name="peashooter" type="Node2D" parent="area arena/wave holder/phase4"]
 position = Vector2(727, -59)
 
-[node name="face_left" type="Node2D" parent="area arena/wave holder/phase4/peashooter"]
+[node name="extra" type="Node2D" parent="area arena/wave holder/phase4/peashooter"]
+script = ExtResource("6_e726g")
+extras = Array[ExtResource("7_ksdkh")]([SubResource("Resource_ksdkh")])
 
 [node name="doors" type="TileMapLayer" parent="area arena"]
 position = Vector2(-3, -107)
