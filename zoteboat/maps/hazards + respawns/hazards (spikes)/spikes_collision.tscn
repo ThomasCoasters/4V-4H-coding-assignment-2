@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk8vqqi7q7ylb"]
+
+[ext_resource type="Script" uid="uid://c3frdu7p07um6" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.gd" id="1_u27sq"]
+
+[node name="SpikesCollision" type="Node2D"]
+script = ExtResource("1_u27sq")
+
+[node name="StaticBody2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-10, -7, 10, -7, 10, 7, -10, 7)
+
+[connection signal="body_entered" from="StaticBody2D" to="." method="_on_static_body_2d_body_entered"]

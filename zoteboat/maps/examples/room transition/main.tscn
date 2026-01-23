@@ -134,7 +134,7 @@ position = Vector2(-973, -1893)
 [node name="WarpZone2" parent="." instance=ExtResource("2_7pfcn")]
 position = Vector2(1325, -1481)
 scale = Vector2(1, 13)
-warp_to = "res://maps/examples/enemy arena/enemy arena.tscn"
+warp_to = "res://maps/test/map_copy___testing.tscn"
 new_location_group = "left_1"
 
 [node name="WarpZone" parent="." instance=ExtResource("2_7pfcn")]
