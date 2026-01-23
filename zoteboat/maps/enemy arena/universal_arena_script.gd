@@ -41,6 +41,8 @@ func _ready() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	
+	doors.enabled = false
+	
 	for wave_number in range(wave_holder.get_child_count()):
 		wave_to_node[wave_number+1] = wave_holder.get_child(wave_number)
 	
@@ -82,26 +84,19 @@ func spawn_wave():
 		return
 	
 	for spawner in wave_to_node[current_wave].get_children():
+		
 		if "camera_mode" in spawner.name:
 			for mode in spawner.get_children():
 				player.current_camera_type = mode.name
 		
+		var extra := {}
+		
+		if spawner.has_method("get_extras"):
+			for kv in spawner.get_extras():
+				extra[kv.key] = kv.value
+		
 		for key in ENEMY_SCENES:
 			if key in spawner.name:
-				var extra := {}
-				
-				# Only peashooter cares about this
-				if key == "peashooter":
-					if spawner.has_node("face_left"):
-						extra.face_left = true
-				
-				if spawner.has_node("angle"):
-					var angle_node = spawner.get_node("angle")
-					if angle_node.get_child_count() > 0:
-						var angle_child = angle_node.get_child(0)
-						extra.angle = deg_to_rad(float(angle_child.name))
-				
-				
 				spawn_enemy(
 					ENEMY_SCENES[key],
 					spawner.global_position,
@@ -112,12 +107,14 @@ func spawn_wave():
 
 
 
+
+
 #region enemy spawning
 func spawn_enemy(enemy_scene: PackedScene, pos: Vector2, extra := {}) -> void:
 	var enemy := enemy_scene.instantiate()
 	
 	for key in extra:
-		if key in enemy:
+		if enemy.has_method("set") and enemy.has_property(key):
 			enemy.set(key, extra[key])
 	
 	enemy.start_active = false

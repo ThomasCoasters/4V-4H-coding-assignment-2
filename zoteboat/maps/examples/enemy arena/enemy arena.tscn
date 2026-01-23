@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=4 uid="uid://c5gh7lv4nyhjq"]
+[gd_scene load_steps=13 format=4 uid="uid://c5gh7lv4nyhjq"]
 
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_5epxj"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="2_8nt8o"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="3_mw1b3"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="4_1ceh5"]
 [ext_resource type="Script" uid="uid://dirquph6nfgas" path="res://maps/enemy arena/universal_arena_script.gd" id="5_wxu3b"]
+[ext_resource type="Script" uid="uid://3agjipx3lxq3" path="res://maps/examples/enemy arena/generic_extra_script.gd" id="6_e726g"]
+[ext_resource type="Script" uid="uid://domk3qfwgxh7i" path="res://maps/enemy arena/keyValue.gd" id="7_ksdkh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b85t1"]
 vertices = PackedVector2Array(785.15625, -32.203125, -323.7422, -36.789063, 79, -121, 395, -121, -117, -121, 747, -121, 785.46094, -121, 591, -121, 747, -505, 591, -285, -273, -505, 395, -285, -323.3203, -121, -273, -121, -117, -285, 79, -285)
@@ -102,6 +104,12 @@ sources/0 = SubResource("TileSetAtlasSource_b85t1")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80f00"]
 size = Vector2(36, 633)
 
+[sub_resource type="Resource" id="Resource_oc3c5"]
+script = ExtResource("7_ksdkh")
+key = "face_left"
+value = true
+metadata/_custom_type_script = "uid://domk3qfwgxh7i"
+
 [node name="Test3" type="Node2D"]
 script = ExtResource("1_5epxj")
 
@@ -165,7 +173,9 @@ position = Vector2(-183, -59)
 [node name="peashooter" type="Node2D" parent="area arena/wave holder/phase1"]
 position = Vector2(727, -59)
 
-[node name="face_left" type="Node2D" parent="area arena/wave holder/phase1/peashooter"]
+[node name="extra" type="Node2D" parent="area arena/wave holder/phase1/peashooter"]
+script = ExtResource("6_e726g")
+extras = Array[ExtResource("7_ksdkh")]([SubResource("Resource_oc3c5")])
 
 [node name="phase2" type="Node" parent="area arena/wave holder"]
 
