@@ -3,6 +3,7 @@ class_name Map
 
 signal enemy_died(enemy: Node2D)
 signal arena_won(arena: Node)
+signal item_collected(item: Node)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,6 +33,19 @@ func _ready() -> void:
 			
 		arena.arena_won.connect(_on_arena_won)
 	
+	for item in get_tree().get_nodes_in_group("collectable"):
+		
+		var full_path = str(item.get_path())
+		
+		if Global.map_holder.collected_items.has(map_path):
+			if full_path in Global.map_holder.collected_items[map_path]:
+				item.queue_free()
+				continue
+		
+		item.collected.connect(_on_item_collected)
+	
+	
+	
 
 
 func _on_enemy_killed(enemy: Node2D):
@@ -42,3 +56,7 @@ func _on_enemy_killed(enemy: Node2D):
 func _on_arena_won(arena):
 	arena_won.emit(arena)
 	arena.queue_free()
+
+func _on_item_collected(item):
+	item_collected.emit(item)
+	item.queue_free()

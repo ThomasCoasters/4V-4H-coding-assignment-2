@@ -393,9 +393,10 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 z_index = 999
 collision_mask = 6
 script = ExtResource("1_d2shb")
-max_jumps_amount = 2
+has_dash = true
+has_wall_cling = true
+has_double_jump = true
 Camera = NodePath("Camera")
-can_walljump = true
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -25)
@@ -403,7 +404,6 @@ scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_d61i2")
 animation = &"idle"
 autoplay = "fall"
-frame_progress = 0.088772394
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4.5)

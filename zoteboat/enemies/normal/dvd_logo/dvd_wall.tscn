@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbn2wfw15yc8n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phkyq"]
+
+[node name="DVDwall" type="StaticBody2D"]
+collision_layer = 65536
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_phkyq")
+debug_color = Color(0.5294118, 0.20784314, 1, 0.41960785)

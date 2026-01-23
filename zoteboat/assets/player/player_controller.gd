@@ -3,6 +3,17 @@ class_name Player
 
 
 #region vars setup
+@export_group("ability unlocks", "has_")
+@export var has_dash: bool
+@export var has_wall_cling: bool
+@export var has_double_jump: bool
+
+
+@export_group("QoL changes")
+@export_range(0.0, 1.0, 0.01) var controller_rumble_mult: float = 1.0
+@export_range(0.0, 1.0, 0.01) var screen_shake_mult: float = 1.0
+
+
 const GRAVITY : int = 12
 
 var gravity_multiplier := 0.0
@@ -12,7 +23,7 @@ var is_jumping = false
 var jump_timer := Timer.new()
 const MAX_JUMP_TIME : float = 0.3
 const JUMPING_SPEED : int = -750
-@export var max_jumps_amount : int = 1
+var max_jumps_amount : int = 1
 var jumps_amount : int = max_jumps_amount
 var jump_max_held: bool = false
 
@@ -23,9 +34,10 @@ var direction := Vector2(0,0)
 var last_direction := Vector2(1,0)
 const MOVE_SPEED : int = 400
 
+@export_group("nodes")
 @export var Camera : Camera2D
 const LOOKAHEAD : int = 50
-var current_camera_type := "free" #"free" of "locked"
+var current_camera_type := "free" #"free" or "locked" or "lock_x" or "lock_y"
 var forced_position = Vector2(0,0)
 const LOOKAHEAD_COOLDOWN : float = 0.1
 
@@ -43,12 +55,13 @@ var can_walk : bool = true
 
 const HARDFALL_STUN_TIME : float = 0.6
 
-@export var can_walljump : bool = false
 var forced_move : Vector2
 
-var attack_damage : int = 5
+@export_group("attack")
+@export var attack_damage : int = 5
 
-var max_health : int = 5: set = _on_max_health_set
+@export_group("health and mana")
+@export var max_health : int = 5: set = _on_max_health_set
 var health : int: set = _on_health_set
 signal player_health_changed(health: int)
 signal player_max_health_changed()
@@ -64,8 +77,8 @@ const ATTACK_KNOCKBACK_FORCE = 300
 const ATTACK_KNOCKBACK_TIME = 0.05
 
 
-var mana_per_attack: int = 11
-var max_mana : int = 99: set = _on_max_mana_set
+@export var mana_per_attack: int = 11
+@export var max_mana : int = 99: set = _on_max_mana_set
 var mana : int: set = _on_mana_set
 signal player_mana_changed(mana: int)
 signal player_max_mana_changed()
@@ -77,7 +90,7 @@ var heal_time_expired: float = 0
 
 var mana_float = float(mana)
 
-var heal_health: int = 1
+@export var heal_health: int = 1
 
 var healing_max_fall_speed_multiplier: int = 6
 
@@ -222,7 +235,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_released("heal") && heal_time_expired <= heal_time - 0.2:
 		state_chart.send_event("heal_cancel")
 	
-	if Input.is_action_just_pressed("dash") && can_move && !is_on_wall_only():
+	if Input.is_action_just_pressed("dash") && can_move && !is_on_wall_only() && has_dash:
 		state_chart.send_event("dash_start")
 	#endregion
 		#region checks
@@ -233,7 +246,7 @@ func _process(_delta: float) -> void:
 	if is_on_ceiling():
 		state_chart.send_event("jump_released")
 	
-	if is_on_wall_only() && velocity.y >0 && can_walljump:
+	if is_on_wall_only() && velocity.y >0 && has_wall_cling:
 		state_chart.send_event("on_wall")
 		state_chart.send_event("dash_recharged")
 	
@@ -316,13 +329,18 @@ func _on_falling_state_entered() -> void:
 
 
 func _on_on_ground_state_entered() -> void:
+	if has_double_jump:
+		max_jumps_amount = 2
+	else:
+		max_jumps_amount = 1
+	
 	jumps_amount = max_jumps_amount
 	
 	#current_camera_type = "free"
 
 
 func _on_landed(speed):
-	if $StateChart/ParallelState/Jumping/hardfall.active && speed >= max_fall_speed:
+	if $StateChart/ParallelState/Jumping/hardfall.active && speed >= max_fall_speed && !$StateChart/ParallelState/dash/dashing.active && !$"StateChart/ParallelState/healing/heal start".active:
 		play_anim("hardfall_land", ANIM_PRIORITY.STAND)
 		can_move = false
 		
@@ -645,9 +663,9 @@ func vibrate(time, vibration_type: String = "off"):
 		"hard":
 			hard_vibration_amount = 1.0
 	
-	Input.start_joy_vibration(0, soft_vibration_amount, hard_vibration_amount, time)
+	Input.start_joy_vibration(0, soft_vibration_amount * controller_rumble_mult, hard_vibration_amount * controller_rumble_mult, time)
 	
-	Camera.screen_shake((soft_vibration_amount*3)+(hard_vibration_amount*7), time)
+	Camera.screen_shake(((soft_vibration_amount*3)+(hard_vibration_amount*7)) * screen_shake_mult, time)
 
 func stop_vibrate():
 	Input.stop_joy_vibration(0)
@@ -759,12 +777,12 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 	var last_frame_progress := 0.0
 	
 	#region anim specific
-	if anim_name == "fall":
-		$CollisionShape2D.shape.size.y = 17
-		$Area2D/CollisionShape2D.shape.size.y = 17
+	if !is_on_floor():
+		$CollisionShape2D.shape.size.y = 24
+		$Area2D/CollisionShape2D.shape.size.y = 24
 		
-		$CollisionShape2D.position.y = (collision_size.y-17)/2
-		$Area2D/CollisionShape2D.position.y = (collision_size.y-17)/2
+		$CollisionShape2D.position.y = (collision_size.y-24)/2
+		$Area2D/CollisionShape2D.position.y = (collision_size.y-24)/2
 		
 		$Sprite2D.position.y = -10
 	else:
@@ -777,12 +795,11 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 		$Sprite2D.position.y = -25
 	
 	if anim_name == "wall":
-		$Sprite2D.position.x = -19 * sign(last_direction.x)
-	
+		$Sprite2D.position = Vector2(-19 * sign(last_direction.x), 5)
 	elif anim_name == "attack":
-		$Sprite2D.position.x = 20 * sign(last_direction.x)
+		$Sprite2D.position = Vector2(20 * sign(last_direction.x), -25)
 	else:
-		$Sprite2D.position.x = 0
+		$Sprite2D.position = Vector2(0, -25)
 	
 	if current_anim == "walk":
 		last_frame = $Sprite2D.frame

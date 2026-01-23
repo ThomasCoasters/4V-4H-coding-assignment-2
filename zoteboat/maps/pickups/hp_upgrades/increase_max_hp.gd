@@ -1,11 +1,18 @@
 extends Area2D
 
+@export var increase_amount: int = 1
+
+signal collected(node)
+
 
 func _on_body_entered(body: Node2D) -> void:
 	if !body.is_in_group("player"):
 		return
 	
+	collect(body)
+
+
+func collect(body):
+	body.change_health(increase_amount, "max")
 	
-	body.change_health(1, "max")
-	
-	self.queue_free()
+	collected.emit(self)

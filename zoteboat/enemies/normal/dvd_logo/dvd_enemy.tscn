@@ -14,9 +14,10 @@ size = Vector2(44, 24)
 
 [node name="DvdEnemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 8
-collision_mask = 10
+collision_mask = 65546
 script = ExtResource("1_4ovew")
 stats = SubResource("Resource_6iunu")
+angle = 0.17453292519943295
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.35742188, 0.21484375)
