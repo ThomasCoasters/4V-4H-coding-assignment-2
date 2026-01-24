@@ -192,6 +192,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_24ba0")
 text = "Quit Game"
 
 [node name="quit game" type="VBoxContainer" parent="."]
+visible = false
 offset_left = 801.5
 offset_top = 626.0
 offset_right = 1118.5
@@ -232,6 +233,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_24ba0")
 text = "No"
 
 [node name="settings" type="VBoxContainer" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -300,7 +302,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_24ba0")
 text = "back"
 
 [node name="left_arrow" type="AnimatedSprite2D" parent="."]
-position = Vector2(726.5, 626)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_wjpwo")
 animation = &"in"
