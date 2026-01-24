@@ -135,10 +135,8 @@ signal jumping()
 
 var hazard_respawn_location: Vector2
 
-
-
-
 @onready var sprite_2d: AnimatedSprite2D = $Sprite2D
+@onready var ui_holder: CanvasLayer = $UiHolder
 
 #endregion
 
@@ -712,12 +710,12 @@ func i_frames(time):
 	self.add_to_group("invincible")
 	sprite_2d.set_modulate(Color8(255,0,0))
 	
-	vignette_shrink(0.2, 0.8, time/3)
+	vignette_shrink(0.0, 0.8, time/6)
 	
-	await get_tree().create_timer(time/3).timeout
-	vignette_return(0.9, 1.3, time/3*2)
+	await get_tree().create_timer(time/6*2).timeout
+	vignette_return(0.9, 1.3, time/6*4)
 	
-	await get_tree().create_timer(time/3*2).timeout
+	await get_tree().create_timer(time/6*4).timeout
 	
 	sprite_2d.set_modulate(Color8(255,255,255))
 	self.remove_from_group("invincible")
@@ -899,7 +897,7 @@ func vignette_shrink(target_inner: float = 0.2, target_outer: float = 0.5, durat
 	
 	var tween = create_tween()
 	tween.tween_property(mat, "shader_parameter/inner_radius", target_inner, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(mat, "shader_parameter/outer_radius", target_outer, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.parallel().tween_property(mat, "shader_parameter/outer_radius", target_outer, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.play()
 
 
@@ -910,7 +908,7 @@ func vignette_return(target_inner: float = 1.0, target_outer: float = 1.0, durat
 	
 	var tween = create_tween()
 	tween.tween_property(mat, "shader_parameter/inner_radius", target_inner, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(mat, "shader_parameter/outer_radius", target_outer, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.parallel().tween_property(mat, "shader_parameter/outer_radius", target_outer, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.play()
 
 #endregion

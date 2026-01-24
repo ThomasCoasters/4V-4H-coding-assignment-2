@@ -22,13 +22,15 @@ var is_transition: bool = false
 func _ready() -> void:
 	Global.map_holder = self
 	
-	map_just_loaded()
+	player.visible = false
+	player.ui_holder.visible = false
 	
-	current_map = $map/TestMap
+	player.can_move = false
+	player.add_to_group("invincible")
+	player.set_process_mode(Node.PROCESS_MODE_DISABLED)
+	player.Camera.set_process_mode(Node.PROCESS_MODE_ALWAYS)
 	
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	
-	change_2d_scene(starting_map, "start")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func change_gui_scene(new_scene: String, delete: bool = true, keep_running: bool = false) -> void:
 	if current_GUI != null:
@@ -52,6 +54,8 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	fading()
 	
 	await transition.on_transition_finished
+	player.visible = true
+	player.ui_holder.visible = true
 	player.global_position = Vector2(-100000, -100000)
 	
 	
