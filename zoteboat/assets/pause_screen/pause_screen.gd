@@ -188,6 +188,8 @@ func _on_start_pressed() -> void:
 		return
 	Global.map_holder.process_mode = Node.PROCESS_MODE_INHERIT
 	
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
 	queue_free()
 
 
