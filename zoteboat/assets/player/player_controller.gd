@@ -242,6 +242,10 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("dash") && can_move && !is_on_wall_only() && has_dash:
 		state_chart.send_event("dash_start")
+	
+	
+	if Input.is_action_just_pressed("pause"):
+		Global.map_holder.change_gui_scene("res://assets/pause_screen/pause_screen.tscn")
 	#endregion
 		#region checks
 	

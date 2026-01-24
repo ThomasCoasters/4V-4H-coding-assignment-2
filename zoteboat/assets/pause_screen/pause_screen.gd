@@ -67,9 +67,33 @@ var volume_values = {
 var current_volume_index: int = 2
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	Global.map_holder.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	current_rumble_index = index_from_value(
+		Global.player.controller_rumble_mult,
+		rumble_states,
+		rumble_values
+	)
+	
+	current_screen_shake_index = index_from_value(
+		Global.player.screen_shake_mult,
+		screen_shake_states,
+		screen_shake_values
+	)
+	
+	var bus_index = AudioServer.get_bus_index("Master")
+	current_volume_index = index_from_value(
+		AudioServer.get_bus_volume_db(bus_index),
+		volume_states,
+		volume_values
+	)
+	
 	rumble.text = "Rumble: " + rumble_states[current_rumble_index]
 	screen_shake.text = "Screen Shake: " + screen_shake_states[current_screen_shake_index]
 	volume.text = "Volume: " + volume_states[current_volume_index]
+	
 	
 	containers = [basic_buttons, quit_game_buttons, settings]
 	
@@ -90,6 +114,10 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if loading:
+		return
+	
+	
 	if event.is_action_pressed("down") or event.is_action_pressed("up"):
 		if not controller_active:
 			match shown_menu:
@@ -104,7 +132,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
-	if event is InputEventMouseMotion:
+	elif event is InputEventMouseMotion:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		controller_active = false
 		
@@ -158,16 +186,7 @@ func show_menu(container: Control):
 func _on_start_pressed() -> void:
 	if loading:
 		return
-	
-	process_mode = Node.PROCESS_MODE_DISABLED
-	ui_button_confirm.play()
-	
-	loading = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	
-	Global.map_holder.change_2d_scene(Global.map_holder.starting_map, "start")
-	
-	await get_tree().create_timer(0.5).timeout
+	Global.map_holder.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	queue_free()
 
@@ -185,6 +204,8 @@ func _on_quit_game_pressed() -> void:
 	for contain in containers:
 		hide_menu(contain)
 	show_menu(quit_game_buttons)
+	
+	
 	
 	ui_button_cancel.play()
 
@@ -253,3 +274,9 @@ func _on_exit_pressed() -> void:
 	show_menu(basic_buttons)
 	
 	ui_button_cancel.play()
+
+func index_from_value(value: float, states: Array, values: Dictionary) -> int:
+	for i in states.size():
+		if is_equal_approx(values[states[i]], value):
+			return i
+	return 0

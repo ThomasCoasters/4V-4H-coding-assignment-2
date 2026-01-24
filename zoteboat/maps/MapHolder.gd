@@ -33,6 +33,9 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func change_gui_scene(new_scene: String, delete: bool = true, keep_running: bool = false) -> void:
+	if gui.get_child_count() > 0:
+		return
+	
 	if current_GUI != null:
 		if delete:
 			current_GUI.queue_free() # full remove
