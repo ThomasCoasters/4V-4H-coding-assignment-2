@@ -16,6 +16,9 @@ var collected_items : Dictionary = {}
 
 var is_transition: bool = false
 
+@export var starting_map: String = "res://maps/examples/room transition/main.tscn"
+@export var starting_location: String = "start"
+
 func _ready() -> void:
 	Global.map_holder = self
 	
@@ -24,6 +27,8 @@ func _ready() -> void:
 	current_map = $map/TestMap
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
+	change_2d_scene(starting_map, "start")
 
 func change_gui_scene(new_scene: String, delete: bool = true, keep_running: bool = false) -> void:
 	if current_GUI != null:
@@ -80,6 +85,9 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 		
 		if child is NavigationAgent2D:
 			Global.navigation_agent_2d = child
+		
+		if child is TileMapLayer:
+			Global.player.Camera.setup_limits(child)
 	
 	map_just_loaded()
 	

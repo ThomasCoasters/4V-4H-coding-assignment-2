@@ -23,6 +23,12 @@ var attack_direction: Vector2 = Vector2.ZERO
 
 var player_in_attack_range: bool = false
 
+@onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+
+@onready var visual_body: AnimatedSprite2D = $body
+@onready var statechart: StateChart = $StateChart
+@onready var state_attack: AtomicState = $StateChart/attacks/attack
+
 func _ready() -> void:
 	if !start_active:
 		deactivate()
@@ -70,7 +76,7 @@ func _on_health_depleted():
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_OUT)
 	
-	tween.tween_property($".", "scale:y", 0.0, 0.25)
+	tween.tween_property(self, "scale:y", 0.0, 0.25)
 	
 	await tween.finished
 	killed.emit(self)
@@ -80,7 +86,7 @@ func _on_health_depleted():
 
 #region attack
 func _on_player_jump():
-	$StateChart.send_event("attack")
+	statechart.send_event("attack")
 
 func _on_attack_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -105,25 +111,25 @@ func _on_attack_state_entered() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	$body.flip_h = Global.player.global_position.x < global_position.x
+	visual_body.flip_h = Global.player.global_position.x < global_position.x
 	
 	stats.attack_damage = 1
 	
 	#update_eyes()
 	
 	if player_in_attack_range:
-		$StateChart.send_event("attack")
+		statechart.send_event("attack")
 	
 	
-	if $StateChart/attacks/attack.active:
+	if state_attack.active:
 		handle_attack_movement(delta)
 	
 	
-	if is_on_floor() || !$StateChart/attacks/attack.active:
+	if is_on_floor() || !state_attack.active:
 		apply_gravity(delta)
 		
-		$body.scale.y = lerp($body.scale.y, 0.35, 0.5)
-		$body.position.y = lerp($body.position.y, -17.0, 0.5)
+		visual_body.scale.y = lerp(visual_body.scale.y, 0.35, 0.5)
+		visual_body.position.y = lerp(visual_body.position.y, -17.0, 0.5)
 	
 	move_and_slide()
 
@@ -138,14 +144,14 @@ func handle_attack_movement(delta: float) -> void:
 			
 			jump_timer -= delta
 			
-			$body.scale.y = lerp($body.scale.y, 0.1, 0.2)
-			$body.position.y = lerp($body.position.y, 17.0, 0.2)
+			visual_body.scale.y = lerp(visual_body.scale.y, 0.1, 0.2)
+			visual_body.position.y = lerp(visual_body.position.y, 17.0, 0.2)
 		
 		else:
 			velocity.x = attack_direction.x * move_speed
 			
-			$body.scale.y = lerp($body.scale.y, 0.5, 0.2)
-			$body.position.y = lerp($body.position.y, -27.0, 0.2)
+			visual_body.scale.y = lerp(visual_body.scale.y, 0.5, 0.2)
+			visual_body.position.y = lerp(visual_body.position.y, -27.0, 0.2)
 	else:
 		jump_timer = 0
 		
@@ -154,20 +160,21 @@ func handle_attack_movement(delta: float) -> void:
 		
 		velocity.x = 0
 		
-		$body.scale.y = lerp($body.scale.y, 0.2, 0.1)
-		$body.position.y = lerp($body.position.y, 0.0, 0.1)
+		visual_body.scale.y = lerp(visual_body.scale.y, 0.2, 0.1)
+		visual_body.position.y = lerp(visual_body.position.y, 0.0, 0.1)
 		
 		stats.attack_damage = 2
 		
 		if is_on_floor():
-			Global.player.vibrate(0.01, "mid-soft")
+			if visible_on_screen_notifier_2d.is_on_screen():
+				Global.player.vibrate(0.01, "mid-soft")
 			
 			stats.attack_damage = 1
-			$body.scale.y = lerp($body.scale.y, 0.35, 0.1)
-			$body.position.y = lerp($body.position.y, -17.0, 0.1)
+			visual_body.scale.y = lerp(visual_body.scale.y, 0.35, 0.1)
+			visual_body.position.y = lerp(visual_body.position.y, -17.0, 0.1)
 			
 			velocity = Vector2.ZERO
-			$StateChart.send_event("stop_attack")
+			statechart.send_event("stop_attack")
 
 
 func apply_gravity(delta: float) -> void:

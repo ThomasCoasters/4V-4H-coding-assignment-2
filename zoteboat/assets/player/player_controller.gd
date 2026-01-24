@@ -127,10 +127,6 @@ var collision_size
 
 var facing_dir: int = 1 # -1 = left           1 = right
 
-
-
-
-
 const HIT_EFFECT = preload("uid://ear4rb07owa4")
 
 var oneshot_loaded_particles := []
@@ -138,6 +134,12 @@ var oneshot_loaded_particles := []
 signal jumping()
 
 var hazard_respawn_location: Vector2
+
+
+
+
+@onready var sprite_2d: AnimatedSprite2D = $Sprite2D
+
 #endregion
 
 func _ready() -> void:
@@ -146,7 +148,7 @@ func _ready() -> void:
 	
 	hazard_respawn_location = global_position
 	
-	$Sprite2D.animation_finished.connect(_on_animation_finished)
+	sprite_2d.animation_finished.connect(_on_animation_finished)
 
 func setup():
 	#region timers setup
@@ -208,7 +210,7 @@ func _physics_process(_delta: float) -> void:
 	
 	update_facing()
 	
-	$Sprite2D.flip_h = facing_dir == -1
+	sprite_2d.flip_h = facing_dir == -1
 
 
 func _process(_delta: float) -> void:
@@ -362,8 +364,8 @@ func _on_wall_slide_state_entered() -> void:
 	
 	play_anim("wall", ANIM_PRIORITY.WALL)
 	
-	$Sprite2D.position = Vector2(-19 * wall_dir, 5)
-	$Sprite2D.flip_h = wall_dir == -1
+	sprite_2d.position = Vector2(-19 * wall_dir, 5)
+	sprite_2d.flip_h = wall_dir == -1
 	
 	velocity.y = 0
 	gravity_multiplier = 0.1
@@ -407,8 +409,8 @@ func camera_movement():
 	
 	if current_camera_type == "lock_y":
 		Camera.global_position.y = forced_position.y
-	else:
-		camera_movement_y()
+	#else:
+		#camera_movement_y()
 	
 	if current_camera_type == "lock_x":
 		Camera.global_position.x = forced_position.x
@@ -606,7 +608,7 @@ func _on_heal_start_state_physics_processing(delta: float) -> void:
 		state_chart.send_event("heal_finished")
 
 func _on_heal_start_state_entered() -> void:
-	$Sprite2D.set_modulate(Color8(0,255,0))
+	sprite_2d.set_modulate(Color8(0,255,0))
 	
 	play_anim("roar_start", ANIM_PRIORITY.HEAL)
 	
@@ -622,7 +624,7 @@ func _on_heal_start_state_entered() -> void:
 
 func _on_heal_finished_state_entered() -> void:
 	change_health(heal_health)
-	$Sprite2D.set_modulate(Color8(255,255,255))
+	sprite_2d.set_modulate(Color8(255,255,255))
 	
 	attack_speed_buff()
 	
@@ -639,7 +641,7 @@ func _on_idle_state_entered() -> void:
 	stop_anim("roar_loop")
 	stop_vibrate()
 	
-	$Sprite2D.set_modulate(Color8(255,255,255))
+	sprite_2d.set_modulate(Color8(255,255,255))
 #endregion
 
 #region juice
@@ -708,7 +710,7 @@ func knockback(force, time, body, knockback_up: bool = true):
 
 func i_frames(time):
 	self.add_to_group("invincible")
-	$Sprite2D.set_modulate(Color8(255,0,0))
+	sprite_2d.set_modulate(Color8(255,0,0))
 	
 	vignette_shrink(0.2, 0.8, time/3)
 	
@@ -717,7 +719,7 @@ func i_frames(time):
 	
 	await get_tree().create_timer(time/3*2).timeout
 	
-	$Sprite2D.set_modulate(Color8(255,255,255))
+	sprite_2d.set_modulate(Color8(255,255,255))
 	self.remove_from_group("invincible")
 
 
@@ -799,7 +801,7 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 		$CollisionShape2D.position.y = (collision_size.y-24)/2
 		$Area2D/CollisionShape2D.position.y = (collision_size.y-24)/2
 		
-		$Sprite2D.position.y = -10
+		sprite_2d.position.y = -10
 	else:
 		$CollisionShape2D.shape.size.y = collision_size.y
 		$Area2D/CollisionShape2D.shape.size.y = collision_size.y
@@ -807,18 +809,18 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 		$CollisionShape2D.position.y = 4.5
 		$Area2D/CollisionShape2D.position.y = 4.5
 		
-		$Sprite2D.position.y = -25
+		sprite_2d.position.y = -25
 	
 	if anim_name == "wall":
-		$Sprite2D.position = Vector2(-19 * sign(last_direction.x), 5)
+		sprite_2d.position = Vector2(-19 * sign(last_direction.x), 5)
 	elif anim_name == "attack":
-		$Sprite2D.position = Vector2(20 * sign(last_direction.x), -25)
+		sprite_2d.position = Vector2(20 * sign(last_direction.x), -25)
 	else:
-		$Sprite2D.position = Vector2(0, -25)
+		sprite_2d.position = Vector2(0, -25)
 	
 	if current_anim == "walk":
-		last_frame = $Sprite2D.frame
-		last_frame_progress = $Sprite2D.frame_progress
+		last_frame = sprite_2d.frame
+		last_frame_progress = sprite_2d.frame_progress
 	#endregion
 	
 	current_anim_priority = priority
@@ -826,16 +828,16 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 	
 	current_anim = anim_name
 	
-	$Sprite2D.play(anim_name)
+	sprite_2d.play(anim_name)
 	
 	
 	
 	if anim_name == "attack":
-		$Sprite2D.frame = min(
+		sprite_2d.frame = min(
 			last_frame,
-			$Sprite2D.sprite_frames.get_frame_count("attack") - 1
+			sprite_2d.sprite_frames.get_frame_count("attack") - 1
 		)
-		$Sprite2D.frame_progress = last_frame_progress
+		sprite_2d.frame_progress = last_frame_progress
 
 func stop_anim(wanted_anim: String = "idle"):
 	if current_anim != wanted_anim:

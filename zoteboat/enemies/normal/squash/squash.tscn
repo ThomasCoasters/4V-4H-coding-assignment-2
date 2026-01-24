@@ -446,6 +446,9 @@ debug_color = Color(1, 0, 0, 0.41960785)
 shape = SubResource("CapsuleShape2D_jsk1k")
 debug_color = Color(1, 0, 0, 0.41960785)
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-45, -67, 86, 103)
+
 [connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]
 [connection signal="body_exited" from="attack" to="." method="_on_attack_body_exited"]
 [connection signal="state_entered" from="StateChart/attacks/idle" to="." method="_on_idle_state_entered"]

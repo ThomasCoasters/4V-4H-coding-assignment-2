@@ -112,6 +112,8 @@ func spawn_wave():
 
 #region enemy spawning
 func spawn_enemy(enemy_scene: PackedScene, pos: Vector2, extra := {}) -> void:
+	await get_tree().create_timer(0.5).timeout
+	
 	var enemy := enemy_scene.instantiate()
 	
 	
@@ -126,7 +128,7 @@ func spawn_enemy(enemy_scene: PackedScene, pos: Vector2, extra := {}) -> void:
 	alive_enemies += 1
 	enemy.killed.connect(_on_enemy_killed)
 	
-	fade_in_enemy(enemy, 0.5)
+	fade_in_enemy(enemy, 0.7)
 
 func _on_enemy_killed(enemy):
 	alive_enemies -= 1
