@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bm7u8tlxgjvtm"
+path="res://.godot/imported/ui button confirm.wav-9012fa7f5064d35708d5d7d4693d56c9.sample"
+
+[deps]
+
+source_file="res://assets/start_screen/audio/ui button confirm.wav"
+dest_files=["res://.godot/imported/ui button confirm.wav-9012fa7f5064d35708d5d7d4693d56c9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

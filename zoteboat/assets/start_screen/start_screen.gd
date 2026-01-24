@@ -11,6 +11,7 @@ var loading: bool = false
 
 @onready var rumble: Button = $settings/rumble
 @onready var screen_shake: Button = $settings/screen_shake
+@onready var volume: Button = $settings/volume
 @onready var exit: Button = $settings/exit
 
 @onready var left_arrow: AnimatedSprite2D = $left_arrow
@@ -21,6 +22,12 @@ var loading: bool = false
 @onready var basic_buttons: VBoxContainer = $"basic buttons"
 @onready var quit_game_buttons: VBoxContainer = $"quit game"
 @onready var settings: VBoxContainer = $settings
+
+@onready var title: AudioStreamPlayer = $audio/Title
+@onready var ui_button_cancel: AudioStreamPlayer = $audio/UiButtonCancel
+@onready var ui_button_confirm: AudioStreamPlayer = $audio/UiButtonConfirm
+@onready var ui_change_selection: AudioStreamPlayer = $audio/UiChangeSelection
+
 
 var shown_menu
 
@@ -48,10 +55,19 @@ var screen_shake_values = {
 }
 var current_screen_shake_index: int = 2
 
+var volume_states = ["Off", "Low", "Normal", "High"]
+var volume_values = {
+	"Off": -80,
+	"Low": -10,
+	"Normal": 0,
+	"High": +10,
+}
+var current_volume_index: int = 2
 
 func _ready() -> void:
 	rumble.text = "Rumble: " + rumble_states[current_rumble_index]
-	
+	screen_shake.text = "Screen Shake: " + screen_shake_states[current_screen_shake_index]
+	volume.text = "Volume: " + volume_states[current_volume_index]
 	
 	containers = [basic_buttons, quit_game_buttons, settings]
 	
@@ -59,13 +75,17 @@ func _ready() -> void:
 		hide_menu(contain)
 	show_menu(basic_buttons)
 	
-	buttons = [start, options, quit_game, quit_yes, quit_no, rumble, screen_shake, exit]
+	buttons = [start, options, quit_game, quit_yes, quit_no, rumble, screen_shake, volume, exit]
 	
 	for button in buttons:
 		button.mouse_entered.connect(_on_hover.bind(button))
 		button.focus_entered.connect(_on_hover.bind(button))
 		button.mouse_exited.connect(_on_hover_exited)
 		button.focus_exited.connect(_on_hover_exited)
+	
+	$audio/Title.play()
+
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("down") or event.is_action_pressed("up"):
@@ -100,6 +120,8 @@ func _on_hover(button: Button) -> void:
 	
 	left_arrow.play("in")
 	right_arrow.play("in")
+	
+	ui_change_selection.play()
 
 
 
@@ -128,6 +150,9 @@ func _on_start_pressed() -> void:
 	if loading:
 		return
 	
+	process_mode = Node.PROCESS_MODE_DISABLED
+	ui_button_confirm.play()
+	
 	loading = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
@@ -142,6 +167,8 @@ func _on_options_pressed() -> void:
 	for contain in containers:
 		hide_menu(contain)
 	show_menu(settings)
+	
+	ui_button_confirm.play()
 
 
 
@@ -149,11 +176,15 @@ func _on_quit_game_pressed() -> void:
 	for contain in containers:
 		hide_menu(contain)
 	show_menu(quit_game_buttons)
+	
+	ui_button_cancel.play()
 
 
 
 
 func _on_quityes_pressed() -> void:
+	ui_button_confirm.play()
+	await get_tree().create_timer(0.1).timeout
 	get_tree().quit()
 
 
@@ -161,6 +192,8 @@ func _on_quitno_pressed() -> void:
 	for contain in containers:
 		hide_menu(contain)
 	show_menu(basic_buttons)
+	
+	ui_button_cancel.play()
 
 
 
@@ -174,7 +207,8 @@ func _on_rumble_pressed() -> void:
 	rumble.text = "Rumble: " + state_name
 	
 	Global.player.controller_rumble_mult = rumble_values[state_name]
-
+	
+	ui_button_confirm.play()
 
 func _on_screen_shake_pressed() -> void:
 	current_screen_shake_index += 1
@@ -186,9 +220,27 @@ func _on_screen_shake_pressed() -> void:
 	screen_shake.text = "Screen Shake: " + state_name
 	
 	Global.player.screen_shake_mult = screen_shake_values[state_name]
+	
+	ui_button_confirm.play()
+
+func _on_volume_pressed() -> void:
+	current_volume_index += 1
+	if current_volume_index >= volume_states.size():
+		current_volume_index = 0
+	
+	var state_name = volume_states[current_volume_index]
+	
+	volume.text = "Volume: " + state_name
+	
+	var bus_index = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_db(bus_index, volume_values[state_name])
+	
+	ui_button_confirm.play()
 
 
 func _on_exit_pressed() -> void:
 	for contain in containers:
 		hide_menu(contain)
 	show_menu(basic_buttons)
+	
+	ui_button_cancel.play()

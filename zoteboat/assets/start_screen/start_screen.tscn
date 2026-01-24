@@ -1,10 +1,14 @@
-[gd_scene load_steps=27 format=3 uid="uid://5hbj32gqeeb1"]
+[gd_scene load_steps=31 format=3 uid="uid://5hbj32gqeeb1"]
 
 [ext_resource type="Script" uid="uid://cv5t0k0r5jtq" path="res://assets/start_screen/start_screen.gd" id="1_fwd4i"]
 [ext_resource type="Texture2D" uid="uid://dkhnses611d4b" path="res://assets/start_screen/images/menu_theme.png" id="1_sb1oq"]
 [ext_resource type="Texture2D" uid="uid://dsg7ekgjqpdr0" path="res://assets/start_screen/images/title.png" id="2_lh3vm"]
 [ext_resource type="FontFile" uid="uid://bhnk3wqndu8dp" path="res://Game/fonts/TrajanPro-Bold.otf" id="3_64uaj"]
 [ext_resource type="Texture2D" uid="uid://bseh2q8ihqa6l" path="res://assets/start_screen/images/pointer.webp" id="5_xwm6q"]
+[ext_resource type="AudioStream" uid="uid://c1v5s111l8u8a" path="res://assets/start_screen/audio/Title.wav" id="6_w4mux"]
+[ext_resource type="AudioStream" uid="uid://bks12ambgv4vd" path="res://assets/start_screen/audio/ui button cancel.wav" id="7_wfb0p"]
+[ext_resource type="AudioStream" uid="uid://bm7u8tlxgjvtm" path="res://assets/start_screen/audio/ui button confirm.wav" id="8_24ba0"]
+[ext_resource type="AudioStream" uid="uid://b2qsv3xslbfqc" path="res://assets/start_screen/audio/ui change selection.wav" id="9_d1pk8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_64uaj"]
 
@@ -257,7 +261,7 @@ text = "Rumble: Normal"
 [node name="screen_shake" type="Button" parent="settings"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../rumble")
-focus_neighbor_bottom = NodePath("../exit")
+focus_neighbor_bottom = NodePath("../volume")
 theme_override_fonts/font = ExtResource("3_64uaj")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
@@ -266,6 +270,20 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_iwwpc")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_w4mux")
 text = "Screen Shake: Normal
+"
+
+[node name="volume" type="Button" parent="settings"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../screen_shake")
+focus_neighbor_bottom = NodePath("../exit")
+theme_override_fonts/font = ExtResource("3_64uaj")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_iwwpc")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w4mux")
+text = "volume: Normal
 "
 
 [node name="exit" type="Button" parent="settings"]
@@ -293,6 +311,20 @@ sprite_frames = SubResource("SpriteFrames_wjpwo")
 animation = &"in"
 flip_h = true
 
+[node name="audio" type="Node" parent="."]
+
+[node name="Title" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource("6_w4mux")
+
+[node name="UiButtonCancel" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource("7_wfb0p")
+
+[node name="UiButtonConfirm" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource("8_24ba0")
+
+[node name="UiChangeSelection" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource("9_d1pk8")
+
 [connection signal="pressed" from="basic buttons/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="basic buttons/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="basic buttons/Quit Game" to="." method="_on_quit_game_pressed"]
@@ -300,4 +332,5 @@ flip_h = true
 [connection signal="pressed" from="quit game/Quit-no" to="." method="_on_quitno_pressed"]
 [connection signal="pressed" from="settings/rumble" to="." method="_on_rumble_pressed"]
 [connection signal="pressed" from="settings/screen_shake" to="." method="_on_screen_shake_pressed"]
+[connection signal="pressed" from="settings/volume" to="." method="_on_volume_pressed"]
 [connection signal="pressed" from="settings/exit" to="." method="_on_exit_pressed"]
