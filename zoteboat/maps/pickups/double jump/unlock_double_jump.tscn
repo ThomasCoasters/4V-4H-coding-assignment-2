@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://m7ubfq1qdyfv"]
+
+[ext_resource type="Script" uid="uid://drgaxg1444rsd" path="res://maps/pickups/double jump/unlock_double_jump.gd" id="1_vn0ry"]
+[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="1_yug7y"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wur3k"]
+radius = 18.0
+height = 56.0
+
+[node name="UnlockDoubleJump" type="Area2D" groups=["collectable"]]
+script = ExtResource("1_vn0ry")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_yug7y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wur3k")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

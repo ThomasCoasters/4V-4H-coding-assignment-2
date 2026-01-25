@@ -5,6 +5,10 @@ const save_location = "user://ZoteBoatSave.json"
 var DEFAULT_SAVE: Dictionary = {
 	"max_health": 5,
 	
+	"has_dash": false,
+	"has_double_jump": false,
+	"has_wall_cling": false,
+	
 	"starting_room": "res://maps/examples/room transition/main.tscn",
 	"starting_location": "start",
 	
@@ -14,7 +18,7 @@ var DEFAULT_SAVE: Dictionary = {
 	
 	"killed_enemies": {},
 	"finished_arenas": {},
-	"collected_items": {}
+	"collected_items": {},
 }
 
 var contents_to_save: Dictionary = DEFAULT_SAVE.duplicate(true)

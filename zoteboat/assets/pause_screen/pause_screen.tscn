@@ -152,7 +152,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_doa2q")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_wxptr")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_3a5xr")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1p2ls")
-text = "Start Game"
+text = "Continue"
 
 [node name="Options" type="Button" parent="basic buttons"]
 layout_mode = 2

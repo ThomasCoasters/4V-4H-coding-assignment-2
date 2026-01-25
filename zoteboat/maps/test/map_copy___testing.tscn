@@ -1,9 +1,12 @@
-[gd_scene load_steps=11 format=4 uid="uid://ycvqvpa070lb"]
+[gd_scene load_steps=14 format=4 uid="uid://ycvqvpa070lb"]
 
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_sww0n"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="2_e334b"]
 [ext_resource type="Script" uid="uid://dirquph6nfgas" path="res://maps/enemy arena/universal_arena_script.gd" id="3_doxrw"]
+[ext_resource type="PackedScene" uid="uid://db08bac8xalaa" path="res://maps/pickups/dash/unlock_dash.tscn" id="4_e334b"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="4_jylua"]
+[ext_resource type="PackedScene" uid="uid://vvt3b4b06nr2" path="res://maps/pickups/walljump/unlock_walljump.tscn" id="6_jylua"]
+[ext_resource type="PackedScene" uid="uid://m7ubfq1qdyfv" path="res://maps/pickups/double jump/unlock_double_jump.tscn" id="7_tss50"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkdps"]
 texture = ExtResource("2_e334b")
@@ -263,5 +266,14 @@ offset_top = -3.0
 offset_right = -1628.0
 offset_bottom = 27.0
 own_group = "left_1"
+
+[node name="unlock_dash" parent="." instance=ExtResource("4_e334b")]
+position = Vector2(1124, 25)
+
+[node name="unlockWalljump" parent="." instance=ExtResource("6_jylua")]
+position = Vector2(1299, 26)
+
+[node name="UnlockDoubleJump" parent="." instance=ExtResource("7_tss50")]
+position = Vector2(1482, 21)
 
 [connection signal="body_entered" from="area arena/area arena trigger" to="area arena/area arena trigger" method="_on_body_entered"]

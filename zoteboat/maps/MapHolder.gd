@@ -81,7 +81,7 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	current_map = new
 	
 	_disable_map_transitions(new)
-
+	
 	
 	get_tree().call_group("projectiles", "queue_free")
 	

@@ -76,7 +76,6 @@ func finish_arena():
 	doors.enabled = false
 	player.current_camera_type = "free"
 	
-	# Free the parent, not self
 	if is_instance_valid(arena_parent):
 		arena_parent.queue_free()
 	

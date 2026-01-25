@@ -150,6 +150,9 @@ func _ready() -> void:
 
 func setup():
 	max_health = SaveLoad.contents_to_save.max_health
+	has_dash = SaveLoad.contents_to_save.has_dash
+	has_wall_cling = SaveLoad.contents_to_save.has_wall_cling
+	has_double_jump = SaveLoad.contents_to_save.has_double_jump
 	
 	#region timers setup
 	jump_timer.wait_time = MAX_JUMP_TIME
