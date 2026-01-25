@@ -149,6 +149,8 @@ func _ready() -> void:
 	sprite_2d.animation_finished.connect(_on_animation_finished)
 
 func setup():
+	max_health = SaveLoad.contents_to_save.max_health
+	
 	#region timers setup
 	jump_timer.wait_time = MAX_JUMP_TIME
 	jump_timer.one_shot = true
@@ -572,6 +574,8 @@ func _on_attack_entered(body: Node2D):
 func change_health(amount: int, type: String = "normal"):
 	if type == "max":
 		max_health += amount
+		SaveLoad.contents_to_save.max_health = max_health
+		SaveLoad._save()
 	else:
 		health += amount
 

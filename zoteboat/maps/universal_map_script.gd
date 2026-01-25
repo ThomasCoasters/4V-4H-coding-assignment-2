@@ -19,19 +19,25 @@ func _ready() -> void:
 			if full_path in Global.map_holder.killed_enemies[map_path]:
 				enemy.queue_free()
 				continue
-			
+		if Global.map_holder.respawnable_enemies.has(map_path):
+			if full_path in Global.map_holder.respawnable_enemies[map_path]:
+				enemy.queue_free()
+				continue
+		
+		
 		enemy.killed.connect(_on_enemy_killed)
 	
 	for arena in get_tree().get_nodes_in_group("enemy arena"):
-		
-		var full_path = str(arena.get_parent().get_path())
+		var parent = arena.get_parent()
+		var full_path = str(parent.get_path())
 		
 		if Global.map_holder.finished_arenas.has(map_path):
 			if full_path in Global.map_holder.finished_arenas[map_path]:
-				arena.queue_free()
+				parent.queue_free()
 				continue
-			
+		
 		arena.arena_won.connect(_on_arena_won)
+	
 	
 	for item in get_tree().get_nodes_in_group("collectable"):
 		

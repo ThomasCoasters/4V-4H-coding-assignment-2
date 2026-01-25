@@ -37,7 +37,10 @@ const ENEMY_SCENES := {
 
 signal arena_won(node: Node)
 
-func _ready() -> void:
+var arena_parent: Node = null
+
+func _ready():
+	arena_parent = self.get_parent()
 	await get_tree().process_frame
 	await get_tree().process_frame
 	
@@ -70,12 +73,15 @@ func start_arena():
 func finish_arena():
 	arena_started = false
 	arena_finished = true
-	
 	doors.enabled = false
-	
 	player.current_camera_type = "free"
 	
-	arena_won.emit(self.get_parent())
+	# Free the parent, not self
+	if is_instance_valid(arena_parent):
+		arena_parent.queue_free()
+	
+	arena_won.emit(arena_parent)
+
 
 func spawn_wave():
 	current_wave += 1

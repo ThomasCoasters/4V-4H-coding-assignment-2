@@ -3,7 +3,7 @@ extends Node
 const save_location = "user://ZoteBoatSave.json"
 
 var DEFAULT_SAVE: Dictionary = {
-	"health": 5,
+	"max_health": 5,
 	
 	"starting_room": "res://maps/examples/room transition/main.tscn",
 	"starting_location": "start",
@@ -11,6 +11,10 @@ var DEFAULT_SAVE: Dictionary = {
 	"rumble": 2,
 	"screen_shake": 2,
 	"volume": 2,
+	
+	"killed_enemies": {},
+	"finished_arenas": {},
+	"collected_items": {}
 }
 
 var contents_to_save: Dictionary = DEFAULT_SAVE.duplicate(true)

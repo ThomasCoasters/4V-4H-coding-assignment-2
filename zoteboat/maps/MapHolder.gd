@@ -17,6 +17,11 @@ var collected_items : Dictionary = {}
 var is_transition: bool = false
 
 func _ready() -> void:
+	killed_enemies = SaveLoad.contents_to_save.killed_enemies.duplicate(true)
+	finished_arenas = SaveLoad.contents_to_save.finished_arenas.duplicate(true)
+	collected_items = SaveLoad.contents_to_save.collected_items.duplicate(true)
+	
+	
 	Global.map_holder = self
 	
 	player.visible = false
@@ -152,6 +157,8 @@ func _on_enemy_killed(enemy: Node2D):
 		if enemy.stats.respawn_every_save:
 			respawnable_enemies[map_path].append(enemy_path)
 		killed_enemies[map_path].append(enemy_path)
+		SaveLoad.contents_to_save.killed_enemies = killed_enemies.duplicate(true)
+		SaveLoad._save()
 
 
 func _on_arena_won(arena):
@@ -162,6 +169,9 @@ func _on_arena_won(arena):
 		finished_arenas[map_path] = []
 	
 	finished_arenas[map_path].append(arena_path)
+	
+	SaveLoad.contents_to_save.finished_arenas = finished_arenas.duplicate(true)
+	SaveLoad._save()
 
 func _on_item_collected(item):
 	var map_path = current_map.scene_file_path
@@ -171,6 +181,9 @@ func _on_item_collected(item):
 		collected_items[map_path] = []
 	
 	collected_items[map_path].append(item_path)
+	
+	SaveLoad.contents_to_save.collected_items = collected_items.duplicate(true)
+	SaveLoad._save()
 #endregion
 
 
