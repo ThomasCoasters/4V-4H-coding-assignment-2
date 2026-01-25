@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://cru24svdcnf8s"]
+[gd_scene load_steps=11 format=4 uid="uid://cru24svdcnf8s"]
 
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_2psv1"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="2_s8j5p"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="3_brumt"]
 [ext_resource type="PackedScene" uid="uid://oqu7kbfguu6n" path="res://maps/pickups/hp_upgrades/increase_max_hp.tscn" id="5_wcrwb"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="6_g1w2y"]
+[ext_resource type="PackedScene" uid="uid://ddrkv6jvnt6qp" path="res://enemies/normal/tiktik/tiktik.tscn" id="7_s8j5p"]
 [ext_resource type="PackedScene" uid="uid://bbn2wfw15yc8n" path="res://enemies/enemy_wall.tscn" id="8_brumt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkdps"]
@@ -143,3 +144,13 @@ scale = Vector2(20, 1)
 [node name="DVDwall3" parent="." instance=ExtResource("8_brumt")]
 position = Vector2(-1196, -1374)
 scale = Vector2(1, 13)
+
+[node name="Path2D" parent="." instance=ExtResource("7_s8j5p")]
+position = Vector2(424, -1512)
+
+[node name="SpawnLocation3" parent="." instance=ExtResource("2_s8j5p")]
+offset_left = -17.0
+offset_top = -3766.0
+offset_right = 16.0
+offset_bottom = -3736.0
+own_group = "start"
