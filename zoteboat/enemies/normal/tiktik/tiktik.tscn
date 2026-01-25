@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddrkv6jvnt6qp"]
+
+[ext_resource type="Script" uid="uid://73lsaqyjxo3r" path="res://enemies/normal/tiktik/tiktik.gd" id="1_ktpf4"]
+[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="2_6hpjj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
+size = Vector2(50, 24)
+
+[node name="TestDummy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_ktpf4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.25)
+texture = ExtResource("2_6hpjj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_pst0k")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 40.0
