@@ -16,6 +16,7 @@ var DEFAULT_SAVE: Dictionary = {
 	"rumble": 2,
 	"screen_shake": 2,
 	"volume": 2,
+	"unkillable": 0,
 	
 	"killed_enemies": {},
 	"finished_arenas": {},

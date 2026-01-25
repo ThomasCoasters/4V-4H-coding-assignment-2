@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dcc5x1snxgepn"]
+[gd_scene load_steps=16 format=4 uid="uid://dcc5x1snxgepn"]
 
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_l627x"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="2_7pfcn"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cd21npjsi1iei" path="res://enemies/normal/squash/squash.tscn" id="7_hya6h"]
 [ext_resource type="PackedScene" uid="uid://oqu7kbfguu6n" path="res://maps/pickups/hp_upgrades/increase_max_hp.tscn" id="8_cs804"]
 [ext_resource type="PackedScene" uid="uid://desufiot6ea2v" path="res://enemies/normal/peashooter/peashooter.tscn" id="8_n06jd"]
-[ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="8_v7ywc"]
 [ext_resource type="PackedScene" uid="uid://3dmnl1rv4c6f" path="res://enemies/normal/aspid/aspid.tscn" id="9_cs804"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="9_sx31g"]
 [ext_resource type="PackedScene" uid="uid://ddrkv6jvnt6qp" path="res://enemies/normal/tiktik/tiktik.tscn" id="10_v7ywc"]
@@ -107,11 +106,6 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6), Packe
 outlines = Array[PackedVector2Array]([PackedVector2Array(1297, -1086, 1314, -5272, -1511, -5317, -1539, -1108)])
 agent_radius = 50.0
 
-[sub_resource type="Resource" id="Resource_fjb1t"]
-script = ExtResource("8_v7ywc")
-max_health = 25
-metadata/_custom_type_script = "uid://cya84ofqpnfxs"
-
 [node name="TestMap" type="Node2D"]
 script = ExtResource("1_l627x")
 
@@ -153,10 +147,6 @@ scale = Vector2(1, 13)
 warp_to = "res://maps/examples/enemy arena/enemy arena.tscn"
 new_location_group = "left_2"
 
-[node name="squash" parent="." instance=ExtResource("7_hya6h")]
-position = Vector2(655, -1868)
-stats = SubResource("Resource_fjb1t")
-
 [node name="SpawnLocation2" parent="." instance=ExtResource("3_arhpg")]
 offset_left = -1271.0
 offset_top = -1304.0
@@ -185,3 +175,6 @@ position = Vector2(1164, -1957)
 
 [node name="UnlockDoubleJump" parent="." instance=ExtResource("13_7pxm5")]
 position = Vector2(139, -2218)
+
+[node name="squash" parent="." instance=ExtResource("7_hya6h")]
+position = Vector2(658, -1840)

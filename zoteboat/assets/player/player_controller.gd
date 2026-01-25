@@ -138,6 +138,7 @@ var hazard_respawn_location: Vector2
 @onready var sprite_2d: AnimatedSprite2D = $Sprite2D
 @onready var ui_holder: CanvasLayer = $UiHolder
 
+var unkillable: bool = false
 #endregion
 
 func _ready() -> void:
@@ -603,6 +604,9 @@ func _on_player_entered(body: Node2D):
 func _on_health_set(new_health):
 	health = clamp(new_health, 0, max_health)
 	
+	if health == 0:
+		death()
+	
 	player_health_changed.emit(health)
 
 func _on_max_health_set(new_max_health):
@@ -655,6 +659,13 @@ func _on_idle_state_entered() -> void:
 	stop_vibrate()
 	
 	sprite_2d.set_modulate(Color8(255,255,255))
+
+
+func death():
+	if unkillable:
+		return
+	
+	print("u ded")
 #endregion
 
 #region juice

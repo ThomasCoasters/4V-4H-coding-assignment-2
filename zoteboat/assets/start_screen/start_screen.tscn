@@ -333,7 +333,7 @@ theme_override_constants/separation = 60
 [node name="delete_save" type="Button" parent="extra"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../exit")
-focus_neighbor_bottom = NodePath("../exit")
+focus_neighbor_bottom = NodePath("../unkillable")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
@@ -343,9 +343,22 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
 text = "Delete save"
 
-[node name="exit" type="Button" parent="extra"]
+[node name="unkillable" type="Button" parent="extra"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../delete_save")
+focus_neighbor_bottom = NodePath("../exit")
+theme_override_fonts/font = ExtResource("4_w4mux")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xwm6q")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
+text = "Unkillable: off"
+
+[node name="exit" type="Button" parent="extra"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../unkillable")
 focus_neighbor_bottom = NodePath("../delete_save")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
@@ -433,6 +446,7 @@ stream = ExtResource("9_d1pk8")
 [connection signal="pressed" from="settings/volume" to="." method="_on_volume_pressed"]
 [connection signal="pressed" from="settings/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="extra/delete_save" to="." method="_on_delete_save_pressed"]
+[connection signal="pressed" from="extra/unkillable" to="." method="_on_unkillable_pressed"]
 [connection signal="pressed" from="extra/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="reset_save/save-yes" to="." method="_on_saveyes_pressed"]
 [connection signal="pressed" from="reset_save/save-no" to="." method="_on_saveno_pressed"]

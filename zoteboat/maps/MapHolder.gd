@@ -155,9 +155,10 @@ func _on_enemy_killed(enemy: Node2D):
 	if !enemy.stats.respawn_every_room:
 		if enemy.stats.respawn_every_save:
 			respawnable_enemies[map_path].append(enemy_path)
-		killed_enemies[map_path].append(enemy_path)
-		SaveLoad.contents_to_save.killed_enemies = killed_enemies.duplicate(true)
-		SaveLoad._save()
+		else:
+			killed_enemies[map_path].append(enemy_path)
+			SaveLoad.contents_to_save.killed_enemies = killed_enemies.duplicate(true)
+			SaveLoad._save()
 
 
 func _on_arena_won(arena):

@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_dls5b"]
 [ext_resource type="Texture2D" uid="uid://cll36yoch7fe5" path="res://enemies/normal/squash/Transparent_squash-ezgif.com-png-to-webp-converter (1).webp" id="7_gqs84"]
 
-[sub_resource type="Resource" id="Resource_7roff"]
+[sub_resource type="Resource" id="Resource_gqs84"]
 script = ExtResource("2_64wqx")
 max_health = 25
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
@@ -382,7 +382,7 @@ height = 64.0
 collision_layer = 8
 collision_mask = 65538
 script = ExtResource("1_m8w76")
-stats = SubResource("Resource_7roff")
+stats = SubResource("Resource_gqs84")
 player_decector = NodePath("RayCast2D")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
