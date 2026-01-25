@@ -411,7 +411,7 @@ func _on_to_jumping_form_wall_taken() -> void:
 func camera_movement():
 	if current_camera_type == "locked":
 		Camera.set_as_top_level(true)
-		Camera.position = forced_position
+		Camera.global_position = forced_position
 		return
 	
 	var dir = sign(last_direction)

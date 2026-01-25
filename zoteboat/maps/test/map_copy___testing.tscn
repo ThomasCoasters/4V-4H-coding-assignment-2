@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://ycvqvpa070lb"]
+[gd_scene load_steps=12 format=4 uid="uid://ycvqvpa070lb"]
 
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_sww0n"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="2_e334b"]
 [ext_resource type="Script" uid="uid://dirquph6nfgas" path="res://maps/enemy arena/universal_arena_script.gd" id="3_doxrw"]
+[ext_resource type="AudioStream" uid="uid://jqao6jbbhgn3" path="res://maps/enemy arena/audio/tv_time.mp3" id="3_e334b"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="4_jylua"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkdps"]
@@ -202,13 +203,17 @@ navigation_polygon = SubResource("NavigationPolygon_rmc0f")
 
 [node name="area arena" type="Node" parent="."]
 
-[node name="area arena trigger" type="Area2D" parent="area arena" node_paths=PackedStringArray("doors", "camera_pos", "wave_holder") groups=["enemy arena"]]
+[node name="TvTime" type="AudioStreamPlayer" parent="area arena"]
+stream = ExtResource("3_e334b")
+
+[node name="area arena trigger" type="Area2D" parent="area arena" node_paths=PackedStringArray("doors", "camera_pos", "wave_holder", "audio_node") groups=["enemy arena"]]
 position = Vector2(0, 71)
 collision_layer = 0
 script = ExtResource("3_doxrw")
 doors = NodePath("../doors")
 camera_pos = NodePath("../Camera pos")
 wave_holder = NodePath("../wave holder")
+audio_node = NodePath("../TvTime")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area arena/area arena trigger"]
 position = Vector2(0, -312)

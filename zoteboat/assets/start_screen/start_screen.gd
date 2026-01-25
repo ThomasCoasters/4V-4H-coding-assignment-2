@@ -151,8 +151,8 @@ func _on_hover(button: Button) -> void:
 	
 	button.grab_focus()
 	
-	left_arrow.global_position = button_pos + Vector2(-arrow_offset.x, button_size.y / 2)
-	right_arrow.global_position = button_pos + Vector2(button_size.x + arrow_offset.x, button_size.y / 2)
+	left_arrow.global_position = button_pos + Vector2(-arrow_offset.x, button_size.y / 2 + arrow_offset.y)
+	right_arrow.global_position = button_pos + Vector2(button_size.x + arrow_offset.x, button_size.y / 2 + arrow_offset.y)
 	
 	left_arrow.play("in")
 	right_arrow.play("in")

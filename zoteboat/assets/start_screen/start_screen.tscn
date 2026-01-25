@@ -118,6 +118,7 @@ animations = [{
 
 [node name="StartScreen" type="CanvasLayer"]
 script = ExtResource("1_fwd4i")
+arrow_offset = Vector2(20, -2.5)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1920.0

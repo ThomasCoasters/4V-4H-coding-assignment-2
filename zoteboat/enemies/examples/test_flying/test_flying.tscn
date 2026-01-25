@@ -13,7 +13,7 @@ size = Vector2(60, 60)
 
 [node name="Testfly" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent") groups=["enemy"]]
 collision_layer = 8
-collision_mask = 2
+collision_mask = 65538
 script = ExtResource("1_x5ljo")
 stats = SubResource("Resource_l15iq")
 nav_agent = NodePath("NavigationAgent2D")
