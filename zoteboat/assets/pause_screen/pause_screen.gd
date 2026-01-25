@@ -181,6 +181,12 @@ func show_menu(container: Control):
 	container.mouse_filter = Control.MOUSE_FILTER_STOP
 	container.focus_mode = Control.FOCUS_ALL
 
+func index_from_value(value: float, states: Array, values: Dictionary) -> int:
+	for i in states.size():
+		if is_equal_approx(values[states[i]], value):
+			return i
+	return 0
+
 
 
 func _on_start_pressed() -> void:
@@ -276,9 +282,3 @@ func _on_exit_pressed() -> void:
 	show_menu(basic_buttons)
 	
 	ui_button_cancel.play()
-
-func index_from_value(value: float, states: Array, values: Dictionary) -> int:
-	for i in states.size():
-		if is_equal_approx(values[states[i]], value):
-			return i
-	return 0

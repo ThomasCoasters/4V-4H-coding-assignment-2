@@ -1,29 +1,30 @@
-[gd_scene load_steps=28 format=3 uid="uid://bp60oebuy8ofr"]
+[gd_scene load_steps=29 format=3 uid="uid://bp60oebuy8ofr"]
 
 [ext_resource type="Script" uid="uid://bqds6wo0ddpy5" path="res://assets/pause_screen/pause_screen.gd" id="1_vk6rb"]
+[ext_resource type="FontFile" uid="uid://bhnk3wqndu8dp" path="res://Game/fonts/TrajanPro-Bold.otf" id="2_28264"]
 [ext_resource type="Texture2D" uid="uid://bseh2q8ihqa6l" path="res://assets/start_screen/images/pointer.webp" id="4_3a5xr"]
 [ext_resource type="AudioStream" uid="uid://c1v5s111l8u8a" path="res://assets/start_screen/audio/Title.wav" id="5_1p2ls"]
 [ext_resource type="AudioStream" uid="uid://bks12ambgv4vd" path="res://assets/start_screen/audio/ui button cancel.wav" id="6_3uuhd"]
 [ext_resource type="AudioStream" uid="uid://bm7u8tlxgjvtm" path="res://assets/start_screen/audio/ui button confirm.wav" id="7_meutu"]
 [ext_resource type="AudioStream" uid="uid://b2qsv3xslbfqc" path="res://assets/start_screen/audio/ui change selection.wav" id="8_q5osy"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_64uaj"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vk6rb"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fwd4i"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_doa2q"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xwm6q"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wxptr"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o8x2c"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3a5xr"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pgy4w"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1p2ls"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iwwpc"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3uuhd"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w4mux"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_meutu"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wfb0p"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q5osy"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_24ba0"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_07r14"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o8x2c"]
 atlas = ExtResource("4_3a5xr")
@@ -133,9 +134,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -121.0
-offset_top = -133.5
+offset_top = -114.0
 offset_right = 121.0
-offset_bottom = 133.5
+offset_bottom = 114.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 60
@@ -144,25 +145,26 @@ theme_override_constants/separation = 60
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit Game")
 focus_neighbor_bottom = NodePath("../Options")
+theme_override_fonts/font = ExtResource("2_28264")
 theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_xwm6q")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
-text = "Continue
-"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vk6rb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_doa2q")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wxptr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3a5xr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1p2ls")
+text = "Start Game"
 
 [node name="Options" type="Button" parent="basic buttons"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../start")
 focus_neighbor_bottom = NodePath("../Quit Game")
+theme_override_fonts/font = ExtResource("2_28264")
 theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_iwwpc")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_w4mux")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vk6rb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_doa2q")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3uuhd")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3a5xr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_meutu")
 text = "Options
 "
 
@@ -170,12 +172,13 @@ text = "Options
 layout_mode = 2
 focus_neighbor_top = NodePath("../Options")
 focus_neighbor_bottom = NodePath("../start")
+theme_override_fonts/font = ExtResource("2_28264")
 theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_wfb0p")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_24ba0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vk6rb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_doa2q")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_q5osy")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3a5xr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_07r14")
 text = "Quit Game"
 
 [node name="quit game" type="VBoxContainer" parent="."]
@@ -186,15 +189,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -158.5
-offset_top = -136.5
+offset_top = -116.0
 offset_right = 158.5
-offset_bottom = 136.5
+offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 60
 
 [node name="quit_text" type="Label" parent="quit game"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_28264")
 theme_override_font_sizes/font_size = 40
 text = "Are You Sure?"
 horizontal_alignment = 1
@@ -203,24 +207,26 @@ horizontal_alignment = 1
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit-no")
 focus_neighbor_bottom = NodePath("../Quit-no")
+theme_override_fonts/font = ExtResource("2_28264")
 theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_wfb0p")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_24ba0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vk6rb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_doa2q")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_q5osy")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3a5xr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_07r14")
 text = "Yes"
 
 [node name="Quit-no" type="Button" parent="quit game"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit-yes")
 focus_neighbor_bottom = NodePath("../Quit-yes")
+theme_override_fonts/font = ExtResource("2_28264")
 theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_wfb0p")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_24ba0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vk6rb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_doa2q")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_q5osy")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3a5xr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_07r14")
 text = "No"
 
 [node name="settings" type="VBoxContainer" parent="."]
@@ -230,10 +236,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -186.0
-offset_top = -188.0
-offset_right = 186.0
-offset_bottom = 188.0
+offset_left = -221.0
+offset_top = -162.0
+offset_right = 221.0
+offset_bottom = 162.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 60
@@ -242,24 +248,26 @@ theme_override_constants/separation = 60
 layout_mode = 2
 focus_neighbor_top = NodePath("../exit")
 focus_neighbor_bottom = NodePath("../screen_shake")
+theme_override_fonts/font = ExtResource("2_28264")
 theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_xwm6q")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vk6rb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_doa2q")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wxptr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3a5xr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1p2ls")
 text = "Rumble: Normal"
 
 [node name="screen_shake" type="Button" parent="settings"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../rumble")
 focus_neighbor_bottom = NodePath("../volume")
+theme_override_fonts/font = ExtResource("2_28264")
 theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_iwwpc")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_w4mux")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vk6rb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_doa2q")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3uuhd")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3a5xr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_meutu")
 text = "Screen Shake: Normal
 "
 
@@ -267,12 +275,13 @@ text = "Screen Shake: Normal
 layout_mode = 2
 focus_neighbor_top = NodePath("../screen_shake")
 focus_neighbor_bottom = NodePath("../exit")
+theme_override_fonts/font = ExtResource("2_28264")
 theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_iwwpc")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_w4mux")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vk6rb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_doa2q")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3uuhd")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3a5xr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_meutu")
 text = "volume: Normal
 "
 
@@ -280,12 +289,13 @@ text = "volume: Normal
 layout_mode = 2
 focus_neighbor_top = NodePath("../screen_shake")
 focus_neighbor_bottom = NodePath("../rumble")
+theme_override_fonts/font = ExtResource("2_28264")
 theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_wfb0p")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_24ba0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vk6rb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_doa2q")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_q5osy")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3a5xr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_07r14")
 text = "back"
 
 [node name="left_arrow" type="AnimatedSprite2D" parent="."]

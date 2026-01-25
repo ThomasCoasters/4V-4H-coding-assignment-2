@@ -5,6 +5,7 @@ var loading: bool = false
 @onready var start: Button = $"basic buttons/start"
 @onready var options: Button = $"basic buttons/Options"
 @onready var quit_game: Button = $"basic buttons/Quit Game"
+@onready var extra: Button = $"basic buttons/extra"
 
 @onready var quit_yes: Button = $"quit game/Quit-yes"
 @onready var quit_no: Button = $"quit game/Quit-no"
@@ -14,6 +15,12 @@ var loading: bool = false
 @onready var volume: Button = $settings/volume
 @onready var exit: Button = $settings/exit
 
+@onready var delete_save: Button = $extra/delete_save
+@onready var exit_extra: Button = $extra/exit
+
+@onready var save_yes: Button = $"reset_save/save-yes"
+@onready var save_no: Button = $"reset_save/save-no"
+
 @onready var left_arrow: AnimatedSprite2D = $left_arrow
 @onready var right_arrow: AnimatedSprite2D = $right_arrow
 
@@ -22,6 +29,9 @@ var loading: bool = false
 @onready var basic_buttons: VBoxContainer = $"basic buttons"
 @onready var quit_game_buttons: VBoxContainer = $"quit game"
 @onready var settings: VBoxContainer = $settings
+@onready var extra_buttons: VBoxContainer = $extra
+@onready var reset_save: VBoxContainer = $reset_save
+
 
 @onready var title: AudioStreamPlayer = $audio/Title
 @onready var ui_button_cancel: AudioStreamPlayer = $audio/UiButtonCancel
@@ -67,8 +77,6 @@ var volume_values = {
 var current_volume_index: int = 2
 
 func _ready() -> void:
-	SaveLoad._load()
-	
 	current_rumble_index = SaveLoad.contents_to_save.rumble
 	current_screen_shake_index = SaveLoad.contents_to_save.screen_shake
 	current_volume_index = SaveLoad.contents_to_save.volume
@@ -87,13 +95,13 @@ func _ready() -> void:
 	var bus_index = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_volume_db(bus_index, volume_values[volume_state_name])
 	
-	containers = [basic_buttons, quit_game_buttons, settings]
+	containers = [basic_buttons, quit_game_buttons, settings, extra_buttons, reset_save]
 	
 	for contain in containers:
 		hide_menu(contain)
 	show_menu(basic_buttons)
 	
-	buttons = [start, options, quit_game, quit_yes, quit_no, rumble, screen_shake, volume, exit]
+	buttons = [start, options, extra, quit_game, quit_yes, quit_no, rumble, screen_shake, volume, exit, delete_save, exit_extra, save_yes, save_no]
 	
 	for button in buttons:
 		button.mouse_entered.connect(_on_hover.bind(button))
@@ -115,6 +123,10 @@ func _unhandled_input(event: InputEvent) -> void:
 					quit_yes.grab_focus()
 				settings:
 					rumble.grab_focus()
+				extra_buttons:
+					delete_save.grab_focus()
+				reset_save:
+					save_yes.grab_focus()
 			
 			controller_active = true
 		
@@ -223,9 +235,6 @@ func _on_quitno_pressed() -> void:
 	show_menu(basic_buttons)
 	
 	ui_button_cancel.play()
-	
-	SaveLoad.contents_to_save.starting_location = "main_left"
-	SaveLoad._save()
 
 
 
@@ -283,5 +292,35 @@ func _on_exit_pressed() -> void:
 	for contain in containers:
 		hide_menu(contain)
 	show_menu(basic_buttons)
+	
+	ui_button_cancel.play()
+
+func _on_extra_pressed() -> void:
+	for contain in containers:
+		hide_menu(contain)
+	show_menu(extra_buttons)
+	
+	ui_button_confirm.play()
+
+
+func _on_delete_save_pressed() -> void:
+	for contain in containers:
+		hide_menu(contain)
+	show_menu(reset_save)
+	
+	ui_button_confirm.play()
+
+
+func _on_saveyes_pressed() -> void:
+	SaveLoad.reset_save()
+	ui_button_confirm.play()
+	
+	await get_tree().create_timer(0.1).timeout
+	get_tree().reload_current_scene()
+
+func _on_saveno_pressed() -> void:
+	for contain in containers:
+		hide_menu(contain)
+	show_menu(extra_buttons)
 	
 	ui_button_cancel.play()
