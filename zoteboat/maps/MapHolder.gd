@@ -16,9 +16,6 @@ var collected_items : Dictionary = {}
 
 var is_transition: bool = false
 
-@export var starting_map: String = "res://maps/examples/room transition/main.tscn"
-@export var starting_location: String = "start"
-
 func _ready() -> void:
 	Global.map_holder = self
 	

@@ -67,9 +67,25 @@ var volume_values = {
 var current_volume_index: int = 2
 
 func _ready() -> void:
-	rumble.text = "Rumble: " + rumble_states[current_rumble_index]
-	screen_shake.text = "Screen Shake: " + screen_shake_states[current_screen_shake_index]
-	volume.text = "Volume: " + volume_states[current_volume_index]
+	SaveLoad._load()
+	
+	current_rumble_index = SaveLoad.contents_to_save.rumble
+	current_screen_shake_index = SaveLoad.contents_to_save.screen_shake
+	current_volume_index = SaveLoad.contents_to_save.volume
+	
+	
+	var rumble_state_name = rumble_states[current_rumble_index]
+	rumble.text = "Rumble: " + rumble_state_name
+	Global.player.controller_rumble_mult = rumble_values[rumble_state_name]
+	
+	var screen_shake_state_name = screen_shake_states[current_screen_shake_index]
+	screen_shake.text = "Screen Shake: " + screen_shake_state_name
+	Global.player.screen_shake_mult = screen_shake_values[screen_shake_state_name]
+	
+	var volume_state_name = volume_states[current_volume_index]
+	volume.text = "Volume: " + volume_state_name
+	var bus_index = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_db(bus_index, volume_values[volume_state_name])
 	
 	containers = [basic_buttons, quit_game_buttons, settings]
 	
@@ -159,13 +175,17 @@ func _on_start_pressed() -> void:
 	if loading:
 		return
 	
+	SaveLoad._load()
+	var room = SaveLoad.contents_to_save.starting_room
+	var location = SaveLoad.contents_to_save.starting_location
+	
 	process_mode = Node.PROCESS_MODE_DISABLED
 	ui_button_confirm.play()
 	
 	loading = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
-	Global.map_holder.change_2d_scene(Global.map_holder.starting_map, "start")
+	Global.map_holder.change_2d_scene(room, location)
 	
 	await get_tree().create_timer(0.5).timeout
 	
@@ -203,6 +223,9 @@ func _on_quitno_pressed() -> void:
 	show_menu(basic_buttons)
 	
 	ui_button_cancel.play()
+	
+	SaveLoad.contents_to_save.starting_location = "main_left"
+	SaveLoad._save()
 
 
 
@@ -218,6 +241,9 @@ func _on_rumble_pressed() -> void:
 	Global.player.controller_rumble_mult = rumble_values[state_name]
 	
 	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.rumble = current_rumble_index
+	SaveLoad._save()
 
 func _on_screen_shake_pressed() -> void:
 	current_screen_shake_index += 1
@@ -231,6 +257,9 @@ func _on_screen_shake_pressed() -> void:
 	Global.player.screen_shake_mult = screen_shake_values[state_name]
 	
 	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.screen_shake = current_screen_shake_index
+	SaveLoad._save()
 
 func _on_volume_pressed() -> void:
 	current_volume_index += 1
@@ -245,6 +274,9 @@ func _on_volume_pressed() -> void:
 	AudioServer.set_bus_volume_db(bus_index, volume_values[state_name])
 	
 	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.volume = current_volume_index
+	SaveLoad._save()
 
 
 func _on_exit_pressed() -> void:

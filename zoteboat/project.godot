@@ -23,6 +23,7 @@ buses/default_bus_layout="res://Game/MISC/default_bus_layout.tres"
 
 Global="*res://Game/MISC/scripts/global.gd"
 transition="*res://maps/warp_zone/fading_anim/transition.tscn"
+SaveLoad="*res://Game/saving/SaveLoad.gd"
 
 [debug]
 
