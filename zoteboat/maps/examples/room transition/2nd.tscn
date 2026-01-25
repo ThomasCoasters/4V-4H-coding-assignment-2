@@ -191,9 +191,8 @@ scale = Vector2(1.3097398, 12.70974)
 [node name="SpikesCollision" parent="hazards" instance=ExtResource("8_kdi8c")]
 position = Vector2(-884, -2241)
 
-[node name="CollisionPolygon2D" parent="hazards/SpikesCollision/StaticBody2D" index="0"]
-position = Vector2(1, -1)
-polygon = PackedVector2Array(-80, -2667, -47, -2667, -47, -1922, 1813, -1922, 1814, -1881, -48, -1877, -48, 725, -80, 725)
+[node name="EDIT THIS" parent="hazards/SpikesCollision/StaticBody2D" index="0"]
+polygon = PackedVector2Array(-96, -2730, -29, -2746, -49, 722, -79, 723)
 
 [node name="HazardRespawn" parent="hazards" instance=ExtResource("9_axwb5")]
 position = Vector2(-941, -33)
@@ -210,9 +209,8 @@ scale = Vector2(1, 12.36002)
 [node name="SpikesCollision2" parent="hazards" instance=ExtResource("8_kdi8c")]
 position = Vector2(1555, -2046)
 
-[node name="CollisionPolygon2D" parent="hazards/SpikesCollision2/StaticBody2D" index="0"]
-position = Vector2(1, -1)
-polygon = PackedVector2Array(-76, -2573, -43, -2573, -48, 725, -80, 725)
+[node name="EDIT THIS" parent="hazards/SpikesCollision2/StaticBody2D" index="0"]
+polygon = PackedVector2Array(-74, -1214, -44, -1233, -42, 730, -73, 727)
 
 [editable path="hazards/SpikesCollision"]
 [editable path="hazards/SpikesCollision2"]

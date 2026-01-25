@@ -7,7 +7,7 @@ script = ExtResource("1_u27sq")
 
 [node name="StaticBody2D" type="Area2D" parent="." groups=["map_transitions"]]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="EDIT THIS" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-10, -7, 10, -7, 10, 7, -10, 7)
 
 [connection signal="body_entered" from="StaticBody2D" to="." method="_on_static_body_2d_body_entered"]

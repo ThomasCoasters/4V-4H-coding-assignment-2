@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dcc5x1snxgepn"]
+[gd_scene load_steps=18 format=4 uid="uid://dcc5x1snxgepn"]
 
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_l627x"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="2_7pfcn"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://3dmnl1rv4c6f" path="res://enemies/normal/aspid/aspid.tscn" id="9_cs804"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="9_sx31g"]
 [ext_resource type="PackedScene" uid="uid://ddrkv6jvnt6qp" path="res://enemies/normal/tiktik/tiktik.tscn" id="10_v7ywc"]
+[ext_resource type="PackedScene" uid="uid://db08bac8xalaa" path="res://maps/pickups/dash/unlock_dash.tscn" id="11_bab1l"]
+[ext_resource type="PackedScene" uid="uid://vvt3b4b06nr2" path="res://maps/pickups/walljump/unlock_walljump.tscn" id="12_ahktq"]
+[ext_resource type="PackedScene" uid="uid://m7ubfq1qdyfv" path="res://maps/pickups/double jump/unlock_double_jump.tscn" id="13_7pxm5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkdps"]
 texture = ExtResource("9_sx31g")
@@ -173,3 +176,12 @@ position = Vector2(927, -1386)
 
 [node name="Path2D" parent="." instance=ExtResource("10_v7ywc")]
 position = Vector2(-824, -1479)
+
+[node name="unlock_dash" parent="." instance=ExtResource("11_bab1l")]
+position = Vector2(321, -1884)
+
+[node name="unlockWalljump" parent="." instance=ExtResource("12_ahktq")]
+position = Vector2(1164, -1957)
+
+[node name="UnlockDoubleJump" parent="." instance=ExtResource("13_7pxm5")]
+position = Vector2(139, -2218)

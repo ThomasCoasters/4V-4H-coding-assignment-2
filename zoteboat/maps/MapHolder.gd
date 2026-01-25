@@ -87,9 +87,8 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	
 	for child in new.get_children():
 		if child.is_in_group(new_location_group):
-			Global.player.set_hazard_respawn()
-			
 			player.global_position = child.global_position
+			Global.player.set_hazard_respawn()
 			continue
 		
 		if child is NavigationAgent2D:

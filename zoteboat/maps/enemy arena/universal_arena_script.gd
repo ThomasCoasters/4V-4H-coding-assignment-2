@@ -39,12 +39,15 @@ signal arena_won(node: Node)
 
 var arena_parent: Node = null
 
+@export var audio_node: AudioStreamPlayer
+
 func _ready():
 	arena_parent = self.get_parent()
 	await get_tree().process_frame
 	await get_tree().process_frame
 	
-	doors.enabled = false
+	if doors:
+		doors.enabled = false
 	
 	for wave_number in range(wave_holder.get_child_count()):
 		wave_to_node[wave_number+1] = wave_holder.get_child(wave_number)
@@ -63,21 +66,29 @@ func _on_body_entered(body: Node2D) -> void:
 func start_arena():
 	arena_started = true
 	
-	player.forced_position = camera_pos.position
+	if camera_pos:
+		player.forced_position = camera_pos.position
 	
-	doors.enabled = true
+	if doors:
+		doors.enabled = true
 	
+	if audio_node:
+		audio_node.play()
 	
 	spawn_wave()
 
 func finish_arena():
 	arena_started = false
 	arena_finished = true
-	doors.enabled = false
+	if doors:
+		doors.enabled = false
 	player.current_camera_type = "free"
 	
 	if is_instance_valid(arena_parent):
 		arena_parent.queue_free()
+	
+	if audio_node:
+		audio_node.stop()
 	
 	arena_won.emit(arena_parent)
 
