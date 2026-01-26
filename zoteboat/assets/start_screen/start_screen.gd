@@ -16,6 +16,7 @@ var loading: bool = false
 @onready var exit: Button = $settings/exit
 
 @onready var delete_save: Button = $extra/delete_save
+@onready var unkillable: Button = $extra/unkillable
 @onready var exit_extra: Button = $extra/exit
 
 @onready var save_yes: Button = $"reset_save/save-yes"
@@ -76,11 +77,18 @@ var volume_values = {
 }
 var current_volume_index: int = 2
 
+var unkillable_states = ["Off", "On"]
+var unkillable_values = {
+	"Off": false,
+	"On": true
+}
+var current_unkillable_index: int = 0
+
 func _ready() -> void:
 	current_rumble_index = SaveLoad.contents_to_save.rumble
 	current_screen_shake_index = SaveLoad.contents_to_save.screen_shake
 	current_volume_index = SaveLoad.contents_to_save.volume
-	
+	current_unkillable_index = SaveLoad.contents_to_save.unkillable
 	
 	var rumble_state_name = rumble_states[current_rumble_index]
 	rumble.text = "Rumble: " + rumble_state_name
@@ -95,13 +103,17 @@ func _ready() -> void:
 	var bus_index = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_volume_db(bus_index, volume_values[volume_state_name])
 	
+	var unkillable_state_name = unkillable_states[current_unkillable_index]
+	unkillable.text = "Unkillable: " + unkillable_state_name
+	Global.player.unkillable = unkillable_values[unkillable_state_name]
+	
 	containers = [basic_buttons, quit_game_buttons, settings, extra_buttons, reset_save]
 	
 	for contain in containers:
 		hide_menu(contain)
 	show_menu(basic_buttons)
 	
-	buttons = [start, options, extra, quit_game, quit_yes, quit_no, rumble, screen_shake, volume, exit, delete_save, exit_extra, save_yes, save_no]
+	buttons = [start, options, extra, quit_game, quit_yes, quit_no, rumble, screen_shake, volume, exit, delete_save, unkillable, exit_extra, save_yes, save_no]
 	
 	for button in buttons:
 		button.mouse_entered.connect(_on_hover.bind(button))
@@ -151,8 +163,8 @@ func _on_hover(button: Button) -> void:
 	
 	button.grab_focus()
 	
-	left_arrow.global_position = button_pos + Vector2(-arrow_offset.x, button_size.y / 2)
-	right_arrow.global_position = button_pos + Vector2(button_size.x + arrow_offset.x, button_size.y / 2)
+	left_arrow.global_position = button_pos + Vector2(-arrow_offset.x, button_size.y / 2 + arrow_offset.y)
+	right_arrow.global_position = button_pos + Vector2(button_size.x + arrow_offset.x, button_size.y / 2 + arrow_offset.y)
 	
 	left_arrow.play("in")
 	right_arrow.play("in")
@@ -324,3 +336,20 @@ func _on_saveno_pressed() -> void:
 	show_menu(extra_buttons)
 	
 	ui_button_cancel.play()
+
+
+func _on_unkillable_pressed() -> void:
+	current_unkillable_index += 1
+	if current_unkillable_index >= unkillable_states.size():
+		current_unkillable_index = 0
+	
+	var state_name = unkillable_states[current_unkillable_index]
+	
+	unkillable.text = "Unkillable: " + state_name
+	
+	Global.player.unkillable = unkillable_values[state_name]
+	
+	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.unkillable = current_unkillable_index
+	SaveLoad._save()

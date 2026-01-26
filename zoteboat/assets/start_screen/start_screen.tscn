@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://5hbj32gqeeb1"]
+[gd_scene format=3 uid="uid://5hbj32gqeeb1"]
 
 [ext_resource type="Script" uid="uid://cv5t0k0r5jtq" path="res://assets/start_screen/start_screen.gd" id="1_fwd4i"]
 [ext_resource type="Texture2D" uid="uid://dkhnses611d4b" path="res://assets/start_screen/images/menu_theme.png" id="1_sb1oq"]
@@ -116,16 +116,16 @@ animations = [{
 "speed": 30.0
 }]
 
-[node name="StartScreen" type="CanvasLayer"]
+[node name="StartScreen" type="CanvasLayer" unique_id=1755483559]
 script = ExtResource("1_fwd4i")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1970536223]
 offset_right = 1920.0
 offset_bottom = 1081.0
 texture = ExtResource("1_sb1oq")
 expand_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=436123275]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -137,7 +137,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 texture = ExtResource("2_lh3vm")
 
-[node name="basic buttons" type="VBoxContainer" parent="."]
+[node name="basic buttons" type="VBoxContainer" parent="." unique_id=1592574367]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -152,7 +152,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 60
 
-[node name="start" type="Button" parent="basic buttons"]
+[node name="start" type="Button" parent="basic buttons" unique_id=834789896]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit Game")
 focus_neighbor_bottom = NodePath("../Options")
@@ -165,7 +165,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
 text = "Start Game"
 
-[node name="Options" type="Button" parent="basic buttons"]
+[node name="Options" type="Button" parent="basic buttons" unique_id=566048822]
 layout_mode = 2
 focus_neighbor_top = NodePath("../start")
 focus_neighbor_bottom = NodePath("../extra")
@@ -179,7 +179,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_w4mux")
 text = "Options
 "
 
-[node name="extra" type="Button" parent="basic buttons"]
+[node name="extra" type="Button" parent="basic buttons" unique_id=1524897781]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Options")
 focus_neighbor_bottom = NodePath("../Quit Game")
@@ -192,7 +192,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
 text = "Extras"
 
-[node name="Quit Game" type="Button" parent="basic buttons"]
+[node name="Quit Game" type="Button" parent="basic buttons" unique_id=1726147323]
 layout_mode = 2
 focus_neighbor_top = NodePath("../extra")
 focus_neighbor_bottom = NodePath("../start")
@@ -205,7 +205,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_24ba0")
 text = "Quit Game"
 
-[node name="quit game" type="VBoxContainer" parent="."]
+[node name="quit game" type="VBoxContainer" parent="." unique_id=1134937715]
 visible = false
 offset_left = 801.5
 offset_top = 626.0
@@ -213,14 +213,14 @@ offset_right = 1118.5
 offset_bottom = 858.0
 theme_override_constants/separation = 60
 
-[node name="quit_text" type="Label" parent="quit game"]
+[node name="quit_text" type="Label" parent="quit game" unique_id=388748018]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 40
 text = "Are You Sure?"
 horizontal_alignment = 1
 
-[node name="Quit-yes" type="Button" parent="quit game"]
+[node name="Quit-yes" type="Button" parent="quit game" unique_id=1489570151]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit-no")
 focus_neighbor_bottom = NodePath("../Quit-no")
@@ -233,7 +233,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_24ba0")
 text = "Yes"
 
-[node name="Quit-no" type="Button" parent="quit game"]
+[node name="Quit-no" type="Button" parent="quit game" unique_id=1845397429]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit-yes")
 focus_neighbor_bottom = NodePath("../Quit-yes")
@@ -246,7 +246,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_24ba0")
 text = "No"
 
-[node name="settings" type="VBoxContainer" parent="."]
+[node name="settings" type="VBoxContainer" parent="." unique_id=1345017698]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -261,7 +261,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 60
 
-[node name="rumble" type="Button" parent="settings"]
+[node name="rumble" type="Button" parent="settings" unique_id=1319358564]
 layout_mode = 2
 focus_neighbor_top = NodePath("../exit")
 focus_neighbor_bottom = NodePath("../screen_shake")
@@ -274,7 +274,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
 text = "Rumble: Normal"
 
-[node name="screen_shake" type="Button" parent="settings"]
+[node name="screen_shake" type="Button" parent="settings" unique_id=1944336281]
 layout_mode = 2
 focus_neighbor_top = NodePath("../rumble")
 focus_neighbor_bottom = NodePath("../volume")
@@ -288,7 +288,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_w4mux")
 text = "Screen Shake: Normal
 "
 
-[node name="volume" type="Button" parent="settings"]
+[node name="volume" type="Button" parent="settings" unique_id=934086725]
 layout_mode = 2
 focus_neighbor_top = NodePath("../screen_shake")
 focus_neighbor_bottom = NodePath("../exit")
@@ -302,7 +302,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_w4mux")
 text = "volume: Normal
 "
 
-[node name="exit" type="Button" parent="settings"]
+[node name="exit" type="Button" parent="settings" unique_id=1641804972]
 layout_mode = 2
 focus_neighbor_top = NodePath("../screen_shake")
 focus_neighbor_bottom = NodePath("../rumble")
@@ -315,24 +315,24 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_24ba0")
 text = "back"
 
-[node name="extra" type="VBoxContainer" parent="."]
+[node name="extra" type="VBoxContainer" parent="." unique_id=57062119]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -121.0
-offset_top = 38.0
-offset_right = 121.0
-offset_bottom = 362.0
+offset_left = -158.5
+offset_top = 86.0
+offset_right = 158.5
+offset_bottom = 359.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 60
 
-[node name="delete_save" type="Button" parent="extra"]
+[node name="delete_save" type="Button" parent="extra" unique_id=520326425]
 layout_mode = 2
 focus_neighbor_top = NodePath("../exit")
-focus_neighbor_bottom = NodePath("../exit")
+focus_neighbor_bottom = NodePath("../unkillable")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
@@ -342,9 +342,22 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
 text = "Delete save"
 
-[node name="exit" type="Button" parent="extra"]
+[node name="unkillable" type="Button" parent="extra" unique_id=669165345]
 layout_mode = 2
 focus_neighbor_top = NodePath("../delete_save")
+focus_neighbor_bottom = NodePath("../exit")
+theme_override_fonts/font = ExtResource("4_w4mux")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xwm6q")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
+text = "Unkillable: off"
+
+[node name="exit" type="Button" parent="extra" unique_id=872854818]
+layout_mode = 2
+focus_neighbor_top = NodePath("../unkillable")
 focus_neighbor_bottom = NodePath("../delete_save")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
@@ -355,7 +368,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_24ba0")
 text = "back"
 
-[node name="reset_save" type="VBoxContainer" parent="."]
+[node name="reset_save" type="VBoxContainer" parent="." unique_id=747162696]
 visible = false
 offset_left = 801.5
 offset_top = 626.0
@@ -363,14 +376,14 @@ offset_right = 1118.5
 offset_bottom = 899.0
 theme_override_constants/separation = 60
 
-[node name="quit_text" type="Label" parent="reset_save"]
+[node name="quit_text" type="Label" parent="reset_save" unique_id=1730253495]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 40
 text = "Are You Sure?"
 horizontal_alignment = 1
 
-[node name="save-yes" type="Button" parent="reset_save"]
+[node name="save-yes" type="Button" parent="reset_save" unique_id=1527302936]
 layout_mode = 2
 focus_neighbor_top = NodePath("../save-no")
 focus_neighbor_bottom = NodePath("../save-no")
@@ -383,7 +396,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_24ba0")
 text = "Yes"
 
-[node name="save-no" type="Button" parent="reset_save"]
+[node name="save-no" type="Button" parent="reset_save" unique_id=1827172486]
 layout_mode = 2
 focus_neighbor_top = NodePath("../save-yes")
 focus_neighbor_bottom = NodePath("../save-yes")
@@ -396,29 +409,29 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_24ba0")
 text = "No"
 
-[node name="left_arrow" type="AnimatedSprite2D" parent="."]
+[node name="left_arrow" type="AnimatedSprite2D" parent="." unique_id=495789529]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_wjpwo")
 animation = &"in"
 
-[node name="right_arrow" type="AnimatedSprite2D" parent="."]
+[node name="right_arrow" type="AnimatedSprite2D" parent="." unique_id=1756090234]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_wjpwo")
 animation = &"in"
 flip_h = true
 
-[node name="audio" type="Node" parent="."]
+[node name="audio" type="Node" parent="." unique_id=598222122]
 
-[node name="Title" type="AudioStreamPlayer" parent="audio"]
+[node name="Title" type="AudioStreamPlayer" parent="audio" unique_id=324871251]
 stream = ExtResource("6_w4mux")
 
-[node name="UiButtonCancel" type="AudioStreamPlayer" parent="audio"]
+[node name="UiButtonCancel" type="AudioStreamPlayer" parent="audio" unique_id=1552542295]
 stream = ExtResource("7_wfb0p")
 
-[node name="UiButtonConfirm" type="AudioStreamPlayer" parent="audio"]
+[node name="UiButtonConfirm" type="AudioStreamPlayer" parent="audio" unique_id=1133028844]
 stream = ExtResource("8_24ba0")
 
-[node name="UiChangeSelection" type="AudioStreamPlayer" parent="audio"]
+[node name="UiChangeSelection" type="AudioStreamPlayer" parent="audio" unique_id=1735035407]
 stream = ExtResource("9_d1pk8")
 
 [connection signal="pressed" from="basic buttons/start" to="." method="_on_start_pressed"]
@@ -432,6 +445,7 @@ stream = ExtResource("9_d1pk8")
 [connection signal="pressed" from="settings/volume" to="." method="_on_volume_pressed"]
 [connection signal="pressed" from="settings/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="extra/delete_save" to="." method="_on_delete_save_pressed"]
+[connection signal="pressed" from="extra/unkillable" to="." method="_on_unkillable_pressed"]
 [connection signal="pressed" from="extra/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="reset_save/save-yes" to="." method="_on_saveyes_pressed"]
 [connection signal="pressed" from="reset_save/save-no" to="." method="_on_saveno_pressed"]

@@ -602,6 +602,9 @@ func _on_player_entered(body: Node2D):
 func _on_health_set(new_health):
 	health = clamp(new_health, 0, max_health)
 	
+	if health == 0:
+		death()
+	
 	player_health_changed.emit(health)
 
 func _on_max_health_set(new_max_health):
@@ -657,7 +660,7 @@ func _on_idle_state_entered() -> void:
 
 
 func death():
-	if unkillable || is_in_group("invincible"):
+	if unkillable || Global.map_holder.is_transition:
 		return
 	
 	print("u ded")
@@ -795,7 +798,7 @@ func _on_mana_set(new_mana):
 func _on_max_mana_set(new_max_mana):
 	max_mana = new_max_mana
 	
-	mana = max_health
+	mana = max_mana
 	
 	player_max_mana_changed.emit()
 #endregion

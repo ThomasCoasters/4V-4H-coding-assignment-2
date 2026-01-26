@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dltlrr7gcdswf"]
+[gd_scene format=4 uid="uid://dltlrr7gcdswf"]
 
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_3ltqy"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="2_tvt4p"]
