@@ -138,6 +138,8 @@ var hazard_respawn_location: Vector2
 @onready var sprite_2d: AnimatedSprite2D = $Sprite2D
 @onready var ui_holder: CanvasLayer = $UiHolder
 
+var unkillable: bool = false
+
 #endregion
 
 func _ready() -> void:
