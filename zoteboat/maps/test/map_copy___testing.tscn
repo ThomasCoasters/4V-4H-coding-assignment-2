@@ -221,7 +221,7 @@ shape = SubResource("RectangleShape2D_4nelj")
 debug_color = Color(1, 0.5764706, 0, 0.41960785)
 
 [node name="Camera pos" type="Node2D" parent="area arena"]
-position = Vector2(0, -241)
+position = Vector2(0, -126)
 
 [node name="wave holder" type="Node2D" parent="area arena"]
 

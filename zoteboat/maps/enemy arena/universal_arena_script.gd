@@ -82,8 +82,11 @@ func finish_arena():
 	arena_finished = true
 	if doors:
 		doors.enabled = false
+	
 	player.current_camera_type = "free"
-	player.forced_position = Vector2(0,0)
+	player.forced_position = null
+	player.Camera.set_as_top_level(false)
+	player.Camera.position = Vector2.ZERO
 	
 	if is_instance_valid(arena_parent):
 		arena_parent.queue_free()
