@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://cd21npjsi1iei"]
+[gd_scene format=3 uid="uid://cd21npjsi1iei"]
 
 [ext_resource type="Script" uid="uid://cwoyht270is50" path="res://enemies/normal/squash/squash.gd" id="1_m8w76"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_64wqx"]
@@ -378,55 +378,55 @@ animations = [{
 radius = 27.0
 height = 64.0
 
-[node name="squash" type="CharacterBody2D" node_paths=PackedStringArray("player_decector") groups=["enemy"]]
+[node name="squash" type="CharacterBody2D" unique_id=883205730 node_paths=PackedStringArray("player_decector") groups=["enemy"]]
 collision_layer = 8
 collision_mask = 65538
 script = ExtResource("1_m8w76")
 stats = SubResource("Resource_7roff")
 player_decector = NodePath("RayCast2D")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1040196313]
 target_position = Vector2(0, 400)
 
-[node name="attack" type="Area2D" parent="."]
+[node name="attack" type="Area2D" parent="." unique_id=1265136908]
 visible = false
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack" unique_id=1216192363]
 shape = SubResource("CircleShape2D_gqs84")
 debug_color = Color(1, 0.46666667, 0.29411766, 0.41960785)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=784992444]
 avoidance_enabled = true
 radius = 40.0
 
-[node name="StateChart" type="Node" parent="."]
+[node name="StateChart" type="Node" parent="." unique_id=1670711538]
 script = ExtResource("4_gqs84")
 metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="attacks" type="Node" parent="StateChart"]
+[node name="attacks" type="Node" parent="StateChart" unique_id=1218408819]
 script = ExtResource("5_jsk1k")
 initial_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="StateChart/attacks"]
+[node name="idle" type="Node" parent="StateChart/attacks" unique_id=1219024104]
 script = ExtResource("6_f1j4s")
 
-[node name="to_attack_start" type="Node" parent="StateChart/attacks/idle"]
+[node name="to_attack_start" type="Node" parent="StateChart/attacks/idle" unique_id=1717955714]
 script = ExtResource("7_dls5b")
 to = NodePath("../../attack")
 event = &"attack"
 delay_in_seconds = "0.0"
 
-[node name="attack" type="Node" parent="StateChart/attacks"]
+[node name="attack" type="Node" parent="StateChart/attacks" unique_id=256701682]
 script = ExtResource("6_f1j4s")
 
-[node name="to_idle" type="Node" parent="StateChart/attacks/attack"]
+[node name="to_idle" type="Node" parent="StateChart/attacks/attack" unique_id=1033510088]
 script = ExtResource("7_dls5b")
 to = NodePath("../../idle")
 event = &"stop_attack"
 delay_in_seconds = "0.3"
 
-[node name="body" type="AnimatedSprite2D" parent="."]
+[node name="body" type="AnimatedSprite2D" parent="." unique_id=2042141429]
 position = Vector2(0, -17)
 scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_f1j4s")
@@ -434,19 +434,19 @@ animation = &"body"
 autoplay = "body"
 frame_progress = 0.12990831
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1925333716]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1286588188]
 shape = SubResource("CapsuleShape2D_jsk1k")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1954604490]
 shape = SubResource("CapsuleShape2D_jsk1k")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=725503193]
 rect = Rect2(-45, -67, 86, 103)
 
 [connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]

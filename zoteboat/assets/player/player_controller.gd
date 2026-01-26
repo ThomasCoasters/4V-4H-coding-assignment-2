@@ -208,7 +208,10 @@ func _physics_process(_delta: float) -> void:
 	for area in $Area2D.get_overlapping_areas():
 		_on_player_entered(area)
 	
-	if velocity == Vector2.ZERO:
+	if velocity.y == 0:
+		stop_anim("fall")
+	
+	if velocity.x == 0:
 		stop_anim("walk")
 		play_anim("he_just_standing_there__menacingly", ANIM_PRIORITY.IDLE_START)
 		if roar_timer.is_stopped():
