@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="4_1ceh5"]
 [ext_resource type="AudioStream" uid="uid://jqao6jbbhgn3" path="res://maps/enemy arena/audio/tv_time.mp3" id="5_ksdkh"]
 [ext_resource type="Script" uid="uid://dirquph6nfgas" path="res://maps/enemy arena/universal_arena_script.gd" id="5_wxu3b"]
-[ext_resource type="Script" uid="uid://3agjipx3lxq3" path="res://maps/enemy arena/generic_extra_script.gd" id="6_e726g"]
-[ext_resource type="Script" uid="uid://domk3qfwgxh7i" path="res://maps/enemy arena/keyValue.gd" id="7_ksdkh"]
+[ext_resource type="Script" path="res://maps/enemy arena/generic_extra_script.gd" id="6_e726g"]
+[ext_resource type="Script" path="res://maps/enemy arena/keyValue.gd" id="7_ksdkh"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b85t1"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ksdkh"]
 texture = ExtResource("2_8nt8o")
 1:5/0 = 0
 1:5/0/terrain_set = 0
@@ -94,7 +94,7 @@ physics_layer_0/collision_mask = 3
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
-sources/0 = SubResource("TileSetAtlasSource_b85t1")
+sources/0 = SubResource("TileSetAtlasSource_ksdkh")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b85t1"]
 vertices = PackedVector2Array(946, -14, 946, -46, 1202, -46, 2190, 78, 1202, -78, 2190, -78, -2702, 78, -2702, -78, -594, -14, -978, -78, -978, -46, -594, -46, -270, -14, -270, -398, 750, -398, 750, -14)
@@ -170,7 +170,6 @@ own_group = "left_1"
 [node name="TvTime" type="AudioStreamPlayer" parent="area arena"]
 stream = ExtResource("5_ksdkh")
 volume_db = -16.0
-bus = &"background"
 
 [node name="area arena trigger" type="Area2D" parent="area arena" node_paths=PackedStringArray("doors", "camera_pos", "wave_holder", "audio_node") groups=["enemy arena"]]
 collision_layer = 0
@@ -279,6 +278,7 @@ script = ExtResource("6_e726g")
 extras = Array[ExtResource("7_ksdkh")]([SubResource("Resource_ksdkh")])
 
 [node name="doors" type="TileMapLayer" parent="area arena"]
+position = Vector2(2, -2)
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAD1/wMAAAADAAcAAAD1/wIAAAADAAYAAAD1/wEAAAADAAYAAAD1/wAAAAADAAYAAAD1////AAADAAYAAAD1//7/AAADAAUAAAD0/wMAAAABAAcAAAD0/wIAAAABAAYAAAD0/wEAAAABAAYAAAD0/wAAAAABAAYAAAD0////AAABAAYAAAD0//7/AAABAAUAAAAbAAMAAAADAAcAAAAbAAIAAAADAAYAAAAbAAEAAAADAAYAAAAbAAAAAAADAAYAAAAbAP//AAADAAYAAAAbAP7/AAADAAYAAAAbAP3/AAADAAUAAAAaAAMAAAACAAcAAAAaAAIAAAACAAYAAAAaAAEAAAACAAYAAAAaAAAAAAACAAYAAAAaAP//AAACAAYAAAAaAP7/AAACAAYAAAAaAP3/AAACAAUAAAAZAAMAAAABAAcAAAAZAAIAAAABAAYAAAAZAAEAAAABAAYAAAAZAAAAAAABAAYAAAAZAP//AAABAAYAAAAZAP7/AAABAAYAAAAZAP3/AAABAAUAAAA=")
 enabled = false

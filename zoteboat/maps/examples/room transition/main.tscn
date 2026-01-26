@@ -138,8 +138,8 @@ position = Vector2(-973, -1893)
 [node name="WarpZone2" parent="." instance=ExtResource("2_7pfcn")]
 position = Vector2(1317, -1377.0001)
 scale = Vector2(1, 13)
-warp_to = "res://maps/test/map_copy___testing.tscn"
-new_location_group = "left_1"
+warp_to = "res://maps/room_0,0.tscn"
+new_location_group = "Left_0,0"
 
 [node name="WarpZone" parent="." instance=ExtResource("2_7pfcn")]
 position = Vector2(-1333, -1374.0001)
@@ -178,3 +178,6 @@ position = Vector2(139, -2218)
 
 [node name="squash" parent="." instance=ExtResource("7_hya6h")]
 position = Vector2(658, -1840)
+
+[node name="Path2D2" parent="." instance=ExtResource("10_v7ywc")]
+position = Vector2(423, -1513)
