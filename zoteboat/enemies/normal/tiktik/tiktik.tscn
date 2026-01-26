@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddrkv6jvnt6qp"]
+[gd_scene format=3 uid="uid://ddrkv6jvnt6qp"]
 
 [ext_resource type="Script" uid="uid://73lsaqyjxo3r" path="res://enemies/normal/tiktik/tiktik.gd" id="1_ktpf4"]
 [ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="2_6hpjj"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_t1usr"]
 
 [sub_resource type="Curve2D" id="Curve2D_6hpjj"]
+resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 87, 0, 0, 0, 0, -88, 87, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
 }
@@ -19,28 +20,28 @@ metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1l68i"]
 size = Vector2(46, 19)
 
-[node name="Path2D" type="Path2D"]
+[node name="Path2D" type="Path2D" unique_id=263132585]
 curve = SubResource("Curve2D_6hpjj")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="."]
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1178610453]
 position = Vector2(1, -8)
 
-[node name="tiktik" type="CharacterBody2D" parent="PathFollow2D" groups=["enemy"]]
+[node name="tiktik" type="CharacterBody2D" parent="PathFollow2D" unique_id=1932932119 groups=["enemy"]]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_ktpf4")
 stats = SubResource("Resource_u0fow")
 
-[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D/tiktik"]
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D/tiktik" unique_id=2112345631]
 position = Vector2(0, 2)
 scale = Vector2(0.4, 0.2)
 texture = ExtResource("2_6hpjj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/tiktik"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/tiktik" unique_id=1355894200]
 position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_1l68i")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="PathFollow2D/tiktik"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="PathFollow2D/tiktik" unique_id=704804561]
 avoidance_enabled = true
 radius = 40.0
