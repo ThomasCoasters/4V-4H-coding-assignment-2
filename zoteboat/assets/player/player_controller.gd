@@ -38,7 +38,7 @@ const MOVE_SPEED : int = 400
 @export var Camera : Camera2D
 const LOOKAHEAD : int = 50
 var current_camera_type := "free" #"free" or "locked" or "lock_x" or "lock_y"
-var forced_position = Vector2(0,0)
+var forced_position = null
 const LOOKAHEAD_COOLDOWN : float = 0.1
 
 var attack_cooldown : float = 0.41
@@ -411,30 +411,27 @@ func _on_to_jumping_form_wall_taken() -> void:
 func camera_movement():
 	if current_camera_type == "locked":
 		Camera.set_as_top_level(true)
-		Camera.position = forced_position
+		if forced_position != null:
+			Camera.global_position = forced_position
 		return
-	
-	var dir = sign(last_direction)
 	
 	Camera.set_as_top_level(false)
 	
-	if current_camera_type == "lock_y":
+	if current_camera_type == "lock_y" and forced_position != null:
 		Camera.global_position.y = forced_position.y
-	#else:
-		#camera_movement_y()
+	else:
+		camera_movement_y()
 	
-	if current_camera_type == "lock_x":
+	if current_camera_type == "lock_x" and forced_position != null:
 		Camera.global_position.x = forced_position.x
 		return
 	
-	if Camera.position.x == dir.x*LOOKAHEAD:
-		return
-	
-	
-	await get_tree().create_timer(LOOKAHEAD_COOLDOWN).timeout
-	
-	Camera.position.x = dir.x*LOOKAHEAD
-
+	var dir = sign(last_direction.x)
+	Camera.position.x = lerp(
+		Camera.position.x,
+		dir * LOOKAHEAD,
+		0.15
+	)
 
 func camera_movement_y():
 	if !is_on_floor() || $StateChart/ParallelState/moving/Moving.active:
@@ -454,9 +451,9 @@ func camera_movement_y():
 	
 	
 	if dir.y == 1:
-		Camera.position.y = -dir.y*LOOKAHEAD*2
-	else: 
 		Camera.position.y = -dir.y*LOOKAHEAD*5
+	else: 
+		Camera.position.y = -dir.y*LOOKAHEAD*8
 #endregion
 
 
@@ -655,6 +652,33 @@ func _on_idle_state_entered() -> void:
 	stop_vibrate()
 	
 	sprite_2d.set_modulate(Color8(255,255,255))
+
+
+func death():
+	if unkillable || is_in_group("invincible"):
+		return
+	
+	print("u ded")
+	
+	health = max_health
+	
+	current_camera_type = "free"
+	forced_position = null
+	Camera.set_as_top_level(false)
+	Camera.position = Vector2.ZERO
+	
+	Global.map_holder.respawnable_enemies = {}
+	
+	SaveLoad._load()
+	var room = SaveLoad.contents_to_save.starting_room
+	var location = SaveLoad.contents_to_save.starting_location
+	
+	add_to_group("invincible")
+	process_mode = Node.PROCESS_MODE_DISABLED
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
+	Global.map_holder.change_2d_scene(room, location)
 #endregion
 
 #region juice
@@ -736,7 +760,7 @@ func i_frames(time):
 	self.remove_from_group("invincible")
 
 
-func attack_speed_buff(mult: float = 2.0, time: float = 0.6):
+func attack_speed_buff(mult: float = 2.0, time: float = 2.5):
 	attack_cooldown = clamp(attack_cooldown/mult, ATTACK_LINGER, 999999)
 	
 	await get_tree().create_timer(time).timeout
