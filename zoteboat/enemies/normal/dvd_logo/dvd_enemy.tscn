@@ -1,31 +1,120 @@
-[gd_scene load_steps=6 format=3 uid="uid://e03auo7ekd6c"]
+[gd_scene format=3 uid="uid://e03auo7ekd6c"]
 
 [ext_resource type="Script" uid="uid://i8smwb2gfc50" path="res://enemies/normal/dvd_logo/dvd_enemy.gd" id="1_4ovew"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_r0b3h"]
-[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="3_e3ci7"]
+[ext_resource type="Texture2D" uid="uid://dv4scgo3ymmuw" path="res://enemies/normal/dvd_logo/PC _ Computer - Hollow Knight - Enemies - Gruzzer.png" id="3_4ovew"]
 
 [sub_resource type="Resource" id="Resource_6iunu"]
 script = ExtResource("2_r0b3h")
 respawn_every_room = true
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbj21"]
-size = Vector2(44, 24)
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0b3h"]
+atlas = ExtResource("3_4ovew")
+region = Rect2(4, 163, 89, 87)
 
-[node name="DvdEnemy" type="CharacterBody2D" groups=["enemy"]]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3ci7"]
+atlas = ExtResource("3_4ovew")
+region = Rect2(98, 163, 89, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iunu"]
+atlas = ExtResource("3_4ovew")
+region = Rect2(4, 274, 113, 99)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbj21"]
+atlas = ExtResource("3_4ovew")
+region = Rect2(122, 274, 113, 99)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4px71"]
+atlas = ExtResource("3_4ovew")
+region = Rect2(240, 274, 113, 99)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwx41"]
+atlas = ExtResource("3_4ovew")
+region = Rect2(358, 274, 113, 99)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ble40"]
+atlas = ExtResource("3_4ovew")
+region = Rect2(4, 24, 97, 115)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46ecb"]
+atlas = ExtResource("3_4ovew")
+region = Rect2(106, 24, 97, 115)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5agl"]
+atlas = ExtResource("3_4ovew")
+region = Rect2(208, 24, 97, 115)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1exqs"]
+atlas = ExtResource("3_4ovew")
+region = Rect2(310, 24, 97, 115)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_72qr6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0b3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3ci7")
+}],
+"loop": false,
+"name": &"death(air)",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6iunu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbj21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4px71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwx41")
+}],
+"loop": false,
+"name": &"death(land)",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ble40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46ecb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5agl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1exqs")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbj21"]
+size = Vector2(28, 22)
+
+[node name="DvdEnemy" type="CharacterBody2D" unique_id=1523520622 groups=["enemy"]]
 collision_layer = 8
 collision_mask = 65546
 script = ExtResource("1_4ovew")
 stats = SubResource("Resource_6iunu")
-angle = 0.40491638646268446
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.35742188, 0.21484375)
-texture = ExtResource("3_e3ci7")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=761154075]
+scale = Vector2(0.55, 0.55)
+sprite_frames = SubResource("SpriteFrames_72qr6")
+animation = &"death(land)"
+autoplay = "fly"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=408143778]
 shape = SubResource("RectangleShape2D_lbj21")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=387979014]
 avoidance_enabled = true

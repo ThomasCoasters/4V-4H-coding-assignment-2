@@ -68,8 +68,9 @@ func _on_health_depleted():
 	var dir = sign(global_position - Global.player.global_position)
 	
 	velocity = Vector2(300*dir.x, -800)
-	rotation = 0
 	dead = true
+	
+	add_to_group("deactive")
 	
 	self.add_to_group("invincible")
 
