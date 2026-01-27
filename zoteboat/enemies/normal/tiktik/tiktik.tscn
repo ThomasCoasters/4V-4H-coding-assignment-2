@@ -164,9 +164,8 @@ stats = SubResource("Resource_u0fow")
 position = Vector2(0, -3)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_3fswn")
-animation = &"walk"
+animation = &"stun"
 autoplay = "walk"
-frame_progress = 0.54510987
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/tiktik" unique_id=1355894200]
 position = Vector2(0.5, 1.5)
