@@ -28,6 +28,7 @@ var player_in_attack_range: bool = false
 @onready var visual_body: AnimatedSprite2D = $body
 @onready var statechart: StateChart = $StateChart
 @onready var state_attack: AtomicState = $StateChart/attacks/attack
+@onready var hit_effect: GPUParticles2D = $HitEffect
 
 func _ready() -> void:
 	if !start_active:
@@ -139,7 +140,7 @@ func handle_attack_movement(delta: float) -> void:
 	if jump_timer > 0:
 		velocity.y += gravity * delta
 		
-		if velocity.y > 0 || player_decector.is_colliding():
+		if velocity.y >= 0 || player_decector.is_colliding():
 			velocity = Vector2.ZERO
 			
 			jump_timer -= delta
@@ -168,6 +169,7 @@ func handle_attack_movement(delta: float) -> void:
 		if is_on_floor():
 			if visible_on_screen_notifier_2d.is_on_screen():
 				Global.player.vibrate(0.01, "mid-soft")
+				hit_effect.emitting = true
 			
 			stats.attack_damage = 1
 			visual_body.scale.y = lerp(visual_body.scale.y, 0.35, 0.1)
@@ -181,21 +183,3 @@ func apply_gravity(delta: float) -> void:
 	if !is_on_floor():
 		velocity.y += gravity * delta
 #endregion
-
-
-
-##region eye tracking
-#func update_eyes():
-	#if Global.player == null:
-		#return
-	#
-	#var to_player = (Global.player.global_position - global_position).normalized()
-	#
-	#var x_offset = lerp(-1.0, 3.0, to_player.x)
-	#
-	## Vertical look
-	#var y_offset = lerp(-15.0, -17.0, clamp(-to_player.y, 0.0, 1.0))
-	#y_offset = lerp(y_offset, -13.0, clamp(to_player.y, 0.0, 1.0))
-	#
-	#eyes.position = eyes.position.lerp(Vector2(x_offset, y_offset), 0.15)
-##endregion

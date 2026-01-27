@@ -65,6 +65,8 @@ var forced_move : Vector2
 var health : int: set = _on_health_set
 signal player_health_changed(health: int)
 signal player_max_health_changed()
+@onready var heal_idle: AtomicState = $StateChart/ParallelState/healing/Idle
+
 
 var i_frames_hit_time: float = 1.2
 var hitstun_time: float = 0.25
@@ -80,7 +82,7 @@ const ATTACK_KNOCKBACK_TIME = 0.05
 
 @export var mana_per_attack: int = 11
 @export var max_mana : int = 99: set = _on_max_mana_set
-var mana : int: set = _on_mana_set
+var mana : int = 99 : set = _on_mana_set
 signal player_mana_changed(mana: int)
 signal player_max_mana_changed()
 
@@ -129,6 +131,7 @@ var collision_size
 var facing_dir: int = 1 # -1 = left           1 = right
 
 const HIT_EFFECT = preload("uid://ear4rb07owa4")
+const HEAL_EFFECT = preload("uid://bk06i67jmxte2")
 
 var oneshot_loaded_particles := []
 
@@ -629,6 +632,8 @@ func _on_heal_start_state_physics_processing(delta: float) -> void:
 func _on_heal_start_state_entered() -> void:
 	sprite_2d.set_modulate(Color8(0,255,0))
 	
+	display_particle(HEAL_EFFECT, global_position)
+	
 	play_anim("roar_start", ANIM_PRIORITY.HEAL)
 	
 	heal_time_expired = 0
@@ -667,14 +672,13 @@ func death():
 	if unkillable || Global.map_holder.is_transition:
 		return
 	
-	print("u ded")
-	
 	health = max_health
 	
 	current_camera_type = "free"
 	forced_position = null
 	Camera.set_as_top_level(false)
 	Camera.position = Vector2.ZERO
+	Camera.position_smoothing_enabled = false
 	
 	Global.map_holder.respawnable_enemies = {}
 	
@@ -779,8 +783,8 @@ func i_frames(time):
 
 
 
-func attack_speed_buff(mult: float = 2.0, time: float = 2.5):
-	attack_cooldown = clamp(attack_cooldown/mult, ATTACK_LINGER, 999999)
+func attack_speed_buff(mult: float = 1.5, time: float = 2.0):
+	attack_cooldown /= mult
 	
 	await get_tree().create_timer(time).timeout
 	

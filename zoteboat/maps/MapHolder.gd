@@ -105,6 +105,7 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	player.remove_from_group("invincible")
 	player.set_process_mode(Node.PROCESS_MODE_INHERIT)
 	player.Camera.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	player.Camera.position_smoothing_enabled = true
 	
 	await get_tree().physics_frame
 	get_tree().call_group("map_transitions", "set_deferred", "monitoring", true)
@@ -120,6 +121,7 @@ func fading():
 	player.add_to_group("invincible")
 	player.set_process_mode(Node.PROCESS_MODE_DISABLED)
 	player.Camera.set_process_mode(Node.PROCESS_MODE_ALWAYS)
+	player.Camera.position_smoothing_enabled = false
 	
 	get_tree().call_group("map_transitions", "set_deferred", "monitoring", false)
 
@@ -155,6 +157,7 @@ func _on_enemy_killed(enemy: Node2D):
 	if !enemy.stats.respawn_every_room:
 		if enemy.stats.respawn_every_save:
 			respawnable_enemies[map_path].append(enemy_path)
+			return
 		killed_enemies[map_path].append(enemy_path)
 		SaveLoad.contents_to_save.killed_enemies = killed_enemies.duplicate(true)
 		SaveLoad._save()
