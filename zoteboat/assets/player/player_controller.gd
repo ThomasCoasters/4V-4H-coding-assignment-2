@@ -630,8 +630,6 @@ func _on_heal_start_state_physics_processing(delta: float) -> void:
 		state_chart.send_event("heal_finished")
 
 func _on_heal_start_state_entered() -> void:
-	sprite_2d.set_modulate(Color8(0,255,0))
-	
 	display_particle(HEAL_EFFECT, global_position)
 	
 	play_anim("roar_start", ANIM_PRIORITY.HEAL)
@@ -648,7 +646,6 @@ func _on_heal_start_state_entered() -> void:
 
 func _on_heal_finished_state_entered() -> void:
 	change_health(heal_health)
-	sprite_2d.set_modulate(Color8(255,255,255))
 	
 	attack_speed_buff()
 	
@@ -664,8 +661,6 @@ func _on_idle_state_entered() -> void:
 	stop_anim("roar_start")
 	stop_anim("roar_loop")
 	stop_vibrate()
-	
-	sprite_2d.set_modulate(Color8(255,255,255))
 
 
 func death():

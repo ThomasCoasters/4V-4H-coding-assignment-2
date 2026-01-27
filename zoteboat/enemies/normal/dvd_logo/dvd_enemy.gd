@@ -24,6 +24,17 @@ var _angle_deg := 0.0
 
 
 
+var current_anim: String
+
+enum ANIM_PRIORITY {
+	FLY,
+	DEATH,
+	LAND_DEATH
+}
+
+var current_anim_priority: int = 0
+
+var dead: bool = false
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -39,6 +50,8 @@ func _ready() -> void:
 	
 	#stats.health_changed.connect(_on_health_changed)
 	stats.health_depleted.connect(_on_health_depleted)
+	
+	$Sprite2D.flip_h = direction.x > 0
 	
 	add_to_group("dvd_enemy")
 
@@ -71,18 +84,52 @@ func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 	
+	if dead:
+		velocity.y += 40
+		move_and_slide()
+		if is_on_floor():
+			play_anim("death(land)")
+			await get_tree().create_timer(0.4).timeout
+			
+			killed.emit(self)
+		
+		
+		return
+	
 	velocity = direction * speed
 	
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		direction = direction.bounce(collision.get_normal())
 		angle = rad_to_deg(direction.angle())
+		
+		$Sprite2D.flip_h = direction.x > 0
 
 
 func _on_health_depleted():
-	killed.emit(self)
+	play_anim("death(air)")
+	dead = true
+	
+	add_to_group("deactive")
+	
+	self.add_to_group("invincible")
 
 
+
+
+func play_anim(anim_name: String = "idle", priority: int = 0):
+	if priority < current_anim_priority:
+		return
+	
+	if anim_name == "death(land)":
+		velocity = Vector2.ZERO
+	
+	current_anim_priority = priority
+	
+	
+	current_anim = anim_name
+	
+	$Sprite2D.play(anim_name)
 
 
 
@@ -92,7 +139,7 @@ func _draw():
 	if not Engine.is_editor_hint():
 		return
 	
-	var arrow_length := 32.0
+	var arrow_length := 40.0
 	var arrow_width := 6.0
 	
 	var dir := direction.normalized()
