@@ -247,6 +247,9 @@ func _on_rumble_pressed() -> void:
 	Global.player.controller_rumble_mult = rumble_values[state_name]
 	
 	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.rumble = current_rumble_index
+	SaveLoad._save()
 
 func _on_screen_shake_pressed() -> void:
 	current_screen_shake_index += 1
@@ -260,6 +263,9 @@ func _on_screen_shake_pressed() -> void:
 	Global.player.screen_shake_mult = screen_shake_values[state_name]
 	
 	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.screen_shake = current_screen_shake_index
+	SaveLoad._save()
 
 func _on_volume_pressed() -> void:
 	current_volume_index += 1
@@ -274,6 +280,9 @@ func _on_volume_pressed() -> void:
 	AudioServer.set_bus_volume_db(bus_index, volume_values[state_name])
 	
 	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.volume = current_volume_index
+	SaveLoad._save()
 
 
 func _on_exit_pressed() -> void:

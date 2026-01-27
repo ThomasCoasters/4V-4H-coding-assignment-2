@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdw42gptmfjdm"]
+[gd_scene format=3 uid="uid://cdw42gptmfjdm"]
 
 [ext_resource type="Script" uid="uid://dyexyw66crn2v" path="res://maps/warp_zone/warping/warp_zone.gd" id="1_h8t7x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8t7x"]
 
-[node name="WarpZone" type="Area2D" groups=["map_transitions"]]
+[node name="WarpZone" type="Area2D" unique_id=1268084640 groups=["map_transitions"]]
 collision_layer = 4
 script = ExtResource("1_h8t7x")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=616393642]
 shape = SubResource("RectangleShape2D_h8t7x")
 debug_color = Color(0, 0.53333336, 1, 0.41960785)
 
