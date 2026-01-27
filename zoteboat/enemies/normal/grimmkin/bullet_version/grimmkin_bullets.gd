@@ -28,7 +28,8 @@ var can_attack: bool = true
 var facing_dir: int = -1 # -1 = left           1 = right
 
 
-const ASPID_ATTACK = preload("uid://c2ur5fk7pwnlj")
+const GRIMMKIN_ATTACK = preload("uid://7s842kuvjrm8")
+
 
 var current_anim: String
 
@@ -185,7 +186,7 @@ func attack():
 	var base_angle = base_dir.angle()
 
 	for i in range(count):
-		var projectile = ASPID_ATTACK.instantiate()
+		var projectile = GRIMMKIN_ATTACK.instantiate()
 		get_tree().current_scene.add_child(projectile)
 		projectile.global_position = global_position
 		
