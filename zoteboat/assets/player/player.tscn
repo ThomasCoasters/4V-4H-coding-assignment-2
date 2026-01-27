@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://rvhtgi81sikt"]
+[gd_scene format=3 uid="uid://rvhtgi81sikt"]
 
 [ext_resource type="Script" uid="uid://bilmy6u5xo8fm" path="res://assets/player/player_controller.gd" id="1_d2shb"]
 [ext_resource type="Texture2D" uid="uid://c36d2cgop0mkc" path="res://assets/player/pictures/Zote the Mighty - atlas0 #0330045.png" id="2_m2mll"]
@@ -389,7 +389,7 @@ script = ExtResource("8_8ca2v")
 expression = "jumps_amount > 0"
 metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Camera") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=552078585 node_paths=PackedStringArray("Camera") groups=["player"]]
 z_index = 999
 collision_mask = 6
 script = ExtResource("1_d2shb")
@@ -398,264 +398,264 @@ has_wall_cling = true
 has_double_jump = true
 Camera = NodePath("Camera")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1627795344]
 position = Vector2(0, -25)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_d61i2")
 animation = &"idle"
 autoplay = "fall"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=960596782]
 position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_8u8lh")
 debug_color = Color(1, 0.5411765, 0, 0.41960785)
 
-[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+[node name="Area2D" type="Area2D" parent="." unique_id=108576757 groups=["player"]]
 collision_layer = 3
 collision_mask = 12
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1492799249]
 position = Vector2(0, 5)
 scale = Vector2(0.9908129, 0.9952922)
 shape = SubResource("RectangleShape2D_8u8lh")
 debug_color = Color(0.8374295, 0.63514006, 0.3968584, 0.41960785)
 
-[node name="Camera" parent="." instance=ExtResource("3_hai6l")]
+[node name="Camera" parent="." unique_id=665170359 instance=ExtResource("3_hai6l")]
 
-[node name="StateChart" type="Node" parent="."]
+[node name="StateChart" type="Node" parent="." unique_id=1358496453]
 script = ExtResource("3_3x76d")
 metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="ParallelState" type="Node" parent="StateChart"]
+[node name="ParallelState" type="Node" parent="StateChart" unique_id=37702097]
 script = ExtResource("4_gr1j3")
 
-[node name="Jumping" type="Node" parent="StateChart/ParallelState"]
+[node name="Jumping" type="Node" parent="StateChart/ParallelState" unique_id=2068925689]
 script = ExtResource("5_rl7lv")
 initial_state = NodePath("on_ground")
 
-[node name="jump" type="Node" parent="StateChart/ParallelState/Jumping"]
+[node name="jump" type="Node" parent="StateChart/ParallelState/Jumping" unique_id=1855557089]
 script = ExtResource("6_o581y")
 
-[node name="to_falling" type="Node" parent="StateChart/ParallelState/Jumping/jump"]
+[node name="to_falling" type="Node" parent="StateChart/ParallelState/Jumping/jump" unique_id=767560140]
 script = ExtResource("7_67ne4")
 to = NodePath("../../falling")
 event = &"jump_released"
 delay_in_seconds = "0.0"
 
-[node name="to_wall_slide" type="Node" parent="StateChart/ParallelState/Jumping/jump"]
+[node name="to_wall_slide" type="Node" parent="StateChart/ParallelState/Jumping/jump" unique_id=1378166922]
 script = ExtResource("7_67ne4")
 to = NodePath("../../wall_slide")
 event = &"on_wall"
 delay_in_seconds = "0.0"
 
-[node name="falling" type="Node" parent="StateChart/ParallelState/Jumping"]
+[node name="falling" type="Node" parent="StateChart/ParallelState/Jumping" unique_id=42639914]
 script = ExtResource("6_o581y")
 
-[node name="to_jumping" type="Node" parent="StateChart/ParallelState/Jumping/falling"]
+[node name="to_jumping" type="Node" parent="StateChart/ParallelState/Jumping/falling" unique_id=673153846]
 script = ExtResource("7_67ne4")
 to = NodePath("../../jump")
 event = &"jump_clicked"
 guard = SubResource("Resource_bnygi")
 delay_in_seconds = "0.0"
 
-[node name="to_on_ground" type="Node" parent="StateChart/ParallelState/Jumping/falling"]
+[node name="to_on_ground" type="Node" parent="StateChart/ParallelState/Jumping/falling" unique_id=1559960890]
 script = ExtResource("7_67ne4")
 to = NodePath("../../on_ground")
 event = &"on_ground"
 delay_in_seconds = "0.0"
 
-[node name="to_hardfall" type="Node" parent="StateChart/ParallelState/Jumping/falling"]
+[node name="to_hardfall" type="Node" parent="StateChart/ParallelState/Jumping/falling" unique_id=1288590679]
 script = ExtResource("7_67ne4")
 to = NodePath("../../hardfall")
 delay_in_seconds = "2"
 
-[node name="to_wall_slide" type="Node" parent="StateChart/ParallelState/Jumping/falling"]
+[node name="to_wall_slide" type="Node" parent="StateChart/ParallelState/Jumping/falling" unique_id=642993118]
 script = ExtResource("7_67ne4")
 to = NodePath("../../wall_slide")
 event = &"on_wall"
 delay_in_seconds = "0.0"
 
-[node name="on_ground" type="Node" parent="StateChart/ParallelState/Jumping"]
+[node name="on_ground" type="Node" parent="StateChart/ParallelState/Jumping" unique_id=1000274280]
 script = ExtResource("6_o581y")
 
-[node name="to_jumping" type="Node" parent="StateChart/ParallelState/Jumping/on_ground"]
+[node name="to_jumping" type="Node" parent="StateChart/ParallelState/Jumping/on_ground" unique_id=2098577022]
 script = ExtResource("7_67ne4")
 to = NodePath("../../jump")
 event = &"jump_clicked"
 delay_in_seconds = "0.0"
 
-[node name="to_falling" type="Node" parent="StateChart/ParallelState/Jumping/on_ground"]
+[node name="to_falling" type="Node" parent="StateChart/ParallelState/Jumping/on_ground" unique_id=2142506381]
 script = ExtResource("7_67ne4")
 to = NodePath("../../falling")
 event = &"fell_of_platform"
 delay_in_seconds = "0.1"
 
-[node name="hardfall" type="Node" parent="StateChart/ParallelState/Jumping"]
+[node name="hardfall" type="Node" parent="StateChart/ParallelState/Jumping" unique_id=1816877639]
 script = ExtResource("6_o581y")
 
-[node name="to_jumping" type="Node" parent="StateChart/ParallelState/Jumping/hardfall"]
+[node name="to_jumping" type="Node" parent="StateChart/ParallelState/Jumping/hardfall" unique_id=1834423897]
 script = ExtResource("7_67ne4")
 to = NodePath("../../jump")
 event = &"jump_clicked"
 guard = SubResource("Resource_bnygi")
 delay_in_seconds = "0.0"
 
-[node name="to_on_ground" type="Node" parent="StateChart/ParallelState/Jumping/hardfall"]
+[node name="to_on_ground" type="Node" parent="StateChart/ParallelState/Jumping/hardfall" unique_id=1679017312]
 script = ExtResource("7_67ne4")
 to = NodePath("../../on_ground")
 event = &"on_ground"
 delay_in_seconds = "0.0"
 
-[node name="to_wall_slide" type="Node" parent="StateChart/ParallelState/Jumping/hardfall"]
+[node name="to_wall_slide" type="Node" parent="StateChart/ParallelState/Jumping/hardfall" unique_id=1150333271]
 script = ExtResource("7_67ne4")
 to = NodePath("../../wall_slide")
 event = &"on_wall"
 delay_in_seconds = "0.0"
 
-[node name="wall_slide" type="Node" parent="StateChart/ParallelState/Jumping"]
+[node name="wall_slide" type="Node" parent="StateChart/ParallelState/Jumping" unique_id=1286856275]
 script = ExtResource("6_o581y")
 
-[node name="to_on_ground" type="Node" parent="StateChart/ParallelState/Jumping/wall_slide"]
+[node name="to_on_ground" type="Node" parent="StateChart/ParallelState/Jumping/wall_slide" unique_id=2003971625]
 script = ExtResource("7_67ne4")
 to = NodePath("../../on_ground")
 event = &"on_ground"
 delay_in_seconds = "0.0"
 
-[node name="to_jumping_form_wall" type="Node" parent="StateChart/ParallelState/Jumping/wall_slide"]
+[node name="to_jumping_form_wall" type="Node" parent="StateChart/ParallelState/Jumping/wall_slide" unique_id=1650028082]
 script = ExtResource("7_67ne4")
 to = NodePath("../../jump")
 event = &"jump_clicked"
 delay_in_seconds = "0.0"
 
-[node name="to_falling" type="Node" parent="StateChart/ParallelState/Jumping/wall_slide"]
+[node name="to_falling" type="Node" parent="StateChart/ParallelState/Jumping/wall_slide" unique_id=1766944284]
 script = ExtResource("7_67ne4")
 to = NodePath("../../falling")
 event = &"fell_of_wall"
 delay_in_seconds = "0.0"
 
-[node name="moving" type="Node" parent="StateChart/ParallelState"]
+[node name="moving" type="Node" parent="StateChart/ParallelState" unique_id=1262269440]
 script = ExtResource("5_rl7lv")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateChart/ParallelState/moving"]
+[node name="Idle" type="Node" parent="StateChart/ParallelState/moving" unique_id=574762296]
 script = ExtResource("6_o581y")
 
-[node name="to_moving" type="Node" parent="StateChart/ParallelState/moving/Idle"]
+[node name="to_moving" type="Node" parent="StateChart/ParallelState/moving/Idle" unique_id=1378428911]
 script = ExtResource("7_67ne4")
 to = NodePath("../../Moving")
 event = &"moving_clicked"
 delay_in_seconds = "0.0"
 
-[node name="Moving" type="Node" parent="StateChart/ParallelState/moving"]
+[node name="Moving" type="Node" parent="StateChart/ParallelState/moving" unique_id=135889938]
 script = ExtResource("6_o581y")
 
-[node name="to_idle" type="Node" parent="StateChart/ParallelState/moving/Moving"]
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/moving/Moving" unique_id=1493559864]
 script = ExtResource("7_67ne4")
 to = NodePath("../../Idle")
 event = &"moving_released"
 delay_in_seconds = "0.0"
 
-[node name="attacking" type="Node" parent="StateChart/ParallelState"]
+[node name="attacking" type="Node" parent="StateChart/ParallelState" unique_id=1532986310]
 script = ExtResource("5_rl7lv")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateChart/ParallelState/attacking"]
+[node name="Idle" type="Node" parent="StateChart/ParallelState/attacking" unique_id=750381181]
 script = ExtResource("6_o581y")
 
-[node name="to_attacking" type="Node" parent="StateChart/ParallelState/attacking/Idle"]
+[node name="to_attacking" type="Node" parent="StateChart/ParallelState/attacking/Idle" unique_id=69804662]
 script = ExtResource("7_67ne4")
 to = NodePath("../../attacking")
 event = &"attack_start"
 delay_in_seconds = "0.0"
 
-[node name="attacking" type="Node" parent="StateChart/ParallelState/attacking"]
+[node name="attacking" type="Node" parent="StateChart/ParallelState/attacking" unique_id=161504793]
 script = ExtResource("6_o581y")
 
-[node name="to_idle" type="Node" parent="StateChart/ParallelState/attacking/attacking"]
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/attacking/attacking" unique_id=2096386074]
 script = ExtResource("7_67ne4")
 to = NodePath("../../Idle")
 event = &"attack_stop"
 delay_in_seconds = "0.0"
 
-[node name="healing" type="Node" parent="StateChart/ParallelState"]
+[node name="healing" type="Node" parent="StateChart/ParallelState" unique_id=476997215]
 script = ExtResource("5_rl7lv")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateChart/ParallelState/healing"]
+[node name="Idle" type="Node" parent="StateChart/ParallelState/healing" unique_id=1966820714]
 script = ExtResource("6_o581y")
 
-[node name="to heal start" type="Node" parent="StateChart/ParallelState/healing/Idle"]
+[node name="to heal start" type="Node" parent="StateChart/ParallelState/healing/Idle" unique_id=649414767]
 script = ExtResource("7_67ne4")
 to = NodePath("../../heal start")
 event = &"heal_start"
 delay_in_seconds = "0.0"
 
-[node name="heal start" type="Node" parent="StateChart/ParallelState/healing"]
+[node name="heal start" type="Node" parent="StateChart/ParallelState/healing" unique_id=1533872508]
 script = ExtResource("6_o581y")
 
-[node name="to idle" type="Node" parent="StateChart/ParallelState/healing/heal start"]
+[node name="to idle" type="Node" parent="StateChart/ParallelState/healing/heal start" unique_id=1853514655]
 script = ExtResource("7_67ne4")
 to = NodePath("../../Idle")
 event = &"heal_cancel"
 delay_in_seconds = "0.0"
 
-[node name="to finished" type="Node" parent="StateChart/ParallelState/healing/heal start"]
+[node name="to finished" type="Node" parent="StateChart/ParallelState/healing/heal start" unique_id=1397710606]
 script = ExtResource("7_67ne4")
 to = NodePath("../../heal finished")
 event = &"heal_finished"
 delay_in_seconds = "0.0"
 
-[node name="heal finished" type="Node" parent="StateChart/ParallelState/healing"]
+[node name="heal finished" type="Node" parent="StateChart/ParallelState/healing" unique_id=641057918]
 script = ExtResource("6_o581y")
 
-[node name="to idle" type="Node" parent="StateChart/ParallelState/healing/heal finished"]
+[node name="to idle" type="Node" parent="StateChart/ParallelState/healing/heal finished" unique_id=244522419]
 script = ExtResource("7_67ne4")
 to = NodePath("../../Idle")
 delay_in_seconds = "0.0"
 
-[node name="dash" type="Node" parent="StateChart/ParallelState"]
+[node name="dash" type="Node" parent="StateChart/ParallelState" unique_id=1655091628]
 script = ExtResource("5_rl7lv")
 initial_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="StateChart/ParallelState/dash"]
+[node name="idle" type="Node" parent="StateChart/ParallelState/dash" unique_id=2083792247]
 script = ExtResource("6_o581y")
 
-[node name="to_dashing" type="Node" parent="StateChart/ParallelState/dash/idle"]
+[node name="to_dashing" type="Node" parent="StateChart/ParallelState/dash/idle" unique_id=236489958]
 script = ExtResource("7_67ne4")
 to = NodePath("../../dashing")
 event = &"dash_start"
 delay_in_seconds = "0.0"
 
-[node name="dashing" type="Node" parent="StateChart/ParallelState/dash"]
+[node name="dashing" type="Node" parent="StateChart/ParallelState/dash" unique_id=76011840]
 script = ExtResource("6_o581y")
 
-[node name="to_recharge" type="Node" parent="StateChart/ParallelState/dash/dashing"]
+[node name="to_recharge" type="Node" parent="StateChart/ParallelState/dash/dashing" unique_id=18261648]
 script = ExtResource("7_67ne4")
 to = NodePath("../../dash_recharge")
 event = &"dash_finished"
 delay_in_seconds = "0.0"
 
-[node name="dash_recharge" type="Node" parent="StateChart/ParallelState/dash"]
+[node name="dash_recharge" type="Node" parent="StateChart/ParallelState/dash" unique_id=718281923]
 script = ExtResource("6_o581y")
 
-[node name="to_idle_auto" type="Node" parent="StateChart/ParallelState/dash/dash_recharge"]
+[node name="to_idle_auto" type="Node" parent="StateChart/ParallelState/dash/dash_recharge" unique_id=1151877791]
 script = ExtResource("7_67ne4")
 to = NodePath("../../idle")
 delay_in_seconds = "0.7"
 
-[node name="to_idle_manual" type="Node" parent="StateChart/ParallelState/dash/dash_recharge"]
+[node name="to_idle_manual" type="Node" parent="StateChart/ParallelState/dash/dash_recharge" unique_id=1364533008]
 script = ExtResource("7_67ne4")
 to = NodePath("../../idle")
 event = &"dash_recharged"
 delay_in_seconds = "0.0"
 
-[node name="to_idle_fast" type="Node" parent="StateChart/ParallelState/dash/dash_recharge"]
+[node name="to_idle_fast" type="Node" parent="StateChart/ParallelState/dash/dash_recharge" unique_id=1313452773]
 script = ExtResource("7_67ne4")
 to = NodePath("../../idle")
 event = &"dash_rechagering"
 delay_in_seconds = "0.2"
 
-[node name="UiHolder" parent="." instance=ExtResource("9_d2shb")]
+[node name="UiHolder" parent="." unique_id=1243714732 instance=ExtResource("9_d2shb")]
 
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/jump" to="." method="_on_jump_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/falling" to="." method="_on_falling_state_entered"]
