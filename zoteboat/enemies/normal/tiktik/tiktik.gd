@@ -74,7 +74,7 @@ func _on_health_depleted():
 
 func _process(delta: float) -> void:
 	if dead:
-		velocity.y += 30
+		velocity.y += 15
 		move_and_slide()
 		if is_on_floor():
 			play_anim("death(land)")

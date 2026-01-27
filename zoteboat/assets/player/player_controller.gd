@@ -69,6 +69,7 @@ signal player_max_health_changed()
 var i_frames_hit_time: float = 1.2
 var hitstun_time: float = 0.25
 var hitstop_time: float = 0.075
+var iframe_tween: Tween
 
 const GET_HIT_KNOCKBACK_FORCE = 450
 const GET_HIT_KNOCKBACK_TIME = 0.15
@@ -755,17 +756,27 @@ func knockback(force, time, body, knockback_up: bool = true):
 
 func i_frames(time):
 	self.add_to_group("invincible")
-	sprite_2d.set_modulate(Color8(255,0,0))
 	
-	vignette_shrink(0.0, 0.8, time/6)
+	if iframe_tween:
+		iframe_tween.kill()
 	
-	await get_tree().create_timer(time/6*2).timeout
-	vignette_return(0.9, 1.3, time/6*4)
+	iframe_tween = create_tween()
+	iframe_tween.set_loops()
+	iframe_tween.tween_property(sprite_2d, "modulate:a", 0.25, time / 10)
+	iframe_tween.tween_property(sprite_2d, "modulate:a", 1.0,  time / 10)
 	
-	await get_tree().create_timer(time/6*4).timeout
+	vignette_shrink(0.0, 0.8, time / 6)
+	await get_tree().create_timer(time / 6 * 2).timeout
+	vignette_return(0.9, 1.3, time / 6 * 4)
 	
-	sprite_2d.set_modulate(Color8(255,255,255))
+	await get_tree().create_timer(time).timeout
+	
+	if iframe_tween:
+		iframe_tween.kill()
+	
+	sprite_2d.modulate.a = 1.0
 	self.remove_from_group("invincible")
+
 
 
 func attack_speed_buff(mult: float = 2.0, time: float = 2.5):
