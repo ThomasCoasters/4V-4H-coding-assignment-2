@@ -95,12 +95,6 @@ sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 [node name="Room 0,-1" type="Node2D" unique_id=1874960603]
 script = ExtResource("1_4itya")
 
-[node name="WarpZone2" parent="." unique_id=890240677 instance=ExtResource("2_oxr6k")]
-position = Vector2(670.00006, 2128)
-scale = Vector2(61, 1)
-warp_to = "res://maps/examples/enemy arena/enemy arena.tscn"
-new_location_group = "left_1"
-
 [node name="SpawnLocation" parent="." unique_id=1340382980 instance=ExtResource("3_eanu5")]
 offset_left = 661.0
 offset_top = 2286.0
@@ -117,7 +111,7 @@ tile_set = SubResource("TileSet_7r8rt")
 [node name="WarpZone3" parent="." unique_id=1623170445 instance=ExtResource("2_oxr6k")]
 position = Vector2(1456, 5826)
 scale = Vector2(1, 13)
-warp_to = "res://maps/room_1,-1.tscn"
+warp_to = "res://maps/maps/pre-dash/room_1,-1.tscn"
 new_location_group = "Left_1,-1"
 
 [node name="WarpZone4" parent="." unique_id=192670333 instance=ExtResource("2_oxr6k")]

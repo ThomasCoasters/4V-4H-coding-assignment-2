@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="4_3ih3o"]
 [ext_resource type="AudioStream" uid="uid://jqao6jbbhgn3" path="res://maps/enemy arena/audio/tv_time.mp3" id="5_l5sd6"]
 [ext_resource type="Script" uid="uid://dirquph6nfgas" path="res://maps/enemy arena/universal_arena_script.gd" id="6_l6iu0"]
-[ext_resource type="Script" path="res://maps/enemy arena/generic_extra_script.gd" id="7_a188l"]
-[ext_resource type="Script" path="res://maps/enemy arena/keyValue.gd" id="8_82bfq"]
+[ext_resource type="Script" uid="uid://3agjipx3lxq3" path="res://maps/enemy arena/generic_extra_script.gd" id="7_a188l"]
+[ext_resource type="Script" uid="uid://domk3qfwgxh7i" path="res://maps/enemy arena/keyValue.gd" id="8_82bfq"]
 [ext_resource type="PackedScene" uid="uid://oqu7kbfguu6n" path="res://maps/pickups/hp_upgrades/increase_max_hp.tscn" id="9_au5kg"]
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/hazards + respawns/respawns/hazard_respawn.tscn" id="10_a188l"]
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.tscn" id="11_82bfq"]
@@ -212,7 +212,7 @@ script = ExtResource("1_3ltqy")
 [node name="WarpZone2" parent="." unique_id=1811384908 instance=ExtResource("2_tvt4p")]
 position = Vector2(-17, 412.00003)
 scale = Vector2(1, 13)
-warp_to = "res://maps/room_0,0.tscn"
+warp_to = "res://maps/maps/pre-dash/room_0,0.tscn"
 new_location_group = "Right_0,0"
 
 [node name="SpawnLocation" parent="." unique_id=2034326712 instance=ExtResource("3_cifja")]

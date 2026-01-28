@@ -19,12 +19,15 @@ var facing_dir: int = -1 # -1 = left           1 = right
 
 func _ready() -> void:
 	$Sprite2D.animation_finished.connect(_on_animation_finished)
+	
+	$Sprite2D2.visible = false
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if !body.is_in_group("player"):
 		return
 	
 	entered = true
+	$Sprite2D2.visible = true
 
 
 
@@ -33,6 +36,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		return
 	
 	entered = false
+	$Sprite2D2.visible = false
 
 
 func _physics_process(_delta: float) -> void:

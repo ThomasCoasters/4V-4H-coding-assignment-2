@@ -9,14 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.tscn" id="7_jftre"]
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/hazards + respawns/respawns/hazard_respawn.tscn" id="8_oqa1b"]
 
-[sub_resource type="Curve2D" id="Curve2D_jftre"]
+[sub_resource type="Curve2D" id="Curve2D_n0of0"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 7.8095703, 0.2479248, 0, 0, 0, 0, 106.80957, 0.2479248, 0, 0, 0, 0, 106.80957, 96.247925, 0, 0, 0, 0, -86.19043, 96.247925, 0, 0, 0, 0, -86.19043, 0.2479248, 0, 0, 0, 0, 7.8095703, 0.2479248)
 }
 point_count = 6
 
-[sub_resource type="Curve2D" id="Curve2D_oqa1b"]
+[sub_resource type="Curve2D" id="Curve2D_xpjpg"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 7.8095703, 0.2479248, 0, 0, 0, 0, 106.80957, 0.2479248, 0, 0, 0, 0, 106.80957, 96.247925, 0, 0, 0, 0, -86.19043, 96.247925, 0, 0, 0, 0, -86.19043, 0.2479248, 0, 0, 0, 0, 7.8095703, 0.2479248)
@@ -139,11 +139,11 @@ position = Vector2(565, 344)
 
 [node name="Path2D" parent="." unique_id=263132585 instance=ExtResource("6_5s2mn")]
 position = Vector2(-1146.8096, 527.7521)
-curve = SubResource("Curve2D_jftre")
+curve = SubResource("Curve2D_n0of0")
 
 [node name="Path2D2" parent="." unique_id=1535135974 instance=ExtResource("6_5s2mn")]
 position = Vector2(-443, 528)
-curve = SubResource("Curve2D_oqa1b")
+curve = SubResource("Curve2D_xpjpg")
 
 [node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." unique_id=1986241496]
 visible = false
@@ -197,7 +197,7 @@ scale = Vector2(1, 13)
 [node name="WarpZone2" parent="." unique_id=1268084640 instance=ExtResource("3_jftre")]
 position = Vector2(97.00001, 818)
 scale = Vector2(10, 1)
-warp_to = "res://maps/room_1,-2.tscn"
+warp_to = "res://maps/maps/pre-dash/room_1,-2.tscn"
 new_location_group = "Top_1,-2"
 
 [node name="SpawnLocation2" parent="." unique_id=2008204241 instance=ExtResource("2_5tbd0")]

@@ -98,7 +98,7 @@ script = ExtResource("1_45dmm")
 [node name="WarpZone2" parent="." unique_id=91592171 instance=ExtResource("2_cdytd")]
 position = Vector2(674.00006, 2256)
 scale = Vector2(61, 1)
-warp_to = "res://maps/room_0,-1.tscn"
+warp_to = "res://maps/maps/pre-dash/room_0,-1.tscn"
 new_location_group = "Top_0,-1"
 
 [node name="SpawnLocation" parent="." unique_id=1978993451 instance=ExtResource("3_wyi33")]
@@ -124,7 +124,7 @@ tile_set = SubResource("TileSet_7r8rt")
 [node name="WarpZone3" parent="." unique_id=752748400 instance=ExtResource("2_cdytd")]
 position = Vector2(3024, 543)
 scale = Vector2(1, 13)
-warp_to = "res://maps/room_1,0.tscn"
+warp_to = "res://maps/maps/pre-dash/room_1,0.tscn"
 new_location_group = "Left_1,0"
 
 [node name="SpawnLocation2" parent="." unique_id=118268787 instance=ExtResource("3_wyi33")]
