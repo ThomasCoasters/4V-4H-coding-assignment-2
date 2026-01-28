@@ -24,12 +24,14 @@ const ASPID_ENEMY = preload("uid://3dmnl1rv4c6f")
 const SQUASH_ENEMY = preload("uid://cd21npjsi1iei")
 const PEASHOOTER_ENEMY = preload("uid://desufiot6ea2v")
 const GRIMMKIN_BULLETS = preload("uid://dilsa6aexb0cd")
+const PRIMAL_ASPID = preload("uid://dd7mbkekqfnpo")
 
 
 const ENEMY_SCENES := {
 	"dummy": TEST_DUMMY,
 	"dvd": DVD_ENEMY,
 	"aspid": ASPID_ENEMY,
+	"primal": PRIMAL_ASPID,
 	"squash": SQUASH_ENEMY,
 	"peashooter": PEASHOOTER_ENEMY,
 	"grimm_attack": GRIMMKIN_BULLETS,
