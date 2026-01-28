@@ -9,8 +9,8 @@ var DEFAULT_SAVE: Dictionary = {
 	"has_double_jump": false,
 	"has_wall_cling": false,
 	
-	#"starting_room": "res://maps/examples/room transition/main.tscn",
-	"starting_room": "res://maps/examples/THOMAS TEST RAAK NIET AAN/RAAK NIET AAN.tscn",
+	"starting_room": "res://maps/examples/room transition/main.tscn",
+	#"starting_room": "res://maps/examples/THOMAS TEST RAAK NIET AAN/RAAK NIET AAN.tscn",
 	"starting_location": "start",
 	
 	"rumble": 2,
