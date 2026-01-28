@@ -203,6 +203,8 @@ func attack():
 #region dashing
 func _on_dashing_state_entered() -> void:
 	print("des")
+	
+	await get_tree().create_timer(1).timeout
 	state_chart.send_event("can_not_attack")
 #endregion
 

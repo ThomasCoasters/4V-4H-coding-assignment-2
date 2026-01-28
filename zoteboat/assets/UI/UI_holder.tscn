@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://doeteha3810mt"]
+[gd_scene format=3 uid="uid://doeteha3810mt"]
 
 [ext_resource type="PackedScene" uid="uid://7cdtgxgfo0wa" path="res://assets/UI/HP/HP.tscn" id="1_nmpck"]
-[ext_resource type="Script" uid="uid://bdmver5aamu1w" path="res://assets/UI/vignette.gd" id="2_p2i4h"]
+[ext_resource type="Script" path="res://assets/UI/vignette.gd" id="2_p2i4h"]
 [ext_resource type="PackedScene" uid="uid://4n2vr8ph3efl" path="res://assets/UI/mana/mana.tscn" id="2_wsaw0"]
 [ext_resource type="PackedScene" uid="uid://effmb8qebpvf" path="res://assets/dialogue/in-game dialouge/dialogue player.tscn" id="3_57uuq"]
 [ext_resource type="Shader" uid="uid://bwjvbeux7apnr" path="res://assets/UI/vignette.gdshader" id="4_d88u3"]
@@ -12,9 +12,9 @@ shader_parameter/alpha = 0.3
 shader_parameter/inner_radius = 0.9
 shader_parameter/outer_radius = 1.3
 
-[node name="UiHolder" type="CanvasLayer"]
+[node name="UiHolder" type="CanvasLayer" unique_id=219975553]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=651037388]
 material = SubResource("ShaderMaterial_p2i4h")
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,16 +23,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_p2i4h")
 
-[node name="Mana" parent="." instance=ExtResource("2_wsaw0")]
+[node name="Mana" parent="." unique_id=1613315646 instance=ExtResource("2_wsaw0")]
 offset_left = 60.0
 offset_top = 40.0
 offset_right = -1356.0
 offset_bottom = -840.0
 
-[node name="Control" parent="." instance=ExtResource("1_nmpck")]
+[node name="Control" parent="." unique_id=67834075 instance=ExtResource("1_nmpck")]
 offset_left = 184.0
 offset_top = 107.0
 offset_right = -1672.0
 offset_bottom = -909.0
 
-[node name="DialoguePlayer" parent="." instance=ExtResource("3_57uuq")]
+[node name="DialoguePlayer" parent="." unique_id=1378940205 instance=ExtResource("3_57uuq")]
