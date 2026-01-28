@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://db08bac8xalaa" path="res://maps/pickups/dash/unlock_dash.tscn" id="11_bab1l"]
 [ext_resource type="PackedScene" uid="uid://vvt3b4b06nr2" path="res://maps/pickups/walljump/unlock_walljump.tscn" id="12_ahktq"]
 [ext_resource type="PackedScene" uid="uid://m7ubfq1qdyfv" path="res://maps/pickups/double jump/unlock_double_jump.tscn" id="13_7pxm5"]
-[ext_resource type="PackedScene" uid="uid://dd7mbkekqfnpo" path="res://enemies/normal/primal_aspid/primal_aspid.tscn" id="15_7pxm5"]
+[ext_resource type="PackedScene" uid="uid://c5wl5c6xeirq8" path="res://maps/NPCs/kingspass/tutorial_npc/tutorial_NPC.tscn" id="13_bab1l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkdps"]
 texture = ExtResource("9_sx31g")
@@ -112,14 +112,14 @@ script = ExtResource("8_v7ywc")
 max_health = 25
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
-[sub_resource type="Curve2D" id="Curve2D_bl7ow"]
+[sub_resource type="Curve2D" id="Curve2D_bab1l"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 87, 0, 0, 0, 0, -88, 87, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
 }
 point_count = 6
 
-[sub_resource type="Curve2D" id="Curve2D_kf02g"]
+[sub_resource type="Curve2D" id="Curve2D_ahktq"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 87, 0, 0, 0, 0, -88, 87, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
@@ -187,7 +187,7 @@ own_group = "start"
 
 [node name="Path2D" parent="." unique_id=1309494973 instance=ExtResource("10_v7ywc")]
 position = Vector2(-824, -1479)
-curve = SubResource("Curve2D_bl7ow")
+curve = SubResource("Curve2D_bab1l")
 
 [node name="unlock_dash" parent="." unique_id=1140047677 instance=ExtResource("11_bab1l")]
 position = Vector2(321, -1884)
@@ -200,7 +200,9 @@ position = Vector2(139, -2218)
 
 [node name="Path2D2" parent="." unique_id=263132585 instance=ExtResource("10_v7ywc")]
 position = Vector2(424, -1511)
-curve = SubResource("Curve2D_kf02g")
+curve = SubResource("Curve2D_ahktq")
 
-[node name="aspid2" parent="." unique_id=538415371 instance=ExtResource("15_7pxm5")]
-position = Vector2(-521, -1426)
+[node name="TutorialNpcHeal" parent="." unique_id=1067063007 instance=ExtResource("13_bab1l")]
+position = Vector2(149, -1295)
+dialogue = "scary_bug"
+scared = true

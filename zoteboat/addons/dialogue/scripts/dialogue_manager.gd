@@ -38,9 +38,7 @@ signal made_choice(choice: String, message: String)
 
 @onready var text_boxes = $TextBox/HBoxContainer
 @onready var text_boxes_content = $TextBox/HBoxContainer/VBoxContainer
-@onready var text_boxes_name = $TextBox/HBoxContainer/VBoxContainer/Label
 @onready var text_boxes_message = $TextBox/HBoxContainer/VBoxContainer/Label2
-@onready var text_boxes_avatar = $TextBox/HBoxContainer/TextureRect
 
 # Functional Variables
 var separator = ";"
@@ -80,11 +78,6 @@ func start(chosen_dialogue: String):
 	if style == 0:
 		if not show_name:
 			subtitles_name.hide()
-	else:
-		if not show_name:
-			text_boxes_name.hide()
-		if not show_avatar_:
-			text_boxes_avatar.hide()
 
 	if auto_skip:
 		auto_advance_message()
@@ -152,10 +145,7 @@ func _show_character_dialogue(name_text: String, color: Color, avatar: Texture2D
 		if typing_animation:
 			subtitles_message.visible_ratio = 0
 	else:
-		text_boxes_name.modulate = color
-		text_boxes_name.text = localized_name
 		text_boxes_message.text = localized_message
-		text_boxes_avatar.texture = avatar
 		if typing_animation:
 			text_boxes_message.visible_ratio = 0
 		if swap_speaker:
@@ -164,11 +154,8 @@ func _show_character_dialogue(name_text: String, color: Color, avatar: Texture2D
 func _adjust_textbox_layout(speaker_id: int):
 	if speaker_id == 1:
 		text_boxes_content.move_to_front()
-		text_boxes_name.set_h_size_flags(Control.SIZE_SHRINK_BEGIN)
 		text_boxes_message.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_CENTER)
 	else:
-		text_boxes_avatar.move_to_front()
-		text_boxes_name.set_h_size_flags(Control.SIZE_SHRINK_END)
 		text_boxes_message.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_CENTER)
 
 func auto_advance_message():
