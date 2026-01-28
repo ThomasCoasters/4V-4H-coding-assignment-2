@@ -1,23 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwuq11frhyumx"]
+[gd_scene format=3 uid="uid://dwuq11frhyumx"]
 
 [ext_resource type="PackedScene" uid="uid://bmeiv1c8q5tey" path="res://addons/dialogue/scenes/dialogue_manager.tscn" id="1_4tvia"]
 [ext_resource type="Script" uid="uid://d2eqhu8naa8vd" path="res://assets/dialogue/dialogue test.gd" id="1_tpx21"]
 [ext_resource type="PackedScene" uid="uid://dnrcj1mhyy4b3" path="res://addons/dialogue/scenes/dialogue.tscn" id="3_swb3r"]
 [ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="3_yxptw"]
 
-[node name="DialougeMain" type="Control"]
+[node name="DialougeMain" type="Control" unique_id=354113327]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_tpx21")
 
-[node name="dialogue_manager" parent="." instance=ExtResource("1_4tvia")]
+[node name="dialogue_manager" parent="." unique_id=2063307196 instance=ExtResource("1_4tvia")]
 style = 1
 show_name = false
 show_avatar_ = false
 name_ = "cheese"
 avatar_ = ExtResource("3_yxptw")
 
-[node name="test" parent="dialogue_manager" instance=ExtResource("3_swb3r")]
+[node name="test" parent="dialogue_manager" unique_id=1988109470 instance=ExtResource("3_swb3r")]
 messages = ["1;Hello!;1", "1;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non aliquam mi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi sed erat eget risus varius pulvinar ut a purus. Quisque nec dolor eu est luctus elementum vitae at massa. Nulla blandit, nulla nec consectetur blandit, sapien odio molestie lacus, vel aliquam lectus lacus eget elit. Pellentesque tincidunt augue ac ante convallis fermentum. Donec lacinia ex sollicitudin imperdiet tincidunt.
 
 Aliquam luctus finibus sapien non scelerisque. Vivamus pretium vulputate nibh, in condimentum arcu interdum sit amet. Aliquam quis arcu pulvinar, pulvinar sapien at, suscipit ex. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque egestas, velit id efficitur viverra, augue libero facilisis lacus, id ultrices purus velit sed nulla. Vivamus posuere sem turpis. Maecenas vel quam metus.

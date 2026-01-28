@@ -1,8 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmeiv1c8q5tey"]
+[gd_scene format=3 uid="uid://bmeiv1c8q5tey"]
 
 [ext_resource type="Script" uid="uid://bua1yivsbr1yu" path="res://addons/dialogue/scripts/dialogue_manager.gd" id="1_wph7u"]
 [ext_resource type="PackedScene" uid="uid://bw6meo84a6fwd" path="res://addons/dialogue/scenes/button.tscn" id="2_x5iar"]
-[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="3_20loh"]
+[ext_resource type="FontFile" uid="uid://bhnk3wqndu8dp" path="res://Game/fonts/TrajanPro-Bold.otf" id="3_163pc"]
+[ext_resource type="Texture2D" uid="uid://d1y73d4s1b1xl" path="res://assets/dialogue/assets/top/dialogue_fleur_top0000.png" id="4_osj8r"]
+[ext_resource type="Texture2D" uid="uid://2c0ln0q38iqy" path="res://assets/dialogue/assets/top/dialogue_fleur_top0001.png" id="5_p4xml"]
+[ext_resource type="Texture2D" uid="uid://co88ikiagr0r8" path="res://assets/dialogue/assets/top/dialogue_fleur_top0002.png" id="6_5i87k"]
+[ext_resource type="Texture2D" uid="uid://shaim2bd5us1" path="res://assets/dialogue/assets/top/dialogue_fleur_top0003.png" id="7_bx7yu"]
+[ext_resource type="Texture2D" uid="uid://dp5n2ri1aik6e" path="res://assets/dialogue/assets/top/dialogue_fleur_top0004.png" id="8_kr3qc"]
+[ext_resource type="Texture2D" uid="uid://ctqfvotj2byat" path="res://assets/dialogue/assets/top/dialogue_fleur_top0005.png" id="9_hw5hw"]
+[ext_resource type="Texture2D" uid="uid://cr7srvbsox0i2" path="res://assets/dialogue/assets/top/dialogue_fleur_top0006.png" id="10_hpesh"]
+[ext_resource type="Texture2D" uid="uid://p4m7fo24v28x" path="res://assets/dialogue/assets/top/dialogue_fleur_top0007.png" id="11_3o5f3"]
+[ext_resource type="Texture2D" uid="uid://vngr4jrecwy5" path="res://assets/dialogue/assets/bottom/Warning_Fleur0000.png" id="12_erucu"]
+[ext_resource type="Texture2D" uid="uid://08sx3mhn360" path="res://assets/dialogue/assets/bottom/Warning_Fleur0001.png" id="13_greru"]
+[ext_resource type="Texture2D" uid="uid://lipa8smwo1ha" path="res://assets/dialogue/assets/bottom/Warning_Fleur0002.png" id="14_6ib7g"]
+[ext_resource type="Texture2D" uid="uid://cr0kowm8f0aab" path="res://assets/dialogue/assets/bottom/Warning_Fleur0003.png" id="15_67shi"]
+[ext_resource type="Texture2D" uid="uid://bpnprcrh0psj4" path="res://assets/dialogue/assets/bottom/Warning_Fleur0004.png" id="16_gt03t"]
+[ext_resource type="Texture2D" uid="uid://bm7j7tf0foytl" path="res://assets/dialogue/assets/bottom/Warning_Fleur0005.png" id="17_khnp3"]
+[ext_resource type="Texture2D" uid="uid://6rvrqhrqyqml" path="res://assets/dialogue/assets/bottom/Warning_Fleur0006.png" id="18_ow74r"]
+[ext_resource type="Texture2D" uid="uid://dcw8rligo7bn8" path="res://assets/dialogue/assets/bottom/Warning_Fleur0007.png" id="19_uqpwn"]
+[ext_resource type="Texture2D" uid="uid://c6vqk6fhqwmmo" path="res://assets/dialogue/assets/bottom/Warning_Fleur0008.png" id="20_avfij"]
 
 [sub_resource type="Resource" id="Resource_2hnk3"]
 metadata/__load_path__ = "res://icon.svg"
@@ -10,29 +27,54 @@ metadata/__load_path__ = "res://icon.svg"
 [sub_resource type="Resource" id="Resource_20loh"]
 metadata/__load_path__ = "res://icon.svg"
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ippp5"]
-content_margin_left = 15.0
-content_margin_right = 15.0
-bg_color = Color(0.211765, 0.239216, 0.321569, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.129412, 0.145098, 0.196078, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_e1kfx"]
+frames = 8
+one_shot = true
+speed_scale = 20.0
+frame_0/texture = ExtResource("4_osj8r")
+frame_1/texture = ExtResource("5_p4xml")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("6_5i87k")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("7_bx7yu")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("8_kr3qc")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("9_hw5hw")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("10_hpesh")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("11_3o5f3")
+frame_7/duration = 1.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_20loh"]
-texture = ExtResource("3_20loh")
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_i6k6p"]
+frames = 9
+one_shot = true
+speed_scale = 20.0
+frame_0/texture = ExtResource("12_erucu")
+frame_1/texture = ExtResource("13_greru")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("14_6ib7g")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("15_67shi")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("16_gt03t")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("17_khnp3")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("18_ow74r")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("19_uqpwn")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("20_avfij")
+frame_8/duration = 1.0
 
-[node name="dialogue_manager" type="Node"]
+[node name="dialogue_manager" type="Node" unique_id=2029144538]
 script = ExtResource("1_wph7u")
 avatar_ = SubResource("Resource_2hnk3")
 avatar__ = SubResource("Resource_20loh")
 
-[node name="Subtitle" type="VBoxContainer" parent="."]
+[node name="Subtitle" type="VBoxContainer" parent="." unique_id=1677201516]
 visible = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -47,41 +89,43 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 2
 
-[node name="GridContainer" type="GridContainer" parent="Subtitle"]
+[node name="GridContainer" type="GridContainer" parent="Subtitle" unique_id=1831418753]
 layout_mode = 2
 columns = 2
 
-[node name="Button" parent="Subtitle/GridContainer" instance=ExtResource("2_x5iar")]
+[node name="Button" parent="Subtitle/GridContainer" unique_id=1090943170 instance=ExtResource("2_x5iar")]
 layout_mode = 2
 
-[node name="Button2" parent="Subtitle/GridContainer" instance=ExtResource("2_x5iar")]
+[node name="Button2" parent="Subtitle/GridContainer" unique_id=1041277852 instance=ExtResource("2_x5iar")]
 layout_mode = 2
 text = "I'm tired"
 
-[node name="ProgressBar" type="ProgressBar" parent="Subtitle"]
+[node name="ProgressBar" type="ProgressBar" parent="Subtitle" unique_id=679576451]
 layout_mode = 2
 step = 1.0
 value = 100.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Subtitle"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Subtitle" unique_id=56153136]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Subtitle/HBoxContainer"]
+[node name="Label" type="Label" parent="Subtitle/HBoxContainer" unique_id=1011081063]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_163pc")
 theme_override_font_sizes/font_size = 24
 text = "Character:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="Subtitle/HBoxContainer"]
+[node name="Label2" type="Label" parent="Subtitle/HBoxContainer" unique_id=729983978]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_163pc")
 theme_override_font_sizes/font_size = 24
 text = "How are you?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Subtitle/HBoxContainer/Label2"]
+[node name="TextureRect" type="TextureRect" parent="Subtitle/HBoxContainer/Label2" unique_id=78889161]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -94,9 +138,9 @@ offset_right = 64.0
 offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_20loh")
 
-[node name="TextBox" type="Control" parent="."]
+[node name="TextBox" type="Control" parent="." unique_id=1680613669]
+z_index = 100
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,49 +148,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TextBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TextBox" unique_id=238079299]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.066
-anchor_top = 0.133
-anchor_right = 0.934
-anchor_bottom = 0.923
-offset_left = -0.03199768
-offset_top = -0.18399048
-offset_right = 0.031982422
-offset_bottom = -0.104003906
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -544.0
+offset_top = 18.0
+offset_right = 545.0
+offset_bottom = 596.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="TextureRect" type="TextureRect" parent="TextBox/HBoxContainer"]
-custom_minimum_size = Vector2(300, 300)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TextBox/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextBox/HBoxContainer" unique_id=1936882676]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TextBox/HBoxContainer/VBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="TextBox/HBoxContainer/VBoxContainer" unique_id=6760550]
 layout_mode = 2
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_ippp5")
-text = "Character"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture = SubResource("AnimatedTexture_e1kfx")
+expand_mode = 5
+stretch_mode = 6
 
-[node name="Label2" type="Label" parent="TextBox/HBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="TextBox/HBoxContainer/VBoxContainer" unique_id=1545431546]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_163pc")
 theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxTexture_20loh")
 text = "How are you?"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="click_detector" type="Button" parent="."]
+[node name="TextureRect" type="TextureRect" parent="TextBox/HBoxContainer/VBoxContainer" unique_id=1689247754]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_i6k6p")
+stretch_mode = 6
+
+[node name="click_detector" type="Button" parent="." unique_id=1091145505]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -154,10 +193,10 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[node name="message_timer" type="Timer" parent="."]
+[node name="message_timer" type="Timer" parent="." unique_id=620292911]
 one_shot = true
 
-[node name="choice_timer" type="Timer" parent="."]
+[node name="choice_timer" type="Timer" parent="." unique_id=180688949]
 one_shot = true
 
 [connection signal="pressed" from="click_detector" to="." method="_on_click_detector_pressed"]

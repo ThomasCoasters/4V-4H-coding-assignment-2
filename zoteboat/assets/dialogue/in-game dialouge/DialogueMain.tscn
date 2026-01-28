@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cctfjk3xkcwcg"]
+[gd_scene format=3 uid="uid://cctfjk3xkcwcg"]
 
 [ext_resource type="PackedScene" uid="uid://bmeiv1c8q5tey" path="res://addons/dialogue/scenes/dialogue_manager.tscn" id="1_8aaim"]
 [ext_resource type="Script" uid="uid://b542t7xqvo60k" path="res://assets/dialogue/in-game dialouge/dialogue_main.gd" id="1_mfygf"]
 [ext_resource type="PackedScene" uid="uid://dnrcj1mhyy4b3" path="res://addons/dialogue/scenes/dialogue.tscn" id="2_mfygf"]
 
-[node name="DialogueMain" type="Control"]
+[node name="DialogueMain" type="Control" unique_id=1567618999]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,18 +13,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mfygf")
 
-[node name="dialogue_manager" parent="." instance=ExtResource("1_8aaim")]
+[node name="dialogue_manager" parent="." unique_id=2124187735 instance=ExtResource("1_8aaim")]
 style = 1
 show_name = false
 show_avatar_ = false
 
-[node name="test" parent="dialogue_manager" instance=ExtResource("2_mfygf")]
-messages = ["1;Hello!;1", "1;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non aliquam mi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi sed erat eget risus varius pulvinar ut a purus. Quisque nec dolor eu est luctus elementum vitae at massa. Nulla blandit, nulla nec consectetur blandit, sapien odio molestie lacus, vel aliquam lectus lacus eget elit. Pellentesque tincidunt augue ac ante convallis fermentum. Donec lacinia ex sollicitudin imperdiet tincidunt.
+[node name="ColorRect" type="ColorRect" parent="dialogue_manager" unique_id=498076641]
+z_index = 99
+offset_right = 1969.0
+offset_bottom = 1207.0
+color = Color(0, 0, 0, 0.58431375)
 
-Aliquam luctus finibus sapien non scelerisque. Vivamus pretium vulputate nibh, in condimentum arcu interdum sit amet. Aliquam quis arcu pulvinar, pulvinar sapien at, suscipit ex. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque egestas, velit id efficitur viverra, augue libero facilisis lacus, id ultrices purus velit sed nulla. Vivamus posuere sem turpis. Maecenas vel quam metus.
+[node name="welcome" parent="dialogue_manager" unique_id=45030735 instance=ExtResource("2_mfygf")]
+messages = ["1;Hello, stranger welcome to these strange lands.;1", "1;I would like to explain what is going on but there is sadly not enough time now..;1", "1;All I would like to tell you is good luck!;1"]
 
-In rhoncus augue ex, nec tincidunt orci luctus sit amet. Donec laoreet, velit vel gravida molestie, augue ante venenatis justo, et venenatis augue nunc eget dolor. Nunc malesuada placerat tristique. Suspendisse sapien leo, sodales vel vestibulum scelerisque, accumsan at odio. Vivamus vel porttitor sem, non tempus purus. Ut mollis ipsum ac tempus lacinia. Vestibulum consectetur, erat id aliquet tristique, neque elit laoreet ante, eget eleifend risus turpis eget ipsum. Fusce congue, nisl vitae ullamcorper ullamcorper, ligula ante imperdiet elit, eget pulvinar nisl mauris ut leo. Duis maximus vel arcu ut molestie. Cras mi leo, ultrices venenatis odio sed, ullamcorper tristique lacus. Etiam eget nisl id velit accumsan posuere quis eu urna. Donec ut luctus ligula, quis sollicitudin enim. Sed ac nulla iaculis nisi lacinia faucibus.
-
-Morbi quis elit massa. Etiam in convallis sapien, semper pulvinar ligula. Aliquam finibus tortor id vulputate fermentum. Donec non odio massa. Aliquam ac dolor dolor. Aliquam metus nulla, placerat non nunc et, luctus posuere sapien. Vestibulum pretium, diam sed pretium commodo, magna turpis congue massa, et tempus enim purus quis lacus. Mauris malesuada ornare ultricies. Curabitur lacus metus, hendrerit commodo turpis aliquet, vulputate mattis dui. Pellentesque quis cursus felis. Phasellus vitae luctus sem. Pellentesque in vestibulum leo. Donec ultricies cursus urna et mollis.
-
-Nam malesuada ipsum ac varius malesuada. Nam porttitor lectus maximus risus malesuada, sit amet tempor elit finibus. Maecenas placerat blandit dui non egestas. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In dui leo, maximus at odio vel, consequat interdum purus. Mauris laoreet dignissim hendrerit. Aenean egestas porttitor tincidunt. Duis id velit lorem. Ut et aliquet ante. Integer tristique porttitor turpis. Morbi ac imperdiet tortor, ut laoreet nibh. Nulla tempor a lectus et eleifend. In sit amet cursus metus, et sagittis lectus. Pellentesque eros felis, posuere ut lacus a, elementum maximus velit. Cras ut quam erat..;10", "1;How are you?;2"]
+[node name="scary_bug" parent="dialogue_manager" unique_id=1796485007 instance=ExtResource("2_mfygf")]
+messages = ["1;Stranger, you see these things they are really scary.;1", "1;Can you please remove them with your fine looking sword that looks like it has a craving of \"Life Ender\" on it.;1", "1;From all the countless sad creatures that came here before you I leared you can attack using Z on keyboard and X or cube on controller.;1"]
