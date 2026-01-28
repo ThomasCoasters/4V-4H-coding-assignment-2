@@ -183,7 +183,7 @@ debug_color = Color(1, 0.6313726, 0.10980392, 0.41960785)
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=140762504]
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_g81kc")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=18721597]
