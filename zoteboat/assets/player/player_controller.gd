@@ -81,8 +81,8 @@ const ATTACK_KNOCKBACK_TIME = 0.05
 
 
 @export var mana_per_attack: int = 11
-@export var max_mana : int: set = _on_max_mana_set
-var mana : int = 99 : set = _on_mana_set
+@export var max_mana : int = 99: set = _on_max_mana_set
+var mana : int : set = _on_mana_set
 signal player_mana_changed(mana: int)
 signal player_max_mana_changed()
 
