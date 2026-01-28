@@ -23,6 +23,7 @@ const DVD_ENEMY = preload("res://enemies/normal/dvd_logo/dvd_enemy.tscn")
 const ASPID_ENEMY = preload("uid://3dmnl1rv4c6f")
 const SQUASH_ENEMY = preload("uid://cd21npjsi1iei")
 const PEASHOOTER_ENEMY = preload("uid://desufiot6ea2v")
+const GRIMMKIN_BULLETS = preload("uid://dilsa6aexb0cd")
 
 
 const ENEMY_SCENES := {
@@ -31,6 +32,7 @@ const ENEMY_SCENES := {
 	"aspid": ASPID_ENEMY,
 	"squash": SQUASH_ENEMY,
 	"peashooter": PEASHOOTER_ENEMY,
+	"grimm_attack": GRIMMKIN_BULLETS,
 }
 #endregion
 

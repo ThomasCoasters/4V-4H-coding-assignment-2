@@ -7,13 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://oqu7kbfguu6n" path="res://maps/pickups/hp_upgrades/increase_max_hp.tscn" id="8_cs804"]
 [ext_resource type="PackedScene" uid="uid://desufiot6ea2v" path="res://enemies/normal/peashooter/peashooter.tscn" id="8_n06jd"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="8_v7ywc"]
-[ext_resource type="PackedScene" uid="uid://3dmnl1rv4c6f" path="res://enemies/normal/aspid/aspid.tscn" id="9_cs804"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="9_sx31g"]
 [ext_resource type="PackedScene" uid="uid://ddrkv6jvnt6qp" path="res://enemies/normal/tiktik/tiktik.tscn" id="10_v7ywc"]
 [ext_resource type="PackedScene" uid="uid://db08bac8xalaa" path="res://maps/pickups/dash/unlock_dash.tscn" id="11_bab1l"]
 [ext_resource type="PackedScene" uid="uid://vvt3b4b06nr2" path="res://maps/pickups/walljump/unlock_walljump.tscn" id="12_ahktq"]
 [ext_resource type="PackedScene" uid="uid://m7ubfq1qdyfv" path="res://maps/pickups/double jump/unlock_double_jump.tscn" id="13_7pxm5"]
-[ext_resource type="PackedScene" uid="uid://dilsa6aexb0cd" path="res://enemies/normal/grimmkin/bullet_version/grimmkin_bullets.tscn" id="14_ahktq"]
+[ext_resource type="PackedScene" uid="uid://dd7mbkekqfnpo" path="res://enemies/normal/primal_aspid/primal_aspid.tscn" id="15_7pxm5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkdps"]
 texture = ExtResource("9_sx31g")
@@ -113,14 +112,14 @@ script = ExtResource("8_v7ywc")
 max_health = 25
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
-[sub_resource type="Curve2D" id="Curve2D_7pxm5"]
+[sub_resource type="Curve2D" id="Curve2D_bl7ow"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 87, 0, 0, 0, 0, -88, 87, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
 }
 point_count = 6
 
-[sub_resource type="Curve2D" id="Curve2D_bl7ow"]
+[sub_resource type="Curve2D" id="Curve2D_kf02g"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 87, 0, 0, 0, 0, -88, 87, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
@@ -186,12 +185,9 @@ offset_right = 16.0
 offset_bottom = -3736.0
 own_group = "start"
 
-[node name="aspid" parent="." unique_id=896592279 instance=ExtResource("9_cs804")]
-position = Vector2(927, -1386)
-
 [node name="Path2D" parent="." unique_id=1309494973 instance=ExtResource("10_v7ywc")]
 position = Vector2(-824, -1479)
-curve = SubResource("Curve2D_7pxm5")
+curve = SubResource("Curve2D_bl7ow")
 
 [node name="unlock_dash" parent="." unique_id=1140047677 instance=ExtResource("11_bab1l")]
 position = Vector2(321, -1884)
@@ -204,7 +200,7 @@ position = Vector2(139, -2218)
 
 [node name="Path2D2" parent="." unique_id=263132585 instance=ExtResource("10_v7ywc")]
 position = Vector2(424, -1511)
-curve = SubResource("Curve2D_bl7ow")
+curve = SubResource("Curve2D_kf02g")
 
-[node name="grimmkin_bullets" parent="." unique_id=833850574 instance=ExtResource("14_ahktq")]
-position = Vector2(278, -1567)
+[node name="aspid2" parent="." unique_id=538415371 instance=ExtResource("15_7pxm5")]
+position = Vector2(-521, -1426)
