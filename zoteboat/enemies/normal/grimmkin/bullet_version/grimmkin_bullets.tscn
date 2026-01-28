@@ -13,6 +13,18 @@ script = ExtResource("2_nym7u")
 max_health = 30
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ygsh"]
+atlas = ExtResource("4_6awn1")
+region = Rect2(4, 2915, 320, 403)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cqnw"]
+atlas = ExtResource("4_6awn1")
+region = Rect2(329, 2915, 320, 403)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqo4t"]
+atlas = ExtResource("4_6awn1")
+region = Rect2(654, 2915, 320, 403)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_6awn1"]
 atlas = ExtResource("4_6awn1")
 region = Rect2(4, 2514, 365, 377)
@@ -32,18 +44,6 @@ region = Rect2(1114, 2514, 365, 377)
 [sub_resource type="AtlasTexture" id="AtlasTexture_hajpw"]
 atlas = ExtResource("4_6awn1")
 region = Rect2(1484, 2514, 365, 377)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ygsh"]
-atlas = ExtResource("4_6awn1")
-region = Rect2(4, 2915, 320, 403)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8cqnw"]
-atlas = ExtResource("4_6awn1")
-region = Rect2(329, 2915, 320, 403)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jqo4t"]
-atlas = ExtResource("4_6awn1")
-region = Rect2(654, 2915, 320, 403)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aef63"]
 atlas = ExtResource("4_6awn1")
@@ -72,10 +72,6 @@ region = Rect2(220, 2099, 211, 391)
 [sub_resource type="AtlasTexture" id="AtlasTexture_xh8kj"]
 atlas = ExtResource("4_6awn1")
 region = Rect2(436, 2099, 211, 391)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_10o0h"]
-atlas = ExtResource("4_6awn1")
-region = Rect2(1116, 2099, 123, 106)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wauga"]
 atlas = ExtResource("4_6awn1")
@@ -225,6 +221,20 @@ region = Rect2(2010, 336, 222, 392)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5ygsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cqnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqo4t")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_6awn1")
 }, {
 "duration": 1.0,
@@ -238,18 +248,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hajpw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ygsh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8cqnw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jqo4t")
 }],
 "loop": false,
-"name": &"attack",
+"name": &"attack_start",
 "speed": 10.0
 }, {
 "frames": [{
@@ -278,9 +279,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xh8kj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_10o0h")
 }],
 "loop": false,
 "name": &"dash_anticipate",
@@ -448,18 +446,19 @@ radius = 560.0036
 
 [node name="grimmkin_bullets" type="CharacterBody2D" unique_id=833850574 node_paths=PackedStringArray("nav_agent") groups=["enemy"]]
 collision_layer = 8
-collision_mask = 65538
+collision_mask = 65536
 script = ExtResource("1_8uim5")
 stats = SubResource("Resource_1t8o5")
 nav_agent = NodePath("NavigationAgent2D")
+dash_slowdown_distance = 220.0
+dash_min_speed = 300.0
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1966045575]
+position = Vector2(-15, -50)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_g81kc")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
-frame = 7
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2104192833]
 shape = SubResource("RectangleShape2D_pst0k")
