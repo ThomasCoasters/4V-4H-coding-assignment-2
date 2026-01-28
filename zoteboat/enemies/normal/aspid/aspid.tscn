@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://3dmnl1rv4c6f"]
+[gd_scene format=3 uid="uid://3dmnl1rv4c6f"]
 
 [ext_resource type="Script" uid="uid://dtiwpvilyewjq" path="res://enemies/normal/aspid/aspid.gd" id="1_kmhe3"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_v8ve2"]
