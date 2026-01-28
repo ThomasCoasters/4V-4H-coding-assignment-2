@@ -1,21 +1,14 @@
 [gd_scene format=4 uid="uid://b6tyni0lvdvkk"]
 
-[ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_d23mf"]
-[ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="2_rsyk7"]
-[ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="3_6e1c7"]
-[ext_resource type="PackedScene" uid="uid://ddrkv6jvnt6qp" path="res://enemies/normal/tiktik/tiktik.tscn" id="5_x560h"]
-[ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="6_vptyh"]
-[ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.tscn" id="7_hhysi"]
-[ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/hazards + respawns/respawns/hazard_respawn.tscn" id="8_y7x2x"]
+[ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_0ym6w"]
+[ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="2_bfsyb"]
+[ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="3_vqxb3"]
+[ext_resource type="PackedScene" uid="uid://ddrkv6jvnt6qp" path="res://enemies/normal/tiktik/tiktik.tscn" id="4_bgm6i"]
+[ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="5_lvixb"]
+[ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.tscn" id="6_nyr18"]
+[ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/hazards + respawns/respawns/hazard_respawn.tscn" id="7_ewn2y"]
 
-[sub_resource type="Curve2D" id="Curve2D_jftre"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 7.8095703, 0.2479248, 0, 0, 0, 0, 106.80957, 0.2479248, 0, 0, 0, 0, 106.80957, 96.247925, 0, 0, 0, 0, -86.19043, 96.247925, 0, 0, 0, 0, -86.19043, 0.2479248, 0, 0, 0, 0, 7.8095703, 0.2479248)
-}
-point_count = 6
-
-[sub_resource type="Curve2D" id="Curve2D_oqa1b"]
+[sub_resource type="Curve2D" id="Curve2D_bfsyb"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 7.8095703, 0.2479248, 0, 0, 0, 0, 106.80957, 0.2479248, 0, 0, 0, 0, 106.80957, 96.247925, 0, 0, 0, 0, -86.19043, 96.247925, 0, 0, 0, 0, -86.19043, 0.2479248, 0, 0, 0, 0, 7.8095703, 0.2479248)
@@ -23,7 +16,7 @@ _data = {
 point_count = 6
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
-texture = ExtResource("6_vptyh")
+texture = ExtResource("5_lvixb")
 1:5/0 = 0
 1:5/0/terrain_set = 0
 1:5/0/terrain = 0
@@ -110,9 +103,9 @@ terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
 [node name="KingspassForLosers" type="Node2D" unique_id=136216618]
-script = ExtResource("1_d23mf")
+script = ExtResource("1_0ym6w")
 
-[node name="SpawnLocation" parent="." unique_id=1978993451 instance=ExtResource("2_rsyk7")]
+[node name="SpawnLocation" parent="." unique_id=1978993451 instance=ExtResource("2_bfsyb")]
 offset_left = 1057.0
 offset_top = 641.0
 offset_right = 1087.0
@@ -120,20 +113,16 @@ offset_bottom = 671.0
 own_group = "Left_1,-1"
 metadata/_edit_use_anchors_ = true
 
-[node name="WarpZone" parent="." unique_id=157545549 instance=ExtResource("3_6e1c7")]
+[node name="WarpZone" parent="." unique_id=157545549 instance=ExtResource("3_vqxb3")]
 position = Vector2(1200, 547.00006)
 rotation = 3.1415927
 scale = Vector2(1, 13)
 warp_to = "res://maps/examples/room transition/main.tscn"
 new_location_group = "Right_0,-1"
 
-[node name="Path2D" parent="." unique_id=263132585 instance=ExtResource("5_x560h")]
-position = Vector2(-1146.8096, 527.7521)
-curve = SubResource("Curve2D_jftre")
-
-[node name="Path2D2" parent="." unique_id=1535135974 instance=ExtResource("5_x560h")]
+[node name="Path2D2" parent="." unique_id=1535135974 instance=ExtResource("4_bgm6i")]
 position = Vector2(-443, 528)
-curve = SubResource("Curve2D_oqa1b")
+curve = SubResource("Curve2D_bfsyb")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=564415215]
 scale = Vector2(2, 2)
@@ -142,23 +131,23 @@ tile_set = SubResource("TileSet_7r8rt")
 
 [node name="hazards" type="Node" parent="." unique_id=1447554648]
 
-[node name="SpikesCollision" parent="hazards" unique_id=2091519715 instance=ExtResource("7_hhysi")]
+[node name="SpikesCollision" parent="hazards" unique_id=2091519715 instance=ExtResource("6_nyr18")]
 position = Vector2(-781, 712)
 scale = Vector2(63, 1.016)
 
 [node name="StaticBody2D2" type="Area2D" parent="hazards" unique_id=2119284695 groups=["map_transitions"]]
-position = Vector2(-2584.4429, 772.7129)
+position = Vector2(-1194, 318)
 
 [node name="EDIT THIS" type="CollisionPolygon2D" parent="hazards/StaticBody2D2" unique_id=601319213]
 position = Vector2(3832.12, -159.71288)
 scale = Vector2(10.539987, 0.042116802)
 polygon = PackedVector2Array(-84.93153, 2144.2207, -33.366005, 2136.915, -33.366005, 2920.4502, -84.93153, 2927.7559)
 
-[node name="HazardRespawn" parent="hazards" unique_id=1605870918 instance=ExtResource("8_y7x2x")]
+[node name="HazardRespawn" parent="hazards" unique_id=1605870918 instance=ExtResource("7_ewn2y")]
 position = Vector2(-1424, 545.00006)
 scale = Vector2(1, 13)
 
-[node name="HazardRespawn2" parent="hazards" unique_id=1500813923 instance=ExtResource("8_y7x2x")]
+[node name="HazardRespawn2" parent="hazards" unique_id=1500813923 instance=ExtResource("7_ewn2y")]
 position = Vector2(274, 412)
 scale = Vector2(1, 26)
 
@@ -171,15 +160,15 @@ position = Vector2(1861.534, 227.3358)
 scale = Vector2(23.281254, 0.042116802)
 polygon = PackedVector2Array(-84.93153, 2144.2207, -31.326174, 2144.2207, -31.326174, 2904.0137, -84.93153, 2927.7559)
 
-[node name="SpikesCollision2" parent="hazards" unique_id=609428908 instance=ExtResource("7_hhysi")]
+[node name="SpikesCollision2" parent="hazards" unique_id=609428908 instance=ExtResource("6_nyr18")]
 position = Vector2(623, 710)
 scale = Vector2(27, 1)
 
-[node name="HazardRespawn3" parent="hazards" unique_id=1814873973 instance=ExtResource("8_y7x2x")]
+[node name="HazardRespawn3" parent="hazards" unique_id=1814873973 instance=ExtResource("7_ewn2y")]
 position = Vector2(977, 544)
 scale = Vector2(1, 13)
 
-[node name="SpawnLocation2" parent="." unique_id=2008204241 instance=ExtResource("2_rsyk7")]
+[node name="SpawnLocation2" parent="." unique_id=2008204241 instance=ExtResource("2_bfsyb")]
 anchors_preset = -1
 anchor_left = 103.46667
 anchor_top = -21.4
