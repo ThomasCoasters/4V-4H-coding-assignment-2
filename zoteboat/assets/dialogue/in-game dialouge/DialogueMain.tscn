@@ -25,7 +25,10 @@ offset_bottom = 1207.0
 color = Color(0, 0, 0, 0.58431375)
 
 [node name="welcome" parent="dialogue_manager" unique_id=45030735 instance=ExtResource("2_mfygf")]
-messages = ["1;Hello, stranger welcome to these strange lands.;1", "1;I would like to explain what is going on but there is sadly not enough time now..;1", "1;Let's continue talking on the other side of this wall!!;1", "1;All the previous strangers told me that they jump by pressin Z on an keyboard and A or cross on controller. And you jump higher by holding it.;1"]
+messages = ["1;Hello, stranger welcome to these strange lands.;1", "1;I would like to explain what is going on but there is sadly not enough time now..;1", "1;Let's continue talking on the other side of this wall!!;1", "1;All the previous strangers told me that they jump by pressing Z on an keyboard and A or cross on controller. And you jump higher by holding it.;1"]
 
 [node name="scary_bug" parent="dialogue_manager" unique_id=1796485007 instance=ExtResource("2_mfygf")]
 messages = ["1;Stranger, you see these things they are really scary.;1", "1;Can you please remove them with your fine looking sword that looks like it has a craving of \"Life Ender\" on it.;1", "1;From all the countless sad creatures that came here before you I leared you can attack using Z on keyboard and X or cube on controller.;1"]
+
+[node name="heal" parent="dialogue_manager" unique_id=167649008 instance=ExtResource("2_mfygf")]
+messages = ["1;Stranger, you might have took some damage, but you can fix that!;1", "1;If you look top left you might have gotten some \"soul\" after hitting the enemies.;1", "1;The previous strangers told me that if they hold A on keyboard and B or circle on controller.;1", "1;Try to do the stuff that the older strangers never could, and go on your journey!;1"]

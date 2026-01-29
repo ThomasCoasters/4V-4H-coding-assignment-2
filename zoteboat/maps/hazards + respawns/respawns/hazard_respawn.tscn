@@ -1,15 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://djdjlun3b8jss"]
+[gd_scene format=3 uid="uid://djdjlun3b8jss"]
 
 [ext_resource type="Script" uid="uid://csaag8eqml4nl" path="res://maps/hazards + respawns/respawns/hazard_respawn.gd" id="1_po82s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8qf24"]
 
-[node name="HazardRespawn" type="Node2D" groups=["map_transitions"]]
+[node name="HazardRespawn" type="Node2D" unique_id=631066099 groups=["map_transitions"]]
 script = ExtResource("1_po82s")
 
-[node name="Area2D" type="Area2D" parent="." groups=["map_transitions"]]
+[node name="Area2D" type="Area2D" parent="." unique_id=1476609554 groups=["map_transitions"]]
+collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=530773415]
 shape = SubResource("RectangleShape2D_8qf24")
 debug_color = Color(0.6745098, 1, 0.36078432, 0.41960785)
 
