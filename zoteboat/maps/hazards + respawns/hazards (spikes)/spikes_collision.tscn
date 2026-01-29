@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bk8vqqi7q7ylb"]
+[gd_scene format=3 uid="uid://bk8vqqi7q7ylb"]
 
 [ext_resource type="Script" uid="uid://c3frdu7p07um6" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.gd" id="1_u27sq"]
 

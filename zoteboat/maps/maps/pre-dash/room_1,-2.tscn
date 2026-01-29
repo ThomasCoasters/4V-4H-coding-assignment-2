@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/hazards + respawns/respawns/hazard_respawn.tscn" id="7_5vovm"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="8_3gn3q"]
 
-[sub_resource type="Curve2D" id="Curve2D_o06va"]
+[sub_resource type="Curve2D" id="Curve2D_nmeas"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 7.8095703, 0.2479248, 0, 0, 0, 0, 106.80957, 0.2479248, 0, 0, 0, 0, 106.80957, 96.247925, 0, 0, 0, 0, -86.19043, 96.247925, 0, 0, 0, 0, -86.19043, 0.2479248, 0, 0, 0, 0, 7.8095703, 0.2479248)
@@ -132,7 +132,7 @@ position = Vector2(36, 259)
 
 [node name="Path2D2" parent="." unique_id=1535135974 instance=ExtResource("5_aikec")]
 position = Vector2(-443, 528)
-curve = SubResource("Curve2D_o06va")
+curve = SubResource("Curve2D_nmeas")
 
 [node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." unique_id=1986241496]
 visible = false
