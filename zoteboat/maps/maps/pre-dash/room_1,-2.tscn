@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="3_inavj"]
 [ext_resource type="PackedScene" uid="uid://3dmnl1rv4c6f" path="res://enemies/normal/aspid/aspid.tscn" id="4_3lg26"]
 [ext_resource type="PackedScene" uid="uid://ddrkv6jvnt6qp" path="res://enemies/normal/tiktik/tiktik.tscn" id="5_aikec"]
+[ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.tscn" id="6_bq4jx"]
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/hazards + respawns/respawns/hazard_respawn.tscn" id="7_5vovm"]
 [ext_resource type="Texture2D" uid="uid://bb2h7gysppyil" path="res://maps/hazards + respawns/hazards (spikes)/spikes_still.png" id="7_nmeas"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="8_3gn3q"]
@@ -141,6 +142,10 @@ navigation_polygon = SubResource("NavigationPolygon_jftre")
 
 [node name="hazards" type="Node" parent="." unique_id=1447554648]
 
+[node name="SpikesCollision" parent="hazards" unique_id=2091519715 instance=ExtResource("6_bq4jx")]
+position = Vector2(-480, 710)
+scale = Vector2(54.4, 1)
+
 [node name="StaticBody2D2" type="Area2D" parent="hazards" unique_id=2119284695 groups=["map_transitions"]]
 position = Vector2(-2584.4429, 772.7129)
 
@@ -162,6 +167,14 @@ position = Vector2(2245.2214, 226.64354)
 scale = Vector2(23.281254, 0.042116802)
 polygon = PackedVector2Array(-84.93153, 2144.2207, -38.228172, 2184.4023, -38.228172, 2920.4492, -84.93153, 2927.7559)
 
+[node name="SpikesCollision2" parent="hazards" unique_id=609428908 instance=ExtResource("6_bq4jx")]
+position = Vector2(-224.00002, 461.99997)
+scale = Vector2(3, 2.5)
+
+[node name="HazardRespawn3" parent="hazards" unique_id=1814873973 instance=ExtResource("7_5vovm")]
+position = Vector2(593, 159)
+scale = Vector2(1, 6)
+
 [node name="StaticBody2D4" type="Area2D" parent="hazards" unique_id=274535714 groups=["map_transitions"]]
 position = Vector2(-302, 354)
 scale = Vector2(0.9999999, 0.9999999)
@@ -169,7 +182,15 @@ scale = Vector2(0.9999999, 0.9999999)
 [node name="EDIT THIS" type="CollisionPolygon2D" parent="hazards/StaticBody2D4" unique_id=431676448]
 position = Vector2(2246.0005, 227)
 scale = Vector2(23.281254, 0.042116802)
-polygon = PackedVector2Array(-75.16777, 2896.706, -65.63222, 2896.706, -65.63222, -6529.4604, -64.34363, -6529.4604, -64.26721, 3688.706, -75.17728, 3688.706)
+polygon = PackedVector2Array(-75.16777, 2896.706, -65.63222, 2896.706, -65.54631, -6576.9478, -64.34363, -6529.4604, -64.26721, 3688.706, -75.17728, 3688.706)
+
+[node name="SpikesCollision3" parent="hazards" unique_id=405698878 instance=ExtResource("6_bq4jx")]
+position = Vector2(324, 710)
+scale = Vector2(13, 1)
+
+[node name="SpikesCollision4" parent="hazards" unique_id=1290971929 instance=ExtResource("6_bq4jx")]
+position = Vector2(426, 509)
+scale = Vector2(1, 27.08)
 
 [node name="sprites" type="Node" parent="hazards" unique_id=122251381]
 
@@ -244,7 +265,7 @@ texture = ExtResource("7_nmeas")
 [node name="SpikesStill20" type="Sprite2D" parent="hazards/sprites" unique_id=1585088767]
 z_index = -1
 position = Vector2(-225, 462)
-scale = Vector2(0.46, 0.5)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_nmeas")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=564415215]
