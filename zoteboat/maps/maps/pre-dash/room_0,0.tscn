@@ -138,7 +138,7 @@ metadata/_edit_use_anchors_ = true
 [node name="WarpZone4" parent="." unique_id=1268084640 instance=ExtResource("2_cdytd")]
 position = Vector2(-1679, -991.00006)
 scale = Vector2(1, 10)
-warp_to = "res://maps/examples/room transition/main.tscn"
+warp_to = "res://maps/maps/pre-dash/kingspass_for_losers.tscn"
 new_location_group = "middle_1"
 
 [node name="SpawnLocation3" parent="." unique_id=1308955287 instance=ExtResource("3_wyi33")]
