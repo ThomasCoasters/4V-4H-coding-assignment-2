@@ -117,14 +117,14 @@ tile_set = SubResource("TileSet_7r8rt")
 [node name="WarpZone3" parent="." unique_id=1623170445 instance=ExtResource("2_oxr6k")]
 position = Vector2(1456, 5826)
 scale = Vector2(1, 13)
-warp_to = "res://maps/room_1,-1.tscn"
+warp_to = "res://maps/maps/pre-dash/room_1,-1.tscn"
 new_location_group = "Left_1,-1"
 
 [node name="WarpZone4" parent="." unique_id=192670333 instance=ExtResource("2_oxr6k")]
 position = Vector2(-111, 5823.0005)
 scale = Vector2(1, 13)
-warp_to = "res://maps/examples/enemy arena/enemy arena.tscn"
-new_location_group = "left_1"
+warp_to = "res://maps/maps/pre-dash/room_-1,-1.tscn"
+new_location_group = "Right_-1,-1"
 
 [node name="SpawnLocation2" parent="." unique_id=1545312283 instance=ExtResource("3_eanu5")]
 offset_left = 1.0
