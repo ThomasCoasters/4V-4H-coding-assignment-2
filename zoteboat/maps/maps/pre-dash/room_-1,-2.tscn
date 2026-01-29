@@ -159,7 +159,7 @@ rotation = -0.00504006
 visible = false
 
 [node name="aspid" parent="." unique_id=135664931 instance=ExtResource("5_g13wd")]
-position = Vector2(453, 5488)
+position = Vector2(453, 5534)
 
 [node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." unique_id=1783895728]
 visible = false
