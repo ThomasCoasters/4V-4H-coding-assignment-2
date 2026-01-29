@@ -15,6 +15,9 @@ func _on_body_entered(body: Node2D) -> void:
 	if !body.is_in_group("player"):
 		return
 	
+	if body.has_wall_cling:
+		return
+	
 	collect(body)
 
 
@@ -27,5 +30,7 @@ func collect(body):
 	SaveLoad.contents_to_save.starting_location = own_spawning_group
 	
 	SaveLoad._save()
+	
+	Global.dialogue.start("walljump_unlock")
 	
 	collected.emit(self)

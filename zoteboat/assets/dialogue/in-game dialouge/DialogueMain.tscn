@@ -32,3 +32,12 @@ messages = ["1;Stranger, you see these things they are really scary.;1", "1;Can 
 
 [node name="heal" parent="dialogue_manager" unique_id=167649008 instance=ExtResource("2_mfygf")]
 messages = ["1;Stranger, you might have took some damage, but you can fix that!;1", "1;If you look top left you might have gotten some \"soul\" after hitting the enemies.;1", "1;The previous strangers told me that if they hold A on keyboard and B or circle on controller that they could heal!.;1", "1;Try to do the stuff that the older strangers never could, and go on your journey!;1"]
+
+[node name="dash_unlock" parent="dialogue_manager" unique_id=1001915472 instance=ExtResource("2_mfygf")]
+messages = ["1;You got dash! Press C on keyboard or RT on controller.;1"]
+
+[node name="walljump_unlock" parent="dialogue_manager" unique_id=1107339798 instance=ExtResource("2_mfygf")]
+messages = ["1;You got walljump! Go on a wall in the air to cling to it and press the jump button to jump off off the wall.;1"]
+
+[node name="doublejump_unlock" parent="dialogue_manager" unique_id=2053033012 instance=ExtResource("2_mfygf")]
+messages = ["1;You got a double jump! Press the jump button in the air to jump again.;1"]

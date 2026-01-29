@@ -1,20 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://vvt3b4b06nr2"]
+[gd_scene format=3 uid="uid://vvt3b4b06nr2"]
 
-[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="1_jq1vg"]
 [ext_resource type="Script" uid="uid://bsjs24ud5j7u7" path="res://maps/pickups/walljump/unlock_walljump.gd" id="1_pvvdn"]
+[ext_resource type="Texture2D" uid="uid://cf3pnsk2gpbj7" path="res://maps/pickups/walljump/items__0003_mantis-claw.png" id="2_pvvdn"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wur3k"]
-radius = 18.0
-height = 56.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_b2i24"]
+radius = 22.0
 
-[node name="unlockWalljump" type="Area2D" groups=["collectable"]]
+[node name="unlockWalljump" type="Area2D" unique_id=2037951975 groups=["collectable"]]
 script = ExtResource("1_pvvdn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=412606871]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_jq1vg")
+texture = ExtResource("2_pvvdn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_wur3k")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1496460193]
+shape = SubResource("CircleShape2D_b2i24")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

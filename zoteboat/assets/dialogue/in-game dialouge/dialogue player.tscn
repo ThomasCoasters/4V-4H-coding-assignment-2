@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://effmb8qebpvf"]
+[gd_scene format=3 uid="uid://effmb8qebpvf"]
 
 [ext_resource type="Script" uid="uid://2fi852vvlylo" path="res://assets/dialogue/in-game dialouge/dialogue_player.gd" id="1_k6ein"]
 
-[node name="DialoguePlayer" type="Control"]
+[node name="DialoguePlayer" type="Control" unique_id=1183855933]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

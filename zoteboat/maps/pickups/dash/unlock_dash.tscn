@@ -1,20 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://db08bac8xalaa"]
+[gd_scene format=3 uid="uid://db08bac8xalaa"]
 
 [ext_resource type="Script" uid="uid://bma8niiejet7l" path="res://maps/pickups/dash/unlock_dash.gd" id="1_mgerj"]
-[ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="2_kd1ss"]
+[ext_resource type="Texture2D" uid="uid://buayw23xf751x" path="res://maps/pickups/dash/Inv_0015_dash-cloak.png" id="2_mgerj"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wur3k"]
-radius = 18.0
-height = 56.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_kd1ss"]
+radius = 21.023796
 
-[node name="unlock_dash" type="Area2D" groups=["collectable"]]
+[node name="unlock_dash" type="Area2D" unique_id=519380438 groups=["collectable"]]
 script = ExtResource("1_mgerj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=514351988]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_kd1ss")
+texture = ExtResource("2_mgerj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_wur3k")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=215316743]
+shape = SubResource("CircleShape2D_kd1ss")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

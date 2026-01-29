@@ -15,6 +15,9 @@ func _on_body_entered(body: Node2D) -> void:
 	if !body.is_in_group("player"):
 		return
 	
+	if body.has_double_jump:
+		return
+	
 	collect(body)
 
 
@@ -28,4 +31,7 @@ func collect(body):
 	
 	SaveLoad._save()
 	
+	Global.dialogue.start("doublejump_unlock")
+	
 	collected.emit(self)
+	
