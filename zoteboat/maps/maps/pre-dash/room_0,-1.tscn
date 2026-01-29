@@ -120,7 +120,7 @@ new_location_group = "Left_1,-1"
 position = Vector2(-111, 5823.0005)
 scale = Vector2(1, 13)
 warp_to = "res://maps/maps/pre-dash/room_-1,-1.tscn"
-new_location_group = "left_1"
+new_location_group = "Right_-1,-1"
 
 [node name="SpawnLocation2" parent="." unique_id=1545312283 instance=ExtResource("3_eanu5")]
 offset_left = 1.0
@@ -139,7 +139,7 @@ own_group = "Right_0,-1"
 metadata/_edit_use_anchors_ = true
 
 [node name="Bench" parent="." unique_id=1729237278 instance=ExtResource("5_tub5p")]
-position = Vector2(608, 5927)
+position = Vector2(672, 5926)
 
 [node name="DissableMovement" parent="." unique_id=111750805 instance=ExtResource("6_65e4e")]
 position = Vector2(675, 2331)
