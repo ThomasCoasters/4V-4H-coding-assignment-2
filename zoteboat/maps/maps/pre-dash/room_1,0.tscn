@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://oqu7kbfguu6n" path="res://maps/pickups/hp_upgrades/increase_max_hp.tscn" id="9_au5kg"]
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/hazards + respawns/respawns/hazard_respawn.tscn" id="10_a188l"]
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.tscn" id="11_82bfq"]
+[ext_resource type="Texture2D" uid="uid://bb2h7gysppyil" path="res://maps/hazards + respawns/hazards (spikes)/spikes_still.png" id="12_psvay"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fiak"]
 size = Vector2(30, 512.5)
@@ -336,18 +337,36 @@ scale = Vector2(10.539987, 0.042116802)
 polygon = PackedVector2Array(-84.93153, 2144.2207, -33.366005, 2136.915, -33.366005, 2920.4502, -84.93153, 2927.7559)
 
 [node name="HazardRespawn" parent="hazards" unique_id=1179035224 instance=ExtResource("10_a188l")]
-visible = false
-position = Vector2(967.00006, 537)
-scale = Vector2(15, 0.75)
+position = Vector2(966.99994, 296.99997)
+scale = Vector2(3.6117444, 30.953943)
 
 [node name="HazardRespawn2" parent="hazards" unique_id=506545006 instance=ExtResource("10_a188l")]
-visible = false
-position = Vector2(1729.0001, 531)
-scale = Vector2(15, 1)
+position = Vector2(1717.9999, 289)
+scale = Vector2(2.9902318, 24.171263)
 
 [node name="SpikesCollision" parent="hazards" unique_id=1812180944 instance=ExtResource("11_82bfq")]
 position = Vector2(1372, 580)
 scale = Vector2(30, 1.016)
+
+[node name="SpikesStill7" type="Sprite2D" parent="hazards" unique_id=1744377806]
+z_index = -1
+position = Vector2(1177, 576)
+texture = ExtResource("12_psvay")
+
+[node name="SpikesStill8" type="Sprite2D" parent="hazards" unique_id=765508221]
+z_index = -1
+position = Vector2(1318, 580)
+texture = ExtResource("12_psvay")
+
+[node name="SpikesStill9" type="Sprite2D" parent="hazards" unique_id=1179619337]
+z_index = -1
+position = Vector2(1438, 576)
+texture = ExtResource("12_psvay")
+
+[node name="SpikesStill10" type="Sprite2D" parent="hazards" unique_id=238141695]
+z_index = -1
+position = Vector2(1509, 587)
+texture = ExtResource("12_psvay")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1906459449]
 position = Vector2(1321, 404)

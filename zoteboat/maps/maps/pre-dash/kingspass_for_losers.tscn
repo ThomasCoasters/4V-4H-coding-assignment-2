@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/hazards + respawns/respawns/hazard_respawn.tscn" id="7_hjyh2"]
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.tscn" id="7_ojx15"]
 [ext_resource type="PackedScene" uid="uid://c5wl5c6xeirq8" path="res://maps/NPCs/kingspass/tutorial_npc/tutorial_NPC.tscn" id="8_4d1px"]
+[ext_resource type="Texture2D" uid="uid://bb2h7gysppyil" path="res://maps/hazards + respawns/hazards (spikes)/spikes_still.png" id="8_xpn8k"]
 [ext_resource type="PackedScene" uid="uid://desufiot6ea2v" path="res://enemies/normal/peashooter/peashooter.tscn" id="9_xpn8k"]
 
 [sub_resource type="Curve2D" id="Curve2D_ojx15"]
@@ -192,6 +193,58 @@ position = Vector2(947, 901)
 
 [node name="EDIT THIS" parent="hazards/SpikesCollision/StaticBody2D" index="0"]
 polygon = PackedVector2Array(-46, 19, 1099, 8, 1073, 102, -37, 90)
+
+[node name="visual" type="Node" parent="hazards" unique_id=1851843683]
+
+[node name="SpikesStill" type="Sprite2D" parent="hazards/visual" unique_id=932988066]
+z_index = -1
+position = Vector2(975, 926)
+texture = ExtResource("8_xpn8k")
+
+[node name="SpikesStill2" type="Sprite2D" parent="hazards/visual" unique_id=555686958]
+z_index = -1
+position = Vector2(1099, 929)
+texture = ExtResource("8_xpn8k")
+
+[node name="SpikesStill3" type="Sprite2D" parent="hazards/visual" unique_id=1804789341]
+z_index = -1
+position = Vector2(1224, 924)
+texture = ExtResource("8_xpn8k")
+
+[node name="SpikesStill4" type="Sprite2D" parent="hazards/visual" unique_id=1212637215]
+z_index = -1
+position = Vector2(1586, 915)
+texture = ExtResource("8_xpn8k")
+
+[node name="SpikesStill5" type="Sprite2D" parent="hazards/visual" unique_id=864522890]
+z_index = -1
+position = Vector2(1476, 923)
+texture = ExtResource("8_xpn8k")
+
+[node name="SpikesStill6" type="Sprite2D" parent="hazards/visual" unique_id=794997885]
+z_index = -1
+position = Vector2(1343, 930)
+texture = ExtResource("8_xpn8k")
+
+[node name="SpikesStill7" type="Sprite2D" parent="hazards/visual" unique_id=254274821]
+z_index = -1
+position = Vector2(3172, 1830)
+texture = ExtResource("8_xpn8k")
+
+[node name="SpikesStill8" type="Sprite2D" parent="hazards/visual" unique_id=1695247434]
+z_index = -1
+position = Vector2(1713, 933)
+texture = ExtResource("8_xpn8k")
+
+[node name="SpikesStill9" type="Sprite2D" parent="hazards/visual" unique_id=1221315448]
+z_index = -1
+position = Vector2(1844, 920)
+texture = ExtResource("8_xpn8k")
+
+[node name="SpikesStill10" type="Sprite2D" parent="hazards/visual" unique_id=547853833]
+z_index = -1
+position = Vector2(1952, 935)
+texture = ExtResource("8_xpn8k")
 
 [node name="SpawnLocation3" parent="." unique_id=1206408666 instance=ExtResource("2_ojx15")]
 anchors_preset = -1
