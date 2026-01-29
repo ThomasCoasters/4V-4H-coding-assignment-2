@@ -253,9 +253,9 @@ anchor_top = -21.4
 anchor_right = 103.46667
 anchor_bottom = -21.4
 offset_left = -3765.0
-offset_top = 930.0
+offset_top = 929.0
 offset_right = -3735.0
-offset_bottom = 960.0
+offset_bottom = 959.0
 own_group = "start_1,-1"
 metadata/_edit_use_anchors_ = true
 

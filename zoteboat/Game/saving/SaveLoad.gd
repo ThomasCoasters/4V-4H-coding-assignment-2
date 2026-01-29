@@ -10,8 +10,9 @@ var DEFAULT_SAVE: Dictionary = {
 	"has_wall_cling": false,
 	
 	"starting_room": "res://maps/maps/pre-dash/kingspass_for_losers.tscn",
-	#"starting_room": "res://maps/examples/THOMAS TEST RAAK NIET AAN/RAAK NIET AAN.tscn",
+	#"starting_room": "res://maps/maps/pre-dash/room_0,-1.tscn",
 	"starting_location": "start_1,-1",
+	#"starting_location": "bench",
 	
 	"rumble": 2,
 	"screen_shake": 2,
