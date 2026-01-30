@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://jqao6jbbhgn3" path="res://maps/enemy arena/audio/tv_time.mp3" id="5_l5sd6"]
 [ext_resource type="Script" uid="uid://dirquph6nfgas" path="res://maps/enemy arena/universal_arena_script.gd" id="6_l6iu0"]
 [ext_resource type="Script" path="res://maps/enemy arena/generic_extra_script.gd" id="7_a188l"]
-[ext_resource type="Script" path="res://maps/enemy arena/keyValue.gd" id="8_82bfq"]
+[ext_resource type="Script" uid="uid://domk3qfwgxh7i" path="res://maps/enemy arena/keyValue.gd" id="8_82bfq"]
 [ext_resource type="PackedScene" uid="uid://oqu7kbfguu6n" path="res://maps/pickups/hp_upgrades/increase_max_hp.tscn" id="9_au5kg"]
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/hazards + respawns/respawns/hazard_respawn.tscn" id="10_a188l"]
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.tscn" id="11_82bfq"]
@@ -317,7 +317,6 @@ script = ExtResource("7_a188l")
 extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_u3s44")])
 
 [node name="doors" type="TileMapLayer" parent="area arena" unique_id=1558127516]
-visible = false
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAYABAAAAADAAcAAAAYAA8AAAADAAYAAAAYAA4AAAADAAYAAAAYAA0AAAADAAYAAAAYAAwAAAADAAYAAAAYAAsAAAADAAYAAAAYAAoAAAADAAYAAAAYAAkAAAADAAUAAAAXABAAAAACAAcAAAAXAA8AAAACAAYAAAAXAA4AAAACAAYAAAAXAA0AAAACAAYAAAAXAAwAAAACAAYAAAAXAAsAAAACAAYAAAAXAAoAAAACAAYAAAAXAAkAAAACAAUAAAAWABAAAAABAAcAAAAWAA8AAAABAAYAAAAWAA4AAAABAAYAAAAWAA0AAAABAAYAAAAWAAwAAAABAAYAAAAWAAsAAAABAAYAAAAWAAoAAAABAAYAAAAWAAkAAAABAAUAAAA9ABAAAAADAAcAAAA9AA8AAAADAAYAAAA9AA4AAAADAAYAAAA9AA0AAAADAAYAAAA9AAwAAAADAAYAAAA9AAsAAAADAAYAAAA9AAoAAAADAAYAAAA9AAkAAAADAAUAAAA8ABAAAAACAAcAAAA8AA8AAAACAAYAAAA8AA4AAAACAAYAAAA8AA0AAAACAAYAAAA8AAwAAAACAAYAAAA8AAsAAAACAAYAAAA8AAoAAAACAAYAAAA8AAkAAAACAAUAAAA7ABAAAAABAAcAAAA7AA8AAAABAAYAAAA7AA4AAAABAAYAAAA7AA0AAAABAAYAAAA7AAwAAAABAAYAAAA7AAsAAAABAAYAAAA7AAoAAAABAAYAAAA7AAkAAAABAAUAAAA=")
 tile_set = SubResource("TileSet_1yexc")

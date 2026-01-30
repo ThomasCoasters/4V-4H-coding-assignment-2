@@ -172,7 +172,7 @@ scale = Vector2(10.539987, 0.042116802)
 polygon = PackedVector2Array(-84.93153, 2144.2207, -33.366005, 2136.915, -33.366005, 2920.4502, -84.93153, 2927.7559)
 
 [node name="HazardRespawn" parent="hazards" unique_id=1605870918 instance=ExtResource("8_oqa1b")]
-position = Vector2(-1424, 545.00006)
+position = Vector2(-1506, 542.00006)
 scale = Vector2(1, 13)
 
 [node name="HazardRespawn2" parent="hazards" unique_id=1500813923 instance=ExtResource("8_oqa1b")]
@@ -193,7 +193,7 @@ position = Vector2(623, 710)
 scale = Vector2(27, 1)
 
 [node name="HazardRespawn3" parent="hazards" unique_id=1814873973 instance=ExtResource("8_oqa1b")]
-position = Vector2(977, 544)
+position = Vector2(1015, 538.00006)
 scale = Vector2(1, 13)
 
 [node name="visuals" type="Node" parent="hazards" unique_id=431748743]
