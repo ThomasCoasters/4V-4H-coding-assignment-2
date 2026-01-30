@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/hazards + respawns/respawns/hazard_respawn.tscn" id="7_5vovm"]
 [ext_resource type="Texture2D" uid="uid://bb2h7gysppyil" path="res://maps/hazards + respawns/hazards (spikes)/spikes_still.png" id="7_nmeas"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="8_3gn3q"]
+[ext_resource type="PackedScene" uid="uid://vvt3b4b06nr2" path="res://maps/pickups/walljump/unlock_walljump.tscn" id="10_inavj"]
 
 [sub_resource type="Curve2D" id="Curve2D_xvytf"]
 resource_local_to_scene = true
@@ -302,3 +303,6 @@ offset_right = 255.0
 offset_bottom = 672.0
 own_group = "Bottom_1,-2"
 metadata/_edit_use_anchors_ = true
+
+[node name="unlockWalljump" parent="." unique_id=2037951975 instance=ExtResource("10_inavj")]
+position = Vector2(507, 199)
