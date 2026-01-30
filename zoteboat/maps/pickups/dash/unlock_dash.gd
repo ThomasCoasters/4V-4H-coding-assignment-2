@@ -10,6 +10,9 @@ func _ready() -> void:
 	has_dash = SaveLoad.contents_to_save.has_dash
 	
 	add_to_group(own_spawning_group)
+	
+	if has_dash:
+		visible = false
 
 func _on_body_entered(body: Node2D) -> void:
 	if !body.is_in_group("player"):

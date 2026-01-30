@@ -296,7 +296,7 @@ extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_d110b")])
 
 [node name="phase3" type="Node" parent="area arena/wave holder" unique_id=1975749822]
 
-[node name="aspid" type="Node2D" parent="area arena/wave holder/phase3" unique_id=1616452817]
+[node name="primal" type="Node2D" parent="area arena/wave holder/phase3" unique_id=1616452817]
 visible = false
 position = Vector2(1316.1995, 407.21863)
 

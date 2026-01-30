@@ -10,6 +10,9 @@ func _ready() -> void:
 	has_double_jump = SaveLoad.contents_to_save.has_double_jump
 	
 	add_to_group(own_spawning_group)
+	
+	if has_double_jump:
+		visible = false
 
 func _on_body_entered(body: Node2D) -> void:
 	if !body.is_in_group("player"):
