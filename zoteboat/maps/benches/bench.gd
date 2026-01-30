@@ -32,6 +32,8 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if Global.player.direction.y == 1 && !Global.player.moving.active:
+		Global.player.health = Global.player.max_health
+		
 		SaveLoad.contents_to_save.starting_room = Global.map.scene_file_path
 		SaveLoad.contents_to_save.starting_location = own_spawning_group
 		
