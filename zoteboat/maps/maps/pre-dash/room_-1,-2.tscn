@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bb2h7gysppyil" path="res://maps/hazards + respawns/hazards (spikes)/spikes_still.png" id="7_sdnps"]
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.tscn" id="8_dgsse"]
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/hazards + respawns/respawns/hazard_respawn.tscn" id="9_dgsse"]
-[ext_resource type="PackedScene" uid="uid://m7ubfq1qdyfv" path="res://maps/pickups/double jump/unlock_double_jump.tscn" id="10_a5qev"]
 
 [sub_resource type="Curve2D" id="Curve2D_dgsse"]
 resource_local_to_scene = true
@@ -294,9 +293,6 @@ scale = Vector2(1, 13)
 
 [node name="aspid2" parent="." unique_id=1710112192 instance=ExtResource("5_g13wd")]
 position = Vector2(1657, 5176)
-
-[node name="UnlockDoubleJump" parent="." unique_id=1324372839 instance=ExtResource("10_a5qev")]
-position = Vector2(2095, 5084)
 
 [editable path="Path2D3"]
 [editable path="Path2D4"]
