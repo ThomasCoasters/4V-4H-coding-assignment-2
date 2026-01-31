@@ -72,6 +72,7 @@ var i_frames_hit_time: float = 1.2
 var hitstun_time: float = 0.25
 var hitstop_time: float = 0.075
 var iframe_tween: Tween
+var iframe_counter: int = 0
 
 const GET_HIT_KNOCKBACK_FORCE = 450
 const GET_HIT_KNOCKBACK_TIME = 0.15
@@ -754,7 +755,10 @@ func knockback(force, time, body, knockback_up: bool = true):
 	can_walk = true
 
 func i_frames(time):
-	self.add_to_group("invincible")
+	iframe_counter += 1
+	var my_id = iframe_counter
+	
+	add_to_group("invincible")
 	
 	if iframe_tween:
 		iframe_tween.kill()
@@ -766,15 +770,24 @@ func i_frames(time):
 	
 	vignette_shrink(0.0, 0.8, time / 6)
 	await get_tree().create_timer(time / 6 * 2).timeout
+	
+	if my_id != iframe_counter:
+		return
+	
 	vignette_return(0.9, 1.3, time / 6 * 4)
 	
 	await get_tree().create_timer(time).timeout
+	
+	if my_id != iframe_counter:
+		return
+	
 	
 	if iframe_tween:
 		iframe_tween.kill()
 	
 	sprite_2d.modulate.a = 1.0
-	self.remove_from_group("invincible")
+	remove_from_group("invincible")
+
 
 
 
