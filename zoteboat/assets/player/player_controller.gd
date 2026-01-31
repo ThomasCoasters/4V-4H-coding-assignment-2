@@ -526,7 +526,7 @@ func start_DOWN_ATTACK():
 	var attack = DOWN_ATTACK.instantiate()
 	var dir = sign(last_direction.x)
 	
-	attack.position = position
+	attack.position = position - dir * Vector2(17,0)
 	attack.scale.x = dir
 	attack.scale.y = -1
 	
