@@ -39,7 +39,8 @@ const MOVE_SPEED : int = 400
 const LOOKAHEAD : int = 50
 var current_camera_type := "free" #"free" or "locked" or "lock_x" or "lock_y"
 var forced_position = null
-const LOOKAHEAD_COOLDOWN : float = 0.1
+const LOOKAHEAD_COOLDOWN : float = 0.4
+var look_timer: SceneTreeTimer = null
 
 var attack_cooldown : float = 0.41
 const ATTACK_LINGER : float = 0.15
@@ -447,23 +448,31 @@ func camera_movement_y():
 	if !is_on_floor() || $StateChart/ParallelState/moving/Moving.active:
 		Camera.position.y = 0
 		Camera.drag_top_margin = 0.25
+		look_timer = null        # cancel pending look
 		return
-	
-	var dir = sign(direction)
 	
 	Camera.drag_top_margin = 0
 	
-	if Camera.position.y == dir.y*LOOKAHEAD*2:
+	var dir_y = direction.y
+	
+	if dir_y == 0:
 		Camera.position.y = 0
+		look_timer = null
 		return
 	
-	await get_tree().create_timer(LOOKAHEAD_COOLDOWN).timeout
+	var target = -dir_y * (LOOKAHEAD * 5 if dir_y == 1 else LOOKAHEAD * 8)
+	if Camera.position.y == target:
+		return
 	
-	
-	if dir.y == 1:
-		Camera.position.y = -dir.y*LOOKAHEAD*5
-	else: 
-		Camera.position.y = -dir.y*LOOKAHEAD*8
+	if look_timer == null:
+		look_timer = get_tree().create_timer(LOOKAHEAD_COOLDOWN)
+		await look_timer.timeout
+		
+		# After waiting, check player still holding same direction
+		if direction.y == dir_y:
+			Camera.position.y = target
+		
+		look_timer = null
 #endregion
 
 
