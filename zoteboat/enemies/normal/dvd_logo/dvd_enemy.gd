@@ -52,6 +52,7 @@ func _ready() -> void:
 	stats.health_depleted.connect(_on_health_depleted)
 	
 	$Sprite2D.flip_h = direction.x > 0
+	$Sprite2D.animation_finished.connect(_on_animation_finished)
 	
 	add_to_group("dvd_enemy")
 
@@ -88,10 +89,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += 40
 		move_and_slide()
 		if is_on_floor():
-			play_anim("death(land)")
-			await get_tree().create_timer(0.4).timeout
-			
-			killed.emit(self)
+			play_anim("death(land)", 999)
 		
 		
 		return
@@ -118,7 +116,7 @@ func _on_health_depleted():
 
 
 func play_anim(anim_name: String = "idle", priority: int = 0):
-	if priority < current_anim_priority:
+	if priority < current_anim_priority || current_anim_priority == 999:
 		return
 	
 	if anim_name == "death(land)":
@@ -131,7 +129,11 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 	
 	$Sprite2D.play(anim_name)
 
-
+func _on_animation_finished():
+	current_anim_priority = 0
+	
+	if current_anim == "death(land)":
+		killed.emit(self)
 
 
 

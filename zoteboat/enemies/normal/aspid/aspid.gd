@@ -27,6 +27,7 @@ var can_attack: bool = true
 
 var facing_dir: int = -1 # -1 = left           1 = right
 
+@export var start_attacking: bool = false
 
 const ASPID_ATTACK = preload("uid://c2ur5fk7pwnlj")
 
@@ -66,6 +67,9 @@ func activate():
 	set_physics_process(true)
 	
 	self.remove_from_group("deactive")
+	
+	if start_attacking:
+		state_chart.send_event("move_toward")
 
 func deactivate():
 	set_process(false)

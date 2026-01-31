@@ -32,6 +32,8 @@ const GRIMMKIN_ATTACK = preload("uid://7s842kuvjrm8")
 
 @onready var sprite_2d: AnimatedSprite2D = $Sprite2D
 
+@export var start_attacking: bool = false
+
 var current_anim: String
 
 enum ANIM_PRIORITY {
@@ -79,6 +81,9 @@ func activate():
 	set_physics_process(true)
 	
 	self.remove_from_group("deactive")
+	
+	if start_attacking:
+		state_chart.send_event("active")
 
 func deactivate():
 	set_process(false)
