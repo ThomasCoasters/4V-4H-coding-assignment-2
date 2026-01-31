@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://doeteha3810mt"]
 
 [ext_resource type="PackedScene" uid="uid://7cdtgxgfo0wa" path="res://assets/UI/HP/HP.tscn" id="1_nmpck"]
-[ext_resource type="Script" path="res://assets/UI/vignette.gd" id="2_p2i4h"]
+[ext_resource type="Script" uid="uid://bdmver5aamu1w" path="res://assets/UI/vignette.gd" id="2_p2i4h"]
 [ext_resource type="PackedScene" uid="uid://4n2vr8ph3efl" path="res://assets/UI/mana/mana.tscn" id="2_wsaw0"]
 [ext_resource type="PackedScene" uid="uid://effmb8qebpvf" path="res://assets/dialogue/in-game dialouge/dialogue player.tscn" id="3_57uuq"]
 [ext_resource type="Shader" uid="uid://bwjvbeux7apnr" path="res://assets/UI/vignette.gdshader" id="4_d88u3"]
+[ext_resource type="FontFile" uid="uid://bhnk3wqndu8dp" path="res://Game/fonts/TrajanPro-Bold.otf" id="6_rnif4"]
+[ext_resource type="Script" uid="uid://2usifa6o7l23" path="res://assets/UI/rich_text_label.gd" id="7_o53na"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p2i4h"]
 shader = ExtResource("4_d88u3")
@@ -36,3 +38,20 @@ offset_right = -1672.0
 offset_bottom = -909.0
 
 [node name="DialoguePlayer" parent="." unique_id=1378940205 instance=ExtResource("3_57uuq")]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1856680581]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -230.0
+offset_right = 311.0
+offset_bottom = -60.0
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("6_rnif4")
+theme_override_font_sizes/normal_font_size = 40
+text = "Press up to talk"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_o53na")

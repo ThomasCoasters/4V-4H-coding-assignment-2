@@ -263,6 +263,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="TutorialNpc" parent="NPCs" unique_id=1067063007 instance=ExtResource("8_4d1px")]
 position = Vector2(-3438, 915)
+explain_talk = true
+explain_text = "Press up to talk"
 
 [node name="TutorialNpc2" parent="NPCs" unique_id=1063734664 instance=ExtResource("8_4d1px")]
 position = Vector2(-1859, 914)
