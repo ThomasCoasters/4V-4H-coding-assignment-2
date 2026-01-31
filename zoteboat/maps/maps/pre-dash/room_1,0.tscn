@@ -16,42 +16,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fiak"]
 size = Vector2(30, 512.5)
 
-[sub_resource type="Resource" id="Resource_psvay"]
-script = ExtResource("8_82bfq")
-key = "angle"
-value = 65.0
-
-[sub_resource type="Resource" id="Resource_mo4rv"]
-script = ExtResource("8_82bfq")
-key = "angle"
-value = 160.0
-
-[sub_resource type="Resource" id="Resource_0kb2g"]
-script = ExtResource("8_82bfq")
-key = "angle"
-value = 160.0
-
-[sub_resource type="Resource" id="Resource_d110b"]
-script = ExtResource("8_82bfq")
-key = "angle"
-value = 160.0
-
-[sub_resource type="Resource" id="Resource_uspxo"]
-script = ExtResource("8_82bfq")
-key = "angle"
-value = 120.0
-
-[sub_resource type="Resource" id="Resource_l1k22"]
-script = ExtResource("8_82bfq")
-key = "angle"
-value = 240.0
-
-[sub_resource type="Resource" id="Resource_u3s44"]
-script = ExtResource("8_82bfq")
-key = "angle"
-value = 42.0
-metadata/_custom_type_script = "uid://domk3qfwgxh7i"
-
 [sub_resource type="Resource" id="Resource_yuwko"]
 script = ExtResource("8_82bfq")
 key = "face_left"
@@ -295,85 +259,24 @@ position = Vector2(1041, 155)
 
 [node name="phase2" type="Node" parent="area arena/wave holder" unique_id=980782404]
 
-[node name="dvd1" type="Node2D" parent="area arena/wave holder/phase2" unique_id=1713057989]
-position = Vector2(896, 160)
+[node name="squash" type="Node2D" parent="area arena/wave holder/phase2" unique_id=538394617]
+position = Vector2(1344, 242)
 
-[node name="extra" type="Node2D" parent="area arena/wave holder/phase2/dvd1" unique_id=1861457287]
-visible = false
-script = ExtResource("7_a188l")
-extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_psvay")])
+[node name="dvd" type="Node2D" parent="area arena/wave holder/phase2" unique_id=107856066]
+position = Vector2(1007, 300)
 
-[node name="dvd2" type="Node2D" parent="area arena/wave holder/phase2" unique_id=2043404128]
-position = Vector2(1015, 376)
-
-[node name="extra" type="Node2D" parent="area arena/wave holder/phase2/dvd2" unique_id=27398758]
-visible = false
-script = ExtResource("7_a188l")
-extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_mo4rv")])
-
-[node name="dvd3" type="Node2D" parent="area arena/wave holder/phase2" unique_id=65025141]
-position = Vector2(1568, 288)
-
-[node name="extra" type="Node2D" parent="area arena/wave holder/phase2/dvd3" unique_id=901774210]
-visible = false
-position = Vector2(-324, -66)
-script = ExtResource("7_a188l")
-extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_0kb2g")])
-
-[node name="dvd4" type="Node2D" parent="area arena/wave holder/phase2" unique_id=449833569]
-position = Vector2(1792, 160)
-
-[node name="extra" type="Node2D" parent="area arena/wave holder/phase2/dvd4" unique_id=1841261816]
-visible = false
-script = ExtResource("7_a188l")
-extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_d110b")])
-
-[node name="dvd5" type="Node2D" parent="area arena/wave holder/phase2" unique_id=1805709745]
-position = Vector2(1435, 348)
-
-[node name="extra" type="Node2D" parent="area arena/wave holder/phase2/dvd5" unique_id=1179017644]
-visible = false
-position = Vector2(-324, -66)
-script = ExtResource("7_a188l")
-extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_uspxo")])
-
-[node name="dvd6" type="Node2D" parent="area arena/wave holder/phase2" unique_id=1517783625]
-position = Vector2(1478, 127)
-
-[node name="extra" type="Node2D" parent="area arena/wave holder/phase2/dvd6" unique_id=14812476]
-visible = false
-position = Vector2(-324, -66)
-script = ExtResource("7_a188l")
-extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_l1k22")])
+[node name="aspid" type="Node2D" parent="area arena/wave holder/phase2" unique_id=564119653]
+position = Vector2(1647, 298)
 
 [node name="phase3" type="Node" parent="area arena/wave holder" unique_id=1975749822]
 
 [node name="primal" type="Node2D" parent="area arena/wave holder/phase3" unique_id=1616452817]
 position = Vector2(1344, 242)
 
-[node name="dvd1" type="Node2D" parent="area arena/wave holder/phase3" unique_id=848377726]
-position = Vector2(955.43335, 367.13348)
-
-[node name="extra" type="Node2D" parent="area arena/wave holder/phase3/dvd1" unique_id=509817452]
-visible = false
-script = ExtResource("7_a188l")
-extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_d110b")])
-
-[node name="dvd2" type="Node2D" parent="area arena/wave holder/phase3" unique_id=696309718]
-position = Vector2(1731.1984, 352.98578)
-
-[node name="extra" type="Node2D" parent="area arena/wave holder/phase3/dvd2" unique_id=1259909341]
-visible = false
-script = ExtResource("7_a188l")
-extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_u3s44")])
-
 [node name="phase4" type="Node" parent="area arena/wave holder" unique_id=4262429]
 
 [node name="squash" type="Node2D" parent="area arena/wave holder/phase4" unique_id=678401297]
 position = Vector2(1344, 242)
-
-[node name="peashooter" type="Node2D" parent="area arena/wave holder/phase4" unique_id=592369673]
-position = Vector2(820, 384)
 
 [node name="peashooter2" type="Node2D" parent="area arena/wave holder/phase4" unique_id=395683499]
 position = Vector2(1860, 499)
@@ -383,15 +286,15 @@ visible = false
 script = ExtResource("7_a188l")
 extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_yuwko")])
 
-[node name="aspid" type="Node2D" parent="area arena/wave holder/phase4" unique_id=727425164]
-position = Vector2(1599, 221)
-
 [node name="aspid2" type="Node2D" parent="area arena/wave holder/phase4" unique_id=1015698]
 position = Vector2(1086, 196)
 
 [node name="phase5" type="Node" parent="area arena/wave holder" unique_id=1087452905]
 
 [node name="grimm_attack" type="Node2D" parent="area arena/wave holder/phase5" unique_id=1811988544]
+position = Vector2(1344, 242)
+
+[node name="grimm_attack2" type="Node2D" parent="area arena/wave holder/phase5" unique_id=942045137]
 position = Vector2(1344, 242)
 
 [node name="doors" type="TileMapLayer" parent="area arena" unique_id=1558127516]
