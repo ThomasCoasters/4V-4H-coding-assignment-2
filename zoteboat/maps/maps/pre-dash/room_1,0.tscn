@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="2_tvt4p"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="3_cifja"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="4_3ih3o"]
-[ext_resource type="AudioStream" uid="uid://jqao6jbbhgn3" path="res://maps/enemy arena/audio/tv_time.mp3" id="5_l5sd6"]
 [ext_resource type="Script" uid="uid://dirquph6nfgas" path="res://maps/enemy arena/universal_arena_script.gd" id="6_l6iu0"]
 [ext_resource type="Script" uid="uid://3agjipx3lxq3" path="res://maps/enemy arena/generic_extra_script.gd" id="7_a188l"]
 [ext_resource type="Script" uid="uid://domk3qfwgxh7i" path="res://maps/enemy arena/keyValue.gd" id="8_82bfq"]
@@ -250,17 +249,14 @@ scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAYABAAAAADAAcAAAAYAA8AAAADAAYAAAAYAA4AAAADAAYAAAAYAA0AAAADAAYAAAAYAAwAAAADAAYAAAAYAAsAAAADAAYAAAAYAAoAAAADAAYAAAAYAAkAAAADAAUAAAAXABAAAAACAAcAAAAXAA8AAAACAAYAAAAXAA4AAAACAAYAAAAXAA0AAAACAAYAAAAXAAwAAAACAAYAAAAXAAsAAAACAAYAAAAXAAoAAAACAAYAAAAXAAkAAAACAAUAAAAWABAAAAABAAcAAAAWAA8AAAABAAYAAAAWAA4AAAABAAYAAAAWAA0AAAABAAYAAAAWAAwAAAABAAYAAAAWAAsAAAABAAYAAAAWAAoAAAABAAYAAAAWAAkAAAABAAUAAAA9ABAAAAADAAcAAAA9AA8AAAADAAYAAAA9AA4AAAADAAYAAAA9AA0AAAADAAYAAAA9AAwAAAADAAYAAAA9AAsAAAADAAYAAAA9AAoAAAADAAYAAAA9AAkAAAADAAUAAAA8ABAAAAACAAcAAAA8AA8AAAACAAYAAAA8AA4AAAACAAYAAAA8AA0AAAACAAYAAAA8AAwAAAACAAYAAAA8AAsAAAACAAYAAAA8AAoAAAACAAYAAAA8AAkAAAACAAUAAAA7ABAAAAABAAcAAAA7AA8AAAABAAYAAAA7AA4AAAABAAYAAAA7AA0AAAABAAYAAAA7AAwAAAABAAYAAAA7AAsAAAABAAYAAAA7AAoAAAABAAYAAAA7AAkAAAABAAUAAAA=")
 tile_set = SubResource("TileSet_1yexc")
 
-[node name="TvTime" type="AudioStreamPlayer" parent="area arena" unique_id=74479971]
-stream = ExtResource("5_l5sd6")
-volume_db = -16.0
-
-[node name="area arena trigger" type="Area2D" parent="area arena" unique_id=1248533800 node_paths=PackedStringArray("doors", "camera_pos", "wave_holder", "audio_node") groups=["enemy arena"]]
+[node name="area arena trigger" type="Area2D" parent="area arena" unique_id=1248533800 node_paths=PackedStringArray("doors", "camera_pos", "wave_holder") groups=["enemy arena"]]
 collision_layer = 0
 script = ExtResource("6_l6iu0")
 doors = NodePath("../doors")
 camera_pos = NodePath("../Camera pos")
 wave_holder = NodePath("../wave holder")
-audio_node = NodePath("../TvTime")
+arena_audio_path = "res://Game/audio/tv_time.mp3"
+after_audio_path = "res://Game/audio/silkantuary.mp3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area arena/area arena trigger" unique_id=788480687]
 visible = false

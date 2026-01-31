@@ -3,6 +3,7 @@ class_name MapHolder extends Node
 @export var map : Node2D
 @export var player : CharacterBody2D
 @export var gui : Control
+@export var audio : AudioStreamPlayer
 
 var current_map
 var current_GUI
@@ -15,6 +16,8 @@ var finished_arenas : Dictionary = {}
 var collected_items : Dictionary = {}
 
 var is_transition: bool = false
+
+var audio_path: String
 
 func _ready() -> void:
 	killed_enemies = SaveLoad.contents_to_save.killed_enemies.duplicate(true)
@@ -195,3 +198,11 @@ func _on_item_collected(item):
 func _disable_map_transitions(map_node: Node) -> void:
 	for t in map_node.get_tree().get_nodes_in_group("map_transitions"):
 		t.set_deferred("monitoring", false)
+
+
+
+func new_audio(path: String):
+	audio_path = path
+	
+	audio.stream = load(path)
+	audio.play()

@@ -5,11 +5,17 @@ signal enemy_died(enemy: Node2D)
 signal arena_won(arena: Node)
 signal item_collected(item: Node)
 
+@export var audio_path: String
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.map = self
 	
 	var map_path = scene_file_path
+	
+	if audio_path:
+		if Global.map_holder.audio_path != audio_path:
+			Global.map_holder.new_audio(audio_path)
 	
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		

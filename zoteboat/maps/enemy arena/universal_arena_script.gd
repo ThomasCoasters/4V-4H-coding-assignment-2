@@ -1,5 +1,6 @@
 extends Area2D
 
+@export_group("nodes")
 @export var doors: TileMapLayer
 
 var arena_started: bool = false
@@ -44,7 +45,9 @@ signal arena_won(node: Node)
 
 var arena_parent: Node = null
 
-@export var audio_node: AudioStreamPlayer
+@export_group("audio paths")
+@export var arena_audio_path: String
+@export var after_audio_path: String
 
 func _ready():
 	arena_parent = self.get_parent()
@@ -77,8 +80,9 @@ func start_arena():
 	if doors:
 		doors.enabled = true
 	
-	if audio_node:
-		audio_node.play()
+	if arena_audio_path:
+		if Global.map_holder.audio_path != arena_audio_path:
+			Global.map_holder.new_audio(arena_audio_path)
 	
 	spawn_wave()
 
@@ -96,8 +100,9 @@ func finish_arena():
 	if is_instance_valid(arena_parent):
 		arena_parent.queue_free()
 	
-	if audio_node:
-		audio_node.stop()
+	if after_audio_path:
+		if Global.map_holder.audio_path != after_audio_path:
+			Global.map_holder.new_audio(after_audio_path)
 	
 	arena_won.emit(arena_parent)
 

@@ -149,6 +149,7 @@ point_count = 6
 
 [node name="KingspassForLosers" type="Node2D" unique_id=136216618]
 script = ExtResource("1_3ui2i")
+audio_path = "res://Game/audio/silkantuary.mp3"
 
 [node name="SpawnLocation" parent="." unique_id=1978993451 instance=ExtResource("2_ojx15")]
 offset_left = 1928.0
