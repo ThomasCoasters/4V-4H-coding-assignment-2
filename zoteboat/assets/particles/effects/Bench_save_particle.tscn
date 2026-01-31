@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://da01lfn2jh3g2"]
+
+[ext_resource type="Script" uid="uid://byewreajbnuj6" path="res://assets/particles/code/heal_effect.gd" id="1_cxr0u"]
+
+[sub_resource type="Gradient" id="Gradient_r66jn"]
+offsets = PackedFloat32Array(0.23278688, 0.9213115)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h4atg"]
+gradient = SubResource("Gradient_r66jn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x2xj0"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(40, 30, 1)
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+spread = 54.834
+flatness = 1.0
+initial_velocity_min = 244.84
+initial_velocity_max = 454.62
+angular_velocity_min = -720.0
+angular_velocity_max = 719.99994
+gravity = Vector3(0, 600, 0)
+linear_accel_min = -100.0
+linear_accel_max = 96.06999
+radial_accel_min = -100.0
+radial_accel_max = 99.99999
+damping_max = 100.00001
+scale_min = 5.0
+scale_max = 7.0
+scale_over_velocity_max = 1000.0
+color = Color(0.81960785, 1, 1, 0.84313726)
+color_ramp = SubResource("GradientTexture1D_h4atg")
+hue_variation_min = -0.08000002
+hue_variation_max = 0.06999998
+collision_mode = 2
+
+[node name="Bench_save" type="GPUParticles2D" unique_id=60370041]
+z_index = 5
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_x2xj0")
+script = ExtResource("1_cxr0u")

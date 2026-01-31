@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cml20x1y0xxrg" path="res://maps/benches/Interact fleurs - atlas0 #40637 (1).png" id="2_hwsbe"]
 [ext_resource type="Texture2D" uid="uid://cch4eh2viekpd" path="res://maps/benches/town_bench.png" id="3_olma8"]
 [ext_resource type="Texture2D" uid="uid://06bh6atit6dp" path="res://maps/benches/town_bench_lit.png" id="4_55vlw"]
+[ext_resource type="PackedScene" uid="uid://da01lfn2jh3g2" path="res://assets/particles/effects/Bench_save_particle.tscn" id="5_hwsbe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10qfj"]
 atlas = ExtResource("3_olma8")
@@ -54,6 +55,10 @@ collision_layer = 0
 position = Vector2(0, -11.5)
 shape = SubResource("RectangleShape2D_y6gkf")
 debug_color = Color(0.43137255, 0.47843137, 0.23529412, 0.41960785)
+
+[node name="Bench_save" parent="." unique_id=60370041 instance=ExtResource("5_hwsbe")]
+amount = 30
+script = null
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

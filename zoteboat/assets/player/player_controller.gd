@@ -989,6 +989,7 @@ func on_spikes_entered(damage):
 	remove_from_group("invincible")
 	set_process_mode(Node.PROCESS_MODE_INHERIT)
 	Camera.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	i_frames(i_frames_hit_time*1.5)
 	
 	await get_tree().physics_frame
 	get_tree().call_group("map_transitions", "set_deferred", "monitoring", true)

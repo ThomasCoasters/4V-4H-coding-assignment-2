@@ -16,6 +16,7 @@ var player
 
 var alive_enemies := 0
 
+var spawning_wave: bool = false
 
 #region enemy scenes
 const TEST_DUMMY = preload("res://enemies/examples/test_dummy/test_dummy.tscn")
@@ -102,6 +103,10 @@ func finish_arena():
 
 
 func spawn_wave():
+	if spawning_wave:
+		return
+	spawning_wave = true
+	
 	current_wave += 1
 	if !wave_to_node.has(current_wave):
 		finish_arena()
@@ -124,10 +129,11 @@ func spawn_wave():
 			if key in spawner.name:
 				spawn_enemy(
 					ENEMY_SCENES[key],
-					spawner.global_position,
+					spawner,
 					extra
 				)
-
+	
+	spawning_wave = false
 
 
 
@@ -135,7 +141,8 @@ func spawn_wave():
 
 
 #region enemy spawning
-func spawn_enemy(enemy_scene: PackedScene, pos: Vector2, extra := {}) -> void:
+func spawn_enemy(enemy_scene: PackedScene, spawn_node: Node2D, extra := {}) -> void:
+	
 	await get_tree().create_timer(0.5).timeout
 	
 	var enemy := enemy_scene.instantiate()
@@ -146,11 +153,10 @@ func spawn_enemy(enemy_scene: PackedScene, pos: Vector2, extra := {}) -> void:
 	
 	
 	enemy.start_active = false
-	get_tree().current_scene.call_deferred("add_child", enemy)
-	enemy.global_position = pos
+	spawn_node.call_deferred("add_child", enemy)
 	
-	alive_enemies += 1
 	enemy.killed.connect(_on_enemy_killed)
+	alive_enemies += 1
 	
 	fade_in_enemy(enemy, 0.7)
 
