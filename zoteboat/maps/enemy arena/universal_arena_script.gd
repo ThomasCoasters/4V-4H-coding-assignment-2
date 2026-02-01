@@ -182,7 +182,7 @@ func fade_in_enemy(enemy: Node2D, duration: float) -> void:
 	tween.tween_property(enemy, "modulate:a", 1.0, duration). from(0.0)
 	tween.parallel().tween_property(enemy, "scale", Vector2.ONE, duration).from(Vector2.ZERO)
 	tween.finished.connect(func():
-		if enemy.has_method("activate"):
+		if is_instance_valid(enemy) and enemy.has_method("activate"):
 			enemy.activate()
-	)
+)
 #endregion

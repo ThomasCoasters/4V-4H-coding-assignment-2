@@ -3,6 +3,7 @@ extends Node2D
 var entered: bool = false
 
 @export var own_spawning_group: String = "bench"
+@onready var bench_rest: AudioStreamPlayer = $BenchRest
 
 func _ready() -> void:
 	entered = false
@@ -32,7 +33,9 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if Global.player.direction.y == 1 && !Global.player.moving.active && entered:
-		$Bench_save.emitting = true
+		if !$Bench_save.emitting && !bench_rest.playing:
+			$Bench_save.emitting = true
+			play_audio(bench_rest)
 		
 		Global.player.health = Global.player.max_health
 		
@@ -40,3 +43,9 @@ func _physics_process(_delta: float) -> void:
 		SaveLoad.contents_to_save.starting_location = own_spawning_group
 		
 		SaveLoad._save()
+
+
+func play_audio(audio: AudioStreamPlayer):
+	audio.pitch_scale = randf_range(0.9, 1.1)
+	audio.volume_db = randf_range(-1.5, 0.0)
+	audio.play()

@@ -21,7 +21,6 @@
 [ext_resource type="AudioStream" uid="uid://bfdwoqlh5hw1q" path="res://assets/player/audio/no_voice/hero_wall_slide.wav" id="19_ksgbb"]
 [ext_resource type="AudioStream" uid="uid://003ysg7aiqwb" path="res://assets/player/audio/no_voice/hero_falling.wav" id="20_tktwm"]
 [ext_resource type="AudioStream" uid="uid://tpgxsl262bfd" path="res://assets/player/audio/zote/falling_landing/Zote_battle_fall_01.wav" id="21_ea4fx"]
-[ext_resource type="AudioStream" uid="uid://bqrr3lf6iau7b" path="res://assets/player/audio/zote/falling_landing/Zote_battle_fall_02.wav" id="22_iol0l"]
 [ext_resource type="AudioStream" uid="uid://dlw1j50thed3e" path="res://assets/player/audio/zote/falling_landing/zote_get_up.wav" id="23_0yxml"]
 [ext_resource type="AudioStream" uid="uid://b6j1wbt7ui6k5" path="res://assets/player/audio/zote/falling_landing/zote_land.wav" id="24_3iv7w"]
 [ext_resource type="AudioStream" uid="uid://ppooe1uo0fsy" path="res://assets/player/audio/zote/death/Zote_battle_death.wav" id="25_t54tc"]
@@ -414,6 +413,7 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 z_index = 4
 collision_mask = 6
 script = ExtResource("1_d2shb")
+has_wall_cling = true
 Camera = NodePath("Camera")
 max_health = 1
 
@@ -716,9 +716,6 @@ stream = ExtResource("20_tktwm")
 
 [node name="ZoteBattleFall01" type="AudioStreamPlayer" parent="audio/moving" unique_id=690641371]
 stream = ExtResource("21_ea4fx")
-
-[node name="ZoteBattleFall02" type="AudioStreamPlayer" parent="audio/moving" unique_id=766284287]
-stream = ExtResource("22_iol0l")
 
 [node name="ZoteGetUp" type="AudioStreamPlayer" parent="audio/moving" unique_id=707780764]
 stream = ExtResource("23_0yxml")

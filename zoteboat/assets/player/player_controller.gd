@@ -154,6 +154,20 @@ var unkillable: bool = false
 
 @onready var zote_battle_death: AudioStreamPlayer = $audio/death/ZoteBattleDeath
 
+@onready var focus_health_heal: AudioStreamPlayer = $audio/health/FocusHealthHeal
+@onready var hero_damage: AudioStreamPlayer = $audio/health/HeroDamage
+@onready var hero_double_damage: AudioStreamPlayer = $audio/health/HeroDoubleDamage
+
+@onready var hero_jump: AudioStreamPlayer = $audio/moving/HeroJump
+@onready var zote_land: AudioStreamPlayer = $audio/moving/ZoteLand
+@onready var zote_battle_fall_01: AudioStreamPlayer = $audio/moving/ZoteBattleFall01
+@onready var hero_land_hard: AudioStreamPlayer = $audio/moving/HeroLandHard
+@onready var zote_get_up: AudioStreamPlayer = $audio/moving/ZoteGetUp
+@onready var hero_run_footsteps_stone: AudioStreamPlayer = $audio/moving/HeroRunFootstepsStone
+@onready var hero_wall_jump: AudioStreamPlayer = $audio/moving/HeroWallJump
+@onready var hero_wall_slide: AudioStreamPlayer = $audio/moving/HeroWallSlide
+@onready var hero_falling: AudioStreamPlayer = $audio/moving/HeroFalling
+
 @onready var zote_01: AudioStreamPlayer = $audio/talking_noises/Zote01
 @onready var zote_02: AudioStreamPlayer = $audio/talking_noises/Zote02
 @onready var zote_03_030084: AudioStreamPlayer = $"audio/talking_noises/Zote03#030084"
@@ -349,6 +363,7 @@ func _on_jump_state_entered() -> void:
 		return
 	
 	play_anim("jump", ANIM_PRIORITY.JUMP)
+	play_audio(hero_jump)
 	
 	jumping.emit()
 	
@@ -391,6 +406,8 @@ func _on_on_ground_state_entered() -> void:
 func _on_landed(speed):
 	if $StateChart/ParallelState/Jumping/hardfall.active && speed >= max_fall_speed && !$StateChart/ParallelState/dash/dashing.active && !$"StateChart/ParallelState/healing/heal start".active:
 		play_anim("hardfall_land", ANIM_PRIORITY.HARDFALL_LAND)
+		play_audio(hero_land_hard)
+		
 		can_move = false
 		
 		vibrate(HARDFALL_STUN_TIME, "hard")
@@ -405,6 +422,7 @@ func _on_wall_slide_state_entered() -> void:
 	var wall_dir = get_wall_direction()  # -1 = left wall, 1 = right wall
 	
 	play_anim("wall", ANIM_PRIORITY.WALL)
+	play_audio(hero_wall_slide)
 	
 	sprite_2d.position = Vector2(-19 * wall_dir, 5)
 	sprite_2d.flip_h = wall_dir == -1
@@ -416,6 +434,7 @@ func _on_wall_slide_state_entered() -> void:
 
 func _on_wall_slide_state_exited() -> void:
 	stop_anim("wall")
+	hero_wall_slide.stop()
 	
 	var wall_dir = get_wall_direction()
 	position.x -= wall_dir
@@ -424,6 +443,7 @@ func _on_wall_slide_state_exited() -> void:
 
 func _on_to_jumping_form_wall_taken() -> void:
 	var dir = sign(last_direction.x)
+	play_audio(hero_wall_jump)
 	
 	forced_move.x = -dir * 500
 	
@@ -623,6 +643,11 @@ func change_health(amount: int, type: String = "normal"):
 		SaveLoad._save()
 	else:
 		health += amount
+		
+		if amount == -1:
+			play_audio(hero_damage)
+		elif amount <= -2:
+			play_audio(hero_double_damage)
 
 
 func _on_player_entered(body: Node2D):
@@ -679,6 +704,8 @@ func _on_heal_start_state_entered() -> void:
 func _on_heal_finished_state_entered() -> void:
 	change_health(heal_health)
 	
+	play_audio(focus_health_heal)
+	
 	attack_speed_buff()
 	
 	can_move = true
@@ -703,7 +730,7 @@ func death():
 	
 	death_shell = ZOTE_SHELL.instantiate()
 	death_shell.global_position = global_position
-	get_tree().current_scene.add_child(death_shell)
+	get_tree().current_scene.call_deferred("add_child", death_shell)
 	
 	Global.map_holder.record_player_death(global_position)
 	
@@ -1075,6 +1102,6 @@ func set_hazard_respawn():
 #region audio
 func play_audio(audio: AudioStreamPlayer):
 	audio.pitch_scale = randf_range(0.9, 1.1)
-	audio.volume_db = randf_range(-1.5, 0.0)
+	audio.volume_db = randf_range(-5.0, -4.0)
 	audio.play()
 #endregion
