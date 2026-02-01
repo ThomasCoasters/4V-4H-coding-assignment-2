@@ -7,6 +7,8 @@ signal item_collected(item: Node)
 
 @export var audio_path: String
 
+const ZOTE_SHELL = preload("uid://bfxn25erf4tm3")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.map = self
@@ -57,7 +59,13 @@ func _ready() -> void:
 		item.collected.connect(_on_item_collected)
 	
 	
-	
+	if Global.map_holder.last_death_positions.has(map_path):
+		for pos in Global.map_holder.last_death_positions[map_path]:
+			var shell = ZOTE_SHELL.instantiate()
+			shell.global_position = pos
+			add_child(shell)
+
+
 
 
 func _on_enemy_killed(enemy: Node2D):

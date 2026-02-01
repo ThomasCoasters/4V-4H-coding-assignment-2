@@ -23,3 +23,6 @@ func start(dialogue_name: String = "none"):
 	var dialogue_manager = dialogue_main.dialogue_manager
 	
 	dialogue_manager.start(dialogue_name)
+	
+	var max_size = Global.player.talking_noises.size()-1
+	Global.player.play_audio(Global.player.talking_noises[randi_range(0, max_size)])

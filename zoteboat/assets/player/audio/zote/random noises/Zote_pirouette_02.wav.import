@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ctcy0kkhvqh4c"
+path="res://.godot/imported/Zote_pirouette_02.wav-f2764821b99d3c24109c64caef48769f.sample"
+
+[deps]
+
+source_file="res://assets/player/audio/zote/random noises/Zote_pirouette_02.wav"
+dest_files=["res://.godot/imported/Zote_pirouette_02.wav-f2764821b99d3c24109c64caef48769f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

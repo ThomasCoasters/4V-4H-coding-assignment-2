@@ -49,6 +49,8 @@ const ATTACK_ANIM_LINGER: float = 0.2
 const NORMAL_ATTACK = preload("res://assets/player/attacks/normal/normal attack.tscn")
 const UP_ATTACK = preload("res://assets/player/attacks/up_attack/up attack.tscn")
 const DOWN_ATTACK = preload("res://assets/player/attacks/pogo/pogo.tscn")
+const ZOTE_SHELL = preload("uid://bfxn25erf4tm3")
+var death_shell: Node = null
 
 var can_attack : bool = true
 var can_move : bool = true
@@ -146,6 +148,20 @@ var hazard_respawn_location: Vector2
 
 var unkillable: bool = false
 
+
+
+@onready var hornet_needle_catch: AudioStreamPlayer = $audio/HornetNeedleCatch
+
+@onready var zote_battle_death: AudioStreamPlayer = $audio/death/ZoteBattleDeath
+
+@onready var zote_01: AudioStreamPlayer = $audio/talking_noises/Zote01
+@onready var zote_02: AudioStreamPlayer = $audio/talking_noises/Zote02
+@onready var zote_03_030084: AudioStreamPlayer = $"audio/talking_noises/Zote03#030084"
+@onready var zote_03: AudioStreamPlayer = $audio/talking_noises/Zote03
+@onready var zote_04: AudioStreamPlayer = $audio/talking_noises/Zote04
+@onready var zote_05: AudioStreamPlayer = $audio/talking_noises/Zote05
+var talking_noises: Array[AudioStreamPlayer]
+
 #endregion
 
 func _ready() -> void:
@@ -155,6 +171,10 @@ func _ready() -> void:
 	hazard_respawn_location = global_position
 	
 	sprite_2d.animation_finished.connect(_on_animation_finished)
+	
+	
+	
+	talking_noises = [zote_01, zote_02, zote_03_030084, zote_03, zote_04, zote_05]
 
 func setup():
 	max_health = SaveLoad.contents_to_save.max_health
@@ -526,7 +546,7 @@ func start_DOWN_ATTACK():
 	var attack = DOWN_ATTACK.instantiate()
 	var dir = sign(last_direction.x)
 	
-	attack.position = position - dir * Vector2(17,0)
+	attack.position = position
 	attack.scale.x = dir
 	attack.scale.y = -1
 	
@@ -573,6 +593,8 @@ func _on_pogo_returned():
 	delete_attack()
 	
 	can_attack = true
+	
+	play_audio(hornet_needle_catch)
 
 
 func _on_attack_entered(body: Node2D):
@@ -677,7 +699,14 @@ func death():
 	if unkillable || Global.map_holder.is_transition:
 		return
 	
-	health = max_health
+	play_audio(zote_battle_death)
+	
+	death_shell = ZOTE_SHELL.instantiate()
+	death_shell.global_position = global_position
+	get_tree().current_scene.add_child(death_shell)
+	
+	Global.map_holder.record_player_death(global_position)
+	
 	
 	current_camera_type = "free"
 	forced_position = null
@@ -695,6 +724,11 @@ func death():
 	process_mode = Node.PROCESS_MODE_DISABLED
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	sprite_2d.visible = false
+	
+	await get_tree().create_timer(0.5).timeout
+	
+	health = max_health
 	
 	Global.map_holder.change_2d_scene(room, location)
 #endregion
@@ -1036,4 +1070,11 @@ func fading():
 
 func set_hazard_respawn():
 	hazard_respawn_location = global_position
+#endregion
+
+#region audio
+func play_audio(audio: AudioStreamPlayer):
+	audio.pitch_scale = randf_range(0.9, 1.1)
+	audio.volume_db = randf_range(-1.5, 0.0)
+	audio.play()
 #endregion

@@ -15,9 +15,13 @@ var finished_arenas : Dictionary = {}
 
 var collected_items : Dictionary = {}
 
+var last_death_positions := {}
+
 var is_transition: bool = false
 
 var audio_path: String
+
+
 
 func _ready() -> void:
 	killed_enemies = SaveLoad.contents_to_save.killed_enemies.duplicate(true)
@@ -66,6 +70,10 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	player.ui_holder.visible = true
 	player.global_position = Vector2(-100000, -100000)
 	
+	if player.death_shell != null && player.death_shell.is_inside_tree():
+		player.death_shell.queue_free()
+		player.death_shell = null
+	
 	
 	if current_map != null:
 		if delete:
@@ -105,6 +113,7 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	await transition.on_transition_finished
 	
 	player.can_move = true
+	player.sprite_2d.visible = true
 	player.remove_from_group("invincible")
 	player.set_process_mode(Node.PROCESS_MODE_INHERIT)
 	player.Camera.set_process_mode(Node.PROCESS_MODE_INHERIT)
@@ -206,3 +215,13 @@ func new_audio(path: String):
 	
 	audio.stream = load(path)
 	audio.play()
+
+
+
+func record_player_death(pos: Vector2):
+	var scene_path = current_map.scene_file_path
+	
+	if not last_death_positions.has(scene_path):
+		last_death_positions[scene_path] = []
+	
+	last_death_positions[scene_path].append(pos)

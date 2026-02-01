@@ -7,6 +7,12 @@
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="5_q3gxc"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="6_cxacm"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_f1o6l"]
+[ext_resource type="AudioStream" uid="uid://dcqibg1vfm1ux" path="res://enemies/normal/grimmkin/bullet_version/audio/Grimmkin_little_attack_01.wav" id="8_yjiy0"]
+[ext_resource type="AudioStream" uid="uid://bxvmniyo35rdn" path="res://enemies/normal/grimmkin/bullet_version/audio/Grimmkin_little_attack_02.wav" id="9_3hflc"]
+[ext_resource type="AudioStream" uid="uid://ds6hh86ubffhl" path="res://enemies/normal/grimmkin/bullet_version/audio/Grimmkin_little_attack_03.wav" id="10_hajpw"]
+[ext_resource type="AudioStream" uid="uid://b3odk7kqrkbh1" path="res://enemies/normal/grimmkin/bullet_version/audio/Grimmkin_little_attack_04.wav" id="11_5ygsh"]
+[ext_resource type="AudioStream" uid="uid://doejmbupria6e" path="res://enemies/normal/grimmkin/bullet_version/audio/Grimmkin_little_death_01.wav" id="12_8cqnw"]
+[ext_resource type="AudioStream" uid="uid://bkely1740u23m" path="res://enemies/normal/grimmkin/bullet_version/audio/Grimmkin_little_intro_01.wav" id="13_jqo4t"]
 
 [sub_resource type="Resource" id="Resource_1t8o5"]
 script = ExtResource("2_nym7u")
@@ -528,6 +534,32 @@ debug_color = Color(1, 0.46666667, 0.29411766, 0.41960785)
 [node name="attack cooldown" type="Timer" parent="." unique_id=2031418269]
 wait_time = 0.6
 one_shot = true
+
+[node name="audio" type="Node" parent="." unique_id=1803701364]
+
+[node name="GrimmkinLittleAttack01" type="AudioStreamPlayer" parent="audio" unique_id=1901447707]
+stream = ExtResource("8_yjiy0")
+bus = &"SFX"
+
+[node name="GrimmkinLittleAttack02" type="AudioStreamPlayer" parent="audio" unique_id=1031722872]
+stream = ExtResource("9_3hflc")
+bus = &"SFX"
+
+[node name="GrimmkinLittleAttack03" type="AudioStreamPlayer" parent="audio" unique_id=370070158]
+stream = ExtResource("10_hajpw")
+bus = &"SFX"
+
+[node name="GrimmkinLittleAttack04" type="AudioStreamPlayer" parent="audio" unique_id=1356351271]
+stream = ExtResource("11_5ygsh")
+bus = &"SFX"
+
+[node name="GrimmkinLittleDeath01" type="AudioStreamPlayer" parent="audio" unique_id=1025758720]
+stream = ExtResource("12_8cqnw")
+bus = &"SFX"
+
+[node name="GrimmkinLittleIntro01" type="AudioStreamPlayer" parent="audio" unique_id=165420433]
+stream = ExtResource("13_jqo4t")
+bus = &"SFX"
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="state_entered" from="StateChart/attack/idle_active" to="." method="_on_idle_active_state_entered"]
