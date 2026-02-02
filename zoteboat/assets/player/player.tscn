@@ -29,6 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://dqspmmj3vvapo" path="res://assets/player/audio/zote/talking/Zote_03 #030084.wav" id="28_qyqrj"]
 [ext_resource type="AudioStream" uid="uid://djwioufbweesq" path="res://assets/player/audio/zote/talking/Zote_03.wav" id="29_qtr3g"]
 [ext_resource type="AudioStream" uid="uid://bj0eyb3rua6vy" path="res://assets/player/audio/zote/talking/Zote_04.wav" id="30_twg1a"]
+[ext_resource type="AudioStream" uid="uid://bvo3pkwpkctdr" path="res://assets/player/audio/zote/talking/Zote_final_town_loop.wav" id="31_eedlp"]
 [ext_resource type="AudioStream" uid="uid://xf4vhptvgdkk" path="res://assets/player/audio/zote/talking/Zote_05.wav" id="31_o3cdd"]
 [ext_resource type="AudioStream" uid="uid://su6mk4a5hggo" path="res://assets/player/audio/sword/sword_1.wav" id="31_uvut3"]
 [ext_resource type="AudioStream" uid="uid://c26t2sli5md6p" path="res://assets/player/audio/sword/sword_2.wav" id="32_eedlp"]
@@ -771,6 +772,10 @@ bus = &"SFX"
 
 [node name="Zote05" type="AudioStreamPlayer" parent="audio/talking_noises" unique_id=1927074988]
 stream = ExtResource("31_o3cdd")
+bus = &"SFX"
+
+[node name="ZoteFinalTownLoop" type="AudioStreamPlayer" parent="audio/talking_noises" unique_id=1824488492]
+stream = ExtResource("31_eedlp")
 bus = &"SFX"
 
 [node name="sword" type="Node" parent="audio" unique_id=937683426]

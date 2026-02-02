@@ -132,6 +132,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
+	elif event.is_action_pressed("ui_cancel"):
+		await get_tree().physics_frame
+		match shown_menu:
+			basic_buttons:
+				_on_start_pressed()
+			quit_game_buttons:
+				_on_quitno_pressed()
+			settings:
+				_on_exit_pressed()
+	
 	elif event is InputEventMouseMotion:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		controller_active = false
@@ -192,6 +202,8 @@ func index_from_value(value: float, states: Array, values: Dictionary) -> int:
 func _on_start_pressed() -> void:
 	if loading:
 		return
+	
+	await get_tree().physics_frame
 	Global.map_holder.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)

@@ -144,6 +144,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
+	if event.is_action_pressed("ui_cancel"):
+		await get_tree().physics_frame
+		match shown_menu:
+			basic_buttons:
+				_on_quit_game_pressed()
+			quit_game_buttons:
+				_on_quitno_pressed()
+			settings:
+				_on_exit_pressed()
+			extra_buttons:
+				_on_exit_pressed()
+			reset_save:
+				_on_saveno_pressed()
+	
 	if event is InputEventMouseMotion:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		controller_active = false

@@ -183,6 +183,8 @@ var talking_noises: Array[AudioStreamPlayer]
 @onready var sword_4: AudioStreamPlayer = $audio/sword/Sword4
 var sword_noises: Array[AudioStreamPlayer]
 
+@onready var zote_final_town_loop: AudioStreamPlayer = $audio/talking_noises/ZoteFinalTownLoop
+
 #endregion
 
 #region setup/process
@@ -261,7 +263,7 @@ func _physics_process(_delta: float) -> void:
 	if velocity.y == 0:
 		stop_anim("fall")
 	
-	if velocity.x == 0:
+	if velocity == Vector2.ZERO:
 		stop_anim("walk")
 		play_anim("he_just_standing_there__menacingly", ANIM_PRIORITY.IDLE_START)
 		if roar_timer.is_stopped():
@@ -309,6 +311,7 @@ func _process(_delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed("pause"):
+		zote_final_town_loop.stop()
 		Global.map_holder.change_gui_scene("res://assets/pause_screen/pause_screen.tscn")
 	#endregion
 		#region checks
@@ -584,7 +587,7 @@ func start_DOWN_ATTACK():
 	attack.add_to_group("attacks")
 	attack.body_entered.connect(_on_attack_entered)
 	
-	get_tree().root.add_child(attack)
+	Global.map_holder.add_child(attack)
 	
 	attack.pogo_returned.connect(_on_pogo_returned)
 	
@@ -970,6 +973,10 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 	if current_anim == "walk":
 		last_frame = sprite_2d.frame
 		last_frame_progress = sprite_2d.frame_progress
+	
+	
+	if current_anim == "idle" && anim_name != "idle":
+		zote_final_town_loop.stop()
 	#endregion
 	
 	current_anim_priority = priority
@@ -1012,10 +1019,14 @@ func _on_animation_finished():
 	
 	if current_anim == "wall":
 		current_anim_priority = ANIM_PRIORITY.WALL
+	
 
 
 func _on_roar_timer_timeout():
 	play_anim("idle", ANIM_PRIORITY.IDLE)
+	
+	if !zote_final_town_loop.playing:
+		play_audio(zote_final_town_loop)
 
 
 func update_facing():
@@ -1037,7 +1048,7 @@ func get_wall_direction() -> int:
 			wall_dir = 1
 		return wall_dir
 	return sign(last_direction.x)
-
+#endregion
 
 #region vignette
 
@@ -1062,7 +1073,6 @@ func vignette_return(target_inner: float = 1.0, target_outer: float = 1.0, durat
 	tween.parallel().tween_property(mat, "shader_parameter/outer_radius", target_outer, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.play()
 
-#endregion
 #endregion
 
 #region hazards
