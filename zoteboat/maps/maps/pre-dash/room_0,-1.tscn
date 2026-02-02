@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="4_xiw3t"]
 [ext_resource type="PackedScene" uid="uid://dccm81k18vutf" path="res://maps/benches/bench.tscn" id="5_tub5p"]
 [ext_resource type="PackedScene" uid="uid://b60o5r2c5plrs" path="res://maps/hazards + respawns/dissable movement/dissable movement.tscn" id="6_65e4e"]
+[ext_resource type="PackedScene" uid="uid://dyr0f021me8yd" path="res://assets/player/death/static shell.tscn" id="7_r0bb8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("4_xiw3t")
@@ -144,3 +145,18 @@ position = Vector2(672, 5926)
 [node name="DissableMovement" parent="." unique_id=111750805 instance=ExtResource("6_65e4e")]
 position = Vector2(675, 2331)
 scale = Vector2(44.84, 1)
+
+[node name="static_shell" parent="." unique_id=659504086 instance=ExtResource("7_r0bb8")]
+position = Vector2(348, 5743)
+
+[node name="static_shell2" parent="." unique_id=826470498 instance=ExtResource("7_r0bb8")]
+position = Vector2(521, 5581)
+
+[node name="static_shell3" parent="." unique_id=1969273307 instance=ExtResource("7_r0bb8")]
+position = Vector2(434, 5650)
+
+[node name="static_shell4" parent="." unique_id=762971361 instance=ExtResource("7_r0bb8")]
+position = Vector2(592, 5509)
+
+[node name="static_shell5" parent="." unique_id=555486863 instance=ExtResource("7_r0bb8")]
+position = Vector2(638, 5418)

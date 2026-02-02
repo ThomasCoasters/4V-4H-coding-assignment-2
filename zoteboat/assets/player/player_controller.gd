@@ -753,7 +753,7 @@ func death():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	sprite_2d.visible = false
 	
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1.5).timeout
 	
 	health = max_health
 	

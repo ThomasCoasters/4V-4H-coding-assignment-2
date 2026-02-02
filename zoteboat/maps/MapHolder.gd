@@ -221,7 +221,10 @@ func new_audio(path: String):
 func record_player_death(pos: Vector2):
 	var scene_path = current_map.scene_file_path
 	
-	if not last_death_positions.has(scene_path):
+	if !last_death_positions.has(scene_path):
 		last_death_positions[scene_path] = []
+	
+	if last_death_positions[scene_path].size() >= 3:
+		last_death_positions[scene_path].remove_at(0)
 	
 	last_death_positions[scene_path].append(pos)
