@@ -3,6 +3,7 @@ class_name Player
 
 
 #region vars setup
+
 @export_group("cheaty ability unlocks", "has_")
 @export var has_dash: bool
 @export var has_wall_cling: bool
@@ -184,6 +185,8 @@ var sword_noises: Array[AudioStreamPlayer]
 
 #endregion
 
+#region setup/process
+
 func _ready() -> void:
 	Global.player = self
 	setup()
@@ -357,6 +360,8 @@ func _process(_delta: float) -> void:
 	#endregion
 	
 
+#endregion
+
 
 
 #region jumping/falling/on_ground
@@ -464,7 +469,6 @@ func _on_to_jumping_form_wall_taken() -> void:
 
 #endregion
 
-
 #region camera
 func camera_movement():
 	if current_camera_type == "locked":
@@ -521,8 +525,6 @@ func camera_movement_y():
 		
 		look_timer = null
 #endregion
-
-
 
 #region attacking
 func _on_attacking_state_entered() -> void:
@@ -642,7 +644,6 @@ func _on_attack_entered(body: Node2D):
 	display_particle(HIT_EFFECT, body.global_position, Vector2(body.global_position - global_position).normalized())
 
 #endregion
-
 
 #region HP
 func change_health(amount: int, type: String = "normal"):
@@ -931,7 +932,6 @@ func _on_dashing_state_entered() -> void:
 	
 	state_chart.send_event("dash_finished")
 #endregion
-
 
 #region animations
 

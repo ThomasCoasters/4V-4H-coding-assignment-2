@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 			pogo_returned.emit()
 		
 		return
-
+	
 	# Normal falling behavior
 	speed += acceleration
 	position.y += speed
