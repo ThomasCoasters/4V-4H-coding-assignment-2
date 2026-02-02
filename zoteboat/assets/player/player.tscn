@@ -30,6 +30,10 @@
 [ext_resource type="AudioStream" uid="uid://djwioufbweesq" path="res://assets/player/audio/zote/talking/Zote_03.wav" id="29_qtr3g"]
 [ext_resource type="AudioStream" uid="uid://bj0eyb3rua6vy" path="res://assets/player/audio/zote/talking/Zote_04.wav" id="30_twg1a"]
 [ext_resource type="AudioStream" uid="uid://xf4vhptvgdkk" path="res://assets/player/audio/zote/talking/Zote_05.wav" id="31_o3cdd"]
+[ext_resource type="AudioStream" uid="uid://su6mk4a5hggo" path="res://assets/player/audio/sword/sword_1.wav" id="31_uvut3"]
+[ext_resource type="AudioStream" uid="uid://c26t2sli5md6p" path="res://assets/player/audio/sword/sword_2.wav" id="32_eedlp"]
+[ext_resource type="AudioStream" uid="uid://bnorql3awfvmq" path="res://assets/player/audio/sword/sword_3.wav" id="33_khrko"]
+[ext_resource type="AudioStream" uid="uid://c4l0k8owu73vb" path="res://assets/player/audio/sword/sword_4.wav" id="34_evyxp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hai6l"]
 atlas = ExtResource("2_m2mll")
@@ -686,66 +690,106 @@ bus = &"SFX"
 
 [node name="FocusHealthHeal" type="AudioStreamPlayer" parent="audio/health" unique_id=209530069]
 stream = ExtResource("12_xhr4e")
+volume_db = 5.0
+bus = &"SFX"
 
 [node name="HeroDamage" type="AudioStreamPlayer" parent="audio/health" unique_id=1273804389]
 stream = ExtResource("13_bky8f")
+volume_db = 5.0
+bus = &"SFX"
 
 [node name="HeroDoubleDamage" type="AudioStreamPlayer" parent="audio/health" unique_id=660724818]
 stream = ExtResource("14_46pv7")
+volume_db = 5.0
+bus = &"SFX"
 
 [node name="moving" type="Node" parent="audio" unique_id=382539119]
 
 [node name="HeroJump" type="AudioStreamPlayer" parent="audio/moving" unique_id=86058509]
 stream = ExtResource("15_uvut3")
+bus = &"SFX"
 
 [node name="HeroLandHard" type="AudioStreamPlayer" parent="audio/moving" unique_id=1051069491]
 stream = ExtResource("16_eedlp")
+bus = &"SFX"
 
 [node name="HeroRunFootstepsStone" type="AudioStreamPlayer" parent="audio/moving" unique_id=2141390119]
 stream = ExtResource("17_khrko")
+bus = &"SFX"
 
 [node name="HeroWallJump" type="AudioStreamPlayer" parent="audio/moving" unique_id=1794721392]
 stream = ExtResource("18_evyxp")
+bus = &"SFX"
 
 [node name="HeroWallSlide" type="AudioStreamPlayer" parent="audio/moving" unique_id=1242950442]
 stream = ExtResource("19_ksgbb")
+bus = &"SFX"
 
 [node name="HeroFalling" type="AudioStreamPlayer" parent="audio/moving" unique_id=958447931]
 stream = ExtResource("20_tktwm")
+bus = &"SFX"
 
 [node name="ZoteBattleFall01" type="AudioStreamPlayer" parent="audio/moving" unique_id=690641371]
 stream = ExtResource("21_ea4fx")
+bus = &"SFX"
 
 [node name="ZoteGetUp" type="AudioStreamPlayer" parent="audio/moving" unique_id=707780764]
 stream = ExtResource("23_0yxml")
+bus = &"SFX"
 
 [node name="ZoteLand" type="AudioStreamPlayer" parent="audio/moving" unique_id=547487636]
 stream = ExtResource("24_3iv7w")
+bus = &"SFX"
 
 [node name="death" type="Node" parent="audio" unique_id=558951525]
 
 [node name="ZoteBattleDeath" type="AudioStreamPlayer" parent="audio/death" unique_id=856344970]
 stream = ExtResource("25_t54tc")
+bus = &"SFX"
 
 [node name="talking_noises" type="Node" parent="audio" unique_id=648790954]
 
 [node name="Zote01" type="AudioStreamPlayer" parent="audio/talking_noises" unique_id=1928925811]
 stream = ExtResource("26_8d5av")
+bus = &"SFX"
 
 [node name="Zote02" type="AudioStreamPlayer" parent="audio/talking_noises" unique_id=1534441102]
 stream = ExtResource("27_iblef")
+bus = &"SFX"
 
 [node name="Zote03#030084" type="AudioStreamPlayer" parent="audio/talking_noises" unique_id=1000036119]
 stream = ExtResource("28_qyqrj")
+bus = &"SFX"
 
 [node name="Zote03" type="AudioStreamPlayer" parent="audio/talking_noises" unique_id=1644724072]
 stream = ExtResource("29_qtr3g")
+bus = &"SFX"
 
 [node name="Zote04" type="AudioStreamPlayer" parent="audio/talking_noises" unique_id=2118575565]
 stream = ExtResource("30_twg1a")
+bus = &"SFX"
 
 [node name="Zote05" type="AudioStreamPlayer" parent="audio/talking_noises" unique_id=1927074988]
 stream = ExtResource("31_o3cdd")
+bus = &"SFX"
+
+[node name="sword" type="Node" parent="audio" unique_id=937683426]
+
+[node name="Sword1" type="AudioStreamPlayer" parent="audio/sword" unique_id=1087125227]
+stream = ExtResource("31_uvut3")
+bus = &"SFX"
+
+[node name="Sword2" type="AudioStreamPlayer" parent="audio/sword" unique_id=384636953]
+stream = ExtResource("32_eedlp")
+bus = &"SFX"
+
+[node name="Sword3" type="AudioStreamPlayer" parent="audio/sword" unique_id=1767550525]
+stream = ExtResource("33_khrko")
+bus = &"SFX"
+
+[node name="Sword4" type="AudioStreamPlayer" parent="audio/sword" unique_id=1499418525]
+stream = ExtResource("34_evyxp")
+bus = &"SFX"
 
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/jump" to="." method="_on_jump_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/falling" to="." method="_on_falling_state_entered"]

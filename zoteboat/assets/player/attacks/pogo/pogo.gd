@@ -37,7 +37,9 @@ func something_entered(thing):
 	# Ignore player
 	if thing.is_in_group("player"):
 		return
-
+	
+	
+	
 	# Start return process
 	var player = get_tree().get_first_node_in_group("player")
 	if player && !returning:

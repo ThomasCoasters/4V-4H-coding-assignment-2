@@ -176,6 +176,12 @@ var unkillable: bool = false
 @onready var zote_05: AudioStreamPlayer = $audio/talking_noises/Zote05
 var talking_noises: Array[AudioStreamPlayer]
 
+@onready var sword_1: AudioStreamPlayer = $audio/sword/Sword1
+@onready var sword_2: AudioStreamPlayer = $audio/sword/Sword2
+@onready var sword_3: AudioStreamPlayer = $audio/sword/Sword3
+@onready var sword_4: AudioStreamPlayer = $audio/sword/Sword4
+var sword_noises: Array[AudioStreamPlayer]
+
 #endregion
 
 func _ready() -> void:
@@ -189,6 +195,7 @@ func _ready() -> void:
 	
 	
 	talking_noises = [zote_01, zote_02, zote_03_030084, zote_03, zote_04, zote_05]
+	sword_noises = [sword_1, sword_2, sword_3, sword_4]
 
 func setup():
 	max_health = SaveLoad.contents_to_save.max_health
@@ -531,6 +538,8 @@ func _on_attacking_state_entered() -> void:
 	else:
 		start_NORMAL_ATTACK()
 	
+	play_audio(sword_noises[randi_range(0, sword_noises.size()-1)])
+	
 	await get_tree().create_timer(attack_cooldown).timeout
 	
 	state_chart.send_event("attack_stop")
@@ -646,8 +655,10 @@ func change_health(amount: int, type: String = "normal"):
 		
 		if amount == -1:
 			play_audio(hero_damage)
+			play_audio(zote_battle_fall_01)
 		elif amount <= -2:
 			play_audio(hero_double_damage)
+			play_audio(zote_battle_fall_01)
 
 
 func _on_player_entered(body: Node2D):
@@ -1058,6 +1069,9 @@ func vignette_return(target_inner: float = 1.0, target_outer: float = 1.0, durat
 func on_spikes_entered(damage):
 	change_health(-damage)
 	
+	if health <= 0 && !unkillable:
+		return
+	
 	await hitstop_manager(hitstun_time, 1.3, "hard")
 	
 	fading()
@@ -1102,6 +1116,5 @@ func set_hazard_respawn():
 #region audio
 func play_audio(audio: AudioStreamPlayer):
 	audio.pitch_scale = randf_range(0.9, 1.1)
-	audio.volume_db = randf_range(-5.0, -4.0)
 	audio.play()
 #endregion

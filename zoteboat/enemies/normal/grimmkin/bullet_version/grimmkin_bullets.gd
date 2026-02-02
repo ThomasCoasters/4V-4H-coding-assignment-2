@@ -384,7 +384,6 @@ func play_audio(audio: AudioStreamPlayer):
 		return
 	
 	audio.pitch_scale = randf_range(0.9, 1.1)
-	audio.volume_db = randf_range(-1.5, 0.0)
 	audio.play()
 	
 	

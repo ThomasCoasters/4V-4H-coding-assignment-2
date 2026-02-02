@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c3frdu7p07um6" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.gd" id="1_u27sq"]
 
-[node name="SpikesCollision" type="Node2D" groups=["map_transitions"]]
+[node name="SpikesCollision" type="Node2D" unique_id=417759129 groups=["map_transitions"]]
 script = ExtResource("1_u27sq")
 
-[node name="StaticBody2D" type="Area2D" parent="." groups=["map_transitions"]]
+[node name="StaticBody2D" type="Area2D" parent="." unique_id=1580090474 groups=["map_transitions"]]
 
-[node name="EDIT THIS" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="EDIT THIS" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1846142658]
 polygon = PackedVector2Array(-10, -7, 10, -7, 10, 7, -10, 7)
 
 [connection signal="body_entered" from="StaticBody2D" to="." method="_on_static_body_2d_body_entered"]
