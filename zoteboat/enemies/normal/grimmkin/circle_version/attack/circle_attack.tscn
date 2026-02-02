@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://vmniuooh0afm"]
+
+[ext_resource type="Script" uid="uid://co5lxqsl65qp3" path="res://enemies/normal/grimmkin/circle_version/attack/circle_attack.gd" id="1_c1fou"]
+[ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_af621"]
+[ext_resource type="PackedScene" uid="uid://dhqtgmhtek3h" path="res://enemies/normal/grimmkin/circle_version/attack/flame.tscn" id="3_c1fou"]
+
+[sub_resource type="Resource" id="Resource_c1fou"]
+script = ExtResource("2_af621")
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[node name="CircleAttack" type="Node2D" unique_id=223053288 groups=["enemy_attack"]]
+script = ExtResource("1_c1fou")
+stats = SubResource("Resource_c1fou")
+orbit_radius = 70.0
+orbit_speed = 1.0
+
+[node name="Orbit" type="Node2D" parent="." unique_id=1839411185]
+
+[node name="grimmkinAttack" parent="Orbit" unique_id=1064090389 instance=ExtResource("3_c1fou")]
+
+[node name="grimmkinAttack2" parent="Orbit" unique_id=1081944224 instance=ExtResource("3_c1fou")]
+
+[node name="grimmkinAttack3" parent="Orbit" unique_id=916069677 instance=ExtResource("3_c1fou")]

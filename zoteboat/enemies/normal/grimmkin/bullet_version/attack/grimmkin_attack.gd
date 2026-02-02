@@ -5,15 +5,21 @@ extends Area2D
 @export var speed: float = 600.0
 var direction: Vector2
 
+@export var move: bool = true
 
 
 func _ready() -> void:
+	#add_to_group("projectiles")
+	
+	if !move:
+		return
 	rotation = direction.angle()
 	connect("body_entered", _on_body_entered)
-	
-	add_to_group("projectiles")
 
 func _physics_process(delta: float) -> void:
+	if !move:
+		return
+	
 	global_position += direction * speed * delta
 
 func _on_body_entered(_body: Node) -> void:
