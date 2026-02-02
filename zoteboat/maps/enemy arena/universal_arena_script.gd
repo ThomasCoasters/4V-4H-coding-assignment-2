@@ -1,5 +1,6 @@
 extends Area2D
 
+@export_group("nodes")
 @export var doors: TileMapLayer
 
 var arena_started: bool = false
@@ -16,6 +17,7 @@ var player
 
 var alive_enemies := 0
 
+var spawning_wave: bool = false
 
 #region enemy scenes
 const TEST_DUMMY = preload("res://enemies/examples/test_dummy/test_dummy.tscn")
@@ -43,7 +45,9 @@ signal arena_won(node: Node)
 
 var arena_parent: Node = null
 
-@export var audio_node: AudioStreamPlayer
+@export_group("audio paths")
+@export var arena_audio_path: String
+@export var after_audio_path: String
 
 func _ready():
 	arena_parent = self.get_parent()
@@ -76,8 +80,9 @@ func start_arena():
 	if doors:
 		doors.enabled = true
 	
-	if audio_node:
-		audio_node.play()
+	if arena_audio_path:
+		if Global.map_holder.audio_path != arena_audio_path:
+			Global.map_holder.new_audio(arena_audio_path)
 	
 	spawn_wave()
 
@@ -95,13 +100,18 @@ func finish_arena():
 	if is_instance_valid(arena_parent):
 		arena_parent.queue_free()
 	
-	if audio_node:
-		audio_node.stop()
+	if after_audio_path:
+		if Global.map_holder.audio_path != after_audio_path:
+			Global.map_holder.new_audio(after_audio_path)
 	
 	arena_won.emit(arena_parent)
 
 
 func spawn_wave():
+	if spawning_wave:
+		return
+	spawning_wave = true
+	
 	current_wave += 1
 	if !wave_to_node.has(current_wave):
 		finish_arena()
@@ -124,10 +134,11 @@ func spawn_wave():
 			if key in spawner.name:
 				spawn_enemy(
 					ENEMY_SCENES[key],
-					spawner.global_position,
+					spawner,
 					extra
 				)
-
+	
+	spawning_wave = false
 
 
 
@@ -135,7 +146,8 @@ func spawn_wave():
 
 
 #region enemy spawning
-func spawn_enemy(enemy_scene: PackedScene, pos: Vector2, extra := {}) -> void:
+func spawn_enemy(enemy_scene: PackedScene, spawn_node: Node2D, extra := {}) -> void:
+	
 	await get_tree().create_timer(0.5).timeout
 	
 	var enemy := enemy_scene.instantiate()
@@ -146,11 +158,10 @@ func spawn_enemy(enemy_scene: PackedScene, pos: Vector2, extra := {}) -> void:
 	
 	
 	enemy.start_active = false
-	get_tree().current_scene.call_deferred("add_child", enemy)
-	enemy.global_position = pos
+	spawn_node.call_deferred("add_child", enemy)
 	
-	alive_enemies += 1
 	enemy.killed.connect(_on_enemy_killed)
+	alive_enemies += 1
 	
 	fade_in_enemy(enemy, 0.7)
 
@@ -171,7 +182,7 @@ func fade_in_enemy(enemy: Node2D, duration: float) -> void:
 	tween.tween_property(enemy, "modulate:a", 1.0, duration). from(0.0)
 	tween.parallel().tween_property(enemy, "scale", Vector2.ONE, duration).from(Vector2.ZERO)
 	tween.finished.connect(func():
-		if enemy.has_method("activate"):
+		if is_instance_valid(enemy) and enemy.has_method("activate"):
 			enemy.activate()
-	)
+)
 #endregion

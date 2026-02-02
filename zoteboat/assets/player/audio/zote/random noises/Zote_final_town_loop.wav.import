@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cflnncebhkc4y"
+path="res://.godot/imported/Zote_final_town_loop.wav-09fddcae689d67fbed32286c1fef469f.sample"
+
+[deps]
+
+source_file="res://assets/player/audio/zote/random noises/Zote_final_town_loop.wav"
+dest_files=["res://.godot/imported/Zote_final_town_loop.wav-09fddcae689d67fbed32286c1fef469f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

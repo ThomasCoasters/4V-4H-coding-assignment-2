@@ -32,6 +32,8 @@ const GRIMMKIN_ATTACK = preload("uid://7s842kuvjrm8")
 
 @onready var sprite_2d: AnimatedSprite2D = $Sprite2D
 
+@export var start_attacking: bool = false
+
 var current_anim: String
 
 enum ANIM_PRIORITY {
@@ -56,6 +58,15 @@ var dash_dir := Vector2.ZERO
 var dash_distance_target := 0.0
 var dash_travelled := 0.0
 
+@onready var grimmkin_little_attack_01: AudioStreamPlayer = $audio/GrimmkinLittleAttack01
+@onready var grimmkin_little_attack_02: AudioStreamPlayer = $audio/GrimmkinLittleAttack02
+@onready var grimmkin_little_attack_03: AudioStreamPlayer = $audio/GrimmkinLittleAttack03
+@onready var grimmkin_little_attack_04: AudioStreamPlayer = $audio/GrimmkinLittleAttack04
+@onready var grimmkin_little_death_01: AudioStreamPlayer = $audio/GrimmkinLittleDeath01
+@onready var grimmkin_little_intro_01: AudioStreamPlayer = $audio/GrimmkinLittleIntro01
+
+var random_attack_noise: Array[AudioStreamPlayer]
+
 func _ready() -> void:
 	$"attack cooldown".wait_time = attack_cooldown_time
 	
@@ -71,6 +82,8 @@ func _ready() -> void:
 	stats.health_depleted.connect(_on_health_depleted)
 	
 	sprite_2d.animation_finished.connect(_on_animation_finished)
+	
+	random_attack_noise = [grimmkin_little_attack_01, grimmkin_little_attack_02, grimmkin_little_attack_03, grimmkin_little_attack_04, grimmkin_little_intro_01]
 
 
 
@@ -79,6 +92,9 @@ func activate():
 	set_physics_process(true)
 	
 	self.remove_from_group("deactive")
+	
+	if start_attacking:
+		state_chart.send_event("active")
 
 func deactivate():
 	set_process(false)
@@ -210,6 +226,7 @@ func _on_move_towards_body_entered(body: Node2D) -> void:
 #region attacking
 func _on_attacking_state_entered() -> void:
 	play_anim("attack_start", ANIM_PRIORITY.ATTACK)
+	play_audio(random_attack_noise[randi_range(0,4)])
 
 
 func _on_attack_cooldown_timeout() -> void:
@@ -241,6 +258,7 @@ func attack():
 #region dashing
 func _on_dashing_state_entered() -> void:
 	play_anim("dash_anticipate", ANIM_PRIORITY.ATTACK)
+	play_audio(random_attack_noise[randi_range(0,4)])
 
 func start_dash():
 	play_anim("dash", ANIM_PRIORITY.ATTACK)
@@ -285,12 +303,16 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 		sprite_2d.position = Vector2(3*direction, -35)
 	else:
 		sprite_2d.position = Vector2(-5*direction, -45)
-	
 	#endregion
 	
 	
 	if anim_name == "tp_in":
 		add_to_group("deactive")
+	elif anim_name == "tp_out":
+		play_audio(random_attack_noise[randi_range(0,4)])
+	elif anim_name == "death":
+		play_audio(grimmkin_little_death_01)
+	
 	
 	current_anim_priority = priority
 	
@@ -355,3 +377,14 @@ func choose_attack():
 	else:
 		state_chart.send_event("dash")
 #endregion
+
+
+func play_audio(audio: AudioStreamPlayer):
+	if audio != grimmkin_little_death_01 && current_anim == "death":
+		return
+	
+	audio.pitch_scale = randf_range(0.9, 1.1)
+	audio.volume_db = randf_range(-1.5, 0.0)
+	audio.play()
+	
+	

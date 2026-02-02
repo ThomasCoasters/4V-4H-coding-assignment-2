@@ -1,26 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://bah08g4ftmni4"]
+[gd_scene format=3 uid="uid://bah08g4ftmni4"]
 
 [ext_resource type="PackedScene" uid="uid://rvhtgi81sikt" path="res://assets/player/player.tscn" id="1_3hwdp"]
 [ext_resource type="Script" uid="uid://d4jiec105wvyu" path="res://maps/MapHolder.gd" id="1_3ofuw"]
 [ext_resource type="PackedScene" uid="uid://5hbj32gqeeb1" path="res://assets/start_screen/start_screen.tscn" id="3_0qde3"]
 
-[node name="MapHolder" type="Node" node_paths=PackedStringArray("map", "player", "gui")]
+[node name="MapHolder" type="Node" unique_id=1913071874 node_paths=PackedStringArray("map", "player", "gui", "audio")]
 script = ExtResource("1_3ofuw")
 map = NodePath("map")
 player = NodePath("player/Player")
 gui = NodePath("gui")
+audio = NodePath("audio/AudioStreamPlayer")
 
-[node name="map" type="Node2D" parent="."]
+[node name="map" type="Node2D" parent="." unique_id=1992471929]
 
-[node name="player" type="Node" parent="."]
+[node name="player" type="Node" parent="." unique_id=1928847139]
 
-[node name="Player" parent="player" instance=ExtResource("1_3hwdp")]
+[node name="Player" parent="player" unique_id=1559834953 instance=ExtResource("1_3hwdp")]
 position = Vector2(0, -3972)
 
-[node name="gui" type="Control" parent="."]
+[node name="gui" type="Control" parent="." unique_id=204262699]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="StartScreen" parent="gui" instance=ExtResource("3_0qde3")]
+[node name="StartScreen" parent="gui" unique_id=687509252 instance=ExtResource("3_0qde3")]
+
+[node name="audio" type="Control" parent="." unique_id=636807840]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="audio" unique_id=1834292365]
+volume_db = -15.0
+autoplay = true

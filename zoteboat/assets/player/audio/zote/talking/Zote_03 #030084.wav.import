@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dqspmmj3vvapo"
+path="res://.godot/imported/Zote_03 #030084.wav-1730644da3a2bad4f6d95d95e059a547.sample"
+
+[deps]
+
+source_file="res://assets/player/audio/zote/talking/Zote_03 #030084.wav"
+dest_files=["res://.godot/imported/Zote_03 #030084.wav-1730644da3a2bad4f6d95d95e059a547.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -12,6 +12,10 @@ var navigation_agent_2d = NavigationAgent2D.new()
 
 var vignette: ColorRect = VignetteNode.new()
 
+var Name_text = Name_title.new()
+
+var song_name: String
+
 func hasSignal(node : Node, signalName : String) -> bool:
 	var signalList = node.get_signal_list()
 	for signalDictionary in signalList:

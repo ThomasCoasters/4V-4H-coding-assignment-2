@@ -39,7 +39,8 @@ const MOVE_SPEED : int = 400
 const LOOKAHEAD : int = 50
 var current_camera_type := "free" #"free" or "locked" or "lock_x" or "lock_y"
 var forced_position = null
-const LOOKAHEAD_COOLDOWN : float = 0.1
+const LOOKAHEAD_COOLDOWN : float = 0.4
+var look_timer: SceneTreeTimer = null
 
 var attack_cooldown : float = 0.41
 const ATTACK_LINGER : float = 0.15
@@ -48,6 +49,8 @@ const ATTACK_ANIM_LINGER: float = 0.2
 const NORMAL_ATTACK = preload("res://assets/player/attacks/normal/normal attack.tscn")
 const UP_ATTACK = preload("res://assets/player/attacks/up_attack/up attack.tscn")
 const DOWN_ATTACK = preload("res://assets/player/attacks/pogo/pogo.tscn")
+const ZOTE_SHELL = preload("uid://bfxn25erf4tm3")
+var death_shell: Node = null
 
 var can_attack : bool = true
 var can_move : bool = true
@@ -72,6 +75,7 @@ var i_frames_hit_time: float = 1.2
 var hitstun_time: float = 0.25
 var hitstop_time: float = 0.075
 var iframe_tween: Tween
+var iframe_counter: int = 0
 
 const GET_HIT_KNOCKBACK_FORCE = 450
 const GET_HIT_KNOCKBACK_TIME = 0.15
@@ -144,6 +148,34 @@ var hazard_respawn_location: Vector2
 
 var unkillable: bool = false
 
+
+
+@onready var hornet_needle_catch: AudioStreamPlayer = $audio/HornetNeedleCatch
+
+@onready var zote_battle_death: AudioStreamPlayer = $audio/death/ZoteBattleDeath
+
+@onready var focus_health_heal: AudioStreamPlayer = $audio/health/FocusHealthHeal
+@onready var hero_damage: AudioStreamPlayer = $audio/health/HeroDamage
+@onready var hero_double_damage: AudioStreamPlayer = $audio/health/HeroDoubleDamage
+
+@onready var hero_jump: AudioStreamPlayer = $audio/moving/HeroJump
+@onready var zote_land: AudioStreamPlayer = $audio/moving/ZoteLand
+@onready var zote_battle_fall_01: AudioStreamPlayer = $audio/moving/ZoteBattleFall01
+@onready var hero_land_hard: AudioStreamPlayer = $audio/moving/HeroLandHard
+@onready var zote_get_up: AudioStreamPlayer = $audio/moving/ZoteGetUp
+@onready var hero_run_footsteps_stone: AudioStreamPlayer = $audio/moving/HeroRunFootstepsStone
+@onready var hero_wall_jump: AudioStreamPlayer = $audio/moving/HeroWallJump
+@onready var hero_wall_slide: AudioStreamPlayer = $audio/moving/HeroWallSlide
+@onready var hero_falling: AudioStreamPlayer = $audio/moving/HeroFalling
+
+@onready var zote_01: AudioStreamPlayer = $audio/talking_noises/Zote01
+@onready var zote_02: AudioStreamPlayer = $audio/talking_noises/Zote02
+@onready var zote_03_030084: AudioStreamPlayer = $"audio/talking_noises/Zote03#030084"
+@onready var zote_03: AudioStreamPlayer = $audio/talking_noises/Zote03
+@onready var zote_04: AudioStreamPlayer = $audio/talking_noises/Zote04
+@onready var zote_05: AudioStreamPlayer = $audio/talking_noises/Zote05
+var talking_noises: Array[AudioStreamPlayer]
+
 #endregion
 
 func _ready() -> void:
@@ -153,6 +185,10 @@ func _ready() -> void:
 	hazard_respawn_location = global_position
 	
 	sprite_2d.animation_finished.connect(_on_animation_finished)
+	
+	
+	
+	talking_noises = [zote_01, zote_02, zote_03_030084, zote_03, zote_04, zote_05]
 
 func setup():
 	max_health = SaveLoad.contents_to_save.max_health
@@ -327,6 +363,7 @@ func _on_jump_state_entered() -> void:
 		return
 	
 	play_anim("jump", ANIM_PRIORITY.JUMP)
+	play_audio(hero_jump)
 	
 	jumping.emit()
 	
@@ -369,6 +406,8 @@ func _on_on_ground_state_entered() -> void:
 func _on_landed(speed):
 	if $StateChart/ParallelState/Jumping/hardfall.active && speed >= max_fall_speed && !$StateChart/ParallelState/dash/dashing.active && !$"StateChart/ParallelState/healing/heal start".active:
 		play_anim("hardfall_land", ANIM_PRIORITY.HARDFALL_LAND)
+		play_audio(hero_land_hard)
+		
 		can_move = false
 		
 		vibrate(HARDFALL_STUN_TIME, "hard")
@@ -383,6 +422,7 @@ func _on_wall_slide_state_entered() -> void:
 	var wall_dir = get_wall_direction()  # -1 = left wall, 1 = right wall
 	
 	play_anim("wall", ANIM_PRIORITY.WALL)
+	play_audio(hero_wall_slide)
 	
 	sprite_2d.position = Vector2(-19 * wall_dir, 5)
 	sprite_2d.flip_h = wall_dir == -1
@@ -394,6 +434,7 @@ func _on_wall_slide_state_entered() -> void:
 
 func _on_wall_slide_state_exited() -> void:
 	stop_anim("wall")
+	hero_wall_slide.stop()
 	
 	var wall_dir = get_wall_direction()
 	position.x -= wall_dir
@@ -402,6 +443,7 @@ func _on_wall_slide_state_exited() -> void:
 
 func _on_to_jumping_form_wall_taken() -> void:
 	var dir = sign(last_direction.x)
+	play_audio(hero_wall_jump)
 	
 	forced_move.x = -dir * 500
 	
@@ -446,23 +488,31 @@ func camera_movement_y():
 	if !is_on_floor() || $StateChart/ParallelState/moving/Moving.active:
 		Camera.position.y = 0
 		Camera.drag_top_margin = 0.25
+		look_timer = null        # cancel pending look
 		return
-	
-	var dir = sign(direction)
 	
 	Camera.drag_top_margin = 0
 	
-	if Camera.position.y == dir.y*LOOKAHEAD*2:
+	var dir_y = direction.y
+	
+	if dir_y == 0:
 		Camera.position.y = 0
+		look_timer = null
 		return
 	
-	await get_tree().create_timer(LOOKAHEAD_COOLDOWN).timeout
+	var target = -dir_y * (LOOKAHEAD * 5 if dir_y == 1 else LOOKAHEAD * 8)
+	if Camera.position.y == target:
+		return
 	
-	
-	if dir.y == 1:
-		Camera.position.y = -dir.y*LOOKAHEAD*5
-	else: 
-		Camera.position.y = -dir.y*LOOKAHEAD*8
+	if look_timer == null:
+		look_timer = get_tree().create_timer(LOOKAHEAD_COOLDOWN)
+		await look_timer.timeout
+		
+		# After waiting, check player still holding same direction
+		if direction.y == dir_y:
+			Camera.position.y = target
+		
+		look_timer = null
 #endregion
 
 
@@ -563,6 +613,8 @@ func _on_pogo_returned():
 	delete_attack()
 	
 	can_attack = true
+	
+	play_audio(hornet_needle_catch)
 
 
 func _on_attack_entered(body: Node2D):
@@ -591,6 +643,11 @@ func change_health(amount: int, type: String = "normal"):
 		SaveLoad._save()
 	else:
 		health += amount
+		
+		if amount == -1:
+			play_audio(hero_damage)
+		elif amount <= -2:
+			play_audio(hero_double_damage)
 
 
 func _on_player_entered(body: Node2D):
@@ -647,6 +704,8 @@ func _on_heal_start_state_entered() -> void:
 func _on_heal_finished_state_entered() -> void:
 	change_health(heal_health)
 	
+	play_audio(focus_health_heal)
+	
 	attack_speed_buff()
 	
 	can_move = true
@@ -667,7 +726,14 @@ func death():
 	if unkillable || Global.map_holder.is_transition:
 		return
 	
-	health = max_health
+	play_audio(zote_battle_death)
+	
+	death_shell = ZOTE_SHELL.instantiate()
+	death_shell.global_position = global_position
+	get_tree().current_scene.call_deferred("add_child", death_shell)
+	
+	Global.map_holder.record_player_death(global_position)
+	
 	
 	current_camera_type = "free"
 	forced_position = null
@@ -685,6 +751,11 @@ func death():
 	process_mode = Node.PROCESS_MODE_DISABLED
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	sprite_2d.visible = false
+	
+	await get_tree().create_timer(0.5).timeout
+	
+	health = max_health
 	
 	Global.map_holder.change_2d_scene(room, location)
 #endregion
@@ -754,7 +825,10 @@ func knockback(force, time, body, knockback_up: bool = true):
 	can_walk = true
 
 func i_frames(time):
-	self.add_to_group("invincible")
+	iframe_counter += 1
+	var my_id = iframe_counter
+	
+	add_to_group("invincible")
 	
 	if iframe_tween:
 		iframe_tween.kill()
@@ -766,15 +840,24 @@ func i_frames(time):
 	
 	vignette_shrink(0.0, 0.8, time / 6)
 	await get_tree().create_timer(time / 6 * 2).timeout
+	
+	if my_id != iframe_counter:
+		return
+	
 	vignette_return(0.9, 1.3, time / 6 * 4)
 	
 	await get_tree().create_timer(time).timeout
+	
+	if my_id != iframe_counter:
+		return
+	
 	
 	if iframe_tween:
 		iframe_tween.kill()
 	
 	sprite_2d.modulate.a = 1.0
-	self.remove_from_group("invincible")
+	remove_from_group("invincible")
+
 
 
 
@@ -1014,4 +1097,11 @@ func fading():
 
 func set_hazard_respawn():
 	hazard_respawn_location = global_position
+#endregion
+
+#region audio
+func play_audio(audio: AudioStreamPlayer):
+	audio.pitch_scale = randf_range(0.9, 1.1)
+	audio.volume_db = randf_range(-5.0, -4.0)
+	audio.play()
 #endregion

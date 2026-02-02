@@ -10,6 +10,26 @@
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_67ne4"]
 [ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="8_8ca2v"]
 [ext_resource type="PackedScene" uid="uid://doeteha3810mt" path="res://assets/UI/UI_holder.tscn" id="9_d2shb"]
+[ext_resource type="AudioStream" uid="uid://ccnuq4mk5uhwb" path="res://assets/player/attacks/pogo/hornet_needle_catch.wav" id="11_hai6l"]
+[ext_resource type="AudioStream" uid="uid://re7ww7lgu032" path="res://assets/player/audio/no_voice/focus_health_heal.wav" id="12_xhr4e"]
+[ext_resource type="AudioStream" uid="uid://4pvuo2j0utci" path="res://assets/player/audio/no_voice/hero_damage.wav" id="13_bky8f"]
+[ext_resource type="AudioStream" uid="uid://dhg63c0lh45y4" path="res://assets/player/audio/no_voice/hero_double_damage.wav" id="14_46pv7"]
+[ext_resource type="AudioStream" uid="uid://nhae3j8whyjr" path="res://assets/player/audio/no_voice/hero_jump.wav" id="15_uvut3"]
+[ext_resource type="AudioStream" uid="uid://dditoaohj4af" path="res://assets/player/audio/no_voice/hero_land_hard.wav" id="16_eedlp"]
+[ext_resource type="AudioStream" uid="uid://dmr0wrd1nt7if" path="res://assets/player/audio/no_voice/hero_run_footsteps_stone.wav" id="17_khrko"]
+[ext_resource type="AudioStream" uid="uid://dkv0wy5gag2wo" path="res://assets/player/audio/no_voice/hero_wall_jump.wav" id="18_evyxp"]
+[ext_resource type="AudioStream" uid="uid://bfdwoqlh5hw1q" path="res://assets/player/audio/no_voice/hero_wall_slide.wav" id="19_ksgbb"]
+[ext_resource type="AudioStream" uid="uid://003ysg7aiqwb" path="res://assets/player/audio/no_voice/hero_falling.wav" id="20_tktwm"]
+[ext_resource type="AudioStream" uid="uid://tpgxsl262bfd" path="res://assets/player/audio/zote/falling_landing/Zote_battle_fall_01.wav" id="21_ea4fx"]
+[ext_resource type="AudioStream" uid="uid://dlw1j50thed3e" path="res://assets/player/audio/zote/falling_landing/zote_get_up.wav" id="23_0yxml"]
+[ext_resource type="AudioStream" uid="uid://b6j1wbt7ui6k5" path="res://assets/player/audio/zote/falling_landing/zote_land.wav" id="24_3iv7w"]
+[ext_resource type="AudioStream" uid="uid://ppooe1uo0fsy" path="res://assets/player/audio/zote/death/Zote_battle_death.wav" id="25_t54tc"]
+[ext_resource type="AudioStream" uid="uid://cu3psx0ltt7d5" path="res://assets/player/audio/zote/talking/Zote_01.wav" id="26_8d5av"]
+[ext_resource type="AudioStream" uid="uid://yflv1dcgno3q" path="res://assets/player/audio/zote/talking/Zote_02.wav" id="27_iblef"]
+[ext_resource type="AudioStream" uid="uid://dqspmmj3vvapo" path="res://assets/player/audio/zote/talking/Zote_03 #030084.wav" id="28_qyqrj"]
+[ext_resource type="AudioStream" uid="uid://djwioufbweesq" path="res://assets/player/audio/zote/talking/Zote_03.wav" id="29_qtr3g"]
+[ext_resource type="AudioStream" uid="uid://bj0eyb3rua6vy" path="res://assets/player/audio/zote/talking/Zote_04.wav" id="30_twg1a"]
+[ext_resource type="AudioStream" uid="uid://xf4vhptvgdkk" path="res://assets/player/audio/zote/talking/Zote_05.wav" id="31_o3cdd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hai6l"]
 atlas = ExtResource("2_m2mll")
@@ -394,6 +414,7 @@ z_index = 4
 collision_mask = 6
 script = ExtResource("1_d2shb")
 Camera = NodePath("Camera")
+max_health = 1
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1627795344]
 position = Vector2(0, -25)
@@ -653,6 +674,78 @@ event = &"dash_rechagering"
 delay_in_seconds = "0.2"
 
 [node name="UiHolder" parent="." unique_id=1243714732 instance=ExtResource("9_d2shb")]
+
+[node name="audio" type="Node" parent="." unique_id=2012576474]
+process_mode = 3
+
+[node name="HornetNeedleCatch" type="AudioStreamPlayer" parent="audio" unique_id=1356923133]
+stream = ExtResource("11_hai6l")
+bus = &"SFX"
+
+[node name="health" type="Node" parent="audio" unique_id=29470141]
+
+[node name="FocusHealthHeal" type="AudioStreamPlayer" parent="audio/health" unique_id=209530069]
+stream = ExtResource("12_xhr4e")
+
+[node name="HeroDamage" type="AudioStreamPlayer" parent="audio/health" unique_id=1273804389]
+stream = ExtResource("13_bky8f")
+
+[node name="HeroDoubleDamage" type="AudioStreamPlayer" parent="audio/health" unique_id=660724818]
+stream = ExtResource("14_46pv7")
+
+[node name="moving" type="Node" parent="audio" unique_id=382539119]
+
+[node name="HeroJump" type="AudioStreamPlayer" parent="audio/moving" unique_id=86058509]
+stream = ExtResource("15_uvut3")
+
+[node name="HeroLandHard" type="AudioStreamPlayer" parent="audio/moving" unique_id=1051069491]
+stream = ExtResource("16_eedlp")
+
+[node name="HeroRunFootstepsStone" type="AudioStreamPlayer" parent="audio/moving" unique_id=2141390119]
+stream = ExtResource("17_khrko")
+
+[node name="HeroWallJump" type="AudioStreamPlayer" parent="audio/moving" unique_id=1794721392]
+stream = ExtResource("18_evyxp")
+
+[node name="HeroWallSlide" type="AudioStreamPlayer" parent="audio/moving" unique_id=1242950442]
+stream = ExtResource("19_ksgbb")
+
+[node name="HeroFalling" type="AudioStreamPlayer" parent="audio/moving" unique_id=958447931]
+stream = ExtResource("20_tktwm")
+
+[node name="ZoteBattleFall01" type="AudioStreamPlayer" parent="audio/moving" unique_id=690641371]
+stream = ExtResource("21_ea4fx")
+
+[node name="ZoteGetUp" type="AudioStreamPlayer" parent="audio/moving" unique_id=707780764]
+stream = ExtResource("23_0yxml")
+
+[node name="ZoteLand" type="AudioStreamPlayer" parent="audio/moving" unique_id=547487636]
+stream = ExtResource("24_3iv7w")
+
+[node name="death" type="Node" parent="audio" unique_id=558951525]
+
+[node name="ZoteBattleDeath" type="AudioStreamPlayer" parent="audio/death" unique_id=856344970]
+stream = ExtResource("25_t54tc")
+
+[node name="talking_noises" type="Node" parent="audio" unique_id=648790954]
+
+[node name="Zote01" type="AudioStreamPlayer" parent="audio/talking_noises" unique_id=1928925811]
+stream = ExtResource("26_8d5av")
+
+[node name="Zote02" type="AudioStreamPlayer" parent="audio/talking_noises" unique_id=1534441102]
+stream = ExtResource("27_iblef")
+
+[node name="Zote03#030084" type="AudioStreamPlayer" parent="audio/talking_noises" unique_id=1000036119]
+stream = ExtResource("28_qyqrj")
+
+[node name="Zote03" type="AudioStreamPlayer" parent="audio/talking_noises" unique_id=1644724072]
+stream = ExtResource("29_qtr3g")
+
+[node name="Zote04" type="AudioStreamPlayer" parent="audio/talking_noises" unique_id=2118575565]
+stream = ExtResource("30_twg1a")
+
+[node name="Zote05" type="AudioStreamPlayer" parent="audio/talking_noises" unique_id=1927074988]
+stream = ExtResource("31_o3cdd")
 
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/jump" to="." method="_on_jump_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/falling" to="." method="_on_falling_state_entered"]
