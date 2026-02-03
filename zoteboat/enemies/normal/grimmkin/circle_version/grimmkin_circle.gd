@@ -277,9 +277,9 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 	
 	if anim_name == "tp_in":
 		add_to_group("deactive")
-		$CircleAttack.set_circle_attack_enabled(false)
 	elif anim_name == "tp_out":
 		play_audio(random_attack_noise[randi_range(0,4)])
+		$CircleAttack.set_circle_attack_enabled(false)
 	elif anim_name == "death":
 		$CircleAttack.set_circle_attack_enabled(false)
 		play_audio(grimmkin_little_death_01)

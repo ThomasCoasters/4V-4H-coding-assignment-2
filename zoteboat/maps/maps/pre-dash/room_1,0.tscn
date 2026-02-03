@@ -361,10 +361,10 @@ extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_psvay")])
 
 [node name="phase5" type="Node" parent="area arena/wave holder" unique_id=1087452905]
 
-[node name="grimm_attack" type="Node2D" parent="area arena/wave holder/phase5" unique_id=1811988544]
+[node name="grimm_circle" type="Node2D" parent="area arena/wave holder/phase5" unique_id=1811988544]
 position = Vector2(1344, 242)
 
-[node name="extra" type="Node2D" parent="area arena/wave holder/phase5/grimm_attack" unique_id=1997585999]
+[node name="extra" type="Node2D" parent="area arena/wave holder/phase5/grimm_circle" unique_id=1997585999]
 visible = false
 script = ExtResource("7_a188l")
 extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_psvay")])
@@ -381,14 +381,6 @@ extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_psvay")])
 position = Vector2(1046, 230)
 
 [node name="extra" type="Node2D" parent="area arena/wave holder/phase5/grimm_attack3" unique_id=897562474]
-visible = false
-script = ExtResource("7_a188l")
-extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_psvay")])
-
-[node name="aspid" type="Node2D" parent="area arena/wave holder/phase5" unique_id=1539869451]
-position = Vector2(1343, 136)
-
-[node name="extra" type="Node2D" parent="area arena/wave holder/phase5/aspid" unique_id=115879792]
 visible = false
 script = ExtResource("7_a188l")
 extras = Array[ExtResource("8_82bfq")]([SubResource("Resource_psvay")])
