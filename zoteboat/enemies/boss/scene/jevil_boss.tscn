@@ -1,0 +1,240 @@
+[gd_scene format=3 uid="uid://fvk1kb0dk2bu"]
+
+[ext_resource type="Script" uid="uid://b4lnd06y7anp" path="res://enemies/boss/scripts/jevil_boss.gd" id="1_sggmd"]
+[ext_resource type="Texture2D" uid="uid://bb37uyfurxg6o" path="res://enemies/boss/assets/jevil/jevil sprites.png" id="2_sggmd"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="5_e58t3"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="6_qm3rt"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="7_aappj"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="8_gcouw"]
+[ext_resource type="AudioStream" uid="uid://b27ddrcdtq0a2" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_attack_01.wav" id="9_epv6w"]
+[ext_resource type="AudioStream" uid="uid://d2v4cc6e4i67o" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_attack_02.wav" id="10_00oel"]
+[ext_resource type="AudioStream" uid="uid://d2yjohkmbqluw" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_attack_03.wav" id="11_dqkge"]
+[ext_resource type="AudioStream" uid="uid://b04l5iabamvmj" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_attack_04.wav" id="12_oqij1"]
+[ext_resource type="AudioStream" uid="uid://dnc7bls4ow3a4" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_short_laugh_01.wav" id="13_r2mqi"]
+[ext_resource type="AudioStream" uid="uid://bkdv80j2pnood" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_long_gasp.wav" id="14_c4bf2"]
+[ext_resource type="AudioStream" uid="uid://drj6tngulf85q" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_death.wav" id="15_f2o7c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sggmd"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(17, 176, 44, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcouw"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(65, 176, 44, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epv6w"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(113, 176, 44, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00oel"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(161, 176, 44, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqkge"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(209, 176, 44, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqij1"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(257, 176, 44, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2mqi"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(305, 176, 44, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4bf2"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(353, 176, 44, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aj26w"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(17, 111, 44, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkeuv"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(65, 111, 44, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufmpn"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(113, 111, 44, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoog1"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(161, 111, 44, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qk6og"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(209, 111, 44, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e58t3"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(257, 111, 44, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qm3rt"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(305, 111, 44, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aappj"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(353, 111, 44, 46)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g81kc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sggmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcouw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epv6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00oel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqkge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqij1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2mqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4bf2")
+}],
+"loop": true,
+"name": &"dance(back)",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aj26w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkeuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufmpn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoog1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qk6og")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e58t3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qm3rt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aappj")
+}],
+"loop": true,
+"name": &"dance(front)",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
+size = Vector2(40, 37)
+
+[node name="jevil_boss" type="CharacterBody2D" unique_id=833850574 groups=["enemy"]]
+scale = Vector2(1.2, 1.2)
+collision_layer = 8
+collision_mask = 65536
+script = ExtResource("1_sggmd")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1966045575]
+texture_filter = 1
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_g81kc")
+animation = &"dance(front)"
+autoplay = "dance(front)"
+frame_progress = 0.5981975
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2104192833]
+visible = false
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_pst0k")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=14475067]
+avoidance_enabled = true
+radius = 30.0
+
+[node name="StateChart" type="Node" parent="." unique_id=886798557]
+script = ExtResource("5_e58t3")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="attack" type="Node" parent="StateChart" unique_id=1097008974]
+script = ExtResource("6_qm3rt")
+initial_state = NodePath("idle_inactive")
+
+[node name="idle_inactive" type="Node" parent="StateChart/attack" unique_id=791584336]
+script = ExtResource("7_aappj")
+
+[node name="activate" type="Node" parent="StateChart/attack/idle_inactive" unique_id=1964276142]
+script = ExtResource("8_gcouw")
+to = NodePath("../../idle_active")
+event = &"active"
+delay_in_seconds = "0.0"
+
+[node name="idle_active" type="Node" parent="StateChart/attack" unique_id=1198995261]
+script = ExtResource("7_aappj")
+
+[node name="to_dashing" type="Node" parent="StateChart/attack/idle_active" unique_id=316290598]
+script = ExtResource("8_gcouw")
+to = NodePath("../../dashing")
+event = &"dash"
+delay_in_seconds = "0.0"
+
+[node name="dashing" type="Node" parent="StateChart/attack" unique_id=1048138187]
+script = ExtResource("7_aappj")
+
+[node name="to_idle" type="Node" parent="StateChart/attack/dashing" unique_id=498566421]
+script = ExtResource("8_gcouw")
+to = NodePath("../../idle_active")
+event = &"can_not_attack"
+delay_in_seconds = "0.0"
+
+[node name="attack cooldown" type="Timer" parent="." unique_id=2031418269]
+wait_time = 0.6
+one_shot = true
+
+[node name="audio" type="Node" parent="." unique_id=1803701364]
+
+[node name="GrimmkinLittleAttack01" type="AudioStreamPlayer" parent="audio" unique_id=1901447707]
+stream = ExtResource("9_epv6w")
+bus = &"SFX"
+
+[node name="GrimmkinLittleAttack02" type="AudioStreamPlayer" parent="audio" unique_id=1031722872]
+stream = ExtResource("10_00oel")
+bus = &"SFX"
+
+[node name="GrimmkinLittleAttack03" type="AudioStreamPlayer" parent="audio" unique_id=370070158]
+stream = ExtResource("11_dqkge")
+bus = &"SFX"
+
+[node name="GrimmkinLittleAttack04" type="AudioStreamPlayer" parent="audio" unique_id=1356351271]
+stream = ExtResource("12_oqij1")
+bus = &"SFX"
+
+[node name="GrimmkinLittleIntro01" type="AudioStreamPlayer" parent="audio" unique_id=165420433]
+stream = ExtResource("13_r2mqi")
+bus = &"SFX"
+
+[node name="GrimmkinBigLongGasp" type="AudioStreamPlayer" parent="audio" unique_id=1906429078]
+stream = ExtResource("14_c4bf2")
+
+[node name="GrimmkinLittleDeath01" type="AudioStreamPlayer" parent="audio" unique_id=1025758720]
+stream = ExtResource("15_f2o7c")
+bus = &"SFX"
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="state_entered" from="StateChart/attack/idle_active" to="." method="_on_idle_active_state_entered"]
+[connection signal="state_entered" from="StateChart/attack/dashing" to="." method="_on_dashing_state_entered"]
+[connection signal="timeout" from="attack cooldown" to="." method="_on_attack_cooldown_timeout"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bckxprfhv0crk"
-path="res://.godot/imported/PC _ Computer - Deltarune - Enemies & Bosses - Spamton NEO (1) (1).png-6ecb76cde99c66b6059a728b38207c51.ctex"
+uid="uid://bb37uyfurxg6o"
+path="res://.godot/imported/jevil sprites.png-907b5467047c8ff1d01ca910775344c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/boss/assets/spamton NEO/PC _ Computer - Deltarune - Enemies & Bosses - Spamton NEO (1) (1).png"
-dest_files=["res://.godot/imported/PC _ Computer - Deltarune - Enemies & Bosses - Spamton NEO (1) (1).png-6ecb76cde99c66b6059a728b38207c51.ctex"]
+source_file="res://enemies/boss/assets/jevil/jevil sprites.png"
+dest_files=["res://.godot/imported/jevil sprites.png-907b5467047c8ff1d01ca910775344c0.ctex"]
 
 [params]
 
