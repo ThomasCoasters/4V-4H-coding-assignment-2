@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://fvk1kb0dk2bu"]
 
 [ext_resource type="Script" uid="uid://b4lnd06y7anp" path="res://enemies/boss/scripts/jevil_boss.gd" id="1_sggmd"]
+[ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_aj26w"]
 [ext_resource type="Texture2D" uid="uid://bb37uyfurxg6o" path="res://enemies/boss/assets/jevil/jevil sprites.png" id="2_sggmd"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="5_e58t3"]
+[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="5_qkeuv"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="6_qm3rt"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="7_aappj"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="8_gcouw"]
@@ -13,6 +15,18 @@
 [ext_resource type="AudioStream" uid="uid://dnc7bls4ow3a4" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_short_laugh_01.wav" id="13_r2mqi"]
 [ext_resource type="AudioStream" uid="uid://bkdv80j2pnood" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_long_gasp.wav" id="14_c4bf2"]
 [ext_resource type="AudioStream" uid="uid://drj6tngulf85q" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_death.wav" id="15_f2o7c"]
+
+[sub_resource type="Resource" id="Resource_qkeuv"]
+script = ExtResource("2_aj26w")
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2o7c"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(17, 241, 40, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4y2we"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(61, 241, 40, 39)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sggmd"]
 atlas = ExtResource("2_sggmd")
@@ -82,6 +96,17 @@ region = Rect2(353, 111, 44, 46)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_f2o7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4y2we")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_sggmd")
 }, {
 "duration": 1.0,
@@ -142,11 +167,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
 size = Vector2(40, 37)
 
-[node name="jevil_boss" type="CharacterBody2D" unique_id=833850574 groups=["enemy"]]
+[node name="jevil_boss" type="CharacterBody2D" unique_id=833850574 node_paths=PackedStringArray("nav_agent") groups=["enemy"]]
 scale = Vector2(1.2, 1.2)
 collision_layer = 8
 collision_mask = 65536
 script = ExtResource("1_sggmd")
+stats = SubResource("Resource_qkeuv")
+nav_agent = NodePath("NavigationAgent2D")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1966045575]
 texture_filter = 1
@@ -154,7 +181,6 @@ scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_g81kc")
 animation = &"dance(front)"
 autoplay = "dance(front)"
-frame_progress = 0.5981975
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2104192833]
 visible = false
@@ -170,36 +196,123 @@ radius = 30.0
 script = ExtResource("5_e58t3")
 metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="attack" type="Node" parent="StateChart" unique_id=1097008974]
+[node name="ParallelState" type="Node" parent="StateChart" unique_id=899224240]
+script = ExtResource("5_qkeuv")
+
+[node name="attack" type="Node" parent="StateChart/ParallelState" unique_id=1097008974]
 script = ExtResource("6_qm3rt")
-initial_state = NodePath("idle_inactive")
+initial_state = NodePath("idle_active")
 
-[node name="idle_inactive" type="Node" parent="StateChart/attack" unique_id=791584336]
+[node name="idle_active" type="Node" parent="StateChart/ParallelState/attack" unique_id=1198995261]
 script = ExtResource("7_aappj")
 
-[node name="activate" type="Node" parent="StateChart/attack/idle_inactive" unique_id=1964276142]
+[node name="to_aspid" type="Node" parent="StateChart/ParallelState/attack/idle_active" unique_id=316290598]
+script = ExtResource("8_gcouw")
+to = NodePath("../../spade_aspid_attack")
+event = &"aspid"
+delay_in_seconds = "0.0"
+
+[node name="to_spinning_circle" type="Node" parent="StateChart/ParallelState/attack/idle_active" unique_id=1709746506]
+script = ExtResource("8_gcouw")
+to = NodePath("../../spinning_circle")
+event = &"circle"
+delay_in_seconds = "0.0"
+
+[node name="to_floor_ducks" type="Node" parent="StateChart/ParallelState/attack/idle_active" unique_id=2081875464]
+script = ExtResource("8_gcouw")
+to = NodePath("../../floor_ducks")
+event = &"ducks"
+delay_in_seconds = "0.0"
+
+[node name="to_scythe" type="Node" parent="StateChart/ParallelState/attack/idle_active" unique_id=1467886306]
+script = ExtResource("8_gcouw")
+to = NodePath("../../scythe")
+event = &"scythe"
+delay_in_seconds = "0.0"
+
+[node name="to_ceiling_diamonds" type="Node" parent="StateChart/ParallelState/attack/idle_active" unique_id=352270691]
+script = ExtResource("8_gcouw")
+to = NodePath("../../ceiling_diamonds")
+event = &"ceiling"
+delay_in_seconds = "0.0"
+
+[node name="to_homing_clover" type="Node" parent="StateChart/ParallelState/attack/idle_active" unique_id=243466164]
+script = ExtResource("8_gcouw")
+to = NodePath("../../homing_clover")
+event = &"homing"
+delay_in_seconds = "0.0"
+
+[node name="to_head_throw" type="Node" parent="StateChart/ParallelState/attack/idle_active" unique_id=603459263]
+script = ExtResource("8_gcouw")
+to = NodePath("../../head_throw")
+event = &"head_throw"
+delay_in_seconds = "0.0"
+
+[node name="spade_aspid_attack" type="Node" parent="StateChart/ParallelState/attack" unique_id=1076649549]
+script = ExtResource("7_aappj")
+
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/spade_aspid_attack" unique_id=1930659588]
 script = ExtResource("8_gcouw")
 to = NodePath("../../idle_active")
-event = &"active"
+event = &"attack_stop"
 delay_in_seconds = "0.0"
 
-[node name="idle_active" type="Node" parent="StateChart/attack" unique_id=1198995261]
+[node name="spinning_circle" type="Node" parent="StateChart/ParallelState/attack" unique_id=202263145]
 script = ExtResource("7_aappj")
 
-[node name="to_dashing" type="Node" parent="StateChart/attack/idle_active" unique_id=316290598]
-script = ExtResource("8_gcouw")
-to = NodePath("../../dashing")
-event = &"dash"
-delay_in_seconds = "0.0"
-
-[node name="dashing" type="Node" parent="StateChart/attack" unique_id=1048138187]
-script = ExtResource("7_aappj")
-
-[node name="to_idle" type="Node" parent="StateChart/attack/dashing" unique_id=498566421]
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/spinning_circle" unique_id=1857158715]
 script = ExtResource("8_gcouw")
 to = NodePath("../../idle_active")
-event = &"can_not_attack"
+event = &"attack_stop"
 delay_in_seconds = "0.0"
+
+[node name="floor_ducks" type="Node" parent="StateChart/ParallelState/attack" unique_id=1198902721]
+script = ExtResource("7_aappj")
+
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/floor_ducks" unique_id=1601171171]
+script = ExtResource("8_gcouw")
+to = NodePath("../../idle_active")
+event = &"attack_stop"
+delay_in_seconds = "0.0"
+
+[node name="scythe" type="Node" parent="StateChart/ParallelState/attack" unique_id=1163148754]
+script = ExtResource("7_aappj")
+
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/scythe" unique_id=820189532]
+script = ExtResource("8_gcouw")
+to = NodePath("../../idle_active")
+event = &"attack_stop"
+delay_in_seconds = "0.0"
+
+[node name="ceiling_diamonds" type="Node" parent="StateChart/ParallelState/attack" unique_id=2039685975]
+script = ExtResource("7_aappj")
+
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/ceiling_diamonds" unique_id=1434675910]
+script = ExtResource("8_gcouw")
+to = NodePath("../../idle_active")
+event = &"attack_stop"
+delay_in_seconds = "0.0"
+
+[node name="homing_clover" type="Node" parent="StateChart/ParallelState/attack" unique_id=758180912]
+script = ExtResource("7_aappj")
+
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/homing_clover" unique_id=530535208]
+script = ExtResource("8_gcouw")
+to = NodePath("../../idle_active")
+event = &"attack_stop"
+delay_in_seconds = "0.0"
+
+[node name="head_throw" type="Node" parent="StateChart/ParallelState/attack" unique_id=429834948]
+script = ExtResource("7_aappj")
+
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/head_throw" unique_id=1402138753]
+script = ExtResource("8_gcouw")
+to = NodePath("../../idle_active")
+event = &"attack_stop"
+delay_in_seconds = "0.0"
+
+[node name="stun" type="Node" parent="StateChart/ParallelState" unique_id=2018013302]
+script = ExtResource("6_qm3rt")
 
 [node name="attack cooldown" type="Timer" parent="." unique_id=2031418269]
 wait_time = 0.6
@@ -235,6 +348,5 @@ stream = ExtResource("15_f2o7c")
 bus = &"SFX"
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
-[connection signal="state_entered" from="StateChart/attack/idle_active" to="." method="_on_idle_active_state_entered"]
-[connection signal="state_entered" from="StateChart/attack/dashing" to="." method="_on_dashing_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/attack/idle_active" to="." method="_on_idle_active_state_entered"]
 [connection signal="timeout" from="attack cooldown" to="." method="_on_attack_cooldown_timeout"]

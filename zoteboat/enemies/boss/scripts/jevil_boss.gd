@@ -19,9 +19,9 @@ signal killed(node: Node2D)
 @export_group("attacking")
 @export_range(0.0, 5.0, 0.01) var attack_cooldown_time: float = 0.6
 
-@export_range(1, 12, 1) var attack_count: int = 1
+@export_range(1, 12, 1) var attack_count: int = 3
 
-@export_range(0, 360, 1, "radians_as_degrees") var shot_angle: int = 20
+@export_range(0, 360, 1, "radians_as_degrees") var shot_angle: int = 30
 
 var can_attack: bool = true
 
@@ -110,40 +110,40 @@ func deactivate():
 
 #region pathfinding
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_nan(position.x) || is_nan(position.y):
 		push_error("Enemy position became NaN")
 		killed.emit(self)
 		return
 	
-	if is_dashing:
-		var remaining := dash_distance_target - dash_travelled
-		
-		# calculate speed scale near the end
-		var speed := dash_speed
-		if remaining < dash_slowdown_distance:
-			var t := remaining / dash_slowdown_distance
-			t = clamp(t, 0.0, 1.0)
-		
-			# smoothstep-style easing (very HK-feel)
-			t = t * t * (3.0 - 2.0 * t)
-			
-			speed = lerp(dash_min_speed, dash_speed, t)
-			
-		var move_step := speed * delta
-		velocity = dash_dir * speed
-		move_and_slide()
-		
-		dash_travelled += move_step
-		
-		if dash_travelled >= dash_distance_target:
-			end_dash()
-			return
-		
-		return
+	#if is_dashing:
+		#var remaining := dash_distance_target - dash_travelled
+		#
+		## calculate speed scale near the end
+		#var speed := dash_speed
+		#if remaining < dash_slowdown_distance:
+			#var t := remaining / dash_slowdown_distance
+			#t = clamp(t, 0.0, 1.0)
+		#
+			## smoothstep-style easing (very HK-feel)
+			#t = t * t * (3.0 - 2.0 * t)
+			#
+			#speed = lerp(dash_min_speed, dash_speed, t)
+			#
+		#var move_step := speed * delta
+		#velocity = dash_dir * speed
+		#move_and_slide()
+		#
+		#dash_travelled += move_step
+		#
+		#if dash_travelled >= dash_distance_target:
+			#end_dash()
+			#return
+		#
+		#return
 	
 	
-	play_anim("idle", ANIM_PRIORITY.IDLE)
+	play_anim("dance(front)", ANIM_PRIORITY.IDLE)
 	
 	update_facing()
 	sprite_2d.flip_h = facing_dir == 1
@@ -215,45 +215,6 @@ func _on_health_depleted():
 	play_anim("death", ANIM_PRIORITY.DEATH)
 #endregion
 
-#region behaviour
-func _on_move_towards_body_entered(body: Node2D) -> void:
-	if !body.is_in_group("player"):
-		return
-	
-	state_chart.send_event("active")
-#endregion
-
-#region dashing
-func _on_dashing_state_entered() -> void:
-	play_anim("dash_anticipate", ANIM_PRIORITY.ATTACK)
-	play_audio(random_attack_noise[randi_range(0,4)])
-
-func start_dash():
-	play_anim("dash", ANIM_PRIORITY.ATTACK)
-	
-	is_dashing = true
-	dash_travelled = 0.0
-	
-	dash_dir = (Global.player.global_position - global_position).normalized()
-	
-	sprite_2d.flip_h = true
-	look_at(Global.player.global_position)
-	
-	var dist_to_player = global_position.distance_to(Global.player.global_position)
-	dash_distance_target = dist_to_player + dash_overshoot
-	
-	if nav_agent:
-		nav_agent.velocity = Vector2.ZERO
-
-
-func end_dash():
-	is_dashing = false
-	velocity = Vector2.ZERO
-	play_anim("dash_end", ANIM_PRIORITY.ATTACK)
-	
-	rotation_degrees = 0
-#endregion
-
 #region animations
 func play_anim(anim_name: String = "idle", priority: int = 0):
 	if priority < current_anim_priority:
@@ -299,17 +260,10 @@ func _on_animation_finished():
 	if current_anim == "tp_out":
 		teleport_around_player()
 		play_anim("tp_in", ANIM_PRIORITY.TP)
-	
-	
-	if current_anim == "dash_end":
-		state_chart.send_event("can_not_attack")
-	
-	if current_anim == "dash_anticipate":
-		start_dash()
 
 
 func update_facing():
-	if current_anim == "attack" || current_anim == "death":
+	if current_anim == "death":
 		return
 	
 	
@@ -320,7 +274,7 @@ func update_facing():
 	
 	if new_dir != facing_dir:
 		facing_dir = new_dir
-		play_anim("turn", ANIM_PRIORITY.TURN)
+		#play_anim("turn", ANIM_PRIORITY.TURN)
 #endregion
 
 
@@ -331,7 +285,7 @@ func _on_idle_active_state_entered() -> void:
 func choose_attack():
 	await get_tree().create_timer(0.3).timeout
 	
-	state_chart.send_event("dash")
+	#state_chart.send_event("dash")
 #endregion
 
 
