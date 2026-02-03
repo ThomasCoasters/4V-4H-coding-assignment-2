@@ -6,22 +6,22 @@ extends CharacterBody2D
 
 signal killed(node: Node2D)
 
-@export_group("moving")
-@export var move_speed: float = 250.0
-
-@export var retreat_speed_mult: float = 0.6
-
 @export var nav_agent: NavigationAgent2D
 
 @onready var state_chart: StateChart = $StateChart
-@onready var attack_cooldown: Timer = $"attack cooldown"
+@onready var aspid_attack_cooldown: Timer = $"aspid attack cooldown"
 
-@export_group("attacking")
-@export_range(0.0, 5.0, 0.01) var attack_cooldown_time: float = 0.6
 
-@export_range(1, 12, 1) var attack_count: int = 3
+@export_group("aspid attack")
+@export_range(0.0, 5.0, 0.01) var aspid_attack_cooldown_time: float = 0.6
 
-@export_range(0, 360, 1, "radians_as_degrees") var shot_angle: int = 30
+@export_range(1, 12, 1) var aspid_attack_count: int = 3
+
+@export_range(0, 360, 1, "radians_as_degrees") var aspid_shot_angle: int = 30
+
+@export_range(1, 10, 1) var aspid_attack_times: int = 3
+var aspid_attack_time: int = 0
+
 
 var can_attack: bool = true
 
@@ -69,7 +69,7 @@ var dash_travelled := 0.0
 var random_attack_noise: Array[AudioStreamPlayer]
 
 func _ready() -> void:
-	$"attack cooldown".wait_time = attack_cooldown_time
+	aspid_attack_cooldown.wait_time = aspid_attack_cooldown_time
 	
 	if !start_active:
 		deactivate()
@@ -110,37 +110,37 @@ func deactivate():
 
 #region pathfinding
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if is_nan(position.x) || is_nan(position.y):
 		push_error("Enemy position became NaN")
 		killed.emit(self)
 		return
 	
-	#if is_dashing:
-		#var remaining := dash_distance_target - dash_travelled
-		#
-		## calculate speed scale near the end
-		#var speed := dash_speed
-		#if remaining < dash_slowdown_distance:
-			#var t := remaining / dash_slowdown_distance
-			#t = clamp(t, 0.0, 1.0)
-		#
-			## smoothstep-style easing (very HK-feel)
-			#t = t * t * (3.0 - 2.0 * t)
-			#
-			#speed = lerp(dash_min_speed, dash_speed, t)
-			#
-		#var move_step := speed * delta
-		#velocity = dash_dir * speed
-		#move_and_slide()
-		#
-		#dash_travelled += move_step
-		#
-		#if dash_travelled >= dash_distance_target:
-			#end_dash()
-			#return
-		#
-		#return
+	if is_dashing:
+		var remaining := dash_distance_target - dash_travelled
+		
+		# calculate speed scale near the end
+		var speed := dash_speed
+		if remaining < dash_slowdown_distance:
+			var t := remaining / dash_slowdown_distance
+			t = clamp(t, 0.0, 1.0)
+		
+			# smoothstep-style easing (very HK-feel)
+			t = t * t * (3.0 - 2.0 * t)
+			
+			speed = lerp(dash_min_speed, dash_speed, t)
+			
+		var move_step := speed * delta
+		velocity = dash_dir * speed
+		move_and_slide()
+		
+		dash_travelled += move_step
+		
+		if dash_travelled >= dash_distance_target:
+			end_dash()
+			return
+		
+		return
 	
 	
 	play_anim("dance(front)", ANIM_PRIORITY.IDLE)
@@ -193,7 +193,6 @@ func teleport_around_player(
 #endregion
 
 #region basic enemy stuff
-
 func damage(damage_value: int):
 	stats.health -= damage_value
 
@@ -210,36 +209,15 @@ func _on_health_depleted():
 	velocity = Vector2.ZERO
 	
 	$CollisionShape2D.set_deferred("disabled", true)
-	attack_cooldown.stop()
+	aspid_attack_cooldown.stop()
 	
 	play_anim("death", ANIM_PRIORITY.DEATH)
 #endregion
 
-#region animations
+#region animations/audio
 func play_anim(anim_name: String = "idle", priority: int = 0):
 	if priority < current_anim_priority:
 		return
-	
-	#region sprite positions
-	var direction = -facing_dir
-	if anim_name == "dash":
-		sprite_2d.position = Vector2(11*direction, -14)
-	elif anim_name == "dash_anticipate" || anim_name == "dash_end" || anim_name == "death" || anim_name == "idle":
-		sprite_2d.position = Vector2(-4*direction, -33)
-	elif anim_name == "turn":
-		sprite_2d.position = Vector2(2*direction, -23)
-	else:
-		sprite_2d.position = Vector2(5*direction, -29)
-	#endregion
-	
-	
-	if anim_name == "tp_in":
-		add_to_group("deactive")
-	elif anim_name == "tp_out":
-		play_audio(random_attack_noise[randi_range(0,4)])
-	elif anim_name == "death":
-		play_audio(grimmkin_little_death_01)
-	
 	
 	current_anim_priority = priority
 	
@@ -248,18 +226,25 @@ func play_anim(anim_name: String = "idle", priority: int = 0):
 	
 	sprite_2d.play(anim_name)
 
+
+func stop_anim(wanted_anim: String = "idle"):
+	if current_anim != wanted_anim:
+		return
+	
+	if current_anim == "wall":
+		current_anim = "none"
+	
+	_on_animation_finished()
+
 func _on_animation_finished():
 	current_anim_priority = 0
 	
 	if current_anim == "death":
 		killed.emit(self)
 	
-	if current_anim == "tp_in":
-		remove_from_group("deactive")
-		choose_attack()
-	if current_anim == "tp_out":
-		teleport_around_player()
-		play_anim("tp_in", ANIM_PRIORITY.TP)
+	if current_anim == "attack":
+		if $StateChart/ParallelState/attack/spinning_circle.active:
+			start_dash()
 
 
 func update_facing():
@@ -275,18 +260,6 @@ func update_facing():
 	if new_dir != facing_dir:
 		facing_dir = new_dir
 		#play_anim("turn", ANIM_PRIORITY.TURN)
-#endregion
-
-
-#region choose_attack
-func _on_idle_active_state_entered() -> void:
-	play_anim("tp_out", ANIM_PRIORITY.TP)
-
-func choose_attack():
-	await get_tree().create_timer(0.3).timeout
-	
-	#state_chart.send_event("dash")
-#endregion
 
 
 func play_audio(audio: AudioStreamPlayer):
@@ -295,5 +268,95 @@ func play_audio(audio: AudioStreamPlayer):
 	
 	audio.pitch_scale = randf_range(0.9, 1.1)
 	audio.play()
+#endregion
+
+
+#region choose_attack
+func _on_idle_active_state_entered() -> void:
+	choose_attack()
+
+func choose_attack():
+	await get_tree().create_timer(0.3).timeout
 	
+	if $StateChart/ParallelState/stun/stunned.active:
+		return
 	
+	match randi_range(1, $StateChart/ParallelState/attack.get_child_count()-1):
+		1:
+			state_chart.send_event("aspid")
+		2:
+			state_chart.send_event("circle")
+		3:
+			state_chart.send_event("ducks")
+		4:
+			state_chart.send_event("scythe")
+		5:
+			state_chart.send_event("ceiling")
+		6:
+			state_chart.send_event("homing")
+		7:
+			state_chart.send_event("head_throw")
+
+
+func _on_spade_aspid_attack_state_entered() -> void:
+	print("aspid")
+	state_chart.send_event("attack_stop")
+
+func _on_spinning_circle_state_entered() -> void:
+	print("circle")
+	play_anim("attack", ANIM_PRIORITY.ATTACK)
+
+func _on_floor_ducks_state_entered() -> void:
+	print("ducks")
+	state_chart.send_event("attack_stop")
+
+func _on_scythe_state_entered() -> void:
+	print("scythe")
+	state_chart.send_event("attack_stop")
+
+func _on_ceiling_diamonds_state_entered() -> void:
+	print("ceiling")
+	state_chart.send_event("attack_stop")
+
+func _on_homing_clover_state_entered() -> void:
+	print("homing")
+	state_chart.send_event("attack_stop")
+
+func _on_head_throw_state_entered() -> void:
+	print("head")
+	state_chart.send_event("attack_stop")
+#endregion
+
+
+
+
+
+#region dashing
+func start_dash():
+	play_anim("dash", ANIM_PRIORITY.ATTACK)
+	
+	is_dashing = true
+	dash_travelled = 0.0
+	
+	dash_dir = (Global.player.global_position - global_position).normalized()
+	
+	sprite_2d.flip_h = true
+	look_at(Global.player.global_position)
+	rotation_degrees += 90
+	
+	var dist_to_player = global_position.distance_to(Global.player.global_position)
+	dash_distance_target = dist_to_player + dash_overshoot
+	
+	if nav_agent:
+		nav_agent.velocity = Vector2.ZERO
+
+
+func end_dash():
+	is_dashing = false
+	velocity = Vector2.ZERO
+	
+	rotation_degrees = 0
+	
+	state_chart.send_event("attack_stop")
+	stop_anim("dash")
+#endregion

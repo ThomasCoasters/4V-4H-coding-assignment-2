@@ -92,6 +92,14 @@ region = Rect2(305, 111, 44, 46)
 atlas = ExtResource("2_sggmd")
 region = Rect2(353, 111, 44, 46)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_s38ls"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(61, 53, 40, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8suu"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(17, 53, 40, 39)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_g81kc"]
 animations = [{
 "frames": [{
@@ -162,6 +170,22 @@ animations = [{
 "loop": true,
 "name": &"dance(front)",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s38ls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8suu")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 7.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
@@ -177,9 +201,9 @@ nav_agent = NodePath("NavigationAgent2D")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1966045575]
 texture_filter = 1
-scale = Vector2(0.4, 0.4)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g81kc")
-animation = &"dance(front)"
+animation = &"attack"
 autoplay = "dance(front)"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2104192833]
@@ -313,8 +337,27 @@ delay_in_seconds = "0.0"
 
 [node name="stun" type="Node" parent="StateChart/ParallelState" unique_id=2018013302]
 script = ExtResource("6_qm3rt")
+initial_state = NodePath("idle")
 
-[node name="attack cooldown" type="Timer" parent="." unique_id=2031418269]
+[node name="idle" type="Node" parent="StateChart/ParallelState/stun" unique_id=597091805]
+script = ExtResource("7_aappj")
+
+[node name="to_stunned" type="Node" parent="StateChart/ParallelState/stun/idle" unique_id=1102738216]
+script = ExtResource("8_gcouw")
+to = NodePath("../../stunned")
+event = &"to_stun"
+delay_in_seconds = "0.0"
+
+[node name="stunned" type="Node" parent="StateChart/ParallelState/stun" unique_id=1684715872]
+script = ExtResource("7_aappj")
+
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/stun/stunned" unique_id=1573193027]
+script = ExtResource("8_gcouw")
+to = NodePath("../../idle")
+event = &"stop_stun"
+delay_in_seconds = "0.0"
+
+[node name="aspid attack cooldown" type="Timer" parent="." unique_id=2031418269]
 wait_time = 0.6
 one_shot = true
 
@@ -349,4 +392,11 @@ bus = &"SFX"
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/idle_active" to="." method="_on_idle_active_state_entered"]
-[connection signal="timeout" from="attack cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="state_entered" from="StateChart/ParallelState/attack/spade_aspid_attack" to="." method="_on_spade_aspid_attack_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/attack/spinning_circle" to="." method="_on_spinning_circle_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/attack/floor_ducks" to="." method="_on_floor_ducks_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/attack/scythe" to="." method="_on_scythe_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/attack/ceiling_diamonds" to="." method="_on_ceiling_diamonds_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/attack/homing_clover" to="." method="_on_homing_clover_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/attack/head_throw" to="." method="_on_head_throw_state_entered"]
+[connection signal="timeout" from="aspid attack cooldown" to="." method="_on_aspid_attack_cooldown_timeout"]
