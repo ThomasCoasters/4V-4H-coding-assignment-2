@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://btrieoax44gix"]
+
+[ext_resource type="Script" uid="uid://co5lxqsl65qp3" path="res://enemies/normal/grimmkin/circle_version/attack/circle_attack.gd" id="1_bqw3n"]
+[ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_xfdwn"]
+[ext_resource type="PackedScene" uid="uid://dlawqk7kqmw3g" path="res://enemies/boss/scene/attacks/circle_heart.tscn" id="3_bqw3n"]
+
+[sub_resource type="Resource" id="Resource_c1fou"]
+script = ExtResource("2_xfdwn")
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[node name="CircleHeartsAttack" type="Node2D" unique_id=223053288 groups=["enemy_attack"]]
+script = ExtResource("1_bqw3n")
+stats = SubResource("Resource_c1fou")
+orbit_radius = 85.0
+orbit_speed = 1.0
+
+[node name="Orbit" type="Node2D" parent="." unique_id=1839411185]
+
+[node name="CircleHeart" parent="Orbit" unique_id=1064090389 instance=ExtResource("3_bqw3n")]
+
+[node name="CircleHeart2" parent="Orbit" unique_id=702053976 instance=ExtResource("3_bqw3n")]
+
+[node name="CircleHeart3" parent="Orbit" unique_id=1089656605 instance=ExtResource("3_bqw3n")]
+
+[node name="CircleHeart4" parent="Orbit" unique_id=2041496328 instance=ExtResource("3_bqw3n")]

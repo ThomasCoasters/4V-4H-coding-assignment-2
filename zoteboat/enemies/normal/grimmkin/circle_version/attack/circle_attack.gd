@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 
 
 
-func set_circle_attack_enabled(enabled: bool) -> void:
+func set_circle_attack_enabled(enabled: bool, time: float = 0.4) -> void:
 	var to_modulate: float = 1.0
 	var from_modulate: float = 0.0
 	var to_scale: Vector2 = Vector2.ONE
@@ -34,8 +34,8 @@ func set_circle_attack_enabled(enabled: bool) -> void:
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_OUT)
 	
-	tween.tween_property(self, "modulate:a", to_modulate, 0.4). from(from_modulate)
-	tween.parallel().tween_property(self, "scale", to_scale, 0.4).from(from_scale)
+	tween.tween_property(self, "modulate:a", to_modulate, time). from(from_modulate)
+	tween.parallel().tween_property(self, "scale", to_scale, time).from(from_scale)
 	tween.finished.connect(func():
 		if enabled:
 			enable_areas(enabled)

@@ -19,7 +19,8 @@ signal killed(node: Node2D)
 
 @export_range(0, 360, 1, "radians_as_degrees") var aspid_shot_angle: int = 30
 
-@export_range(1, 10, 1) var aspid_attack_times: int = 3
+@export_range(1, 10, 1) var normal_aspid_attack_times: int = 3
+var aspid_attack_times: int = 3
 var aspid_attack_time: int = 0
 
 
@@ -68,6 +69,10 @@ var dash_travelled := 0.0
 
 var random_attack_noise: Array[AudioStreamPlayer]
 
+
+@onready var circle_hearts_attack: Node2D = $CircleHeartsAttack
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+
 func _ready() -> void:
 	aspid_attack_cooldown.wait_time = aspid_attack_cooldown_time
 	
@@ -83,6 +88,8 @@ func _ready() -> void:
 	stats.health_depleted.connect(_on_health_depleted)
 	
 	sprite_2d.animation_finished.connect(_on_animation_finished)
+	
+	circle_hearts_attack.set_circle_attack_enabled(false)
 	
 	random_attack_noise = [grimmkin_little_attack_01, grimmkin_little_attack_02, grimmkin_little_attack_03, grimmkin_little_attack_04, grimmkin_little_intro_01, grimmkin_big_long_gasp]
 
@@ -216,6 +223,14 @@ func _on_health_depleted():
 
 #region animations/audio
 func play_anim(anim_name: String = "idle", priority: int = 0):
+	if anim_name == "tp_out":
+		teleport(true)
+		return
+	elif anim_name == "tp_in":
+		teleport(false)
+		return
+	
+	
 	if priority < current_anim_priority:
 		return
 	
@@ -243,6 +258,9 @@ func _on_animation_finished():
 		killed.emit(self)
 	
 	if current_anim == "attack":
+		if $StateChart/ParallelState/attack/spade_aspid_attack.active:
+			aspid_attack()
+		
 		if $StateChart/ParallelState/attack/spinning_circle.active:
 			start_dash()
 
@@ -268,6 +286,33 @@ func play_audio(audio: AudioStreamPlayer):
 	
 	audio.pitch_scale = randf_range(0.9, 1.1)
 	audio.play()
+
+
+func teleport(out: bool = true):
+	var to_scale = 1.2
+	var from_scale = 0
+	if out:
+		collision_shape_2d.disabled = true
+		to_scale = 0
+		from_scale = 1.2
+	elif $StateChart/ParallelState/attack/spinning_circle.active:
+		circle_hearts_attack.set_circle_attack_enabled(true, 0.5)
+	
+	
+	
+	var tween := get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(self, "scale:x", to_scale, 0.5).from(from_scale)
+	tween.finished.connect(func():
+		if out:
+			teleport_around_player(550, 400, 64)
+			play_anim("tp_in")
+		else:
+			collision_shape_2d.disabled = false
+			play_anim("attack", ANIM_PRIORITY.ATTACK)
+	)
 #endregion
 
 
@@ -300,11 +345,12 @@ func choose_attack():
 
 func _on_spade_aspid_attack_state_entered() -> void:
 	print("aspid")
-	state_chart.send_event("attack_stop")
+	aspid_attack_times = normal_aspid_attack_times
+	play_anim("tp_out")
 
 func _on_spinning_circle_state_entered() -> void:
 	print("circle")
-	play_anim("attack", ANIM_PRIORITY.ATTACK)
+	play_anim("tp_out")
 
 func _on_floor_ducks_state_entered() -> void:
 	print("ducks")
@@ -329,7 +375,35 @@ func _on_head_throw_state_entered() -> void:
 
 
 
+#region aspid_attack
+func aspid_attack():
+	var count := aspid_attack_count
+	var angle_per_shot := deg_to_rad(aspid_shot_angle)
+	
+	var base_dir = (Global.player.global_position - global_position).normalized()
+	var base_angle = base_dir.angle()
 
+	for i in range(count):
+		var projectile = GRIMMKIN_ATTACK.instantiate()
+		get_tree().current_scene.add_child(projectile)
+		projectile.global_position = global_position
+		
+		var offset_index := i - (count - 1) / 2.0
+		var angle = base_angle + offset_index * angle_per_shot
+		
+		var dir := Vector2.RIGHT.rotated(angle)
+		projectile.direction = dir
+		projectile.rotation = angle
+	
+	aspid_attack_times -= 1
+	if aspid_attack_times <= 0:
+		state_chart.send_event("attack_stop")
+	
+	else:
+		await get_tree().create_timer(aspid_attack_cooldown_time).timeout
+		play_anim("tp_out")
+
+#endregion
 
 #region dashing
 func start_dash():
@@ -343,6 +417,7 @@ func start_dash():
 	sprite_2d.flip_h = true
 	look_at(Global.player.global_position)
 	rotation_degrees += 90
+	circle_hearts_attack.global_rotation = 0
 	
 	var dist_to_player = global_position.distance_to(Global.player.global_position)
 	dash_distance_target = dist_to_player + dash_overshoot
@@ -356,6 +431,8 @@ func end_dash():
 	velocity = Vector2.ZERO
 	
 	rotation_degrees = 0
+	circle_hearts_attack.global_rotation = 0
+	circle_hearts_attack.set_circle_attack_enabled(false)
 	
 	state_chart.send_event("attack_stop")
 	stop_anim("dash")
