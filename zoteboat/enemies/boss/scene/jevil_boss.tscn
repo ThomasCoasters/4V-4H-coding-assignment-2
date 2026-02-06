@@ -193,12 +193,13 @@ animations = [{
 size = Vector2(40, 37)
 
 [node name="jevil_boss" type="CharacterBody2D" unique_id=833850574 node_paths=PackedStringArray("nav_agent") groups=["enemy"]]
-scale = Vector2(1.2, 1.2)
 collision_layer = 8
 collision_mask = 65536
 script = ExtResource("1_sggmd")
 stats = SubResource("Resource_qkeuv")
 nav_agent = NodePath("NavigationAgent2D")
+
+[node name="CircleHeartsAttack" parent="." unique_id=223053288 instance=ExtResource("16_ufmpn")]
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1966045575]
 texture_filter = 1
@@ -217,8 +218,6 @@ debug_color = Color(1, 0, 0, 0.41960785)
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=14475067]
 avoidance_enabled = true
 radius = 30.0
-
-[node name="CircleHeartsAttack" parent="." unique_id=223053288 instance=ExtResource("16_ufmpn")]
 
 [node name="StateChart" type="Node" parent="." unique_id=886798557]
 script = ExtResource("5_e58t3")

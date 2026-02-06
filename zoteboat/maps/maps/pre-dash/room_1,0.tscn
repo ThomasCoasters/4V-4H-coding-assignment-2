@@ -220,9 +220,9 @@ terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_a188l"]
-vertices = PackedVector2Array(517, -322, 517, 90, 137, 90, 137, -38, -471, -322, -91, -38, -471, 90, -91, 90)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-521, -372, -521, 140, 567, 140, 567, -372)])
+vertices = PackedVector2Array(645, -417.03125, 645, 90, -599, 90, -599, -417.96094)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-649, -468, -649, 140, 695, 140, 695, -467)])
 agent_radius = 50.0
 
 [node name="Room 1,0" type="Node2D" unique_id=905823062]

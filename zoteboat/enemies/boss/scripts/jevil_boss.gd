@@ -28,8 +28,7 @@ var can_attack: bool = true
 
 var facing_dir: int = -1 # -1 = left           1 = right
 
-
-const GRIMMKIN_ATTACK = preload("uid://7s842kuvjrm8")
+const SPADE_ASPID_ATTACK = preload("uid://dsj1u1ifha4x4")
 
 @onready var sprite_2d: AnimatedSprite2D = $Sprite2D
 
@@ -72,6 +71,8 @@ var random_attack_noise: Array[AudioStreamPlayer]
 
 @onready var circle_hearts_attack: Node2D = $CircleHeartsAttack
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+
+var last_attack: int
 
 func _ready() -> void:
 	aspid_attack_cooldown.wait_time = aspid_attack_cooldown_time
@@ -158,8 +159,8 @@ func _physics_process(delta: float) -> void:
 
 func teleport_around_player(
 	radius := 500.0,
-	min_distance := 350.0,
-	max_snap_distance := 32.0,
+	min_distance := 400.0,
+	max_snap_distance := 64.0,
 	attempts := 12
 	):
 	if !is_instance_valid(Global.player):
@@ -289,12 +290,12 @@ func play_audio(audio: AudioStreamPlayer):
 
 
 func teleport(out: bool = true):
-	var to_scale = 1.2
+	var to_scale = 1.0
 	var from_scale = 0
 	if out:
 		collision_shape_2d.disabled = true
 		to_scale = 0
-		from_scale = 1.2
+		from_scale = 1.0
 	elif $StateChart/ParallelState/attack/spinning_circle.active:
 		circle_hearts_attack.set_circle_attack_enabled(true, 0.5)
 	
@@ -307,7 +308,7 @@ func teleport(out: bool = true):
 	tween.tween_property(self, "scale:x", to_scale, 0.5).from(from_scale)
 	tween.finished.connect(func():
 		if out:
-			teleport_around_player(550, 400, 64)
+			teleport_around_player()
 			play_anim("tp_in")
 		else:
 			collision_shape_2d.disabled = false
@@ -326,7 +327,15 @@ func choose_attack():
 	if $StateChart/ParallelState/stun/stunned.active:
 		return
 	
-	match randi_range(1, $StateChart/ParallelState/attack.get_child_count()-1):
+	var attack_number := last_attack
+	var max_attacks := $StateChart/ParallelState/attack.get_child_count() - 1
+	
+	while attack_number == last_attack and max_attacks > 1:
+		attack_number = randi_range(1, max_attacks)
+	
+	last_attack = attack_number
+	
+	match attack_number:
 		1:
 			state_chart.send_event("aspid")
 		2:
@@ -384,7 +393,7 @@ func aspid_attack():
 	var base_angle = base_dir.angle()
 
 	for i in range(count):
-		var projectile = GRIMMKIN_ATTACK.instantiate()
+		var projectile = SPADE_ASPID_ATTACK.instantiate()
 		get_tree().current_scene.add_child(projectile)
 		projectile.global_position = global_position
 		

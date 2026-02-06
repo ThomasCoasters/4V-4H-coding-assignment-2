@@ -28,6 +28,7 @@ const PEASHOOTER_ENEMY = preload("uid://desufiot6ea2v")
 const GRIMMKIN_BULLETS = preload("uid://dilsa6aexb0cd")
 const PRIMAL_ASPID = preload("uid://dd7mbkekqfnpo")
 const GRIMMKIN_CIRCLE = preload("uid://xjvy8yhq3hu6")
+const JEVIL_BOSS = preload("uid://fvk1kb0dk2bu")
 
 
 const ENEMY_SCENES := {
@@ -39,6 +40,7 @@ const ENEMY_SCENES := {
 	"peashooter": PEASHOOTER_ENEMY,
 	"grimm_attack": GRIMMKIN_BULLETS,
 	"grimm_circle": GRIMMKIN_CIRCLE,
+	"jevil": JEVIL_BOSS,
 }
 #endregion
 
