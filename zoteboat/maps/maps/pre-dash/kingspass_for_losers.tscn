@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://c5wl5c6xeirq8" path="res://maps/NPCs/kingspass/tutorial_npc/tutorial_NPC.tscn" id="8_4d1px"]
 [ext_resource type="Texture2D" uid="uid://bb2h7gysppyil" path="res://maps/hazards + respawns/hazards (spikes)/spikes_still.png" id="8_xpn8k"]
 [ext_resource type="PackedScene" uid="uid://desufiot6ea2v" path="res://enemies/normal/peashooter/peashooter.tscn" id="9_xpn8k"]
-[ext_resource type="PackedScene" uid="uid://fvk1kb0dk2bu" path="res://enemies/boss/scene/jevil_boss.tscn" id="11_pxt1x"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_pxt1x"]
 vertices = PackedVector2Array(-1105, 781, -1613, 781, -1613, 689, -1197, 689, -1105, 369, -1197, 525, -1325, 369, -1325, 525, -785, 781, -813, 781, -813, 593, -785, 593, -337, 113, -337, 333, -397, 333, -397, 269, -685, 113, -657, 269, -685, 273, -657, 301, -689, 301, -813, 273, -689, 333, -753, 333, -813, 429, -753, 429, -753, 109, -813, 109, -813, 81, -753, 81, 687, 109, 687, 205, 367, 205, 307, 177, 367, 49, 783, 657, 1043, 657, 723, 689, 1103, 625, 1327, 625, 1327, 781, 1327, -431, 1327, 45, 1263, 45, 1139, 13, 979, -175, 979, -339, 335, -431, 655, -339, 1043, 493, 1103, 429, 723, 525, 783, 493, 1263, 209, 1167, 237, 1139, 177, 655, -175, 879, 13, 723, -115, 723, 49, 879, 109, 367, -115, 403, -175, -17, -175, 371, 781, 495, 689, 371, 525, 495, 525, 307, 13, 15, 13, 1391, -751, 1391, -627, 335, -627, -77, -751, 403, -339, 275, -339, 275, -499, 79, -499, 79, -403, -17, -403, -13, 205, 15, 177, 79, 177, 79, 241, -13, 369, 243, 241, 243, 177, 691, 369, 691, 273, 883, 273, 883, 177, 1167, 429, 1327, 209, 1327, 237, 15, 525, 15, 653, -49, 653, -77, 369, -493, 653, -589, 653, -589, 557, -493, 497, -465, 525, -717, 557, -717, 497, -493, 465, -401, 465, -401, 497, -337, 497, -337, 525, -465, 689, -493, 781, -49, 781, -77, 689, -77, 205, 367, 369, -1741, 49, -1453, 77, -1777, 77, -2001, 49, -1261, -15, -1261, -179, -1233, -83, -1233, 113, -3441, 365, -3633, 365, -3629, 273, -3441, 81, -3441, -595, -3441, -83, -3565, -303, -3565, -499, -2765, 337, -2609, 429, -2833, 429, -3025, 337, -1453, 273, -1393, 205, -1393, 365, -1521, 365, -1613, 273, -1613, 369, -1521, 461, -2609, -111, -2765, 173, -3889, -303, -3697, -83, -3885, -275, -3629, 109, -3697, 81, -3921, 109, -1617, 461, -1873, 369, -3981, 333, -3921, 273, -3885, 397, -3981, 397, -3885, -79, -4209, -275, -4209, -79, -3025, -751, -3025, -531, -3089, -531, -3181, -595, -3089, -403, -3153, -403, -3153, -207, -3025, -207, -3025, -111, -3117, -179, -2381, 625, -2381, 465, -2289, 465, -2289, 561, -2285, 397, -2285, 337, -2129, 337, -2129, 369, -1933, 397, -1933, 369, -2193, 77, -2193, 173, -2289, 173, -2381, -431, -2289, 301, -2381, 301, -753, -431, -753, -243, -813, -243, -813, -275, -1105, -275, -1105, -83, -1681, -179, -1105, 113, -1105, 205, -1681, -15, -1741, -115, -2001, -115, -1933, 77, -1777, 173, -1873, 173, -1617, 621, -1969, 621, -1933, 561, -1969, 781, -3181, 781, -3053, 721, -3181, 721, -3053, 525, -3181, 525, -3181, 113, -3025, 173, -3633, 561, -3441, 561, -3441, 621, -3825, 621, -3825, 781, -4397, 781, -4397, 561, -3885, 561, -4045, 333, -4045, 205, -4397, 205, -4397, 145, -4237, 145, -4237, -51, -4397, -51, -4397, -751, -3889, -499, -2833, 625, -2925, 113, -2925, -51, -3117, -51, -3181, -179)
@@ -105,26 +104,40 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
-[sub_resource type="Curve2D" id="Curve2D_qvosb"]
+[sub_resource type="Curve2D" id="Curve2D_xpn8k"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 7.8095703, 0.2479248, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 201, 96, 0, 0, 0, 0, -86.19043, 96.247925, 0, 0, 0, 0, -86.19043, 0.2479248, 0, 0, 0, 0, 7.8095703, 0.2479248)
 }
 point_count = 6
 
-[sub_resource type="Curve2D" id="Curve2D_5gx5w"]
+[sub_resource type="Curve2D" id="Curve2D_pxt1x"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 7.8095703, 0.2479248, 0, 0, 0, 0, 197.37476, -0.1244812, 0, 0, 0, 0, 197, 96, 0, 0, 0, 0, -22.625244, 95.87552, 0, 0, 0, 0, -22.625244, 0.8755188, 0, 0, 0, 0, 7.8095703, 0.2479248)
 }
 point_count = 6
 
-[sub_resource type="Curve2D" id="Curve2D_hjyh2"]
+[sub_resource type="Curve2D" id="Curve2D_qvosb"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 113, -9, 0, 0, 0, 0, 112, 86, 0, 0, 0, 0, -81, 87, 0, 0, 0, 0, -81, -9, 0, 0, 0, 0, 1, -8)
 }
 point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_5gx5w"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 1, -105, 0, 0, 0, 0, 128, -105, 0, 0, 0, 0, 128, 55, 0, 0, 0, 0, 255, 55, 0, 0, 0, 0, 255, 148, 0, 0, 0, 0, -95, 148, 0, 0, 0, 0, -95, -7, 0, 0, 0, 0, 1, -8)
+}
+point_count = 9
+
+[sub_resource type="Curve2D" id="Curve2D_hjyh2"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 1, -105, 0, 0, 0, 0, 128, -105, 0, 0, 0, 0, 128, 55, 0, 0, 0, 0, 255, 55, 0, 0, 0, 0, 255, 148, 0, 0, 0, 0, -95, 148, 0, 0, 0, 0, -95, -7, 0, 0, 0, 0, 1, -8)
+}
+point_count = 9
 
 [sub_resource type="Curve2D" id="Curve2D_4d1px"]
 resource_local_to_scene = true
@@ -134,20 +147,6 @@ _data = {
 point_count = 9
 
 [sub_resource type="Curve2D" id="Curve2D_2q8xa"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 1, -105, 0, 0, 0, 0, 128, -105, 0, 0, 0, 0, 128, 55, 0, 0, 0, 0, 255, 55, 0, 0, 0, 0, 255, 148, 0, 0, 0, 0, -95, 148, 0, 0, 0, 0, -95, -7, 0, 0, 0, 0, 1, -8)
-}
-point_count = 9
-
-[sub_resource type="Curve2D" id="Curve2D_xomeh"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 1, -105, 0, 0, 0, 0, 128, -105, 0, 0, 0, 0, 128, 55, 0, 0, 0, 0, 255, 55, 0, 0, 0, 0, 255, 148, 0, 0, 0, 0, -95, 148, 0, 0, 0, 0, -95, -7, 0, 0, 0, 0, 1, -8)
-}
-point_count = 9
-
-[sub_resource type="Curve2D" id="Curve2D_iuwtc"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 113, -9, 0, 0, 0, 0, 112, 86, 0, 0, 0, 0, -81, 87, 0, 0, 0, 0, -81, -9, 0, 0, 0, 0, 1, -8)
@@ -185,7 +184,7 @@ new_location_group = "TopLeft_0,0"
 
 [node name="Path2D" parent="." unique_id=263132585 instance=ExtResource("4_pxt1x")]
 position = Vector2(-1561, 560)
-curve = SubResource("Curve2D_qvosb")
+curve = SubResource("Curve2D_xpn8k")
 
 [node name="hazards" type="Node" parent="." unique_id=1447554648]
 
@@ -285,19 +284,19 @@ dialogue = "heal"
 
 [node name="Path2D3" parent="." unique_id=24820941 instance=ExtResource("4_pxt1x")]
 position = Vector2(-727.37476, 368.12448)
-curve = SubResource("Curve2D_5gx5w")
+curve = SubResource("Curve2D_pxt1x")
 
 [node name="tiktik" parent="." unique_id=1215913850 instance=ExtResource("4_pxt1x")]
 position = Vector2(-1282, 57)
-curve = SubResource("Curve2D_hjyh2")
+curve = SubResource("Curve2D_qvosb")
 
 [node name="tiktik2" parent="." unique_id=731618035 instance=ExtResource("4_pxt1x")]
 position = Vector2(-880, 634)
-curve = SubResource("Curve2D_4d1px")
+curve = SubResource("Curve2D_5gx5w")
 
 [node name="tiktik3" parent="." unique_id=1543124133 instance=ExtResource("4_pxt1x")]
 position = Vector2(-880, 634)
-curve = SubResource("Curve2D_2q8xa")
+curve = SubResource("Curve2D_hjyh2")
 
 [node name="PathFollow2D" parent="tiktik3" index="0" unique_id=1178610453]
 position = Vector2(255.28793, 146.8212)
@@ -306,11 +305,11 @@ progress = 602.50256
 
 [node name="tiktik4" parent="." unique_id=1583956725 instance=ExtResource("4_pxt1x")]
 position = Vector2(720, -231)
-curve = SubResource("Curve2D_xomeh")
+curve = SubResource("Curve2D_4d1px")
 
 [node name="tiktik5" parent="." unique_id=1643468536 instance=ExtResource("4_pxt1x")]
 position = Vector2(1602, 187)
-curve = SubResource("Curve2D_iuwtc")
+curve = SubResource("Curve2D_2q8xa")
 
 [node name="peashooter" parent="." unique_id=2000873192 instance=ExtResource("9_xpn8k")]
 position = Vector2(1958, 383)
@@ -322,9 +321,6 @@ face_left = true
 
 [node name="peashooter3" parent="." unique_id=1372997796 instance=ExtResource("9_xpn8k")]
 position = Vector2(506, 358)
-
-[node name="jevil_boss" parent="." unique_id=833850574 instance=ExtResource("11_pxt1x")]
-position = Vector2(-2912, 687)
 
 [editable path="hazards/SpikesCollision"]
 [editable path="tiktik3"]

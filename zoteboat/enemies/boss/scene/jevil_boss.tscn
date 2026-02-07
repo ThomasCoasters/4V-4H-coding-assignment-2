@@ -19,6 +19,7 @@
 
 [sub_resource type="Resource" id="Resource_qkeuv"]
 script = ExtResource("2_aj26w")
+max_health = 100
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qkeuv"]
@@ -198,6 +199,7 @@ collision_mask = 65536
 script = ExtResource("1_sggmd")
 stats = SubResource("Resource_qkeuv")
 nav_agent = NodePath("NavigationAgent2D")
+scythe_attack_cooldown_time = 1.3
 
 [node name="CircleHeartsAttack" parent="." unique_id=223053288 instance=ExtResource("16_ufmpn")]
 
@@ -360,10 +362,6 @@ to = NodePath("../../idle")
 event = &"stop_stun"
 delay_in_seconds = "0.0"
 
-[node name="aspid attack cooldown" type="Timer" parent="." unique_id=2031418269]
-wait_time = 0.6
-one_shot = true
-
 [node name="audio" type="Node" parent="." unique_id=1803701364]
 
 [node name="GrimmkinLittleAttack01" type="AudioStreamPlayer" parent="audio" unique_id=1901447707]
@@ -402,4 +400,3 @@ bus = &"SFX"
 [connection signal="state_entered" from="StateChart/ParallelState/attack/ceiling_diamonds" to="." method="_on_ceiling_diamonds_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/homing_clover" to="." method="_on_homing_clover_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/head_throw" to="." method="_on_head_throw_state_entered"]
-[connection signal="timeout" from="aspid attack cooldown" to="." method="_on_aspid_attack_cooldown_timeout"]

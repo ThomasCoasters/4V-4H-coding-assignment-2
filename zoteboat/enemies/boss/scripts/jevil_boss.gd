@@ -9,30 +9,40 @@ signal killed(node: Node2D)
 @export var nav_agent: NavigationAgent2D
 
 @onready var state_chart: StateChart = $StateChart
-@onready var aspid_attack_cooldown: Timer = $"aspid attack cooldown"
 
 
 @export_group("aspid attack")
 @export_range(0.0, 5.0, 0.01) var aspid_attack_cooldown_time: float = 0.6
-
 @export_range(1, 12, 1) var aspid_attack_count: int = 3
-
 @export_range(0, 360, 1, "radians_as_degrees") var aspid_shot_angle: int = 30
-
 @export_range(1, 10, 1) var normal_aspid_attack_times: int = 3
+
 var aspid_attack_times: int = 3
 var aspid_attack_time: int = 0
+
+const SPADE_ASPID_ATTACK = preload("uid://dsj1u1ifha4x4")
+
+
+@export_group("scythe attack")
+@export_range(0.0, 5.0, 0.01) var scythe_attack_cooldown_time: float = 1.2
+@export_range(1, 12, 1) var scythe_attack_count: int = 1
+@export_range(0, 360, 1, "radians_as_degrees") var scythe_shot_angle: int = 30
+@export_range(1, 10, 1) var normal_scythe_attack_times: int = 1
+
+var scythe_attack_times: int = 1
+var scythe_attack_time: int = 0
+
+const SCYTHE_ATTACK = preload("uid://c3jv787661rmy")
 
 
 var can_attack: bool = true
 
 var facing_dir: int = -1 # -1 = left           1 = right
 
-const SPADE_ASPID_ATTACK = preload("uid://dsj1u1ifha4x4")
 
 @onready var sprite_2d: AnimatedSprite2D = $Sprite2D
 
-@export var start_attacking: bool = false
+var start_attacking: bool = false
 
 var current_anim: String
 
@@ -75,8 +85,6 @@ var random_attack_noise: Array[AudioStreamPlayer]
 var last_attack: int
 
 func _ready() -> void:
-	aspid_attack_cooldown.wait_time = aspid_attack_cooldown_time
-	
 	if !start_active:
 		deactivate()
 	else:
@@ -217,7 +225,6 @@ func _on_health_depleted():
 	velocity = Vector2.ZERO
 	
 	$CollisionShape2D.set_deferred("disabled", true)
-	aspid_attack_cooldown.stop()
 	
 	play_anim("death", ANIM_PRIORITY.DEATH)
 #endregion
@@ -264,6 +271,9 @@ func _on_animation_finished():
 		
 		if $StateChart/ParallelState/attack/spinning_circle.active:
 			start_dash()
+		
+		if $StateChart/ParallelState/attack/scythe.active:
+			scythe_attack()
 
 
 func update_facing():
@@ -293,11 +303,12 @@ func teleport(out: bool = true):
 	var to_scale = 1.0
 	var from_scale = 0
 	if out:
-		collision_shape_2d.disabled = true
 		to_scale = 0
 		from_scale = 1.0
-	elif $StateChart/ParallelState/attack/spinning_circle.active:
-		circle_hearts_attack.set_circle_attack_enabled(true, 0.5)
+	else:
+		collision_shape_2d.disabled = true
+		if $StateChart/ParallelState/attack/spinning_circle.active:
+			circle_hearts_attack.set_circle_attack_enabled(true, 0.5)
 	
 	
 	
@@ -367,7 +378,8 @@ func _on_floor_ducks_state_entered() -> void:
 
 func _on_scythe_state_entered() -> void:
 	print("scythe")
-	state_chart.send_event("attack_stop")
+	scythe_attack_times = normal_scythe_attack_times
+	play_anim("tp_out")
 
 func _on_ceiling_diamonds_state_entered() -> void:
 	print("ceiling")
@@ -445,4 +457,36 @@ func end_dash():
 	
 	state_chart.send_event("attack_stop")
 	stop_anim("dash")
+#endregion
+
+
+#region scythe attack
+func scythe_attack():
+	if scythe_attack_times <= 0:
+		await get_tree().create_timer(scythe_attack_cooldown_time).timeout
+		state_chart.send_event("attack_stop")
+		return
+	
+	var count := scythe_attack_count
+	var angle_per_shot := deg_to_rad(scythe_shot_angle)
+	
+	var base_dir = (Global.player.global_position - global_position).normalized()
+	var base_angle = base_dir.angle()
+
+	for i in range(count):
+		var projectile = SCYTHE_ATTACK.instantiate()
+		get_tree().current_scene.add_child(projectile)
+		projectile.global_position = global_position
+		
+		var offset_index := i - (count - 1) / 2.0
+		var angle = base_angle + offset_index * angle_per_shot
+		
+		var dir := Vector2.RIGHT.rotated(angle)
+		projectile.direction = dir
+		projectile.rotation = angle
+	
+	scythe_attack_times -= 1
+	
+	play_anim("tp_out")
+
 #endregion
