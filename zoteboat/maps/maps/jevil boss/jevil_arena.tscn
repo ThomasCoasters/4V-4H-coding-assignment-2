@@ -278,8 +278,6 @@ z_index = -1
 position = Vector2(1968, 589)
 texture = ExtResource("8_6ue1t")
 
-[node name="visuals" type="Node" parent="." unique_id=1782775020]
-
 [connection signal="body_entered" from="area arena/area arena trigger" to="area arena/area arena trigger" method="_on_body_entered"]
 
 [editable path="spikes/SpikesCollision"]
