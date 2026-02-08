@@ -17,7 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://drj6tngulf85q" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_death.wav" id="15_f2o7c"]
 [ext_resource type="PackedScene" uid="uid://btrieoax44gix" path="res://enemies/boss/scene/attacks/circle_hearts_attack.tscn" id="16_ufmpn"]
 
-[sub_resource type="Resource" id="Resource_qkeuv"]
+[sub_resource type="Resource" id="Resource_ufmpn"]
 script = ExtResource("2_aj26w")
 max_health = 100
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
@@ -197,7 +197,7 @@ size = Vector2(40, 37)
 collision_layer = 8
 collision_mask = 65536
 script = ExtResource("1_sggmd")
-stats = SubResource("Resource_qkeuv")
+stats = SubResource("Resource_ufmpn")
 nav_agent = NodePath("NavigationAgent2D")
 
 [node name="CircleHeartsAttack" parent="." unique_id=223053288 instance=ExtResource("16_ufmpn")]
