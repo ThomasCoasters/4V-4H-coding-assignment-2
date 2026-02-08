@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://dnc7bls4ow3a4" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_short_laugh_01.wav" id="13_r2mqi"]
 [ext_resource type="AudioStream" uid="uid://bkdv80j2pnood" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_long_gasp.wav" id="14_c4bf2"]
 [ext_resource type="AudioStream" uid="uid://drj6tngulf85q" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_death.wav" id="15_f2o7c"]
+[ext_resource type="PackedScene" uid="uid://xb16pj62as3v" path="res://enemies/boss/scene/attacks/duck_attack_spawner.tscn" id="16_aoog1"]
 [ext_resource type="PackedScene" uid="uid://btrieoax44gix" path="res://enemies/boss/scene/attacks/circle_hearts_attack.tscn" id="16_ufmpn"]
 
 [sub_resource type="Resource" id="Resource_ufmpn"]
@@ -193,22 +194,21 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
 size = Vector2(40, 37)
 
-[node name="jevil_boss" type="CharacterBody2D" unique_id=833850574 node_paths=PackedStringArray("nav_agent") groups=["enemy"]]
+[node name="jevil_boss" type="CharacterBody2D" unique_id=833850574 node_paths=PackedStringArray("nav_agent", "circle_hearts_attack", "duck_attack_spawner") groups=["enemy"]]
 collision_layer = 8
 collision_mask = 65536
 script = ExtResource("1_sggmd")
 stats = SubResource("Resource_ufmpn")
 nav_agent = NodePath("NavigationAgent2D")
-
-[node name="CircleHeartsAttack" parent="." unique_id=223053288 instance=ExtResource("16_ufmpn")]
+circle_hearts_attack = NodePath("CircleHeartsAttack")
+duck_attack_spawner = NodePath("DuckAttackSpawner")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1966045575]
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g81kc")
-animation = &"dance(front)"
+animation = &"death"
 autoplay = "dance(front)"
-frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2104192833]
 visible = false
@@ -389,6 +389,10 @@ stream = ExtResource("14_c4bf2")
 [node name="GrimmkinLittleDeath01" type="AudioStreamPlayer" parent="audio" unique_id=1025758720]
 stream = ExtResource("15_f2o7c")
 bus = &"SFX"
+
+[node name="DuckAttackSpawner" parent="." unique_id=205700151 instance=ExtResource("16_aoog1")]
+
+[node name="CircleHeartsAttack" parent="." unique_id=223053288 instance=ExtResource("16_ufmpn")]
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/idle_active" to="." method="_on_idle_active_state_entered"]

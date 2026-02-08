@@ -9,7 +9,19 @@ signal killed(node: Node2D)
 
 @export var nav_agent: NavigationAgent2D
 
+
 @onready var state_chart: StateChart = $StateChart
+
+var arena_bounds: CollisionShape2D
+
+enum ArenaSurface {
+	FLOOR_CENTER,
+	FLOOR_RANDOM,
+	CEILING,
+	LEFT_WALL,
+	RIGHT_WALL
+}
+
 
 @export_group("attacks")
 @export_subgroup("aspid attack")
@@ -24,6 +36,23 @@ var aspid_attack_time: int = 0
 const SPADE_ASPID_ATTACK = preload("uid://dsj1u1ifha4x4")
 
 
+@export_subgroup("dashing")
+@export var dash_speed := 900.0
+@export var dash_max_time := 1.0
+@export var dash_overshoot := 340.0
+@export var dash_slowdown_distance := 180.0
+@export var dash_min_speed := 200.0 
+@export var circle_hearts_attack: Node2D
+
+var is_dashing := false
+var dash_dir := Vector2.ZERO
+var dash_distance_target := 0.0
+var dash_travelled := 0.0
+
+@export_subgroup("duck attack")
+@export_range(0.0, 5.0, 0.01) var duck_attack_cooldown_time: float = 0.7
+@export var duck_attack_spawner: Node2D
+
 @export_subgroup("scythe attack")
 @export_range(0.0, 5.0, 0.01) var scythe_attack_cooldown_time: float = 1.2
 @export_range(1, 12, 1) var scythe_attack_count: int = 1
@@ -34,6 +63,8 @@ var scythe_attack_times: int = 1
 var scythe_attack_time: int = 0
 
 const SCYTHE_ATTACK = preload("uid://c3jv787661rmy")
+
+
 
 
 var can_attack: bool = true
@@ -57,17 +88,6 @@ enum ANIM_PRIORITY {
 
 var current_anim_priority: int = 0
 
-@export_subgroup("dashing")
-@export var dash_speed := 900.0
-@export var dash_max_time := 1.0
-@export var dash_overshoot := 340.0
-@export var dash_slowdown_distance := 180.0
-@export var dash_min_speed := 200.0 
-
-var is_dashing := false
-var dash_dir := Vector2.ZERO
-var dash_distance_target := 0.0
-var dash_travelled := 0.0
 
 @onready var grimmkin_little_attack_01: AudioStreamPlayer = $audio/GrimmkinLittleAttack01
 @onready var grimmkin_little_attack_02: AudioStreamPlayer = $audio/GrimmkinLittleAttack02
@@ -80,7 +100,6 @@ var dash_travelled := 0.0
 var random_attack_noise: Array[AudioStreamPlayer]
 
 
-@onready var circle_hearts_attack: Node2D = $CircleHeartsAttack
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var last_attack: int
@@ -94,6 +113,12 @@ func _ready() -> void:
 	
 	if stats != null:
 		stats = stats.duplicate(true)
+	
+	arena_bounds = Global.map.arena_bounds
+	
+	duck_attack_spawner.position = get_spawn_position_on_surface(ArenaSurface.FLOOR_CENTER)
+	duck_attack_spawner.spawn_offset_x = get_arena_rect().size.x / 2
+	duck_attack_spawner.set_as_top_level(true)
 	
 	stats.health_depleted.connect(_on_health_depleted)
 	
@@ -123,6 +148,7 @@ func deactivate():
 	if nav_agent:
 		nav_agent.velocity = Vector2.ZERO
 		nav_agent.target_position = global_position
+
 #endregion
 
 #region pathfinding
@@ -136,13 +162,11 @@ func _physics_process(delta: float) -> void:
 	if is_dashing:
 		var remaining := dash_distance_target - dash_travelled
 		
-		# calculate speed scale near the end
 		var speed := dash_speed
 		if remaining < dash_slowdown_distance:
 			var t := remaining / dash_slowdown_distance
 			t = clamp(t, 0.0, 1.0)
 		
-			# smoothstep-style easing (very HK-feel)
 			t = t * t * (3.0 - 2.0 * t)
 			
 			speed = lerp(dash_min_speed, dash_speed, t)
@@ -206,6 +230,50 @@ func teleport_around_player(
 		
 		return
 
+#region attack positioning
+
+func get_arena_rect() -> Rect2:
+	var shape := arena_bounds.shape as RectangleShape2D
+	var extents = shape.extents
+	var top_left = arena_bounds.global_position - extents
+	return Rect2(top_left, extents * 2)
+
+func get_spawn_position_on_surface(surface: ArenaSurface, margin := 16.0) -> Vector2:
+	var rect := get_arena_rect()
+	
+	match surface:
+		ArenaSurface.FLOOR_CENTER:
+			return Vector2(
+				rect.get_center().x,
+				rect.end.y - margin
+			)
+		
+		ArenaSurface.FLOOR_RANDOM:
+			return Vector2(
+				randf_range(rect.position.x, rect.end.x),
+				rect.end.y - margin
+			)
+		
+		ArenaSurface.CEILING:
+			return Vector2(
+				randf_range(rect.position.x, rect.end.x),
+				rect.position.y + margin
+			)
+		
+		ArenaSurface.LEFT_WALL:
+			return Vector2(
+				rect.position.x + margin,
+				randf_range(rect.position.y, rect.end.y)
+			)
+		
+		ArenaSurface.RIGHT_WALL:
+			return Vector2(
+				rect.end.x - margin,
+				randf_range(rect.position.y, rect.end.y)
+			)
+	
+	return global_position
+#endregion
 
 #endregion
 
@@ -273,6 +341,9 @@ func _on_animation_finished():
 		if $StateChart/ParallelState/attack/spinning_circle.active:
 			start_dash()
 		
+		if $StateChart/ParallelState/attack/floor_ducks.active:
+			duck_attack()
+		
 		if $StateChart/ParallelState/attack/scythe.active:
 			scythe_attack()
 
@@ -329,6 +400,8 @@ func teleport(out: bool = true):
 #endregion
 
 
+
+
 #region choose_attack
 func _on_idle_active_state_entered() -> void:
 	choose_attack()
@@ -340,7 +413,8 @@ func choose_attack():
 		return
 	
 	var attack_number := last_attack
-	var max_attacks := $StateChart/ParallelState/attack.get_child_count() - 1
+	#var max_attacks := $StateChart/ParallelState/attack.get_child_count() - 1
+	var max_attacks := 4
 	
 	while attack_number == last_attack and max_attacks > 1:
 		attack_number = randi_range(1, max_attacks)
@@ -375,7 +449,7 @@ func _on_spinning_circle_state_entered() -> void:
 
 func _on_floor_ducks_state_entered() -> void:
 	print("ducks")
-	state_chart.send_event("attack_stop")
+	play_anim("tp_out")
 
 func _on_scythe_state_entered() -> void:
 	print("scythe")
@@ -394,7 +468,6 @@ func _on_head_throw_state_entered() -> void:
 	print("head")
 	state_chart.send_event("attack_stop")
 #endregion
-
 
 
 #region aspid_attack
@@ -460,7 +533,6 @@ func end_dash():
 	stop_anim("dash")
 #endregion
 
-
 #region scythe attack
 func scythe_attack():
 	if scythe_attack_times <= 0:
@@ -473,7 +545,7 @@ func scythe_attack():
 	
 	var base_dir = (Global.player.global_position - global_position).normalized()
 	var base_angle = base_dir.angle()
-
+	
 	for i in range(count):
 		var projectile = SCYTHE_ATTACK.instantiate()
 		get_tree().current_scene.add_child(projectile)
@@ -490,4 +562,13 @@ func scythe_attack():
 	
 	play_anim("tp_out")
 
+#endregion
+
+#region duck_attack
+func duck_attack():
+	duck_attack_spawner.start_spawning()
+	
+	await get_tree().create_timer(duck_attack_cooldown_time).timeout
+	state_chart.send_event("attack_stop")
+	return
 #endregion

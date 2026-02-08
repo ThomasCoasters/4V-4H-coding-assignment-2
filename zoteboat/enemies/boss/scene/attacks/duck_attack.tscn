@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bo0lsftpy3omb"]
+
+[ext_resource type="Script" uid="uid://c51t1ytpkjrcj" path="res://enemies/boss/scripts/duck_attack.gd" id="1_d3btx"]
+[ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_8kmao"]
+[ext_resource type="Texture2D" uid="uid://bb37uyfurxg6o" path="res://enemies/boss/assets/jevil/jevil sprites.png" id="3_mvmlg"]
+
+[sub_resource type="Resource" id="Resource_pc3e7"]
+script = ExtResource("2_8kmao")
+max_health = 99999
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pc3e7"]
+atlas = ExtResource("3_mvmlg")
+region = Rect2(87, 443, 36, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35k14"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pc3e7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c848n"]
+radius = 22.0
+height = 72.0
+
+[node name="peaAttack" type="Area2D" unique_id=1383055810 groups=["enemy_attack"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_d3btx")
+stats = SubResource("Resource_pc3e7")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=102205093]
+z_index = -2
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_35k14")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=605503787]
+position = Vector2(0, 18)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_c848n")
+debug_color = Color(1, 0.17254902, 0.043137256, 0.41960785)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1264897771]
+rect = Rect2(-54, -45, 108, 89)

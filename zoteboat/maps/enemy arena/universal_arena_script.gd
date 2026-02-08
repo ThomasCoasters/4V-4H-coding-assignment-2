@@ -13,6 +13,8 @@ var current_wave: int = 0
 var wave_to_node : Dictionary = {}
 @export var wave_holder : Node2D
 
+@export var arena_bounds: CollisionShape2D
+
 var player
 
 var alive_enemies := 0
@@ -64,6 +66,8 @@ func _ready():
 	for wave_number in range(wave_holder.get_child_count()):
 		wave_to_node[wave_number+1] = wave_holder.get_child(wave_number)
 	
+	if arena_bounds:
+		Global.map.arena_bounds = arena_bounds
 	
 	player = Global.player
 

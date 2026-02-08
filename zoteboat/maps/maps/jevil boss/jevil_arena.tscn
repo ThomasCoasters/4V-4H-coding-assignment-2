@@ -98,6 +98,9 @@ sources/0 = SubResource("TileSetAtlasSource_g1evj")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fiak"]
 size = Vector2(93, 710.25)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1a7be"]
+size = Vector2(1344, 704)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("4_uyact")
 1:5/0 = 0
@@ -210,12 +213,13 @@ scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AABCABAAAAADAAcAAABCAA8AAAADAAYAAABCAA4AAAADAAYAAABCAA0AAAADAAYAAABCAAwAAAADAAYAAABCAAsAAAADAAYAAABCAAoAAAADAAYAAABCAAkAAAADAAUAAABBABAAAAACAAcAAABBAA8AAAACAAYAAABBAA4AAAACAAYAAABBAA0AAAACAAYAAABBAAwAAAACAAYAAABBAAsAAAACAAYAAABBAAoAAAACAAYAAABBAAkAAAACAAUAAABAABAAAAACAAcAAABAAA8AAAACAAYAAABAAA4AAAACAAYAAABAAA0AAAACAAYAAABAAAwAAAACAAYAAABAAAsAAAACAAYAAABAAAoAAAACAAYAAABAAAkAAAACAAUAAAA/ABAAAAABAAcAAAA/AA8AAAABAAYAAAA/AA4AAAABAAYAAAA/AA0AAAABAAYAAAA/AAwAAAABAAYAAAA/AAsAAAABAAYAAAA/AAoAAAABAAYAAAA/AAkAAAABAAUAAAA=")
 tile_set = SubResource("TileSet_1yexc")
 
-[node name="area arena trigger" type="Area2D" parent="area arena" unique_id=1248533800 node_paths=PackedStringArray("doors", "camera_pos", "wave_holder") groups=["enemy arena"]]
+[node name="area arena trigger" type="Area2D" parent="area arena" unique_id=1248533800 node_paths=PackedStringArray("doors", "camera_pos", "wave_holder", "arena_bounds") groups=["enemy arena"]]
 collision_layer = 0
 script = ExtResource("5_6upwm")
 doors = NodePath("../doors")
 camera_pos = NodePath("../Camera pos")
 wave_holder = NodePath("../wave holder")
+arena_bounds = NodePath("../area_bounds")
 arena_audio_path = "res://Game/audio/world revolving.ogg"
 after_audio_path = "res://Game/audio/silkantuary.mp3"
 
@@ -238,6 +242,11 @@ visible = false
 
 [node name="jevil" type="Node2D" parent="area arena/wave holder/phase1" unique_id=337078984]
 position = Vector2(1312, 167)
+
+[node name="area_bounds" type="CollisionShape2D" parent="area arena" unique_id=1237720875]
+visible = false
+position = Vector2(1344, 192)
+shape = SubResource("RectangleShape2D_1a7be")
 
 [node name="increase_max_hp" parent="." unique_id=694949129 instance=ExtResource("8_1mma8")]
 position = Vector2(2976, 429)
@@ -268,6 +277,8 @@ texture = ExtResource("8_6ue1t")
 z_index = -1
 position = Vector2(1968, 589)
 texture = ExtResource("8_6ue1t")
+
+[node name="visuals" type="Node" parent="." unique_id=1782775020]
 
 [connection signal="body_entered" from="area arena/area arena trigger" to="area arena/area arena trigger" method="_on_body_entered"]
 
