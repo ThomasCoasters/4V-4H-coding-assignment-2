@@ -193,6 +193,7 @@ agent_radius = 50.0
 
 [node name="Jevil_Arena" type="Node2D" unique_id=905823062]
 script = ExtResource("1_23m7d")
+audio_path = "res://Game/audio/carousel.ogg"
 
 [node name="SpawnLocation" parent="." unique_id=2034326712 instance=ExtResource("3_ygq3w")]
 offset_left = 1304.0
@@ -215,7 +216,7 @@ script = ExtResource("5_6upwm")
 doors = NodePath("../doors")
 camera_pos = NodePath("../Camera pos")
 wave_holder = NodePath("../wave holder")
-arena_audio_path = "res://Game/audio/tv_time.mp3"
+arena_audio_path = "res://Game/audio/world revolving.ogg"
 after_audio_path = "res://Game/audio/silkantuary.mp3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area arena/area arena trigger" unique_id=788480687]

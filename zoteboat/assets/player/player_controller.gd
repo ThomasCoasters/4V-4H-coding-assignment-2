@@ -269,6 +269,7 @@ func _physics_process(_delta: float) -> void:
 		if roar_timer.is_stopped():
 			roar_timer.start()
 	else:
+		zote_final_town_loop.stop()
 		roar_timer.stop()
 	
 	

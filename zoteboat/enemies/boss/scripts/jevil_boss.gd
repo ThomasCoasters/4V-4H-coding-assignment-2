@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 #region setup
+@export_group("setup")
 @export var start_active := true
 @export var stats: Stats
 
@@ -10,8 +11,8 @@ signal killed(node: Node2D)
 
 @onready var state_chart: StateChart = $StateChart
 
-
-@export_group("aspid attack")
+@export_group("attacks")
+@export_subgroup("aspid attack")
 @export_range(0.0, 5.0, 0.01) var aspid_attack_cooldown_time: float = 0.6
 @export_range(1, 12, 1) var aspid_attack_count: int = 3
 @export_range(0, 360, 1, "radians_as_degrees") var aspid_shot_angle: int = 30
@@ -23,7 +24,7 @@ var aspid_attack_time: int = 0
 const SPADE_ASPID_ATTACK = preload("uid://dsj1u1ifha4x4")
 
 
-@export_group("scythe attack")
+@export_subgroup("scythe attack")
 @export_range(0.0, 5.0, 0.01) var scythe_attack_cooldown_time: float = 1.2
 @export_range(1, 12, 1) var scythe_attack_count: int = 1
 @export_range(0, 360, 1, "radians_as_degrees") var scythe_shot_angle: int = 30
@@ -56,7 +57,7 @@ enum ANIM_PRIORITY {
 
 var current_anim_priority: int = 0
 
-@export_group("dashing")
+@export_subgroup("dashing")
 @export var dash_speed := 900.0
 @export var dash_max_time := 1.0
 @export var dash_overshoot := 340.0

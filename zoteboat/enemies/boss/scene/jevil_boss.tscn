@@ -199,7 +199,6 @@ collision_mask = 65536
 script = ExtResource("1_sggmd")
 stats = SubResource("Resource_qkeuv")
 nav_agent = NodePath("NavigationAgent2D")
-scythe_attack_cooldown_time = 1.3
 
 [node name="CircleHeartsAttack" parent="." unique_id=223053288 instance=ExtResource("16_ufmpn")]
 
