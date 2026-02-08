@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/world revolving.ogg-7d1a9e8dffde407cb5833d67b
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
