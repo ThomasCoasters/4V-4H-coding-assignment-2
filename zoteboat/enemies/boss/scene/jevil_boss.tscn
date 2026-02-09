@@ -20,7 +20,7 @@
 
 [sub_resource type="Resource" id="Resource_ufmpn"]
 script = ExtResource("2_aj26w")
-max_health = 100
+max_health = 650
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qkeuv"]
@@ -185,8 +185,11 @@ animations = [{
 "name": &"dash",
 "speed": 7.0
 }, {
-"frames": [],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }]
@@ -202,17 +205,15 @@ stats = SubResource("Resource_ufmpn")
 nav_agent = NodePath("NavigationAgent2D")
 circle_hearts_attack = NodePath("CircleHeartsAttack")
 duck_attack_spawner = NodePath("DuckAttackSpawner")
-ceiling_attack_cooldown_time = 1.5
-ceiling_attack_amount = 20
-ceiling_attack_time_between = 0.2
+ceiling_attack_amount = 14
+ceiling_attack_time_between = 0.15
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1966045575]
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g81kc")
-animation = &"dance(front)"
+animation = &"death"
 autoplay = "dance(front)"
-frame_progress = 0.31096646
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2104192833]
 visible = false
@@ -398,7 +399,6 @@ bus = &"SFX"
 
 [node name="CircleHeartsAttack" parent="." unique_id=223053288 instance=ExtResource("16_ufmpn")]
 
-[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/idle_active" to="." method="_on_idle_active_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/spade_aspid_attack" to="." method="_on_spade_aspid_attack_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/spinning_circle" to="." method="_on_spinning_circle_state_entered"]

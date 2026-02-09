@@ -60,7 +60,6 @@ var dash_travelled := 0.0
 @export_range(1, 10, 1) var normal_scythe_attack_times: int = 1
 
 var scythe_attack_times: int = 1
-var scythe_attack_time: int = 0
 
 const SCYTHE_ATTACK = preload("uid://c3jv787661rmy")
 
@@ -68,6 +67,9 @@ const SCYTHE_ATTACK = preload("uid://c3jv787661rmy")
 @export_range(0.0, 5.0, 0.01) var ceiling_attack_cooldown_time: float = 0.7
 @export_range(0, 50, 1) var ceiling_attack_amount: int = 10
 @export_range(0.0, 5.0, 0.01) var ceiling_attack_time_between: float = 0.1
+@export_range(0, 5, 1) var ceiling_tp_between_times: int = 2
+
+var ceiling_tp_left: int = 2
 const CEILING_DIAMONDS = preload("uid://dr2woxdmhhdi1")
 
 
@@ -304,6 +306,9 @@ func _on_health_depleted():
 
 #region animations/audio
 func play_anim(anim_name: String = "idle", priority: int = 0):
+	if current_anim == "death":
+		return
+	
 	if anim_name == "tp_out":
 		teleport(true)
 		return
@@ -465,6 +470,7 @@ func _on_scythe_state_entered() -> void:
 
 func _on_ceiling_diamonds_state_entered() -> void:
 	print("ceiling")
+	ceiling_tp_left = ceiling_tp_between_times
 	play_anim("tp_out")
 
 func _on_homing_clover_state_entered() -> void:
@@ -582,7 +588,15 @@ func duck_attack():
 
 #region ceiling diamonds
 func ceiling_diamonds_attack():
-	for i in range(ceiling_attack_amount):
+	if ceiling_tp_left <= 0:
+		await get_tree().create_timer(ceiling_attack_cooldown_time).timeout
+		state_chart.send_event("attack_stop")
+		return
+	
+	@warning_ignore("integer_division")
+	var count = ceiling_attack_amount / ceiling_tp_between_times
+	
+	for i in range(count):
 		var projectile = CEILING_DIAMONDS.instantiate()
 		get_tree().current_scene.add_child(projectile)
 		projectile.position = get_spawn_position_on_surface(ArenaSurface.CEILING)
@@ -590,8 +604,8 @@ func ceiling_diamonds_attack():
 		projectile.set_as_top_level(true)
 		await get_tree().create_timer(ceiling_attack_time_between).timeout
 	
-	await get_tree().create_timer(ceiling_attack_cooldown_time).timeout
-	state_chart.send_event("attack_stop")
-	return
+	ceiling_tp_left -= 1
+	
+	play_anim("tp_out")
 
 #endregion
