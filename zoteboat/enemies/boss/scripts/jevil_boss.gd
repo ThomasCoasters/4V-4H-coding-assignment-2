@@ -64,7 +64,11 @@ var scythe_attack_time: int = 0
 
 const SCYTHE_ATTACK = preload("uid://c3jv787661rmy")
 
-
+@export_subgroup("ceiling attack")
+@export_range(0.0, 5.0, 0.01) var ceiling_attack_cooldown_time: float = 0.7
+@export_range(0, 50, 1) var ceiling_attack_amount: int = 10
+@export_range(0.0, 5.0, 0.01) var ceiling_attack_time_between: float = 0.1
+const CEILING_DIAMONDS = preload("uid://dr2woxdmhhdi1")
 
 
 var can_attack: bool = true
@@ -346,6 +350,9 @@ func _on_animation_finished():
 		
 		if $StateChart/ParallelState/attack/scythe.active:
 			scythe_attack()
+		
+		if $StateChart/ParallelState/attack/ceiling_diamonds.active:
+			ceiling_diamonds_attack()
 
 
 func update_facing():
@@ -414,7 +421,7 @@ func choose_attack():
 	
 	var attack_number := last_attack
 	#var max_attacks := $StateChart/ParallelState/attack.get_child_count() - 1
-	var max_attacks := 4
+	var max_attacks := 5
 	
 	while attack_number == last_attack and max_attacks > 1:
 		attack_number = randi_range(1, max_attacks)
@@ -458,7 +465,7 @@ func _on_scythe_state_entered() -> void:
 
 func _on_ceiling_diamonds_state_entered() -> void:
 	print("ceiling")
-	state_chart.send_event("attack_stop")
+	play_anim("tp_out")
 
 func _on_homing_clover_state_entered() -> void:
 	print("homing")
@@ -571,4 +578,20 @@ func duck_attack():
 	await get_tree().create_timer(duck_attack_cooldown_time).timeout
 	state_chart.send_event("attack_stop")
 	return
+#endregion
+
+#region ceiling diamonds
+func ceiling_diamonds_attack():
+	for i in range(ceiling_attack_amount):
+		var projectile = CEILING_DIAMONDS.instantiate()
+		get_tree().current_scene.add_child(projectile)
+		projectile.position = get_spawn_position_on_surface(ArenaSurface.CEILING)
+		projectile.position.y -= projectile.top_out_view_px
+		projectile.set_as_top_level(true)
+		await get_tree().create_timer(ceiling_attack_time_between).timeout
+	
+	await get_tree().create_timer(ceiling_attack_cooldown_time).timeout
+	state_chart.send_event("attack_stop")
+	return
+
 #endregion

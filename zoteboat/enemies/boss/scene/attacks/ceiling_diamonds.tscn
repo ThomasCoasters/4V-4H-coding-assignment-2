@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dr2woxdmhhdi1"]
+
+[ext_resource type="Script" uid="uid://c478m078mhuo4" path="res://enemies/boss/scripts/ceiling_diamonds.gd" id="1_jqnn0"]
+[ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_nk8gq"]
+[ext_resource type="Texture2D" uid="uid://bb37uyfurxg6o" path="res://enemies/boss/assets/jevil/jevil sprites.png" id="3_6rswq"]
+[ext_resource type="Texture2D" uid="uid://iphdi0fnd4jg" path="res://enemies/boss/assets/jevil/attack_marker.png" id="4_nk8gq"]
+
+[sub_resource type="Resource" id="Resource_nk8gq"]
+script = ExtResource("2_nk8gq")
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rswq"]
+atlas = ExtResource("3_6rswq")
+region = Rect2(16, 443, 33, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35k14"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rswq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c848n"]
+radius = 9.0
+height = 34.0
+
+[node name="ceiling_diamonds" type="Area2D" unique_id=1383055810 groups=["enemy_attack"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_jqnn0")
+stats = SubResource("Resource_nk8gq")
+start_move_timer = 0.75
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=102205093]
+z_index = -2
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_35k14")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=605503787]
+shape = SubResource("CapsuleShape2D_c848n")
+debug_color = Color(1, 0.17254902, 0.043137256, 0.41960785)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1264897771]
+rect = Rect2(-54, -45, 108, 89)
+
+[node name="marker" type="Sprite2D" parent="." unique_id=1979953757]
+scale = Vector2(2, 2)
+texture = ExtResource("4_nk8gq")
