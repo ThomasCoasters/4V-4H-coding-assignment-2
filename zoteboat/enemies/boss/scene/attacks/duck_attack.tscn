@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bo0lsftpy3omb"]
 
-[ext_resource type="Script" uid="uid://c51t1ytpkjrcj" path="res://enemies/boss/scripts/duck_attack.gd" id="1_d3btx"]
+[ext_resource type="Script" path="res://enemies/boss/scripts/duck_attack.gd" id="1_d3btx"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_8kmao"]
 [ext_resource type="Texture2D" uid="uid://bb37uyfurxg6o" path="res://enemies/boss/assets/jevil/jevil sprites.png" id="3_mvmlg"]
 
