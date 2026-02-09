@@ -13,6 +13,8 @@ var current_wave: int = 0
 var wave_to_node : Dictionary = {}
 @export var wave_holder : Node2D
 
+@export var arena_bounds: CollisionShape2D
+
 var player
 
 var alive_enemies := 0
@@ -28,6 +30,7 @@ const PEASHOOTER_ENEMY = preload("uid://desufiot6ea2v")
 const GRIMMKIN_BULLETS = preload("uid://dilsa6aexb0cd")
 const PRIMAL_ASPID = preload("uid://dd7mbkekqfnpo")
 const GRIMMKIN_CIRCLE = preload("uid://xjvy8yhq3hu6")
+const JEVIL_BOSS = preload("uid://fvk1kb0dk2bu")
 
 
 const ENEMY_SCENES := {
@@ -39,6 +42,7 @@ const ENEMY_SCENES := {
 	"peashooter": PEASHOOTER_ENEMY,
 	"grimm_attack": GRIMMKIN_BULLETS,
 	"grimm_circle": GRIMMKIN_CIRCLE,
+	"jevil": JEVIL_BOSS,
 }
 #endregion
 
@@ -62,6 +66,8 @@ func _ready():
 	for wave_number in range(wave_holder.get_child_count()):
 		wave_to_node[wave_number+1] = wave_holder.get_child(wave_number)
 	
+	if arena_bounds:
+		Global.map.arena_bounds = arena_bounds
 	
 	player = Global.player
 

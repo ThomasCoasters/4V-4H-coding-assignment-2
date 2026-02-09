@@ -5,6 +5,7 @@ signal enemy_died(enemy: Node2D)
 signal arena_won(arena: Node)
 signal item_collected(item: Node)
 
+var arena_bounds: CollisionShape2D 
 @export var audio_path: String
 
 const ZOTE_SHELL = preload("uid://bfxn25erf4tm3")

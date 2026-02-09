@@ -65,7 +65,10 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	
 	fading()
 	
+	
 	await transition.on_transition_finished
+	
+	
 	player.visible = true
 	player.ui_holder.visible = true
 	player.global_position = Vector2(-100000, -100000)
@@ -86,6 +89,7 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	
 	if new_scene == "none":
 		return
+	
 	
 	var new = load(new_scene).instantiate()
 	map.add_child(new)
@@ -124,7 +128,6 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	await get_tree().physics_frame
 	
 	is_transition = false
-
 
 
 func fading():

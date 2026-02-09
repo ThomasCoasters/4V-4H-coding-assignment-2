@@ -25,7 +25,7 @@ var loading: bool = false
 @onready var left_arrow: AnimatedSprite2D = $left_arrow
 @onready var right_arrow: AnimatedSprite2D = $right_arrow
 
-@export var arrow_offset: Vector2 = Vector2(20, 0)
+@export var arrow_offset: Vector2 = Vector2(25, -2)
 
 @onready var basic_buttons: VBoxContainer = $"basic buttons"
 @onready var quit_game_buttons: VBoxContainer = $"quit game"
