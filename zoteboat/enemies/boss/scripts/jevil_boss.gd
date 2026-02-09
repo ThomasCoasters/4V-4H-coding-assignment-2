@@ -23,7 +23,7 @@ enum ArenaSurface {
 }
 
 
-@export_group("attacks")
+@export_group("attacks (phase 1)")
 @export_subgroup("aspid attack")
 @export_range(0.0, 5.0, 0.01) var aspid_attack_cooldown_time: float = 0.6
 @export_range(1, 12, 1) var aspid_attack_count: int = 3
@@ -31,7 +31,6 @@ enum ArenaSurface {
 @export_range(1, 10, 1) var normal_aspid_attack_times: int = 3
 
 var aspid_attack_times: int = 3
-var aspid_attack_time: int = 0
 
 const SPADE_ASPID_ATTACK = preload("uid://dsj1u1ifha4x4")
 
@@ -71,6 +70,17 @@ const SCYTHE_ATTACK = preload("uid://c3jv787661rmy")
 
 var ceiling_tp_left: int = 2
 const CEILING_DIAMONDS = preload("uid://dr2woxdmhhdi1")
+
+@export_subgroup("homing attack")
+@export_range(0.0, 5.0, 0.01) var homing_attack_cooldown_time: float = 0.5
+@export_range(1, 12, 1) var homing_attack_count: int = 1
+@export_range(0, 360, 1, "radians_as_degrees") var homing_shot_angle: int = 30
+@export_range(1, 10, 1) var normal_homing_attack_times: int = 3
+
+var homing_attack_times: int = 3
+
+const HOMING_CLOVER = preload("uid://cnp72gjjkivu2")
+
 
 
 var can_attack: bool = true
@@ -358,6 +368,9 @@ func _on_animation_finished():
 		
 		if $StateChart/ParallelState/attack/ceiling_diamonds.active:
 			ceiling_diamonds_attack()
+		
+		if $StateChart/ParallelState/attack/homing_clover.active:
+			homing_attack()
 
 
 func update_facing():
@@ -426,7 +439,7 @@ func choose_attack():
 	
 	var attack_number := last_attack
 	#var max_attacks := $StateChart/ParallelState/attack.get_child_count() - 1
-	var max_attacks := 5
+	var max_attacks := 6
 	
 	while attack_number == last_attack and max_attacks > 1:
 		attack_number = randi_range(1, max_attacks)
@@ -475,7 +488,8 @@ func _on_ceiling_diamonds_state_entered() -> void:
 
 func _on_homing_clover_state_entered() -> void:
 	print("homing")
-	state_chart.send_event("attack_stop")
+	homing_attack_times = normal_homing_attack_times
+	play_anim("tp_out")
 
 func _on_head_throw_state_entered() -> void:
 	print("head")
@@ -607,5 +621,35 @@ func ceiling_diamonds_attack():
 	ceiling_tp_left -= 1
 	
 	play_anim("tp_out")
+
+#endregion
+
+#region homing_attack
+func homing_attack():
+	var count := homing_attack_count
+	var angle_per_shot := deg_to_rad(homing_shot_angle)
+	
+	var base_dir = (Global.player.global_position - global_position).normalized()
+	var base_angle = base_dir.angle()
+
+	for i in range(count):
+		var projectile = HOMING_CLOVER.instantiate()
+		get_tree().current_scene.add_child(projectile)
+		projectile.global_position = global_position
+		
+		var offset_index := i - (count - 1) / 2.0
+		var angle = base_angle + offset_index * angle_per_shot
+		
+		var dir := Vector2.RIGHT.rotated(angle)
+		projectile.direction = dir
+		projectile.rotation = angle
+	
+	homing_attack_times -= 1
+	if homing_attack_times <= 0:
+		state_chart.send_event("attack_stop")
+	
+	else:
+		await get_tree().create_timer(aspid_attack_cooldown_time).timeout
+		play_anim("tp_out")
 
 #endregion

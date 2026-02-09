@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://cnp72gjjkivu2"]
+
+[ext_resource type="Script" uid="uid://bu02ptluc4y4c" path="res://enemies/boss/scripts/homing_clover.gd" id="1_8jxbu"]
+[ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_m286b"]
+[ext_resource type="Texture2D" uid="uid://bb37uyfurxg6o" path="res://enemies/boss/assets/jevil/jevil sprites.png" id="3_4mxj5"]
+
+[sub_resource type="Resource" id="Resource_lfdvo"]
+script = ExtResource("2_m286b")
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfdvo"]
+atlas = ExtResource("3_4mxj5")
+region = Rect2(16, 407, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m286b"]
+atlas = ExtResource("3_4mxj5")
+region = Rect2(16, 407, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mxj5"]
+atlas = ExtResource("3_4mxj5")
+region = Rect2(52, 407, 34, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c848n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfdvo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m286b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mxj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m286b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mxj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m286b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mxj5")
+}],
+"loop": false,
+"name": &"stop",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m286b"]
+radius = 18.027756
+
+[node name="HomingClover" type="Area2D" unique_id=1383055810 groups=["enemy_attack"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_8jxbu")
+stats = SubResource("Resource_lfdvo")
+speed = 400.0
+turn_rate = 2.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1072292729]
+rect = Rect2(-28, -26, 56, 57)
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=102205093]
+texture_filter = 1
+scale = Vector2(1.3, 1.3)
+sprite_frames = SubResource("SpriteFrames_c848n")
+autoplay = "default"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=605503787]
+rotation = -1.5707964
+shape = SubResource("CircleShape2D_m286b")
+
+[node name="YOUR_TAKING_TOO_LONG" type="Timer" parent="." unique_id=247893616]
+one_shot = true
+
+[connection signal="timeout" from="YOUR_TAKING_TOO_LONG" to="." method="_on_your_taking_too_long_timeout"]
