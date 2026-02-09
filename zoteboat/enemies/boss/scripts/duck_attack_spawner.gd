@@ -23,19 +23,18 @@ func start_spawning():
 	
 	spawn_timer.start()
 	active_timer.start()
+	spawn_duck()
 	
 	spawning = true
 
 
 func spawn_duck():
-	print('duck')
 	var ducki = DUCK_ATTACK.instantiate()
 	get_tree().current_scene.add_child(ducki)
 	ducki.global_position = Vector2(global_position.x + spawn_offset_x, global_position.y + ducki.bottom_out_view_px)
 
 
 func _on_spawn_timer_timeout() -> void:
-	print('would duck')
 	if spawning:
 		spawn_duck()
 		spawn_timer.start()

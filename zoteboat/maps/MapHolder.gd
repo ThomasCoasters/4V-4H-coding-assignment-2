@@ -65,8 +65,6 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	
 	fading()
 	
-	preload_map(new_scene)
-	
 	
 	await transition.on_transition_finished
 	
@@ -92,13 +90,8 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	if new_scene == "none":
 		return
 	
-	var packed_scene : PackedScene = null
 	
-	while packed_scene == null:
-		await get_tree().process_frame
-		packed_scene = get_preloaded_map(new_scene)
-	
-	var new = packed_scene.instantiate()
+	var new = load(new_scene).instantiate()
 	map.add_child(new)
 	current_map = new
 	
@@ -135,15 +128,6 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	await get_tree().physics_frame
 	
 	is_transition = false
-
-func preload_map(path: String):
-	ResourceLoader.load_threaded_request(path)
-
-func get_preloaded_map(path: String) -> PackedScene:
-	var status = ResourceLoader.load_threaded_get_status(path)
-	if status == ResourceLoader.THREAD_LOAD_LOADED:
-		return ResourceLoader.load_threaded_get(path)
-	return null
 
 
 func fading():

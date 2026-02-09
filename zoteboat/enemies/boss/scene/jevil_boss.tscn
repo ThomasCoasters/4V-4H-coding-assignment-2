@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://dnc7bls4ow3a4" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_short_laugh_01.wav" id="13_r2mqi"]
 [ext_resource type="AudioStream" uid="uid://bkdv80j2pnood" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_long_gasp.wav" id="14_c4bf2"]
 [ext_resource type="AudioStream" uid="uid://drj6tngulf85q" path="res://enemies/normal/grimmkin/circle_version/audio/Grimmkin_big_death.wav" id="15_f2o7c"]
-[ext_resource type="PackedScene" uid="uid://xb16pj62as3v" path="res://enemies/boss/scene/attacks/duck_attack_spawner.tscn" id="16_aoog1"]
+[ext_resource type="PackedScene" path="res://enemies/boss/scene/attacks/duck_attack_spawner.tscn" id="16_aoog1"]
 [ext_resource type="PackedScene" uid="uid://btrieoax44gix" path="res://enemies/boss/scene/attacks/circle_hearts_attack.tscn" id="16_ufmpn"]
 
 [sub_resource type="Resource" id="Resource_ufmpn"]
@@ -207,8 +207,9 @@ duck_attack_spawner = NodePath("DuckAttackSpawner")
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g81kc")
-animation = &"death"
+animation = &"dance(front)"
 autoplay = "dance(front)"
+frame_progress = 0.31096646
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2104192833]
 visible = false
