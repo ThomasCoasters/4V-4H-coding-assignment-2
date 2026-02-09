@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.tscn" id="8_dgsse"]
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/hazards + respawns/respawns/hazard_respawn.tscn" id="9_dgsse"]
 
-[sub_resource type="Curve2D" id="Curve2D_dgsse"]
+[sub_resource type="Curve2D" id="Curve2D_x34po"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 7.8095703, 0.2479248, 0, 0, 0, 0, 57, 0, 0, 0, 0, 0, 57, 64, 0, 0, 0, 0, 218, 64, 0, 0, 0, 0, 218, 160, 0, 0, 0, 0, 57, 160, 0, 0, 0, 0, 57, 224, 0, 0, 0, 0, -38, 224, 0, 0, 0, 0, -38, 160, 0, 0, 0, 0, -167, 160, 0, 0, 0, 0, -167, 64, 0, 0, 0, 0, -103, 64, 0, 0, 0, 0, -103, 0, 0, 0, 0, 0, 7.8095703, 0.2479248)
@@ -105,12 +105,12 @@ terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_dgsse")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ycj1n"]
-vertices = PackedVector2Array(844, -73, 1036, -13, 744, -13, 552, -73, -148, -457, 1119.0234, -457, 1118.7109, -429, 904, -429, 748, 243, 748, 151, 840, 151, 840, 215, 1064, 243, 1004, 215, 1004, 151, 1036, 151, 1064, -265, 904, -265, 844, -237, 744, 115, 520, 115, 428, 19, 520, 243, 364, 243, 428, 183, 364, 183, 364, 19, 364, -45, 552, -237, 140, -45, 140, -205, 76, -205, 76, -397, -88, -397, -88, -269, -148, -269, -344, -173, -536, -173, -500, -233, -344, -457, -500, -397, -632, -457, -792, -397, -660, -457, -660, -506.4922, -632, -506.3203, -948, -457, -948, -173, -792, -233, -756, -173, -760, -201, -760, -233, -728, -201, -728, -169, -756, -9, -564, -169, -564, -201, -532, -201, -532, -233, -536, -9, -148, -9, -148, -105, -88, -105, -88, -41, 136, -41, 136, 19, 72, 19, 72, 183, 200, 183, 200, 243, 12, 243, 12, 83, -344, 83, -344, 243, -372, 243, -372, 83, -920, 83, -920, 243, -948, 243, -948, -9)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 8, 11, 13), PackedInt32Array(13, 14, 15, 12), PackedInt32Array(16, 12, 15, 1), PackedInt32Array(17, 16, 1, 0, 18), PackedInt32Array(3, 2, 19, 20, 21), PackedInt32Array(20, 22, 23, 24), PackedInt32Array(23, 25, 24), PackedInt32Array(20, 24, 21), PackedInt32Array(3, 21, 26, 27, 28), PackedInt32Array(27, 29, 30, 28), PackedInt32Array(30, 31, 32, 7, 17, 28), PackedInt32Array(33, 34, 35, 4), PackedInt32Array(33, 4, 7, 32), PackedInt32Array(28, 17, 18), PackedInt32Array(36, 37, 38, 39), PackedInt32Array(39, 38, 40), PackedInt32Array(41, 39, 40, 42), PackedInt32Array(43, 44, 45, 41), PackedInt32Array(43, 41, 42), PackedInt32Array(46, 43, 42), PackedInt32Array(47, 46, 42, 48), PackedInt32Array(49, 47, 48, 50), PackedInt32Array(48, 51, 50), PackedInt32Array(49, 50, 52, 53), PackedInt32Array(54, 49, 53), PackedInt32Array(55, 56, 57, 37), PackedInt32Array(57, 58, 38), PackedInt32Array(57, 38, 37), PackedInt32Array(55, 37, 59, 54), PackedInt32Array(60, 61, 62, 63), PackedInt32Array(63, 64, 65, 66), PackedInt32Array(67, 68, 69, 70), PackedInt32Array(67, 70, 71, 66), PackedInt32Array(63, 66, 71, 60), PackedInt32Array(72, 73, 74, 75), PackedInt32Array(76, 77, 78, 79), PackedInt32Array(76, 79, 54, 75), PackedInt32Array(54, 53, 55), PackedInt32Array(75, 54, 59), PackedInt32Array(75, 59, 60, 72), PackedInt32Array(71, 72, 60)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1057, -559, -1026, 342, 1160, 356, 1170, -545)])
+vertices = PackedVector2Array(844, -169, 904, -265, 1064, -265, 1064, 83, 844, -333, 904, -429, 460, -233, 552, -333, 552, -169, 428, -169, 460, -397, -1000.3281, -429, -1001.21875, -457, -948, -457, -788, -429, 1106.8281, -457, 1106.9375, -429, 1064, -457, 72, -233, 136, -233, 136, -169, -52, -169, 232, -169, 232, -105, -84, -137, -116, -73, -52, -333, 72, -397, -376, -169, -344, -169, -344, -137, -468, -105, -280, -137, -280, -73, -500, -41, -116, -137, -84, -169, 396, -105, 396, -169, 428, -233, 616, -169, 616, -105, 780, -105, 780, -137, 812, -137, 812, -169, -788, -77, -948, -77, -948, -201, -884, -201, -792, -105, -884, -265, -792, -265, -728, -105, -728, -73, -788, 83, -664, -41, -664, -73, -500, -105, -468, -269, -788, -269, -376, -333, -948, -585, 1064, -585)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(1, 0, 4, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(7, 6, 10), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(15, 16, 5, 17), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(20, 22, 23), PackedInt32Array(24, 21, 20, 23, 25), PackedInt32Array(18, 21, 26, 27), PackedInt32Array(28, 29, 30, 31), PackedInt32Array(31, 30, 32, 33, 34), PackedInt32Array(25, 35, 24), PackedInt32Array(24, 36, 21), PackedInt32Array(37, 38, 9), PackedInt32Array(9, 39, 6), PackedInt32Array(8, 40, 41, 37), PackedInt32Array(42, 43, 44, 3), PackedInt32Array(44, 45, 0, 3), PackedInt32Array(46, 47, 48, 49, 50), PackedInt32Array(49, 51, 52, 50), PackedInt32Array(46, 50, 53, 54), PackedInt32Array(55, 46, 54, 56), PackedInt32Array(54, 57, 56), PackedInt32Array(3, 55, 56, 34), PackedInt32Array(34, 58, 31), PackedInt32Array(59, 60, 14, 61), PackedInt32Array(14, 13, 62, 63, 17, 5, 10, 27), PackedInt32Array(42, 3, 34, 41), PackedInt32Array(37, 9, 8), PackedInt32Array(37, 41, 34, 25), PackedInt32Array(5, 4, 7, 10), PackedInt32Array(14, 27, 26, 61), PackedInt32Array(59, 61, 28, 31), PackedInt32Array(34, 33, 25), PackedInt32Array(37, 25, 23)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1058, -671, -1026, 342, 1160, 356, 1156, -671)])
 agent_radius = 50.0
 
-[sub_resource type="Curve2D" id="Curve2D_a5qev"]
+[sub_resource type="Curve2D" id="Curve2D_2255m"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 57, 0, 0, 0, 0, 0, 57, 96, 0, 0, 0, 0, 25, 96, 0, 0, 0, 0, 25, 160, 0, 0, 0, 0, -71, 160, 0, 0, 0, 0, -71, 96, 0, 0, 0, 0, -167, 96, 0, 0, 0, 0, -167, 0, 0, 0, 0, 0, 57, 0)
@@ -150,7 +150,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Path2D3" parent="." unique_id=768483257 instance=ExtResource("4_vp4j8")]
 position = Vector2(1366, 5488)
-curve = SubResource("Curve2D_dgsse")
+curve = SubResource("Curve2D_x34po")
 
 [node name="PathFollow2D" parent="Path2D3" index="0" unique_id=1178610453]
 position = Vector2(7.8095703, 0.2479248)
@@ -174,7 +174,7 @@ navigation_polygon = SubResource("NavigationPolygon_ycj1n")
 
 [node name="Path2D4" parent="." unique_id=263132585 instance=ExtResource("4_vp4j8")]
 position = Vector2(2039, 5520)
-curve = SubResource("Curve2D_a5qev")
+curve = SubResource("Curve2D_2255m")
 
 [node name="PathFollow2D" parent="Path2D4" index="0" unique_id=1178610453]
 position = Vector2(-26.863827, 0)
@@ -267,15 +267,6 @@ texture = ExtResource("7_sdnps")
 position = Vector2(1156, 5775.0005)
 scale = Vector2(105, 2.5)
 
-[node name="StaticBody2D3" type="Area2D" parent="hazards" unique_id=976053300 groups=["map_transitions"]]
-position = Vector2(371.77856, 5600.3564)
-scale = Vector2(0.99999994, 0.99999994)
-
-[node name="EDIT THIS" type="CollisionPolygon2D" parent="hazards/StaticBody2D3" unique_id=1029657088]
-position = Vector2(2413.2217, 67.64354)
-scale = Vector2(23.281254, 0.042116802)
-polygon = PackedVector2Array(-115.500656, 2136.9063, -24.78389, 2184.4063, -24.78389, 2944.1875, -115.500656, 2944.1875)
-
 [node name="HazardRespawn3" parent="hazards" unique_id=631066099 instance=ExtResource("9_dgsse")]
 position = Vector2(879, 5529)
 scale = Vector2(1, 13)
@@ -297,3 +288,4 @@ position = Vector2(1657, 5176)
 
 [editable path="Path2D3"]
 [editable path="Path2D4"]
+[editable path="hazards/SpikesCollision2"]
