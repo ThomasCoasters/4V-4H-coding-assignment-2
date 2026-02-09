@@ -158,8 +158,8 @@ position = Vector2(-973, -1893)
 [node name="WarpZone2" parent="." unique_id=1249655997 instance=ExtResource("2_7pfcn")]
 position = Vector2(1317, -1377.0001)
 scale = Vector2(1, 13)
-warp_to = "res://maps/room_0,0.tscn"
-new_location_group = "Left_0,0"
+warp_to = "res://maps/maps/jevil boss/jevil_arena.tscn"
+new_location_group = "Left_jevil"
 
 [node name="WarpZone" parent="." unique_id=1172638642 instance=ExtResource("2_7pfcn")]
 position = Vector2(-1333, -1374.0001)
