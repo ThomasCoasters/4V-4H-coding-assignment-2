@@ -24,6 +24,8 @@ enum ArenaSurface {
 
 @export_group("phase settings")
 @export_range(0.0, 1.0, 0.01) var phase_2_health_percent: float = 0.99
+@export_range(0.0, 1.0, 0.01) var anim_tp_time: float = 0.5
+@export_range(0.0, 1.0, 0.01) var phase_2_anim_tp_time: float = 0.25
 
 @export_group("attacks (phase 1)")
 @export_subgroup("aspid attack")
@@ -99,9 +101,15 @@ const HOMING_CLOVER = preload("uid://cnp72gjjkivu2")
 @export var phase_2_dash_overshoot := 340.0
 @export var phase_2_dash_slowdown_distance := 180.0
 @export var phase_2_dash_min_speed := 200.0 
+@export var phase_2_orbit_radius := 120
+@export var phase_2_orbit_speed := 1.5
 
 @export_subgroup("duck attack")
 @export_range(0.0, 5.0, 0.01) var phase_2_duck_attack_cooldown_time: float = 0.7
+@export_range(0.0, 20.0, 0.1) var phase_2_duck_attack_active_time: float = 12.0
+@export_range(0.0, 5.0, 0.1) var phase_2_duck_attack_spawn_cooldown: float = 1.2
+@export_range(0, 1000, 1) var phase_2_duck_attack_speed: int = 450
+@export_range(0, 1000, 1) var phase_2_duck_attack_vertical_speed: int = 300
 
 @export_subgroup("scythe attack")
 @export_range(0.0, 5.0, 0.01) var phase_2_scythe_attack_cooldown_time: float = 1.2
@@ -111,7 +119,7 @@ const HOMING_CLOVER = preload("uid://cnp72gjjkivu2")
 
 @export_subgroup("ceiling attack")
 @export_range(0.0, 5.0, 0.01) var phase_2_ceiling_attack_cooldown_time: float = 0.7
-@export_range(0, 50, 1) var phase_2_ceiling_attack_amount: int = 10
+@export_range(0, 100, 1) var phase_2_ceiling_attack_amount: int = 10
 @export_range(0.0, 5.0, 0.01) var phase_2_ceiling_attack_time_between: float = 0.1
 @export_range(0, 5, 1) var phase_2_ceiling_tp_between_times: int = 2
 
@@ -449,7 +457,7 @@ func teleport(out: bool = true):
 	else:
 		collision_shape_2d.disabled = true
 		if $StateChart/ParallelState/attack/spinning_circle.active:
-			circle_hearts_attack.set_circle_attack_enabled(true, 0.5)
+			circle_hearts_attack.set_circle_attack_enabled(true, anim_tp_time)
 	
 	
 	
@@ -457,7 +465,7 @@ func teleport(out: bool = true):
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_OUT)
 	
-	tween.tween_property(self, "scale:x", to_scale, 0.5).from(from_scale)
+	tween.tween_property(self, "scale:x", to_scale, anim_tp_time).from(from_scale)
 	tween.finished.connect(func():
 		if out:
 			teleport_around_player()
@@ -699,12 +707,18 @@ func homing_attack():
 #endregion
 
 
+
+#region phases
 func _on_phase_2_state_entered() -> void:
+	anim_tp_time = phase_2_anim_tp_time
+	
 	aspid_attack_cooldown_time = phase_2_aspid_attack_cooldown_time
 	aspid_attack_count = phase_2_aspid_attack_count
 	aspid_shot_angle = phase_2_aspid_shot_angle
 	normal_aspid_attack_times = phase_2_normal_aspid_attack_times
 	
+	circle_hearts_attack.orbit_radius = phase_2_orbit_radius
+	circle_hearts_attack.orbit_speed = phase_2_orbit_speed
 	dash_speed = phase_2_dash_speed
 	dash_max_time = phase_2_dash_max_time
 	dash_overshoot = phase_2_dash_overshoot
@@ -712,6 +726,11 @@ func _on_phase_2_state_entered() -> void:
 	dash_min_speed = phase_2_dash_min_speed
 	
 	duck_attack_cooldown_time = phase_2_duck_attack_cooldown_time
+	duck_attack_spawner.active_time = phase_2_duck_attack_active_time
+	duck_attack_spawner.spawn_cooldown = phase_2_duck_attack_spawn_cooldown
+	duck_attack_spawner.duck_speed = phase_2_duck_attack_speed
+	duck_attack_spawner.duck_vertical_speed = phase_2_duck_attack_vertical_speed
+	
 	
 	scythe_attack_cooldown_time = phase_2_scythe_attack_cooldown_time
 	scythe_attack_count = phase_2_scythe_attack_count
@@ -727,3 +746,4 @@ func _on_phase_2_state_entered() -> void:
 	homing_attack_cooldown_time = phase_2_homing_attack_cooldown_time
 	homing_shot_angle = phase_2_homing_shot_angle
 	normal_homing_attack_times = phase_2_normal_homing_attack_times
+#endregion

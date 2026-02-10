@@ -195,7 +195,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
-size = Vector2(40, 37)
+size = Vector2(34, 58)
 
 [node name="jevil_boss" type="CharacterBody2D" unique_id=833850574 node_paths=PackedStringArray("nav_agent", "circle_hearts_attack", "duck_attack_spawner") groups=["enemy"]]
 collision_layer = 8
@@ -208,34 +208,30 @@ circle_hearts_attack = NodePath("CircleHeartsAttack")
 duck_attack_spawner = NodePath("DuckAttackSpawner")
 ceiling_attack_amount = 14
 ceiling_attack_time_between = 0.15
-phase_2_aspid_attack_cooldown_time = 0.3
+phase_2_aspid_attack_cooldown_time = 0.5
 phase_2_aspid_attack_count = 5
 phase_2_aspid_shot_angle = 25
-phase_2_dash_speed = 1200.0
-phase_2_dash_overshoot = 380.0
-phase_2_dash_slowdown_distance = 200.0
-phase_2_dash_min_speed = 150.0
-phase_2_duck_attack_cooldown_time = 0.5
+phase_2_orbit_speed = 2.5
+phase_2_duck_attack_cooldown_time = 0.6
 phase_2_scythe_attack_cooldown_time = 1.0
 phase_2_normal_scythe_attack_times = 2
-phase_2_ceiling_attack_cooldown_time = 0.3
-phase_2_ceiling_attack_amount = 39
-phase_2_ceiling_attack_time_between = 0.05
-phase_2_ceiling_tp_between_times = 3
-phase_2_homing_attack_cooldown_time = 0.3
-phase_2_homing_attack_count = 3
-phase_2_homing_shot_angle = 50
+phase_2_ceiling_attack_cooldown_time = 0.5
+phase_2_ceiling_attack_amount = 80
+phase_2_ceiling_attack_time_between = 0.08
+phase_2_homing_attack_cooldown_time = 0.7
+phase_2_homing_attack_count = 2
+phase_2_homing_shot_angle = 100
+phase_2_normal_homing_attack_times = 2
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1966045575]
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g81kc")
-animation = &"death"
+animation = &"dance(front)"
 autoplay = "dance(front)"
+frame_progress = 0.81339175
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2104192833]
-visible = false
-position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_pst0k")
 debug_color = Color(1, 0, 0, 0.41960785)
 

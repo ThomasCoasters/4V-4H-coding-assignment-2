@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://hoyxcaqbicl3"]
+[gd_scene format=3 uid="uid://hoyxcaqbicl3"]
 
 [ext_resource type="Texture2D" uid="uid://bqey7722p3rnc" path="res://assets/player/attacks/up_attack/sprite.png" id="2_co1se"]
 
@@ -52,16 +52,16 @@ animations = [{
 "speed": 40.0
 }]
 
-[node name="UpAttack" type="Area2D"]
+[node name="UpAttack" type="Area2D" unique_id=1656082950]
 collision_mask = 11
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=364651539]
 position = Vector2(-3.0553338e-13, -42.999996)
 rotation = 3.1415927
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_337pe")
 autoplay = "default"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1956145947]
 scale = Vector2(0.8035714, 1.0535454)
 polygon = PackedVector2Array(-58, -2, -70, -21, -70, -37, -54, -56, -27, -64, 25, -64, 51, -56, 70, -39, 70, -22, 53, -2)

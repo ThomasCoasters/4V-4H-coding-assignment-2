@@ -18,6 +18,12 @@ func _physics_process(delta: float) -> void:
 
 
 func set_circle_attack_enabled(enabled: bool, time: float = 0.4) -> void:
+	var areas = $Orbit.get_children()
+	for i in areas.size():
+		var angle := i * TAU / areas.size()
+		areas[i].position = Vector2(orbit_radius, 0).rotated(angle)
+	
+	
 	var to_modulate: float = 1.0
 	var from_modulate: float = 0.0
 	var to_scale: Vector2 = Vector2.ONE
