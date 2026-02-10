@@ -106,8 +106,8 @@ new_location_group = "Left_0,0"
 [node name="WarpZone4" parent="." unique_id=192670333 instance=ExtResource("2_drr7f")]
 position = Vector2(-402, -457)
 scale = Vector2(1, 13)
-warp_to = "res://maps/examples/enemy arena/enemy arena.tscn"
-new_location_group = "left_1"
+warp_to = "res://maps/maps/pre-dash/room_-2,0.tscn"
+new_location_group = "Right_-2,0"
 
 [node name="SpawnLocation2" parent="." unique_id=1545312283 instance=ExtResource("3_5l12q")]
 offset_left = 1345.0
