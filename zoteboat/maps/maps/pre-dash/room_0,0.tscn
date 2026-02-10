@@ -96,7 +96,7 @@ sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 script = ExtResource("1_45dmm")
 
 [node name="WarpZone2" parent="." unique_id=91592171 instance=ExtResource("2_cdytd")]
-position = Vector2(702.00006, 2544)
+position = Vector2(702, 2482.0002)
 scale = Vector2(61, 1)
 warp_to = "res://maps/maps/pre-dash/room_0,-1.tscn"
 new_location_group = "Top_0,-1"
