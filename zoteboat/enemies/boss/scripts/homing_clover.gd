@@ -12,6 +12,7 @@ var direction: Vector2 = Vector2.RIGHT
 @onready var screen_notifier := $VisibleOnScreenNotifier2D
 @onready var sprite_2d: AnimatedSprite2D = $Sprite2D
 @onready var your_taking_too_long: Timer = $YOUR_TAKING_TOO_LONG
+@onready var start_straight: Timer = $start_straight
 
 
 var homing: bool = true
@@ -19,15 +20,18 @@ var homing: bool = true
 func _ready() -> void:
 	your_taking_too_long.wait_time = active_time
 	your_taking_too_long.start()
+	start_straight.start()
 	
 	direction = direction.normalized()
 	rotation = direction.angle()
 	body_entered.connect(_on_body_entered)
 	screen_notifier.screen_exited.connect(_on_screen_exited)
 	add_to_group("projectiles")
+	
+	
 
 func _physics_process(delta: float) -> void:
-	if Global.player && homing:
+	if Global.player && homing && start_straight.is_stopped():
 		var to_player = (Global.player.global_position - global_position).normalized()
 		
 		var angle := direction.angle_to(to_player)
