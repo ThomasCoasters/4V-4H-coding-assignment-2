@@ -86,17 +86,22 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if dead:
-		velocity.y += 40
-		move_and_slide()
-		if is_on_floor():
-			play_anim("death(land)", 999)
+		velocity.y += 3000 * delta
+		@warning_ignore("confusable_local_declaration")
+		var collision = move_and_collide(velocity*delta)
 		
+		if collision:
+			if collision.get_normal().dot(Vector2.UP) > 0.7:
+				print("landed")
+				play_anim("death(land)", 999)
+				velocity = Vector2.ZERO
 		
 		return
 	
+	
 	velocity = direction * speed
 	
-	var collision = move_and_collide(velocity * delta)
+	var collision = move_and_collide(velocity*delta)
 	if collision:
 		direction = direction.bounce(collision.get_normal())
 		angle = rad_to_deg(direction.angle())
