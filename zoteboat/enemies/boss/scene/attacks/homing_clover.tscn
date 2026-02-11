@@ -81,4 +81,8 @@ shape = SubResource("CircleShape2D_m286b")
 [node name="YOUR_TAKING_TOO_LONG" type="Timer" parent="." unique_id=247893616]
 one_shot = true
 
+[node name="start_straight" type="Timer" parent="." unique_id=1317536465]
+wait_time = 0.25
+one_shot = true
+
 [connection signal="timeout" from="YOUR_TAKING_TOO_LONG" to="." method="_on_your_taking_too_long_timeout"]

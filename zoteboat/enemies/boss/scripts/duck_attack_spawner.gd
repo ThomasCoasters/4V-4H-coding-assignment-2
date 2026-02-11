@@ -12,6 +12,8 @@ const DUCK_ATTACK = preload("uid://bo0lsftpy3omb")
 var spawning: bool = false
 var spawn_offset_x
 
+@export var duck_speed: float = 300.0
+@export var duck_vertical_speed: float = 200.0
 
 func _ready() -> void:
 	spawn_timer.wait_time = spawn_cooldown
@@ -20,6 +22,9 @@ func _ready() -> void:
 func start_spawning():
 	spawn_timer.stop()
 	active_timer.stop()
+	
+	spawn_timer.wait_time = spawn_cooldown
+	active_timer.wait_time = active_time
 	
 	spawn_timer.start()
 	active_timer.start()
@@ -30,6 +35,8 @@ func start_spawning():
 
 func spawn_duck():
 	var ducki = DUCK_ATTACK.instantiate()
+	ducki.speed = duck_speed
+	ducki.vertical_speed = duck_vertical_speed
 	get_tree().current_scene.add_child(ducki)
 	ducki.global_position = Vector2(global_position.x + spawn_offset_x, global_position.y + ducki.bottom_out_view_px)
 
