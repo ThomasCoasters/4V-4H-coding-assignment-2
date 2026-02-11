@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_23m7d"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="3_ygq3w"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="4_uyact"]
+[ext_resource type="Script" path="res://maps/enemy arena/generic_extra_script.gd" id="5_6ue1t"]
 [ext_resource type="Script" uid="uid://dirquph6nfgas" path="res://maps/enemy arena/universal_arena_script.gd" id="5_6upwm"]
+[ext_resource type="Script" uid="uid://domk3qfwgxh7i" path="res://maps/enemy arena/keyValue.gd" id="6_ygq3w"]
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.tscn" id="7_23m7d"]
 [ext_resource type="PackedScene" uid="uid://oqu7kbfguu6n" path="res://maps/pickups/hp_upgrades/increase_max_hp.tscn" id="8_1mma8"]
 [ext_resource type="Texture2D" uid="uid://bb2h7gysppyil" path="res://maps/hazards + respawns/hazards (spikes)/spikes_still.png" id="8_6ue1t"]
@@ -97,6 +99,12 @@ sources/0 = SubResource("TileSetAtlasSource_g1evj")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fiak"]
 size = Vector2(93, 710.25)
+
+[sub_resource type="Resource" id="Resource_uyact"]
+script = ExtResource("6_ygq3w")
+key = "begin_phase"
+value = 3
+metadata/_custom_type_script = "uid://domk3qfwgxh7i"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1a7be"]
 size = Vector2(1344, 704)
@@ -243,11 +251,28 @@ visible = false
 [node name="jevil" type="Node2D" parent="area arena/wave holder/phase1" unique_id=337078984]
 position = Vector2(1312, 167)
 
-[node name="jevil2" type="Node2D" parent="area arena/wave holder/phase1" unique_id=889977156]
+[node name="phase2" type="Node" parent="area arena/wave holder" unique_id=868711763]
+
+[node name="jevil" type="Node2D" parent="area arena/wave holder/phase2" unique_id=830982230]
 position = Vector2(1312, 167)
 
-[node name="jevil3" type="Node2D" parent="area arena/wave holder/phase1" unique_id=1131121883]
+[node name="extra" type="Node2D" parent="area arena/wave holder/phase2/jevil" unique_id=711168421]
+script = ExtResource("5_6ue1t")
+extras = Array[ExtResource("6_ygq3w")]([SubResource("Resource_uyact")])
+
+[node name="jevil2" type="Node2D" parent="area arena/wave holder/phase2" unique_id=1700210562]
 position = Vector2(1312, 167)
+
+[node name="extra" type="Node2D" parent="area arena/wave holder/phase2/jevil2" unique_id=1887043553]
+script = ExtResource("5_6ue1t")
+extras = Array[ExtResource("6_ygq3w")]([SubResource("Resource_uyact")])
+
+[node name="jevil3" type="Node2D" parent="area arena/wave holder/phase2" unique_id=605489242]
+position = Vector2(1312, 167)
+
+[node name="extra" type="Node2D" parent="area arena/wave holder/phase2/jevil3" unique_id=1306034393]
+script = ExtResource("5_6ue1t")
+extras = Array[ExtResource("6_ygq3w")]([SubResource("Resource_uyact")])
 
 [node name="area_bounds" type="CollisionShape2D" parent="area arena" unique_id=1237720875]
 visible = false

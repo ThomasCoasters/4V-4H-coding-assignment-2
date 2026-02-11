@@ -20,7 +20,7 @@
 
 [sub_resource type="Resource" id="Resource_ufmpn"]
 script = ExtResource("2_aj26w")
-max_health = 100
+max_health = 550
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qkeuv"]
@@ -203,7 +203,8 @@ collision_mask = 65536
 script = ExtResource("1_sggmd")
 stats = SubResource("Resource_ufmpn")
 nav_agent = NodePath("NavigationAgent2D")
-phase_2_health_percent = 0.94
+phase_3_health_percent = 0.95
+phase_2_anim_tp_time = 0.35
 circle_hearts_attack = NodePath("CircleHeartsAttack")
 duck_attack_spawner = NodePath("DuckAttackSpawner")
 ceiling_attack_amount = 14
@@ -318,15 +319,6 @@ to = NodePath("../../idle_active")
 event = &"attack_stop"
 delay_in_seconds = "0.0"
 
-[node name="scythe" type="Node" parent="StateChart/ParallelState/attack" unique_id=1163148754]
-script = ExtResource("7_aappj")
-
-[node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/scythe" unique_id=820189532]
-script = ExtResource("8_gcouw")
-to = NodePath("../../idle_active")
-event = &"attack_stop"
-delay_in_seconds = "0.0"
-
 [node name="ceiling_diamonds" type="Node" parent="StateChart/ParallelState/attack" unique_id=2039685975]
 script = ExtResource("7_aappj")
 
@@ -340,6 +332,15 @@ delay_in_seconds = "0.0"
 script = ExtResource("7_aappj")
 
 [node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/homing_clover" unique_id=530535208]
+script = ExtResource("8_gcouw")
+to = NodePath("../../idle_active")
+event = &"attack_stop"
+delay_in_seconds = "0.0"
+
+[node name="scythe" type="Node" parent="StateChart/ParallelState/attack" unique_id=1163148754]
+script = ExtResource("7_aappj")
+
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/scythe" unique_id=820189532]
 script = ExtResource("8_gcouw")
 to = NodePath("../../idle_active")
 event = &"attack_stop"
@@ -420,7 +421,7 @@ bus = &"SFX"
 [connection signal="state_entered" from="StateChart/ParallelState/attack/spade_aspid_attack" to="." method="_on_spade_aspid_attack_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/spinning_circle" to="." method="_on_spinning_circle_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/floor_ducks" to="." method="_on_floor_ducks_state_entered"]
-[connection signal="state_entered" from="StateChart/ParallelState/attack/scythe" to="." method="_on_scythe_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/ceiling_diamonds" to="." method="_on_ceiling_diamonds_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/homing_clover" to="." method="_on_homing_clover_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/attack/scythe" to="." method="_on_scythe_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/phase/phase 2" to="." method="_on_phase_2_state_entered"]
