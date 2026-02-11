@@ -243,6 +243,12 @@ visible = false
 [node name="jevil" type="Node2D" parent="area arena/wave holder/phase1" unique_id=337078984]
 position = Vector2(1312, 167)
 
+[node name="jevil2" type="Node2D" parent="area arena/wave holder/phase1" unique_id=889977156]
+position = Vector2(1312, 167)
+
+[node name="jevil3" type="Node2D" parent="area arena/wave holder/phase1" unique_id=1131121883]
+position = Vector2(1312, 167)
+
 [node name="area_bounds" type="CollisionShape2D" parent="area arena" unique_id=1237720875]
 visible = false
 position = Vector2(1344, 192)

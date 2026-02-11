@@ -490,8 +490,7 @@ func choose_attack():
 		return
 	
 	var attack_number := last_attack
-	#var max_attacks := $StateChart/ParallelState/attack.get_child_count() - 1
-	var max_attacks := 6
+	var max_attacks := $StateChart/ParallelState/attack.get_child_count() - 1
 	
 	while attack_number == last_attack and max_attacks > 1:
 		attack_number = randi_range(1, max_attacks)

@@ -208,19 +208,21 @@ circle_hearts_attack = NodePath("CircleHeartsAttack")
 duck_attack_spawner = NodePath("DuckAttackSpawner")
 ceiling_attack_amount = 14
 ceiling_attack_time_between = 0.15
-phase_2_aspid_attack_cooldown_time = 0.5
+phase_2_aspid_attack_cooldown_time = 0.7
 phase_2_aspid_attack_count = 5
 phase_2_aspid_shot_angle = 25
+phase_2_dash_speed = 700.0
 phase_2_orbit_speed = 2.5
-phase_2_duck_attack_cooldown_time = 0.6
-phase_2_scythe_attack_cooldown_time = 1.0
-phase_2_normal_scythe_attack_times = 2
-phase_2_ceiling_attack_cooldown_time = 0.5
-phase_2_ceiling_attack_amount = 80
-phase_2_ceiling_attack_time_between = 0.08
-phase_2_homing_attack_cooldown_time = 0.7
+phase_2_duck_attack_cooldown_time = 0.9
+phase_2_scythe_attack_cooldown_time = 1.4
+phase_2_scythe_attack_count = 2
+phase_2_scythe_shot_angle = 150
+phase_2_ceiling_attack_amount = 60
+phase_2_ceiling_attack_time_between = 0.11
+phase_2_ceiling_tp_between_times = 3
+phase_2_homing_attack_cooldown_time = 1.2
 phase_2_homing_attack_count = 2
-phase_2_homing_shot_angle = 100
+phase_2_homing_shot_angle = 140
 phase_2_normal_homing_attack_times = 2
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1966045575]
@@ -289,12 +291,6 @@ to = NodePath("../../homing_clover")
 event = &"homing"
 delay_in_seconds = "0.0"
 
-[node name="to_head_throw" type="Node" parent="StateChart/ParallelState/attack/idle_active" unique_id=603459263]
-script = ExtResource("8_gcouw")
-to = NodePath("../../head_throw")
-event = &"head_throw"
-delay_in_seconds = "0.0"
-
 [node name="spade_aspid_attack" type="Node" parent="StateChart/ParallelState/attack" unique_id=1076649549]
 script = ExtResource("7_aappj")
 
@@ -344,15 +340,6 @@ delay_in_seconds = "0.0"
 script = ExtResource("7_aappj")
 
 [node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/homing_clover" unique_id=530535208]
-script = ExtResource("8_gcouw")
-to = NodePath("../../idle_active")
-event = &"attack_stop"
-delay_in_seconds = "0.0"
-
-[node name="head_throw" type="Node" parent="StateChart/ParallelState/attack" unique_id=429834948]
-script = ExtResource("7_aappj")
-
-[node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/head_throw" unique_id=1402138753]
 script = ExtResource("8_gcouw")
 to = NodePath("../../idle_active")
 event = &"attack_stop"
@@ -436,5 +423,4 @@ bus = &"SFX"
 [connection signal="state_entered" from="StateChart/ParallelState/attack/scythe" to="." method="_on_scythe_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/ceiling_diamonds" to="." method="_on_ceiling_diamonds_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/homing_clover" to="." method="_on_homing_clover_state_entered"]
-[connection signal="state_entered" from="StateChart/ParallelState/attack/head_throw" to="." method="_on_head_throw_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/phase/phase 2" to="." method="_on_phase_2_state_entered"]
