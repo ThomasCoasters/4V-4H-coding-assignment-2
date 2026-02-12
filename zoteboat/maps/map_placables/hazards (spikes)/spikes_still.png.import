@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bb2h7gysppyil"
-path="res://.godot/imported/spikes_still.png-562eee80b31b58bb17305333d4f5adbd.ctex"
+path="res://.godot/imported/spikes_still.png-57c7cebccb23f7f838e76717b7ab68ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://maps/hazards + respawns/hazards (spikes)/spikes_still.png"
-dest_files=["res://.godot/imported/spikes_still.png-562eee80b31b58bb17305333d4f5adbd.ctex"]
+source_file="res://maps/map_placables/hazards (spikes)/spikes_still.png"
+dest_files=["res://.godot/imported/spikes_still.png-57c7cebccb23f7f838e76717b7ab68ca.ctex"]
 
 [params]
 

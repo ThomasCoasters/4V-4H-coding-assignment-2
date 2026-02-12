@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b60o5r2c5plrs"]
 
-[ext_resource type="Script" uid="uid://b0lg7t80ppxjv" path="res://maps/hazards + respawns/dissable movement/dissable_movement.gd" id="1_o7blo"]
+[ext_resource type="Script" uid="uid://b0lg7t80ppxjv" path="res://maps/map_placables/dissable movement/dissable_movement.gd" id="1_o7blo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mj5s0"]
 

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bk8vqqi7q7ylb"]
 
-[ext_resource type="Script" uid="uid://c3frdu7p07um6" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.gd" id="1_u27sq"]
+[ext_resource type="Script" uid="uid://c3frdu7p07um6" path="res://maps/map_placables/hazards (spikes)/spikes_collision.gd" id="1_u27sq"]
 
 [node name="SpikesCollision" type="Node2D" unique_id=417759129 groups=["map_transitions"]]
 script = ExtResource("1_u27sq")

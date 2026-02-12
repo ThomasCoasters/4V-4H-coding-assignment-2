@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://djdjlun3b8jss"]
 
-[ext_resource type="Script" uid="uid://csaag8eqml4nl" path="res://maps/hazards + respawns/respawns/hazard_respawn.gd" id="1_po82s"]
+[ext_resource type="Script" uid="uid://csaag8eqml4nl" path="res://maps/map_placables/respawns/hazard_respawn.gd" id="1_po82s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8qf24"]
 

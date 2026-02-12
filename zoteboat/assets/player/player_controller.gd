@@ -185,6 +185,8 @@ var sword_noises: Array[AudioStreamPlayer]
 
 @onready var zote_final_town_loop: AudioStreamPlayer = $audio/talking_noises/ZoteFinalTownLoop
 
+
+var save_pos: Vector2
 #endregion
 
 #region setup/process
@@ -778,7 +780,7 @@ func death():
 
 #region juice
 func hitstop_manager(time, vibration_time_mult: float = 1.0, vibration_type: String = "off"):
-	Engine.time_scale = 0
+	Engine.time_scale = 0.0001
 	
 	state_chart.send_event("jump_released")
 	
