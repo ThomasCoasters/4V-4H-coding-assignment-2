@@ -295,5 +295,18 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(1200, 544.00006)
 rotation = 3.1415927
 scale = Vector2(1, 13)
-warp_to = "res://maps/maps/pre-dash/room_1,-2.tscn"
-new_location_group = "TopRight_1-2"
+warp_to = "res://maps/maps/pre-dash/room_2,-1.tscn"
+new_location_group = "TopRight_2,-1"
+
+[node name="SpawnLocation3" parent="." unique_id=801541523 instance=ExtResource("2_5tbd0")]
+anchors_preset = -1
+anchor_left = 103.46667
+anchor_top = -21.4
+anchor_right = 103.46667
+anchor_bottom = -21.4
+offset_left = 1105.0
+offset_top = 642.0
+offset_right = 1135.0
+offset_bottom = 672.0
+own_group = "Right_1,-1"
+metadata/_edit_use_anchors_ = true
