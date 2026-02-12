@@ -225,6 +225,13 @@ phase_2_homing_attack_cooldown_time = 1.2
 phase_2_homing_attack_count = 2
 phase_2_homing_shot_angle = 140
 phase_2_normal_homing_attack_times = 2
+phase_3_aspid_attack_cooldown_time = 1.0
+phase_3_dash_speed = 500.0
+phase_3_orbit_radius = 80
+phase_3_duck_attack_active_time = 6.0
+phase_3_duck_attack_spawn_cooldown = 2.0
+phase_3_ceiling_attack_cooldown_time = 0.0
+phase_3_ceiling_attack_time_between = 0.3
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1966045575]
 texture_filter = 1

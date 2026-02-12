@@ -804,5 +804,34 @@ func _on_phase_2_state_entered() -> void:
 func phase_3_enter():
 	$StateChart/ParallelState/attack/scythe.queue_free()
 	
+	anim_tp_time = phase_3_anim_tp_time
 	
+	aspid_attack_cooldown_time = phase_3_aspid_attack_cooldown_time
+	aspid_attack_count = phase_3_aspid_attack_count
+	aspid_shot_angle = phase_3_aspid_shot_angle
+	normal_aspid_attack_times = phase_3_normal_aspid_attack_times
+	
+	circle_hearts_attack.orbit_radius = phase_3_orbit_radius
+	circle_hearts_attack.orbit_speed = phase_3_orbit_speed
+	dash_speed = phase_3_dash_speed
+	dash_max_time = phase_3_dash_max_time
+	dash_overshoot = phase_3_dash_overshoot
+	dash_slowdown_distance = phase_3_dash_slowdown_distance
+	dash_min_speed = phase_3_dash_min_speed
+	
+	duck_attack_cooldown_time = phase_3_duck_attack_cooldown_time
+	duck_attack_spawner.active_time = phase_3_duck_attack_active_time
+	duck_attack_spawner.spawn_cooldown = phase_3_duck_attack_spawn_cooldown
+	duck_attack_spawner.duck_speed = phase_3_duck_attack_speed
+	duck_attack_spawner.duck_vertical_speed = phase_3_duck_attack_vertical_speed
+	
+	ceiling_attack_cooldown_time = phase_3_ceiling_attack_cooldown_time
+	ceiling_attack_amount = phase_3_ceiling_attack_amount
+	ceiling_attack_time_between = phase_3_ceiling_attack_time_between
+	ceiling_tp_between_times = phase_3_ceiling_tp_between_times
+	
+	homing_attack_count = phase_3_homing_attack_count
+	homing_attack_cooldown_time = phase_3_homing_attack_cooldown_time
+	homing_shot_angle = phase_3_homing_shot_angle
+	normal_homing_attack_times = phase_3_normal_homing_attack_times
 #endregion
