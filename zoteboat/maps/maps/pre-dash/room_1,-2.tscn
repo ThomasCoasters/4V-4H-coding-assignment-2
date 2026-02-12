@@ -277,8 +277,8 @@ tile_set = SubResource("TileSet_7r8rt")
 position = Vector2(721, 159.00002)
 rotation = 3.1415927
 scale = Vector2(1, 6)
-warp_to = "res://maps/maps/pre-dash/room_1,-1.tscn"
-new_location_group = "Middle_1,-1"
+warp_to = "res://maps/maps/pre-dash/room_2,_1.tscn"
+new_location_group = "MiddleLeft_2,-1"
 
 [node name="SpawnLocation2" parent="." unique_id=1349581925 instance=ExtResource("2_xvytf")]
 offset_left = 577.0
