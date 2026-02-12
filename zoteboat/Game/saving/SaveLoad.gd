@@ -11,12 +11,12 @@ var DEFAULT_SAVE: Dictionary = {
 	"has_wall_cling": false,
 	
 	#"starting_room": "res://maps/maps/pre-dash/kingspass_for_losers.tscn",
-	#"starting_room": "res://maps/maps/pre-dash/room_1,0.tscn",
-	"starting_room": "res://maps/maps/jevil boss/jevil_arena.tscn",
+	"starting_room": "res://maps/examples/MOVING DEPRESSION/moving_depression.tscn",
+	#"starting_room": "res://maps/maps/jevil boss/jevil_arena.tscn",
 	
 	#"starting_location": "start_1,-1",
-	#"starting_location": "bench",
-	"starting_location": "Left_jevil",
+	"starting_location": "moving_platform_test",
+	#"starting_location": "Left_jevil",
 	
 	"rumble": 2,
 	"screen_shake": 2,
