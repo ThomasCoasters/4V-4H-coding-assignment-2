@@ -116,7 +116,7 @@ offset_left = 2177.0
 offset_top = 5090.0
 offset_right = 2207.0
 offset_bottom = 5120.0
-own_group = "Right_0,-2"
+own_group = "Right_-1,-2"
 metadata/_edit_use_anchors_ = true
 
 [node name="SpawnLocation4" parent="." unique_id=497054188 instance=ExtResource("3_g13wd")]
@@ -124,7 +124,7 @@ offset_left = 145.0
 offset_top = 5091.0
 offset_right = 175.0
 offset_bottom = 5121.0
-own_group = "Left_0,-2"
+own_group = "Top_-1,-2"
 metadata/_edit_use_anchors_ = true
 
 [node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." unique_id=1783895728]
