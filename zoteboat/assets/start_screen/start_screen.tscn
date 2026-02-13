@@ -262,8 +262,8 @@ theme_override_constants/separation = 60
 
 [node name="audio" type="Button" parent="settings" unique_id=934086725]
 layout_mode = 2
-focus_neighbor_top = NodePath("../screen_shake")
-focus_neighbor_bottom = NodePath("../exit")
+focus_neighbor_top = NodePath("../exit")
+focus_neighbor_bottom = NodePath("../rumble")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
@@ -277,7 +277,7 @@ text = "audio
 
 [node name="rumble" type="Button" parent="settings" unique_id=1319358564]
 layout_mode = 2
-focus_neighbor_top = NodePath("../exit")
+focus_neighbor_top = NodePath("../audio")
 focus_neighbor_bottom = NodePath("../screen_shake")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
@@ -291,7 +291,7 @@ text = "Rumble: Normal"
 [node name="screen_shake" type="Button" parent="settings" unique_id=1944336281]
 layout_mode = 2
 focus_neighbor_top = NodePath("../rumble")
-focus_neighbor_bottom = NodePath("../audio")
+focus_neighbor_bottom = NodePath("../exit")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
@@ -305,7 +305,7 @@ text = "Screen Shake: Normal
 [node name="exit" type="Button" parent="settings" unique_id=1641804972]
 layout_mode = 2
 focus_neighbor_top = NodePath("../screen_shake")
-focus_neighbor_bottom = NodePath("../rumble")
+focus_neighbor_bottom = NodePath("../audio")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
@@ -332,8 +332,8 @@ theme_override_constants/separation = 60
 
 [node name="master_volume" type="Button" parent="volume_settings" unique_id=1567123001]
 layout_mode = 2
-focus_neighbor_top = NodePath("../music_volume")
-focus_neighbor_bottom = NodePath("../exit_audio")
+focus_neighbor_top = NodePath("../exit_audio")
+focus_neighbor_bottom = NodePath("../sound_volume")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
@@ -346,7 +346,7 @@ text = "Master Volume: 5
 
 [node name="sound_volume" type="Button" parent="volume_settings" unique_id=1852095736]
 layout_mode = 2
-focus_neighbor_top = NodePath("../exit_audio")
+focus_neighbor_top = NodePath("../master_volume")
 focus_neighbor_bottom = NodePath("../music_volume")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
@@ -360,7 +360,7 @@ text = "Sound Volume: 5"
 [node name="music_volume" type="Button" parent="volume_settings" unique_id=1263840182]
 layout_mode = 2
 focus_neighbor_top = NodePath("../sound_volume")
-focus_neighbor_bottom = NodePath("../master_volume")
+focus_neighbor_bottom = NodePath("../exit_audio")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
@@ -374,7 +374,7 @@ text = "Music Volume: 5
 [node name="exit_audio" type="Button" parent="volume_settings" unique_id=277060763]
 layout_mode = 2
 focus_neighbor_top = NodePath("../music_volume")
-focus_neighbor_bottom = NodePath("../sound_volume")
+focus_neighbor_bottom = NodePath("../master_volume")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")

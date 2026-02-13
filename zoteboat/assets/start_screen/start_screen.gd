@@ -183,6 +183,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				_on_exit_pressed()
 			reset_save:
 				_on_saveno_pressed()
+			volume_settings:
+				_on_exit_audio_pressed()
 	
 	if event is InputEventMouseMotion:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

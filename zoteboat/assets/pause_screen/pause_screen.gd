@@ -11,7 +11,7 @@ var loading: bool = false
 
 @onready var rumble: Button = $settings/rumble
 @onready var screen_shake: Button = $settings/screen_shake
-@onready var volume: Button = $settings/volume
+@onready var volume: Button = $settings/audio
 @onready var exit: Button = $settings/exit
 
 @onready var left_arrow: AnimatedSprite2D = $left_arrow
@@ -22,6 +22,12 @@ var loading: bool = false
 @onready var basic_buttons: VBoxContainer = $"basic buttons"
 @onready var quit_game_buttons: VBoxContainer = $"quit game"
 @onready var settings: VBoxContainer = $settings
+@onready var volume_settings: VBoxContainer = $volume_settings
+
+@onready var master_volume: Button = $volume_settings/master_volume
+@onready var sound_volume: Button = $volume_settings/sound_volume
+@onready var music_volume: Button = $volume_settings/music_volume
+@onready var exit_audio: Button = $volume_settings/exit_audio
 
 @onready var title: AudioStreamPlayer = $audio/Title
 @onready var ui_button_cancel: AudioStreamPlayer = $audio/UiButtonCancel
@@ -56,15 +62,23 @@ var screen_shake_values = {
 }
 var current_screen_shake_index: int = 2
 
-var volume_states = ["Off", "Low", "Normal", "High", "way to high"]
+var volume_states = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 var volume_values = {
-	"Off": -80,
-	"Low": -10,
-	"Normal": 0,
-	"High": +10,
-	"way to high": +20,
+	"0": -80,
+	"1": -18,
+	"2": -16,
+	"3": -14,
+	"4": -12,
+	"5": -10,
+	"6": -8,
+	"7": -6,
+	"8": -4,
+	"9": -2,
+	"10": 0,
 }
-var current_volume_index: int = 2
+var current_master_volume_index: int = 10
+var current_sound_volume_index: int = 10
+var current_music_volume_index: int = 10
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -84,7 +98,19 @@ func _ready() -> void:
 	)
 	
 	var bus_index = AudioServer.get_bus_index("Master")
-	current_volume_index = index_from_value(
+	current_master_volume_index = index_from_value(
+		AudioServer.get_bus_volume_db(bus_index),
+		volume_states,
+		volume_values
+	)
+	bus_index = AudioServer.get_bus_index("SFX")
+	current_sound_volume_index = index_from_value(
+		AudioServer.get_bus_volume_db(bus_index),
+		volume_states,
+		volume_values
+	)
+	bus_index = AudioServer.get_bus_index("background")
+	current_music_volume_index = index_from_value(
 		AudioServer.get_bus_volume_db(bus_index),
 		volume_states,
 		volume_values
@@ -92,16 +118,18 @@ func _ready() -> void:
 	
 	rumble.text = "Rumble: " + rumble_states[current_rumble_index]
 	screen_shake.text = "Screen Shake: " + screen_shake_states[current_screen_shake_index]
-	volume.text = "Volume: " + volume_states[current_volume_index]
+	master_volume.text = "Master Volume: " + volume_states[current_master_volume_index]
+	sound_volume.text = "Master Volume: " + volume_states[current_sound_volume_index]
+	music_volume.text = "Master Volume: " + volume_states[current_music_volume_index]
 	
 	
-	containers = [basic_buttons, quit_game_buttons, settings]
+	containers = [basic_buttons, quit_game_buttons, settings, volume_settings]
 	
 	for contain in containers:
 		hide_menu(contain)
 	show_menu(basic_buttons)
 	
-	buttons = [start, options, quit_game, quit_yes, quit_no, rumble, screen_shake, volume, exit]
+	buttons = [start, options, quit_game, quit_yes, quit_no, rumble, screen_shake, volume, exit, master_volume, music_volume, sound_volume, exit_audio]
 	
 	for button in buttons:
 		button.mouse_entered.connect(_on_hover.bind(button))
@@ -127,6 +155,8 @@ func _unhandled_input(event: InputEvent) -> void:
 					quit_yes.grab_focus()
 				settings:
 					rumble.grab_focus()
+				volume_settings:
+					master_volume.grab_focus()
 			
 			controller_active = true
 		
@@ -141,6 +171,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				_on_quitno_pressed()
 			settings:
 				_on_exit_pressed()
+			volume_settings:
+				_on_exit_audio_pressed()
 	
 	elif event is InputEventMouseMotion:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -279,27 +311,77 @@ func _on_screen_shake_pressed() -> void:
 	SaveLoad.contents_to_save.screen_shake = current_screen_shake_index
 	SaveLoad._save()
 
-func _on_volume_pressed() -> void:
-	current_volume_index += 1
-	if current_volume_index >= volume_states.size():
-		current_volume_index = 0
-	
-	var state_name = volume_states[current_volume_index]
-	
-	volume.text = "Volume: " + state_name
-	
-	var bus_index = AudioServer.get_bus_index("Master")
-	AudioServer.set_bus_volume_db(bus_index, volume_values[state_name])
-	
-	ui_button_confirm.play()
-	
-	SaveLoad.contents_to_save.volume = current_volume_index
-	SaveLoad._save()
-
-
 func _on_exit_pressed() -> void:
 	for contain in containers:
 		hide_menu(contain)
 	show_menu(basic_buttons)
 	
 	ui_button_cancel.play()
+
+
+func _on_master_volume_pressed() -> void:
+	current_master_volume_index += 1
+	if current_master_volume_index >= volume_states.size():
+		current_master_volume_index = 0
+	
+	var state_name = volume_states[current_master_volume_index]
+	
+	master_volume.text = "Master Volume: " + state_name
+	
+	var bus_index = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_db(bus_index, volume_values[state_name])
+	
+	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.master_volume = current_master_volume_index
+	SaveLoad._save()
+
+
+func _on_sound_volume_pressed() -> void:
+	current_sound_volume_index += 1
+	if current_sound_volume_index >= volume_states.size():
+		current_sound_volume_index = 0
+	
+	var state_name = volume_states[current_sound_volume_index]
+	
+	sound_volume.text = "Sound Volume: " + state_name
+	
+	var bus_index = AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_volume_db(bus_index, volume_values[state_name])
+	
+	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.sound_volume = current_sound_volume_index
+	SaveLoad._save()
+
+
+func _on_music_volume_pressed() -> void:
+	current_music_volume_index += 1
+	if current_music_volume_index >= volume_states.size():
+		current_music_volume_index = 0
+	
+	var state_name = volume_states[current_music_volume_index]
+	
+	music_volume.text = "Music Volume: " + state_name
+	
+	var bus_index = AudioServer.get_bus_index("background")
+	AudioServer.set_bus_volume_db(bus_index, volume_values[state_name])
+	
+	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.music_volume = current_music_volume_index
+	SaveLoad._save()
+
+func _on_exit_audio_pressed() -> void:
+	for contain in containers:
+		hide_menu(contain)
+	show_menu(settings)
+	
+	ui_button_cancel.play()
+
+func _on_audio_pressed() -> void:
+	for contain in containers:
+		hide_menu(contain)
+	show_menu(volume_settings)
+	
+	ui_button_confirm.play()

@@ -26,6 +26,34 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_07r14"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_28264"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yhcva"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s1vku"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mat2k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qywg0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wdfp7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_frkpx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hfv3b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uvv7k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n2qc7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mibj1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_buiua"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hvee"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mcot3"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_o8x2c"]
 atlas = ExtResource("4_3a5xr")
 region = Rect2(0, 0, 99, 72)
@@ -244,9 +272,24 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 60
 
-[node name="rumble" type="Button" parent="settings" unique_id=106340399]
+[node name="audio" type="Button" parent="settings" unique_id=1339229954]
 layout_mode = 2
 focus_neighbor_top = NodePath("../exit")
+focus_neighbor_bottom = NodePath("../rumble")
+theme_override_fonts/font = ExtResource("2_28264")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_28264")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_yhcva")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_s1vku")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_mat2k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qywg0")
+text = "audio
+
+"
+
+[node name="rumble" type="Button" parent="settings" unique_id=106340399]
+layout_mode = 2
+focus_neighbor_top = NodePath("../audio")
 focus_neighbor_bottom = NodePath("../screen_shake")
 theme_override_fonts/font = ExtResource("2_28264")
 theme_override_font_sizes/font_size = 35
@@ -260,7 +303,7 @@ text = "Rumble: Normal"
 [node name="screen_shake" type="Button" parent="settings" unique_id=281302063]
 layout_mode = 2
 focus_neighbor_top = NodePath("../rumble")
-focus_neighbor_bottom = NodePath("../volume")
+focus_neighbor_bottom = NodePath("../exit")
 theme_override_fonts/font = ExtResource("2_28264")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vk6rb")
@@ -271,24 +314,10 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_meutu")
 text = "Screen Shake: Normal
 "
 
-[node name="volume" type="Button" parent="settings" unique_id=1114099351]
-layout_mode = 2
-focus_neighbor_top = NodePath("../screen_shake")
-focus_neighbor_bottom = NodePath("../exit")
-theme_override_fonts/font = ExtResource("2_28264")
-theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxEmpty_vk6rb")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_doa2q")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_3uuhd")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_3a5xr")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_meutu")
-text = "volume: Normal
-"
-
 [node name="exit" type="Button" parent="settings" unique_id=15519018]
 layout_mode = 2
 focus_neighbor_top = NodePath("../screen_shake")
-focus_neighbor_bottom = NodePath("../rumble")
+focus_neighbor_bottom = NodePath("../audio")
 theme_override_fonts/font = ExtResource("2_28264")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vk6rb")
@@ -296,6 +325,75 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_doa2q")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_q5osy")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_3a5xr")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_07r14")
+text = "back"
+
+[node name="volume_settings" type="VBoxContainer" parent="." unique_id=425261613]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -221.0
+offset_top = -162.0
+offset_right = 221.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+
+[node name="master_volume" type="Button" parent="volume_settings" unique_id=1442589555]
+layout_mode = 2
+focus_neighbor_top = NodePath("../exit_audio")
+focus_neighbor_bottom = NodePath("../sound_volume")
+theme_override_fonts/font = ExtResource("2_28264")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wdfp7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_frkpx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hfv3b")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_uvv7k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n2qc7")
+text = "Master Volume: 5
+"
+
+[node name="sound_volume" type="Button" parent="volume_settings" unique_id=2090647312]
+layout_mode = 2
+focus_neighbor_top = NodePath("../master_volume")
+focus_neighbor_bottom = NodePath("../music_volume")
+theme_override_fonts/font = ExtResource("2_28264")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wdfp7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_frkpx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mibj1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_uvv7k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_buiua")
+text = "Sound Volume: 5"
+
+[node name="music_volume" type="Button" parent="volume_settings" unique_id=1373249511]
+layout_mode = 2
+focus_neighbor_top = NodePath("../sound_volume")
+focus_neighbor_bottom = NodePath("../exit_audio")
+theme_override_fonts/font = ExtResource("2_28264")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wdfp7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_frkpx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hfv3b")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_uvv7k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n2qc7")
+text = "Music Volume: 5
+"
+
+[node name="exit_audio" type="Button" parent="volume_settings" unique_id=1875992256]
+layout_mode = 2
+focus_neighbor_top = NodePath("../music_volume")
+focus_neighbor_bottom = NodePath("../master_volume")
+theme_override_fonts/font = ExtResource("2_28264")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wdfp7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_frkpx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8hvee")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_uvv7k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mcot3")
 text = "back"
 
 [node name="left_arrow" type="AnimatedSprite2D" parent="." unique_id=1954145779]
@@ -313,22 +411,30 @@ flip_h = true
 
 [node name="Title" type="AudioStreamPlayer" parent="audio" unique_id=2027732052]
 stream = ExtResource("5_1p2ls")
+bus = &"background"
 
 [node name="UiButtonCancel" type="AudioStreamPlayer" parent="audio" unique_id=1422911701]
 stream = ExtResource("6_3uuhd")
+bus = &"SFX"
 
 [node name="UiButtonConfirm" type="AudioStreamPlayer" parent="audio" unique_id=1499072238]
 stream = ExtResource("7_meutu")
+bus = &"SFX"
 
 [node name="UiChangeSelection" type="AudioStreamPlayer" parent="audio" unique_id=1619317620]
 stream = ExtResource("8_q5osy")
+bus = &"SFX"
 
 [connection signal="pressed" from="basic buttons/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="basic buttons/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="basic buttons/Quit Game" to="." method="_on_quit_game_pressed"]
 [connection signal="pressed" from="quit game/Quit-yes" to="." method="_on_quityes_pressed"]
 [connection signal="pressed" from="quit game/Quit-no" to="." method="_on_quitno_pressed"]
+[connection signal="pressed" from="settings/audio" to="." method="_on_audio_pressed"]
 [connection signal="pressed" from="settings/rumble" to="." method="_on_rumble_pressed"]
 [connection signal="pressed" from="settings/screen_shake" to="." method="_on_screen_shake_pressed"]
-[connection signal="pressed" from="settings/volume" to="." method="_on_volume_pressed"]
 [connection signal="pressed" from="settings/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="volume_settings/master_volume" to="." method="_on_master_volume_pressed"]
+[connection signal="pressed" from="volume_settings/sound_volume" to="." method="_on_sound_volume_pressed"]
+[connection signal="pressed" from="volume_settings/music_volume" to="." method="_on_music_volume_pressed"]
+[connection signal="pressed" from="volume_settings/exit_audio" to="." method="_on_exit_audio_pressed"]

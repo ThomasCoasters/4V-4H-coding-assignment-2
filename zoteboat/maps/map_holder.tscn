@@ -35,3 +35,4 @@ offset_bottom = 40.0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="audio" unique_id=1834292365]
 volume_db = -15.0
 autoplay = true
+bus = &"background"
