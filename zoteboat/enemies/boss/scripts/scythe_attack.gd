@@ -86,7 +86,14 @@ func _move_and_bounce(delta: float) -> void:
 	if collision:
 		direction = direction.bounce(collision.get_normal()).normalized()
 		direction = _apply_soft_homing(direction)
-	
+		
+		var hit_effect: GPUParticles2D = $HitEffect
+		if hit_effect.emitting:
+			hit_effect = $HitEffect2
+		
+		hit_effect.emitting = true
+		hit_effect.rotation = direction.angle() - deg_to_rad(90)
+		Global.player.hitstop_manager(0.05, 1.0, "medium")
 	
 	sprite.rotation -= spin_speed * delta
 

@@ -11,6 +11,7 @@ signal killed(node: Node2D)
 
 
 @onready var state_chart: StateChart = $StateChart
+@onready var stagger_timer: Timer = $stagger_timer
 
 var arena_bounds: CollisionShape2D
 
@@ -23,11 +24,17 @@ enum ArenaSurface {
 }
 
 @export_group("phase settings")
+@export_subgroup("phase start %")
 @export_range(0.0, 1.0, 0.01) var phase_2_health_percent: float = 0.99
 @export_range(0.0, 1.0, 0.01) var phase_3_health_percent: float = 0.96
 @export_range(0.0, 1.0, 0.01) var anim_tp_time: float = 0.5
 @export_range(0.0, 1.0, 0.01) var phase_2_anim_tp_time: float = 0.25
 @export_range(0.0, 1.0, 0.01) var phase_3_anim_tp_time: float = 0.7
+
+@export_range(0.0, 5.0, 0.01) var stagger_time: float = 0.5
+@export_range(0.0, 5.0, 0.01) var phase_2_stagger_time: float = 0.25
+@export_range(0.0, 5.0, 0.01) var phase_3_stagger_time: float = 0.7
+
 @export_range(0, 3, 1) var begin_phase: int = 1
 
 @export_group("attacks (phase 1)")
@@ -223,6 +230,8 @@ func _ready() -> void:
 	duck_attack_spawner.spawn_offset_x = get_arena_rect().size.x / 2
 	duck_attack_spawner.set_as_top_level(true)
 	
+	stagger_timer.wait_time = stagger_time
+	
 	stats.health_changed.connect(_on_health_changed)
 	stats.health_depleted.connect(_on_health_depleted)
 	
@@ -269,6 +278,9 @@ func deactivate():
 #region pathfinding
 
 func _physics_process(delta: float) -> void:
+	if $StateChart/ParallelState/stun/stunned.active:
+		return
+	
 	if is_nan(position.x) || is_nan(position.y):
 		push_error("Enemy position became NaN")
 		killed.emit(self)
@@ -596,10 +608,6 @@ func _on_homing_clover_state_entered() -> void:
 	print("homing")
 	homing_attack_times = normal_homing_attack_times
 	play_anim("tp_out")
-
-func _on_head_throw_state_entered() -> void:
-	print("head")
-	state_chart.send_event("attack_stop")
 #endregion
 
 
@@ -624,7 +632,7 @@ func aspid_attack():
 		projectile.rotation = angle
 	
 	aspid_attack_times -= 1
-	if aspid_attack_times <= 0:
+	if aspid_attack_times <= 0 || $StateChart/ParallelState/stun/stunned.active:
 		state_chart.send_event("attack_stop")
 	
 	else:
@@ -668,7 +676,7 @@ func end_dash():
 
 #region scythe attack
 func scythe_attack():
-	if scythe_attack_times <= 0:
+	if scythe_attack_times <= 0 || $StateChart/ParallelState/stun/stunned.active:
 		await get_tree().create_timer(scythe_attack_cooldown_time).timeout
 		state_chart.send_event("attack_stop")
 		return
@@ -708,7 +716,7 @@ func duck_attack():
 
 #region ceiling diamonds
 func ceiling_diamonds_attack():
-	if ceiling_tp_left <= 0:
+	if ceiling_tp_left <= 0 || $StateChart/ParallelState/stun/stunned.active:
 		await get_tree().create_timer(ceiling_attack_cooldown_time).timeout
 		state_chart.send_event("attack_stop")
 		return
@@ -751,7 +759,7 @@ func homing_attack():
 		projectile.rotation = angle
 	
 	homing_attack_times -= 1
-	if homing_attack_times <= 0:
+	if homing_attack_times <= 0 || $StateChart/ParallelState/stun/stunned.active:
 		state_chart.send_event("attack_stop")
 	
 	else:
@@ -765,6 +773,7 @@ func homing_attack():
 #region phases
 func _on_phase_2_state_entered() -> void:
 	anim_tp_time = phase_2_anim_tp_time
+	stagger_timer.wait_time = phase_2_stagger_time
 	
 	aspid_attack_cooldown_time = phase_2_aspid_attack_cooldown_time
 	aspid_attack_count = phase_2_aspid_attack_count
@@ -805,6 +814,7 @@ func phase_3_enter():
 	$StateChart/ParallelState/attack/scythe.queue_free()
 	
 	anim_tp_time = phase_3_anim_tp_time
+	stagger_timer.wait_time = phase_3_stagger_time
 	
 	aspid_attack_cooldown_time = phase_3_aspid_attack_cooldown_time
 	aspid_attack_count = phase_3_aspid_attack_count
@@ -834,4 +844,15 @@ func phase_3_enter():
 	homing_attack_cooldown_time = phase_3_homing_attack_cooldown_time
 	homing_shot_angle = phase_3_homing_shot_angle
 	normal_homing_attack_times = phase_3_normal_homing_attack_times
+#endregion
+
+
+#region stagger
+func _on_stagger_timer_timeout() -> void:
+	state_chart.send_event("stop_stun")
+	choose_attack()
+
+func _on_stunned_state_entered() -> void:
+	play_anim("stagger")
+
 #endregion

@@ -103,6 +103,10 @@ region = Rect2(16, 52, 42, 41)
 atlas = ExtResource("2_sggmd")
 region = Rect2(60, 52, 42, 41)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a24l4"]
+atlas = ExtResource("2_sggmd")
+region = Rect2(104, 52, 42, 41)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_g81kc"]
 animations = [{
 "frames": [{
@@ -192,6 +196,14 @@ animations = [{
 "loop": false,
 "name": &"death",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a24l4")
+}],
+"loop": true,
+"name": &"stagger",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
@@ -203,8 +215,12 @@ collision_mask = 65536
 script = ExtResource("1_sggmd")
 stats = SubResource("Resource_ufmpn")
 nav_agent = NodePath("NavigationAgent2D")
-phase_3_health_percent = 0.95
+phase_2_health_percent = 0.6
+phase_3_health_percent = 0.15
 phase_2_anim_tp_time = 0.35
+stagger_time = 2.0
+phase_2_stagger_time = 2.0
+phase_3_stagger_time = 4.0
 circle_hearts_attack = NodePath("CircleHeartsAttack")
 duck_attack_spawner = NodePath("DuckAttackSpawner")
 ceiling_attack_amount = 14
@@ -237,9 +253,8 @@ phase_3_ceiling_attack_time_between = 0.3
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g81kc")
-animation = &"dance(front)"
+animation = &"stagger"
 autoplay = "dance(front)"
-frame_progress = 0.81339175
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2104192833]
 shape = SubResource("RectangleShape2D_pst0k")
@@ -424,6 +439,9 @@ bus = &"SFX"
 
 [node name="CircleHeartsAttack" parent="." unique_id=223053288 instance=ExtResource("16_ufmpn")]
 
+[node name="stagger_timer" type="Timer" parent="." unique_id=1864061422]
+one_shot = true
+
 [connection signal="state_entered" from="StateChart/ParallelState/attack/idle_active" to="." method="_on_idle_active_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/spade_aspid_attack" to="." method="_on_spade_aspid_attack_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/spinning_circle" to="." method="_on_spinning_circle_state_entered"]
@@ -431,4 +449,6 @@ bus = &"SFX"
 [connection signal="state_entered" from="StateChart/ParallelState/attack/ceiling_diamonds" to="." method="_on_ceiling_diamonds_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/homing_clover" to="." method="_on_homing_clover_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/scythe" to="." method="_on_scythe_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/stun/stunned" to="." method="_on_stunned_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/phase/phase 2" to="." method="_on_phase_2_state_entered"]
+[connection signal="timeout" from="stagger_timer" to="." method="_on_stagger_timer_timeout"]

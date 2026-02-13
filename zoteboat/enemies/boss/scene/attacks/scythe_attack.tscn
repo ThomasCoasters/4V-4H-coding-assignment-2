@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cox27is5jksoc" path="res://enemies/boss/scripts/scythe_attack.gd" id="1_j28fw"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_5gtlt"]
 [ext_resource type="Texture2D" uid="uid://bb37uyfurxg6o" path="res://enemies/boss/assets/jevil/jevil sprites.png" id="2_j28fw"]
+[ext_resource type="PackedScene" uid="uid://ear4rb07owa4" path="res://assets/particles/effects/hit effect.tscn" id="4_cwqsn"]
 
 [sub_resource type="Resource" id="Resource_cwqsn"]
 script = ExtResource("2_5gtlt")
@@ -27,6 +28,37 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_qv56x"]
+offsets = PackedFloat32Array(0.23278688, 0.9213115)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h4atg"]
+gradient = SubResource("Gradient_qv56x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_32dpp"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 30, 1)
+angle_min = -360.0
+angle_max = 360.00003
+spread = 53.78
+initial_velocity_min = 200.0
+initial_velocity_max = 451.97
+angular_velocity_min = -720.0
+angular_velocity_max = 719.99994
+gravity = Vector3(-98, 98, 0)
+linear_accel_min = -100.0
+linear_accel_max = -37.800003
+radial_accel_min = -100.0
+radial_accel_max = 99.99999
+damping_max = 100.00001
+scale_min = 5.0
+scale_max = 7.0
+scale_over_velocity_max = 1000.0
+color_ramp = SubResource("GradientTexture1D_h4atg")
+collision_mode = 2
+
 [node name="sythe_attack" type="CharacterBody2D" unique_id=624014212 groups=["enemy_attack"]]
 collision_layer = 8
 collision_mask = 2
@@ -46,5 +78,23 @@ sprite_frames = SubResource("SpriteFrames_qv56x")
 [node name="remove_time" type="Timer" parent="." unique_id=874799146]
 wait_time = 5.0
 one_shot = true
+
+[node name="HitEffect" parent="." unique_id=1333947951 instance=ExtResource("4_cwqsn")]
+position = Vector2(0, 50)
+rotation = -1.5707964
+scale = Vector2(3, 3)
+lifetime = 0.37
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_32dpp")
+script = null
+
+[node name="HitEffect2" parent="." unique_id=1539061560 instance=ExtResource("4_cwqsn")]
+position = Vector2(0, 50)
+rotation = -1.5707964
+scale = Vector2(3, 3)
+lifetime = 0.37
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_32dpp")
+script = null
 
 [connection signal="timeout" from="remove_time" to="." method="_on_remove_time_timeout"]
