@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://desufiot6ea2v" path="res://enemies/normal/peashooter/peashooter.tscn" id="5_na5tl"]
 [ext_resource type="PackedScene" uid="uid://e03auo7ekd6c" path="res://enemies/normal/dvd_logo/dvd_enemy.tscn" id="6_maj27"]
 [ext_resource type="Script" uid="uid://d4jiec105wvyu" path="res://maps/MapHolder.gd" id="7_h5wyx"]
-[ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/hazards + respawns/hazards (spikes)/spikes_collision.tscn" id="8_na5tl"]
-[ext_resource type="Texture2D" uid="uid://bb2h7gysppyil" path="res://maps/hazards + respawns/hazards (spikes)/spikes_still.png" id="9_maj27"]
+[ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/map_placables/hazards (spikes)/spikes_collision.tscn" id="8_na5tl"]
+[ext_resource type="Texture2D" uid="uid://bb2h7gysppyil" path="res://maps/map_placables/hazards (spikes)/spikes_still.png" id="9_maj27"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("3_vt07r")
@@ -245,140 +245,140 @@ position = Vector2(750, -1386)
 [node name="EDIT THIS" parent="hazards/SpikesCollision6/StaticBody2D" parent_id_path=PackedInt32Array(1061652165, 1580090474) index="0" unique_id=1846142658]
 polygon = PackedVector2Array(-10, -470, 18, -470, 18, 7, -10, 7)
 
-[node name="visuals" type="Node" parent="." unique_id=1217769626]
+[node name="visual" type="Node" parent="." unique_id=1217769626]
 script = ExtResource("7_h5wyx")
 metadata/_custom_type_script = "uid://d4jiec105wvyu"
 
-[node name="SpikesStill" type="Sprite2D" parent="visuals" unique_id=1553303003]
+[node name="SpikesStill" type="Sprite2D" parent="visual" unique_id=1553303003]
 z_index = -1
 position = Vector2(-581, -1838)
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill2" type="Sprite2D" parent="visuals" unique_id=1368430841]
+[node name="SpikesStill2" type="Sprite2D" parent="visual" unique_id=1368430841]
 z_index = -1
 position = Vector2(-714, -1838)
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill3" type="Sprite2D" parent="visuals" unique_id=975798769]
+[node name="SpikesStill3" type="Sprite2D" parent="visual" unique_id=975798769]
 z_index = -1
 position = Vector2(-581, 817)
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill4" type="Sprite2D" parent="visuals" unique_id=158707793]
+[node name="SpikesStill4" type="Sprite2D" parent="visual" unique_id=158707793]
 z_index = -1
 position = Vector2(-713, 818)
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill5" type="Sprite2D" parent="visuals" unique_id=92079337]
+[node name="SpikesStill5" type="Sprite2D" parent="visual" unique_id=92079337]
 z_index = -1
 position = Vector2(430, 1228)
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill6" type="Sprite2D" parent="visuals" unique_id=870391873]
+[node name="SpikesStill6" type="Sprite2D" parent="visual" unique_id=870391873]
 z_index = -1
 position = Vector2(298, 1228)
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill7" type="Sprite2D" parent="visuals" unique_id=232502897]
+[node name="SpikesStill7" type="Sprite2D" parent="visual" unique_id=232502897]
 z_index = -1
 position = Vector2(166, 1228)
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill8" type="Sprite2D" parent="visuals" unique_id=721880446]
+[node name="SpikesStill8" type="Sprite2D" parent="visual" unique_id=721880446]
 z_index = -1
 position = Vector2(34, 1228)
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill9" type="Sprite2D" parent="visuals" unique_id=2067397304]
+[node name="SpikesStill9" type="Sprite2D" parent="visual" unique_id=2067397304]
 z_index = -1
 position = Vector2(562, 1228)
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill10" type="Sprite2D" parent="visuals" unique_id=509905693]
+[node name="SpikesStill10" type="Sprite2D" parent="visual" unique_id=509905693]
 z_index = -1
 position = Vector2(694, 1228)
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill11" type="Sprite2D" parent="visuals" unique_id=1457570377]
+[node name="SpikesStill11" type="Sprite2D" parent="visual" unique_id=1457570377]
 z_index = -1
 position = Vector2(803, 1209)
 scale = Vector2(0.6582734, 1)
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill12" type="Sprite2D" parent="visuals" unique_id=424391020]
+[node name="SpikesStill12" type="Sprite2D" parent="visual" unique_id=424391020]
 z_index = -1
 position = Vector2(-685, -1029)
 rotation = 1.5707964
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill13" type="Sprite2D" parent="visuals" unique_id=1334656593]
+[node name="SpikesStill13" type="Sprite2D" parent="visual" unique_id=1334656593]
 z_index = -1
 position = Vector2(-685, -1161)
 rotation = 1.5707964
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill14" type="Sprite2D" parent="visuals" unique_id=2103546947]
+[node name="SpikesStill14" type="Sprite2D" parent="visual" unique_id=2103546947]
 z_index = -1
 position = Vector2(-685, -1293)
 rotation = 1.5707964
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill15" type="Sprite2D" parent="visuals" unique_id=711621861]
+[node name="SpikesStill15" type="Sprite2D" parent="visual" unique_id=711621861]
 z_index = -1
 position = Vector2(-685, -1426)
 rotation = 1.5707964
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill16" type="Sprite2D" parent="visuals" unique_id=1241372227]
+[node name="SpikesStill16" type="Sprite2D" parent="visual" unique_id=1241372227]
 z_index = -1
 position = Vector2(-685.5, -1.5)
 rotation = 1.5707964
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill17" type="Sprite2D" parent="visuals" unique_id=692231151]
+[node name="SpikesStill17" type="Sprite2D" parent="visual" unique_id=692231151]
 z_index = -1
 position = Vector2(-685.5, -133.5)
 rotation = 1.5707964
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill18" type="Sprite2D" parent="visuals" unique_id=1973292780]
+[node name="SpikesStill18" type="Sprite2D" parent="visual" unique_id=1973292780]
 z_index = -1
 position = Vector2(-685.5, -265.5)
 rotation = 1.5707964
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill19" type="Sprite2D" parent="visuals" unique_id=1784620585]
+[node name="SpikesStill19" type="Sprite2D" parent="visual" unique_id=1784620585]
 z_index = -1
 position = Vector2(-685.5, -398.5)
 rotation = 1.5707964
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill20" type="Sprite2D" parent="visuals" unique_id=445425406]
+[node name="SpikesStill20" type="Sprite2D" parent="visual" unique_id=445425406]
 z_index = -1
 position = Vector2(-693.00006, -489)
 rotation = 1.5707964
 scale = Vector2(0.4942258, 0.67744374)
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill21" type="Sprite2D" parent="visuals" unique_id=1968504742]
+[node name="SpikesStill21" type="Sprite2D" parent="visual" unique_id=1968504742]
 z_index = -1
 position = Vector2(747.5, -1443.5)
 rotation = 4.712389
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill22" type="Sprite2D" parent="visuals" unique_id=231070342]
+[node name="SpikesStill22" type="Sprite2D" parent="visual" unique_id=231070342]
 z_index = -1
 position = Vector2(747.5, -1575.5)
 rotation = 4.712389
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill23" type="Sprite2D" parent="visuals" unique_id=862763065]
+[node name="SpikesStill23" type="Sprite2D" parent="visual" unique_id=862763065]
 z_index = -1
 position = Vector2(747.5, -1707.5)
 rotation = 4.712389
 texture = ExtResource("9_maj27")
 
-[node name="SpikesStill24" type="Sprite2D" parent="visuals" unique_id=2045202470]
+[node name="SpikesStill24" type="Sprite2D" parent="visual" unique_id=2045202470]
 z_index = -1
 position = Vector2(747.5, -1840.5)
 rotation = 4.712389

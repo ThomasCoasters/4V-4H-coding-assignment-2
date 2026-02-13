@@ -182,8 +182,8 @@ progress = 211.49403
 [node name="WarpZone5" parent="." unique_id=601061638 instance=ExtResource("2_givco")]
 position = Vector2(2112, 5801)
 scale = Vector2(10, 1)
-warp_to = "res://maps/maps/pre-dash/room_0,-2.tscn"
-new_location_group = "Left_0,-2"
+warp_to = "res://maps/maps/pre-dash/room_0,-3.tscn"
+new_location_group = "Top_0,-3"
 
 [editable path="tiktik"]
 [editable path="tiktik2"]
