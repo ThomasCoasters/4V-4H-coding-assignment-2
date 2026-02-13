@@ -1,11 +1,6 @@
 extends Area2D
 
 @export_group("nodes")
-@export var doors: TileMapLayer
-
-var arena_started: bool = false
-var arena_finished: bool = false
-
 @export var camera_pos: Node2D
 
 var current_wave: int = 0
@@ -14,6 +9,17 @@ var wave_to_node : Dictionary = {}
 @export var wave_holder : Node2D
 
 @export var arena_bounds: CollisionShape2D
+
+
+@export_subgroup("map stuff")
+@export var doors: TileMapLayer
+
+@export var before_safety_map: TileMapLayer
+@export var after_safety_map: TileMapLayer
+
+var arena_started: bool = false
+var arena_finished: bool = false
+
 
 var player
 
@@ -63,6 +69,11 @@ func _ready():
 	if doors:
 		doors.enabled = false
 	
+	if before_safety_map:
+		before_safety_map.enabled = true
+	if after_safety_map && before_safety_map != after_safety_map:
+		after_safety_map.enabled = false
+	
 	for wave_number in range(wave_holder.get_child_count()):
 		wave_to_node[wave_number+1] = wave_holder.get_child(wave_number)
 	
@@ -93,12 +104,18 @@ func start_arena():
 			Global.map_holder.new_audio(arena_audio_path)
 	
 	spawn_wave()
+	
+	if before_safety_map:
+		before_safety_map.enabled = false
 
 func finish_arena():
 	arena_started = false
 	arena_finished = true
 	if doors:
 		doors.enabled = false
+	
+	if after_safety_map:
+		after_safety_map.enabled = true
 	
 	player.current_camera_type = "free"
 	player.forced_position = null

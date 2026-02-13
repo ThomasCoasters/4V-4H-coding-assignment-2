@@ -20,7 +20,7 @@
 
 [sub_resource type="Resource" id="Resource_ufmpn"]
 script = ExtResource("2_aj26w")
-max_health = 550
+max_health = 1
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qkeuv"]
@@ -221,7 +221,6 @@ phase_2_anim_tp_time = 0.35
 stagger_time = 3.0
 phase_2_stagger_time = 2.0
 phase_3_stagger_time = 4.0
-stagger_hits = 1
 circle_hearts_attack = NodePath("CircleHeartsAttack")
 duck_attack_spawner = NodePath("DuckAttackSpawner")
 ceiling_attack_amount = 14
@@ -254,7 +253,7 @@ phase_3_ceiling_attack_time_between = 0.3
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g81kc")
-animation = &"stagger"
+animation = &"attack"
 autoplay = "dance(front)"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2104192833]
