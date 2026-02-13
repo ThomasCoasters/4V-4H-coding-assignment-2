@@ -56,6 +56,7 @@ func _ready() -> void:
 	tween.parallel().tween_property(sprite, "scale", Vector2(4.5, 4.5), spin_up_time).from(Vector2.ZERO)
 	tween.finished.connect(func():
 		collision_shape_2d.disabled = false
+		_resolve_initial_overlap()
 )
 
 #region spinnin'
@@ -128,3 +129,34 @@ func _on_remove_time_timeout() -> void:
 	tween.finished.connect(func():
 		queue_free()
 )
+
+
+
+
+
+
+func _resolve_initial_overlap():
+	var space_state = get_world_2d().direct_space_state
+	
+	var max_push_distance := 256.0
+	var step := 4.0
+	var pushed := 0.0
+	
+	while pushed < max_push_distance:
+		var params := PhysicsShapeQueryParameters2D.new()
+		params.shape = collision_shape_2d.shape
+		params.transform = global_transform
+		params.collision_mask = collision_mask
+		params.exclude = [self]
+		
+		var result = space_state.intersect_shape(params, 1)
+		
+		if result.is_empty():
+			return # ✅ we're clear
+		
+		# push forward along shooting direction
+		global_position += direction.normalized() * step
+		pushed += step
+	
+	# failsafe: if somehow still overlapping
+	print("Scythe overlap resolve exceeded max distance")
