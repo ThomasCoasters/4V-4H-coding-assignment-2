@@ -27,8 +27,8 @@ enum ArenaSurface {
 @export_range(0, 3, 1) var begin_phase: int = 1
 
 @export_subgroup("phase start %")
-@export_range(0.0, 1.0, 0.01) var phase_2_health_percent: float = 0.99
-@export_range(0.0, 1.0, 0.01) var phase_3_health_percent: float = 0.96
+@export_range(0.0, 1.0, 0.01) var phase_2_health_percent: float
+@export_range(0.0, 1.0, 0.01) var phase_3_health_percent: float
 
 @export_subgroup("tp animation time")
 @export_range(0.0, 1.0, 0.01) var anim_tp_time: float = 0.5
