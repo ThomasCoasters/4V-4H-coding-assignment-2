@@ -101,13 +101,6 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6), Packe
 outlines = Array[PackedVector2Array]([PackedVector2Array(1297, -1086, 1314, -5272, -1511, -5317, -1539, -1108)])
 agent_radius = 50.0
 
-[sub_resource type="Curve2D" id="Curve2D_thofu"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 259, 0)
-}
-point_count = 2
-
 [sub_resource type="Curve2D" id="Curve2D_b5eox"]
 resource_local_to_scene = true
 _data = {
@@ -118,18 +111,25 @@ point_count = 2
 [sub_resource type="Curve2D" id="Curve2D_2l846"]
 resource_local_to_scene = true
 _data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 259, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_lwtqa"]
+resource_local_to_scene = true
+_data = {
 "points": PackedVector2Array(-79.27364, -64.8647, 79.27364, 64.8647, 0, 0, 170.07033, 107.79574, -170.07033, -107.79574, 180, -135, 29.121552, 93.8703, -29.121552, -93.8703, 230, -308, 136.60268, 22.539442, -136.60268, -22.539442, -74, -330, -45.39161, -77.4322, 45.39161, 77.4322, -217, -193, -48.49395, -62.837234, 48.49395, 62.837234, -58, -138, -71.05949, -58.584576, 71.05949, 58.584576, 0, 0)
 }
 point_count = 7
 
-[sub_resource type="Curve2D" id="Curve2D_lwtqa"]
+[sub_resource type="Curve2D" id="Curve2D_cqkgs"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(-135.47372, 219.58034, 135.47372, -219.58034, 0, 0, 0, 0, 0, 0, 259, 0)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_cqkgs"]
+[sub_resource type="Curve2D" id="Curve2D_li45j"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(-135.47372, 219.58034, 135.47372, -219.58034, 0, 0, -1.2418425, -140.94913, 1.2418425, 140.94913, -163, -124, -19.86948, 37.876198, 19.86948, -37.876198, -25, -76, 0, 0, 0, 0, -88, -204)
@@ -163,23 +163,23 @@ new_location_group = "Left_jevil"
 
 [node name="speedscale" parent="." unique_id=710403595 instance=ExtResource("5_eybu3")]
 position = Vector2(-458, -57)
-curve = SubResource("Curve2D_thofu")
+curve = SubResource("Curve2D_b5eox")
 speed_scale = 0.5
 
 [node name="speedscale2" parent="." unique_id=1192396111 instance=ExtResource("5_eybu3")]
 position = Vector2(-458, -282)
-curve = SubResource("Curve2D_b5eox")
+curve = SubResource("Curve2D_2l846")
 speed_scale = 3.0
 
 [node name="circle" parent="." unique_id=485855840 instance=ExtResource("5_eybu3")]
 position = Vector2(245, -83)
-curve = SubResource("Curve2D_2l846")
+curve = SubResource("Curve2D_lwtqa")
 loop = true
 speed = 200
 
 [node name="adding stuff" parent="." unique_id=506238876 instance=ExtResource("5_eybu3")]
 position = Vector2(736, -57)
-curve = SubResource("Curve2D_lwtqa")
+curve = SubResource("Curve2D_cqkgs")
 speed_scale = 0.5
 
 [node name="SpikesStill" type="Sprite2D" parent="adding stuff/AnimatableBody2D" parent_id_path=PackedInt32Array(506238876, 247959146) index="0" unique_id=1825489917]
@@ -195,7 +195,7 @@ polygon = PackedVector2Array(-53, -4, 75, -4, 75, 10, -53, 10)
 
 [node name="changing stuff" parent="." unique_id=1441802964 instance=ExtResource("5_eybu3")]
 position = Vector2(1347, -12)
-curve = SubResource("Curve2D_cqkgs")
+curve = SubResource("Curve2D_li45j")
 speed_scale = 0.5
 
 [node name="SpikesCollision" parent="changing stuff/AnimatableBody2D" parent_id_path=PackedInt32Array(1441802964, 247959146) index="0" unique_id=2108002611 instance=ExtResource("7_2l846")]
