@@ -12,8 +12,13 @@ var loading: bool = false
 
 @onready var rumble: Button = $settings/rumble
 @onready var screen_shake: Button = $settings/screen_shake
-@onready var volume: Button = $settings/volume
+@onready var volume: Button = $settings/audio
 @onready var exit: Button = $settings/exit
+
+@onready var master_volume: Button = $volume_settings/master_volume
+@onready var sound_volume: Button = $volume_settings/sound_volume
+@onready var music_volume: Button = $volume_settings/music_volume
+@onready var exit_audio: Button = $volume_settings/exit_audio
 
 @onready var delete_save: Button = $extra/delete_save
 @onready var unkillable: Button = $extra/unkillable
@@ -32,6 +37,7 @@ var loading: bool = false
 @onready var settings: VBoxContainer = $settings
 @onready var extra_buttons: VBoxContainer = $extra
 @onready var reset_save: VBoxContainer = $reset_save
+@onready var volume_settings: VBoxContainer = $volume_settings
 
 
 @onready var title: AudioStreamPlayer = $audio/Title
@@ -67,15 +73,23 @@ var screen_shake_values = {
 }
 var current_screen_shake_index: int = 2
 
-var volume_states = ["Off", "Low", "Normal", "High", "way to high"]
+var volume_states = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 var volume_values = {
-	"Off": -80,
-	"Low": -10,
-	"Normal": 0,
-	"High": +10,
-	"way to high": +20,
+	"0": -80,
+	"1": -18,
+	"2": -16,
+	"3": -14,
+	"4": -12,
+	"5": -10,
+	"6": -8,
+	"7": -6,
+	"8": -4,
+	"9": -2,
+	"10": 0,
 }
-var current_volume_index: int = 2
+var current_master_volume_index: int = 10
+var current_sound_volume_index: int = 10
+var current_music_volume_index: int = 10
 
 var unkillable_states = ["Off", "On"]
 var unkillable_values = {
@@ -87,7 +101,9 @@ var current_unkillable_index: int = 0
 func _ready() -> void:
 	current_rumble_index = SaveLoad.contents_to_save.rumble
 	current_screen_shake_index = SaveLoad.contents_to_save.screen_shake
-	current_volume_index = SaveLoad.contents_to_save.volume
+	current_master_volume_index = SaveLoad.contents_to_save.master_volume
+	current_sound_volume_index = SaveLoad.contents_to_save.sound_volume
+	current_music_volume_index = SaveLoad.contents_to_save.music_volume
 	current_unkillable_index = SaveLoad.contents_to_save.unkillable
 	
 	var rumble_state_name = rumble_states[current_rumble_index]
@@ -98,22 +114,30 @@ func _ready() -> void:
 	screen_shake.text = "Screen Shake: " + screen_shake_state_name
 	Global.player.screen_shake_mult = screen_shake_values[screen_shake_state_name]
 	
-	var volume_state_name = volume_states[current_volume_index]
-	volume.text = "Volume: " + volume_state_name
+	var master_volume_state_name = volume_states[current_master_volume_index]
+	master_volume.text = "Master Volume: " + master_volume_state_name
 	var bus_index = AudioServer.get_bus_index("Master")
-	AudioServer.set_bus_volume_db(bus_index, volume_values[volume_state_name])
+	AudioServer.set_bus_volume_db(bus_index, volume_values[master_volume_state_name])
+	var sound_volume_state_name = volume_states[current_sound_volume_index]
+	sound_volume.text = "Sound Volume: " + sound_volume_state_name
+	bus_index = AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_volume_db(bus_index, volume_values[sound_volume_state_name])
+	var music_volume_state_name = volume_states[current_music_volume_index]
+	music_volume.text = "Music Volume: " + music_volume_state_name
+	bus_index = AudioServer.get_bus_index("background")
+	AudioServer.set_bus_volume_db(bus_index, volume_values[music_volume_state_name])
 	
 	var unkillable_state_name = unkillable_states[current_unkillable_index]
 	unkillable.text = "Unkillable: " + unkillable_state_name
 	Global.player.unkillable = unkillable_values[unkillable_state_name]
 	
-	containers = [basic_buttons, quit_game_buttons, settings, extra_buttons, reset_save]
+	containers = [basic_buttons, quit_game_buttons, settings, extra_buttons, reset_save, volume_settings]
 	
 	for contain in containers:
 		hide_menu(contain)
 	show_menu(basic_buttons)
 	
-	buttons = [start, options, extra, quit_game, quit_yes, quit_no, rumble, screen_shake, volume, exit, delete_save, unkillable, exit_extra, save_yes, save_no]
+	buttons = [start, options, extra, quit_game, quit_yes, quit_no, rumble, screen_shake, volume, exit, delete_save, unkillable, exit_extra, save_yes, save_no, exit_audio, music_volume, sound_volume, master_volume]
 	
 	for button in buttons:
 		button.mouse_entered.connect(_on_hover.bind(button))
@@ -139,6 +163,8 @@ func _unhandled_input(event: InputEvent) -> void:
 					delete_save.grab_focus()
 				reset_save:
 					save_yes.grab_focus()
+				volume_settings:
+					master_volume.grab_focus()
 			
 			controller_active = true
 		
@@ -297,21 +323,11 @@ func _on_screen_shake_pressed() -> void:
 	SaveLoad._save()
 
 func _on_volume_pressed() -> void:
-	current_volume_index += 1
-	if current_volume_index >= volume_states.size():
-		current_volume_index = 0
-	
-	var state_name = volume_states[current_volume_index]
-	
-	volume.text = "Volume: " + state_name
-	
-	var bus_index = AudioServer.get_bus_index("Master")
-	AudioServer.set_bus_volume_db(bus_index, volume_values[state_name])
+	for contain in containers:
+		hide_menu(contain)
+	show_menu(volume_settings)
 	
 	ui_button_confirm.play()
-	
-	SaveLoad.contents_to_save.volume = current_volume_index
-	SaveLoad._save()
 
 
 func _on_exit_pressed() -> void:
@@ -366,4 +382,66 @@ func _on_unkillable_pressed() -> void:
 	ui_button_confirm.play()
 	
 	SaveLoad.contents_to_save.unkillable = current_unkillable_index
+	SaveLoad._save()
+
+
+func _on_exit_audio_pressed() -> void:
+	for contain in containers:
+		hide_menu(contain)
+	show_menu(settings)
+	
+	ui_button_cancel.play()
+
+
+func _on_master_volume_pressed() -> void:
+	current_master_volume_index += 1
+	if current_master_volume_index >= volume_states.size():
+		current_master_volume_index = 0
+	
+	var state_name = volume_states[current_master_volume_index]
+	
+	master_volume.text = "Master Volume: " + state_name
+	
+	var bus_index = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_db(bus_index, volume_values[state_name])
+	
+	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.master_volume = current_master_volume_index
+	SaveLoad._save()
+
+
+func _on_sound_volume_pressed() -> void:
+	current_sound_volume_index += 1
+	if current_sound_volume_index >= volume_states.size():
+		current_sound_volume_index = 0
+	
+	var state_name = volume_states[current_sound_volume_index]
+	
+	sound_volume.text = "Sound Volume: " + state_name
+	
+	var bus_index = AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_volume_db(bus_index, volume_values[state_name])
+	
+	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.sound_volume = current_sound_volume_index
+	SaveLoad._save()
+
+
+func _on_music_volume_pressed() -> void:
+	current_music_volume_index += 1
+	if current_music_volume_index >= volume_states.size():
+		current_music_volume_index = 0
+	
+	var state_name = volume_states[current_music_volume_index]
+	
+	music_volume.text = "Music Volume: " + state_name
+	
+	var bus_index = AudioServer.get_bus_index("background")
+	AudioServer.set_bus_volume_db(bus_index, volume_values[state_name])
+	
+	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.music_volume = current_music_volume_index
 	SaveLoad._save()

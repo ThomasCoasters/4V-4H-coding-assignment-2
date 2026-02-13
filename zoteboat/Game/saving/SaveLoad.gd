@@ -20,7 +20,11 @@ var DEFAULT_SAVE: Dictionary = {
 	
 	"rumble": 2,
 	"screen_shake": 2,
-	"volume": 2,
+	
+	"master_volume": 10,
+	"sound_volume": 10,
+	"music_volume": 10,
+	
 	"unkillable": 0,
 	
 	"killed_enemies": {},
