@@ -218,9 +218,10 @@ nav_agent = NodePath("NavigationAgent2D")
 phase_2_health_percent = 0.6
 phase_3_health_percent = 0.15
 phase_2_anim_tp_time = 0.35
-stagger_time = 2.0
+stagger_time = 3.0
 phase_2_stagger_time = 2.0
 phase_3_stagger_time = 4.0
+stagger_hits = 1
 circle_hearts_attack = NodePath("CircleHeartsAttack")
 duck_attack_spawner = NodePath("DuckAttackSpawner")
 ceiling_attack_amount = 14
@@ -449,6 +450,7 @@ one_shot = true
 [connection signal="state_entered" from="StateChart/ParallelState/attack/ceiling_diamonds" to="." method="_on_ceiling_diamonds_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/homing_clover" to="." method="_on_homing_clover_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/attack/scythe" to="." method="_on_scythe_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/stun/idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/stun/stunned" to="." method="_on_stunned_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/phase/phase 2" to="." method="_on_phase_2_state_entered"]
 [connection signal="timeout" from="stagger_timer" to="." method="_on_stagger_timer_timeout"]

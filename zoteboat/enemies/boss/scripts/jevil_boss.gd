@@ -24,18 +24,28 @@ enum ArenaSurface {
 }
 
 @export_group("phase settings")
+@export_range(0, 3, 1) var begin_phase: int = 1
+
 @export_subgroup("phase start %")
 @export_range(0.0, 1.0, 0.01) var phase_2_health_percent: float = 0.99
 @export_range(0.0, 1.0, 0.01) var phase_3_health_percent: float = 0.96
+
+@export_subgroup("tp animation time")
 @export_range(0.0, 1.0, 0.01) var anim_tp_time: float = 0.5
 @export_range(0.0, 1.0, 0.01) var phase_2_anim_tp_time: float = 0.25
 @export_range(0.0, 1.0, 0.01) var phase_3_anim_tp_time: float = 0.7
 
+@export_group("stagger")
+@export_subgroup("time")
 @export_range(0.0, 5.0, 0.01) var stagger_time: float = 0.5
 @export_range(0.0, 5.0, 0.01) var phase_2_stagger_time: float = 0.25
 @export_range(0.0, 5.0, 0.01) var phase_3_stagger_time: float = 0.7
 
-@export_range(0, 3, 1) var begin_phase: int = 1
+@export_subgroup("hit amount")
+@export_range(0, 50, 1) var stagger_hits: int = 15
+@export_range(0, 50, 1) var phase_2_stagger_hits: int = 20
+@export_range(0, 50, 1) var phase_3_stagger_hits: int = 15
+var hits: int = 0
 
 @export_group("attacks (phase 1)")
 @export_subgroup("aspid attack")
@@ -191,6 +201,7 @@ var current_anim: String
 enum ANIM_PRIORITY {
 	IDLE,
 	TURN,
+	STAGGER,
 	TP,
 	ATTACK,
 	DEATH
@@ -279,6 +290,7 @@ func deactivate():
 
 func _physics_process(delta: float) -> void:
 	if $StateChart/ParallelState/stun/stunned.active:
+		
 		return
 	
 	if is_nan(position.x) || is_nan(position.y):
@@ -407,6 +419,14 @@ func get_spawn_position_on_surface(surface: ArenaSurface, margin := 16.0) -> Vec
 #region basic enemy stuff
 func damage(damage_value: int):
 	stats.health -= damage_value
+	
+	if $StateChart/ParallelState/stun/stunned.active:
+		return
+	
+	hits += 1
+	
+	if hits >= stagger_hits:
+		state_chart.send_event("to_stun")
 
 func i_frames(time):
 	add_to_group("invincible")
@@ -539,9 +559,10 @@ func teleport(out: bool = true):
 		if out:
 			teleport_around_player()
 			play_anim("tp_in")
-		else:
+		else: 
 			collision_shape_2d.disabled = false
-			play_anim("attack", ANIM_PRIORITY.ATTACK)
+			if !$StateChart/ParallelState/stun/stunned.active:
+				play_anim("attack", ANIM_PRIORITY.ATTACK)
 	)
 #endregion
 
@@ -550,6 +571,10 @@ func teleport(out: bool = true):
 
 #region choose_attack
 func _on_idle_active_state_entered() -> void:
+	if $StateChart/ParallelState/stun/stunned.active:
+		play_anim("stagger", ANIM_PRIORITY.STAGGER)
+		return
+	
 	choose_attack()
 
 func choose_attack():
@@ -613,6 +638,10 @@ func _on_homing_clover_state_entered() -> void:
 
 #region aspid_attack
 func aspid_attack():
+	if $StateChart/ParallelState/stun/stunned.active:
+		state_chart.send_event("attack_stop")
+		return
+	
 	var count := aspid_attack_count
 	var angle_per_shot := deg_to_rad(aspid_shot_angle)
 	
@@ -634,6 +663,7 @@ func aspid_attack():
 	aspid_attack_times -= 1
 	if aspid_attack_times <= 0 || $StateChart/ParallelState/stun/stunned.active:
 		state_chart.send_event("attack_stop")
+		return
 	
 	else:
 		await get_tree().create_timer(aspid_attack_cooldown_time).timeout
@@ -643,6 +673,10 @@ func aspid_attack():
 
 #region dashing
 func start_dash():
+	if $StateChart/ParallelState/stun/stunned.active:
+		state_chart.send_event("attack_stop")
+		return
+	
 	play_anim("dash", ANIM_PRIORITY.ATTACK)
 	
 	is_dashing = true
@@ -740,6 +774,10 @@ func ceiling_diamonds_attack():
 
 #region homing_attack
 func homing_attack():
+	if $StateChart/ParallelState/stun/stunned.active:
+		state_chart.send_event("attack_stop")
+		return
+	
 	var count := homing_attack_count
 	var angle_per_shot := deg_to_rad(homing_shot_angle)
 	
@@ -750,7 +788,6 @@ func homing_attack():
 		var projectile = HOMING_CLOVER.instantiate()
 		get_tree().current_scene.add_child(projectile)
 		projectile.global_position = global_position
-		
 		var offset_index := i - (count - 1) / 2.0
 		var angle = base_angle + offset_index * angle_per_shot
 		
@@ -759,8 +796,10 @@ func homing_attack():
 		projectile.rotation = angle
 	
 	homing_attack_times -= 1
-	if homing_attack_times <= 0 || $StateChart/ParallelState/stun/stunned.active:
+	if homing_attack_times < 0 || $StateChart/ParallelState/stun/stunned.active:
 		state_chart.send_event("attack_stop")
+		return
+		
 	
 	else:
 		await get_tree().create_timer(aspid_attack_cooldown_time).timeout
@@ -850,9 +889,26 @@ func phase_3_enter():
 #region stagger
 func _on_stagger_timer_timeout() -> void:
 	state_chart.send_event("stop_stun")
-	choose_attack()
+	stop_anim("stagger")
 
 func _on_stunned_state_entered() -> void:
-	play_anim("stagger")
+	stop_anim("attack")
+	play_anim("stagger", ANIM_PRIORITY.STAGGER)
+	state_chart.send_event("attack_stop")
+	
+	stagger_timer.start()
+	
+	velocity = Vector2.ZERO
+	rotation_degrees = 0
+	circle_hearts_attack.global_rotation = 0
+	if circle_hearts_attack.enable:
+		circle_hearts_attack.set_circle_attack_enabled(false)
+	
+	duck_attack_spawner._on_active_timer_timeout()
+	
+	hits = 0
+	
 
+func _on_idle_state_entered() -> void:
+	choose_attack()
 #endregion

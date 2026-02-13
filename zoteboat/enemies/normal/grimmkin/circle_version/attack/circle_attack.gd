@@ -5,6 +5,8 @@ extends Node2D
 @export var orbit_radius := 40.0
 @export var orbit_speed := 4.0
 
+var enable: bool = false
+
 func _ready() -> void:
 	var areas = $Orbit.get_children()
 	for i in areas.size():
@@ -18,6 +20,7 @@ func _physics_process(delta: float) -> void:
 
 
 func set_circle_attack_enabled(enabled: bool, time: float = 0.4) -> void:
+	enable = enabled
 	var areas = $Orbit.get_children()
 	for i in areas.size():
 		var angle := i * TAU / areas.size()

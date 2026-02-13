@@ -782,8 +782,6 @@ func death():
 func hitstop_manager(time, vibration_time_mult: float = 1.0, vibration_type: String = "off"):
 	Engine.time_scale = 0.0001
 	
-	state_chart.send_event("jump_released")
-	
 	vibrate(time*vibration_time_mult, vibration_type)
 	
 	await get_tree().create_timer(time, true, false, true).timeout
