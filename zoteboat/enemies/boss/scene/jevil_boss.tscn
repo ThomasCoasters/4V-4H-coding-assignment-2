@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b4lnd06y7anp" path="res://enemies/boss/scripts/jevil_boss.gd" id="1_sggmd"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_aj26w"]
 [ext_resource type="Texture2D" uid="uid://bb37uyfurxg6o" path="res://enemies/boss/assets/jevil/jevil sprites.png" id="2_sggmd"]
+[ext_resource type="PackedScene" uid="uid://cise26jsty1uw" path="res://enemies/boss/scene/jevil_afterimage.tscn" id="3_aappj"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="5_e58t3"]
 [ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="5_qkeuv"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="6_qm3rt"]
@@ -239,12 +240,15 @@ collision_mask = 65536
 script = ExtResource("1_sggmd")
 stats = SubResource("Resource_ufmpn")
 nav_agent = NodePath("NavigationAgent2D")
+afterimage_scene = ExtResource("3_aappj")
+afterimage_spawn_delay = 0.1
 phase_2_health_percent = 0.6
 phase_3_health_percent = 0.15
 phase_2_anim_tp_time = 0.35
 stagger_time = 3.0
-phase_2_stagger_time = 2.0
-phase_3_stagger_time = 4.0
+phase_2_stagger_time = 2.5
+phase_3_stagger_time = 5.0
+phase_3_stagger_hits = 10
 circle_hearts_attack = NodePath("CircleHeartsAttack")
 duck_attack_spawner = NodePath("DuckAttackSpawner")
 ceiling_attack_amount = 14
@@ -256,8 +260,7 @@ phase_2_dash_speed = 700.0
 phase_2_orbit_speed = 2.5
 phase_2_duck_attack_cooldown_time = 0.9
 phase_2_scythe_attack_cooldown_time = 1.4
-phase_2_scythe_attack_count = 2
-phase_2_scythe_shot_angle = 150
+phase_2_normal_scythe_attack_times = 2
 phase_2_ceiling_attack_amount = 60
 phase_2_ceiling_attack_time_between = 0.11
 phase_2_ceiling_tp_between_times = 3

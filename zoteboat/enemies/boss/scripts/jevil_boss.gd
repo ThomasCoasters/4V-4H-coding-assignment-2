@@ -23,8 +23,21 @@ enum ArenaSurface {
 	RIGHT_WALL
 }
 
+@export_group("afterimage")
+@export var afterimage_scene: PackedScene
+@export var afterimage_spawn_delay := 0.06
+@export var afterimage_min_radius := 24.0
+@export var afterimage_max_radius := 64.0
+@export var afterimage_color := Color(1, 1, 1, 0.7)
+
+
+var _afterimage_timer := 0.0
+var _afterimage_active := false
+
+
+
 @export_group("phase settings")
-@export_range(0, 3, 1) var begin_phase: int = 1
+@export_range(0, 3, 1) var begin_phase: int = 2
 
 @export_subgroup("phase start %")
 @export_range(0.0, 1.0, 0.01) var phase_2_health_percent: float
@@ -225,7 +238,9 @@ var random_attack_noise: Array[AudioStreamPlayer]
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
-var last_attack: int
+const NO_REPEAT_COUNT := 3
+var last_attacks: Array[int] = []
+
 
 func _ready() -> void:
 	if !start_active:
@@ -299,6 +314,13 @@ func _physics_process(delta: float) -> void:
 		push_error("Enemy position became NaN")
 		killed.emit(self)
 		return
+	
+	if _afterimage_active:
+		_afterimage_timer -= delta
+		if _afterimage_timer <= 0.0:
+			spawn_afterimage()
+			_afterimage_timer = afterimage_spawn_delay
+
 	
 	if is_dashing:
 		var remaining := dash_distance_target - dash_travelled
@@ -537,7 +559,7 @@ func play_audio(audio: AudioStreamPlayer):
 		return
 	
 	audio.volume_db = -5
-	audio.pitch_scale = randf_range(0.75, 1.25)
+	audio.pitch_scale = randf_range(0.95, 1.05)
 	audio.play()
 
 
@@ -569,6 +591,36 @@ func teleport(out: bool = true):
 				play_anim("attack", ANIM_PRIORITY.ATTACK)
 				play_audio(random_attack_noise[randi_range(0, random_attack_noise.size() - 1)])
 	)
+
+
+#region afterimage
+func spawn_afterimage():
+	if afterimage_scene == null:
+		return
+	
+	var img := afterimage_scene.instantiate()
+	get_parent().add_child(img)
+	
+	var angle := randf() * TAU
+	var radius := randf_range(afterimage_min_radius, afterimage_max_radius)
+	var offset := Vector2(cos(angle), sin(angle)) * radius
+	
+	img.global_position = global_position + offset
+	img.global_scale = global_scale
+	img.rotation = rotation
+	img.modulate = afterimage_color
+	
+	var s := img.get_node("AnimatedSprite2D") as AnimatedSprite2D
+	s.sprite_frames = sprite_2d.sprite_frames
+	s.animation = sprite_2d.animation
+	s.frame = sprite_2d.frame
+	s.flip_h = sprite_2d.flip_h
+	s.pause()
+
+
+
+#endregion
+
 #endregion
 
 
@@ -588,13 +640,21 @@ func choose_attack():
 	if $StateChart/ParallelState/stun/stunned.active:
 		return
 	
-	var attack_number := last_attack
 	var max_attacks := $StateChart/ParallelState/attack.get_child_count() - 1
 	
-	while attack_number == last_attack and max_attacks > 1:
-		attack_number = randi_range(1, max_attacks)
+	var available_attacks: Array[int] = []
+	for i in range(1, max_attacks + 1):
+		if not last_attacks.has(i):
+			available_attacks.append(i)
 	
-	last_attack = attack_number
+	if available_attacks.is_empty():
+		available_attacks = range(1, max_attacks + 1)
+	
+	var attack_number: int = available_attacks.pick_random()
+	
+	last_attacks.append(attack_number)
+	if last_attacks.size() > NO_REPEAT_COUNT:
+		last_attacks.pop_front()
 	
 	match attack_number:
 		1:
@@ -609,6 +669,7 @@ func choose_attack():
 			state_chart.send_event("homing")
 		6:
 			state_chart.send_event("scythe")
+
 
 
 func _on_spade_aspid_attack_state_entered() -> void:
@@ -816,6 +877,8 @@ func homing_attack():
 
 #region phases
 func _on_phase_2_state_entered() -> void:
+	_afterimage_active = true
+	
 	anim_tp_time = phase_2_anim_tp_time
 	stagger_timer.wait_time = phase_2_stagger_time
 	
