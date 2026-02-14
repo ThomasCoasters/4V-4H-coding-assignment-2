@@ -37,7 +37,7 @@ var _afterimage_active := false
 
 
 @export_group("phase settings")
-@export_range(0, 3, 1) var begin_phase: int = 2
+@export_range(0, 3, 1) var begin_phase: int = 1
 
 @export_subgroup("phase start %")
 @export_range(0.0, 1.0, 0.01) var phase_2_health_percent: float
