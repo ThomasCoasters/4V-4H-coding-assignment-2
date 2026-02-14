@@ -119,8 +119,8 @@ func _ready() -> void:
 	rumble.text = "Rumble: " + rumble_states[current_rumble_index]
 	screen_shake.text = "Screen Shake: " + screen_shake_states[current_screen_shake_index]
 	master_volume.text = "Master Volume: " + volume_states[current_master_volume_index]
-	sound_volume.text = "Master Volume: " + volume_states[current_sound_volume_index]
-	music_volume.text = "Master Volume: " + volume_states[current_music_volume_index]
+	sound_volume.text = "Sound Volume: " + volume_states[current_sound_volume_index]
+	music_volume.text = "Music Volume: " + volume_states[current_music_volume_index]
 	
 	
 	containers = [basic_buttons, quit_game_buttons, settings, volume_settings]

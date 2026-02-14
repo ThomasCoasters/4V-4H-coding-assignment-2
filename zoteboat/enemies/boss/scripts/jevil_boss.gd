@@ -209,15 +209,17 @@ enum ANIM_PRIORITY {
 
 var current_anim_priority: int = 0
 
+@onready var snd_hurt_1: AudioStreamPlayer = $audio/SndHurt1
 
-@onready var grimmkin_little_attack_01: AudioStreamPlayer = $audio/GrimmkinLittleAttack01
-@onready var grimmkin_little_attack_02: AudioStreamPlayer = $audio/GrimmkinLittleAttack02
-@onready var grimmkin_little_attack_03: AudioStreamPlayer = $audio/GrimmkinLittleAttack03
-@onready var grimmkin_little_attack_04: AudioStreamPlayer = $audio/GrimmkinLittleAttack04
-@onready var grimmkin_little_death_01: AudioStreamPlayer = $audio/GrimmkinLittleDeath01
-@onready var grimmkin_little_intro_01: AudioStreamPlayer = $audio/GrimmkinLittleIntro01
-@onready var grimmkin_big_long_gasp: AudioStreamPlayer = $audio/GrimmkinBigLongGasp
-
+@onready var snd_joker_anything: AudioStreamPlayer = $audio/SndJokerAnything
+@onready var snd_joker_byebye: AudioStreamPlayer = $audio/SndJokerByebye
+@onready var snd_joker_chaos: AudioStreamPlayer = $audio/SndJokerChaos
+@onready var snd_joker_ha_0: AudioStreamPlayer = $audio/SndJokerHa0
+@onready var snd_joker_ha_1: AudioStreamPlayer = $audio/SndJokerHa1
+@onready var snd_joker_laugh_0: AudioStreamPlayer = $audio/SndJokerLaugh0
+@onready var snd_joker_laugh_1: AudioStreamPlayer = $audio/SndJokerLaugh1
+@onready var snd_joker_metamorphosis: AudioStreamPlayer = $audio/SndJokerMetamorphosis
+@onready var snd_joker_oh: AudioStreamPlayer = $audio/SndJokerOh
 var random_attack_noise: Array[AudioStreamPlayer]
 
 
@@ -250,7 +252,7 @@ func _ready() -> void:
 	
 	circle_hearts_attack.set_circle_attack_enabled(false)
 	
-	random_attack_noise = [grimmkin_little_attack_01, grimmkin_little_attack_02, grimmkin_little_attack_03, grimmkin_little_attack_04, grimmkin_little_intro_01, grimmkin_big_long_gasp]
+	random_attack_noise = [snd_joker_anything, snd_joker_byebye, snd_joker_chaos, snd_joker_ha_0, snd_joker_ha_1, snd_joker_laugh_0, snd_joker_laugh_1, snd_joker_metamorphosis, snd_joker_oh]
 	
 	print(begin_phase)
 	if begin_phase == 2:
@@ -443,6 +445,7 @@ func _on_health_depleted():
 	$CollisionShape2D.set_deferred("disabled", true)
 	
 	play_anim("death", ANIM_PRIORITY.DEATH)
+	play_audio(snd_hurt_1)
 
 func _on_health_changed(health, max_health):
 	if health <= max_health * phase_2_health_percent && begin_phase == 1:
@@ -530,10 +533,11 @@ func update_facing():
 
 
 func play_audio(audio: AudioStreamPlayer):
-	if audio != grimmkin_little_death_01 && current_anim == "death":
+	if audio != snd_hurt_1 && current_anim == "death":
 		return
 	
-	audio.pitch_scale = randf_range(0.9, 1.1)
+	audio.volume_db = -5
+	audio.pitch_scale = randf_range(0.75, 1.25)
 	audio.play()
 
 
@@ -563,6 +567,7 @@ func teleport(out: bool = true):
 			collision_shape_2d.disabled = false
 			if !$StateChart/ParallelState/stun/stunned.active:
 				play_anim("attack", ANIM_PRIORITY.ATTACK)
+				play_audio(random_attack_noise[randi_range(0, random_attack_noise.size() - 1)])
 	)
 #endregion
 
@@ -897,6 +902,7 @@ func _on_stunned_state_entered() -> void:
 	state_chart.send_event("attack_stop")
 	
 	stagger_timer.start()
+	play_audio(snd_hurt_1)
 	
 	velocity = Vector2.ZERO
 	rotation_degrees = 0
