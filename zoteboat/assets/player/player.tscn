@@ -35,6 +35,7 @@
 [ext_resource type="AudioStream" uid="uid://c26t2sli5md6p" path="res://assets/player/audio/sword/sword_2.wav" id="32_eedlp"]
 [ext_resource type="AudioStream" uid="uid://bnorql3awfvmq" path="res://assets/player/audio/sword/sword_3.wav" id="33_khrko"]
 [ext_resource type="AudioStream" uid="uid://c4l0k8owu73vb" path="res://assets/player/audio/sword/sword_4.wav" id="34_evyxp"]
+[ext_resource type="AudioStream" uid="uid://bxryiykw6c56o" path="res://assets/player/audio/sword/enemy_damage.wav" id="36_khrko"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hai6l"]
 atlas = ExtResource("2_m2mll")
@@ -797,6 +798,10 @@ bus = &"SFX"
 
 [node name="Sword4" type="AudioStreamPlayer" parent="audio/sword" unique_id=1499418525]
 stream = ExtResource("34_evyxp")
+bus = &"SFX"
+
+[node name="EnemyDamage" type="AudioStreamPlayer" parent="audio/sword" unique_id=1508130536]
+stream = ExtResource("36_khrko")
 bus = &"SFX"
 
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/jump" to="." method="_on_jump_state_entered"]

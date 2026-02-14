@@ -181,6 +181,7 @@ var talking_noises: Array[AudioStreamPlayer]
 @onready var sword_2: AudioStreamPlayer = $audio/sword/Sword2
 @onready var sword_3: AudioStreamPlayer = $audio/sword/Sword3
 @onready var sword_4: AudioStreamPlayer = $audio/sword/Sword4
+@onready var enemy_damage: AudioStreamPlayer = $audio/sword/EnemyDamage
 var sword_noises: Array[AudioStreamPlayer]
 
 @onready var zote_final_town_loop: AudioStreamPlayer = $audio/talking_noises/ZoteFinalTownLoop
@@ -640,6 +641,8 @@ func _on_attack_entered(body: Node2D):
 	
 	body.i_frames(ATTACK_LINGER)
 	body.damage(attack_damage)
+	
+	play_audio(enemy_damage)
 	
 	add_mana(mana_per_attack)
 	
