@@ -186,12 +186,17 @@ var sword_noises: Array[AudioStreamPlayer]
 
 @onready var zote_final_town_loop: AudioStreamPlayer = $audio/talking_noises/ZoteFinalTownLoop
 
+var external_velocity := Vector2.ZERO
 
-var save_pos: Vector2
+@export_group("momentum")
+@export_range(0.0, 1.0, 0.01) var keep_vertical_momentum_percentage: float = 0.5
+@export_range(0.0, 1.0, 0.01) var keep_vertical_horizontal_percentage: float = 0.5
+
+@export_range(0.0, 2000.0, 1) var decay_rate_x: float = 500.0
+@export_range(0.0, 2000.0, 1) var decay_rate_y: float = 1000.0
 #endregion
 
 #region setup/process
-
 func _ready() -> void:
 	Global.player = self
 	setup()
@@ -231,12 +236,17 @@ func setup():
 	collision_size = $CollisionShape2D.shape.size
 
 func _physics_process(_delta: float) -> void:
+	decay_external_linear(_delta)
+	
 	#region jumping/falling
 	var last_vertical_velocity = velocity.y
+	var base_y := velocity.y
 	
-	velocity.y += GRAVITY*gravity_multiplier
+	base_y += GRAVITY*gravity_multiplier
 	
-	velocity.y = clamp(velocity.y, JUMPING_SPEED, max_fall_speed)
+	base_y = clamp(base_y, JUMPING_SPEED, max_fall_speed)
+	
+	velocity.y = base_y + external_velocity.y
 	
 	if $StateChart/ParallelState/Jumping/falling.active:
 		play_anim("fall", ANIM_PRIORITY.FALL)
@@ -246,13 +256,19 @@ func _physics_process(_delta: float) -> void:
 	#endregion
 	
 	#region moving
+	var base_x := 0.0
+	
 	if can_walk:
-		velocity.x = direction.x*MOVE_SPEED
+		base_x = direction.x * MOVE_SPEED
 	else:
-		velocity.x = forced_move.x
+		base_x = forced_move.x
+	
+	velocity.x = base_x + external_velocity.x
+	
 	
 	
 	move_and_slide()
+	
 	#endregion
 	
 	if is_on_floor() && last_vertical_velocity > 0:
@@ -324,9 +340,11 @@ func _process(_delta: float) -> void:
 		state_chart.send_event("on_ground")
 		state_chart.send_event("dash_rechagering")
 	if is_on_ceiling():
+		external_velocity.y = 0
 		state_chart.send_event("jump_released")
 	
 	if is_on_wall_only() && velocity.y >0 && has_wall_cling:
+		external_velocity = Vector2.ZERO
 		state_chart.send_event("on_wall")
 		state_chart.send_event("dash_recharged")
 	
@@ -383,19 +401,21 @@ func _on_jump_state_entered() -> void:
 	
 	play_anim("jump", ANIM_PRIORITY.JUMP)
 	play_audio(hero_jump)
-	
 	jumping.emit()
 	
 	velocity.y = JUMPING_SPEED
+	
+	if is_on_floor() || is_on_wall():
+		external_velocity = get_platform_velocity()
+		if external_velocity.y > 0:
+			external_velocity.y = 0
+	
+	
 	is_jumping = true
-	
 	jump_timer.start()
-	
 	gravity_multiplier = 1
-	
 	jump_max_held = false
-	
-	#current_camera_type = "locked"
+
 
 
 func _on_falling_state_entered() -> void:
@@ -417,6 +437,7 @@ func _on_on_ground_state_entered() -> void:
 	else:
 		max_jumps_amount = 1
 	
+	external_velocity = Vector2.ZERO
 	jumps_amount = max_jumps_amount
 	
 	#current_camera_type = "free"
@@ -473,6 +494,21 @@ func _on_to_jumping_form_wall_taken() -> void:
 	forced_move.x = 0
 	
 	can_walk = true
+
+#endregion
+
+#region momentum
+func decay_external_linear(delta: float):
+	if external_velocity.x != 0 && direction.x != 0:
+		if sign(external_velocity.x) != sign(direction.x):
+			external_velocity.x = move_toward(external_velocity.x, 0, decay_rate_x * 3 * delta)
+		else:
+			external_velocity.x = move_toward(external_velocity.x, 0, decay_rate_x * delta)
+	else:
+		external_velocity.x = move_toward(external_velocity.x, 0, decay_rate_x * 3 * delta)
+	
+	# Vertical decay (optional)
+	external_velocity.y = move_toward(external_velocity.y, 0, decay_rate_y * delta)
 
 #endregion
 
