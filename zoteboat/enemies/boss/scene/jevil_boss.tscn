@@ -205,18 +205,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a24l4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a24l4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a24l4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a24l4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a24l4")
 }],
 "loop": false,
 "name": &"death",
@@ -228,7 +216,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"stagger",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
@@ -242,14 +230,14 @@ stats = SubResource("Resource_ufmpn")
 nav_agent = NodePath("NavigationAgent2D")
 afterimage_scene = ExtResource("3_aappj")
 afterimage_spawn_delay = 0.1
-begin_phase = 2
+afterimage_color = Color(1, 1, 1, 1)
 phase_2_health_percent = 0.6
 phase_3_health_percent = 0.15
 phase_2_anim_tp_time = 0.35
 stagger_time = 3.0
 phase_2_stagger_time = 2.5
 phase_3_stagger_time = 5.0
-phase_3_stagger_hits = 10
+phase_3_stagger_hits = 50
 circle_hearts_attack = NodePath("CircleHeartsAttack")
 duck_attack_spawner = NodePath("DuckAttackSpawner")
 ceiling_attack_amount = 14
@@ -284,7 +272,7 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g81kc")
 animation = &"death"
 autoplay = "dance(front)"
-frame = 7
+frame = 3
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2104192833]
