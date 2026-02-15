@@ -97,6 +97,9 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_14maj")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_olf2p"]
+size = Vector2(128, 12)
+
 [sub_resource type="Animation" id="Animation_e8ekl"]
 length = 0.001
 tracks/0/type = "value"
@@ -110,6 +113,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_n7wsl"]
+resource_name = "back"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-1.55, -1.55),
+"update": 0,
+"values": [1.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_olf2p"]
@@ -129,10 +148,28 @@ tracks/0/keys = {
 "values": [0.0, 1.0]
 }
 
+[sub_resource type="Animation" id="Animation_qjxc4"]
+resource_name = "front"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-1.56, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e8ekl"]
 _data = {
 &"RESET": SubResource("Animation_e8ekl"),
-&"default": SubResource("Animation_olf2p")
+&"back": SubResource("Animation_n7wsl"),
+&"default": SubResource("Animation_olf2p"),
+&"front": SubResource("Animation_qjxc4")
 }
 
 [node name="moving_platform" type="Path2D" unique_id=710403595]
@@ -143,20 +180,33 @@ script = ExtResource("1_hkjn8")
 rotates = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D" unique_id=574721292]
-remote_path = NodePath("../../AnimatableBody2D")
+remote_path = NodePath("../../platform")
 
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=247959146]
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="PathFollow2D" unique_id=360179121]
+remote_path = NodePath("../../move_trigger")
+
+[node name="platform" type="AnimatableBody2D" parent="." unique_id=247959146]
 collision_layer = 2
 collision_mask = 0
 
-[node name="CHANGE THIS TO FIT THE PLATFORM" type="CollisionPolygon2D" parent="AnimatableBody2D" unique_id=334858337]
+[node name="CHANGE THIS TO FIT THE PLATFORM" type="CollisionPolygon2D" parent="platform" unique_id=334858337]
 polygon = PackedVector2Array(-64, -32, -64, 32, 64, 32, 64, -32)
 
-[node name="platform" type="TileMapLayer" parent="AnimatableBody2D" unique_id=1995284118]
+[node name="platform" type="TileMapLayer" parent="platform" unique_id=1995284118]
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAABAAAAAAADAAcAAAABAP//AAADAAUAAAAAAAAAAAACAAcAAAAAAP//AAACAAUAAAD//wAAAAACAAcAAAD/////AAACAAUAAAD+/wAAAAABAAcAAAD+////AAABAAUAAAA=")
 tile_set = SubResource("TileSet_sosmg")
 use_kinematic_bodies = true
 
+[node name="move_trigger" type="Area2D" parent="." unique_id=1286972824]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="move_trigger" unique_id=1628162647]
+position = Vector2(0, -38)
+shape = SubResource("RectangleShape2D_olf2p")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1396996021]
 libraries/ = SubResource("AnimationLibrary_e8ekl")
+
+[connection signal="body_entered" from="move_trigger" to="." method="_on_move_trigger_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
