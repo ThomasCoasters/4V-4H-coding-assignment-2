@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b4lnd06y7anp" path="res://enemies/boss/scripts/jevil_boss.gd" id="1_sggmd"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_aj26w"]
 [ext_resource type="Texture2D" uid="uid://bb37uyfurxg6o" path="res://enemies/boss/assets/jevil/jevil sprites.png" id="2_sggmd"]
-[ext_resource type="PackedScene" uid="uid://cise26jsty1uw" path="res://enemies/boss/scene/jevil_afterimage.tscn" id="3_aappj"]
+[ext_resource type="PackedScene" uid="uid://cise26jsty1uw" path="res://Game/MISC/afterimage.tscn" id="3_aappj"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="5_e58t3"]
 [ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="5_qkeuv"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="6_qm3rt"]
@@ -242,6 +242,7 @@ stats = SubResource("Resource_ufmpn")
 nav_agent = NodePath("NavigationAgent2D")
 afterimage_scene = ExtResource("3_aappj")
 afterimage_spawn_delay = 0.1
+begin_phase = 2
 phase_2_health_percent = 0.6
 phase_3_health_percent = 0.15
 phase_2_anim_tp_time = 0.35

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://rvhtgi81sikt"]
 
 [ext_resource type="Script" uid="uid://bilmy6u5xo8fm" path="res://assets/player/player_controller.gd" id="1_d2shb"]
+[ext_resource type="PackedScene" uid="uid://cise26jsty1uw" path="res://Game/MISC/afterimage.tscn" id="2_evyxp"]
 [ext_resource type="Texture2D" uid="uid://c36d2cgop0mkc" path="res://assets/player/pictures/Zote the Mighty - atlas0 #0330045.png" id="2_m2mll"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_3x76d"]
 [ext_resource type="PackedScene" uid="uid://dkenb6wogtc55" path="res://assets/player/camera/Camera.tscn" id="3_hai6l"]
@@ -424,13 +425,17 @@ has_wall_cling = true
 has_double_jump = true
 Camera = NodePath("Camera")
 max_health = 1
+keep_vertical_momentum_percentage = 0.75
+keep_horizontal_momentum_percentage = 0.9
+afterimage_scene = ExtResource("2_evyxp")
+afterimage_spawn_delay = 0.12
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1627795344]
 position = Vector2(0, -25)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_d61i2")
-animation = &"idle"
-autoplay = "fall"
+animation = &"fall"
+autoplay = "he_just_standing_there__menacingly"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=960596782]
 position = Vector2(0, 4.5)

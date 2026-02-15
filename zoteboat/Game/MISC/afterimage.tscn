@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cise26jsty1uw"]
+
+[ext_resource type="Script" uid="uid://cwm5ap0214kl4" path="res://Game/MISC/afterimage.gd" id="1_6hw08"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wrbog"]
+
+[node name="Afterimage" type="Node2D" unique_id=1623759776]
+z_index = -1
+script = ExtResource("1_6hw08")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=407014555]
+sprite_frames = SubResource("SpriteFrames_wrbog")

@@ -31,15 +31,14 @@ func _process(delta: float) -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if move_on_trigger:
-		triggered = false
-		
-		
 		if anim_name == "front":
 			if !trigger_one_direction:
 				animation_player.play("back")
 			else:
 				triggered_front = true
+				triggered = false
 		elif anim_name == "back":
+			triggered = false
 			if trigger_one_direction:
 				triggered_front = false
 	

@@ -4,7 +4,7 @@ class_name Player
 
 #region vars setup
 
-@export_group("cheaty ability unlocks", "has_")
+@export_group("cheaty ability unlocks")
 @export var has_dash: bool
 @export var has_wall_cling: bool
 @export var has_double_jump: bool
@@ -190,10 +190,18 @@ var external_velocity := Vector2.ZERO
 
 @export_group("momentum")
 @export_range(0.0, 1.0, 0.01) var keep_vertical_momentum_percentage: float = 0.5
-@export_range(0.0, 1.0, 0.01) var keep_vertical_horizontal_percentage: float = 0.5
+@export_range(0.0, 1.0, 0.01) var keep_horizontal_momentum_percentage: float = 0.5
 
 @export_range(0.0, 2000.0, 1) var decay_rate_x: float = 500.0
 @export_range(0.0, 2000.0, 1) var decay_rate_y: float = 1000.0
+
+@export_subgroup("afterimage")
+@export var afterimage_scene: PackedScene
+@export var afterimage_spawn_delay := 0.06
+@export var afterimage_color := Color(1, 1, 1, 0.7)
+
+
+var _afterimage_timer := 0.0
 #endregion
 
 #region setup/process
@@ -235,8 +243,14 @@ func setup():
 	
 	collision_size = $CollisionShape2D.shape.size
 
-func _physics_process(_delta: float) -> void:
-	decay_external_linear(_delta)
+func _physics_process(delta: float) -> void:
+	decay_external_linear(delta)
+	
+	if external_velocity != Vector2.ZERO:
+		_afterimage_timer -= delta
+		if _afterimage_timer <= 0.0:
+			spawn_afterimage()
+			_afterimage_timer = afterimage_spawn_delay
 	
 	#region jumping/falling
 	var last_vertical_velocity = velocity.y
@@ -406,7 +420,7 @@ func _on_jump_state_entered() -> void:
 	velocity.y = JUMPING_SPEED
 	
 	if is_on_floor() || is_on_wall():
-		external_velocity = get_platform_velocity()
+		external_velocity = get_platform_velocity() * Vector2(keep_horizontal_momentum_percentage, keep_vertical_momentum_percentage)
 		if external_velocity.y > 0:
 			external_velocity.y = 0
 	
@@ -499,17 +513,37 @@ func _on_to_jumping_form_wall_taken() -> void:
 
 #region momentum
 func decay_external_linear(delta: float):
-	if external_velocity.x != 0 && direction.x != 0:
-		if sign(external_velocity.x) != sign(direction.x):
-			external_velocity.x = move_toward(external_velocity.x, 0, decay_rate_x * 3 * delta)
+	if external_velocity.x != 0 && last_direction.x != 0:
+		if sign(external_velocity.x) != sign(last_direction.x):
+			external_velocity.x = 0
 		else:
 			external_velocity.x = move_toward(external_velocity.x, 0, decay_rate_x * delta)
 	else:
-		external_velocity.x = move_toward(external_velocity.x, 0, decay_rate_x * 3 * delta)
+		external_velocity.x = 0
 	
-	# Vertical decay (optional)
 	external_velocity.y = move_toward(external_velocity.y, 0, decay_rate_y * delta)
+	if external_velocity.y <= -700:
+		external_velocity.y *= pow(0.9, delta * 60)
 
+
+func spawn_afterimage():
+	if afterimage_scene == null:
+		return
+	
+	var img := afterimage_scene.instantiate()
+	get_parent().add_child(img)
+	
+	img.global_position = sprite_2d.global_position
+	img.rotation = sprite_2d.rotation
+	img.modulate = afterimage_color
+	
+	var s := img.get_node("AnimatedSprite2D") as AnimatedSprite2D
+	s.global_scale = sprite_2d.global_scale
+	s.sprite_frames = sprite_2d.sprite_frames
+	s.animation = sprite_2d.animation
+	s.frame = sprite_2d.frame
+	s.flip_h = sprite_2d.flip_h
+	s.pause()
 #endregion
 
 #region camera

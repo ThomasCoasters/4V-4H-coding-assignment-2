@@ -98,7 +98,7 @@ terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_14maj")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olf2p"]
-size = Vector2(128, 12)
+size = Vector2(15, 160)
 
 [sub_resource type="Animation" id="Animation_e8ekl"]
 length = 0.001

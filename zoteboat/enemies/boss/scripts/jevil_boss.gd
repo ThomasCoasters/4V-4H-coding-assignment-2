@@ -606,11 +606,11 @@ func spawn_afterimage():
 	var offset := Vector2(cos(angle), sin(angle)) * radius
 	
 	img.global_position = global_position + offset
-	img.global_scale = global_scale
 	img.rotation = rotation
 	img.modulate = afterimage_color
 	
 	var s := img.get_node("AnimatedSprite2D") as AnimatedSprite2D
+	s.global_scale = sprite_2d.global_scale
 	s.sprite_frames = sprite_2d.sprite_frames
 	s.animation = sprite_2d.animation
 	s.frame = sprite_2d.frame
