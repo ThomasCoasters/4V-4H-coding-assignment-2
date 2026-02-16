@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://desufiot6ea2v" path="res://enemies/normal/peashooter/peashooter.tscn" id="5_na5tl"]
 [ext_resource type="PackedScene" uid="uid://e03auo7ekd6c" path="res://enemies/normal/dvd_logo/dvd_enemy.tscn" id="6_maj27"]
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/map_placables/hazards (spikes)/spikes_collision.tscn" id="8_na5tl"]
+[ext_resource type="Texture2D" uid="uid://bb2h7gysppyil" path="res://maps/map_placables/hazards (spikes)/spikes_still.png" id="8_vt07r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("3_vt07r")
@@ -175,7 +176,7 @@ position = Vector2(724, -2107)
 face_left = true
 
 [node name="peashooter2" parent="." unique_id=1351199691 instance=ExtResource("5_na5tl")]
-position = Vector2(723, -1340)
+position = Vector2(673, -1341)
 face_left = true
 
 [node name="peashooter3" parent="." unique_id=1201598827 instance=ExtResource("5_na5tl")]
@@ -203,25 +204,250 @@ angle = 40.5
 
 [node name="spikes" type="Node" parent="." unique_id=769964537]
 
-[node name="SpikesCollision" parent="spikes" unique_id=417759129 instance=ExtResource("8_na5tl")]
-position = Vector2(-694, -1831)
-
-[node name="SpikesCollision2" parent="spikes" unique_id=1640211480 instance=ExtResource("8_na5tl")]
-position = Vector2(-496.23413, 817.3509)
-
-[node name="SpikesCollision3" parent="spikes" unique_id=1241063305 instance=ExtResource("8_na5tl")]
-position = Vector2(383.31238, 1260.312)
-
-[node name="SpikesCollision4" parent="spikes" unique_id=1179204217 instance=ExtResource("8_na5tl")]
+[node name="SpikesCollision1" parent="spikes" unique_id=1179204217 instance=ExtResource("8_na5tl")]
 position = Vector2(-694, 57)
 
-[node name="SpikesCollision5" parent="spikes" unique_id=81483290 instance=ExtResource("8_na5tl")]
-position = Vector2(-694, -969)
+[node name="EDIT THIS" parent="spikes/SpikesCollision1/StaticBody2D" parent_id_path=PackedInt32Array(1179204217, 1580090474) index="0" unique_id=1846142658]
+polygon = PackedVector2Array(-10, -537, 10, -537, 10, 7, -10, 7)
 
-[node name="SpikesCollision6" parent="spikes" unique_id=554847433 instance=ExtResource("8_na5tl")]
-position = Vector2(750, -1386)
+[node name="SpikesCollision2" parent="spikes" unique_id=417759129 instance=ExtResource("8_na5tl")]
+position = Vector2(-22, 1241)
 
-[editable path="spikes/SpikesCollision"]
+[node name="EDIT THIS" parent="spikes/SpikesCollision2/StaticBody2D" parent_id_path=PackedInt32Array(417759129, 1580090474) index="0" unique_id=1846142658]
+polygon = PackedVector2Array(790, -25, 790, 7, -10, 7, -10, -25)
+
+[node name="SpikesCollision3" parent="spikes" unique_id=980738808 instance=ExtResource("8_na5tl")]
+position = Vector2(-694, -1831)
+
+[node name="EDIT THIS" parent="spikes/SpikesCollision3/StaticBody2D" parent_id_path=PackedInt32Array(980738808, 1580090474) index="0" unique_id=1846142658]
+polygon = PackedVector2Array(-10, -313, 10, -313, 10, 7, -10, 7)
+
+[node name="SpikesCollision4" parent="spikes" unique_id=803059782 instance=ExtResource("8_na5tl")]
+position = Vector2(-702.0471, -992.9767)
+
+[node name="EDIT THIS" parent="spikes/SpikesCollision4/StaticBody2D" parent_id_path=PackedInt32Array(803059782, 1580090474) index="0" unique_id=1846142658]
+position = Vector2(8.047119, 25.976685)
+polygon = PackedVector2Array(-10, -506, 10, -506, 10, 7, -10, 7)
+
+[node name="SpikesCollision5" parent="spikes" unique_id=769330998 instance=ExtResource("8_na5tl")]
+position = Vector2(613.77606, -1520.6853)
+
+[node name="EDIT THIS" parent="spikes/SpikesCollision5/StaticBody2D" parent_id_path=PackedInt32Array(769330998, 1580090474) index="0" unique_id=1846142658]
+position = Vector2(154.22394, 201.6853)
+polygon = PackedVector2Array(-10, -537, 10, -537, 10, 7, -10, 7)
+
+[node name="SpikesCollision6" parent="spikes" unique_id=263777264 instance=ExtResource("8_na5tl")]
+position = Vector2(-696.0914, 816.1818)
+
+[node name="EDIT THIS" parent="spikes/SpikesCollision6/StaticBody2D" parent_id_path=PackedInt32Array(263777264, 1580090474) index="0" unique_id=1846142658]
+polygon = PackedVector2Array(-7.9086304, -688.1818, 10.09137, -688.1818, 10.09137, 15.818176, -7.9086304, 15.818176)
+
+[node name="visuals" type="Node" parent="spikes" unique_id=279406741]
+
+[node name="SpikesStill" type="Sprite2D" parent="spikes/visuals" unique_id=1148936563]
+z_index = -1
+position = Vector2(43.5, 1234.251)
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill2" type="Sprite2D" parent="spikes/visuals" unique_id=667393913]
+z_index = -1
+position = Vector2(167.5, 1237.251)
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill3" type="Sprite2D" parent="spikes/visuals" unique_id=237243096]
+z_index = -1
+position = Vector2(292.5, 1232.251)
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill4" type="Sprite2D" parent="spikes/visuals" unique_id=407291301]
+z_index = -1
+position = Vector2(655, 1235)
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill5" type="Sprite2D" parent="spikes/visuals" unique_id=422974991]
+z_index = -1
+position = Vector2(544.5, 1231.251)
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill6" type="Sprite2D" parent="spikes/visuals" unique_id=2014015756]
+z_index = -1
+position = Vector2(417, 1231)
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill7" type="Sprite2D" parent="spikes/visuals" unique_id=864237057]
+z_index = -1
+position = Vector2(757, 1234.0001)
+scale = Vector2(1, 0.7295673)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill8" type="Sprite2D" parent="spikes/visuals" unique_id=1148874852]
+z_index = -1
+position = Vector2(-690.00006, 766)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill9" type="Sprite2D" parent="spikes/visuals" unique_id=325012800]
+z_index = -1
+position = Vector2(-690, 645)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill10" type="Sprite2D" parent="spikes/visuals" unique_id=2064575779]
+z_index = -1
+position = Vector2(-690, 526)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill11" type="Sprite2D" parent="spikes/visuals" unique_id=1997130540]
+z_index = -1
+position = Vector2(-690, 406)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill12" type="Sprite2D" parent="spikes/visuals" unique_id=916824052]
+z_index = -1
+position = Vector2(-693.74896, 306.5)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill13" type="Sprite2D" parent="spikes/visuals" unique_id=869653157]
+z_index = -1
+position = Vector2(-693.7489, 185.5)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill14" type="Sprite2D" parent="spikes/visuals" unique_id=72629743]
+z_index = -1
+position = Vector2(-694, -1)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill17" type="Sprite2D" parent="spikes/visuals" unique_id=1541229909]
+z_index = -1
+position = Vector2(-689.74896, -218.5)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill18" type="Sprite2D" parent="spikes/visuals" unique_id=863982469]
+z_index = -1
+position = Vector2(-689.74896, -337.5)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill19" type="Sprite2D" parent="spikes/visuals" unique_id=1005270028]
+z_index = -1
+position = Vector2(-689.74896, -457.5)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill15" type="Sprite2D" parent="spikes/visuals" unique_id=1478655737]
+z_index = -1
+position = Vector2(-695, -112)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill16" type="Sprite2D" parent="spikes/visuals" unique_id=1806597690]
+z_index = -1
+position = Vector2(-690.00006, -1030)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill20" type="Sprite2D" parent="spikes/visuals" unique_id=1966343282]
+z_index = -1
+position = Vector2(-690, -1151)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill21" type="Sprite2D" parent="spikes/visuals" unique_id=674843691]
+z_index = -1
+position = Vector2(-690, -1270)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill22" type="Sprite2D" parent="spikes/visuals" unique_id=381742751]
+z_index = -1
+position = Vector2(-690, -1390)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill23" type="Sprite2D" parent="spikes/visuals" unique_id=1473380746]
+z_index = -1
+position = Vector2(-689.74896, -1875.5)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill24" type="Sprite2D" parent="spikes/visuals" unique_id=1410245008]
+z_index = -1
+position = Vector2(-689.74896, -1994.5)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill25" type="Sprite2D" parent="spikes/visuals" unique_id=1924761074]
+z_index = -1
+position = Vector2(-689.74896, -2114.5)
+rotation = 1.5707964
+scale = Vector2(1, 0.53811455)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill26" type="Sprite2D" parent="spikes/visuals" unique_id=1279272991]
+z_index = -1
+position = Vector2(756.00006, -1377)
+rotation = -1.5707964
+scale = Vector2(1, 0.3)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill27" type="Sprite2D" parent="spikes/visuals" unique_id=1072439499]
+z_index = -1
+position = Vector2(756.00006, -1508)
+rotation = -1.5707964
+scale = Vector2(1, 0.3)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill28" type="Sprite2D" parent="spikes/visuals" unique_id=368818975]
+z_index = -1
+position = Vector2(755.75, -1637.5)
+rotation = -1.5707964
+scale = Vector2(1, 0.3)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill29" type="Sprite2D" parent="spikes/visuals" unique_id=153346202]
+z_index = -1
+position = Vector2(755.75, -1768.5)
+rotation = -1.5707964
+scale = Vector2(1, 0.3)
+texture = ExtResource("8_vt07r")
+
+[node name="SpikesStill30" type="Sprite2D" parent="spikes/visuals" unique_id=1379911285]
+z_index = -1
+position = Vector2(759, -1869)
+rotation = -1.5707964
+scale = Vector2(1, 0.3)
+texture = ExtResource("8_vt07r")
+
+[editable path="spikes/SpikesCollision1"]
 [editable path="spikes/SpikesCollision2"]
 [editable path="spikes/SpikesCollision3"]
 [editable path="spikes/SpikesCollision4"]

@@ -240,7 +240,7 @@ texture = ExtResource("8_xpn8k")
 
 [node name="SpikesStill8" type="Sprite2D" parent="hazards/visual" unique_id=1695247434]
 z_index = -1
-position = Vector2(1713, 933)
+position = Vector2(1712, 921)
 texture = ExtResource("8_xpn8k")
 
 [node name="SpikesStill9" type="Sprite2D" parent="hazards/visual" unique_id=1221315448]
