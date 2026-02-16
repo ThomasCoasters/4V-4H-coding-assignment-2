@@ -195,6 +195,9 @@ var external_velocity := Vector2.ZERO
 @export_range(0.0, 2000.0, 1) var decay_rate_x: float = 500.0
 @export_range(0.0, 2000.0, 1) var decay_rate_y: float = 1000.0
 
+@export_range(0, 300, 1) var MAX_MOMENTUM_HISTORY: int = 10
+var external_velocity_history: Array[Vector2] = []
+
 @export_subgroup("afterimage")
 @export var afterimage_scene: PackedScene
 @export var afterimage_spawn_delay := 0.06
@@ -244,6 +247,8 @@ func setup():
 	collision_size = $CollisionShape2D.shape.size
 
 func _physics_process(delta: float) -> void:
+	record_external_velocity()
+	
 	decay_external_linear(delta)
 	
 	if external_velocity != Vector2.ZERO:
@@ -419,10 +424,20 @@ func _on_jump_state_entered() -> void:
 	
 	velocity.y = JUMPING_SPEED
 	
-	if is_on_floor() || is_on_wall():
-		external_velocity = get_platform_velocity() * Vector2(keep_horizontal_momentum_percentage, keep_vertical_momentum_percentage)
-		if external_velocity.y > 0:
-			external_velocity.y = 0
+	var peak := get_highest_external_velocity()
+	
+	var should_replace_x := false
+	if last_direction.x > 0:
+		should_replace_x = external_velocity.x < peak.x
+	elif last_direction.x < 0:
+		should_replace_x = external_velocity.x > peak.x
+	
+	var should_replace_y := external_velocity.y > peak.y
+	
+	if should_replace_x:
+		external_velocity.x = peak.x * keep_horizontal_momentum_percentage
+	if should_replace_y:
+		external_velocity.y = peak.y * keep_vertical_momentum_percentage
 	
 	
 	is_jumping = true
@@ -513,11 +528,13 @@ func _on_to_jumping_form_wall_taken() -> void:
 
 #region momentum
 func decay_external_linear(delta: float):
-	if external_velocity.x != 0 && last_direction.x != 0:
+	if external_velocity.x != 0:
 		if sign(external_velocity.x) != sign(last_direction.x):
 			external_velocity.x = 0
 		else:
 			external_velocity.x = move_toward(external_velocity.x, 0, decay_rate_x * delta)
+			if abs(external_velocity.x) >= 700:
+				external_velocity.x *= pow(0.98, delta * 60)
 	else:
 		external_velocity.x = 0
 	
@@ -544,6 +561,35 @@ func spawn_afterimage():
 	s.frame = sprite_2d.frame
 	s.flip_h = sprite_2d.flip_h
 	s.pause()
+
+
+func record_external_velocity():
+	if !(is_on_floor() || is_on_wall()):
+		external_velocity_history.append(Vector2.ZERO)
+	else:
+		external_velocity_history.append(get_platform_velocity())
+	
+	if external_velocity_history.size() > MAX_MOMENTUM_HISTORY:
+		external_velocity_history.pop_front()
+
+func get_highest_external_velocity() -> Vector2:
+	var result := Vector2(0, 0)
+
+	for v in external_velocity_history:
+		if v.x != 0 and sign(v.x) != sign(last_direction.x):
+			continue
+		
+		if last_direction.x > 0:
+			result.x = max(result.x, v.x)
+		elif last_direction.x < 0:
+			result.x = min(result.x, v.x)
+		
+		result.y = min(result.y, v.y)
+	
+	return result
+
+
+
 #endregion
 
 #region camera

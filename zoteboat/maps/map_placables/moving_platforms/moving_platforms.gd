@@ -7,6 +7,8 @@ extends Path2D
 @export var loop: bool = false
 @export var speed: int = 100
 @export var speed_scale: float = 1.0
+@export var per_side_wait_time: float = 0.3
+
 
 @export_group("on trigger")
 @export var move_on_trigger: bool = false
@@ -30,6 +32,7 @@ func _process(delta: float) -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	await get_tree().create_timer(per_side_wait_time).timeout
 	if move_on_trigger:
 		if anim_name == "front":
 			if !trigger_one_direction:
