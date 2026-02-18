@@ -3,6 +3,10 @@ class_name Player
 
 
 #region vars setup
+@export_group("variants")
+@export var invis_moving: bool = false
+@export var unkillable: bool = false
+@export var permadeath: bool = false
 
 @export_group("cheaty ability unlocks")
 @export var has_dash: bool
@@ -146,8 +150,6 @@ var hazard_respawn_location: Vector2
 
 @onready var sprite_2d: AnimatedSprite2D = $Sprite2D
 @onready var ui_holder: CanvasLayer = $UiHolder
-
-var unkillable: bool = false
 
 
 
@@ -306,9 +308,15 @@ func _physics_process(delta: float) -> void:
 		play_anim("he_just_standing_there__menacingly", ANIM_PRIORITY.IDLE_START)
 		if roar_timer.is_stopped():
 			roar_timer.start()
+		
+		if invis_moving:
+			sprite_2d.visible = true
 	else:
 		zote_final_town_loop.stop()
 		roar_timer.stop()
+		
+		if invis_moving:
+			sprite_2d.visible = false
 	
 	
 	update_facing()
@@ -891,6 +899,12 @@ func death():
 	sprite_2d.visible = false
 	
 	await get_tree().create_timer(1.5).timeout
+	
+	if permadeath:
+		SaveLoad.reset_save()
+		get_tree().reload_current_scene()
+		return
+	
 	
 	health = max_health
 	

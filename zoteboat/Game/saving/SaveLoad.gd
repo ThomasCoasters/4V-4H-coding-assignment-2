@@ -26,6 +26,8 @@ var DEFAULT_SAVE: Dictionary = {
 	"music_volume": 10,
 	
 	"unkillable": 0,
+	"invis": 0,
+	"permadeath": 0,
 	
 	"killed_enemies": {},
 	"finished_arenas": {},

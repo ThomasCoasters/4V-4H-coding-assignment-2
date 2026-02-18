@@ -21,11 +21,16 @@ var loading: bool = false
 @onready var exit_audio: Button = $volume_settings/exit_audio
 
 @onready var delete_save: Button = $extra/delete_save
-@onready var unkillable: Button = $extra/unkillable
+@onready var variants: Button = $extra/variants
 @onready var exit_extra: Button = $extra/exit
 
 @onready var save_yes: Button = $"reset_save/save-yes"
 @onready var save_no: Button = $"reset_save/save-no"
+
+@onready var invis: Button = $variants/invis
+@onready var unkillable: Button = $variants/unkillable
+@onready var exit_variant: Button = $variants/exit_variant
+@onready var perma_death: Button = $variants/perma_death
 
 @onready var left_arrow: AnimatedSprite2D = $left_arrow
 @onready var right_arrow: AnimatedSprite2D = $right_arrow
@@ -38,6 +43,7 @@ var loading: bool = false
 @onready var extra_buttons: VBoxContainer = $extra
 @onready var reset_save: VBoxContainer = $reset_save
 @onready var volume_settings: VBoxContainer = $volume_settings
+@onready var variants_buttons: VBoxContainer = $variants
 
 
 @onready var title: AudioStreamPlayer = $audio/Title
@@ -91,12 +97,14 @@ var current_master_volume_index: int = 10
 var current_sound_volume_index: int = 10
 var current_music_volume_index: int = 10
 
-var unkillable_states = ["Off", "On"]
-var unkillable_values = {
+var variant_states = ["Off", "On"]
+var variant_values = {
 	"Off": false,
 	"On": true
 }
+var current_invis_index: int = 0
 var current_unkillable_index: int = 0
+var current_permadeath_index: int = 0
 
 func _ready() -> void:
 	current_rumble_index = SaveLoad.contents_to_save.rumble
@@ -105,6 +113,8 @@ func _ready() -> void:
 	current_sound_volume_index = SaveLoad.contents_to_save.sound_volume
 	current_music_volume_index = SaveLoad.contents_to_save.music_volume
 	current_unkillable_index = SaveLoad.contents_to_save.unkillable
+	current_invis_index = SaveLoad.contents_to_save.invis
+	current_permadeath_index = SaveLoad.contents_to_save.permadeath
 	
 	var rumble_state_name = rumble_states[current_rumble_index]
 	rumble.text = "Rumble: " + rumble_state_name
@@ -127,17 +137,26 @@ func _ready() -> void:
 	bus_index = AudioServer.get_bus_index("background")
 	AudioServer.set_bus_volume_db(bus_index, volume_values[music_volume_state_name])
 	
-	var unkillable_state_name = unkillable_states[current_unkillable_index]
+	var unkillable_state_name = variant_states[current_unkillable_index]
 	unkillable.text = "Unkillable: " + unkillable_state_name
-	Global.player.unkillable = unkillable_values[unkillable_state_name]
+	Global.player.unkillable = variant_values[unkillable_state_name]
 	
-	containers = [basic_buttons, quit_game_buttons, settings, extra_buttons, reset_save, volume_settings]
+	var invis_state_name = variant_states[current_invis_index]
+	invis.text = "Invisible Motion: " + invis_state_name
+	Global.player.invis_moving = variant_values[invis_state_name]
+	
+	var perma_death_state_name = variant_states[current_permadeath_index]
+	perma_death.text = "Permadeath (Resets Save):" + perma_death_state_name
+	Global.player.permadeath = variant_values[perma_death_state_name]
+	
+	
+	containers = [basic_buttons, quit_game_buttons, settings, extra_buttons, reset_save, volume_settings, variants_buttons]
 	
 	for contain in containers:
 		hide_menu(contain)
 	show_menu(basic_buttons)
 	
-	buttons = [start, options, extra, quit_game, quit_yes, quit_no, rumble, screen_shake, volume, exit, delete_save, unkillable, exit_extra, save_yes, save_no, exit_audio, music_volume, sound_volume, master_volume]
+	buttons = [start, options, extra, quit_game, quit_yes, quit_no, rumble, screen_shake, volume, exit, delete_save, unkillable, exit_extra, save_yes, save_no, exit_audio, music_volume, sound_volume, master_volume, variants, exit_variant, invis, perma_death]
 	
 	for button in buttons:
 		button.mouse_entered.connect(_on_hover.bind(button))
@@ -165,6 +184,8 @@ func _unhandled_input(event: InputEvent) -> void:
 					save_yes.grab_focus()
 				volume_settings:
 					master_volume.grab_focus()
+				variants_buttons:
+					invis.grab_focus()
 			
 			controller_active = true
 		
@@ -185,6 +206,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				_on_saveno_pressed()
 			volume_settings:
 				_on_exit_audio_pressed()
+			variants_buttons:
+				_on_exit_variant_pressed()
 	
 	if event is InputEventMouseMotion:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -372,14 +395,14 @@ func _on_saveno_pressed() -> void:
 
 func _on_unkillable_pressed() -> void:
 	current_unkillable_index += 1
-	if current_unkillable_index >= unkillable_states.size():
+	if current_unkillable_index >= variant_states.size():
 		current_unkillable_index = 0
 	
-	var state_name = unkillable_states[current_unkillable_index]
+	var state_name = variant_states[current_unkillable_index]
 	
 	unkillable.text = "Unkillable: " + state_name
 	
-	Global.player.unkillable = unkillable_values[state_name]
+	Global.player.unkillable = variant_values[state_name]
 	
 	ui_button_confirm.play()
 	
@@ -446,4 +469,54 @@ func _on_music_volume_pressed() -> void:
 	ui_button_confirm.play()
 	
 	SaveLoad.contents_to_save.music_volume = current_music_volume_index
+	SaveLoad._save()
+
+
+func _on_variants_pressed() -> void:
+	for contain in containers:
+		hide_menu(contain)
+	show_menu(variants_buttons)
+	
+	ui_button_cancel.play()
+
+
+func _on_invis_pressed() -> void:
+	current_invis_index += 1
+	if current_invis_index >= variant_states.size():
+		current_invis_index = 0
+	
+	var state_name = variant_states[current_invis_index]
+	
+	invis.text = "Invisible Motion: " + state_name
+	
+	Global.player.invis_moving = variant_values[state_name]
+	
+	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.invis = current_invis_index
+	SaveLoad._save()
+
+
+func _on_exit_variant_pressed() -> void:
+	for contain in containers:
+		hide_menu(contain)
+	show_menu(extra_buttons)
+	
+	ui_button_cancel.play()
+
+
+func _on_perma_death_pressed() -> void:
+	current_permadeath_index += 1
+	if current_permadeath_index >= variant_states.size():
+		current_permadeath_index = 0
+	
+	var state_name = variant_states[current_permadeath_index]
+	
+	perma_death.text = "Permadeath (Resets Save): " + state_name
+	
+	Global.player.permadeath = variant_values[state_name]
+	
+	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.permadeath = current_permadeath_index
 	SaveLoad._save()

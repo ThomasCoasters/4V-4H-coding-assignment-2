@@ -402,7 +402,7 @@ theme_override_constants/separation = 60
 [node name="delete_save" type="Button" parent="extra" unique_id=520326425]
 layout_mode = 2
 focus_neighbor_top = NodePath("../exit")
-focus_neighbor_bottom = NodePath("../unkillable")
+focus_neighbor_bottom = NodePath("../variants")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
@@ -412,7 +412,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
 text = "Delete save"
 
-[node name="unkillable" type="Button" parent="extra" unique_id=669165345]
+[node name="variants" type="Button" parent="extra" unique_id=669165345]
 layout_mode = 2
 focus_neighbor_top = NodePath("../delete_save")
 focus_neighbor_bottom = NodePath("../exit")
@@ -423,12 +423,79 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_xwm6q")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
-text = "Unkillable: off"
+text = "variants"
 
 [node name="exit" type="Button" parent="extra" unique_id=872854818]
 layout_mode = 2
-focus_neighbor_top = NodePath("../unkillable")
+focus_neighbor_top = NodePath("../variants")
 focus_neighbor_bottom = NodePath("../delete_save")
+theme_override_fonts/font = ExtResource("4_w4mux")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wfb0p")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_24ba0")
+text = "back"
+
+[node name="variants" type="VBoxContainer" parent="." unique_id=1808345167]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.5
+offset_top = 86.0
+offset_right = 158.5
+offset_bottom = 359.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+
+[node name="invis" type="Button" parent="variants" unique_id=904206327]
+layout_mode = 2
+focus_neighbor_top = NodePath("../exit_variant")
+focus_neighbor_bottom = NodePath("../perma_death")
+theme_override_fonts/font = ExtResource("4_w4mux")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xwm6q")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
+text = "Invisible Motion: Off"
+
+[node name="perma_death" type="Button" parent="variants" unique_id=1947878565]
+layout_mode = 2
+focus_neighbor_top = NodePath("../exit_variant")
+focus_neighbor_bottom = NodePath("../unkillable")
+theme_override_fonts/font = ExtResource("4_w4mux")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xwm6q")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
+text = "Permadeath (Resets Save): Off"
+
+[node name="unkillable" type="Button" parent="variants" unique_id=1103460796]
+layout_mode = 2
+focus_neighbor_top = NodePath("../perma_death")
+focus_neighbor_bottom = NodePath("../exit_variant")
+theme_override_fonts/font = ExtResource("4_w4mux")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xwm6q")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
+text = "Unkillable: off"
+
+[node name="exit_variant" type="Button" parent="variants" unique_id=1412102589]
+layout_mode = 2
+focus_neighbor_top = NodePath("../unkillable")
+focus_neighbor_bottom = NodePath("../invis")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
@@ -523,7 +590,11 @@ bus = &"SFX"
 [connection signal="pressed" from="volume_settings/music_volume" to="." method="_on_music_volume_pressed"]
 [connection signal="pressed" from="volume_settings/exit_audio" to="." method="_on_exit_audio_pressed"]
 [connection signal="pressed" from="extra/delete_save" to="." method="_on_delete_save_pressed"]
-[connection signal="pressed" from="extra/unkillable" to="." method="_on_unkillable_pressed"]
+[connection signal="pressed" from="extra/variants" to="." method="_on_variants_pressed"]
 [connection signal="pressed" from="extra/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="variants/invis" to="." method="_on_invis_pressed"]
+[connection signal="pressed" from="variants/perma_death" to="." method="_on_perma_death_pressed"]
+[connection signal="pressed" from="variants/unkillable" to="." method="_on_unkillable_pressed"]
+[connection signal="pressed" from="variants/exit_variant" to="." method="_on_exit_variant_pressed"]
 [connection signal="pressed" from="reset_save/save-yes" to="." method="_on_saveyes_pressed"]
 [connection signal="pressed" from="reset_save/save-no" to="." method="_on_saveno_pressed"]
