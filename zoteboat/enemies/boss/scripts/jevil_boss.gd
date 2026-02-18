@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 #region setup
 @export_group("setup")
+@export var damage_mult: int = 1
+
 @export var start_active := true
 @export var stats: Stats
 
@@ -442,7 +444,7 @@ func get_spawn_position_on_surface(surface: ArenaSurface, margin := 16.0) -> Vec
 
 #region basic enemy stuff
 func damage(damage_value: int):
-	stats.health -= damage_value
+	stats.health -= damage_value * damage_mult
 	
 	if $StateChart/ParallelState/stun/stunned.active:
 		return

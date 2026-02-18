@@ -23,6 +23,7 @@ var loading: bool = false
 @onready var delete_save: Button = $extra/delete_save
 @onready var variants: Button = $extra/variants
 @onready var exit_extra: Button = $extra/exit
+@onready var endless_arena: Button = $extra/endless_arena
 
 @onready var save_yes: Button = $"reset_save/save-yes"
 @onready var save_no: Button = $"reset_save/save-no"
@@ -156,7 +157,7 @@ func _ready() -> void:
 		hide_menu(contain)
 	show_menu(basic_buttons)
 	
-	buttons = [start, options, extra, quit_game, quit_yes, quit_no, rumble, screen_shake, volume, exit, delete_save, unkillable, exit_extra, save_yes, save_no, exit_audio, music_volume, sound_volume, master_volume, variants, exit_variant, invis, perma_death]
+	buttons = [start, options, extra, quit_game, quit_yes, quit_no, rumble, screen_shake, volume, exit, delete_save, unkillable, exit_extra, save_yes, save_no, exit_audio, music_volume, sound_volume, master_volume, variants, exit_variant, invis, perma_death, endless_arena]
 	
 	for button in buttons:
 		button.mouse_entered.connect(_on_hover.bind(button))
@@ -520,3 +521,28 @@ func _on_perma_death_pressed() -> void:
 	
 	SaveLoad.contents_to_save.permadeath = current_permadeath_index
 	SaveLoad._save()
+
+
+func _on_endless_arena_pressed() -> void:
+	if loading:
+		return
+	
+	var room = "res://maps/maps/infinite arena/infinite_arena.tscn"
+	var location = "infinite_arena"
+	
+	Global.player.has_dash = true
+	Global.player.has_double_jump = true
+	Global.player.has_wall_cling = true
+	Global.player.max_health = 9
+	
+	process_mode = Node.PROCESS_MODE_DISABLED
+	ui_button_confirm.play()
+	
+	loading = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
+	Global.map_holder.change_2d_scene(room, location)
+	
+	await get_tree().create_timer(0.5).timeout
+	
+	queue_free()

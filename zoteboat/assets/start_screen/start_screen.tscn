@@ -415,7 +415,7 @@ text = "Delete save"
 [node name="variants" type="Button" parent="extra" unique_id=669165345]
 layout_mode = 2
 focus_neighbor_top = NodePath("../delete_save")
-focus_neighbor_bottom = NodePath("../exit")
+focus_neighbor_bottom = NodePath("../endless_arena")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
@@ -425,9 +425,22 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
 text = "variants"
 
-[node name="exit" type="Button" parent="extra" unique_id=872854818]
+[node name="endless_arena" type="Button" parent="extra" unique_id=1309299355]
 layout_mode = 2
 focus_neighbor_top = NodePath("../variants")
+focus_neighbor_bottom = NodePath("../exit")
+theme_override_fonts/font = ExtResource("4_w4mux")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xwm6q")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
+text = "The Endless Arena"
+
+[node name="exit" type="Button" parent="extra" unique_id=872854818]
+layout_mode = 2
+focus_neighbor_top = NodePath("../endless_arena")
 focus_neighbor_bottom = NodePath("../delete_save")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
@@ -591,6 +604,7 @@ bus = &"SFX"
 [connection signal="pressed" from="volume_settings/exit_audio" to="." method="_on_exit_audio_pressed"]
 [connection signal="pressed" from="extra/delete_save" to="." method="_on_delete_save_pressed"]
 [connection signal="pressed" from="extra/variants" to="." method="_on_variants_pressed"]
+[connection signal="pressed" from="extra/endless_arena" to="." method="_on_endless_arena_pressed"]
 [connection signal="pressed" from="extra/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="variants/invis" to="." method="_on_invis_pressed"]
 [connection signal="pressed" from="variants/perma_death" to="." method="_on_perma_death_pressed"]

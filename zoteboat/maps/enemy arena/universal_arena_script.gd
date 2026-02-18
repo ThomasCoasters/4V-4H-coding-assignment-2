@@ -50,6 +50,102 @@ const ENEMY_SCENES := {
 	"grimm_circle": GRIMMKIN_CIRCLE,
 	"jevil": JEVIL_BOSS,
 }
+
+#region infinite arena
+const ENEMY_DATA := {
+	"dvd": {
+		"scene": DVD_ENEMY,
+		"value": 0.5,
+	},
+	"aspid": {
+		"scene": ASPID_ENEMY,
+		"value": 2,
+	},
+	"squash": {
+		"scene": SQUASH_ENEMY,
+		"value": 3,
+	},
+	"peashooter": {
+		"scene": PEASHOOTER_ENEMY,
+		"value": 1,
+	},
+	"primal": {
+		"scene": PRIMAL_ASPID,
+		"value": 7,
+	},
+	"grimm_attack": {
+		"scene": GRIMMKIN_BULLETS,
+		"value": 4,
+	},
+	"grimm_circle": {
+		"scene": GRIMMKIN_CIRCLE,
+		"value": 5,
+	},
+	"jevil_phase_3": {
+		"scene": JEVIL_BOSS,
+		"value": 8,
+	},
+	"jevil_normal": {
+		"scene": JEVIL_BOSS,
+		"value": 25,
+	},
+	"jevil_phase_2": {
+		"scene": JEVIL_BOSS,
+		"value": 20,
+	},
+}
+
+
+var enemy_extras := {
+	"aspid": {
+		"forced": {
+			"start_attacking": true,
+		},
+	},
+	"primal": {
+		"forced": {
+			"start_attacking": true,
+		},
+	},
+	"grimm_attack": {
+		"forced": {
+			"start_attacking": true,
+		},
+	},
+	"grimm_circle": {
+		"forced": {
+			"start_attacking": true,
+		},
+	},
+	"dvd": {
+		"random": {
+			"angle": func(): return randf_range(0.0, 360.0),
+		},
+	},
+	"peashooter": {
+		"random": {
+			"face_left": func(): return randf() < 0.5,
+		},
+	},
+	"jevil_phase_3": {
+		"forced": {
+			"begin_phase": 3,
+		},
+	},
+	"jevil_normal": {
+		"forced": {
+			"damage_mult": 4,
+		},
+	},
+	"jevil_phase_2": {
+		"forced": {
+			"begin_phase": 2,
+			"damage_mult": 3,
+		},
+	},
+}
+#endregion
+
 #endregion
 
 
@@ -67,6 +163,13 @@ var arena_parent: Node = null
 @export_range(0.0, 5.0, 0.01) var slowdown_time: float = 5.0
 @export_range(0.0, 1.0, 0.01) var slowdown_speed: float = 0.15
 
+@export_group("funni stuff")
+@export var infinite_random_arena: bool = false
+@export var base_wave_value := 0
+@export var wave_value_growth := 2
+@export var max_enemies_per_wave := 6
+
+
 func _ready():
 	arena_parent = self.get_parent()
 	await get_tree().process_frame
@@ -80,13 +183,15 @@ func _ready():
 	if after_safety_map && before_safety_map != after_safety_map:
 		after_safety_map.enabled = false
 	
-	for wave_number in range(wave_holder.get_child_count()):
-		wave_to_node[wave_number+1] = wave_holder.get_child(wave_number)
-	
 	if arena_bounds:
 		Global.map.arena_bounds = arena_bounds
 	
 	player = Global.player
+	
+	for wave_number in range(wave_holder.get_child_count()):
+		wave_to_node[wave_number+1] = wave_holder.get_child(wave_number)
+	
+	
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -113,6 +218,16 @@ func start_arena():
 	
 	if before_safety_map:
 		before_safety_map.enabled = false
+	
+	
+	
+	
+	if infinite_random_arena:
+		for spawner in wave_to_node[current_wave].get_children():
+			
+			if "camera_mode" in spawner.name:
+				for mode in spawner.get_children():
+					player.current_camera_type = mode.name
 
 func finish_arena():
 	Engine.time_scale = slowdown_speed
@@ -159,6 +274,28 @@ func spawn_wave():
 	spawning_wave = true
 	
 	current_wave += 1
+	
+	if infinite_random_arena:
+		var wave_text: String = "Wave: " + str(current_wave)
+		Global.Name_text.reveal_text(wave_text, 0.3)
+		
+		var budget := get_wave_value(current_wave)
+		var enemies := generate_wave_enemies(budget)
+		
+		for enemy_key in enemies:
+			var enemy_scene = ENEMY_DATA[enemy_key].scene
+			var pos := get_random_position_in_arena()
+			var extras := build_enemy_extras(enemy_key)
+			
+			spawn_enemy_at_position(enemy_scene, pos, extras)
+		
+		await get_tree().create_timer(1.0).timeout
+		Global.Name_text.remove_text(0.3)
+		
+		spawning_wave = false
+		return
+	
+	
 	if !wave_to_node.has(current_wave):
 		finish_arena()
 		return
@@ -242,4 +379,85 @@ func play_sfx(path: String):
 	get_tree().current_scene.add_child(audio_player)
 	audio_player.play()
 	audio_player.finished.connect(audio_player.queue_free)
+#endregion
+
+
+
+#region infinite arena
+func get_wave_value(wave: int) -> int:
+	return base_wave_value + wave * wave_value_growth
+
+func generate_wave_enemies(budget: float) -> Array:
+	var result := []
+	var remaining := budget
+	
+	var keys := ENEMY_DATA.keys()
+	keys.shuffle()
+	
+	while remaining > 0.0 and result.size() < max_enemies_per_wave:
+		var valid := []
+		
+		for key in keys:
+			if ENEMY_DATA[key]["value"] <= remaining:
+				valid.append(key)
+		
+		if valid.is_empty():
+			break
+		
+		var chosen = valid.pick_random()
+		result.append(chosen)
+		remaining -= ENEMY_DATA[chosen]["value"]
+	
+	return result
+
+
+func get_random_position_in_arena() -> Vector2:
+	var shape := arena_bounds.shape
+	if shape is RectangleShape2D:
+		var extents = shape.extents
+		var center := arena_bounds.global_position
+		
+		return Vector2(
+			randf_range(center.x - extents.x, center.x + extents.x),
+			randf_range(center.y - extents.y, center.y + extents.y)
+		)
+	
+	return arena_bounds.global_position
+
+func spawn_enemy_at_position(enemy_scene: PackedScene, pos: Vector2, extra := {}):
+	await get_tree().create_timer(1.3).timeout
+	
+	var enemy := enemy_scene.instantiate()
+	enemy.global_position = pos
+	
+	for k in extra:
+		enemy.set(k, extra[k])
+	
+	enemy.start_active = false
+	add_child(enemy)
+	enemy.killed.connect(_on_enemy_killed)
+	alive_enemies += 1
+	
+	fade_in_enemy(enemy, 0.7)
+
+
+func build_enemy_extras(enemy_key: String, manual := {}) -> Dictionary:
+	var result := {}
+	
+	if enemy_extras.has(enemy_key):
+		var data = enemy_extras[enemy_key]
+		
+		if data.has("forced"):
+			for k in data.forced:
+				result[k] = data.forced[k]
+		
+		if data.has("random"):
+			for k in data.random:
+				result[k] = data.random[k].call()
+	
+	for k in manual:
+		result[k] = manual[k]
+	
+	return result
+
 #endregion

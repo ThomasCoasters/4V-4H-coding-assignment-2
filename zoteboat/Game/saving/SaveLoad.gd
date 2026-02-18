@@ -12,7 +12,7 @@ var DEFAULT_SAVE: Dictionary = {
 	
 	"starting_room": "res://maps/maps/pre-dash/kingspass_for_losers.tscn",
 	#"starting_room": "res://maps/examples/MOVING DEPRESSION/moving_depression.tscn",
-	#"starting_room": "res://maps/maps/jevil boss/jevil_arena.tscn",
+	#"starting_room": "res://maps/maps/infinite arena/infinite_arena.tscn",
 	
 	"starting_location": "start_1,-1",
 	#"starting_location": "moving_platform_test",

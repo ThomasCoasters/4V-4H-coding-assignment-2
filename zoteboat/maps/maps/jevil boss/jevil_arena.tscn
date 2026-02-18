@@ -107,7 +107,7 @@ value = 3
 metadata/_custom_type_script = "uid://domk3qfwgxh7i"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1a7be"]
-size = Vector2(1344, 704)
+size = Vector2(1153, 653)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("4_uyact")
@@ -278,7 +278,7 @@ extras = Array[ExtResource("6_ygq3w")]([SubResource("Resource_uyact")])
 
 [node name="area_bounds" type="CollisionShape2D" parent="area arena" unique_id=1237720875]
 visible = false
-position = Vector2(1344, 192)
+position = Vector2(1343.5, 217.5)
 shape = SubResource("RectangleShape2D_1a7be")
 
 [node name="increase_max_hp" parent="." unique_id=694949129 instance=ExtResource("8_1mma8")]
