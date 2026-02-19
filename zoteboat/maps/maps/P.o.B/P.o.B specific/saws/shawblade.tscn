@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://c6y5teq1pr6am"]
+
+[ext_resource type="Script" uid="uid://c3frdu7p07um6" path="res://maps/map_placables/hazards (spikes)/spikes_collision.gd" id="1_2jqtb"]
+[ext_resource type="Texture2D" uid="uid://bwxc7bh8wfurd" path="res://maps/maps/P.o.B/P.o.B specific/saws/saw0000.png" id="2_ttvd2"]
+[ext_resource type="Texture2D" uid="uid://3k4qxir4bhx2" path="res://maps/maps/P.o.B/P.o.B specific/saws/saw0001.png" id="3_mvt3i"]
+[ext_resource type="Texture2D" uid="uid://g8gg5i3f8pqg" path="res://maps/maps/P.o.B/P.o.B specific/saws/saw0002.png" id="4_pwjxv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvt3i"]
+atlas = ExtResource("2_ttvd2")
+region = Rect2(0, 0, 298, 303)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwjxv"]
+atlas = ExtResource("3_mvt3i")
+region = Rect2(0, 0, 303, 298)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h5qk"]
+atlas = ExtResource("4_pwjxv")
+region = Rect2(0, 0, 307, 299)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mvt3i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvt3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwjxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h5qk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ttvd2"]
+radius = 105.92922
+
+[node name="shawblade" type="Node2D" unique_id=417759129 groups=["map_transitions"]]
+script = ExtResource("1_2jqtb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=101380222]
+sprite_frames = SubResource("SpriteFrames_mvt3i")
+autoplay = "default"
+frame = 2
+frame_progress = 0.40105563
+
+[node name="StaticBody2D" type="Area2D" parent="." unique_id=1580090474 groups=["map_transitions"]]
+
+[node name="EDIT THIS" type="CollisionShape2D" parent="StaticBody2D" unique_id=1222851710]
+shape = SubResource("CircleShape2D_ttvd2")
+debug_color = Color(0.48235294, 0, 0, 0.41960785)
+
+[connection signal="body_entered" from="StaticBody2D" to="." method="_on_static_body_2d_body_entered"]

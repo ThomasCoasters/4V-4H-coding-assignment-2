@@ -10,6 +10,9 @@ var arena_bounds: CollisionShape2D
 
 const ZOTE_SHELL = preload("uid://bfxn25erf4tm3")
 
+@export var area_text_show: bool = false
+@export var area_text: String
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.map = self
@@ -65,6 +68,17 @@ func _ready() -> void:
 			var shell = ZOTE_SHELL.instantiate()
 			shell.global_position = pos
 			add_child(shell)
+	
+	
+	if area_text_show:
+		Global.Name_text.reveal_text(area_text, 0.25)
+		
+		await get_tree().create_timer(5.0).timeout
+		
+		if Global.Name_text.text != area_text:
+			return
+		
+		Global.Name_text.remove_text(0.25)
 
 
 

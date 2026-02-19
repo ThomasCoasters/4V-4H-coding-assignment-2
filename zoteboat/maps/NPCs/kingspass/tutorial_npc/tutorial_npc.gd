@@ -37,7 +37,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	await get_tree().create_timer(4.0).timeout
 	
-	if !entered:
+	if !entered || visible_explain_text:
 		return
 	
 	visible_explain_text = true

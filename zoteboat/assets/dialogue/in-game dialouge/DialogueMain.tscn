@@ -41,3 +41,6 @@ messages = ["1;You got walljump! Go on a wall in the air to cling to it and pres
 
 [node name="doublejump_unlock" parent="dialogue_manager" unique_id=2053033012 instance=ExtResource("2_mfygf")]
 messages = ["1;You got a double jump! Press the jump button in the air to jump again.;1"]
+
+[node name="P_o_B_intro" parent="dialogue_manager" unique_id=1575083784 instance=ExtResource("2_mfygf")]
+messages = ["1;To witness secrets sealed, one must endure the harshest punishment.;1"]
