@@ -31,7 +31,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 7.0
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ttvd2"]
@@ -43,10 +43,10 @@ script = ExtResource("1_2jqtb")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=101380222]
 sprite_frames = SubResource("SpriteFrames_mvt3i")
 autoplay = "default"
-frame = 2
-frame_progress = 0.40105563
+frame_progress = 0.10716319
 
 [node name="StaticBody2D" type="Area2D" parent="." unique_id=1580090474 groups=["map_transitions"]]
+visible = false
 
 [node name="EDIT THIS" type="CollisionShape2D" parent="StaticBody2D" unique_id=1222851710]
 shape = SubResource("CircleShape2D_ttvd2")

@@ -24,7 +24,7 @@ size = Vector2(467, 307)
 
 [node name="PoB_npc" type="Node2D" unique_id=1067063007]
 script = ExtResource("1_61fwp")
-dialogue = "P.o.B_intro"
+dialogue = "P_o_B_intro"
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=435831442]
 z_index = -1

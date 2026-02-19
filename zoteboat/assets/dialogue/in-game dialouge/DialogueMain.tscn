@@ -43,4 +43,7 @@ messages = ["1;You got walljump! Go on a wall in the air to cling to it and pres
 messages = ["1;You got a double jump! Press the jump button in the air to jump again.;1"]
 
 [node name="P_o_B_intro" parent="dialogue_manager" unique_id=1575083784 instance=ExtResource("2_mfygf")]
-messages = ["1;To witness secrets sealed, one must endure the harshest punishment.;1"]
+messages = ["1;To witness secrets sealed, one must endure the harshest punishment.;1", "1;Here one shall regain their strength. Enter and one will feel even more healthy, finish and one shall gain all the health.;1"]
+
+[node name="pogo_explain" parent="dialogue_manager" unique_id=1718127924 instance=ExtResource("2_mfygf")]
+messages = ["1;To gain extra height, one can throw their sword down.;1", "1;One can use their attack in all directions. Try to throw ones sword downwards in the air.;1", "1;When one regains their sword they can rethrow their sword to gain even more height.;1"]
