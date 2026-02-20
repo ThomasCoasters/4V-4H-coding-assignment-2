@@ -139,7 +139,7 @@ point_count = 2
 [sub_resource type="Curve2D" id="Curve2D_6u63p"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 106, -262)
+"points": PackedVector2Array(0, 0, 0, 0, 22, -40, 0, 0, 0, 0, 106, -262)
 }
 point_count = 2
 
@@ -238,7 +238,7 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_b5mlq")
 
-[sub_resource type="TileSet" id="TileSet_b7mrr"]
+[sub_resource type="TileSet" id="TileSet_b5mlq"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -246,7 +246,7 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5uqi"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtc60"]
 resource_local_to_scene = true
 size = Vector2(5, 105)
 
@@ -438,7 +438,7 @@ use_kinematic_bodies = true
 
 [node name="platform" parent="moving_platform3/platform" parent_id_path=PackedInt32Array(963458788, 247959146) index="2" unique_id=1995284118]
 tile_map_data = PackedByteArray("AAABAAAAAAADAAYAAAABAP//AAADAAYAAAAAAAAAAAABAAYAAAAAAP//AAABAAYAAAABAAIAAAADAAcAAAABAAEAAAADAAYAAAAAAAIAAAABAAcAAAAAAAEAAAABAAYAAAABAP7/AAADAAYAAAABAP3/AAADAAUAAAAAAP7/AAABAAYAAAAAAP3/AAABAAUAAAA=")
-tile_set = SubResource("TileSet_b7mrr")
+tile_set = SubResource("TileSet_b5mlq")
 
 [node name="SpikesCollision" parent="moving_platform3/platform" parent_id_path=PackedInt32Array(963458788, 247959146) index="3" unique_id=645137520 instance=ExtResource("9_i5uqi")]
 position = Vector2(23, -65)
@@ -448,7 +448,7 @@ polygon = PackedVector2Array(-34, -37, 36, -37, 36, -31.465782, -14, -31, -14, 1
 
 [node name="CollisionShape2D" parent="moving_platform3/move_trigger" parent_id_path=PackedInt32Array(963458788, 1286972824) index="0" unique_id=1628162647]
 position = Vector2(66.5, 0.5)
-shape = SubResource("RectangleShape2D_i5uqi")
+shape = SubResource("RectangleShape2D_vtc60")
 
 [node name="WarpZone4" parent="." unique_id=1268084640 instance=ExtResource("3_ncfl2")]
 position = Vector2(3094, -1117)

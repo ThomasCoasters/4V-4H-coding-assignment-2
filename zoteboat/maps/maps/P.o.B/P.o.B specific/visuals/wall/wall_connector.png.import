@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmm81utrfolw7"
-path="res://.godot/imported/wp_windoe_0000_wp_4.png-21822f97f2f6410658ca7bf9b736258e.ctex"
+uid="uid://bu0fvsfi3oxte"
+path="res://.godot/imported/wall_connector.png-31a890eff2907e6c848225768068e13a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://maps/maps/P.o.B/P.o.B specific/visuals/wp_windoe_0000_wp_4.png"
-dest_files=["res://.godot/imported/wp_windoe_0000_wp_4.png-21822f97f2f6410658ca7bf9b736258e.ctex"]
+source_file="res://maps/maps/P.o.B/P.o.B specific/visuals/wall/wall_connector.png"
+dest_files=["res://.godot/imported/wall_connector.png-31a890eff2907e6c848225768068e13a.ctex"]
 
 [params]
 
