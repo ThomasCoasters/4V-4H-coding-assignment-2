@@ -11,6 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://b60o5r2c5plrs" path="res://maps/map_placables/change value/change_player_value.tscn" id="9_iedhh"]
 [ext_resource type="Script" uid="uid://domk3qfwgxh7i" path="res://maps/enemy arena/keyValue.gd" id="10_0p8nv"]
 
+[sub_resource type="Resource" id="Resource_bwoi4"]
+script = ExtResource("10_0p8nv")
+key = "health"
+value = 999
+metadata/_custom_type_script = "uid://domk3qfwgxh7i"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("2_xfula")
 1:5/0 = 0
@@ -98,17 +104,18 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
-[sub_resource type="Resource" id="Resource_bwoi4"]
-script = ExtResource("10_0p8nv")
-key = "health"
-value = 999
-metadata/_custom_type_script = "uid://domk3qfwgxh7i"
-
 [node name="Room1" type="Node2D" unique_id=136216618]
 script = ExtResource("1_fmrpm")
-audio_path = "res://Game/audio/silkantuary.mp3"
-area_text_show = true
-area_text = "Path of Bah"
+
+[node name="change_stuff" parent="." unique_id=111750805 instance=ExtResource("9_iedhh")]
+position = Vector2(1108, 290)
+scale = Vector2(62.18891, 26.439999)
+changed_stuff = Array[ExtResource("10_0p8nv")]([SubResource("Resource_bwoi4")])
+
+[node name="change_stuff2" parent="." unique_id=858764943 instance=ExtResource("9_iedhh")]
+position = Vector2(2131, 681.00006)
+scale = Vector2(52.234444, 16.9847)
+changed_stuff = Array[ExtResource("10_0p8nv")]([SubResource("Resource_bwoi4")])
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=564415215]
 scale = Vector2(2, 2)
@@ -118,8 +125,8 @@ tile_set = SubResource("TileSet_7r8rt")
 [node name="WarpZone3" parent="." unique_id=752748400 instance=ExtResource("3_h4p8p")]
 position = Vector2(3084, 547.00006)
 scale = Vector2(1, 13)
-warp_to = "res://maps/maps/pre-dash/kingspass_for_losers.tscn"
-new_location_group = "TopLeft_king"
+warp_to = "res://maps/maps/P.o.B/ability_check.tscn"
+new_location_group = "left_P.o.B"
 
 [node name="SpawnLocation2" parent="." unique_id=118268787 instance=ExtResource("4_oixt3")]
 offset_left = 3023.0
@@ -164,16 +171,13 @@ position = Vector2(1416, 364)
 position = Vector2(1164, 443)
 
 [node name="shawblade4" parent="spikes" unique_id=1707090526 instance=ExtResource("7_oixt3")]
-position = Vector2(877, 278)
+position = Vector2(902, 293)
 
 [node name="shawblade5" parent="spikes" unique_id=790498346 instance=ExtResource("7_oixt3")]
-position = Vector2(598, 386)
+position = Vector2(667, 390)
 
 [node name="shawblade6" parent="spikes" unique_id=1326320936 instance=ExtResource("7_oixt3")]
-position = Vector2(1563, -31)
-
-[node name="shawblade7" parent="spikes" unique_id=118672040 instance=ExtResource("7_oixt3")]
-position = Vector2(1276, -37)
+position = Vector2(1672, 48)
 
 [node name="HazardRespawn" parent="spikes" unique_id=631066099 instance=ExtResource("8_oixt3")]
 position = Vector2(2000, 410)
@@ -186,15 +190,5 @@ scale = Vector2(21.279991, 1)
 [node name="HazardRespawn3" parent="spikes" unique_id=1297610487 instance=ExtResource("8_oixt3")]
 position = Vector2(278, 252)
 scale = Vector2(10.479991, 1)
-
-[node name="change_stuff" parent="." unique_id=111750805 instance=ExtResource("9_iedhh")]
-position = Vector2(1106, 264)
-scale = Vector2(68.119995, 30.56)
-changed_stuff = Array[ExtResource("10_0p8nv")]([SubResource("Resource_bwoi4")])
-
-[node name="change_stuff2" parent="." unique_id=858764943 instance=ExtResource("9_iedhh")]
-position = Vector2(2131, 681.00006)
-scale = Vector2(52.234444, 16.9847)
-changed_stuff = Array[ExtResource("10_0p8nv")]([SubResource("Resource_bwoi4")])
 
 [editable path="spikes/SpikesCollision"]

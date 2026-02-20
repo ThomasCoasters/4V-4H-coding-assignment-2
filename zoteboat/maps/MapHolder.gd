@@ -122,7 +122,8 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	player.set_process_mode(Node.PROCESS_MODE_INHERIT)
 	player.Camera.set_process_mode(Node.PROCESS_MODE_INHERIT)
 	player.Camera.position_smoothing_enabled = true
-	player._on_pogo_returned()
+	player._on_pogo_returned(false)
+	player.state_chart.send_event("jump_released")
 	
 	await get_tree().physics_frame
 	get_tree().call_group("map_transitions", "set_deferred", "monitoring", true)

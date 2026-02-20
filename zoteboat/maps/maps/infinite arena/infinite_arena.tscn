@@ -194,7 +194,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-649, -564, -649, 140, 
 
 [node name="infinite_Arena" type="Node2D" unique_id=905823062]
 script = ExtResource("1_40te2")
-audio_path = "res://Game/audio/carousel.ogg"
+audio_path = "res://Game/audio/tv_time.mp3"
 
 [node name="SpawnLocation" parent="." unique_id=2034326712 instance=ExtResource("2_bgwh7")]
 offset_left = 1304.0
@@ -220,8 +220,6 @@ arena_bounds = NodePath("../area_bounds")
 doors = NodePath("../doors")
 before_safety_map = NodePath("../../safety/safety")
 after_safety_map = NodePath("../../safety/safety")
-arena_audio_path = "res://Game/audio/tv_time.mp3"
-after_audio_path = "res://Game/audio/silkantuary.mp3"
 infinite_random_arena = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area arena/area arena trigger" unique_id=788480687]

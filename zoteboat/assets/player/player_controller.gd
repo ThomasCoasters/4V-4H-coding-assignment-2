@@ -207,6 +207,10 @@ var external_velocity_history: Array[Vector2] = []
 
 
 var _afterimage_timer := 0.0
+
+@export_group("fairness grace period")
+@export var wallslide_delta_frames: int = 10
+var wallslide_frames: int = 0
 #endregion
 
 #region setup/process
@@ -371,7 +375,6 @@ func _process(_delta: float) -> void:
 		state_chart.send_event("jump_released")
 	
 	if is_on_wall_only() && velocity.y >0 && has_wall_cling:
-		external_velocity = Vector2.ZERO
 		state_chart.send_event("on_wall")
 		state_chart.send_event("dash_recharged")
 	
@@ -426,6 +429,8 @@ func _on_jump_state_entered() -> void:
 	if is_jumping || !can_move || (is_on_wall_only() && velocity.y < 0):
 		return
 	
+	wallslide_frames = -999
+	
 	play_anim("jump", ANIM_PRIORITY.JUMP)
 	play_audio(hero_jump)
 	jumping.emit()
@@ -456,7 +461,8 @@ func _on_jump_state_entered() -> void:
 
 
 func _on_falling_state_entered() -> void:
-	jumps_amount -= 1
+	if wallslide_frames <= 0:
+		jumps_amount -= 1
 	
 	jump_timer.stop()
 	
@@ -506,7 +512,15 @@ func _on_wall_slide_state_entered() -> void:
 	
 	velocity.y = 0
 	gravity_multiplier = 0.1
+	
+	if has_double_jump:
+		max_jumps_amount = 2
+	else:
+		max_jumps_amount = 1
+	
+	external_velocity = Vector2.ZERO
 	jumps_amount = max_jumps_amount
+	
 	max_fall_speed /= 5
 
 func _on_wall_slide_state_exited() -> void:
@@ -579,6 +593,14 @@ func record_external_velocity():
 	
 	if external_velocity_history.size() > MAX_MOMENTUM_HISTORY:
 		external_velocity_history.pop_front()
+	
+	
+	if $StateChart/ParallelState/Jumping/wall_slide.active:
+		wallslide_frames = wallslide_delta_frames
+	elif wallslide_frames > 0:
+		wallslide_frames -= 1
+		if wallslide_frames <= 0:
+			jumps_amount -= 1
 
 func get_highest_external_velocity() -> Vector2:
 	var result := Vector2(0, 0)
@@ -751,12 +773,13 @@ func start_NORMAL_ATTACK():
 	stop_anim("attack")
 
 
-func _on_pogo_returned():
+func _on_pogo_returned(play_sound: bool = true):
 	delete_attack()
 	
 	can_attack = true
 	
-	play_audio(hornet_needle_catch)
+	if play_sound:
+		play_audio(hornet_needle_catch)
 
 
 func _on_attack_entered(body: Node2D):
@@ -1231,6 +1254,10 @@ func on_spikes_entered(damage):
 	set_process_mode(Node.PROCESS_MODE_INHERIT)
 	Camera.set_process_mode(Node.PROCESS_MODE_INHERIT)
 	i_frames(i_frames_hit_time*1.5)
+	_on_pogo_returned(false)
+	state_chart.send_event("jump_released")
+	external_velocity = Vector2.ZERO
+	
 	
 	await get_tree().physics_frame
 	get_tree().call_group("map_transitions", "set_deferred", "monitoring", true)

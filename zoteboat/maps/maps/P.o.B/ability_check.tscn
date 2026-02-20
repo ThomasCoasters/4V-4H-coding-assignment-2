@@ -104,9 +104,9 @@ key = "health"
 value = 999
 metadata/_custom_type_script = "uid://domk3qfwgxh7i"
 
-[node name="Room 0,0" type="Node2D" unique_id=136216618]
+[node name="Room 0" type="Node2D" unique_id=136216618]
 script = ExtResource("1_ejltl")
-audio_path = "res://Game/audio/silkantuary.mp3"
+audio_path = "res://Game/audio/P.o.B.mp3"
 area_text_show = true
 area_text = "Path of Bah"
 
