@@ -749,14 +749,8 @@ extras = Array[ExtResource("6_ckcca")]([SubResource("Resource_psvay")])
 
 [node name="phase2" type="Node" parent="area arena/wave holder" unique_id=1754104850]
 
-[node name="squash" type="Node2D" parent="area arena/wave holder/phase2" unique_id=1794678276]
-position = Vector2(1152, 153)
-
-[node name="squash4" type="Node2D" parent="area arena/wave holder/phase2" unique_id=915457170]
-position = Vector2(1536, 153)
-
 [node name="aspid" type="Node2D" parent="area arena/wave holder/phase2" unique_id=1703879320]
-position = Vector2(1344, 87)
+position = Vector2(1344, 315)
 
 [node name="extra" type="Node2D" parent="area arena/wave holder/phase2/aspid" unique_id=1586512821]
 visible = false
@@ -973,8 +967,8 @@ texture = ExtResource("8_3hhk1")
 [node name="WarpZone4" parent="." unique_id=2055742703 instance=ExtResource("9_4x2mn")]
 position = Vector2(3151, 352.00003)
 scale = Vector2(1, 13)
-warp_to = "res://maps/maps/Circus/Circus_3.tscn"
-new_location_group = "Left_Circus_3"
+warp_to = "res://maps/maps/jevil boss/jevil_arena.tscn"
+new_location_group = "Left_jevil"
 
 [node name="SpawnLocation4" parent="." unique_id=1031009773 instance=ExtResource("10_sgex6")]
 offset_left = 3089.0
