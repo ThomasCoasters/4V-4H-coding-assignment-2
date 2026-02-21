@@ -68,6 +68,7 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	
 	await transition.on_transition_finished
 	
+	Global.Name_text.remove_text(0.0)
 	
 	player.visible = true
 	player.ui_holder.visible = true

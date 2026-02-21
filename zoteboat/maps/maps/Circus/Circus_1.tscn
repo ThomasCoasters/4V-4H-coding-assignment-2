@@ -95,6 +95,9 @@ sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
 [node name="Circus 1" type="Node2D" unique_id=1874960603]
 script = ExtResource("1_7o5b1")
+audio_path = "res://Game/audio/carousel.ogg"
+area_text_show = true
+area_text = "The Circus"
 
 [node name="SpawnLocation" parent="." unique_id=1340382980 instance=ExtResource("2_askp6")]
 offset_left = 81.0

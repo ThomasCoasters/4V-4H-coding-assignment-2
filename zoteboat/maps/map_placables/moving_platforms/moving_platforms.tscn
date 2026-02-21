@@ -212,4 +212,6 @@ shape = SubResource("RectangleShape2D_olf2p")
 libraries/ = SubResource("AnimationLibrary_e8ekl")
 
 [connection signal="body_entered" from="move_trigger" to="." method="_on_move_trigger_body_entered"]
+[connection signal="body_exited" from="move_trigger" to="." method="_on_move_trigger_body_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="current_animation_changed" from="AnimationPlayer" to="." method="_on_animation_player_current_animation_changed"]

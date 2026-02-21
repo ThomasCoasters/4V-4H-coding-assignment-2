@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cyq3bx7v1lapd"
+path="res://.godot/imported/attack of the killer wasp.mp3-7fcf312ca9ed5f54928a22b28bf3e15d.mp3str"
+
+[deps]
+
+source_file="res://Game/audio/attack of the killer wasp.mp3"
+dest_files=["res://.godot/imported/attack of the killer wasp.mp3-7fcf312ca9ed5f54928a22b28bf3e15d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
