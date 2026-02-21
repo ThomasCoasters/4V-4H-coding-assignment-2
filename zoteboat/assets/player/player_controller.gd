@@ -606,6 +606,8 @@ func get_highest_external_velocity() -> Vector2:
 	var result := Vector2(0, 0)
 
 	for v in external_velocity_history:
+		result.y = min(result.y, v.y)
+		
 		if v.x != 0 and sign(v.x) != sign(last_direction.x):
 			continue
 		
@@ -614,7 +616,6 @@ func get_highest_external_velocity() -> Vector2:
 		elif last_direction.x < 0:
 			result.x = min(result.x, v.x)
 		
-		result.y = min(result.y, v.y)
 	
 	return result
 
@@ -1246,6 +1247,18 @@ func on_spikes_entered(damage):
 	await transition.on_transition_finished
 	
 	global_position = hazard_respawn_location
+	
+	for child in Global.map.get_children(true):
+		if child.is_in_group("moving_platform"):
+			child.path_follow_2d.progress = 0.0
+			child.animation_player.play("RESET")
+			
+			child.triggered = false
+			child.triggered_front = false
+			child.in_trigger = false
+			
+			if !child.loop && !child.move_on_trigger:
+				child.animation_player.play("front")
 	
 	await transition.on_transition_finished
 	
