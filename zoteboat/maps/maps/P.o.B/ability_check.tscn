@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="4_bkamn"]
 [ext_resource type="PackedScene" uid="uid://ckjvjqxlueiws" path="res://maps/NPCs/P.o.B/PoB_npc.tscn" id="5_5ye6j"]
 [ext_resource type="PackedScene" uid="uid://c6y5teq1pr6am" path="res://maps/maps/P.o.B/P.o.B specific/saws/shawblade.tscn" id="6_anla1"]
+[ext_resource type="Texture2D" uid="uid://ccqo4honmtpti" path="res://maps/maps/P.o.B/P.o.B specific/visuals/deco/balcony.png" id="6_owm6f"]
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/map_placables/hazards (spikes)/spikes_collision.tscn" id="7_pwt7m"]
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="8_duwlg"]
 [ext_resource type="PackedScene" uid="uid://b60o5r2c5plrs" path="res://maps/map_placables/change value/change_player_value.tscn" id="9_1h6i2"]
@@ -108,6 +109,93 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vkh0l"]
+texture = ExtResource("4_bkamn")
+1:5/0 = 0
+1:5/0/terrain_set = 0
+1:5/0/terrain = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/0/terrains_peering_bit/right_side = 0
+1:5/0/terrains_peering_bit/bottom_right_corner = 0
+1:5/0/terrains_peering_bit/bottom_side = 0
+2:5/0 = 0
+2:5/0/terrain_set = 0
+2:5/0/terrain = 0
+2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:5/0/terrains_peering_bit/right_side = 0
+2:5/0/terrains_peering_bit/bottom_right_corner = 0
+2:5/0/terrains_peering_bit/bottom_side = 0
+2:5/0/terrains_peering_bit/bottom_left_corner = 0
+2:5/0/terrains_peering_bit/left_side = 0
+3:5/0 = 0
+3:5/0/terrain_set = 0
+3:5/0/terrain = 0
+3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:5/0/terrains_peering_bit/bottom_side = 0
+3:5/0/terrains_peering_bit/bottom_left_corner = 0
+3:5/0/terrains_peering_bit/left_side = 0
+1:6/0 = 0
+1:6/0/terrain_set = 0
+1:6/0/terrain = 0
+1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:6/0/terrains_peering_bit/right_side = 0
+1:6/0/terrains_peering_bit/bottom_right_corner = 0
+1:6/0/terrains_peering_bit/bottom_side = 0
+1:6/0/terrains_peering_bit/top_side = 0
+1:6/0/terrains_peering_bit/top_right_corner = 0
+2:6/0 = 0
+2:6/0/terrain_set = 0
+2:6/0/terrain = 0
+2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:6/0/terrains_peering_bit/right_side = 0
+2:6/0/terrains_peering_bit/bottom_right_corner = 0
+2:6/0/terrains_peering_bit/bottom_side = 0
+2:6/0/terrains_peering_bit/bottom_left_corner = 0
+2:6/0/terrains_peering_bit/left_side = 0
+2:6/0/terrains_peering_bit/top_left_corner = 0
+2:6/0/terrains_peering_bit/top_side = 0
+2:6/0/terrains_peering_bit/top_right_corner = 0
+3:6/0 = 0
+3:6/0/terrain_set = 0
+3:6/0/terrain = 0
+3:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:6/0/terrains_peering_bit/bottom_side = 0
+3:6/0/terrains_peering_bit/bottom_left_corner = 0
+3:6/0/terrains_peering_bit/left_side = 0
+3:6/0/terrains_peering_bit/top_left_corner = 0
+3:6/0/terrains_peering_bit/top_side = 0
+1:7/0 = 0
+1:7/0/terrain_set = 0
+1:7/0/terrain = 0
+1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:7/0/terrains_peering_bit/right_side = 0
+1:7/0/terrains_peering_bit/top_side = 0
+1:7/0/terrains_peering_bit/top_right_corner = 0
+2:7/0 = 0
+2:7/0/terrain_set = 0
+2:7/0/terrain = 0
+2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:7/0/terrains_peering_bit/right_side = 0
+2:7/0/terrains_peering_bit/left_side = 0
+2:7/0/terrains_peering_bit/top_left_corner = 0
+2:7/0/terrains_peering_bit/top_side = 0
+2:7/0/terrains_peering_bit/top_right_corner = 0
+3:7/0 = 0
+3:7/0/terrain_set = 0
+3:7/0/terrain = 0
+3:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:7/0/terrains_peering_bit/left_side = 0
+3:7/0/terrains_peering_bit/top_left_corner = 0
+3:7/0/terrains_peering_bit/top_side = 0
+
+[sub_resource type="TileSet" id="TileSet_owm6f"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 3
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "test ground"
+terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
+sources/0 = SubResource("TileSetAtlasSource_vkh0l")
+
 [sub_resource type="Resource" id="Resource_bwoi4"]
 script = ExtResource("10_2cmb7")
 key = "health"
@@ -159,6 +247,30 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(2012, 639)
 
 [node name="visuals" type="Node" parent="." unique_id=281240844]
+
+[node name="Balcony" type="Sprite2D" parent="visuals" unique_id=1237216370]
+modulate = Color(0.83033526, 0.8303351, 0.8303353, 0.7411765)
+position = Vector2(2987.375, 633.25)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("6_owm6f")
+
+[node name="Balcony2" type="Sprite2D" parent="visuals" unique_id=1240116311]
+modulate = Color(0.83033526, 0.8303351, 0.8303353, 0.7411765)
+position = Vector2(3107.375, 633.25)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("6_owm6f")
+
+[node name="Balcony3" type="Sprite2D" parent="visuals" unique_id=362969452]
+modulate = Color(0.83033526, 0.8303351, 0.8303353, 0.7411765)
+position = Vector2(2747.375, 633.25)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("6_owm6f")
+
+[node name="Balcony4" type="Sprite2D" parent="visuals" unique_id=1461157635]
+modulate = Color(0.83033526, 0.8303351, 0.8303353, 0.7411765)
+position = Vector2(2867.375, 633.25)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("6_owm6f")
 
 [node name="FloorLong7" type="Sprite2D" parent="visuals" unique_id=1385236836]
 position = Vector2(1696, 717.5)
@@ -444,7 +556,7 @@ position = Vector2(1432, -20)
 [node name="SpikesCollision" parent="spikes" unique_id=657171494 instance=ExtResource("7_pwt7m")]
 
 [node name="EDIT THIS" parent="spikes/SpikesCollision/StaticBody2D" parent_id_path=PackedInt32Array(657171494, 1580090474) index="0" unique_id=1846142658]
-polygon = PackedVector2Array(812, 753, 1742, 733, 1754, 791, 812, 799)
+polygon = PackedVector2Array(812, 753, 1273, 691, 1327, 742, 1454, 688, 1742, 733, 1754, 791, 812, 799)
 
 [node name="HazardRespawn" parent="spikes" unique_id=631066099 instance=ExtResource("8_duwlg")]
 position = Vector2(2073, 694)
@@ -453,6 +565,13 @@ scale = Vector2(21.279991, 1)
 [node name="HazardRespawn2" parent="spikes" unique_id=792999841 instance=ExtResource("8_duwlg")]
 position = Vector2(779.00006, 311)
 scale = Vector2(11.190001, 1)
+
+[node name="thorn background filling" type="TileMapLayer" parent="spikes" unique_id=1908442844]
+modulate = Color(0, 0, 0, 1)
+z_index = -2
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAkABcAAAACAAYAAAAlABcAAAACAAYAAAAmABcAAAACAAYAAAAnABcAAAACAAYAAAAoABcAAAACAAYAAAApABcAAAACAAYAAAAeABcAAAACAAYAAAAfABcAAAACAAYAAAAgABcAAAACAAYAAAAhABcAAAACAAYAAAAwABcAAAACAAYAAAA1ABcAAAACAAYAAAA2ABcAAAACAAYAAAAiABgAAAACAAYAAAAjABgAAAACAAYAAAAkABgAAAACAAYAAAAlABgAAAACAAYAAAAmABgAAAACAAYAAAAnABgAAAACAAYAAAAoABgAAAACAAYAAAApABgAAAACAAYAAAAqABgAAAACAAYAAAArABgAAAACAAYAAAAsABgAAAACAAYAAAAtABgAAAACAAYAAAAuABgAAAACAAYAAAAvABgAAAACAAYAAAAtABcAAAACAAYAAAAuABcAAAACAAYAAAAvABcAAAACAAYAAAAjABcAAAACAAYAAAAtABYAAAACAAYAAAAuABYAAAACAAYAAAAlABYAAAACAAYAAAAmABYAAAACAAYAAAAnABYAAAACAAYAAAAiABcAAAACAAYAAAA=")
+tile_set = SubResource("TileSet_owm6f")
 
 [node name="change_stuff" parent="." unique_id=111750805 instance=ExtResource("9_1h6i2")]
 visible = false

@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bb2h7gysppyil" path="res://maps/map_placables/hazards (spikes)/spikes_still.png" id="8_xpn8k"]
 [ext_resource type="PackedScene" uid="uid://desufiot6ea2v" path="res://enemies/normal/peashooter/peashooter.tscn" id="9_xpn8k"]
 [ext_resource type="Texture2D" uid="uid://cpong7rj2sjcv" path="res://maps/maps/P.o.B/P.o.B specific/visuals/floor/floor_long.png" id="11_5gx5w"]
+[ext_resource type="Texture2D" uid="uid://ccqo4honmtpti" path="res://maps/maps/P.o.B/P.o.B specific/visuals/deco/balcony.png" id="11_xomeh"]
 [ext_resource type="Texture2D" uid="uid://dh3rpppieufwf" path="res://maps/maps/P.o.B/P.o.B specific/visuals/wall/wall_broken.png" id="12_hjyh2"]
 [ext_resource type="Texture2D" uid="uid://bu0fvsfi3oxte" path="res://maps/maps/P.o.B/P.o.B specific/visuals/wall/wall_connector.png" id="13_4d1px"]
 [ext_resource type="Texture2D" uid="uid://brwl65gopj622" path="res://maps/maps/P.o.B/P.o.B specific/visuals/arch/arch.png" id="14_hjyh2"]
@@ -110,49 +111,49 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
-[sub_resource type="Curve2D" id="Curve2D_xpn8k"]
+[sub_resource type="Curve2D" id="Curve2D_2q8xa"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 7.8095703, 0.2479248, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 201, 96, 0, 0, 0, 0, -86.19043, 96.247925, 0, 0, 0, 0, -86.19043, 0.2479248, 0, 0, 0, 0, 7.8095703, 0.2479248)
 }
 point_count = 6
 
-[sub_resource type="Curve2D" id="Curve2D_pxt1x"]
+[sub_resource type="Curve2D" id="Curve2D_xomeh"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 7.8095703, 0.2479248, 0, 0, 0, 0, 197.37476, -0.1244812, 0, 0, 0, 0, 197, 96, 0, 0, 0, 0, -22.625244, 95.87552, 0, 0, 0, 0, -22.625244, 0.8755188, 0, 0, 0, 0, 7.8095703, 0.2479248)
 }
 point_count = 6
 
-[sub_resource type="Curve2D" id="Curve2D_qvosb"]
+[sub_resource type="Curve2D" id="Curve2D_iuwtc"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 113, -9, 0, 0, 0, 0, 112, 86, 0, 0, 0, 0, -81, 87, 0, 0, 0, 0, -81, -9, 0, 0, 0, 0, 1, -8)
 }
 point_count = 6
 
-[sub_resource type="Curve2D" id="Curve2D_5gx5w"]
+[sub_resource type="Curve2D" id="Curve2D_xsu2j"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 1, -105, 0, 0, 0, 0, 128, -105, 0, 0, 0, 0, 128, 55, 0, 0, 0, 0, 255, 55, 0, 0, 0, 0, 255, 148, 0, 0, 0, 0, -95, 148, 0, 0, 0, 0, -95, -7, 0, 0, 0, 0, 1, -8)
 }
 point_count = 9
 
-[sub_resource type="Curve2D" id="Curve2D_hjyh2"]
+[sub_resource type="Curve2D" id="Curve2D_ghf55"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 1, -105, 0, 0, 0, 0, 128, -105, 0, 0, 0, 0, 128, 55, 0, 0, 0, 0, 255, 55, 0, 0, 0, 0, 255, 148, 0, 0, 0, 0, -95, 148, 0, 0, 0, 0, -95, -7, 0, 0, 0, 0, 1, -8)
 }
 point_count = 9
 
-[sub_resource type="Curve2D" id="Curve2D_4d1px"]
+[sub_resource type="Curve2D" id="Curve2D_aaiqg"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 1, -105, 0, 0, 0, 0, 128, -105, 0, 0, 0, 0, 128, 55, 0, 0, 0, 0, 255, 55, 0, 0, 0, 0, 255, 148, 0, 0, 0, 0, -95, 148, 0, 0, 0, 0, -95, -7, 0, 0, 0, 0, 1, -8)
 }
 point_count = 9
 
-[sub_resource type="Curve2D" id="Curve2D_2q8xa"]
+[sub_resource type="Curve2D" id="Curve2D_37o4s"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 113, -9, 0, 0, 0, 0, 112, 86, 0, 0, 0, 0, -81, 87, 0, 0, 0, 0, -81, -9, 0, 0, 0, 0, 1, -8)
@@ -192,7 +193,7 @@ new_location_group = "TopLeft_0,0"
 
 [node name="Path2D" parent="." unique_id=263132585 instance=ExtResource("4_pxt1x")]
 position = Vector2(-1561, 560)
-curve = SubResource("Curve2D_xpn8k")
+curve = SubResource("Curve2D_2q8xa")
 
 [node name="hazards" type="Node" parent="." unique_id=1447554648]
 
@@ -292,19 +293,19 @@ dialogue = "heal"
 
 [node name="Path2D3" parent="." unique_id=24820941 instance=ExtResource("4_pxt1x")]
 position = Vector2(-727.37476, 368.12448)
-curve = SubResource("Curve2D_pxt1x")
+curve = SubResource("Curve2D_xomeh")
 
 [node name="tiktik" parent="." unique_id=1215913850 instance=ExtResource("4_pxt1x")]
 position = Vector2(-1282, 57)
-curve = SubResource("Curve2D_qvosb")
+curve = SubResource("Curve2D_iuwtc")
 
 [node name="tiktik2" parent="." unique_id=731618035 instance=ExtResource("4_pxt1x")]
 position = Vector2(-880, 634)
-curve = SubResource("Curve2D_5gx5w")
+curve = SubResource("Curve2D_xsu2j")
 
 [node name="tiktik3" parent="." unique_id=1543124133 instance=ExtResource("4_pxt1x")]
 position = Vector2(-880, 634)
-curve = SubResource("Curve2D_hjyh2")
+curve = SubResource("Curve2D_ghf55")
 
 [node name="PathFollow2D" parent="tiktik3" index="0" unique_id=1178610453]
 position = Vector2(255.28793, 146.8212)
@@ -313,11 +314,11 @@ progress = 602.50256
 
 [node name="tiktik4" parent="." unique_id=1583956725 instance=ExtResource("4_pxt1x")]
 position = Vector2(720, -231)
-curve = SubResource("Curve2D_4d1px")
+curve = SubResource("Curve2D_aaiqg")
 
 [node name="tiktik5" parent="." unique_id=1643468536 instance=ExtResource("4_pxt1x")]
 position = Vector2(1602, 187)
-curve = SubResource("Curve2D_2q8xa")
+curve = SubResource("Curve2D_37o4s")
 
 [node name="peashooter" parent="." unique_id=2000873192 instance=ExtResource("9_xpn8k")]
 position = Vector2(1958, 383)
@@ -345,6 +346,18 @@ own_group = "TopLeft_king"
 metadata/_edit_use_anchors_ = true
 
 [node name="visuals" type="Node" parent="." unique_id=1242247047]
+
+[node name="Balcony" type="Sprite2D" parent="visuals" unique_id=1556879679]
+modulate = Color(0.83033526, 0.8303351, 0.8303353, 0.7411765)
+position = Vector2(-3895, -522.75)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("11_xomeh")
+
+[node name="Balcony2" type="Sprite2D" parent="visuals" unique_id=2086658518]
+modulate = Color(0.83033526, 0.8303351, 0.8303353, 0.7411765)
+position = Vector2(-3775, -522.75)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("11_xomeh")
 
 [node name="FloorLong" type="Sprite2D" parent="visuals" unique_id=1692169104]
 position = Vector2(-3834, -469.5)

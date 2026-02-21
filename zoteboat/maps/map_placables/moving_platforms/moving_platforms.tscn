@@ -195,7 +195,7 @@ collision_mask = 0
 polygon = PackedVector2Array(-64, -32, -64, 32, 64, 32, 64, -32)
 
 [node name="platform" type="TileMapLayer" parent="platform" unique_id=1995284118]
-modulate = Color(0, 1, 1, 1)
+modulate = Color(0.70980394, 0.68235296, 1, 1)
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAABAAAAAAADAAcAAAABAP//AAADAAUAAAAAAAAAAAACAAcAAAAAAP//AAACAAUAAAD//wAAAAACAAcAAAD/////AAACAAUAAAD+/wAAAAABAAcAAAD+////AAABAAUAAAA=")
 tile_set = SubResource("TileSet_sosmg")

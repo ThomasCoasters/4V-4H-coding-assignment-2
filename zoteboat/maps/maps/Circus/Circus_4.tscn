@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://xg0g0rjlglsa" path="res://maps/map_placables/moving_platforms/moving_platforms.tscn" id="2_x85l3"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="3_ihqvd"]
 [ext_resource type="Script" uid="uid://dirquph6nfgas" path="res://maps/enemy arena/universal_arena_script.gd" id="4_0esij"]
-[ext_resource type="Script" path="res://maps/enemy arena/generic_extra_script.gd" id="5_u0mcr"]
-[ext_resource type="Script" path="res://maps/enemy arena/keyValue.gd" id="6_ckcca"]
+[ext_resource type="Script" uid="uid://3agjipx3lxq3" path="res://maps/enemy arena/generic_extra_script.gd" id="5_u0mcr"]
+[ext_resource type="Script" uid="uid://domk3qfwgxh7i" path="res://maps/enemy arena/keyValue.gd" id="6_ckcca"]
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/map_placables/hazards (spikes)/spikes_collision.tscn" id="7_jxpud"]
 [ext_resource type="Texture2D" uid="uid://bb2h7gysppyil" path="res://maps/map_placables/hazards (spikes)/spikes_still.png" id="8_3hhk1"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="9_4x2mn"]
@@ -105,7 +105,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-618, -512, -619, 234, 663, 263, 663, -515)])
 agent_radius = 50.0
 
-[sub_resource type="Curve2D" id="Curve2D_x85l3"]
+[sub_resource type="Curve2D" id="Curve2D_b2n7e"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128)
@@ -191,7 +191,7 @@ texture = ExtResource("3_ihqvd")
 3:7/0/terrains_peering_bit/top_left_corner = 0
 3:7/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_0esij"]
+[sub_resource type="TileSet" id="TileSet_x85l3"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -200,11 +200,11 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_ihqvd")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0mcr"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihqvd"]
 resource_local_to_scene = true
 size = Vector2(192, 8)
 
-[sub_resource type="Curve2D" id="Curve2D_b2n7e"]
+[sub_resource type="Curve2D" id="Curve2D_0esij"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128)
@@ -290,7 +290,7 @@ texture = ExtResource("3_ihqvd")
 3:7/0/terrains_peering_bit/top_left_corner = 0
 3:7/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_ihqvd"]
+[sub_resource type="TileSet" id="TileSet_u0mcr"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -299,11 +299,11 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_x85l3")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0esij"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckcca"]
 resource_local_to_scene = true
 size = Vector2(192, 8)
 
-[sub_resource type="Curve2D" id="Curve2D_4x2mn"]
+[sub_resource type="Curve2D" id="Curve2D_jxpud"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128)
@@ -389,7 +389,7 @@ texture = ExtResource("3_ihqvd")
 3:7/0/terrains_peering_bit/top_left_corner = 0
 3:7/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_7kbhf"]
+[sub_resource type="TileSet" id="TileSet_3hhk1"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -398,11 +398,11 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_sgex6")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmu0g"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4x2mn"]
 resource_local_to_scene = true
 size = Vector2(192, 8)
 
-[sub_resource type="Curve2D" id="Curve2D_lk85p"]
+[sub_resource type="Curve2D" id="Curve2D_sgex6"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128)
@@ -488,7 +488,7 @@ texture = ExtResource("3_ihqvd")
 3:7/0/terrains_peering_bit/top_left_corner = 0
 3:7/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_a3eaq"]
+[sub_resource type="TileSet" id="TileSet_7kbhf"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -497,7 +497,7 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_h4nf8")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2sl6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmu0g"]
 resource_local_to_scene = true
 size = Vector2(192, 8)
 
@@ -624,7 +624,7 @@ navigation_polygon = SubResource("NavigationPolygon_a188l")
 [node name="moving_platform3" parent="." unique_id=710403595 instance=ExtResource("2_x85l3")]
 z_index = -1
 position = Vector2(832, 448)
-curve = SubResource("Curve2D_x85l3")
+curve = SubResource("Curve2D_b2n7e")
 speed = 10
 speed_scale = 0.5
 per_side_wait_time = 0.5
@@ -635,15 +635,15 @@ polygon = PackedVector2Array(-96, -32, -96, 96, 96, 96, 96, -32)
 
 [node name="platform" parent="moving_platform3/platform" parent_id_path=PackedInt32Array(710403595, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray("AAABAAAAAAACAAYAAAABAP//AAACAAUAAAAAAAAAAAACAAYAAAAAAP//AAACAAUAAAD//wAAAAACAAYAAAD/////AAACAAUAAAD+/wAAAAACAAYAAAD+////AAACAAUAAAACAP//AAADAAUAAAACAAAAAAADAAYAAAACAAEAAAADAAYAAAABAAEAAAACAAYAAAAAAAEAAAACAAYAAAD//wEAAAACAAYAAAD+/wEAAAACAAYAAAD9/wEAAAABAAYAAAD9/wAAAAABAAYAAAD9////AAABAAUAAAACAAIAAAADAAYAAAABAAIAAAACAAYAAAAAAAIAAAACAAYAAAD//wIAAAACAAYAAAD+/wIAAAACAAYAAAD9/wIAAAABAAYAAAACAAMAAAADAAcAAAABAAMAAAACAAcAAAAAAAMAAAACAAcAAAD//wMAAAACAAcAAAD+/wMAAAACAAcAAAD9/wMAAAABAAcAAAA=")
-tile_set = SubResource("TileSet_0esij")
+tile_set = SubResource("TileSet_x85l3")
 
 [node name="CollisionShape2D" parent="moving_platform3/move_trigger" parent_id_path=PackedInt32Array(710403595, 1286972824) index="0" unique_id=1628162647]
-shape = SubResource("RectangleShape2D_u0mcr")
+shape = SubResource("RectangleShape2D_ihqvd")
 
 [node name="moving_platform4" parent="." unique_id=593767382 instance=ExtResource("2_x85l3")]
 z_index = -1
 position = Vector2(1088, 449)
-curve = SubResource("Curve2D_b2n7e")
+curve = SubResource("Curve2D_0esij")
 speed = 10
 speed_scale = 0.5
 per_side_wait_time = 0.5
@@ -654,15 +654,15 @@ polygon = PackedVector2Array(-96, -32, -96, 96, 96, 96, 96, -32)
 
 [node name="platform" parent="moving_platform4/platform" parent_id_path=PackedInt32Array(593767382, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray("AAABAAAAAAACAAYAAAABAP//AAACAAUAAAAAAAAAAAACAAYAAAAAAP//AAACAAUAAAD//wAAAAACAAYAAAD/////AAACAAUAAAD+/wAAAAACAAYAAAD+////AAACAAUAAAACAP//AAADAAUAAAACAAAAAAADAAYAAAACAAEAAAADAAYAAAABAAEAAAACAAYAAAAAAAEAAAACAAYAAAD//wEAAAACAAYAAAD+/wEAAAACAAYAAAD9/wEAAAABAAYAAAD9/wAAAAABAAYAAAD9////AAABAAUAAAACAAIAAAADAAYAAAABAAIAAAACAAYAAAAAAAIAAAACAAYAAAD//wIAAAACAAYAAAD+/wIAAAACAAYAAAD9/wIAAAABAAYAAAACAAMAAAADAAcAAAABAAMAAAACAAcAAAAAAAMAAAACAAcAAAD//wMAAAACAAcAAAD+/wMAAAACAAcAAAD9/wMAAAABAAcAAAA=")
-tile_set = SubResource("TileSet_ihqvd")
+tile_set = SubResource("TileSet_u0mcr")
 
 [node name="CollisionShape2D" parent="moving_platform4/move_trigger" parent_id_path=PackedInt32Array(593767382, 1286972824) index="0" unique_id=1628162647]
-shape = SubResource("RectangleShape2D_0esij")
+shape = SubResource("RectangleShape2D_ckcca")
 
 [node name="moving_platform6" parent="." unique_id=1273179480 instance=ExtResource("2_x85l3")]
 z_index = -1
 position = Vector2(1600, 448)
-curve = SubResource("Curve2D_4x2mn")
+curve = SubResource("Curve2D_jxpud")
 speed = 10
 speed_scale = 0.5
 per_side_wait_time = 0.5
@@ -673,15 +673,15 @@ polygon = PackedVector2Array(-96, -32, -96, 96, 96, 96, 96, -32)
 
 [node name="platform" parent="moving_platform6/platform" parent_id_path=PackedInt32Array(1273179480, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray("AAABAAAAAAACAAYAAAABAP//AAACAAUAAAAAAAAAAAACAAYAAAAAAP//AAACAAUAAAD//wAAAAACAAYAAAD/////AAACAAUAAAD+/wAAAAACAAYAAAD+////AAACAAUAAAACAP//AAADAAUAAAACAAAAAAADAAYAAAACAAEAAAADAAYAAAABAAEAAAACAAYAAAAAAAEAAAACAAYAAAD//wEAAAACAAYAAAD+/wEAAAACAAYAAAD9/wEAAAABAAYAAAD9/wAAAAABAAYAAAD9////AAABAAUAAAACAAIAAAADAAYAAAABAAIAAAACAAYAAAAAAAIAAAACAAYAAAD//wIAAAACAAYAAAD+/wIAAAACAAYAAAD9/wIAAAABAAYAAAACAAMAAAADAAcAAAABAAMAAAACAAcAAAAAAAMAAAACAAcAAAD//wMAAAACAAcAAAD+/wMAAAACAAcAAAD9/wMAAAABAAcAAAA=")
-tile_set = SubResource("TileSet_7kbhf")
+tile_set = SubResource("TileSet_3hhk1")
 
 [node name="CollisionShape2D" parent="moving_platform6/move_trigger" parent_id_path=PackedInt32Array(1273179480, 1286972824) index="0" unique_id=1628162647]
-shape = SubResource("RectangleShape2D_dmu0g")
+shape = SubResource("RectangleShape2D_4x2mn")
 
 [node name="moving_platform7" parent="." unique_id=1052327366 instance=ExtResource("2_x85l3")]
 z_index = -1
 position = Vector2(1856, 448)
-curve = SubResource("Curve2D_lk85p")
+curve = SubResource("Curve2D_sgex6")
 speed = 10
 speed_scale = 0.5
 per_side_wait_time = 0.5
@@ -692,10 +692,10 @@ polygon = PackedVector2Array(-96, -32, -96, 96, 96, 96, 96, -32)
 
 [node name="platform" parent="moving_platform7/platform" parent_id_path=PackedInt32Array(1052327366, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray("AAABAAAAAAACAAYAAAABAP//AAACAAUAAAAAAAAAAAACAAYAAAAAAP//AAACAAUAAAD//wAAAAACAAYAAAD/////AAACAAUAAAD+/wAAAAACAAYAAAD+////AAACAAUAAAACAP//AAADAAUAAAACAAAAAAADAAYAAAACAAEAAAADAAYAAAABAAEAAAACAAYAAAAAAAEAAAACAAYAAAD//wEAAAACAAYAAAD+/wEAAAACAAYAAAD9/wEAAAABAAYAAAD9/wAAAAABAAYAAAD9////AAABAAUAAAACAAIAAAADAAYAAAABAAIAAAACAAYAAAAAAAIAAAACAAYAAAD//wIAAAACAAYAAAD+/wIAAAACAAYAAAD9/wIAAAABAAYAAAACAAMAAAADAAcAAAABAAMAAAACAAcAAAAAAAMAAAACAAcAAAD//wMAAAACAAcAAAD+/wMAAAACAAcAAAD9/wMAAAABAAcAAAA=")
-tile_set = SubResource("TileSet_a3eaq")
+tile_set = SubResource("TileSet_7kbhf")
 
 [node name="CollisionShape2D" parent="moving_platform7/move_trigger" parent_id_path=PackedInt32Array(1052327366, 1286972824) index="0" unique_id=1628162647]
-shape = SubResource("RectangleShape2D_q2sl6")
+shape = SubResource("RectangleShape2D_dmu0g")
 
 [node name="area arena" type="Node" parent="." unique_id=61365454]
 
