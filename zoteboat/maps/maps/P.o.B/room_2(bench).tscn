@@ -135,7 +135,7 @@ animations = [{
 [sub_resource type="Curve2D" id="Curve2D_ncfl2"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -509, -187)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, -509, -187)
 }
 point_count = 2
 
@@ -471,9 +471,9 @@ metadata/_edit_use_anchors_ = true
 [node name="moving" type="Node" parent="visuals" unique_id=896383760]
 
 [node name="MovingLine" type="Sprite2D" parent="visuals/moving" unique_id=1701791492]
-position = Vector2(1917, 560.99994)
+position = Vector2(1925.7268, 564.21075)
 rotation = 1.9233528
-scale = Vector2(0.8, 6.535)
+scale = Vector2(0.8, 6.1881685)
 texture = ExtResource("13_fnpwi")
 
 [node name="MovingConnector" type="Sprite2D" parent="visuals/moving" unique_id=1448639639]
@@ -503,16 +503,47 @@ texture = ExtResource("15_b5mlq")
 flip_h = true
 
 [node name="MovingCap" type="Sprite2D" parent="visuals/moving" unique_id=1424246616]
-position = Vector2(1649.9999, 463)
+position = Vector2(1668, 468.99994)
 rotation = 0.35255653
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_6u63p")
 
 [node name="MovingCap2" type="Sprite2D" parent="visuals/moving" unique_id=1077507762]
-position = Vector2(2180, 657.99994)
-rotation = 3.4871678
+position = Vector2(2177, 657)
+rotation = 3.4941492
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_6u63p")
+
+[node name="MovingLine2" type="Sprite2D" parent="visuals/moving" unique_id=1281587379]
+position = Vector2(-963.2494, 363.31714)
+rotation = 0.36128315
+scale = Vector2(0.8, 2.8686783)
+texture = ExtResource("13_fnpwi")
+
+[node name="MovingCap3" type="Sprite2D" parent="visuals/moving" unique_id=272908814]
+position = Vector2(-921, 251.99997)
+rotation = 1.9320794
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_6u63p")
+
+[node name="MovingCap4" type="Sprite2D" parent="visuals/moving" unique_id=727546291]
+position = Vector2(-1005, 473.99994)
+rotation = 5.0736723
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_6u63p")
+
+[node name="MovingConnector5" type="Sprite2D" parent="visuals/moving" unique_id=1214010184]
+position = Vector2(-952.82947, 355.69125)
+rotation = 0.3525565
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("15_b5mlq")
+
+[node name="MovingConnector6" type="Sprite2D" parent="visuals/moving" unique_id=647087513]
+position = Vector2(-966.8295, 350.69125)
+rotation = 0.3525565
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("15_b5mlq")
+flip_h = true
 
 [editable path="Bench"]
 [editable path="spikes/SpikesCollision"]
