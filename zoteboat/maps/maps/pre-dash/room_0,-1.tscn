@@ -144,3 +144,9 @@ position = Vector2(672, 5926)
 [node name="DissableMovement" parent="." unique_id=111750805 instance=ExtResource("6_65e4e")]
 position = Vector2(675, 2331)
 scale = Vector2(44.84, 1)
+
+[node name="WarpZone5" parent="." unique_id=1268084640 instance=ExtResource("2_oxr6k")]
+position = Vector2(1364, 5827)
+scale = Vector2(1, 13)
+warp_to = "res://maps/maps/Circus/Circus_1.tscn"
+new_location_group = "Left_Circus_1"

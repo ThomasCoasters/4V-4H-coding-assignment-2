@@ -162,7 +162,7 @@ offset_left = -463.0
 offset_top = -2029.0
 offset_right = -433.0
 offset_bottom = -1999.0
-own_group = "Top -1, 0b"
+own_group = "Top_-1,0b"
 metadata/_edit_use_anchors_ = true
 
 [node name="Path2D4" parent="." unique_id=263132585 instance=ExtResource("4_y77mu")]

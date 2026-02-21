@@ -102,7 +102,7 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_dgsse")
 
-[sub_resource type="Curve2D" id="Curve2D_3p4qn"]
+[sub_resource type="Curve2D" id="Curve2D_6ucje"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -9, 0, 0, 0, 0, 170, -9, 0, 0, 0, 0, 170, 86, 0, 0, 0, 0, 138, 86, 0, 0, 0, 0, 138, 117, 0, 0, 0, 0, -52, 117, 0, 0, 0, 0, -52, 85, 0, 0, 0, 0, -84, 85, 0, 0, 0, 0, -84, -9, 0, 0, 0, 0, 1, -9)
@@ -242,7 +242,7 @@ tile_set = SubResource("TileSet_7r8rt")
 [node name="tiktik" parent="." unique_id=263132585 instance=ExtResource("8_dnb2o")]
 z_index = -1
 position = Vector2(1061, 5530)
-curve = SubResource("Curve2D_3p4qn")
+curve = SubResource("Curve2D_6ucje")
 
 [node name="PathFollow2D" parent="tiktik" index="0" unique_id=1178610453]
 position = Vector2(1, -9)
