@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="10_17pau"]
 [ext_resource type="PackedScene" uid="uid://xg0g0rjlglsa" path="res://maps/map_placables/moving_platforms/moving_platforms.tscn" id="11_wqr1e"]
 [ext_resource type="PackedScene" uid="uid://c6y5teq1pr6am" path="res://maps/maps/P.o.B/P.o.B specific/saws/shawblade.tscn" id="12_ncfl2"]
+[ext_resource type="Texture2D" uid="uid://2hiblqiy0jq3" path="res://maps/maps/P.o.B/P.o.B specific/visuals/cap/moving_cap.png" id="13_6u63p"]
+[ext_resource type="Texture2D" uid="uid://bw2hovwajfoh0" path="res://maps/maps/P.o.B/P.o.B specific/visuals/cap/moving_line.png" id="13_fnpwi"]
+[ext_resource type="Texture2D" uid="uid://cr7k4yi42sadj" path="res://maps/maps/P.o.B/P.o.B specific/visuals/cap/moving_connector.png" id="15_b5mlq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("2_wqr1e")
@@ -462,6 +465,54 @@ offset_right = 3063.0
 offset_bottom = -1001.0
 own_group = "top_P.o.B"
 metadata/_edit_use_anchors_ = true
+
+[node name="visuals" type="Node" parent="." unique_id=1268240227]
+
+[node name="moving" type="Node" parent="visuals" unique_id=896383760]
+
+[node name="MovingLine" type="Sprite2D" parent="visuals/moving" unique_id=1701791492]
+position = Vector2(1917, 560.99994)
+rotation = 1.9233528
+scale = Vector2(0.8, 6.535)
+texture = ExtResource("13_fnpwi")
+
+[node name="MovingConnector" type="Sprite2D" parent="visuals/moving" unique_id=1448639639]
+position = Vector2(1811.6913, 530.1705)
+rotation = 1.9233528
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("15_b5mlq")
+
+[node name="MovingConnector2" type="Sprite2D" parent="visuals/moving" unique_id=1985378802]
+position = Vector2(1816.6913, 516.1705)
+rotation = 1.9233528
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("15_b5mlq")
+flip_h = true
+
+[node name="MovingConnector3" type="Sprite2D" parent="visuals/moving" unique_id=579551643]
+position = Vector2(2007.3826, 602.34094)
+rotation = 1.9233528
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("15_b5mlq")
+
+[node name="MovingConnector4" type="Sprite2D" parent="visuals/moving" unique_id=949029526]
+position = Vector2(2012.3826, 588.34094)
+rotation = 1.9233528
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("15_b5mlq")
+flip_h = true
+
+[node name="MovingCap" type="Sprite2D" parent="visuals/moving" unique_id=1424246616]
+position = Vector2(1649.9999, 463)
+rotation = 0.35255653
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_6u63p")
+
+[node name="MovingCap2" type="Sprite2D" parent="visuals/moving" unique_id=1077507762]
+position = Vector2(2180, 657.99994)
+rotation = 3.4871678
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_6u63p")
 
 [editable path="Bench"]
 [editable path="spikes/SpikesCollision"]

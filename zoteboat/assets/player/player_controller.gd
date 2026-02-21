@@ -606,6 +606,8 @@ func get_highest_external_velocity() -> Vector2:
 	var result := Vector2(0, 0)
 
 	for v in external_velocity_history:
+		result.y = min(result.y, v.y)
+		
 		if v.x != 0 and sign(v.x) != sign(last_direction.x):
 			continue
 		
@@ -614,7 +616,6 @@ func get_highest_external_velocity() -> Vector2:
 		elif last_direction.x < 0:
 			result.x = min(result.x, v.x)
 		
-		result.y = min(result.y, v.y)
 	
 	return result
 
