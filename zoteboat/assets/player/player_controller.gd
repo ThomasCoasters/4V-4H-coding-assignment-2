@@ -133,7 +133,7 @@ enum ANIM_PRIORITY {
 var current_anim_priority: int = 0
 
 var roar_timer := Timer.new()
-const ROAR_START_TIMER: float = 1.0
+const ROAR_START_TIMER: float = 4.0
 
 var collision_size
 
@@ -1182,7 +1182,7 @@ func _on_animation_finished():
 func _on_roar_timer_timeout():
 	play_anim("idle", ANIM_PRIORITY.IDLE)
 	
-	if !zote_final_town_loop.playing:
+	if !zote_final_town_loop.playing && can_move:
 		play_audio(zote_final_town_loop)
 
 

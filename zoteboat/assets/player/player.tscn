@@ -419,6 +419,7 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 [node name="Player" type="CharacterBody2D" unique_id=552078585 node_paths=PackedStringArray("Camera") groups=["player"]]
 z_index = 4
 collision_mask = 6
+floor_max_angle = 1.5358897
 script = ExtResource("1_d2shb")
 has_dash = true
 has_wall_cling = true
