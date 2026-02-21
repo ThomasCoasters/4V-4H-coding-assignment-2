@@ -19,6 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://cr7k4yi42sadj" path="res://maps/maps/P.o.B/P.o.B specific/visuals/cap/moving_connector.png" id="15_b5mlq"]
 [ext_resource type="Texture2D" uid="uid://63pi7re58a8i" path="res://maps/maps/P.o.B/P.o.B specific/visuals/thorns/thorn_small.png" id="15_qogp2"]
 [ext_resource type="Texture2D" uid="uid://7qbkmuotx7nk" path="res://maps/maps/P.o.B/P.o.B specific/visuals/platform/floating_platform_short.png" id="16_uwfog"]
+[ext_resource type="Texture2D" uid="uid://cpong7rj2sjcv" path="res://maps/maps/P.o.B/P.o.B specific/visuals/floor/floor_long.png" id="17_vo0xk"]
+[ext_resource type="Texture2D" uid="uid://lq1hkpst6bis" path="res://maps/maps/P.o.B/P.o.B specific/visuals/wall/wall.png" id="18_nht6g"]
+[ext_resource type="Texture2D" uid="uid://bu0fvsfi3oxte" path="res://maps/maps/P.o.B/P.o.B specific/visuals/wall/wall_connector.png" id="19_no2ej"]
+[ext_resource type="Texture2D" uid="uid://1opwasb601g6" path="res://maps/maps/P.o.B/P.o.B specific/visuals/cap/floor_to_vertical.png" id="20_y5gob"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("2_wqr1e")
@@ -489,7 +493,8 @@ scale = Vector2(47.839993, 21.280003)
 changed_stuff = Array[ExtResource("6_b5mlq")]([SubResource("Resource_bwoi4")])
 
 [node name="Bench" parent="." unique_id=1729237278 instance=ExtResource("7_vtc60")]
-position = Vector2(2717, 646)
+z_index = 1
+position = Vector2(2717, 643)
 
 [node name="Sprite2D2" parent="Bench" index="0" unique_id=1329195849]
 position = Vector2(-7, -105)
@@ -732,6 +737,69 @@ own_group = "top_P.o.B"
 metadata/_edit_use_anchors_ = true
 
 [node name="visuals" type="Node" parent="." unique_id=1268240227]
+
+[node name="floors" type="Node" parent="visuals" unique_id=343964684]
+
+[node name="FloorLong2" type="Sprite2D" parent="visuals/floors" unique_id=458247589]
+position = Vector2(3170.5, 681.5)
+texture = ExtResource("17_vo0xk")
+flip_h = true
+
+[node name="FloorLong4" type="Sprite2D" parent="visuals/floors" unique_id=1928883385]
+position = Vector2(2752, 681.5)
+texture = ExtResource("17_vo0xk")
+flip_h = true
+
+[node name="FloorLong5" type="Sprite2D" parent="visuals/floors" unique_id=1176469351]
+position = Vector2(2963.5, 681.5)
+texture = ExtResource("17_vo0xk")
+flip_h = true
+
+[node name="Wall6" type="Sprite2D" parent="visuals/floors" unique_id=2128278216]
+position = Vector2(2711.5, 708)
+rotation = -1.5707964
+texture = ExtResource("18_nht6g")
+
+[node name="Wall7" type="Sprite2D" parent="visuals/floors" unique_id=163957339]
+position = Vector2(2913, 708)
+rotation = -1.5707964
+texture = ExtResource("18_nht6g")
+
+[node name="Wall4" type="Sprite2D" parent="visuals/floors" unique_id=427622203]
+position = Vector2(3126.5, 708)
+rotation = -1.5707964
+texture = ExtResource("18_nht6g")
+
+[node name="WallConnector2" type="Sprite2D" parent="visuals/floors" unique_id=641266697]
+position = Vector2(3230.5, 705)
+rotation = -1.5707964
+texture = ExtResource("19_no2ej")
+
+[node name="WallConnector4" type="Sprite2D" parent="visuals/floors" unique_id=717188893]
+position = Vector2(2815.5, 705)
+rotation = -1.5707964
+texture = ExtResource("19_no2ej")
+
+[node name="WallConnector5" type="Sprite2D" parent="visuals/floors" unique_id=1438079668]
+position = Vector2(3014, 705)
+rotation = -1.5707964
+texture = ExtResource("19_no2ej")
+
+[node name="FloorToVertical" type="Sprite2D" parent="visuals/floors" unique_id=1095053717]
+position = Vector2(2642, 744)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("20_y5gob")
+flip_h = true
+
+[node name="FloorLong3" type="Sprite2D" parent="visuals/floors" unique_id=1599358599]
+position = Vector2(4214.5, 787.5)
+texture = ExtResource("17_vo0xk")
+flip_h = true
+
+[node name="Wall5" type="Sprite2D" parent="visuals/floors" unique_id=728987299]
+position = Vector2(4164, 814)
+rotation = -1.5707964
+texture = ExtResource("18_nht6g")
 
 [node name="moving" type="Node" parent="visuals" unique_id=896383760]
 
