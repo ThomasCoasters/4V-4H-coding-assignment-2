@@ -41,7 +41,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		if $AnimationPlayer.current_animation == "RESET":
 			return
 		
-		
 		if anim_name == "front":
 			if !trigger_one_direction:
 				animation_player.play("back")

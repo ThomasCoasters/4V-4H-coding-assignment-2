@@ -1248,16 +1248,17 @@ func on_spikes_entered(damage):
 	
 	global_position = hazard_respawn_location
 	
-	for child in Global.map.get_children(true):
+	for child in Global.map.get_children():
 		if child.is_in_group("moving_platform"):
-			child.path_follow_2d.progress = 0.0
-			child.animation_player.play("RESET")
-			
 			child.triggered = false
 			child.triggered_front = false
 			child.in_trigger = false
 			
-			if !child.loop && !child.move_on_trigger:
+			child.path_follow_2d.progress = 0.0
+			child.animation_player.stop()
+			child.animation_player.play("RESET")
+			
+			if child.loop || !child.move_on_trigger:
 				child.animation_player.play("front")
 	
 	await transition.on_transition_finished
