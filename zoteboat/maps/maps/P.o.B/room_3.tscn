@@ -1765,7 +1765,7 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="visuals/ceiling/Node2D/StaticBody2D2" unique_id=1804376502]
 position = Vector2(-380, -180)
-polygon = PackedVector2Array(2717, -1787, 2618, -1880, 2499, -1930, 2433, -1939, 2391, -1916, 2339, -1934, 2290, -2023, 2151, -2075, 2009, -2041, 2014, -2189, 3022, -2169, 2867, -1783)
+polygon = PackedVector2Array(2717, -1787, 2618, -1880, 2499, -1930, 2433, -1939, 2391, -1916, 2339, -1934, 2290, -2023, 2151, -2075, 2009, -2041, 2014, -2189, 3022, -2169, 3467, 176, 3407, 167, 3284, 45, 3149, -2, 3114, -10, 2867, -1783)
 
 [node name="Node2D2" type="Node2D" parent="visuals/ceiling" unique_id=79211357]
 
