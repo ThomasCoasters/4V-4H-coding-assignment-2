@@ -129,22 +129,22 @@ polygon = PackedVector2Array(-10, -7, 694, -7, 694, 49, -10, 49)
 
 [node name="visuals" type="Node" parent="." unique_id=431748743]
 
-[node name="warps" type="Node" parent="." unique_id=1703453885]
+[node name="enemies" type="Node" parent="." unique_id=1109206446]
 
-[node name="SpawnLocation3" parent="warps" unique_id=801541523 instance=ExtResource("2_86ojk")]
+[node name="SpawnLocation3" parent="." unique_id=801541523 instance=ExtResource("2_86ojk")]
 anchors_preset = -1
 anchor_left = 103.46667
 anchor_top = -21.4
 anchor_right = 103.46667
 anchor_bottom = -21.4
-offset_left = -196270.0
-offset_top = 23370.0
-offset_right = -196240.0
-offset_bottom = 23400.0
+offset_left = 2386.0
+offset_top = 258.0
+offset_right = 2416.0
+offset_bottom = 288.0
 own_group = "Right_-3,0"
 metadata/_edit_use_anchors_ = true
 
-[node name="SpawnLocation" parent="warps" unique_id=1978993451 instance=ExtResource("2_86ojk")]
+[node name="SpawnLocation" parent="." unique_id=1978993451 instance=ExtResource("2_86ojk")]
 offset_left = -2926.0
 offset_top = 386.0
 offset_right = -2896.0
@@ -152,14 +152,14 @@ offset_bottom = 416.0
 own_group = "Left_-3,0"
 metadata/_edit_use_anchors_ = true
 
-[node name="WarpZone" parent="warps" unique_id=157545549 instance=ExtResource("3_blwda")]
+[node name="WarpZone" parent="." unique_id=157545549 instance=ExtResource("3_blwda")]
 position = Vector2(-2956, 319)
 rotation = -3.1415925
 scale = Vector2(1, 13)
 warp_to = "res://maps/maps/pre-walljump/room_-4,0.tscn"
 new_location_group = "Right_-4,0"
 
-[node name="WarpZone3" parent="warps" unique_id=1047997407 instance=ExtResource("3_blwda")]
+[node name="WarpZone3" parent="." unique_id=1047997407 instance=ExtResource("3_blwda")]
 position = Vector2(2450, 158)
 rotation = -3.1415925
 scale = Vector2(1, 13)

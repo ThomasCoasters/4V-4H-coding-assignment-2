@@ -115,8 +115,8 @@ tile_set = SubResource("TileSet_7r8rt")
 [node name="WarpZone3" parent="." unique_id=1623170445 instance=ExtResource("4_lbbo5")]
 position = Vector2(47, 128)
 scale = Vector2(1, 13)
-warp_to = ""
-new_location_group = ""
+warp_to = "res://maps/maps/pre-walljump/room_-4,2.tscn"
+new_location_group = "Right_-4,2"
 
 [node name="WarpZone4" parent="." unique_id=192670333 instance=ExtResource("4_lbbo5")]
 position = Vector2(1679, 1217)
