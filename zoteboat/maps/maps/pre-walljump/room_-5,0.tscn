@@ -149,8 +149,8 @@ metadata/_edit_use_anchors_ = true
 [node name="WarpZone5" parent="." unique_id=136501244 instance=ExtResource("4_rguva")]
 position = Vector2(-402, 5120)
 scale = Vector2(1, 10)
-warp_to = "res://maps/maps/pre-walljump/room_-6,0.tscn"
-new_location_group = "TopRight_-6,0"
+warp_to = "res://maps/maps/pre-walljump/room_-6,1.tscn"
+new_location_group = "BottomRight_-6,1"
 
 [node name="WarpZone6" parent="." unique_id=631049134 instance=ExtResource("4_rguva")]
 position = Vector2(480, 6064)
