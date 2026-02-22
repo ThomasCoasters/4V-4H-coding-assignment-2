@@ -1,12 +1,12 @@
-[gd_scene format=4 uid="uid://cmtoevjb6ux3e"]
+[gd_scene format=4 uid="uid://bg1dl8kiayvqi"]
 
-[ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_6s6n6"]
-[ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="2_wyfjv"]
-[ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="3_2j06r"]
-[ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="4_pjr2b"]
+[ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_wx3yo"]
+[ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="2_b0n2a"]
+[ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="3_lrihj"]
+[ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="4_622fd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
-texture = ExtResource("2_wyfjv")
+texture = ExtResource("2_b0n2a")
 1:5/0 = 0
 1:5/0/terrain_set = 0
 1:5/0/terrain = 0
@@ -98,8 +98,8 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1639, -559, -1651, 2875, -225, 2881, -214, -572)])
 agent_radius = 50.0
 
-[node name="Room -4,0" type="Node2D" unique_id=1874960603]
-script = ExtResource("1_6s6n6")
+[node name="Room -6,1" type="Node2D" unique_id=1874960603]
+script = ExtResource("1_wx3yo")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1820643946]
 scale = Vector2(2, 2)
@@ -117,19 +117,19 @@ navigation_polygon = SubResource("NavigationPolygon_ycj1n")
 
 [node name="visuals" type="Node" parent="." unique_id=1543404994]
 
-[node name="WarpZone3" parent="." unique_id=1268084640 instance=ExtResource("3_2j06r")]
+[node name="WarpZone3" parent="." unique_id=1268084640 instance=ExtResource("3_lrihj")]
 position = Vector2(813, 224)
 scale = Vector2(1, 10)
 warp_to = "res://maps/maps/pre-walljump/room_-3,0.tscn"
 new_location_group = "Left_-3,0"
 
-[node name="WarpZone6" parent="." unique_id=1322786499 instance=ExtResource("3_2j06r")]
+[node name="WarpZone6" parent="." unique_id=1322786499 instance=ExtResource("3_lrihj")]
 position = Vector2(193, -2898)
 scale = Vector2(10, 1)
 warp_to = "res://maps/maps/pre-walljump/room_-4,2.tscn"
 new_location_group = "Bottom_-4,2"
 
-[node name="SpawnLocation6" parent="." unique_id=462484462 instance=ExtResource("4_pjr2b")]
+[node name="SpawnLocation6" parent="." unique_id=462484462 instance=ExtResource("4_622fd")]
 offset_left = 753.0
 offset_top = 290.0
 offset_right = 783.0
@@ -137,7 +137,7 @@ offset_bottom = 320.0
 own_group = "Right_-4,0"
 metadata/_edit_use_anchors_ = true
 
-[node name="SpawnLocation5" parent="." unique_id=1089591050 instance=ExtResource("4_pjr2b")]
+[node name="SpawnLocation5" parent="." unique_id=1089591050 instance=ExtResource("4_622fd")]
 offset_left = 180.0
 offset_top = -2836.0
 offset_right = 210.0
@@ -145,13 +145,13 @@ offset_bottom = -2806.0
 own_group = "Top_-4,0"
 metadata/_edit_use_anchors_ = true
 
-[node name="WarpZone4" parent="." unique_id=1157491430 instance=ExtResource("3_2j06r")]
+[node name="WarpZone4" parent="." unique_id=1157491430 instance=ExtResource("3_lrihj")]
 position = Vector2(-753, 224)
 scale = Vector2(1, 10)
 warp_to = "res://maps/maps/pre-walljump/room_-5,0.tscn"
 new_location_group = "Right_-5,0"
 
-[node name="SpawnLocation7" parent="." unique_id=1577129344 instance=ExtResource("4_pjr2b")]
+[node name="SpawnLocation7" parent="." unique_id=1577129344 instance=ExtResource("4_622fd")]
 offset_left = -719.0
 offset_top = 290.0
 offset_right = -689.0
@@ -159,7 +159,7 @@ offset_bottom = 320.0
 own_group = "BottomLeft_-4,0"
 metadata/_edit_use_anchors_ = true
 
-[node name="SpawnLocation8" parent="." unique_id=40619627 instance=ExtResource("4_pjr2b")]
+[node name="SpawnLocation8" parent="." unique_id=40619627 instance=ExtResource("4_622fd")]
 offset_left = -719.0
 offset_top = -2430.0
 offset_right = -689.0
@@ -167,7 +167,7 @@ offset_bottom = -2400.0
 own_group = "TopLeft_-4,0"
 metadata/_edit_use_anchors_ = true
 
-[node name="WarpZone5" parent="." unique_id=1623820784 instance=ExtResource("3_2j06r")]
+[node name="WarpZone5" parent="." unique_id=1623820784 instance=ExtResource("3_lrihj")]
 position = Vector2(-753, -2494)
 scale = Vector2(1, 10)
 warp_to = "res://maps/maps/pre-walljump/room_-5,1.tscn"

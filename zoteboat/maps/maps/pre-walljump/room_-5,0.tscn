@@ -127,6 +127,8 @@ new_location_group = "BottomLeft_-4,0"
 [node name="WarpZone4" parent="." unique_id=572582074 instance=ExtResource("4_rguva")]
 position = Vector2(-401, 5857)
 scale = Vector2(1, 10)
+warp_to = "res://maps/maps/pre-walljump/room_-6,0.tscn"
+new_location_group = "TopRight_-6,0"
 
 [node name="SpawnLocation4" parent="." unique_id=325421916 instance=ExtResource("2_1n0hk")]
 offset_left = -367.0
@@ -153,7 +155,7 @@ new_location_group = "TopRight_-6,0"
 [node name="WarpZone6" parent="." unique_id=631049134 instance=ExtResource("4_rguva")]
 position = Vector2(480, 6064)
 scale = Vector2(10, 1)
-warp_to = "res://maps/maps/pre-walljump/room_-6,0.tscn"
+warp_to = "res://maps/maps/pre-walljump/room_-5,-1.tscn"
 new_location_group = "Top_-5,-1"
 
 [node name="SpawnLocation6" parent="." unique_id=1620563476 instance=ExtResource("2_1n0hk")]
