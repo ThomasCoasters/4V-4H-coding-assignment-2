@@ -1240,6 +1240,7 @@ func on_spikes_entered(damage):
 	if health <= 0 && !unkillable:
 		return
 	
+	external_velocity = Vector2.ZERO
 	await hitstop_manager(hitstun_time, 1.3, "hard")
 	
 	fading()
@@ -1270,7 +1271,6 @@ func on_spikes_entered(damage):
 	i_frames(i_frames_hit_time*1.5)
 	_on_pogo_returned(false)
 	state_chart.send_event("jump_released")
-	external_velocity = Vector2.ZERO
 	
 	
 	await get_tree().physics_frame
