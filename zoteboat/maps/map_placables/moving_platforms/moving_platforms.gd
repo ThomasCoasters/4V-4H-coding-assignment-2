@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	await get_tree().create_timer(per_side_wait_time).timeout
 	if move_on_trigger:
-		if $AnimationPlayer.current_animation == "RESET":
+		if $AnimationPlayer.assigned_animation == "RESET":
 			return
 		
 		if anim_name == "front":

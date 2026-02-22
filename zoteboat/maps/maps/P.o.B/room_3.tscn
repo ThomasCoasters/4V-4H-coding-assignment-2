@@ -583,6 +583,9 @@ position = Vector2(3005, -854)
 [node name="shawblade7" parent="spikes" unique_id=2113848150 instance=ExtResource("7_7f1rc")]
 position = Vector2(3218, -490)
 
+[node name="shawblade8" parent="spikes" unique_id=1494370676 instance=ExtResource("7_7f1rc")]
+position = Vector2(2694, -1497)
+
 [node name="moving" type="Node" parent="." unique_id=319980089]
 
 [node name="moving_shaw" parent="moving" unique_id=710403595 instance=ExtResource("6_j2djm")]
