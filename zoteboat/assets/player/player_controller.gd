@@ -229,6 +229,7 @@ func _ready() -> void:
 
 func setup():
 	max_health = SaveLoad.contents_to_save.max_health
+	heal_health = SaveLoad.contents_to_save.heal_health
 	
 	if !has_dash:
 		has_dash = SaveLoad.contents_to_save.has_dash
@@ -238,6 +239,7 @@ func setup():
 		has_double_jump = SaveLoad.contents_to_save.has_double_jump
 	
 	#region timers setup
+	
 	jump_timer.wait_time = MAX_JUMP_TIME
 	jump_timer.one_shot = true
 	jump_timer.timeout.connect(_on_jump_timer_timeout)

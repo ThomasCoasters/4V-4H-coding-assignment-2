@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="3_6tg0p"]
 [ext_resource type="Script" uid="uid://domk3qfwgxh7i" path="res://maps/enemy arena/keyValue.gd" id="5_7tujt"]
 [ext_resource type="Script" uid="uid://dirquph6nfgas" path="res://maps/enemy arena/universal_arena_script.gd" id="6_6tg0p"]
-[ext_resource type="PackedScene" uid="uid://oqu7kbfguu6n" path="res://maps/pickups/hp_upgrades/increase_max_hp.tscn" id="7_7tujt"]
 [ext_resource type="Script" uid="uid://3agjipx3lxq3" path="res://maps/enemy arena/generic_extra_script.gd" id="7_e03ik"]
 [ext_resource type="Texture2D" uid="uid://lq1hkpst6bis" path="res://maps/maps/P.o.B/P.o.B specific/visuals/wall/wall.png" id="8_qak2o"]
 [ext_resource type="Texture2D" uid="uid://bu0fvsfi3oxte" path="res://maps/maps/P.o.B/P.o.B specific/visuals/wall/wall_connector.png" id="9_5qh2o"]
@@ -14,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://bp3nuhhu33iyt" path="res://maps/maps/P.o.B/P.o.B specific/visuals/dirt_like/straight.png" id="12_51h6i"]
 [ext_resource type="Texture2D" uid="uid://c61oeij228qm0" path="res://maps/maps/P.o.B/P.o.B specific/visuals/dirt_like/side_curved.png" id="13_1qfl8"]
 [ext_resource type="Texture2D" uid="uid://cwt5lsb54x3df" path="res://maps/maps/P.o.B/P.o.B specific/visuals/wall/wall_bottom.png" id="14_5qh2o"]
+[ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="15_8ersv"]
+[ext_resource type="PackedScene" uid="uid://csr74dsnlivrp" path="res://maps/pickups/double heal/double heal.tscn" id="15_bsrdt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_10mr0"]
 texture = ExtResource("2_4bjwd")
@@ -274,9 +275,6 @@ extras = Array[ExtResource("5_7tujt")]([SubResource("Resource_psvay")])
 visible = false
 position = Vector2(1343.5, 217.5)
 shape = SubResource("RectangleShape2D_1a7be")
-
-[node name="increase_max_hp" parent="." unique_id=694949129 instance=ExtResource("7_7tujt")]
-position = Vector2(2976, 429)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1651425390]
 modulate = Color(0, 0, 0, 1)
@@ -569,5 +567,15 @@ position = Vector2(2995.4, -563)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("14_5qh2o")
 flip_h = true
+
+[node name="WarpZone2" parent="." unique_id=1268084640 instance=ExtResource("15_8ersv")]
+position = Vector2(3189, 421)
+rotation = 3.1415927
+scale = Vector2(1, 13)
+warp_to = "res://maps/maps/pre-dash/kingspacret.tscn"
+new_location_group = "TopLeft_0,0"
+
+[node name="DoubleHeal" parent="." unique_id=557881757 instance=ExtResource("15_bsrdt")]
+position = Vector2(2709, 425)
 
 [connection signal="body_entered" from="area arena/area arena trigger" to="area arena/area arena trigger" method="_on_body_entered"]

@@ -10,9 +10,11 @@ var DEFAULT_SAVE: Dictionary = {
 	"has_double_jump": false,
 	"has_wall_cling": false,
 	
+	"heal_health": 1,
+	
 	"starting_room": "res://maps/maps/pre-dash/kingspass_for_losers.tscn",
 	#"starting_room": "res://maps/maps/Circus/Circus_1.tscn",
-	#"starting_room": "res://maps/maps/P.o.B/room_4.tscn",
+	#"starting_room": "res://maps/maps/P.o.B/room_5.tscn",
 	
 	"starting_location": "start_1,-1",
 	#"starting_location": "bench",
