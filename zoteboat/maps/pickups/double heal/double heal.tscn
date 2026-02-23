@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://csr74dsnlivrp"]
+
+[ext_resource type="Script" uid="uid://dk0amj7eirag0" path="res://maps/pickups/double heal/double_heal.gd" id="1_68f6f"]
+[ext_resource type="Texture2D" uid="uid://da3cjfot6tbk8" path="res://maps/pickups/double heal/Deep Focus - charm_crystal.png" id="2_68f6f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3xpqf"]
+radius = 46.32494
+
+[node name="DoubleHeal" type="Area2D" unique_id=557881757 groups=["collectable"]]
+script = ExtResource("1_68f6f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=471495744]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_68f6f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1415239040]
+shape = SubResource("CircleShape2D_3xpqf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

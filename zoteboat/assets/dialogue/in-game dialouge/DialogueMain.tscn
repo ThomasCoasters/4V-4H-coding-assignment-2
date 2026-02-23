@@ -47,3 +47,6 @@ messages = ["1;To witness secrets sealed, one must endure the harshest punishmen
 
 [node name="pogo_explain" parent="dialogue_manager" unique_id=1718127924 instance=ExtResource("2_mfygf")]
 messages = ["1;To gain extra height, one can throw their sword down.;1", "1;One can use their attack in all directions. Try to throw ones sword downwards in the air.;1", "1;When one regains their sword they can rethrow their sword to gain even more height.;1"]
+
+[node name="pob_beaten" parent="dialogue_manager" unique_id=1537038685 instance=ExtResource("2_mfygf")]
+messages = ["1;Well done, you beat Path of Bah! Now your heal will heal you DOUBLE the health!.;1"]

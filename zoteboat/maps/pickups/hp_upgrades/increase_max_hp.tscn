@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://oqu7kbfguu6n"]
+[gd_scene format=3 uid="uid://oqu7kbfguu6n"]
 
 [ext_resource type="Script" uid="uid://cehqtvb71rx7b" path="res://maps/pickups/hp_upgrades/increase_max_hp.gd" id="1_fjlbp"]
 [ext_resource type="Texture2D" uid="uid://bljsisjcbkwy1" path="res://assets/UI/HP/HP_FULL.png" id="2_y05m6"]
@@ -7,14 +7,14 @@
 radius = 18.0
 height = 56.0
 
-[node name="increase_max_hp" type="Area2D" groups=["collectable"]]
+[node name="increase_max_hp" type="Area2D" unique_id=1162401991 groups=["collectable"]]
 script = ExtResource("1_fjlbp")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=432947211]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_y05m6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=661593346]
 shape = SubResource("CapsuleShape2D_wur3k")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
