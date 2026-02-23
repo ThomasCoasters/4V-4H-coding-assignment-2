@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bog122r6psn2d"
+path="res://.godot/imported/the world blissfully rotating.mp3-a609d1024ee1cac5cb40b9070f15f40e.mp3str"
+
+[deps]
+
+source_file="res://Game/audio/the world blissfully rotating.mp3"
+dest_files=["res://.godot/imported/the world blissfully rotating.mp3-a609d1024ee1cac5cb40b9070f15f40e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

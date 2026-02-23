@@ -10,13 +10,13 @@ var DEFAULT_SAVE: Dictionary = {
 	"has_double_jump": false,
 	"has_wall_cling": false,
 	
-	#"starting_room": "res://maps/maps/pre-dash/kingspass_for_losers.tscn",
+	"starting_room": "res://maps/maps/pre-dash/kingspass_for_losers.tscn",
 	#"starting_room": "res://maps/maps/Circus/Circus_1.tscn",
-	"starting_room": "res://maps/maps/P.o.B/room_4.tscn",
+	#"starting_room": "res://maps/maps/P.o.B/room_4.tscn",
 	
-	#"starting_location": "start_1,-1",
+	"starting_location": "start_1,-1",
 	#"starting_location": "bench",
-	"starting_location": "top_P.o.B",
+	#"starting_location": "top_P.o.B",
 	
 	"rumble": 2,
 	"screen_shake": 2,

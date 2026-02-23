@@ -1,0 +1,162 @@
+[gd_scene format=4 uid="uid://b2d757632hgay"]
+
+[ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_46tuh"]
+[ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="2_uy7ir"]
+[ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="3_7royy"]
+[ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="4_sjkp0"]
+[ext_resource type="Texture2D" uid="uid://duypfauw01w6t" path="res://maps/secrets assets/Zote_BG_statue.png" id="5_uy7ir"]
+[ext_resource type="Texture2D" uid="uid://df7ltoic65ymw" path="res://maps/secrets assets/GG_statues_zote.png" id="6_sjkp0"]
+[ext_resource type="Texture2D" uid="uid://b40oc3q0q760c" path="res://maps/secrets assets/GG_statues_zote_gold.png" id="7_gq2bc"]
+[ext_resource type="Texture2D" uid="uid://drlqevj3lwinp" path="res://maps/secrets assets/elephant.png" id="8_gq2bc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
+texture = ExtResource("2_uy7ir")
+1:5/0 = 0
+1:5/0/terrain_set = 0
+1:5/0/terrain = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/0/terrains_peering_bit/right_side = 0
+1:5/0/terrains_peering_bit/bottom_right_corner = 0
+1:5/0/terrains_peering_bit/bottom_side = 0
+2:5/0 = 0
+2:5/0/terrain_set = 0
+2:5/0/terrain = 0
+2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:5/0/terrains_peering_bit/right_side = 0
+2:5/0/terrains_peering_bit/bottom_right_corner = 0
+2:5/0/terrains_peering_bit/bottom_side = 0
+2:5/0/terrains_peering_bit/bottom_left_corner = 0
+2:5/0/terrains_peering_bit/left_side = 0
+3:5/0 = 0
+3:5/0/terrain_set = 0
+3:5/0/terrain = 0
+3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:5/0/terrains_peering_bit/bottom_side = 0
+3:5/0/terrains_peering_bit/bottom_left_corner = 0
+3:5/0/terrains_peering_bit/left_side = 0
+1:6/0 = 0
+1:6/0/terrain_set = 0
+1:6/0/terrain = 0
+1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:6/0/terrains_peering_bit/right_side = 0
+1:6/0/terrains_peering_bit/bottom_right_corner = 0
+1:6/0/terrains_peering_bit/bottom_side = 0
+1:6/0/terrains_peering_bit/top_side = 0
+1:6/0/terrains_peering_bit/top_right_corner = 0
+2:6/0 = 0
+2:6/0/terrain_set = 0
+2:6/0/terrain = 0
+2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:6/0/terrains_peering_bit/right_side = 0
+2:6/0/terrains_peering_bit/bottom_right_corner = 0
+2:6/0/terrains_peering_bit/bottom_side = 0
+2:6/0/terrains_peering_bit/bottom_left_corner = 0
+2:6/0/terrains_peering_bit/left_side = 0
+2:6/0/terrains_peering_bit/top_left_corner = 0
+2:6/0/terrains_peering_bit/top_side = 0
+2:6/0/terrains_peering_bit/top_right_corner = 0
+3:6/0 = 0
+3:6/0/terrain_set = 0
+3:6/0/terrain = 0
+3:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:6/0/terrains_peering_bit/bottom_side = 0
+3:6/0/terrains_peering_bit/bottom_left_corner = 0
+3:6/0/terrains_peering_bit/left_side = 0
+3:6/0/terrains_peering_bit/top_left_corner = 0
+3:6/0/terrains_peering_bit/top_side = 0
+1:7/0 = 0
+1:7/0/terrain_set = 0
+1:7/0/terrain = 0
+1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:7/0/terrains_peering_bit/right_side = 0
+1:7/0/terrains_peering_bit/top_side = 0
+1:7/0/terrains_peering_bit/top_right_corner = 0
+2:7/0 = 0
+2:7/0/terrain_set = 0
+2:7/0/terrain = 0
+2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:7/0/terrains_peering_bit/right_side = 0
+2:7/0/terrains_peering_bit/left_side = 0
+2:7/0/terrains_peering_bit/top_left_corner = 0
+2:7/0/terrains_peering_bit/top_side = 0
+2:7/0/terrains_peering_bit/top_right_corner = 0
+3:7/0 = 0
+3:7/0/terrain_set = 0
+3:7/0/terrain = 0
+3:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:7/0/terrains_peering_bit/left_side = 0
+3:7/0/terrains_peering_bit/top_left_corner = 0
+3:7/0/terrains_peering_bit/top_side = 0
+
+[sub_resource type="TileSet" id="TileSet_7r8rt"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 3
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "test ground"
+terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
+sources/0 = SubResource("TileSetAtlasSource_bk4vp")
+
+[node name="Kingspacret" type="Node2D" unique_id=136216618]
+script = ExtResource("1_46tuh")
+audio_path = "res://Game/audio/the world blissfully rotating.mp3"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=564415215]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AADU/+b/AAADAAcAAADU/+X/AAADAAYAAADU/+T/AAADAAUAAADT/+b/AAACAAcAAADT/+X/AAACAAYAAADT/+T/AAACAAUAAADS/+b/AAACAAcAAADS/+X/AAACAAYAAADS/+T/AAACAAUAAADR/+b/AAACAAcAAADR/+X/AAACAAYAAADR/+T/AAACAAUAAADQ/+b/AAACAAcAAADQ/+X/AAACAAYAAADQ/+T/AAACAAUAAADP/+b/AAACAAcAAADP/+X/AAACAAYAAADP/+T/AAACAAUAAADO/+b/AAACAAcAAADO/+X/AAACAAYAAADO/+T/AAACAAUAAADN/+b/AAACAAcAAADN/+X/AAACAAYAAADN/+T/AAACAAUAAADM/+b/AAACAAcAAADM/+X/AAACAAYAAADM/+T/AAACAAUAAADL/+b/AAACAAcAAADL/+X/AAACAAYAAADL/+T/AAACAAUAAADK/+b/AAACAAcAAADK/+X/AAACAAYAAADK/+T/AAACAAUAAADJ/+b/AAACAAcAAADJ/+X/AAACAAYAAADJ/+T/AAACAAUAAADI/+b/AAACAAcAAADI/+X/AAACAAYAAADI/+T/AAACAAUAAADU/+P/AAADAAYAAADU/+L/AAADAAYAAADU/+H/AAADAAYAAADU/+D/AAADAAYAAADU/9//AAADAAYAAADU/97/AAADAAYAAADU/93/AAADAAYAAADU/9z/AAADAAYAAADT/9z/AAACAAYAAADU/9v/AAADAAYAAADU/9r/AAADAAYAAADU/9n/AAADAAYAAADU/9j/AAADAAYAAADU/9f/AAADAAYAAADU/9b/AAADAAYAAADU/9X/AAADAAYAAADU/9T/AAADAAYAAADU/9P/AAADAAYAAADU/9L/AAADAAYAAADU/9H/AAADAAYAAADU/9D/AAADAAYAAADU/8//AAADAAYAAADU/87/AAADAAYAAADU/83/AAADAAYAAADU/8z/AAADAAUAAADT/9v/AAACAAYAAADT/9r/AAACAAYAAADT/9n/AAACAAYAAADT/9j/AAACAAYAAADT/9f/AAACAAYAAADT/9b/AAACAAYAAADT/9X/AAACAAYAAADT/9T/AAACAAYAAADT/9P/AAACAAYAAADT/9L/AAACAAYAAADT/9H/AAACAAYAAADT/9D/AAACAAYAAADT/8//AAACAAYAAADT/87/AAACAAYAAADT/83/AAACAAYAAADT/8z/AAACAAUAAADS/9z/AAABAAYAAADS/9v/AAABAAYAAADS/9r/AAABAAYAAADS/9n/AAABAAYAAADS/9j/AAABAAYAAADS/9f/AAABAAYAAADS/9b/AAABAAYAAADS/9X/AAABAAYAAADS/9T/AAABAAYAAADS/9P/AAABAAYAAADS/9L/AAABAAYAAADS/9H/AAABAAYAAADS/9D/AAABAAYAAADS/8//AAABAAYAAADS/87/AAACAAYAAADS/83/AAACAAYAAADS/8z/AAACAAUAAADT/93/AAACAAcAAADS/93/AAABAAcAAADR/8z/AAACAAUAAADQ/8z/AAACAAUAAADP/8z/AAACAAUAAADO/8z/AAACAAUAAADN/8z/AAACAAUAAADM/8z/AAACAAUAAADL/8z/AAACAAUAAADK/8z/AAACAAUAAADJ/8z/AAACAAUAAADI/8z/AAACAAUAAADH/8z/AAACAAUAAADG/8z/AAACAAUAAADF/8z/AAACAAUAAADE/8z/AAACAAUAAADD/8z/AAACAAUAAADC/8z/AAACAAUAAADB/8z/AAACAAUAAADA/8z/AAACAAUAAAC//8z/AAACAAUAAAC+/8z/AAACAAUAAAC9/8z/AAACAAUAAAC8/8z/AAACAAUAAAC7/8z/AAACAAUAAAC6/8z/AAACAAUAAAC5/8z/AAACAAUAAAC4/8z/AAACAAUAAAC3/8z/AAACAAUAAAC2/8z/AAACAAUAAAC1/8z/AAACAAUAAAC0/8z/AAACAAUAAACz/8z/AAACAAUAAACy/8z/AAACAAUAAADH/+b/AAACAAcAAADH/+X/AAACAAYAAADH/+T/AAACAAUAAADG/+b/AAACAAcAAADG/+X/AAACAAYAAADG/+T/AAACAAUAAADF/+b/AAACAAcAAADF/+X/AAACAAYAAADF/+T/AAACAAUAAADE/+b/AAACAAcAAADE/+X/AAACAAYAAADE/+T/AAACAAUAAADD/+b/AAACAAcAAADD/+X/AAACAAYAAADD/+T/AAACAAUAAADC/+b/AAACAAcAAADC/+X/AAACAAYAAADC/+T/AAACAAUAAADB/+b/AAACAAcAAADB/+X/AAACAAYAAADB/+T/AAACAAUAAADA/+b/AAACAAcAAADA/+X/AAACAAYAAADA/+T/AAACAAUAAAC//+b/AAACAAcAAAC//+X/AAACAAYAAAC//+T/AAACAAUAAAC+/+b/AAACAAcAAAC+/+X/AAACAAYAAAC+/+T/AAACAAUAAAC9/+b/AAACAAcAAAC9/+X/AAACAAYAAAC9/+T/AAACAAUAAAC8/+b/AAACAAcAAAC8/+X/AAACAAYAAAC8/+T/AAACAAUAAAC7/+b/AAACAAcAAAC7/+X/AAACAAYAAAC7/+T/AAACAAUAAAC6/+b/AAACAAcAAAC6/+X/AAACAAYAAAC6/+T/AAACAAUAAAC5/+b/AAACAAcAAAC5/+X/AAACAAYAAAC5/+T/AAACAAUAAAC4/+b/AAACAAcAAAC4/+X/AAACAAYAAAC4/+T/AAACAAUAAAC3/+b/AAACAAcAAAC3/+X/AAACAAYAAAC3/+T/AAACAAUAAAC2/+b/AAACAAcAAAC2/+X/AAACAAYAAAC2/+T/AAACAAUAAAC1/+b/AAACAAcAAAC1/+X/AAACAAYAAAC1/+T/AAACAAUAAAC0/+b/AAACAAcAAAC0/+X/AAACAAYAAAC0/+T/AAACAAUAAACz/+b/AAACAAcAAACz/+X/AAACAAYAAACz/+T/AAACAAUAAACy/+b/AAACAAcAAACy/+X/AAACAAYAAACy/+T/AAACAAUAAACx/+b/AAACAAcAAACx/+X/AAACAAYAAACx/+T/AAACAAUAAACw/+b/AAACAAcAAACw/+X/AAACAAYAAACw/+T/AAACAAUAAACv/+b/AAACAAcAAACv/+X/AAACAAYAAACv/+T/AAACAAUAAACu/+b/AAABAAcAAACu/+X/AAABAAYAAACu/+T/AAABAAUAAACu/+P/AAADAAYAAACu/+L/AAADAAYAAACu/+H/AAADAAYAAACu/+D/AAADAAYAAACu/9//AAADAAYAAACu/97/AAADAAYAAACu/93/AAADAAYAAACu/9z/AAADAAYAAACu/9v/AAADAAYAAACu/9r/AAADAAYAAACu/9n/AAADAAYAAACu/9j/AAADAAYAAACu/9f/AAADAAYAAACu/9b/AAADAAYAAACu/9X/AAADAAYAAACu/9T/AAADAAYAAACu/9P/AAADAAYAAACu/9L/AAADAAYAAACu/9H/AAADAAYAAACu/9D/AAADAAYAAACu/8//AAADAAYAAACu/87/AAADAAUAAACu/83/AAABAAcAAACu/8z/AAABAAUAAADR/83/AAACAAYAAADQ/83/AAACAAYAAADP/83/AAACAAYAAADO/83/AAACAAYAAADN/83/AAACAAYAAADM/83/AAACAAYAAADL/83/AAACAAYAAADK/83/AAACAAYAAADJ/83/AAACAAYAAADI/83/AAACAAYAAADH/83/AAACAAYAAADG/83/AAACAAYAAADF/83/AAACAAYAAADE/83/AAACAAYAAADD/83/AAACAAYAAADC/83/AAACAAYAAADB/83/AAACAAYAAADA/83/AAACAAYAAAC//83/AAACAAYAAAC+/83/AAACAAYAAAC9/83/AAACAAYAAAC8/83/AAACAAYAAAC7/83/AAACAAYAAAC6/83/AAACAAYAAAC5/83/AAACAAYAAAC4/83/AAACAAYAAAC3/83/AAACAAYAAAC2/83/AAACAAYAAAC1/83/AAACAAYAAAC0/83/AAACAAYAAACz/83/AAACAAYAAACy/83/AAACAAYAAACx/83/AAACAAYAAACx/8z/AAACAAUAAACw/83/AAACAAYAAACw/8z/AAACAAUAAACv/83/AAACAAYAAACv/8z/AAACAAUAAADR/87/AAACAAcAAADQ/87/AAACAAcAAADP/87/AAACAAcAAADO/87/AAACAAcAAADN/87/AAACAAcAAADM/87/AAACAAcAAADL/87/AAACAAcAAADK/87/AAACAAcAAADJ/87/AAACAAcAAADI/87/AAACAAcAAADH/87/AAACAAcAAADG/87/AAACAAcAAADF/87/AAACAAcAAADE/87/AAACAAcAAADD/87/AAACAAcAAADC/87/AAACAAcAAADB/87/AAACAAcAAADA/87/AAACAAcAAAC//87/AAACAAcAAAC+/87/AAACAAcAAAC9/87/AAACAAcAAAC8/87/AAACAAcAAAC7/87/AAACAAcAAAC6/87/AAACAAcAAAC5/87/AAACAAcAAAC4/87/AAACAAcAAAC3/87/AAACAAcAAAC2/87/AAACAAcAAAC1/87/AAACAAcAAAC0/87/AAACAAcAAACz/87/AAACAAcAAACy/87/AAACAAcAAACx/87/AAACAAcAAACw/87/AAACAAcAAACv/87/AAACAAcAAADg/+X/AAADAAcAAAA=")
+tile_set = SubResource("TileSet_7r8rt")
+
+[node name="WarpZone4" parent="." unique_id=1268084640 instance=ExtResource("3_7royy")]
+position = Vector2(-1418, -991.00006)
+scale = Vector2(1, 10)
+warp_to = "res://maps/maps/pre-dash/kingspass_for_losers.tscn"
+new_location_group = "start_1,-1"
+
+[node name="SpawnLocation3" parent="." unique_id=1308955287 instance=ExtResource("4_sjkp0")]
+offset_left = -1567.0
+offset_top = -926.0
+offset_right = -1537.0
+offset_bottom = -896.0
+own_group = "TopLeft_0,0"
+metadata/_edit_use_anchors_ = true
+
+[node name="ZoteBgStatue" type="Sprite2D" parent="." unique_id=180394738]
+position = Vector2(-2348, -1114)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_uy7ir")
+flip_h = true
+
+[node name="ZoteBgStatue2" type="Sprite2D" parent="." unique_id=1332898329]
+position = Vector2(-1143, -1156)
+texture = ExtResource("5_uy7ir")
+
+[node name="GgStatuesZote" type="Sprite2D" parent="." unique_id=639674716]
+position = Vector2(-2543, -967)
+texture = ExtResource("6_sjkp0")
+
+[node name="GgStatuesZoteGold" type="Sprite2D" parent="." unique_id=1949529130]
+position = Vector2(-1261, -957)
+texture = ExtResource("7_gq2bc")
+
+[node name="GgStatuesZoteGold2" type="Sprite2D" parent="." unique_id=1793282702]
+position = Vector2(-1274, -1449)
+texture = ExtResource("7_gq2bc")
+
+[node name="GgStatuesZote2" type="Sprite2D" parent="." unique_id=1650536506]
+position = Vector2(-2248, -1368)
+texture = ExtResource("6_sjkp0")
+
+[node name="GgStatuesZoteGold3" type="Sprite2D" parent="." unique_id=274039158]
+position = Vector2(-2197, -1492)
+texture = ExtResource("7_gq2bc")
+
+[node name="GgStatuesZote3" type="Sprite2D" parent="." unique_id=1311203358]
+position = Vector2(-2148, -1615)
+texture = ExtResource("6_sjkp0")
+
+[node name="GgStatuesZoteGold4" type="Sprite2D" parent="." unique_id=481776567]
+position = Vector2(-2092, -1737)
+texture = ExtResource("7_gq2bc")
+
+[node name="Elephant" type="Sprite2D" parent="." unique_id=1301036641]
+position = Vector2(-1832, -1207)
+texture = ExtResource("8_gq2bc")
