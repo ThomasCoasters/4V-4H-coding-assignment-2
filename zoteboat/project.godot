@@ -17,7 +17,6 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="Hollow Knight: Zoteboat"
 run/main_scene="uid://bah08g4ftmni4"
 config/features=PackedStringArray("4.6", "Forward Plus")
-boot_splash/stretch_mode=0
 boot_splash/image="uid://oi5thkbhgpvs"
 config/icon="uid://1frmid3gqndq"
 config/windows_native_icon="res://Game/logo/Zote shell.ico"

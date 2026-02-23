@@ -1167,6 +1167,7 @@ position = Vector2(630, 2010)
 [node name="spikes" type="Node" parent="hazards" unique_id=513517801]
 
 [node name="SpikesCollision" parent="hazards/spikes" unique_id=2135222306 instance=ExtResource("7_dwl6x")]
+visible = false
 
 [node name="EDIT THIS" parent="hazards/spikes/SpikesCollision/StaticBody2D" parent_id_path=PackedInt32Array(2135222306, 1580090474) index="0" unique_id=1846142658]
 polygon = PackedVector2Array(1065, 946, 1066, 1069, 976, 1205, 688, 1207, 522, 1133, 388, 1190, 649, 1269, 1001, 1251, 1134, 1179, 1167, 955)
@@ -1174,7 +1175,7 @@ polygon = PackedVector2Array(1065, 946, 1066, 1069, 976, 1205, 688, 1207, 522, 1
 [node name="SpikesCollision2" parent="hazards/spikes" unique_id=1654492809 instance=ExtResource("7_dwl6x")]
 
 [node name="EDIT THIS" parent="hazards/spikes/SpikesCollision2/StaticBody2D" parent_id_path=PackedInt32Array(1654492809, 1580090474) index="0" unique_id=1846142658]
-polygon = PackedVector2Array(-95, 2423, 916, 2629, 1056, 2629, 1510, 2568, 1486, 2894, 1598, 2910, 1617, 2597, 1670, 2373, 1020, 2505, 2, 2308, -1, 1765, 755, 1677, 1071, 1805, 1109, 1686, 1116, 1504, 422, 1630, 21, 1509, -143, 1662)
+polygon = PackedVector2Array(-95, 2423, 916, 2629, 1056, 2629, 1510, 2568, 1514, 2809, 1487, 2874, 1508, 2898, 1592, 2830, 1617, 2597, 1670, 2373, 1195, 2492, 1020, 2505, 2, 2308, -1, 1765, 755, 1677, 1071, 1805, 1109, 1686, 1116, 1504, 422, 1630, 21, 1509, -143, 1662)
 
 [node name="SpikesCollision3" parent="hazards/spikes" unique_id=427603393 instance=ExtResource("7_dwl6x")]
 visible = false
@@ -1195,7 +1196,7 @@ polygon = PackedVector2Array(1268, 3066, 1276, 3349, 1893, 3275, 1897, 3064)
 [node name="SpikesCollision6" parent="hazards/spikes" unique_id=1671362001 instance=ExtResource("7_dwl6x")]
 
 [node name="EDIT THIS" parent="hazards/spikes/SpikesCollision6/StaticBody2D" parent_id_path=PackedInt32Array(1671362001, 1580090474) index="0" unique_id=1846142658]
-polygon = PackedVector2Array(1134, 3067, 1127, 3337, 24, 3298, 14, 2426, 79, 2437, 78, 3186)
+polygon = PackedVector2Array(1134, 3067, 1127, 3337, -80, 3297, -84, 3205)
 
 [node name="moving_platform6" parent="." unique_id=1775740477 instance=ExtResource("9_n8t0q")]
 position = Vector2(1131, 577)
@@ -2234,6 +2235,26 @@ rotation = -3.1223583
 scale = Vector2(1.185, 1.185)
 texture = ExtResource("17_j06sg")
 
+[node name="ThornSmall10" type="Sprite2D" parent="visuals/spikes/spike4" unique_id=336777059]
+z_index = -1
+position = Vector2(800, 2012)
+rotation = 1.4327285
+scale = Vector2(0.9999999, 0.9999999)
+texture = ExtResource("16_7aim3")
+
+[node name="ThornBig10" type="Sprite2D" parent="visuals/spikes/spike4" unique_id=251591844]
+z_index = -1
+position = Vector2(909.0001, 2054)
+rotation = 0.23774545
+texture = ExtResource("17_j06sg")
+flip_v = true
+
+[node name="ThornSmall11" type="Sprite2D" parent="visuals/spikes/spike4" unique_id=1222020143]
+position = Vector2(1104.9999, 2084)
+rotation = -2.0541553
+scale = Vector2(0.96500003, 0.96500003)
+texture = ExtResource("16_7aim3")
+
 [node name="bg" type="Node2D" parent="visuals/spikes/spike4" unique_id=1798631690]
 z_index = -2
 
@@ -2337,11 +2358,305 @@ texture = ExtResource("17_ln2x4")
 position = Vector2(1465, 1967)
 texture = ExtResource("16_evy8b")
 
+[node name="WhiteSpikeBg10" type="Sprite2D" parent="visuals/spikes/spike4/bg" unique_id=247387585]
+position = Vector2(925, 2074)
+rotation = 0.4594859
+texture = ExtResource("16_evy8b")
+
 [node name="spike5" type="Node2D" parent="visuals/spikes" unique_id=453101035]
+
+[node name="ThornBig5" type="Sprite2D" parent="visuals/spikes/spike5" unique_id=1653539896]
+position = Vector2(989, 2550)
+rotation = -3.139845
+scale = Vector2(1.4500002, 1.4500002)
+texture = ExtResource("17_j06sg")
+
+[node name="ThornSmall4" type="Sprite2D" parent="visuals/spikes/spike5" unique_id=977284415]
+position = Vector2(797, 2520)
+rotation = 1.1517794
+scale = Vector2(0.9999999, 0.9999999)
+texture = ExtResource("16_7aim3")
+
+[node name="ThornBig" type="Sprite2D" parent="visuals/spikes/spike5" unique_id=697609143]
+position = Vector2(92, 2402)
+texture = ExtResource("17_j06sg")
+flip_h = true
+
+[node name="ThornSmall3" type="Sprite2D" parent="visuals/spikes/spike5" unique_id=1648703880]
+position = Vector2(700, 2510)
+rotation = 1.2928249
+texture = ExtResource("16_7aim3")
+
+[node name="ThornSmall2" type="Sprite2D" parent="visuals/spikes/spike5" unique_id=103533794]
+position = Vector2(468.00003, 2475)
+rotation = -2.5922396
+texture = ExtResource("16_7aim3")
+
+[node name="ThornBig4" type="Sprite2D" parent="visuals/spikes/spike5" unique_id=1891136852]
+position = Vector2(666, 2513.9998)
+rotation = -2.9454014
+texture = ExtResource("17_j06sg")
+
+[node name="ThornSmall" type="Sprite2D" parent="visuals/spikes/spike5" unique_id=1033160574]
+position = Vector2(307.00003, 2453.0002)
+rotation = -1.9928211
+texture = ExtResource("16_7aim3")
+
+[node name="ThornBig3" type="Sprite2D" parent="visuals/spikes/spike5" unique_id=1140985548]
+position = Vector2(432.00006, 2445)
+rotation = 0.11316883
+texture = ExtResource("17_j06sg")
+flip_h = true
+
+[node name="ThornBig2" type="Sprite2D" parent="visuals/spikes/spike5" unique_id=1494863948]
+position = Vector2(91, 2389)
+rotation = -2.686607
+texture = ExtResource("17_j06sg")
+
+[node name="ThornSmall8" type="Sprite2D" parent="visuals/spikes/spike5" unique_id=123057814]
+position = Vector2(1374, 2524)
+rotation = -2.3601732
+texture = ExtResource("16_7aim3")
+
+[node name="ThornSmall6" type="Sprite2D" parent="visuals/spikes/spike5" unique_id=1375766497]
+position = Vector2(1636, 2412)
+rotation = 1.6735305
+scale = Vector2(0.51, 0.51)
+texture = ExtResource("16_7aim3")
+
+[node name="ThornSmall5" type="Sprite2D" parent="visuals/spikes/spike5" unique_id=1881770373]
+position = Vector2(1574, 2464.0002)
+rotation = 1.5075377
+texture = ExtResource("16_7aim3")
+
+[node name="ThornBig6" type="Sprite2D" parent="visuals/spikes/spike5" unique_id=1171626181]
+position = Vector2(1403, 2494)
+texture = ExtResource("17_j06sg")
+
+[node name="ThornBig7" type="Sprite2D" parent="visuals/spikes/spike5" unique_id=404256655]
+position = Vector2(1555.9999, 2688.9998)
+rotation = 1.6236207
+texture = ExtResource("17_j06sg")
+flip_h = true
+
+[node name="ThornSmall7" type="Sprite2D" parent="visuals/spikes/spike5" unique_id=1549760729]
+position = Vector2(1497.0002, 2520.0002)
+rotation = -0.5823079
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("16_7aim3")
+
+[node name="bg" type="Node2D" parent="visuals/spikes/spike5" unique_id=1314420297]
+z_index = -2
+
+[node name="WhiteSpikeBg" type="Sprite2D" parent="visuals/spikes/spike5/bg" unique_id=239880727]
+position = Vector2(100, 2409)
+rotation = 0.31873786
+texture = ExtResource("16_evy8b")
+
+[node name="WhiteSpikeBg2" type="Sprite2D" parent="visuals/spikes/spike5/bg" unique_id=36827830]
+position = Vector2(378, 2478)
+texture = ExtResource("16_evy8b")
+
+[node name="WhiteSpikeBg02" type="Sprite2D" parent="visuals/spikes/spike5/bg" unique_id=2068442027]
+position = Vector2(362, 2447)
+rotation = 0.23500012
+texture = ExtResource("17_ln2x4")
+
+[node name="WhiteSpikeBg3" type="Sprite2D" parent="visuals/spikes/spike5/bg" unique_id=1951625624]
+position = Vector2(645, 2535)
+rotation = -2.6461189
+texture = ExtResource("16_evy8b")
+
+[node name="WhiteSpikeBg03" type="Sprite2D" parent="visuals/spikes/spike5/bg" unique_id=1399477978]
+position = Vector2(994, 2563)
+texture = ExtResource("17_ln2x4")
+
+[node name="WhiteSpikeBg4" type="Sprite2D" parent="visuals/spikes/spike5/bg" unique_id=1240399402]
+position = Vector2(1135, 2574)
+texture = ExtResource("16_evy8b")
+
+[node name="WhiteSpikeBg04" type="Sprite2D" parent="visuals/spikes/spike5/bg" unique_id=1095793875]
+position = Vector2(1416, 2488)
+texture = ExtResource("17_ln2x4")
+
+[node name="WhiteSpikeBg5" type="Sprite2D" parent="visuals/spikes/spike5/bg" unique_id=1482043574]
+position = Vector2(1466, 2541)
+texture = ExtResource("16_evy8b")
+
+[node name="WhiteSpikeBg6" type="Sprite2D" parent="visuals/spikes/spike5/bg" unique_id=427532235]
+position = Vector2(1560, 2444)
+texture = ExtResource("16_evy8b")
+
+[node name="WhiteSpikeBg7" type="Sprite2D" parent="visuals/spikes/spike5/bg" unique_id=164021773]
+position = Vector2(1573, 2723)
+rotation = -1.1916547
+texture = ExtResource("16_evy8b")
 
 [node name="spike6" type="Node2D" parent="visuals/spikes" unique_id=1025730318]
 
+[node name="ThornSmall" type="Sprite2D" parent="visuals/spikes/spike6" unique_id=988510038]
+position = Vector2(1847, 3147)
+texture = ExtResource("16_7aim3")
+
+[node name="ThornSmall2" type="Sprite2D" parent="visuals/spikes/spike6" unique_id=21977523]
+position = Vector2(1712, 3144)
+rotation = 1.246976
+texture = ExtResource("16_7aim3")
+
+[node name="ThornSmall3" type="Sprite2D" parent="visuals/spikes/spike6" unique_id=469229571]
+position = Vector2(1561, 3224)
+rotation = -2.3313124
+texture = ExtResource("16_7aim3")
+
+[node name="ThornSmall4" type="Sprite2D" parent="visuals/spikes/spike6" unique_id=1098342140]
+position = Vector2(1390, 3242.9998)
+rotation = -1.8169055
+scale = Vector2(1.265, 1.265)
+texture = ExtResource("16_7aim3")
+
+[node name="ThornSmall5" type="Sprite2D" parent="visuals/spikes/spike6" unique_id=60738166]
+position = Vector2(1437, 3133.9998)
+rotation = 0.63649493
+texture = ExtResource("16_7aim3")
+
+[node name="ThornSmall6" type="Sprite2D" parent="visuals/spikes/spike6" unique_id=1415159611]
+position = Vector2(1335, 3139)
+texture = ExtResource("16_7aim3")
+
+[node name="ThornBig3" type="Sprite2D" parent="visuals/spikes/spike6" unique_id=615460339]
+position = Vector2(1505, 3220)
+rotation = -2.8153164
+texture = ExtResource("17_j06sg")
+flip_h = true
+
+[node name="ThornBig2" type="Sprite2D" parent="visuals/spikes/spike6" unique_id=1687225037]
+position = Vector2(1560, 3167)
+texture = ExtResource("17_j06sg")
+
+[node name="ThornBig" type="Sprite2D" parent="visuals/spikes/spike6" unique_id=99309227]
+position = Vector2(1887, 3189)
+rotation = -0.45061028
+texture = ExtResource("17_j06sg")
+flip_v = true
+
+[node name="bg" type="Node2D" parent="visuals/spikes/spike6" unique_id=937248437]
+z_index = -2
+
+[node name="WhiteSpikeBg" type="Sprite2D" parent="visuals/spikes/spike6/bg" unique_id=1965941894]
+position = Vector2(1819, 3234)
+texture = ExtResource("16_evy8b")
+
+[node name="WhiteSpikeBg02" type="Sprite2D" parent="visuals/spikes/spike6/bg" unique_id=1434760352]
+position = Vector2(1640, 3150)
+rotation = -2.9346106
+texture = ExtResource("17_ln2x4")
+
+[node name="WhiteSpikeBg2" type="Sprite2D" parent="visuals/spikes/spike6/bg" unique_id=1742278809]
+position = Vector2(1701, 3214)
+texture = ExtResource("16_evy8b")
+
+[node name="WhiteSpikeBg3" type="Sprite2D" parent="visuals/spikes/spike6/bg" unique_id=1447870294]
+position = Vector2(1808, 3138)
+texture = ExtResource("16_evy8b")
+
+[node name="WhiteSpikeBg4" type="Sprite2D" parent="visuals/spikes/spike6/bg" unique_id=257291455]
+position = Vector2(1440.9999, 3252)
+rotation = 2.5657272
+texture = ExtResource("16_evy8b")
+
+[node name="WhiteSpikeBg5" type="Sprite2D" parent="visuals/spikes/spike6/bg" unique_id=986424606]
+position = Vector2(1339, 3143)
+rotation = -0.96271104
+scale = Vector2(0.7300338, 1.2501175)
+texture = ExtResource("16_evy8b")
+
 [node name="spike7" type="Node2D" parent="visuals/spikes" unique_id=1373817470]
+
+[node name="ThornSmall6" type="Sprite2D" parent="visuals/spikes/spike7" unique_id=1224725354]
+position = Vector2(596, 3198)
+rotation = 0.53094864
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("16_7aim3")
+
+[node name="ThornSmall2" type="Sprite2D" parent="visuals/spikes/spike7" unique_id=911003863]
+position = Vector2(303, 3233)
+texture = ExtResource("16_7aim3")
+
+[node name="ThornBig2" type="Sprite2D" parent="visuals/spikes/spike7" unique_id=928302650]
+position = Vector2(445, 3229)
+rotation = -0.2832335
+texture = ExtResource("17_j06sg")
+flip_h = true
+
+[node name="ThornBig" type="Sprite2D" parent="visuals/spikes/spike7" unique_id=344546369]
+position = Vector2(178, 3245)
+rotation = 0.11000685
+texture = ExtResource("17_j06sg")
+
+[node name="ThornSmall" type="Sprite2D" parent="visuals/spikes/spike7" unique_id=1915833504]
+position = Vector2(295, 3300.0002)
+rotation = -2.0815284
+texture = ExtResource("16_7aim3")
+
+[node name="ThornSmall5" type="Sprite2D" parent="visuals/spikes/spike7" unique_id=986075336]
+position = Vector2(1080.9999, 3127)
+rotation = 1.5169249
+scale = Vector2(0.81, 0.81)
+texture = ExtResource("16_7aim3")
+
+[node name="ThornBig3" type="Sprite2D" parent="visuals/spikes/spike7" unique_id=1750889369]
+position = Vector2(629, 3248)
+rotation = 2.7561133
+texture = ExtResource("17_j06sg")
+flip_h = true
+
+[node name="ThornSmall3" type="Sprite2D" parent="visuals/spikes/spike7" unique_id=1150082696]
+position = Vector2(1027.9999, 3171.9998)
+rotation = 1.6547712
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("16_7aim3")
+
+[node name="ThornSmall4" type="Sprite2D" parent="visuals/spikes/spike7" unique_id=1824602937]
+position = Vector2(1054, 3256.0002)
+rotation = -2.9614594
+texture = ExtResource("16_7aim3")
+
+[node name="ThornBig5" type="Sprite2D" parent="visuals/spikes/spike7" unique_id=1944534756]
+position = Vector2(884, 3263.0002)
+rotation = -3.0816371
+texture = ExtResource("17_j06sg")
+
+[node name="ThornBig4" type="Sprite2D" parent="visuals/spikes/spike7" unique_id=1149160200]
+position = Vector2(805, 3172)
+texture = ExtResource("17_j06sg")
+
+[node name="bg" type="Node2D" parent="visuals/spikes/spike7" unique_id=2132056657]
+z_index = -2
+
+[node name="WhiteSpikeBg" type="Sprite2D" parent="visuals/spikes/spike7/bg" unique_id=54887596]
+position = Vector2(119, 3249)
+rotation = 0.17966765
+texture = ExtResource("16_evy8b")
+
+[node name="WhiteSpikeBg02" type="Sprite2D" parent="visuals/spikes/spike7/bg" unique_id=963458295]
+position = Vector2(434, 3226)
+texture = ExtResource("17_ln2x4")
+
+[node name="WhiteSpikeBg2" type="Sprite2D" parent="visuals/spikes/spike7/bg" unique_id=1530976185]
+position = Vector2(613, 3275)
+texture = ExtResource("16_evy8b")
+
+[node name="WhiteSpikeBg03" type="Sprite2D" parent="visuals/spikes/spike7/bg" unique_id=1772451389]
+position = Vector2(925, 3261)
+texture = ExtResource("17_ln2x4")
+
+[node name="WhiteSpikeBg3" type="Sprite2D" parent="visuals/spikes/spike7/bg" unique_id=522114192]
+position = Vector2(805, 3171)
+texture = ExtResource("16_evy8b")
+
+[node name="WhiteSpikeBg4" type="Sprite2D" parent="visuals/spikes/spike7/bg" unique_id=1197505797]
+position = Vector2(928, 3214)
+texture = ExtResource("16_evy8b")
 
 [editable path="moving_platform"]
 [editable path="moving_platform/platform/SpikesCollision"]
