@@ -64,4 +64,4 @@ autoplay = "default"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1956145947]
 scale = Vector2(0.8035714, 1.0535454)
-polygon = PackedVector2Array(-58, -2, -70, -21, -70, -37, -54, -56, -27, -64, 25, -64, 51, -56, 70, -39, 70, -22, 53, -2)
+polygon = PackedVector2Array(0, 26.576931, -70, -21, -70, -37, -54, -56, -27, -64, 25, -64, 51, -56, 70, -39, 70, -22)

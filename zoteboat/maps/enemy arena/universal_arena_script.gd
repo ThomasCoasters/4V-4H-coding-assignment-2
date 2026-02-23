@@ -160,7 +160,7 @@ var arena_parent: Node = null
 
 @export_group("slowdown")
 @export var enable_slowdown: bool = true
-@export_range(0.0, 5.0, 0.01) var slowdown_time: float = 5.0
+@export_range(0.0, 5.0, 0.01) var slowdown_time: float = 3.0
 @export_range(0.0, 1.0, 0.01) var slowdown_speed: float = 0.15
 
 @export_group("funni stuff")
