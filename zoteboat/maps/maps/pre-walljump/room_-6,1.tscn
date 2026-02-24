@@ -7,8 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/map_placables/hazards (spikes)/spikes_collision.tscn" id="5_l3fqw"]
 [ext_resource type="Texture2D" uid="uid://xxtc7d1wxhpc" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_08.png" id="6_20pfo"]
 [ext_resource type="Texture2D" uid="uid://3jeol1eyq3pv" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_05.png" id="7_iveva"]
+[ext_resource type="Texture2D" uid="uid://br12kedawt3ol" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_07.png" id="8_drl4f"]
 [ext_resource type="Texture2D" uid="uid://dh7qw5v6ek0np" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_06.png" id="8_qk5nm"]
 [ext_resource type="Texture2D" uid="uid://nsiaod6h7uju" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_02.png" id="9_0sdf5"]
+[ext_resource type="Texture2D" uid="uid://bphn8epnh3s0w" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_04.png" id="9_q3uyb"]
+[ext_resource type="Texture2D" uid="uid://bbec6ibr3nejj" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_0_0002_c.png" id="10_mr5mw"]
+[ext_resource type="Texture2D" uid="uid://dkc7cs323rr88" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_01.png" id="11_47duk"]
+[ext_resource type="Texture2D" uid="uid://dfl24itmoxo3v" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_03.png" id="12_yjh7o"]
+[ext_resource type="PackedScene" uid="uid://ddrkv6jvnt6qp" path="res://enemies/normal/tiktik/tiktik.tscn" id="15_ee0qx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("2_b0n2a")
@@ -103,6 +109,55 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1639, -559, -1651, 2875, -225, 2881, -214, -572)])
 agent_radius = 50.0
 
+[sub_resource type="Curve2D" id="Curve2D_jla5e"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 87, 0, 0, 0, 0, -88, 87, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_lmb1x"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 87, 0, 0, 0, 0, -88, 87, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_dvp31"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 87, 0, 0, 0, 0, -54.999996, 87, 0, 0, 0, 0, -55, -7.999997, 0, 0, 0, 0, 1, -8)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_k2mdt"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 87, 0, 0, 0, 0, -54.999996, 87, 0, 0, 0, 0, -55, -7.999997, 0, 0, 0, 0, 1, -8)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_qp5bd"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 87, 0, 0, 0, 0, -56, 87, 0, 0, 0, 0, -56, -7, 0, 0, 0, 0, 1, -8)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_bk8fy"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 87, 0, 0, 0, 0, -56, 87, 0, 0, 0, 0, -56, -7, 0, 0, 0, 0, 1, -8)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_f177c"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 87, 0, 0, 0, 0, -56, 87, 0, 0, 0, 0, -56, -7, 0, 0, 0, 0, 1, -8)
+}
+point_count = 6
+
 [node name="Room -6,1" type="Node2D" unique_id=1874960603]
 script = ExtResource("1_wx3yo")
 
@@ -123,7 +178,7 @@ position = Vector2(-603, -484)
 
 [node name="EDIT THIS" parent="hazards/SpikesCollision/StaticBody2D" parent_id_path=PackedInt32Array(417759129, 1580090474) index="0" unique_id=1846142658]
 position = Vector2(5, -6)
-polygon = PackedVector2Array(-10, -7, -14, -283, 36, -441, 227, -552, 548, -779, 537, -708, 511, -668, 446, -577, 312, -453, 233, -433, 128, -386, 71, -230, 49, -156, 55, -47, 77, 39, 166, 171, 256, 252, 324, 273, 425, 372, 497, 492, 541, 567, 532, 643, 541, 672, 544, 714, 526, 813, 469, 807, 381, 384, 146, 277, 33, 155)
+polygon = PackedVector2Array(-10, -7, -14, -283, 36, -441, 227, -552, 433, -650, 524, -823, 536, -1141, 894, -1143, 821, -1090, 772, -1071, 724, -1066, 670, -980, 617, -928, 589, -859, 547, -723, 511, -668, 446, -577, 312, -453, 233, -433, 128, -386, 71, -230, 49, -156, 55, -47, 77, 39, 166, 171, 256, 252, 324, 273, 425, 372, 497, 492, 541, 567, 532, 643, 541, 672, 544, 714, 526, 813, 469, 807, 381, 384, 146, 277, 33, 155)
 
 [node name="SpikesCollision2" parent="hazards" unique_id=1482756883 instance=ExtResource("5_l3fqw")]
 position = Vector2(-43, -716)
@@ -214,11 +269,68 @@ position = Vector2(-617.00006, -648.00006)
 rotation = 2.6179938
 texture = ExtResource("7_iveva")
 
+[node name="FungdSpikes16" type="Sprite2D" parent="visuals" unique_id=1371135780]
+position = Vector2(-99, -606)
+rotation = -0.2617994
+texture = ExtResource("8_drl4f")
+
+[node name="FungdSpikes04" type="Sprite2D" parent="visuals" unique_id=807365997]
+position = Vector2(-569, -615)
+rotation = 1.8325958
+texture = ExtResource("9_q3uyb")
+
+[node name="FungdSpikes00002C" type="Sprite2D" parent="visuals" unique_id=403942508]
+position = Vector2(-47.000023, -590)
+rotation = -1.8325958
+scale = Vector2(0.489035, 0.4675363)
+texture = ExtResource("10_mr5mw")
+
+[node name="FungdSpikes01" type="Sprite2D" parent="visuals" unique_id=227308788]
+position = Vector2(-586, -620)
+rotation = 1.5707964
+texture = ExtResource("11_47duk")
+
+[node name="FungdSpikes17" type="Sprite2D" parent="visuals" unique_id=2087169325]
+position = Vector2(-71.00003, -522.00006)
+rotation = -2.3561945
+texture = ExtResource("12_yjh7o")
+
+[node name="FungdSpikes18" type="Sprite2D" parent="visuals" unique_id=434457574]
+position = Vector2(-54, -703.00006)
+rotation = -0.7853982
+texture = ExtResource("11_47duk")
+
+[node name="FungdSpikes19" type="Sprite2D" parent="visuals" unique_id=177803860]
+z_index = -1
+position = Vector2(-13, -1501)
+rotation = 2.0943952
+texture = ExtResource("6_20pfo")
+flip_h = true
+
+[node name="FungdSpikes20" type="Sprite2D" parent="visuals" unique_id=965520346]
+z_index = -1
+position = Vector2(164.00003, -1638)
+rotation = -2.6179938
+texture = ExtResource("7_iveva")
+
+[node name="FungdSpikes21" type="Sprite2D" parent="visuals" unique_id=1721921862]
+z_index = -1
+position = Vector2(-27.000061, -1570)
+rotation = 2.3561945
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("8_qk5nm")
+
 [node name="WarpZone3" parent="." unique_id=1268084640 instance=ExtResource("3_lrihj")]
 position = Vector2(813, 224)
 scale = Vector2(1, 10)
 warp_to = "res://maps/maps/pre-walljump/room_-5,0.tscn"
 new_location_group = "TopLeft_-5,0"
+
+[node name="WarpZone4" parent="." unique_id=410991169 instance=ExtResource("3_lrihj")]
+position = Vector2(818, -1442)
+scale = Vector2(1, 10)
+warp_to = "res://maps/maps/pre-walljump/room_-5,1.tscn"
+new_location_group = "Left_-5,1"
 
 [node name="SpawnLocation6" parent="." unique_id=462484462 instance=ExtResource("4_622fd")]
 offset_left = 753.0
@@ -228,12 +340,6 @@ offset_bottom = 320.0
 own_group = "BottomRight_-6,1"
 metadata/_edit_use_anchors_ = true
 
-[node name="WarpZone4" parent="." unique_id=410991169 instance=ExtResource("3_lrihj")]
-position = Vector2(818, -1442)
-scale = Vector2(1, 10)
-warp_to = "res://maps/maps/pre-walljump/room_-5,1.tscn"
-new_location_group = "Left_-5,1"
-
 [node name="SpawnLocation7" parent="." unique_id=708109971 instance=ExtResource("4_622fd")]
 offset_left = 753.0
 offset_top = -1374.0
@@ -242,5 +348,71 @@ offset_bottom = -1344.0
 own_group = "TopRight_-6,1"
 metadata/_edit_use_anchors_ = true
 
+[node name="tiktik" parent="." unique_id=263132585 instance=ExtResource("15_ee0qx")]
+z_index = -1
+position = Vector2(-568, -648)
+curve = SubResource("Curve2D_jla5e")
+
+[node name="PathFollow2D" parent="tiktik" index="0" unique_id=1178610453]
+position = Vector2(47.00084, 87)
+rotation = 3.1415927
+progress = 319.0
+
+[node name="tiktik2" parent="." unique_id=1299520912 instance=ExtResource("15_ee0qx")]
+z_index = -1
+position = Vector2(-568, -648)
+curve = SubResource("Curve2D_lmb1x")
+
+[node name="tiktik3" parent="." unique_id=976997388 instance=ExtResource("15_ee0qx")]
+z_index = -1
+position = Vector2(7, 40)
+rotation = 1.5707964
+curve = SubResource("Curve2D_dvp31")
+
+[node name="PathFollow2D" parent="tiktik3" index="0" unique_id=1178610453]
+position = Vector2(-55, 8.477179)
+rotation = -1.5707964
+progress = 499.49017
+
+[node name="tiktik4" parent="." unique_id=758974549 instance=ExtResource("15_ee0qx")]
+z_index = -1
+position = Vector2(7, 40)
+rotation = 1.5707964
+curve = SubResource("Curve2D_k2mdt")
+
+[node name="PathFollow2D" parent="tiktik4" index="0" unique_id=1178610453]
+position = Vector2(80.00249, 87)
+rotation = 3.1415927
+progress = 286.0
+
+[node name="tiktik5" parent="." unique_id=1114360821 instance=ExtResource("15_ee0qx")]
+position = Vector2(-120, -935)
+curve = SubResource("Curve2D_qp5bd")
+
+[node name="tiktik6" parent="." unique_id=869170180 instance=ExtResource("15_ee0qx")]
+position = Vector2(-120, -935)
+curve = SubResource("Curve2D_bk8fy")
+
+[node name="PathFollow2D" parent="tiktik6" index="0" unique_id=1178610453]
+position = Vector2(136, 46.09937)
+rotation = 1.5707964
+progress = 189.09291
+
+[node name="tiktik7" parent="." unique_id=483249596 instance=ExtResource("15_ee0qx")]
+position = Vector2(-120, -935)
+curve = SubResource("Curve2D_f177c")
+
+[node name="PathFollow2D" parent="tiktik7" index="0" unique_id=1178610453]
+position = Vector2(-17.928246, 87)
+rotation = 3.1415927
+progress = 383.9159
+
 [editable path="hazards/SpikesCollision"]
 [editable path="hazards/SpikesCollision2"]
+[editable path="tiktik"]
+[editable path="tiktik2"]
+[editable path="tiktik3"]
+[editable path="tiktik4"]
+[editable path="tiktik5"]
+[editable path="tiktik6"]
+[editable path="tiktik7"]

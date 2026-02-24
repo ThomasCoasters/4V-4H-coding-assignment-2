@@ -190,6 +190,12 @@ position = Vector2(735, -1774)
 [node name="EDIT THIS" parent="hazards/SpikesCollision4/StaticBody2D" parent_id_path=PackedInt32Array(1841352112, 1580090474) index="0" unique_id=1846142658]
 polygon = PackedVector2Array(-10, -7, 13, -79, -3, -159, -4, -209, 33, -213, 37, 51, -20, 45, -19, 12)
 
+[node name="SpikesCollision5" parent="hazards" unique_id=471430646 instance=ExtResource("3_vdd0n")]
+position = Vector2(-694, -167)
+
+[node name="EDIT THIS" parent="hazards/SpikesCollision5/StaticBody2D" parent_id_path=PackedInt32Array(471430646, 1580090474) index="0" unique_id=1846142658]
+polygon = PackedVector2Array(-10, -153, 22, -153, 22, -185, 82, -185, 42, -124, 23, -110, 17, -88, 25, -49, 39, -30, 51, 7, -10, 7)
+
 [node name="visuals" type="Node" parent="." unique_id=1543404994]
 
 [node name="FungdSpikes05" type="Sprite2D" parent="visuals" unique_id=1494388479]
@@ -262,17 +268,46 @@ position = Vector2(756, -1871)
 rotation = -1.5707964
 texture = ExtResource("15_all46")
 
+[node name="FungdSpikes12" type="Sprite2D" parent="visuals" unique_id=1307954311]
+z_index = -1
+position = Vector2(-707, -351)
+rotation = 3.1415925
+texture = ExtResource("4_0x11b")
+
+[node name="FungdSpikes13" type="Sprite2D" parent="visuals" unique_id=1424244489]
+z_index = -1
+position = Vector2(-719, -214)
+rotation = 1.3089969
+texture = ExtResource("5_x0owv")
+
 [node name="WarpZone3" parent="." unique_id=1268084640 instance=ExtResource("3_8tbqc")]
 position = Vector2(818, -897)
 scale = Vector2(1, 8)
 warp_to = "res://maps/maps/pre-walljump/room_-3,0.tscn"
 new_location_group = "Secret_2"
 
+[node name="WarpZone4" parent="." unique_id=1157491430 instance=ExtResource("3_8tbqc")]
+position = Vector2(-752, 129)
+scale = Vector2(1, 10)
+warp_to = "res://maps/maps/pre-walljump/room_-6,0.tscn"
+new_location_group = "BottomRight_-6,0"
+
+[node name="WarpZone5" parent="." unique_id=1623820784 instance=ExtResource("3_8tbqc")]
+position = Vector2(-752, -1727)
+scale = Vector2(1, 10)
+warp_to = "res://maps/maps/pre-walljump/room_-6,0.tscn"
+new_location_group = "MiddleRight_-6,0"
+
 [node name="WarpZone6" parent="." unique_id=1322786499 instance=ExtResource("3_8tbqc")]
 position = Vector2(134, -3089)
 scale = Vector2(10, 1)
 warp_to = "res://maps/maps/pre-walljump/room_-5,0.tscn"
 new_location_group = "Bottom_-5,0"
+
+[node name="WarpZone7" parent="." unique_id=1311799436 instance=ExtResource("3_8tbqc")]
+position = Vector2(95, 430)
+scale = Vector2(10, 1)
+new_location_group = "Top_-5,-2"
 
 [node name="SpawnLocation6" parent="." unique_id=462484462 instance=ExtResource("4_b75nu")]
 offset_left = 753.0
@@ -290,12 +325,6 @@ offset_bottom = -2994.0
 own_group = "Top_-5,-1"
 metadata/_edit_use_anchors_ = true
 
-[node name="WarpZone4" parent="." unique_id=1157491430 instance=ExtResource("3_8tbqc")]
-position = Vector2(-752, 129)
-scale = Vector2(1, 10)
-warp_to = "res://maps/maps/pre-walljump/room_-6,0.tscn"
-new_location_group = "BottomRight_-6,0"
-
 [node name="SpawnLocation7" parent="." unique_id=1577129344 instance=ExtResource("4_b75nu")]
 offset_left = -719.0
 offset_top = 194.0
@@ -311,17 +340,6 @@ offset_right = -689.0
 offset_bottom = -1632.0
 own_group = "TopLeft_-5,-1"
 metadata/_edit_use_anchors_ = true
-
-[node name="WarpZone5" parent="." unique_id=1623820784 instance=ExtResource("3_8tbqc")]
-position = Vector2(-752, -1727)
-scale = Vector2(1, 10)
-warp_to = "res://maps/maps/pre-walljump/room_-6,0.tscn"
-new_location_group = "MiddleRight_-6,0"
-
-[node name="WarpZone7" parent="." unique_id=1311799436 instance=ExtResource("3_8tbqc")]
-position = Vector2(95, 430)
-scale = Vector2(10, 1)
-new_location_group = "Top_-5,-2"
 
 [node name="SpawnLocation9" parent="." unique_id=744849874 instance=ExtResource("4_b75nu")]
 offset_left = 209.0
@@ -456,6 +474,7 @@ progress = 1166.2986
 [editable path="hazards/SpikesCollision2"]
 [editable path="hazards/SpikesCollision3"]
 [editable path="hazards/SpikesCollision4"]
+[editable path="hazards/SpikesCollision5"]
 [editable path="tiktik"]
 [editable path="tiktik2"]
 [editable path="tiktik3"]

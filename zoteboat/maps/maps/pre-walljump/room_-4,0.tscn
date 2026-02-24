@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bphn8epnh3s0w" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_04.png" id="10_eip1m"]
 [ext_resource type="Texture2D" uid="uid://dh7qw5v6ek0np" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_06.png" id="11_x3qyd"]
 [ext_resource type="Texture2D" uid="uid://xxtc7d1wxhpc" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_08.png" id="12_0qlny"]
+[ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="13_7fk5k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("2_wyfjv")
@@ -104,35 +105,35 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
-[sub_resource type="Curve2D" id="Curve2D_nk263"]
+[sub_resource type="Curve2D" id="Curve2D_wbkaf"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 72, -8, 0, 0, 0, 0, 72, 87, 0, 0, 0, 0, -88, 87, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
 }
 point_count = 6
 
-[sub_resource type="Curve2D" id="Curve2D_qj6o8"]
+[sub_resource type="Curve2D" id="Curve2D_1r3nu"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 47, -8, 0, 0, 0, 0, 47, 87, 0, 0, 0, 0, -80, 87, 0, 0, 0, 0, -80, -8, 0, 0, 0, 0, 1, -8)
 }
 point_count = 6
 
-[sub_resource type="Curve2D" id="Curve2D_on788"]
+[sub_resource type="Curve2D" id="Curve2D_43b5v"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 341, -8, 0, 0, 0, 0, 341, 25, 0, 0, 0, 0, 584, 25, 0, 0, 0, 0, 584, 118, 0, 0, 0, 0, 106, 118, 0, 0, 0, 0, 106, 87, 0, 0, 0, 0, -88, 87, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
 }
 point_count = 10
 
-[sub_resource type="Curve2D" id="Curve2D_srfay"]
+[sub_resource type="Curve2D" id="Curve2D_u2djo"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 341, -8, 0, 0, 0, 0, 341, 25, 0, 0, 0, 0, 584, 25, 0, 0, 0, 0, 584, 118, 0, 0, 0, 0, 106, 118, 0, 0, 0, 0, 106, 87, 0, 0, 0, 0, -88, 87, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
 }
 point_count = 10
 
-[sub_resource type="Curve2D" id="Curve2D_klr86"]
+[sub_resource type="Curve2D" id="Curve2D_igmey"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 341, -8, 0, 0, 0, 0, 341, 25, 0, 0, 0, 0, 584, 25, 0, 0, 0, 0, 584, 118, 0, 0, 0, 0, 106, 118, 0, 0, 0, 0, 106, 87, 0, 0, 0, 0, -88, 87, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
@@ -523,6 +524,56 @@ rotation = 1.0471976
 texture = ExtResource("12_0qlny")
 flip_v = true
 
+[node name="hazard_respawns" type="Node" parent="." unique_id=1197529336]
+
+[node name="HazardRespawn" parent="hazard_respawns" unique_id=631066099 instance=ExtResource("13_7fk5k")]
+position = Vector2(-135, -2420)
+scale = Vector2(20, 2)
+
+[node name="HazardRespawn2" parent="hazard_respawns" unique_id=1116393809 instance=ExtResource("13_7fk5k")]
+position = Vector2(-590, -2420)
+scale = Vector2(10, 2)
+
+[node name="HazardRespawn3" parent="hazard_respawns" unique_id=1863439968 instance=ExtResource("13_7fk5k")]
+position = Vector2(224.00002, -1876)
+scale = Vector2(5, 2)
+
+[node name="HazardRespawn4" parent="hazard_respawns" unique_id=1235384884 instance=ExtResource("13_7fk5k")]
+position = Vector2(368, -2419)
+scale = Vector2(5, 2)
+
+[node name="HazardRespawn5" parent="hazard_respawns" unique_id=1749600555 instance=ExtResource("13_7fk5k")]
+position = Vector2(-386, -1300)
+scale = Vector2(5, 2)
+
+[node name="HazardRespawn6" parent="hazard_respawns" unique_id=1272694838 instance=ExtResource("13_7fk5k")]
+position = Vector2(-239, -1364)
+scale = Vector2(8, 2)
+
+[node name="HazardRespawn7" parent="hazard_respawns" unique_id=1852209774 instance=ExtResource("13_7fk5k")]
+position = Vector2(319.35925, -1267.9827)
+scale = Vector2(8, 2)
+
+[node name="HazardRespawn8" parent="hazard_respawns" unique_id=1605112604 instance=ExtResource("13_7fk5k")]
+position = Vector2(-456, -532)
+scale = Vector2(12, 2)
+
+[node name="HazardRespawn9" parent="hazard_respawns" unique_id=740322790 instance=ExtResource("13_7fk5k")]
+position = Vector2(591, -532)
+scale = Vector2(12, 2)
+
+[node name="HazardRespawn10" parent="hazard_respawns" unique_id=1659927961 instance=ExtResource("13_7fk5k")]
+position = Vector2(203, 300)
+scale = Vector2(12, 2)
+
+[node name="HazardRespawn11" parent="hazard_respawns" unique_id=1407780445 instance=ExtResource("13_7fk5k")]
+position = Vector2(-490, 301)
+scale = Vector2(12, 2)
+
+[node name="HazardRespawn12" parent="hazard_respawns" unique_id=2049707715 instance=ExtResource("13_7fk5k")]
+position = Vector2(-27, -52)
+scale = Vector2(12, 2)
+
 [node name="WarpZone3" parent="." unique_id=1268084640 instance=ExtResource("3_2j06r")]
 position = Vector2(813, 224)
 scale = Vector2(1, 10)
@@ -625,7 +676,7 @@ face_left = true
 
 [node name="tiktik" parent="." unique_id=263132585 instance=ExtResource("6_pjr2b")]
 position = Vector2(-472, -200)
-curve = SubResource("Curve2D_nk263")
+curve = SubResource("Curve2D_wbkaf")
 
 [node name="PathFollow2D" parent="tiktik" index="0" unique_id=1178610453]
 position = Vector2(72, 52.634)
@@ -634,7 +685,7 @@ progress = 131.63318
 
 [node name="tiktik2" parent="." unique_id=2063351514 instance=ExtResource("6_pjr2b")]
 position = Vector2(-383, -1512)
-curve = SubResource("Curve2D_qj6o8")
+curve = SubResource("Curve2D_1r3nu")
 
 [node name="PathFollow2D" parent="tiktik2" index="0" unique_id=1178610453]
 position = Vector2(7.5185175, 87)
@@ -643,14 +694,14 @@ progress = 180.48601
 
 [node name="tiktik3" parent="." unique_id=2087256873 instance=ExtResource("6_pjr2b")]
 position = Vector2(8, -2215)
-curve = SubResource("Curve2D_on788")
+curve = SubResource("Curve2D_43b5v")
 
 [node name="PathFollow2D" parent="tiktik3" index="0" unique_id=1178610453]
 progress = 1596.0
 
 [node name="tiktik4" parent="." unique_id=1798266881 instance=ExtResource("6_pjr2b")]
 position = Vector2(8, -2215)
-curve = SubResource("Curve2D_srfay")
+curve = SubResource("Curve2D_u2djo")
 
 [node name="PathFollow2D" parent="tiktik4" index="0" unique_id=1178610453]
 position = Vector2(494.68192, 25.000002)
@@ -658,7 +709,7 @@ progress = 526.68
 
 [node name="tiktik5" parent="." unique_id=368051161 instance=ExtResource("6_pjr2b")]
 position = Vector2(8, -2215)
-curve = SubResource("Curve2D_klr86")
+curve = SubResource("Curve2D_igmey")
 
 [node name="PathFollow2D" parent="tiktik5" index="0" unique_id=1178610453]
 position = Vector2(223.67235, 118)
