@@ -231,7 +231,7 @@ scale = Vector2(7.83999, 1)
 [node name="WarpZone4" parent="." unique_id=1268084640 instance=ExtResource("2_3p4qn")]
 position = Vector2(46, 5250.0005)
 scale = Vector2(1, 13)
-warp_to = "res://maps/maps/pre-dash/room_-1,-1.tscn"
+warp_to = "res://maps/maps/pre-dash/Dash_Unlock.tscn"
 new_location_group = "Left_1,-3"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1820643946]

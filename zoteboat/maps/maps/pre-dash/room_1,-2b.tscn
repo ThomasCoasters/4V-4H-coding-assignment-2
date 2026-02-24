@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_pyvvi"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="2_a1pn4"]
 [ext_resource type="Script" uid="uid://dirquph6nfgas" path="res://maps/enemy arena/universal_arena_script.gd" id="3_j4ue3"]
-[ext_resource type="Script" path="res://maps/enemy arena/generic_extra_script.gd" id="4_w8sxj"]
-[ext_resource type="Script" path="res://maps/enemy arena/keyValue.gd" id="5_hqfmg"]
+[ext_resource type="Script" uid="uid://3agjipx3lxq3" path="res://maps/enemy arena/generic_extra_script.gd" id="4_w8sxj"]
+[ext_resource type="Script" uid="uid://domk3qfwgxh7i" path="res://maps/enemy arena/keyValue.gd" id="5_hqfmg"]
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/map_placables/hazards (spikes)/spikes_collision.tscn" id="6_mthq8"]
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="7_a1pn4"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="7_rwv2o"]
@@ -100,7 +100,7 @@ terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_g1evj")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fiak"]
-size = Vector2(704, 49.5)
+size = Vector2(704, 715)
 
 [sub_resource type="Resource" id="Resource_psvay"]
 script = ExtResource("5_hqfmg")
@@ -111,6 +111,11 @@ value = true
 script = ExtResource("5_hqfmg")
 key = "face_left"
 value = null
+
+[sub_resource type="Resource" id="Resource_a1pn4"]
+script = ExtResource("5_hqfmg")
+key = "face_left"
+value = true
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_a188l"]
 vertices = PackedVector2Array(-23, -418, -23, -472.70313, 69, -471.65625, 69, -418, 613, -418, 613, 90, 489, 90, 489, -38, 261, -38, 261, 26, 197, 26, -215, -38, 197, 90, 133, 90, -151, 26, 133, 154, -87, 154, -87, 90, -151, 90, -215, 26, -443, -38, -443, 90, -567, 90, -567, -418)
@@ -225,7 +230,7 @@ arena_audio_path = "res://Game/audio/tv_time.mp3"
 after_audio_path = "res://Game/audio/silkantuary.mp3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area arena/area arena trigger" unique_id=788480687]
-position = Vector2(1344, 327.25)
+position = Vector2(1344, 269.5)
 shape = SubResource("RectangleShape2D_8fiak")
 debug_color = Color(1, 0.5764706, 0, 0.41960785)
 
@@ -294,12 +299,12 @@ script = ExtResource("4_w8sxj")
 extras = Array[ExtResource("5_hqfmg")]([SubResource("Resource_yuwko")])
 
 [node name="peashooter4" type="Node2D" parent="area arena/wave holder/phase3" unique_id=280290921]
-position = Vector2(1152, 335)
+position = Vector2(1830, 335)
 
 [node name="extra" type="Node2D" parent="area arena/wave holder/phase3/peashooter4" unique_id=1610287625]
 visible = false
 script = ExtResource("4_w8sxj")
-extras = Array[ExtResource("5_hqfmg")]([SubResource("Resource_yuwko")])
+extras = Array[ExtResource("5_hqfmg")]([SubResource("Resource_a1pn4")])
 
 [node name="aspid3" type="Node2D" parent="area arena/wave holder/phase3" unique_id=719129293]
 position = Vector2(1344, 62)
