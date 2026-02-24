@@ -4,6 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="2_b0n2a"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="3_lrihj"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="4_622fd"]
+[ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/map_placables/hazards (spikes)/spikes_collision.tscn" id="5_l3fqw"]
+[ext_resource type="Texture2D" uid="uid://xxtc7d1wxhpc" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_08.png" id="6_20pfo"]
+[ext_resource type="Texture2D" uid="uid://3jeol1eyq3pv" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_05.png" id="7_iveva"]
+[ext_resource type="Texture2D" uid="uid://dh7qw5v6ek0np" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_06.png" id="8_qk5nm"]
+[ext_resource type="Texture2D" uid="uid://nsiaod6h7uju" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_02.png" id="9_0sdf5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("2_b0n2a")
@@ -111,11 +116,103 @@ visible = false
 position = Vector2(1094, 5499)
 navigation_polygon = SubResource("NavigationPolygon_ycj1n")
 
-[node name="enemies" type="Node" parent="." unique_id=356600690]
-
 [node name="hazards" type="Node" parent="." unique_id=441780748]
 
+[node name="SpikesCollision" parent="hazards" unique_id=417759129 instance=ExtResource("5_l3fqw")]
+position = Vector2(-603, -484)
+
+[node name="EDIT THIS" parent="hazards/SpikesCollision/StaticBody2D" parent_id_path=PackedInt32Array(417759129, 1580090474) index="0" unique_id=1846142658]
+position = Vector2(5, -6)
+polygon = PackedVector2Array(-10, -7, -14, -283, 36, -441, 227, -552, 548, -779, 537, -708, 511, -668, 446, -577, 312, -453, 233, -433, 128, -386, 71, -230, 49, -156, 55, -47, 77, 39, 166, 171, 256, 252, 324, 273, 425, 372, 497, 492, 541, 567, 532, 643, 541, 672, 544, 714, 526, 813, 469, 807, 381, 384, 146, 277, 33, 155)
+
+[node name="SpikesCollision2" parent="hazards" unique_id=1482756883 instance=ExtResource("5_l3fqw")]
+position = Vector2(-43, -716)
+
+[node name="EDIT THIS" parent="hazards/SpikesCollision2/StaticBody2D" parent_id_path=PackedInt32Array(1482756883, 1580090474) index="0" unique_id=1846142658]
+polygon = PackedVector2Array(-18, -15, 34, -79, 86, -168, 111, -212, 142, -238, 231, -300, 302, -342, 233, -138, 19, -3, 50, 211, 270, 400, 323, 511, 339, 604, 340, 804, 278, 718, 262, 675, 223, 638, 203, 604, 188, 558, 165, 482, 139, 434, 144, 375, 104, 370, 38, 349, 11, 312, 1, 249, -66, 205, -89, 149, -92, 71)
+
 [node name="visuals" type="Node" parent="." unique_id=1543404994]
+
+[node name="FungdSpikes08" type="Sprite2D" parent="visuals" unique_id=1378777881]
+z_index = -1
+position = Vector2(-175.99998, 57)
+rotation = 1.3089969
+texture = ExtResource("6_20pfo")
+
+[node name="FungdSpikes09" type="Sprite2D" parent="visuals" unique_id=704716896]
+z_index = -1
+position = Vector2(-303.00006, -1040)
+rotation = 2.6179938
+texture = ExtResource("6_20pfo")
+
+[node name="FungdSpikes10" type="Sprite2D" parent="visuals" unique_id=390410789]
+z_index = -1
+position = Vector2(218, -191)
+rotation = -2.0943952
+texture = ExtResource("6_20pfo")
+flip_h = true
+
+[node name="FungdSpikes05" type="Sprite2D" parent="visuals" unique_id=1685291124]
+z_index = -1
+position = Vector2(35, -423)
+rotation = -1.5707964
+texture = ExtResource("7_iveva")
+
+[node name="FungdSpikes06" type="Sprite2D" parent="visuals" unique_id=1237267155]
+z_index = -1
+position = Vector2(-92, -579)
+rotation = -1.8325958
+texture = ExtResource("8_qk5nm")
+
+[node name="FungdSpikes02" type="Sprite2D" parent="visuals" unique_id=1465305390]
+z_index = -1
+position = Vector2(-69.00003, -736)
+rotation = -0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("9_0sdf5")
+
+[node name="FungdSpikes11" type="Sprite2D" parent="visuals" unique_id=788211460]
+z_index = -1
+position = Vector2(102.00003, -830.00006)
+rotation = -0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("6_20pfo")
+
+[node name="FungdSpikes07" type="Sprite2D" parent="visuals" unique_id=548969832]
+z_index = -1
+position = Vector2(-443, -237)
+rotation = 1.5707964
+texture = ExtResource("7_iveva")
+
+[node name="FungdSpikes12" type="Sprite2D" parent="visuals" unique_id=501264457]
+z_index = -1
+position = Vector2(-622, -507)
+rotation = -3.1415925
+texture = ExtResource("7_iveva")
+
+[node name="FungdSpikes13" type="Sprite2D" parent="visuals" unique_id=2011905158]
+z_index = -1
+position = Vector2(-528, -381)
+rotation = 1.0471976
+texture = ExtResource("8_qk5nm")
+
+[node name="FungdSpikes03" type="Sprite2D" parent="visuals" unique_id=1508772176]
+z_index = -1
+position = Vector2(-556, -635)
+rotation = 2.0943952
+texture = ExtResource("9_0sdf5")
+
+[node name="FungdSpikes14" type="Sprite2D" parent="visuals" unique_id=1182317864]
+z_index = -1
+position = Vector2(-547.00006, -784)
+rotation = 2.0943952
+texture = ExtResource("8_qk5nm")
+
+[node name="FungdSpikes15" type="Sprite2D" parent="visuals" unique_id=962484454]
+z_index = -1
+position = Vector2(-617.00006, -648.00006)
+rotation = 2.6179938
+texture = ExtResource("7_iveva")
 
 [node name="WarpZone3" parent="." unique_id=1268084640 instance=ExtResource("3_lrihj")]
 position = Vector2(813, 224)
@@ -144,3 +241,6 @@ offset_right = 783.0
 offset_bottom = -1344.0
 own_group = "TopRight_-6,1"
 metadata/_edit_use_anchors_ = true
+
+[editable path="hazards/SpikesCollision"]
+[editable path="hazards/SpikesCollision2"]

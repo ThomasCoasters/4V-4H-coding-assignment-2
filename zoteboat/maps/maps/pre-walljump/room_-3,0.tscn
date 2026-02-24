@@ -132,7 +132,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedIn
 outlines = Array[PackedVector2Array]([PackedVector2Array(-3595, -162, -3588, 1073, 254, 1062, 213, -129)])
 agent_radius = 50.0
 
-[sub_resource type="Curve2D" id="Curve2D_y3avm"]
+[sub_resource type="Curve2D" id="Curve2D_0teoi"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -448, 0, 0, 0, 0, 0, 0, 0)
@@ -218,7 +218,7 @@ texture = ExtResource("4_xhtpk")
 3:7/0/terrains_peering_bit/top_left_corner = 0
 3:7/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_si6cu"]
+[sub_resource type="TileSet" id="TileSet_y3avm"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -227,18 +227,18 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_0run2")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mw46j"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0run2"]
 resource_local_to_scene = true
 size = Vector2(128, 8)
 
-[sub_resource type="Curve2D" id="Curve2D_kmjwi"]
+[sub_resource type="Curve2D" id="Curve2D_si6cu"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 87, 0, 0, 0, 0, -88, 87, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
 }
 point_count = 6
 
-[sub_resource type="Curve2D" id="Curve2D_0teoi"]
+[sub_resource type="Curve2D" id="Curve2D_mw46j"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 87, 0, 0, 0, 0, -88, 87, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
@@ -260,7 +260,7 @@ navigation_polygon = SubResource("NavigationPolygon_jftre")
 
 [node name="moving_platform" parent="." unique_id=710403595 instance=ExtResource("16_kmjwi")]
 position = Vector2(-960, 992)
-curve = SubResource("Curve2D_y3avm")
+curve = SubResource("Curve2D_0teoi")
 loop = true
 speed = 75
 
@@ -269,11 +269,11 @@ position = Vector2(-32, 0)
 
 [node name="platform" parent="moving_platform/platform" parent_id_path=PackedInt32Array(710403595, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray("AAAAAAAAAAADAAcAAAAAAP//AAADAAUAAAD//wAAAAACAAcAAAD/////AAACAAUAAAD+/wAAAAACAAcAAAD+////AAACAAUAAAD9/wAAAAABAAcAAAD9////AAABAAUAAAA=")
-tile_set = SubResource("TileSet_si6cu")
+tile_set = SubResource("TileSet_y3avm")
 
 [node name="CollisionShape2D" parent="moving_platform/move_trigger" parent_id_path=PackedInt32Array(710403595, 1286972824) index="0" unique_id=1628162647]
 position = Vector2(-32, -36)
-shape = SubResource("RectangleShape2D_mw46j")
+shape = SubResource("RectangleShape2D_0run2")
 
 [node name="hazard_respawns" type="Node" parent="." unique_id=1375095444]
 
@@ -330,15 +330,24 @@ position = Vector2(-2774, 167)
 polygon = PackedVector2Array(-10, -7, 694, -7, 694, 49, -10, 49)
 
 [node name="SpikesCollision3" parent="hazards" unique_id=323029790 instance=ExtResource("5_86ojk")]
+z_index = -1
 position = Vector2(1974, 345)
 
-[node name="EDIT THIS" parent="hazards/SpikesCollision3/StaticBody2D" parent_id_path=PackedInt32Array(323029790, 1580090474) index="0" unique_id=1846142658]
+[node name="StaticBody2D" parent="hazards/SpikesCollision3" index="0" unique_id=1580090474]
+z_index = -1
+
+[node name="EDIT THIS" parent="hazards/SpikesCollision3/StaticBody2D" index="0" unique_id=1846142658]
+z_index = -1
 polygon = PackedVector2Array(-116, -21, 10, -21, 10, 7, -116, 7)
 
 [node name="SpikesCollision4" parent="hazards" unique_id=569630015 instance=ExtResource("5_86ojk")]
+z_index = -1
 position = Vector2(1924.1998, 204.11548)
 
-[node name="EDIT THIS" parent="hazards/SpikesCollision4/StaticBody2D" parent_id_path=PackedInt32Array(569630015, 1580090474) index="0" unique_id=1846142658]
+[node name="StaticBody2D" parent="hazards/SpikesCollision4" index="0" unique_id=1580090474]
+z_index = -1
+
+[node name="EDIT THIS" parent="hazards/SpikesCollision4/StaticBody2D" index="0" unique_id=1846142658]
 position = Vector2(34.80017, -14.1154785)
 polygon = PackedVector2Array(-294, -30, 24, -30, 24, -2, -235, 17, -346, 48, -419, 102, -473, 139, -513, 189, -554, 214, -549, 153, -517, 91, -424, -1, -294, -2)
 
@@ -431,27 +440,32 @@ position = Vector2(-1905, 1117)
 texture = ExtResource("11_vp5l2")
 
 [node name="FungdSpikes17" type="Sprite2D" parent="visuals" unique_id=1604468831]
+z_index = -1
 position = Vector2(1423, 359.00003)
 rotation = 1.3089969
 texture = ExtResource("7_vp5l2")
 
 [node name="FungdSpikes18" type="Sprite2D" parent="visuals" unique_id=1257834208]
+z_index = -1
 position = Vector2(1824.0001, 173)
 rotation = -3.1415925
 scale = Vector2(1.017514, 1.0319525)
 texture = ExtResource("9_qmy4q")
 
 [node name="FungdSpikes19" type="Sprite2D" parent="visuals" unique_id=1595431708]
+z_index = -1
 position = Vector2(1654, 192.00003)
 rotation = 2.0943952
 texture = ExtResource("7_vp5l2")
 
 [node name="FungdSpikes20" type="Sprite2D" parent="visuals" unique_id=1754724087]
+z_index = -1
 position = Vector2(1494.0001, 250)
 rotation = -2.8797934
 texture = ExtResource("7_8rrrn")
 
 [node name="FungdSpikes21" type="Sprite2D" parent="visuals" unique_id=1700880944]
+z_index = -1
 position = Vector2(1921, 342)
 rotation = 1.5707964
 texture = ExtResource("13_kmjwi")
@@ -493,11 +507,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="tiktik" parent="." unique_id=263132585 instance=ExtResource("14_qmy4q")]
 position = Vector2(-472, 600)
-curve = SubResource("Curve2D_kmjwi")
+curve = SubResource("Curve2D_si6cu")
 
 [node name="tiktik2" parent="." unique_id=905325124 instance=ExtResource("14_qmy4q")]
 position = Vector2(-88, 760)
-curve = SubResource("Curve2D_0teoi")
+curve = SubResource("Curve2D_mw46j")
 
 [node name="PathFollow2D" parent="tiktik2" index="0" unique_id=1178610453]
 position = Vector2(69.65207, 87)
