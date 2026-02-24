@@ -135,9 +135,9 @@ agent_radius = 50.0
 [sub_resource type="Curve2D" id="Curve2D_0teoi"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -448, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, -448, 0, 0, 0, 0, 0, 64, 0)
 }
-point_count = 3
+point_count = 2
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0run2"]
 texture = ExtResource("4_xhtpk")
@@ -261,17 +261,24 @@ navigation_polygon = SubResource("NavigationPolygon_jftre")
 [node name="moving_platform" parent="." unique_id=710403595 instance=ExtResource("16_kmjwi")]
 position = Vector2(-960, 992)
 curve = SubResource("Curve2D_0teoi")
-loop = true
-speed = 75
 
-[node name="CHANGE THIS TO FIT THE PLATFORM" parent="moving_platform/platform" parent_id_path=PackedInt32Array(710403595, 247959146) index="0" unique_id=334858337]
+[node name="PathFollow2D" parent="moving_platform" index="0" unique_id=289665616]
+position = Vector2(-448, 0)
+
+[node name="platform" parent="moving_platform" index="1" unique_id=247959146]
+position = Vector2(-448, 0)
+
+[node name="CHANGE THIS TO FIT THE PLATFORM" parent="moving_platform/platform" index="0" unique_id=334858337]
 position = Vector2(-32, 0)
 
-[node name="platform" parent="moving_platform/platform" parent_id_path=PackedInt32Array(710403595, 247959146) index="1" unique_id=1995284118]
+[node name="platform" parent="moving_platform/platform" index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray("AAAAAAAAAAADAAcAAAAAAP//AAADAAUAAAD//wAAAAACAAcAAAD/////AAACAAUAAAD+/wAAAAACAAcAAAD+////AAACAAUAAAD9/wAAAAABAAcAAAD9////AAABAAUAAAA=")
 tile_set = SubResource("TileSet_y3avm")
 
-[node name="CollisionShape2D" parent="moving_platform/move_trigger" parent_id_path=PackedInt32Array(710403595, 1286972824) index="0" unique_id=1628162647]
+[node name="move_trigger" parent="moving_platform" index="2" unique_id=1286972824]
+position = Vector2(-448, 0)
+
+[node name="CollisionShape2D" parent="moving_platform/move_trigger" index="0" unique_id=1628162647]
 position = Vector2(-32, -36)
 shape = SubResource("RectangleShape2D_0run2")
 

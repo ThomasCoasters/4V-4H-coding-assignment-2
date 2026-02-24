@@ -8,11 +8,12 @@ class_name Player
 @export var unkillable: bool = false
 @export var permadeath: bool = false
 
-@export_group("cheaty ability unlocks")
+@export_group("cheaty stuff")
+@export var no_clip: bool
+@export_subgroup("ability stuff")
 @export var has_dash: bool
 @export var has_wall_cling: bool
 @export var has_double_jump: bool
-
 
 @export_group("QoL changes")
 @export_range(0.0, 1.0, 0.01) var controller_rumble_mult: float = 1.0
@@ -255,6 +256,10 @@ func setup():
 	collision_size = $CollisionShape2D.shape.size
 
 func _physics_process(delta: float) -> void:
+	if no_clip:
+		set_collision_mask_value(2, false)
+	
+	
 	record_external_velocity()
 	
 	decay_external_linear(delta)
@@ -273,7 +278,9 @@ func _physics_process(delta: float) -> void:
 	
 	base_y = clamp(base_y, JUMPING_SPEED, max_fall_speed)
 	
-	velocity.y = base_y + external_velocity.y
+	
+	if !no_clip:
+		velocity.y = base_y + external_velocity.y
 	
 	if $StateChart/ParallelState/Jumping/falling.active:
 		play_anim("fall", ANIM_PRIORITY.FALL)
@@ -290,7 +297,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		base_x = forced_move.x
 	
-	velocity.x = base_x + external_velocity.x
+	if !no_clip:
+		velocity.x = base_x + external_velocity.x
 	
 	
 	
@@ -395,13 +403,19 @@ func _process(_delta: float) -> void:
 	#region direction inputs
 	direction = Vector2(0,0)
 	
-	if !can_move:
+	if !can_move && !no_clip:
 		return
 	
 	direction = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("up") - Input.get_action_strength("down")
 	).limit_length(1.0)
+	
+	if no_clip:
+		var y_dir = direction.y
+		direction.y = -y_dir
+		velocity = direction * MOVE_SPEED
+		direction.y = y_dir
 	
 	if Input.get_action_strength("left") >= 0.5 || Input.get_action_strength("right") >= 0.5:
 		direction.x = sign(direction.x)
@@ -437,7 +451,8 @@ func _on_jump_state_entered() -> void:
 	play_audio(hero_jump)
 	jumping.emit()
 	
-	velocity.y = JUMPING_SPEED
+	if !no_clip:
+		velocity.y = JUMPING_SPEED
 	
 	var peak := get_highest_external_velocity()
 	
@@ -468,7 +483,7 @@ func _on_falling_state_entered() -> void:
 	
 	jump_timer.stop()
 	
-	if is_jumping && !jump_max_held:
+	if is_jumping && !jump_max_held && !no_clip:
 		velocity.y /= 2
 	
 	is_jumping = false
@@ -512,7 +527,8 @@ func _on_wall_slide_state_entered() -> void:
 	sprite_2d.position = Vector2(-19 * wall_dir, 5)
 	sprite_2d.flip_h = wall_dir == -1
 	
-	velocity.y = 0
+	if !no_clip:
+		velocity.y = 0
 	gravity_multiplier = 0.1
 	
 	if has_double_jump:
@@ -744,7 +760,8 @@ func start_DOWN_ATTACK():
 	
 	attack.pogo_returned.connect(_on_pogo_returned)
 	
-	velocity.y = JUMPING_SPEED
+	if !no_clip:
+		velocity.y = JUMPING_SPEED
 	
 	can_attack = false
 
@@ -867,7 +884,8 @@ func _on_heal_start_state_entered() -> void:
 	can_move = false
 	
 	max_fall_speed /= healing_max_fall_speed_multiplier
-	velocity.y = 50
+	if !no_clip:
+		velocity.y = 50
 	
 	
 	vibrate(heal_time, "extremely soft")
@@ -988,7 +1006,7 @@ func knockback(force, time, body, knockback_up: bool = true):
 		knockback_dir.x = 1
 	
 	forced_move.x = -force * knockback_dir.x
-	if knockback_up:
+	if knockback_up && !no_clip:
 		@warning_ignore("integer_division")
 		velocity.y = int(JUMPING_SPEED/2)
 	
@@ -1261,7 +1279,7 @@ func on_spikes_entered(damage):
 			child.animation_player.stop()
 			child.animation_player.play("RESET")
 			
-			if child.loop || !child.move_on_trigger:
+			if !child.move_on_trigger && !child.loop:
 				child.animation_player.play("front")
 	
 	await transition.on_transition_finished

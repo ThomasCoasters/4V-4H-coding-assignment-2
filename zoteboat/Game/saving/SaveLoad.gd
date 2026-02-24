@@ -30,6 +30,7 @@ var DEFAULT_SAVE: Dictionary = {
 	"unkillable": 0,
 	"invis": 0,
 	"permadeath": 0,
+	"noclip": 0,
 	
 	"killed_enemies": {},
 	"finished_arenas": {},

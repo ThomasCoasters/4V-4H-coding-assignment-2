@@ -32,6 +32,7 @@ var loading: bool = false
 @onready var unkillable: Button = $variants/unkillable
 @onready var exit_variant: Button = $variants/exit_variant
 @onready var perma_death: Button = $variants/perma_death
+@onready var no_clip: Button = $"variants/no-clip"
 
 @onready var left_arrow: AnimatedSprite2D = $left_arrow
 @onready var right_arrow: AnimatedSprite2D = $right_arrow
@@ -106,6 +107,7 @@ var variant_values = {
 var current_invis_index: int = 0
 var current_unkillable_index: int = 0
 var current_permadeath_index: int = 0
+var current_noclip_index: int = 0
 
 func _ready() -> void:
 	current_rumble_index = SaveLoad.contents_to_save.rumble
@@ -116,6 +118,7 @@ func _ready() -> void:
 	current_unkillable_index = SaveLoad.contents_to_save.unkillable
 	current_invis_index = SaveLoad.contents_to_save.invis
 	current_permadeath_index = SaveLoad.contents_to_save.permadeath
+	current_noclip_index = SaveLoad.contents_to_save.noclip
 	
 	var rumble_state_name = rumble_states[current_rumble_index]
 	rumble.text = "Rumble: " + rumble_state_name
@@ -147,8 +150,12 @@ func _ready() -> void:
 	Global.player.invis_moving = variant_values[invis_state_name]
 	
 	var perma_death_state_name = variant_states[current_permadeath_index]
-	perma_death.text = "Permadeath (Resets Save):" + perma_death_state_name
+	perma_death.text = "Permadeath (Resets Save): " + perma_death_state_name
 	Global.player.permadeath = variant_values[perma_death_state_name]
+	
+	var noclip_state_name = variant_states[current_noclip_index]
+	no_clip.text = "NoClip: " + noclip_state_name
+	Global.player.no_clip = variant_values[noclip_state_name]
 	
 	
 	containers = [basic_buttons, quit_game_buttons, settings, extra_buttons, reset_save, volume_settings, variants_buttons]
@@ -157,7 +164,7 @@ func _ready() -> void:
 		hide_menu(contain)
 	show_menu(basic_buttons)
 	
-	buttons = [start, options, extra, quit_game, quit_yes, quit_no, rumble, screen_shake, volume, exit, delete_save, unkillable, exit_extra, save_yes, save_no, exit_audio, music_volume, sound_volume, master_volume, variants, exit_variant, invis, perma_death, endless_arena]
+	buttons = [start, options, extra, quit_game, quit_yes, quit_no, rumble, screen_shake, volume, exit, delete_save, unkillable, exit_extra, save_yes, save_no, exit_audio, music_volume, sound_volume, master_volume, variants, exit_variant, invis, perma_death, no_clip, endless_arena]
 	
 	for button in buttons:
 		button.mouse_entered.connect(_on_hover.bind(button))
@@ -546,3 +553,20 @@ func _on_endless_arena_pressed() -> void:
 	await get_tree().create_timer(0.5).timeout
 	
 	queue_free()
+
+
+func _on_noclip_pressed() -> void:
+	current_noclip_index += 1
+	if current_noclip_index >= variant_states.size():
+		current_noclip_index = 0
+	
+	var state_name = variant_states[current_noclip_index]
+	
+	no_clip.text = "NoClip: " + state_name
+	
+	Global.player.no_clip = variant_values[state_name]
+	
+	ui_button_confirm.play()
+	
+	SaveLoad.contents_to_save.noclip = current_noclip_index
+	SaveLoad._save()
