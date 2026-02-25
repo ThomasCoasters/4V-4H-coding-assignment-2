@@ -33,9 +33,9 @@ offset_bottom = -840.0
 
 [node name="Control" parent="." unique_id=67834075 instance=ExtResource("1_nmpck")]
 offset_left = 184.0
-offset_top = 107.0
+offset_top = 116.0
 offset_right = -1672.0
-offset_bottom = -909.0
+offset_bottom = -900.0
 
 [node name="DialoguePlayer" parent="." unique_id=1378940205 instance=ExtResource("3_57uuq")]
 

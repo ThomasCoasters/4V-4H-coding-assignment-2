@@ -972,6 +972,7 @@ func death():
 	
 	
 	health = max_health
+	player_max_health_changed.emit()
 	
 	Global.map_holder.change_2d_scene(room, location)
 #endregion

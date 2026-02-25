@@ -1,13 +1,19 @@
 extends Control
 @onready var hearth: AnimatedSprite2D = $hearth
-var full: bool
+var full: bool = true
+
 
 
 func set_full(value: bool):
 	if value:
+		if full:
+			return
 		full = true
 		hearth.play("full")
 	else:
+		if !full:
+			return
+		full = false
 		hearth.play("empty")
 
 
@@ -15,5 +21,4 @@ func set_full(value: bool):
 
 func _on_hearth_animation_finished() -> void:
 	if full:
-		full = false
 		hearth.play("shine")
