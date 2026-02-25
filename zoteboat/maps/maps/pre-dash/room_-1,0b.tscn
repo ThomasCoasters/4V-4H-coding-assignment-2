@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://ddrkv6jvnt6qp" path="res://enemies/normal/tiktik/tiktik.tscn" id="4_y77mu"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="5_nj01l"]
 [ext_resource type="PackedScene" uid="uid://e03auo7ekd6c" path="res://enemies/normal/dvd_logo/dvd_enemy.tscn" id="6_ifn5q"]
+[ext_resource type="PackedScene" uid="uid://pgyl4bclok41" path="res://enemies/normal/crawlid/crawlid.tscn" id="7_3wwiv"]
 
-[sub_resource type="Curve2D" id="Curve2D_ifn5q"]
+[sub_resource type="Curve2D" id="Curve2D_y77mu"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 57, 64, 0, 0, 0, 0, 125, 64, 0, 0, 0, 0, 125, 160, 0, 0, 0, 0, 61, 160, 0, 0, 0, 0, 61, 192, 0, 0, 0, 0, -35, 192, 0, 0, 0, 0, -35, 160, 0, 0, 0, 0, -67, 160, 0, 0, 0, 0, -67, 64, 0, 0, 0, 0, 57, 64)
@@ -107,7 +108,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1743, -522, -1743, 593, 325, 585, 292, -587)])
 agent_radius = 50.0
 
-[sub_resource type="Curve2D" id="Curve2D_3wwiv"]
+[sub_resource type="Curve2D" id="Curve2D_nj01l"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 57, 64, 0, 0, 0, 0, 125, 64, 0, 0, 0, 0, 125, 160, 0, 0, 0, 0, 93, 160, 0, 0, 0, 0, 94, 192, 0, 0, 0, 0, -2, 192, 0, 0, 0, 0, -3, 160, 0, 0, 0, 0, -67, 160, 0, 0, 0, 0, -67, 64, 0, 0, 0, 0, 57, 64)
@@ -133,7 +134,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Path2D3" parent="." unique_id=768483257 instance=ExtResource("4_y77mu")]
 position = Vector2(243, -816)
-curve = SubResource("Curve2D_ifn5q")
+curve = SubResource("Curve2D_y77mu")
 
 [node name="PathFollow2D" parent="Path2D3" index="0" unique_id=1178610453]
 position = Vector2(57, 64)
@@ -167,7 +168,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Path2D4" parent="." unique_id=263132585 instance=ExtResource("4_y77mu")]
 position = Vector2(275, -1616)
-curve = SubResource("Curve2D_3wwiv")
+curve = SubResource("Curve2D_nj01l")
 
 [node name="PathFollow2D" parent="Path2D4" index="0" unique_id=1178610453]
 position = Vector2(57, 64)
@@ -195,6 +196,15 @@ angle = 34.0
 position = Vector2(-521, -1701)
 motion_mode = 1
 angle = 47.2
+
+[node name="Crawlid" parent="." unique_id=697434248 instance=ExtResource("7_3wwiv")]
+position = Vector2(578, -578)
+
+[node name="Crawlid2" parent="." unique_id=1075319929 instance=ExtResource("7_3wwiv")]
+position = Vector2(-483, -858)
+
+[node name="Crawlid3" parent="." unique_id=304772292 instance=ExtResource("7_3wwiv")]
+position = Vector2(-104, -1753)
 
 [editable path="Path2D3"]
 [editable path="Path2D4"]

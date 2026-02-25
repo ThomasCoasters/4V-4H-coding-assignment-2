@@ -63,7 +63,7 @@ func i_frames(time):
 	remove_from_group("invincible")
 
 func _on_health_depleted():
-	play_anim("death")
+	play_anim("death", ANIM_PRIORITY.DEATH)
 	walking = false
 	
 	add_to_group("deactive")
