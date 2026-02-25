@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dofcedq7frng5"]
+[gd_scene format=3 uid="uid://dofcedq7frng5"]
 
 [ext_resource type="Texture2D" uid="uid://ddcbx1i0bdl77" path="res://assets/temp assest/icon.svg" id="1_ga5i6"]
 [ext_resource type="Script" uid="uid://dbdkpk1a3wg8v" path="res://enemies/examples/test_flying/test_flying.gd" id="1_x5ljo"]

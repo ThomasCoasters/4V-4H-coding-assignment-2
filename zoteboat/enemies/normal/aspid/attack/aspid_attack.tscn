@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2ur5fk7pwnlj"]
+[gd_scene format=3 uid="uid://c2ur5fk7pwnlj"]
 
 [ext_resource type="Script" uid="uid://dq07onjdmrkld" path="res://enemies/normal/aspid/attack/aspid_attack.gd" id="1_ko1wu"]
 [ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_xdbmq"]

@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://pgyl4bclok41"]
+
+[ext_resource type="Script" uid="uid://ch7e46273els7" path="res://enemies/normal/crawlid/crawlid.gd" id="1_rc6i2"]
+[ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="2_j84qb"]
+[ext_resource type="Texture2D" uid="uid://ciah388e58kns" path="res://enemies/normal/crawlid/PC _ Computer - Hollow Knight - Enemies - Crawlid.png" id="2_qlany"]
+
+[sub_resource type="Resource" id="Resource_llvj5"]
+script = ExtResource("2_j84qb")
+max_health = 7
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6w0a2"]
+atlas = ExtResource("2_qlany")
+region = Rect2(4, 235, 115, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n20xd"]
+atlas = ExtResource("2_qlany")
+region = Rect2(124, 235, 115, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fntq8"]
+atlas = ExtResource("2_qlany")
+region = Rect2(4, 377, 126, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfkcs"]
+atlas = ExtResource("2_qlany")
+region = Rect2(135, 377, 126, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wggq"]
+atlas = ExtResource("2_qlany")
+region = Rect2(4, 130, 94, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i8g4"]
+atlas = ExtResource("2_qlany")
+region = Rect2(103, 130, 94, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vwj5"]
+atlas = ExtResource("2_qlany")
+region = Rect2(4, 23, 114, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j84qb"]
+atlas = ExtResource("2_qlany")
+region = Rect2(123, 23, 114, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llvj5"]
+atlas = ExtResource("2_qlany")
+region = Rect2(242, 23, 114, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkqj8"]
+atlas = ExtResource("2_qlany")
+region = Rect2(361, 23, 114, 83)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qlany"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6w0a2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n20xd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fntq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfkcs")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wggq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6i8g4")
+}],
+"loop": false,
+"name": &"turn",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vwj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j84qb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llvj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkqj8")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1l68i"]
+size = Vector2(29, 25)
+
+[node name="Crawlid" type="CharacterBody2D" unique_id=697434248 groups=["enemy"]]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_rc6i2")
+stats = SubResource("Resource_llvj5")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1346963380]
+position = Vector2(0, -3)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_qlany")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1463476265]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_1l68i")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=885544337]
+avoidance_enabled = true
+radius = 40.0
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1184989535]
+position = Vector2(27, 0)
+target_position = Vector2(0, 25)
+collision_mask = 2

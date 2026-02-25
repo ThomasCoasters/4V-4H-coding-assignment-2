@@ -100,14 +100,14 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_dgsse")
 
-[sub_resource type="Curve2D" id="Curve2D_ri8t6"]
+[sub_resource type="Curve2D" id="Curve2D_fo5t7"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 170, -8, 0, 0, 0, 0, 170, 87, 0, 0, 0, 0, -84, 87, 0, 0, 0, 0, -84, -8, 0, 0, 0, 0, 1, -8)
 }
 point_count = 6
 
-[sub_resource type="Curve2D" id="Curve2D_pkoil"]
+[sub_resource type="Curve2D" id="Curve2D_t1ax5"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 170, -8, 0, 0, 0, 0, 170, 87, 0, 0, 0, 0, -84, 87, 0, 0, 0, 0, -84, -8, 0, 0, 0, 0, 1, -8)
@@ -162,7 +162,7 @@ position = Vector2(1733, 5687)
 [node name="tiktik" parent="." unique_id=263132585 instance=ExtResource("6_fo5t7")]
 z_index = -1
 position = Vector2(869, 5145)
-curve = SubResource("Curve2D_ri8t6")
+curve = SubResource("Curve2D_fo5t7")
 
 [node name="PathFollow2D" parent="tiktik" index="0" unique_id=1178610453]
 position = Vector2(170, 38.66947)
@@ -172,7 +172,7 @@ progress = 215.66997
 [node name="tiktik2" parent="." unique_id=1459401435 instance=ExtResource("6_fo5t7")]
 z_index = -1
 position = Vector2(1509, 5112)
-curve = SubResource("Curve2D_pkoil")
+curve = SubResource("Curve2D_t1ax5")
 
 [node name="PathFollow2D" parent="tiktik2" index="0" unique_id=1178610453]
 position = Vector2(170, 34.491867)
