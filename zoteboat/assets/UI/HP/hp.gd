@@ -17,6 +17,8 @@ func _ready() -> void:
 func _on_max_hp_change():
 	delete_old()
 	
+	print("max")
+	
 	for i in range(Global.player.max_health):
 		var h = HeartScene.instantiate()
 		h.position.x = i * space_between

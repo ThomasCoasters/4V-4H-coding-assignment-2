@@ -10,6 +10,8 @@ class_name Player
 
 @export_group("cheaty stuff")
 @export var no_clip: bool
+@export var noclip_speed_mult: float = 1
+@export var noclip_speed_change: float = 0.5
 @export_subgroup("ability stuff")
 @export var has_dash: bool
 @export var has_wall_cling: bool
@@ -374,6 +376,14 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		zote_final_town_loop.stop()
 		Global.map_holder.change_gui_scene("res://assets/pause_screen/pause_screen.tscn")
+	
+	if Input.is_action_just_pressed("dissable noclip") && SaveLoad.contents_to_save.noclip == 1:
+		change_noclip()
+	
+	if Input.is_action_just_pressed("speeddown noclip") && SaveLoad.contents_to_save.noclip == 1:
+		change_noclip_speed(-noclip_speed_change)
+	if Input.is_action_just_pressed("speedup noclip") && SaveLoad.contents_to_save.noclip == 1:
+		change_noclip_speed(noclip_speed_change)
 	#endregion
 		#region checks
 	
@@ -414,7 +424,7 @@ func _process(_delta: float) -> void:
 	if no_clip:
 		var y_dir = direction.y
 		direction.y = -y_dir
-		velocity = direction * MOVE_SPEED
+		velocity = direction * MOVE_SPEED * noclip_speed_mult
 		direction.y = y_dir
 	
 	if Input.get_action_strength("left") >= 0.5 || Input.get_action_strength("right") >= 0.5:
@@ -564,6 +574,17 @@ func _on_to_jumping_form_wall_taken() -> void:
 	
 	can_walk = true
 
+
+func change_noclip():
+	no_clip = !no_clip
+	
+	if no_clip:
+		set_collision_mask_value(2, false)
+	else:
+		set_collision_mask_value(2, true)
+
+func change_noclip_speed(change: float):
+	noclip_speed_mult = clamp(noclip_speed_mult + change, 0.0, 10.0)
 #endregion
 
 #region momentum
@@ -951,6 +972,7 @@ func death():
 	
 	
 	health = max_health
+	player_max_health_changed.emit()
 	
 	Global.map_holder.change_2d_scene(room, location)
 #endregion
