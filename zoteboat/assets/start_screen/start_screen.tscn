@@ -495,7 +495,7 @@ text = "Permadeath (Resets Save): Off"
 [node name="unkillable" type="Button" parent="variants" unique_id=1103460796]
 layout_mode = 2
 focus_neighbor_top = NodePath("../perma_death")
-focus_neighbor_bottom = NodePath("../exit_variant")
+focus_neighbor_bottom = NodePath("../no-clip")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
@@ -504,6 +504,19 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_xwm6q")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
 text = "Unkillable: off"
+
+[node name="no-clip" type="Button" parent="variants" unique_id=1578524920]
+layout_mode = 2
+focus_neighbor_top = NodePath("../unkillable")
+focus_neighbor_bottom = NodePath("../exit_variant")
+theme_override_fonts/font = ExtResource("4_w4mux")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_64uaj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fwd4i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xwm6q")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_o8x2c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pgy4w")
+text = "NoClip: Off"
 
 [node name="exit_variant" type="Button" parent="variants" unique_id=1412102589]
 layout_mode = 2
@@ -609,6 +622,7 @@ bus = &"SFX"
 [connection signal="pressed" from="variants/invis" to="." method="_on_invis_pressed"]
 [connection signal="pressed" from="variants/perma_death" to="." method="_on_perma_death_pressed"]
 [connection signal="pressed" from="variants/unkillable" to="." method="_on_unkillable_pressed"]
+[connection signal="pressed" from="variants/no-clip" to="." method="_on_noclip_pressed"]
 [connection signal="pressed" from="variants/exit_variant" to="." method="_on_exit_variant_pressed"]
 [connection signal="pressed" from="reset_save/save-yes" to="." method="_on_saveyes_pressed"]
 [connection signal="pressed" from="reset_save/save-no" to="." method="_on_saveno_pressed"]

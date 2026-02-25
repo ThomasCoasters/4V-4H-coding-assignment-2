@@ -164,8 +164,8 @@ metadata/_edit_use_anchors_ = true
 [node name="WarpZone9" parent="." unique_id=1418953254 instance=ExtResource("4_h5wyx")]
 position = Vector2(-752, 1122)
 scale = Vector2(1, 10)
-warp_to = "res://maps/maps/pre-dash/room_1,-1.tscn"
-new_location_group = "Right_1,-1"
+warp_to = "res://maps/maps/pre-dash/Dash_Unlock.tscn"
+new_location_group = "Left_1,-3"
 
 [node name="peashooter" parent="." unique_id=1301399573 instance=ExtResource("5_na5tl")]
 position = Vector2(724, -2107)
