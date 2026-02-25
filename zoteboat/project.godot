@@ -42,6 +42,7 @@ window/size/viewport_height=1080
 window/size/mode=3
 window/size/borderless=true
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="uid://dfwb7kn6y85l5"
 
 [editor_plugins]
 

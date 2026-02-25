@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="4_b8lcr"]
 [ext_resource type="PackedScene" uid="uid://vvt3b4b06nr2" path="res://maps/pickups/walljump/unlock_walljump.tscn" id="5_gf661"]
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/map_placables/hazards (spikes)/spikes_collision.tscn" id="6_e38l6"]
+[ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="7_1oieh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("4_b8lcr")
@@ -146,6 +147,14 @@ position = Vector2(910, 5301)
 
 [node name="EDIT THIS" parent="hazards/SpikesCollision/StaticBody2D" parent_id_path=PackedInt32Array(829689903, 1580090474) index="0" unique_id=1846142658]
 polygon = PackedVector2Array(-10, -437, 18, -437, 18, 7, -10, 7)
+
+[node name="HazardRespawn" parent="hazards" unique_id=631066099 instance=ExtResource("7_1oieh")]
+position = Vector2(452, 5299)
+scale = Vector2(12.240002, 1)
+
+[node name="HazardRespawn" parent="." unique_id=486447841 instance=ExtResource("7_1oieh")]
+position = Vector2(934.00006, 4793)
+scale = Vector2(12.240002, 1)
 
 [editable path="hazards/SpikesCollision2"]
 [editable path="hazards/SpikesCollision"]

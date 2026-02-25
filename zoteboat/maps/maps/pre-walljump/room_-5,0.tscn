@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="3_apkm4"]
 [ext_resource type="Texture2D" uid="uid://3jeol1eyq3pv" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_05.png" id="4_bhr4h"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="4_rguva"]
+[ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="4_togqe"]
 [ext_resource type="Texture2D" uid="uid://nsiaod6h7uju" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_02.png" id="5_togqe"]
 [ext_resource type="PackedScene" uid="uid://dccm81k18vutf" path="res://maps/benches/bench.tscn" id="5_wjivy"]
 [ext_resource type="Texture2D" uid="uid://dh7qw5v6ek0np" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_06.png" id="6_ddu71"]
@@ -102,14 +103,14 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
-[sub_resource type="Curve2D" id="Curve2D_7sgmy"]
+[sub_resource type="Curve2D" id="Curve2D_ddu71"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -320, 0, 0, 0, 0, 0, 0)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_stnyk"]
+[sub_resource type="Curve2D" id="Curve2D_huf1f"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -320, 0, 0, 0, 0, 0, 0)
@@ -165,6 +166,18 @@ rotation = -3.1415925
 [node name="EDIT THIS" parent="hazards/SpikesCollision5/StaticBody2D" parent_id_path=PackedInt32Array(699471026, 1580090474) index="0" unique_id=1846142658]
 position = Vector2(-26.988771, -21.381834)
 polygon = PackedVector2Array(-9, -184, 26, -120, 36, 1, 25, 103, 13, 165, -10, 190)
+
+[node name="HazardRespawn" parent="hazards" unique_id=631066099 instance=ExtResource("4_togqe")]
+position = Vector2(474, 5404)
+scale = Vector2(42.32, 1)
+
+[node name="HazardRespawn2" parent="hazards" unique_id=1826421628 instance=ExtResource("4_togqe")]
+position = Vector2(-49, 5932)
+scale = Vector2(42.32, 1)
+
+[node name="HazardRespawn3" parent="hazards" unique_id=744401492 instance=ExtResource("4_togqe")]
+position = Vector2(1016, 5942)
+scale = Vector2(42.32, 1)
 
 [node name="visuals" type="Node" parent="." unique_id=891181790]
 
@@ -296,13 +309,13 @@ metadata/_edit_use_anchors_ = true
 
 [node name="moving_platform2" parent="." unique_id=710403595 instance=ExtResource("6_yk7po")]
 position = Vector2(-160, 5760)
-curve = SubResource("Curve2D_7sgmy")
+curve = SubResource("Curve2D_ddu71")
 loop = true
 speed = 80
 
 [node name="moving_platform3" parent="." unique_id=1488868709 instance=ExtResource("6_yk7po")]
 position = Vector2(1120, 5760)
-curve = SubResource("Curve2D_stnyk")
+curve = SubResource("Curve2D_huf1f")
 loop = true
 speed = 80
 

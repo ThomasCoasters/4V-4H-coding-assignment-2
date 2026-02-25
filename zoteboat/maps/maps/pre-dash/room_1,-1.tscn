@@ -171,7 +171,7 @@ scale = Vector2(10.539987, 0.042116802)
 polygon = PackedVector2Array(-84.93153, 2144.2207, -33.366005, 2136.915, -33.366005, 2920.4502, -84.93153, 2927.7559)
 
 [node name="HazardRespawn" parent="hazards" unique_id=1605870918 instance=ExtResource("8_oqa1b")]
-position = Vector2(-1506, 542.00006)
+position = Vector2(-1535, 542.00006)
 scale = Vector2(1, 13)
 
 [node name="HazardRespawn2" parent="hazards" unique_id=1500813923 instance=ExtResource("8_oqa1b")]
@@ -271,6 +271,10 @@ texture = ExtResource("9_xpjpg")
 z_index = -1
 position = Vector2(850, 715)
 texture = ExtResource("9_xpjpg")
+
+[node name="HazardRespawn4" parent="hazards" unique_id=631066099 instance=ExtResource("8_oqa1b")]
+position = Vector2(-757, 442)
+scale = Vector2(7.0529466, 1.5046439)
 
 [node name="WarpZone2" parent="." unique_id=1268084640 instance=ExtResource("3_jftre")]
 position = Vector2(97.00001, 818)

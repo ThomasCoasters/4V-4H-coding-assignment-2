@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="4_h5wyx"]
 [ext_resource type="PackedScene" uid="uid://desufiot6ea2v" path="res://enemies/normal/peashooter/peashooter.tscn" id="5_na5tl"]
 [ext_resource type="PackedScene" uid="uid://e03auo7ekd6c" path="res://enemies/normal/dvd_logo/dvd_enemy.tscn" id="6_maj27"]
+[ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="8_maj27"]
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/map_placables/hazards (spikes)/spikes_collision.tscn" id="8_na5tl"]
 [ext_resource type="Texture2D" uid="uid://bb2h7gysppyil" path="res://maps/map_placables/hazards (spikes)/spikes_still.png" id="8_vt07r"]
 [ext_resource type="PackedScene" uid="uid://3dmnl1rv4c6f" path="res://enemies/normal/aspid/aspid.tscn" id="9_h5wyx"]
@@ -462,6 +463,22 @@ position = Vector2(759, -1869)
 rotation = -1.5707964
 scale = Vector2(1, 0.3)
 texture = ExtResource("8_vt07r")
+
+[node name="HazardRespawn" parent="hazards" unique_id=631066099 instance=ExtResource("8_maj27")]
+position = Vector2(420.00003, 434)
+scale = Vector2(10.240002, 1)
+
+[node name="HazardRespawn2" parent="hazards" unique_id=792856463 instance=ExtResource("8_maj27")]
+position = Vector2(-301.99997, -144)
+scale = Vector2(10.240002, 1)
+
+[node name="HazardRespawn3" parent="hazards" unique_id=1316505417 instance=ExtResource("8_maj27")]
+position = Vector2(117, -887)
+scale = Vector2(10.240002, 1)
+
+[node name="HazardRespawn4" parent="hazards" unique_id=959480729 instance=ExtResource("8_maj27")]
+position = Vector2(243, -1906)
+scale = Vector2(10.240002, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1820643946]
 scale = Vector2(2, 2)

@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://3dmnl1rv4c6f" path="res://enemies/normal/aspid/aspid.tscn" id="6_gfe3l"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="8_6juni"]
 [ext_resource type="PackedScene" uid="uid://ddrkv6jvnt6qp" path="res://enemies/normal/tiktik/tiktik.tscn" id="8_sdnps"]
+[ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="9_dgsse"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ycj1n"]
 vertices = PackedVector2Array(-436, -329, -436, -493, -408, -397, -408, -233, 844, -137, 904, -265, 1064, -265, 1064, 243, 748, 243, 748, 83, 844, -301, 904, -429, 428, 87, 428, -77, 520, 83, 520, 243, 1106.5781, -521, 1106.9375, -429, 1064, -521, -344, -585, -344, -397, -600, -585, -856, -493, -344, -233, -344, -173, -504, -173, 12, 83, -180, -9, -180, -137, -116, -137, 104, -77, 104, 87, -116, -201, -52, -201, -52, -233, 44, -233, 488, -137, 520, -105, 44, -397, -180, -397, -180, -585, 1064, -585, 488, -301, 520, -137, 552, -105, 552, -73, 748, -73, 748, -105, 812, -105, 812, -137, 136, 87, 136, 119, 396, 119, 396, 87, 12, 243, -948, 83, -948, -9, -788, -9, -788, -173, -948, -173, -948, -233, -884, -233, -884, -397, -948, -397, -948, -585, -692, -585, -692, -621, -600, -621, -856, -329, -504, -9)
@@ -102,7 +103,7 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_dgsse")
 
-[sub_resource type="Curve2D" id="Curve2D_dgsse"]
+[sub_resource type="Curve2D" id="Curve2D_a5qev"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -9, 0, 0, 0, 0, 170, -9, 0, 0, 0, 0, 170, 86, 0, 0, 0, 0, 138, 86, 0, 0, 0, 0, 138, 117, 0, 0, 0, 0, -52, 117, 0, 0, 0, 0, -52, 85, 0, 0, 0, 0, -84, 85, 0, 0, 0, 0, -84, -9, 0, 0, 0, 0, 1, -9)
@@ -243,11 +244,19 @@ tile_set = SubResource("TileSet_7r8rt")
 [node name="tiktik" parent="." unique_id=263132585 instance=ExtResource("8_sdnps")]
 z_index = -1
 position = Vector2(1317, 5466)
-curve = SubResource("Curve2D_dgsse")
+curve = SubResource("Curve2D_a5qev")
 
 [node name="PathFollow2D" parent="tiktik" index="0" unique_id=1178610453]
 position = Vector2(23.404018, -9)
 progress = 22.42
+
+[node name="HazardRespawn" parent="." unique_id=631066099 instance=ExtResource("9_dgsse")]
+position = Vector2(441.00003, 5619)
+scale = Vector2(20.08, 1)
+
+[node name="HazardRespawn2" parent="." unique_id=1891348751 instance=ExtResource("9_dgsse")]
+position = Vector2(1753, 5230)
+scale = Vector2(9.959995, 1)
 
 [editable path="hazards/SpikesCollision2"]
 [editable path="tiktik"]

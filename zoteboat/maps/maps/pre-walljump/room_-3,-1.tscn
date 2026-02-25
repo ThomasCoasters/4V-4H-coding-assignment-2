@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://cvcvwjduqgpbe"]
+[gd_scene format=4 uid="uid://hwif46br87cp"]
 
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_yxpay"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="2_adc5v"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="4_4p3v3"]
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/map_placables/hazards (spikes)/spikes_collision.tscn" id="5_wd2yk"]
 [ext_resource type="Texture2D" uid="uid://bb2h7gysppyil" path="res://maps/map_placables/hazards (spikes)/spikes_still.png" id="6_t0112"]
+[ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="7_adc5v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("4_4p3v3")
@@ -244,6 +245,14 @@ offset_right = 1519.0
 offset_bottom = 4896.0
 own_group = "Right_-3,-1"
 metadata/_edit_use_anchors_ = true
+
+[node name="HazardRespawn" parent="." unique_id=631066099 instance=ExtResource("7_adc5v")]
+position = Vector2(710, 5837)
+scale = Vector2(1, 17.8)
+
+[node name="HazardRespawn2" parent="." unique_id=940188495 instance=ExtResource("7_adc5v")]
+position = Vector2(1132, 4765)
+scale = Vector2(1, 17.8)
 
 [editable path="hazards/SpikesCollision"]
 [editable path="hazards/SpikesCollision2"]

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="4_r47oe"]
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/map_placables/hazards (spikes)/spikes_collision.tscn" id="5_hypnn"]
 [ext_resource type="Texture2D" uid="uid://bb2h7gysppyil" path="res://maps/map_placables/hazards (spikes)/spikes_still.png" id="6_0g4kj"]
+[ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="6_r47oe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("4_r47oe")
@@ -167,6 +168,14 @@ position = Vector2(1050, 4791)
 [node name="EDIT THIS" parent="hazards/SpikesCollision6/StaticBody2D" parent_id_path=PackedInt32Array(34143378, 1580090474) index="0" unique_id=1846142658]
 position = Vector2(-4, -109)
 polygon = PackedVector2Array(-19, -42, 10, -42, 10, 182, -19, 182)
+
+[node name="HazardRespawn" parent="hazards" unique_id=631066099 instance=ExtResource("6_r47oe")]
+position = Vector2(1132, 5831.9995)
+scale = Vector2(1, 20.712936)
+
+[node name="HazardRespawn2" parent="hazards" unique_id=28652849 instance=ExtResource("6_r47oe")]
+position = Vector2(425, 4760)
+scale = Vector2(1, 20.712936)
 
 [node name="visuals" type="Node" parent="." unique_id=568431695]
 
