@@ -577,7 +577,7 @@ new_location_group = "Right_-4,0"
 position = Vector2(2450, 158)
 rotation = -3.1415925
 scale = Vector2(1, 13)
-warp_to = "res://maps/maps/pre-dash/room_2,0.tscn"
+warp_to = "res://maps/maps/pre-dash/room_-2,0.tscn"
 new_location_group = "Left_-2,0"
 
 [node name="SpawnLocation" parent="." unique_id=1978993451 instance=ExtResource("2_86ojk")]
