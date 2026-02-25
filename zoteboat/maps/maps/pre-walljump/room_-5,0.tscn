@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="3_apkm4"]
 [ext_resource type="Texture2D" uid="uid://3jeol1eyq3pv" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_05.png" id="4_bhr4h"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="4_rguva"]
-[ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="4_togqe"]
 [ext_resource type="Texture2D" uid="uid://nsiaod6h7uju" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_02.png" id="5_togqe"]
 [ext_resource type="PackedScene" uid="uid://dccm81k18vutf" path="res://maps/benches/bench.tscn" id="5_wjivy"]
 [ext_resource type="Texture2D" uid="uid://dh7qw5v6ek0np" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_06.png" id="6_ddu71"]
@@ -14,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dkc7cs323rr88" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_01.png" id="7_huf1f"]
 [ext_resource type="Texture2D" uid="uid://bphn8epnh3s0w" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_04.png" id="8_pstoe"]
 [ext_resource type="Texture2D" uid="uid://dfl24itmoxo3v" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_03.png" id="9_ob0cu"]
+[ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="11_bhr4h"]
 [ext_resource type="Texture2D" uid="uid://br12kedawt3ol" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_07.png" id="14_u0p5g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
@@ -103,19 +103,19 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
-[sub_resource type="Curve2D" id="Curve2D_ddu71"]
+[sub_resource type="Curve2D" id="Curve2D_bhr4h"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -320, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -335)
 }
-point_count = 3
+point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_huf1f"]
+[sub_resource type="Curve2D" id="Curve2D_togqe"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -320, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -335)
 }
-point_count = 3
+point_count = 2
 
 [node name="Room -5,0" type="Node2D" unique_id=1874960603]
 script = ExtResource("1_w6xuk")
@@ -167,15 +167,15 @@ rotation = -3.1415925
 position = Vector2(-26.988771, -21.381834)
 polygon = PackedVector2Array(-9, -184, 26, -120, 36, 1, 25, 103, 13, 165, -10, 190)
 
-[node name="HazardRespawn" parent="hazards" unique_id=631066099 instance=ExtResource("4_togqe")]
+[node name="HazardRespawn" parent="hazards" unique_id=631066099 instance=ExtResource("11_bhr4h")]
 position = Vector2(474, 5404)
 scale = Vector2(42.32, 1)
 
-[node name="HazardRespawn2" parent="hazards" unique_id=1826421628 instance=ExtResource("4_togqe")]
+[node name="HazardRespawn2" parent="hazards" unique_id=1826421628 instance=ExtResource("11_bhr4h")]
 position = Vector2(-49, 5932)
 scale = Vector2(42.32, 1)
 
-[node name="HazardRespawn3" parent="hazards" unique_id=744401492 instance=ExtResource("4_togqe")]
+[node name="HazardRespawn3" parent="hazards" unique_id=744401492 instance=ExtResource("11_bhr4h")]
 position = Vector2(1016, 5942)
 scale = Vector2(42.32, 1)
 
@@ -248,16 +248,53 @@ position = Vector2(-20, 5482)
 rotation = -1.5707964
 texture = ExtResource("7_huf1f")
 
+[node name="FungdSpikes12" type="Sprite2D" parent="visuals" unique_id=305167495]
+z_index = -1
+position = Vector2(955, 5476)
+rotation = 1.0471976
+texture = ExtResource("9_ob0cu")
+
+[node name="FungdSpikes13" type="Sprite2D" parent="visuals" unique_id=1388541345]
+z_index = -1
+position = Vector2(927, 5593)
+rotation = 2.3561945
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("4_bhr4h")
+
+[node name="FungdSpikes14" type="Sprite2D" parent="visuals" unique_id=104537658]
+z_index = -1
+position = Vector2(1298, 5599)
+rotation = -1.5707964
+texture = ExtResource("6_ddu71")
+
+[node name="FungdSpikes15" type="Sprite2D" parent="visuals" unique_id=1466628828]
+z_index = -1
+position = Vector2(1273, 5462)
+rotation = 0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("14_u0p5g")
+
+[node name="FungdSpikes16" type="Sprite2D" parent="visuals" unique_id=1684724636]
+z_index = -1
+position = Vector2(1280.9998, 5704)
+rotation = -2.3561945
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("9_ob0cu")
+
+[node name="FungdSpikes17" type="Sprite2D" parent="visuals" unique_id=1585288290]
+z_index = -1
+position = Vector2(942, 5694)
+rotation = 1.5707964
+texture = ExtResource("6_ddu71")
+
+[node name="hazard_respawns" type="Node" parent="." unique_id=556398082]
+
+[node name="HazardRespawn" parent="hazard_respawns" unique_id=321135365 instance=ExtResource("11_bhr4h")]
+position = Vector2(480, 5389)
+scale = Vector2(40, 2)
+
 [node name="Bench" parent="." unique_id=1729237278 instance=ExtResource("5_wjivy")]
 position = Vector2(480, 5383)
-
-[node name="SpawnLocation3" parent="." unique_id=705366616 instance=ExtResource("2_1n0hk")]
-offset_left = 1328.0
-offset_top = 5922.0
-offset_right = 1358.0
-offset_bottom = 5952.0
-own_group = "Right_-5,0"
-metadata/_edit_use_anchors_ = true
 
 [node name="WarpZone3" parent="." unique_id=1268084640 instance=ExtResource("4_rguva")]
 position = Vector2(1394, 5855)
@@ -270,6 +307,26 @@ position = Vector2(-433, 5855)
 scale = Vector2(1, 10)
 warp_to = "res://maps/maps/pre-walljump/room_-6,0.tscn"
 new_location_group = "TopRight_-6,0"
+
+[node name="WarpZone5" parent="." unique_id=136501244 instance=ExtResource("4_rguva")]
+position = Vector2(-433, 5120)
+scale = Vector2(1, 10)
+warp_to = "res://maps/maps/pre-walljump/room_-6,1.tscn"
+new_location_group = "BottomRight_-6,1"
+
+[node name="WarpZone6" parent="." unique_id=631049134 instance=ExtResource("4_rguva")]
+position = Vector2(480, 6064)
+scale = Vector2(10, 1)
+warp_to = "res://maps/maps/pre-walljump/room_-5,-1.tscn"
+new_location_group = "Top_-5,-1"
+
+[node name="SpawnLocation3" parent="." unique_id=705366616 instance=ExtResource("2_1n0hk")]
+offset_left = 1328.0
+offset_top = 5922.0
+offset_right = 1358.0
+offset_bottom = 5952.0
+own_group = "Right_-5,0"
+metadata/_edit_use_anchors_ = true
 
 [node name="SpawnLocation4" parent="." unique_id=325421916 instance=ExtResource("2_1n0hk")]
 offset_left = -399.0
@@ -287,18 +344,6 @@ offset_bottom = 5216.0
 own_group = "TopLeft_-5,0"
 metadata/_edit_use_anchors_ = true
 
-[node name="WarpZone5" parent="." unique_id=136501244 instance=ExtResource("4_rguva")]
-position = Vector2(-433, 5120)
-scale = Vector2(1, 10)
-warp_to = "res://maps/maps/pre-walljump/room_-6,1.tscn"
-new_location_group = "BottomRight_-6,1"
-
-[node name="WarpZone6" parent="." unique_id=631049134 instance=ExtResource("4_rguva")]
-position = Vector2(480, 6064)
-scale = Vector2(10, 1)
-warp_to = "res://maps/maps/pre-walljump/room_-5,-1.tscn"
-new_location_group = "Top_-5,-1"
-
 [node name="SpawnLocation6" parent="." unique_id=1620563476 instance=ExtResource("2_1n0hk")]
 offset_left = 593.0
 offset_top = 5922.0
@@ -309,51 +354,13 @@ metadata/_edit_use_anchors_ = true
 
 [node name="moving_platform2" parent="." unique_id=710403595 instance=ExtResource("6_yk7po")]
 position = Vector2(-160, 5760)
-curve = SubResource("Curve2D_ddu71")
-loop = true
+curve = SubResource("Curve2D_bhr4h")
 speed = 80
 
 [node name="moving_platform3" parent="." unique_id=1488868709 instance=ExtResource("6_yk7po")]
 position = Vector2(1120, 5760)
-curve = SubResource("Curve2D_huf1f")
-loop = true
+curve = SubResource("Curve2D_togqe")
 speed = 80
-
-[node name="FungdSpikes03" type="Sprite2D" parent="." unique_id=305167495]
-z_index = -1
-position = Vector2(955, 5476)
-rotation = 1.0471976
-texture = ExtResource("9_ob0cu")
-
-[node name="FungdSpikes05" type="Sprite2D" parent="." unique_id=1388541345]
-z_index = -1
-position = Vector2(927, 5593)
-rotation = 2.3561945
-texture = ExtResource("4_bhr4h")
-
-[node name="FungdSpikes06" type="Sprite2D" parent="." unique_id=104537658]
-z_index = -1
-position = Vector2(1298, 5599)
-rotation = -1.5707964
-texture = ExtResource("6_ddu71")
-
-[node name="FungdSpikes07" type="Sprite2D" parent="." unique_id=1466628828]
-z_index = -1
-position = Vector2(1273, 5462)
-rotation = 0.2617994
-texture = ExtResource("14_u0p5g")
-
-[node name="FungdSpikes04" type="Sprite2D" parent="." unique_id=1684724636]
-z_index = -1
-position = Vector2(1280.9998, 5704)
-rotation = -2.3561945
-texture = ExtResource("9_ob0cu")
-
-[node name="FungdSpikes08" type="Sprite2D" parent="." unique_id=1585288290]
-z_index = -1
-position = Vector2(942, 5694)
-rotation = 1.5707964
-texture = ExtResource("6_ddu71")
 
 [editable path="hazards/SpikesCollision"]
 [editable path="hazards/SpikesCollision2"]

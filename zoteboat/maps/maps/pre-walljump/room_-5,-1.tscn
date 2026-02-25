@@ -110,6 +110,13 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1639, -559, -1651, 2875, -115, 2845, -110, -555)])
 agent_radius = 50.0
 
+[sub_resource type="Curve2D" id="Curve2D_ygq63"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 72, -8, 0, 0, 0, 0, 72, 87, 0, 0, 0, 0, -88, 87, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
+}
+point_count = 6
+
 [sub_resource type="Curve2D" id="Curve2D_all46"]
 resource_local_to_scene = true
 _data = {
@@ -120,9 +127,9 @@ point_count = 6
 [sub_resource type="Curve2D" id="Curve2D_5gnow"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 72, -8, 0, 0, 0, 0, 72, 87, 0, 0, 0, 0, -88, 87, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
+"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 119, 0, 0, 0, 0, 104, 119, 0, 0, 0, 0, 104, 215, 0, 0, 0, 0, 72, 215, 0, 0, 0, 0, 72, 503, 0, 0, 0, 0, -88, 503, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
 }
-point_count = 6
+point_count = 10
 
 [sub_resource type="Curve2D" id="Curve2D_26gnb"]
 resource_local_to_scene = true
@@ -139,13 +146,6 @@ _data = {
 point_count = 10
 
 [sub_resource type="Curve2D" id="Curve2D_k3pm5"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 119, 0, 0, 0, 0, 104, 119, 0, 0, 0, 0, 104, 215, 0, 0, 0, 0, 72, 215, 0, 0, 0, 0, 72, 503, 0, 0, 0, 0, -88, 503, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
-}
-point_count = 10
-
-[sub_resource type="Curve2D" id="Curve2D_fjhec"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 136, -8, 0, 0, 0, 0, 136, 119, 0, 0, 0, 0, 104, 119, 0, 0, 0, 0, 104, 215, 0, 0, 0, 0, 72, 215, 0, 0, 0, 0, 72, 503, 0, 0, 0, 0, -88, 503, 0, 0, 0, 0, -88, -8, 0, 0, 0, 0, 1, -8)
@@ -198,6 +198,12 @@ scale = Vector2(67.880005, 1)
 [node name="HazardRespawn2" parent="hazards" unique_id=507571796 instance=ExtResource("4_ygq63")]
 position = Vector2(-108, -1960)
 scale = Vector2(57.440002, 1)
+
+[node name="SpikesCollision5" parent="hazards" unique_id=471430646 instance=ExtResource("3_vdd0n")]
+position = Vector2(-694, -167)
+
+[node name="EDIT THIS" parent="hazards/SpikesCollision5/StaticBody2D" parent_id_path=PackedInt32Array(471430646, 1580090474) index="0" unique_id=1846142658]
+polygon = PackedVector2Array(-10, -153, 22, -153, 22, -185, 82, -185, 42, -124, 23, -110, 17, -88, 25, -49, 39, -30, 51, 7, -10, 7)
 
 [node name="visuals" type="Node" parent="." unique_id=1543404994]
 
@@ -271,17 +277,46 @@ position = Vector2(756, -1871)
 rotation = -1.5707964
 texture = ExtResource("15_all46")
 
+[node name="FungdSpikes12" type="Sprite2D" parent="visuals" unique_id=1307954311]
+z_index = -1
+position = Vector2(-707, -351)
+rotation = 3.1415925
+texture = ExtResource("4_0x11b")
+
+[node name="FungdSpikes13" type="Sprite2D" parent="visuals" unique_id=1424244489]
+z_index = -1
+position = Vector2(-719, -214)
+rotation = 1.3089969
+texture = ExtResource("5_x0owv")
+
 [node name="WarpZone3" parent="." unique_id=1268084640 instance=ExtResource("3_8tbqc")]
 position = Vector2(818, -897)
 scale = Vector2(1, 8)
 warp_to = "res://maps/maps/pre-walljump/room_-3,0.tscn"
 new_location_group = "Secret_2"
 
+[node name="WarpZone4" parent="." unique_id=1157491430 instance=ExtResource("3_8tbqc")]
+position = Vector2(-752, 129)
+scale = Vector2(1, 10)
+warp_to = "res://maps/maps/pre-walljump/room_-6,0.tscn"
+new_location_group = "BottomRight_-6,0"
+
+[node name="WarpZone5" parent="." unique_id=1623820784 instance=ExtResource("3_8tbqc")]
+position = Vector2(-752, -1727)
+scale = Vector2(1, 10)
+warp_to = "res://maps/maps/pre-walljump/room_-6,0.tscn"
+new_location_group = "MiddleRight_-6,0"
+
 [node name="WarpZone6" parent="." unique_id=1322786499 instance=ExtResource("3_8tbqc")]
 position = Vector2(134, -3089)
 scale = Vector2(10, 1)
 warp_to = "res://maps/maps/pre-walljump/room_-5,0.tscn"
 new_location_group = "Bottom_-5,0"
+
+[node name="WarpZone7" parent="." unique_id=1311799436 instance=ExtResource("3_8tbqc")]
+position = Vector2(95, 430)
+scale = Vector2(10, 1)
+new_location_group = "Top_-5,-2"
 
 [node name="SpawnLocation6" parent="." unique_id=462484462 instance=ExtResource("4_b75nu")]
 offset_left = 753.0
@@ -299,12 +334,6 @@ offset_bottom = -2994.0
 own_group = "Top_-5,-1"
 metadata/_edit_use_anchors_ = true
 
-[node name="WarpZone4" parent="." unique_id=1157491430 instance=ExtResource("3_8tbqc")]
-position = Vector2(-752, 129)
-scale = Vector2(1, 10)
-warp_to = "res://maps/maps/pre-walljump/room_-6,0.tscn"
-new_location_group = "BottomRight_-6,0"
-
 [node name="SpawnLocation7" parent="." unique_id=1577129344 instance=ExtResource("4_b75nu")]
 offset_left = -719.0
 offset_top = 194.0
@@ -320,17 +349,6 @@ offset_right = -689.0
 offset_bottom = -1632.0
 own_group = "TopLeft_-5,-1"
 metadata/_edit_use_anchors_ = true
-
-[node name="WarpZone5" parent="." unique_id=1623820784 instance=ExtResource("3_8tbqc")]
-position = Vector2(-752, -1727)
-scale = Vector2(1, 10)
-warp_to = "res://maps/maps/pre-walljump/room_-6,0.tscn"
-new_location_group = "MiddleRight_-6,0"
-
-[node name="WarpZone7" parent="." unique_id=1311799436 instance=ExtResource("3_8tbqc")]
-position = Vector2(95, 430)
-scale = Vector2(10, 1)
-new_location_group = "Top_-5,-2"
 
 [node name="SpawnLocation9" parent="." unique_id=744849874 instance=ExtResource("4_b75nu")]
 offset_left = 209.0
@@ -410,7 +428,7 @@ position = Vector2(43, -487)
 
 [node name="tiktik" parent="." unique_id=263132585 instance=ExtResource("12_26gnb")]
 position = Vector2(40, -40)
-curve = SubResource("Curve2D_all46")
+curve = SubResource("Curve2D_ygq63")
 
 [node name="PathFollow2D" parent="tiktik" index="0" unique_id=1178610453]
 position = Vector2(72, 36.92314)
@@ -419,7 +437,7 @@ progress = 115.9256
 
 [node name="tiktik2" parent="." unique_id=1964339662 instance=ExtResource("12_26gnb")]
 position = Vector2(-280, -519)
-curve = SubResource("Curve2D_5gnow")
+curve = SubResource("Curve2D_all46")
 
 [node name="PathFollow2D" parent="tiktik2" index="0" unique_id=1178610453]
 position = Vector2(-22.712778, 87)
@@ -428,7 +446,7 @@ progress = 260.712
 
 [node name="tiktik3" parent="." unique_id=244131582 instance=ExtResource("12_26gnb")]
 position = Vector2(-120, -2567)
-curve = SubResource("Curve2D_26gnb")
+curve = SubResource("Curve2D_5gnow")
 
 [node name="PathFollow2D" parent="tiktik3" index="0" unique_id=1178610453]
 position = Vector2(14.03253, 503)
@@ -437,7 +455,7 @@ progress = 767.9686
 
 [node name="tiktik4" parent="." unique_id=1057064494 instance=ExtResource("12_26gnb")]
 position = Vector2(-120, -2567)
-curve = SubResource("Curve2D_aj3mh")
+curve = SubResource("Curve2D_26gnb")
 
 [node name="PathFollow2D" parent="tiktik4" index="0" unique_id=1178610453]
 position = Vector2(38.626263, -8)
@@ -445,7 +463,7 @@ progress = 37.63202
 
 [node name="tiktik5" parent="." unique_id=1415440555 instance=ExtResource("12_26gnb")]
 position = Vector2(-120, -2567)
-curve = SubResource("Curve2D_k3pm5")
+curve = SubResource("Curve2D_aj3mh")
 
 [node name="PathFollow2D" parent="tiktik5" index="0" unique_id=1178610453]
 position = Vector2(72, 233.9963)
@@ -454,7 +472,7 @@ progress = 441.00024
 
 [node name="tiktik6" parent="." unique_id=933129042 instance=ExtResource("12_26gnb")]
 position = Vector2(-120, -2567)
-curve = SubResource("Curve2D_fjhec")
+curve = SubResource("Curve2D_k3pm5")
 
 [node name="PathFollow2D" parent="tiktik6" index="0" unique_id=1178610453]
 position = Vector2(-88, 206.7015)
@@ -465,6 +483,7 @@ progress = 1166.2986
 [editable path="hazards/SpikesCollision2"]
 [editable path="hazards/SpikesCollision3"]
 [editable path="hazards/SpikesCollision4"]
+[editable path="hazards/SpikesCollision5"]
 [editable path="tiktik"]
 [editable path="tiktik2"]
 [editable path="tiktik3"]
