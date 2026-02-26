@@ -2144,7 +2144,7 @@ rotation = 2.7969315
 texture = ExtResource("16_7aim3")
 
 [node name="ThornBig" type="Sprite2D" parent="visuals/spikes/spike1" unique_id=806186075]
-z_index = -1
+z_index = -2
 position = Vector2(1117, 1005)
 rotation = -1.1388234
 scale = Vector2(0.8, 0.8)
@@ -2904,8 +2904,8 @@ flip_v = true
 
 [node name="SideCurved2" type="Sprite2D" parent="visuals/patforms/bottom" unique_id=829793513]
 z_index = -1
-position = Vector2(1318.9999, 3760)
-rotation = -1.8226281
+position = Vector2(1318.9999, 3690)
+rotation = -2.2207508
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("22_i1u56")
 
@@ -3098,7 +3098,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="visuals/patforms/bottom/StaticBody2D2" unique_id=1984537361]
-polygon = PackedVector2Array(1173, 3706, 1245, 3563, 1249, 3416, 1277, 3344, 1411, 3255, 1601, 3329, 1611, 3432, 1670, 3528, 1895, 3474, 1959, 3686)
+polygon = PackedVector2Array(1228, 3705, 1245, 3563, 1249, 3416, 1277, 3344, 1411, 3255, 1601, 3329, 1611, 3432, 1670, 3528, 1895, 3474, 1959, 3686)
 
 [node name="top" type="Node2D" parent="visuals/patforms" unique_id=1835276640]
 

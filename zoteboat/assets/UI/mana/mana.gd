@@ -1,9 +1,10 @@
 extends Control
 
-@onready var ball: TextureRect = $ball
-
-const MANA_FULL = preload("uid://1wdgjn2qcw0l")
+@onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
 const EMPTY_SOUL = preload("uid://0fxi6j4327ie")
+const MANA_FULL = preload("uid://1wdgjn2qcw0l")
+
+var wanted_value: float = 0.0
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -15,7 +16,12 @@ func _ready() -> void:
 
 
 func _on_mana_change(new_mana) -> void:
-	if new_mana >= 33:
-		ball.texture = MANA_FULL
-	else:
-		ball.texture = EMPTY_SOUL
+	wanted_value = new_mana
+
+
+func _physics_process(delta: float) -> void:
+	texture_progress_bar.value = move_toward(
+		texture_progress_bar.value,
+		wanted_value,
+		40 * delta
+	)
