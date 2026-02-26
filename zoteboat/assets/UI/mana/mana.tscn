@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://4n2vr8ph3efl"]
+[gd_scene format=3 uid="uid://4n2vr8ph3efl"]
 
 [ext_resource type="Texture2D" uid="uid://xg2h7j002afa" path="res://assets/UI/mana/background.png" id="1_b6kif"]
 [ext_resource type="Script" uid="uid://cmode8orme4xn" path="res://assets/UI/mana/mana.gd" id="1_d87fl"]
 [ext_resource type="Texture2D" uid="uid://1wdgjn2qcw0l" path="res://assets/UI/mana/mana full.png" id="3_d87fl"]
+[ext_resource type="Texture2D" uid="uid://0fxi6j4327ie" path="res://assets/UI/mana/empty soul.png" id="3_uu27v"]
 
-[node name="Mana" type="Control"]
+[node name="Mana" type="Control" unique_id=1857812126]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,22 +17,21 @@ grow_vertical = 2
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_d87fl")
 
-[node name="background" type="TextureRect" parent="."]
+[node name="background" type="TextureRect" parent="." unique_id=2135839143]
 layout_mode = 0
 offset_right = 502.0
 offset_bottom = 200.0
 texture = ExtResource("1_b6kif")
 
-[node name="ball" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.09900001
-anchor_top = 0.26000002
-anchor_right = 0.323
-anchor_bottom = 0.81500006
-offset_left = 0.10399628
-offset_right = 0.20799255
-offset_bottom = -1.5258789e-05
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_d87fl")
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1742701984]
+layout_mode = 0
+offset_left = 49.333336
+offset_top = 52.0
+offset_right = 597.3333
+offset_bottom = 351.0
+max_value = 99.0
+value = 99.0
+fill_mode = 3
+texture_under = ExtResource("3_uu27v")
+texture_progress = ExtResource("3_d87fl")
+texture_progress_offset = Vector2(-7.45, -6.61)

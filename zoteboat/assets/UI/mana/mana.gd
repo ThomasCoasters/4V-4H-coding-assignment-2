@@ -1,9 +1,8 @@
 extends Control
 
-@onready var ball: TextureRect = $ball
-
-const MANA_FULL = preload("uid://1wdgjn2qcw0l")
+@onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
 const EMPTY_SOUL = preload("uid://0fxi6j4327ie")
+const MANA_FULL = preload("uid://1wdgjn2qcw0l")
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -15,7 +14,4 @@ func _ready() -> void:
 
 
 func _on_mana_change(new_mana) -> void:
-	if new_mana >= 33:
-		ball.texture = MANA_FULL
-	else:
-		ball.texture = EMPTY_SOUL
+	texture_progress_bar.value = new_mana
