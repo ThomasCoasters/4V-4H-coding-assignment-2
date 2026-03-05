@@ -438,7 +438,7 @@ scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_d61i2")
 animation = &"walk"
 autoplay = "he_just_standing_there__menacingly"
-frame_progress = 0.017961083
+frame_progress = 0.68227315
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=960596782]
 position = Vector2(0, 4.5)

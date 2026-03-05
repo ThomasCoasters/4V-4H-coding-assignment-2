@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://dve16728rj85g"]
+
+[ext_resource type="Script" uid="uid://gsdvbd3vk0db" path="res://maps/NPCs/ending/walter.gd" id="1_vlubc"]
+[ext_resource type="Texture2D" uid="uid://fbi2wx6evbio" path="res://assets/player/pictures/Grey Prince Zote, Winged Zoteling, Hopping Zoteling, Volatile Zoteling - atlas0 #400009.png" id="2_vlubc"]
+[ext_resource type="Texture2D" uid="uid://cgfxqd5vya7vs" path="res://maps/NPCs/Interact fleurs - atlas0 #40637.png" id="3_07rmy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdm2p"]
+atlas = ExtResource("2_vlubc")
+region = Rect2(6, 145, 326, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07rmy"]
+atlas = ExtResource("2_vlubc")
+region = Rect2(339, 145, 326, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnknx"]
+atlas = ExtResource("2_vlubc")
+region = Rect2(672, 145, 326, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfike"]
+atlas = ExtResource("2_vlubc")
+region = Rect2(1005, 145, 326, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sko0v"]
+atlas = ExtResource("2_vlubc")
+region = Rect2(1338, 145, 326, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j5p0"]
+atlas = ExtResource("2_vlubc")
+region = Rect2(1671, 145, 326, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkbci"]
+atlas = ExtResource("2_vlubc")
+region = Rect2(2004, 145, 326, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap3xn"]
+atlas = ExtResource("2_vlubc")
+region = Rect2(2337, 145, 326, 362)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iwijn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdm2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07rmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnknx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfike")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sko0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j5p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkbci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ap3xn")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ax7kt"]
+size = Vector2(276, 190)
+
+[node name="Walter" type="Node2D" unique_id=1067063007]
+script = ExtResource("1_vlubc")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=435831442]
+z_index = -1
+position = Vector2(210, 29)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_iwijn")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.003865073
+flip_h = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=671020390]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1631335430]
+position = Vector2(71, 63)
+shape = SubResource("RectangleShape2D_ax7kt")
+debug_color = Color(0.43137255, 0.47843137, 0.23529412, 0.41960785)
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1262230225]
+position = Vector2(224, -64)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_07rmy")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
