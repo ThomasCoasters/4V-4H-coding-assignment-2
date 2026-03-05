@@ -426,6 +426,7 @@ has_dash = true
 has_wall_cling = true
 has_double_jump = true
 Camera = NodePath("Camera")
+attack_damage = 50
 max_health = 1
 keep_vertical_momentum_percentage = 0.75
 keep_horizontal_momentum_percentage = 0.9
@@ -436,9 +437,8 @@ afterimage_spawn_delay = 0.12
 position = Vector2(0, -25)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_d61i2")
-animation = &"walk"
+animation = &"attack"
 autoplay = "he_just_standing_there__menacingly"
-frame_progress = 0.68227315
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=960596782]
 position = Vector2(0, 4.5)
