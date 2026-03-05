@@ -230,7 +230,7 @@ func _ready() -> void:
 	talking_noises = [zote_01, zote_02, zote_03_030084, zote_03, zote_04, zote_05]
 	sword_noises = [sword_1, sword_2, sword_3, sword_4]
 
-func setup():
+func setup(only_saved_stuff: bool = false):
 	max_health = SaveLoad.contents_to_save.max_health
 	heal_health = SaveLoad.contents_to_save.heal_health
 	
@@ -240,6 +240,9 @@ func setup():
 		has_wall_cling = SaveLoad.contents_to_save.has_wall_cling
 	if !has_double_jump:
 		has_double_jump = SaveLoad.contents_to_save.has_double_jump
+	health = max_health
+	if only_saved_stuff:
+		return
 	
 	#region timers setup
 	
@@ -253,7 +256,6 @@ func setup():
 	roar_timer.timeout.connect(_on_roar_timer_timeout)
 	add_child(roar_timer)
 	#endregion
-	health = max_health
 	
 	collision_size = $CollisionShape2D.shape.size
 
@@ -969,9 +971,8 @@ func death():
 		SaveLoad.reset_save()
 		get_tree().reload_current_scene()
 		return
+	setup(true)
 	
-	
-	health = max_health
 	player_max_health_changed.emit()
 	
 	Global.map_holder.change_2d_scene(room, location)

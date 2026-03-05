@@ -272,6 +272,13 @@ func _ready() -> void:
 	random_attack_noise = [snd_joker_anything, snd_joker_byebye, snd_joker_chaos, snd_joker_ha_0, snd_joker_ha_1, snd_joker_laugh_0, snd_joker_laugh_1, snd_joker_metamorphosis, snd_joker_oh]
 	
 	print(begin_phase)
+	if begin_phase == 1:
+		Global.Name_text.reveal_text("Jevil           The Great", 0.5)
+		
+		await get_tree().create_timer(1.5).timeout
+		
+		Global.Name_text.remove_text(0.5)
+	
 	if begin_phase == 2:
 		@warning_ignore("narrowing_conversion")
 		stats.max_health = stats.max_health * phase_2_health_percent
