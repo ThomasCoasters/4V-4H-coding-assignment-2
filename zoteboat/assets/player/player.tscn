@@ -416,6 +416,9 @@ script = ExtResource("8_8ca2v")
 expression = "jumps_amount > 0"
 metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_evyxp"]
+polygon = PackedVector2Array(-9, -25, 9, -25, 9, 35, -9, 35)
+
 [node name="Player" type="CharacterBody2D" unique_id=552078585 node_paths=PackedStringArray("Camera") groups=["player"]]
 z_index = 4
 collision_mask = 6
@@ -426,7 +429,6 @@ has_dash = true
 has_wall_cling = true
 has_double_jump = true
 Camera = NodePath("Camera")
-attack_damage = 50
 max_health = 1
 keep_vertical_momentum_percentage = 0.75
 keep_horizontal_momentum_percentage = 0.9
@@ -811,6 +813,9 @@ bus = &"SFX"
 [node name="EnemyDamage" type="AudioStreamPlayer" parent="audio/sword" unique_id=1508130536]
 stream = ExtResource("36_khrko")
 bus = &"SFX"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1696155453]
+occluder = SubResource("OccluderPolygon2D_evyxp")
 
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/jump" to="." method="_on_jump_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/falling" to="." method="_on_falling_state_entered"]

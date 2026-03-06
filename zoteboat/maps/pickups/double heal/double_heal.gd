@@ -16,6 +16,8 @@ func collect(body):
 	SaveLoad.contents_to_save.heal_health += increase_amount
 	SaveLoad._save()
 	
+	Global.dialogue.start("pob_beaten")
+	
 	body.heal_health = SaveLoad.contents_to_save.heal_health
 	
 	collected.emit(self)

@@ -9,6 +9,7 @@ class_name Player
 @export var permadeath: bool = false
 
 @export_group("cheaty stuff")
+@export_subgroup("noclip")
 @export var no_clip: bool
 @export var noclip_speed_mult: float = 1
 @export var noclip_speed_change: float = 0.5
@@ -214,6 +215,8 @@ var _afterimage_timer := 0.0
 @export_group("fairness grace period")
 @export var wallslide_delta_frames: int = 10
 var wallslide_frames: int = 0
+
+var mist_correct: int = 0
 #endregion
 
 #region setup/process

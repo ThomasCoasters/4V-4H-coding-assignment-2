@@ -2,7 +2,7 @@ extends Node2D
 
 var entered: bool = false
 
-@export var link: String = "https://youtu.be/SvMrOkqOU24"
+@export var link: String = "https://thomascoasters.github.io/zoteboat-download-site/end_game.html"
 @export var explain_talk: bool = false
 @export var explain_text: String = ""
 var visible_explain_text: bool = false
