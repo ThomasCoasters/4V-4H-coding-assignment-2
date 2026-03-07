@@ -416,8 +416,14 @@ script = ExtResource("8_8ca2v")
 expression = "jumps_amount > 0"
 metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_evyxp"]
-polygon = PackedVector2Array(-9, -25, 9, -25, 9, 35, -9, 35)
+[sub_resource type="Gradient" id="Gradient_lh05m"]
+offsets = PackedFloat32Array(0, 0.63380283)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r30oh"]
+gradient = SubResource("Gradient_lh05m")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Player" type="CharacterBody2D" unique_id=552078585 node_paths=PackedStringArray("Camera") groups=["player"]]
 z_index = 4
@@ -425,9 +431,11 @@ collision_mask = 6
 floor_max_angle = 1.5358897
 platform_floor_layers = 4278190082
 script = ExtResource("1_d2shb")
+use_cheats = true
 has_dash = true
 has_wall_cling = true
 has_double_jump = true
+has_lantern = true
 Camera = NodePath("Camera")
 max_health = 1
 keep_vertical_momentum_percentage = 0.75
@@ -814,8 +822,11 @@ bus = &"SFX"
 stream = ExtResource("36_khrko")
 bus = &"SFX"
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1696155453]
-occluder = SubResource("OccluderPolygon2D_evyxp")
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1477450508]
+enabled = false
+energy = 0.7
+texture = SubResource("GradientTexture2D_r30oh")
+texture_scale = 18.0
 
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/jump" to="." method="_on_jump_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/falling" to="." method="_on_falling_state_entered"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://0gnchjjma4n4"
+path="res://.godot/imported/The Mist.mp3-dddc864200c9986fdd0f3703e54622dd.mp3str"
+
+[deps]
+
+source_file="res://Game/audio/The Mist.mp3"
+dest_files=["res://.godot/imported/The Mist.mp3-dddc864200c9986fdd0f3703e54622dd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

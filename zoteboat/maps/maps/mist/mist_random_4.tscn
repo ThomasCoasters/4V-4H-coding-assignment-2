@@ -98,17 +98,9 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1743, -522, -1743, 593, 325, 585, 292, -587)])
 agent_radius = 50.0
 
-[sub_resource type="Gradient" id="Gradient_c44tw"]
-offsets = PackedFloat32Array(0, 0.63380283)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_cvfob"]
-gradient = SubResource("Gradient_c44tw")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [node name="MistRandom1" type="Node2D" unique_id=1874960603]
 script = ExtResource("1_c44tw")
+dark_room = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1820643946]
 scale = Vector2(2, 2)
@@ -124,7 +116,6 @@ navigation_polygon = SubResource("NavigationPolygon_ycj1n")
 position = Vector2(755, -1559.0001)
 scale = Vector2(6.5360737, 21.23558)
 new_location_group = "left"
-correct = true
 
 [node name="RandomWarpZone2" parent="." unique_id=127867302 instance=ExtResource("3_ho0k2")]
 position = Vector2(-1165, -446.00012)
@@ -172,8 +163,3 @@ offset_right = -136.0
 offset_bottom = -1579.0
 own_group = "top"
 metadata/_edit_use_anchors_ = true
-
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=256100147]
-position = Vector2(755, -1559)
-texture = SubResource("GradientTexture2D_cvfob")
-texture_scale = 12.0

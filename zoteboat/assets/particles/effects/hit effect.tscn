@@ -1,6 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://ear4rb07owa4"]
+[gd_scene format=3 uid="uid://ear4rb07owa4"]
 
 [ext_resource type="Script" uid="uid://c61ii6efcvqml" path="res://assets/particles/code/one_shot_general.gd" id="2_ysd7i"]
+
+[sub_resource type="Gradient" id="Gradient_lh05m"]
+offsets = PackedFloat32Array(0, 0.87323946, 0.99436617)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.7372549, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r30oh"]
+gradient = SubResource("Gradient_lh05m")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.84615386, 0.1923077)
 
 [sub_resource type="Gradient" id="Gradient_r66jn"]
 offsets = PackedFloat32Array(0.23278688, 0.9213115)
@@ -25,15 +35,16 @@ linear_accel_max = -37.800003
 radial_accel_min = -100.0
 radial_accel_max = 99.99999
 damping_max = 100.00001
-scale_min = 5.0
-scale_max = 7.0
+scale_min = 0.099999994
+scale_max = 0.14999999
 scale_over_velocity_max = 1000.0
 color_ramp = SubResource("GradientTexture1D_h4atg")
 collision_mode = 2
 
-[node name="HitEffect" type="GPUParticles2D"]
+[node name="HitEffect" type="GPUParticles2D" unique_id=2124604825]
 emitting = false
 amount = 50
+texture = SubResource("GradientTexture2D_r30oh")
 lifetime = 0.35000000000000003
 one_shot = true
 explosiveness = 0.8

@@ -14,9 +14,11 @@ class_name Player
 @export var noclip_speed_mult: float = 1
 @export var noclip_speed_change: float = 0.5
 @export_subgroup("ability stuff")
+@export var use_cheats: bool
 @export var has_dash: bool
 @export var has_wall_cling: bool
 @export var has_double_jump: bool
+@export var has_lantern: bool
 
 @export_group("QoL changes")
 @export_range(0.0, 1.0, 0.01) var controller_rumble_mult: float = 1.0
@@ -217,6 +219,9 @@ var _afterimage_timer := 0.0
 var wallslide_frames: int = 0
 
 var mist_correct: int = 0
+@onready var point_light_2d: PointLight2D = $PointLight2D
+
+
 #endregion
 
 #region setup/process
@@ -237,12 +242,19 @@ func setup(only_saved_stuff: bool = false):
 	max_health = SaveLoad.contents_to_save.max_health
 	heal_health = SaveLoad.contents_to_save.heal_health
 	
-	if !has_dash:
-		has_dash = SaveLoad.contents_to_save.has_dash
-	if !has_wall_cling:
-		has_wall_cling = SaveLoad.contents_to_save.has_wall_cling
-	if !has_double_jump:
-		has_double_jump = SaveLoad.contents_to_save.has_double_jump
+	if use_cheats:
+		SaveLoad.contents_to_save.has_dash = has_dash
+		SaveLoad.contents_to_save.has_wall_cling = has_wall_cling
+		SaveLoad.contents_to_save.has_double_jump = has_double_jump
+		SaveLoad.contents_to_save.has_lantern = has_lantern
+		SaveLoad._save()
+	
+	has_dash = SaveLoad.contents_to_save.has_dash
+	has_wall_cling = SaveLoad.contents_to_save.has_wall_cling
+	has_double_jump = SaveLoad.contents_to_save.has_double_jump
+	has_lantern = SaveLoad.contents_to_save.has_lantern
+	
+	
 	health = max_health
 	if only_saved_stuff:
 		return

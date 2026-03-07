@@ -8,6 +8,7 @@ var DEFAULT_SAVE: Dictionary = {
 	"has_dash": false,
 	"has_double_jump": false,
 	"has_wall_cling": false,
+	"has_lantern": false,
 	
 	"heal_health": 1,
 	

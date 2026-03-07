@@ -7,11 +7,13 @@ extends Area2D
 var warp_to: String = "none"
 @export var new_location_group : String = "none"
 
-@export var correct:bool = false
+@export var correct: bool = false
 
 func _ready() -> void:
 	possible_warping.shuffle()
 	warp_to = possible_warping[0]
+	
+	await get_tree().process_frame
 	
 	if !correct:
 		point_light_2d.enabled = false
