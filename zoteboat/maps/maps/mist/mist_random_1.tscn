@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cd21npjsi1iei" path="res://enemies/normal/squash/squash.tscn" id="14_tiy7y"]
 [ext_resource type="PackedScene" uid="uid://desufiot6ea2v" path="res://enemies/normal/peashooter/peashooter.tscn" id="15_octna"]
 [ext_resource type="PackedScene" uid="uid://e03auo7ekd6c" path="res://enemies/normal/dvd_logo/dvd_enemy.tscn" id="16_icl61"]
+[ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="17_octna"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("2_rna6g")
@@ -375,6 +376,34 @@ scale = Vector2(1, 11.480002)
 [node name="primal_aspid2" parent="." unique_id=1526319982 instance=ExtResource("11_octna")]
 position = Vector2(1253, -403)
 stats = SubResource("Resource_jayre")
+
+[node name="HazardRespawn" parent="." unique_id=631066099 instance=ExtResource("17_octna")]
+position = Vector2(-704, 16)
+scale = Vector2(9.496917, 0.82874316)
+
+[node name="HazardRespawn2" parent="." unique_id=62385205 instance=ExtResource("17_octna")]
+position = Vector2(611, -710)
+scale = Vector2(6.0969167, 0.82874316)
+
+[node name="HazardRespawn3" parent="." unique_id=1465992269 instance=ExtResource("17_octna")]
+position = Vector2(1518, -291.00003)
+scale = Vector2(3.7819118, 0.6868152)
+
+[node name="HazardRespawn4" parent="." unique_id=1370808668 instance=ExtResource("17_octna")]
+position = Vector2(624.0002, -1733.9999)
+scale = Vector2(9.261911, 0.6868152)
+
+[node name="HazardRespawn5" parent="." unique_id=705451899 instance=ExtResource("17_octna")]
+position = Vector2(-450, -1132)
+scale = Vector2(9.261911, 0.6868152)
+
+[node name="HazardRespawn6" parent="." unique_id=2072506831 instance=ExtResource("17_octna")]
+position = Vector2(1409, -1445)
+scale = Vector2(9.261911, 0.6868152)
+
+[node name="HazardRespawn7" parent="." unique_id=1344814415 instance=ExtResource("17_octna")]
+position = Vector2(416, -326)
+scale = Vector2(6.0969167, 0.82874316)
 
 [editable path="SpikesCollision"]
 [editable path="SpikesCollision3"]
