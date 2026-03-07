@@ -231,7 +231,7 @@ size = Vector2(42, 38)
 [sub_resource type="CircleShape2D" id="CircleShape2D_sqio4"]
 radius = 560.0036
 
-[node name="aspid" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent") groups=["enemy"]]
+[node name="aspid" type="CharacterBody2D" unique_id=1840179216 node_paths=PackedStringArray("nav_agent") groups=["enemy"]]
 collision_layer = 8
 collision_mask = 65538
 script = ExtResource("1_kmhe3")
@@ -239,22 +239,22 @@ stats = SubResource("Resource_4f5pw")
 retreat_speed_mult = 1.5
 nav_agent = NodePath("NavigationAgent2D")
 
-[node name="attack_and_stop" type="Area2D" parent="."]
+[node name="attack_and_stop" type="Area2D" parent="." unique_id=1057572691]
 visible = false
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_and_stop"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_and_stop" unique_id=626536485]
 shape = SubResource("CircleShape2D_kmhe3")
 
-[node name="retreat" type="Area2D" parent="."]
+[node name="retreat" type="Area2D" parent="." unique_id=242152573]
 visible = false
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="retreat"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="retreat" unique_id=435365181]
 shape = SubResource("CircleShape2D_v8ve2")
 debug_color = Color(1, 0.6313726, 0.10980392, 0.41960785)
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=2004680694]
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_g81kc")
 animation = &"turn"
@@ -262,101 +262,100 @@ autoplay = "idle"
 frame = 1
 frame_progress = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=854902635]
 shape = SubResource("RectangleShape2D_pst0k")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=2028071584]
 avoidance_enabled = true
 radius = 30.0
 
-[node name="StateChart" type="Node" parent="."]
+[node name="StateChart" type="Node" parent="." unique_id=1368106991]
 script = ExtResource("4_csx73")
 metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="ParallelState" type="Node" parent="StateChart"]
+[node name="ParallelState" type="Node" parent="StateChart" unique_id=738482150]
 script = ExtResource("5_hp1al")
 
-[node name="attack" type="Node" parent="StateChart/ParallelState"]
+[node name="attack" type="Node" parent="StateChart/ParallelState" unique_id=2028683960]
 script = ExtResource("6_hk8o1")
 initial_state = NodePath("can_not_attack")
 
-[node name="can_not_attack" type="Node" parent="StateChart/ParallelState/attack"]
+[node name="can_not_attack" type="Node" parent="StateChart/ParallelState/attack" unique_id=1602218719]
 script = ExtResource("7_7gfk1")
 
-[node name="to_can_attack" type="Node" parent="StateChart/ParallelState/attack/can_not_attack"]
+[node name="to_can_attack" type="Node" parent="StateChart/ParallelState/attack/can_not_attack" unique_id=1849810131]
 script = ExtResource("8_g81kc")
 to = NodePath("../../attacking")
 event = &"attack"
 delay_in_seconds = "0.0"
 
-[node name="attacking" type="Node" parent="StateChart/ParallelState/attack"]
+[node name="attacking" type="Node" parent="StateChart/ParallelState/attack" unique_id=193327610]
 script = ExtResource("7_7gfk1")
 
-[node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/attacking"]
+[node name="to_idle" type="Node" parent="StateChart/ParallelState/attack/attacking" unique_id=602715761]
 script = ExtResource("8_g81kc")
 to = NodePath("../../can_not_attack")
 event = &"can_not_attack"
 delay_in_seconds = "0.0"
 
-[node name="moving" type="Node" parent="StateChart/ParallelState"]
+[node name="moving" type="Node" parent="StateChart/ParallelState" unique_id=1740392520]
 script = ExtResource("6_hk8o1")
 initial_state = NodePath("stop_move")
 
-[node name="move_towards" type="Node" parent="StateChart/ParallelState/moving"]
+[node name="move_towards" type="Node" parent="StateChart/ParallelState/moving" unique_id=2081296033]
 script = ExtResource("7_7gfk1")
 
-[node name="to_stop" type="Node" parent="StateChart/ParallelState/moving/move_towards"]
+[node name="to_stop" type="Node" parent="StateChart/ParallelState/moving/move_towards" unique_id=1567831297]
 script = ExtResource("8_g81kc")
 to = NodePath("../../stop_move")
 event = &"stop_move"
 delay_in_seconds = "0.0"
 
-[node name="to_retreat" type="Node" parent="StateChart/ParallelState/moving/move_towards"]
+[node name="to_retreat" type="Node" parent="StateChart/ParallelState/moving/move_towards" unique_id=61819495]
 script = ExtResource("8_g81kc")
 to = NodePath("../../retreat")
 event = &"retreat"
 delay_in_seconds = "0.0"
 
-[node name="stop_move" type="Node" parent="StateChart/ParallelState/moving"]
+[node name="stop_move" type="Node" parent="StateChart/ParallelState/moving" unique_id=1091141556]
 script = ExtResource("7_7gfk1")
 
-[node name="to_towards" type="Node" parent="StateChart/ParallelState/moving/stop_move"]
+[node name="to_towards" type="Node" parent="StateChart/ParallelState/moving/stop_move" unique_id=1854741857]
 script = ExtResource("8_g81kc")
 to = NodePath("../../move_towards")
 event = &"move_toward"
 delay_in_seconds = "0.0"
 
-[node name="to_retreat" type="Node" parent="StateChart/ParallelState/moving/stop_move"]
+[node name="to_retreat" type="Node" parent="StateChart/ParallelState/moving/stop_move" unique_id=137193061]
 script = ExtResource("8_g81kc")
 to = NodePath("../../retreat")
 event = &"retreat"
 delay_in_seconds = "0.0"
 
-[node name="retreat" type="Node" parent="StateChart/ParallelState/moving"]
+[node name="retreat" type="Node" parent="StateChart/ParallelState/moving" unique_id=1781116874]
 script = ExtResource("7_7gfk1")
 
-[node name="to_stop" type="Node" parent="StateChart/ParallelState/moving/retreat"]
+[node name="to_stop" type="Node" parent="StateChart/ParallelState/moving/retreat" unique_id=2004693586]
 script = ExtResource("8_g81kc")
 to = NodePath("../../stop_move")
 event = &"stop_move"
 delay_in_seconds = "0.0"
 
-[node name="to_towards" type="Node" parent="StateChart/ParallelState/moving/retreat"]
+[node name="to_towards" type="Node" parent="StateChart/ParallelState/moving/retreat" unique_id=218003334]
 script = ExtResource("8_g81kc")
 to = NodePath("../../move_towards")
 event = &"move_toward"
 delay_in_seconds = "0.0"
 
-[node name="move_towards" type="Area2D" parent="."]
-visible = false
+[node name="move_towards" type="Area2D" parent="." unique_id=173000779]
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="move_towards"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="move_towards" unique_id=2031746699]
 shape = SubResource("CircleShape2D_sqio4")
 debug_color = Color(1, 0.46666667, 0.29411766, 0.41960785)
 
-[node name="attack cooldown" type="Timer" parent="."]
+[node name="attack cooldown" type="Timer" parent="." unique_id=300744407]
 wait_time = 0.6
 one_shot = true
 

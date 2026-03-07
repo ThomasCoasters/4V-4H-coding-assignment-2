@@ -970,6 +970,8 @@ func death():
 	
 	Global.map_holder.respawnable_enemies = {}
 	
+	mist_correct = 0
+	
 	SaveLoad._load()
 	var room = SaveLoad.contents_to_save.starting_room
 	var location = SaveLoad.contents_to_save.starting_location

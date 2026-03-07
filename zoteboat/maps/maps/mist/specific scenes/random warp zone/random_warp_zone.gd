@@ -10,8 +10,7 @@ var warp_to: String = "none"
 @export var correct: bool = false
 
 func _ready() -> void:
-	possible_warping.shuffle()
-	warp_to = possible_warping[0]
+	warp_to = possible_warping.pick_random()
 	
 	await get_tree().process_frame
 	
@@ -25,6 +24,11 @@ func _on_body_entered(body: Node2D) -> void:
 		warp_to = "res://maps/maps/mist/mist_start.tscn"
 		new_location_group = "spawn"
 		Global.player.mist_correct = 0
+	
+	elif Global.player.mist_correct >= 5:
+		warp_to = "res://maps/maps/mist/mist_end.tscn"
+		new_location_group = "spawn"
+		SaveLoad.contents_to_save.mist_completed = true
 	
 	else:
 		Global.player.mist_correct += 1

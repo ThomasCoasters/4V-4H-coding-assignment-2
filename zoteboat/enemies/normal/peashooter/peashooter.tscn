@@ -12,7 +12,6 @@
 [sub_resource type="Resource" id="Resource_gc51f"]
 script = ExtResource("2_gc51f")
 respawn_every_room = true
-respawn_every_save = false
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nfhj1"]
@@ -871,48 +870,48 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pst0k"]
 size = Vector2(29, 43)
 
-[node name="peashooter" type="CharacterBody2D" groups=["enemy"]]
+[node name="peashooter" type="CharacterBody2D" unique_id=38372218 groups=["enemy"]]
 collision_layer = 8
 collision_mask = 65538
 script = ExtResource("1_ggv6j")
 stats = SubResource("Resource_gc51f")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=485191658]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_2lesc")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2032427058]
 position = Vector2(-3.5, -2.5)
 shape = SubResource("RectangleShape2D_pst0k")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=632243205]
 avoidance_enabled = true
 radius = 40.0
 
-[node name="StateChart" type="Node" parent="."]
+[node name="StateChart" type="Node" parent="." unique_id=1144319986]
 script = ExtResource("5_t1d7s")
 metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="attacks" type="Node" parent="StateChart"]
+[node name="attacks" type="Node" parent="StateChart" unique_id=983166267]
 script = ExtResource("6_8qnem")
 initial_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="StateChart/attacks"]
+[node name="idle" type="Node" parent="StateChart/attacks" unique_id=1110226398]
 script = ExtResource("7_ib4yx")
 
-[node name="to_attack_start" type="Node" parent="StateChart/attacks/idle"]
+[node name="to_attack_start" type="Node" parent="StateChart/attacks/idle" unique_id=1008884136]
 script = ExtResource("8_6db3v")
 to = NodePath("../../attack")
 event = &"attack"
 delay_in_seconds = "0.0"
 
-[node name="attack" type="Node" parent="StateChart/attacks"]
+[node name="attack" type="Node" parent="StateChart/attacks" unique_id=194639567]
 script = ExtResource("7_ib4yx")
 
-[node name="to_idle" type="Node" parent="StateChart/attacks/attack"]
+[node name="to_idle" type="Node" parent="StateChart/attacks/attack" unique_id=1484938655]
 script = ExtResource("8_6db3v")
 to = NodePath("../../idle")
 event = &"stop_attack"
@@ -921,11 +920,11 @@ delay_in_seconds = "1.0
 
 "
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=2014365964]
 position = Vector2(13, -9)
 target_position = Vector2(1250, 0)
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1601014321]
 rect = Rect2(-27, -25, 49, 51)
 
 [connection signal="animation_finished" from="Sprite2D" to="." method="_on_sprite_2d_animation_finished"]

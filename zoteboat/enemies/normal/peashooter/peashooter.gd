@@ -76,7 +76,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	if $RayCast2D.is_colliding() && $VisibleOnScreenNotifier2D.is_on_screen():
+	if $RayCast2D.is_colliding() && $VisibleOnScreenNotifier2D.is_on_screen() && !Global.map_holder.is_transition:
 		$StateChart.send_event("attack")
 	
 	

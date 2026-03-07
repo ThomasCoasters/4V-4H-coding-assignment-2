@@ -1,12 +1,12 @@
-[gd_scene format=4 uid="uid://1m8m80qpihkw"]
+[gd_scene format=4 uid="uid://ltf63q3me18p"]
 
-[ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_tat8g"]
-[ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="3_17wkn"]
-[ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="4_0hbai"]
-[ext_resource type="PackedScene" uid="uid://b58l7n1jngj3h" path="res://maps/maps/mist/specific scenes/random warp zone/random_warp_zone.tscn" id="5_o8s6t"]
+[ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_gmd5t"]
+[ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="2_uhdtl"]
+[ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="3_dyc3s"]
+[ext_resource type="PackedScene" uid="uid://b58l7n1jngj3h" path="res://maps/maps/mist/specific scenes/random warp zone/random_warp_zone.tscn" id="4_ph5in"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
-texture = ExtResource("3_17wkn")
+texture = ExtResource("2_uhdtl")
 1:5/0 = 0
 1:5/0/terrain_set = 0
 1:5/0/terrain = 0
@@ -98,10 +98,9 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1743, -522, -1743, 593, 325, 585, 292, -587)])
 agent_radius = 50.0
 
-[node name="MistStart" type="Node2D" unique_id=1874960603]
-script = ExtResource("1_tat8g")
+[node name="MistEnd" type="Node2D" unique_id=1874960603]
+script = ExtResource("1_gmd5t")
 audio_path = "res://Game/audio/The Mist.mp3"
-dark_room = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1820643946]
 scale = Vector2(2, 2)
@@ -113,7 +112,7 @@ visible = false
 position = Vector2(1094, 5499)
 navigation_polygon = SubResource("NavigationPolygon_ycj1n")
 
-[node name="SpawnLocation5" parent="." unique_id=1089591050 instance=ExtResource("4_0hbai")]
+[node name="SpawnLocation5" parent="." unique_id=1089591050 instance=ExtResource("3_dyc3s")]
 offset_left = -19.0
 offset_top = -902.0
 offset_right = 11.0
@@ -121,7 +120,7 @@ offset_bottom = -872.0
 own_group = "spawn"
 metadata/_edit_use_anchors_ = true
 
-[node name="RandomWarpZone" parent="." unique_id=1268084640 instance=ExtResource("5_o8s6t")]
+[node name="RandomWarpZone" parent="." unique_id=1268084640 instance=ExtResource("4_ph5in")]
 position = Vector2(641, -980.00006)
 scale = Vector2(6.5360737, 21.23558)
 new_location_group = "left"

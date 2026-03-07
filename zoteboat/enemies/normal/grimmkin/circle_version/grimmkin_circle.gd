@@ -217,7 +217,7 @@ func _on_health_depleted():
 
 #region behaviour
 func _on_move_towards_body_entered(body: Node2D) -> void:
-	if !body.is_in_group("player"):
+	if !body.is_in_group("player") || Global.map_holder.is_transition:
 		return
 	
 	state_chart.send_event("active")

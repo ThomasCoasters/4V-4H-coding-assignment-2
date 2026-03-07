@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/attack of the killer wasp.mp3-7fcf312ca9ed5f5
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

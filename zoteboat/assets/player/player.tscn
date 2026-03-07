@@ -434,8 +434,6 @@ script = ExtResource("1_d2shb")
 use_cheats = true
 has_dash = true
 has_wall_cling = true
-has_double_jump = true
-has_lantern = true
 Camera = NodePath("Camera")
 max_health = 1
 keep_vertical_momentum_percentage = 0.75
@@ -826,7 +824,7 @@ bus = &"SFX"
 enabled = false
 energy = 0.7
 texture = SubResource("GradientTexture2D_r30oh")
-texture_scale = 18.0
+texture_scale = 19.0
 
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/jump" to="." method="_on_jump_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/Jumping/falling" to="." method="_on_falling_state_entered"]

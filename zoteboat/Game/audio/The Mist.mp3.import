@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/The Mist.mp3-dddc864200c9986fdd0f3703e54622dd
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

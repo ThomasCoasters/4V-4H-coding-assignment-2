@@ -7,6 +7,7 @@
 [sub_resource type="Resource" id="Resource_llvj5"]
 script = ExtResource("2_j84qb")
 max_health = 7
+respawn_every_room = true
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6w0a2"]

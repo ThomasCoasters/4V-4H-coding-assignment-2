@@ -23,7 +23,7 @@ shape = SubResource("RectangleShape2D_h8t7x")
 debug_color = Color(0, 0.53333336, 1, 0.41960785)
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=949343260]
-color = Color(0.9411765, 1, 1, 1)
+color = Color(1, 0.43529412, 1, 1)
 energy = 0.8
 texture = SubResource("GradientTexture2D_r30oh")
 

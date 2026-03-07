@@ -34,7 +34,10 @@ func _ready() -> void:
 		add_child(darkness)
 		
 		if Global.player.has_lantern:
-			Global.player.point_light_2d.enabled = true
+			Global.player.point_light_2d.texture_scale = 19.0
+		else:
+			Global.player.point_light_2d.texture_scale = 3.0
+		Global.player.point_light_2d.enabled = true
 	
 	if !dark_room && Global.player.has_lantern:
 		Global.player.point_light_2d.enabled = false
