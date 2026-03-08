@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cwt5lsb54x3df" path="res://maps/maps/P.o.B/P.o.B specific/visuals/wall/wall_bottom.png" id="16_umvfy"]
 [ext_resource type="Texture2D" uid="uid://ceshetvbee4jv" path="res://maps/maps/P.o.B/P.o.B specific/visuals/thorns/thorn_big.png" id="17_qynyy"]
 [ext_resource type="Texture2D" uid="uid://63pi7re58a8i" path="res://maps/maps/P.o.B/P.o.B specific/visuals/thorns/thorn_small.png" id="18_vkh0l"]
+[ext_resource type="PackedScene" uid="uid://ci75uct7ky0sj" path="res://maps/maps/P.o.B/P.o.B specific/lantern/P.o.B_lantern.tscn" id="22_bxb2i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("4_bkamn")
@@ -207,6 +208,7 @@ script = ExtResource("1_ejltl")
 audio_path = "res://Game/audio/P.o.B.mp3"
 area_text_show = true
 area_text = "Path of Bah"
+dark_room = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=564415215]
 modulate = Color(0, 0, 0, 1)
@@ -578,5 +580,17 @@ visible = false
 position = Vector2(1314, 369.99997)
 scale = Vector2(41.759995, 44.120003)
 changed_stuff = Array[ExtResource("10_2cmb7")]([SubResource("Resource_bwoi4")])
+
+[node name="Lantern" parent="." unique_id=1398118702 instance=ExtResource("22_bxb2i")]
+position = Vector2(2625, 565)
+scale = Vector2(1.3, 1.3)
+
+[node name="Lantern2" parent="." unique_id=1806413293 instance=ExtResource("22_bxb2i")]
+position = Vector2(1823.0001, 596)
+scale = Vector2(1.3, 1.3)
+
+[node name="Lantern3" parent="." unique_id=1300997880 instance=ExtResource("22_bxb2i")]
+position = Vector2(852.00006, 214.00002)
+scale = Vector2(1.3, 1.3)
 
 [editable path="spikes/SpikesCollision"]

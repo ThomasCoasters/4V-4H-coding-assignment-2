@@ -2,6 +2,16 @@
 
 [ext_resource type="Script" uid="uid://byewreajbnuj6" path="res://assets/particles/code/heal_effect.gd" id="1_cxr0u"]
 
+[sub_resource type="Gradient" id="Gradient_lh05m"]
+offsets = PackedFloat32Array(0, 0.87323946, 0.99436617)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.7372549, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r30oh"]
+gradient = SubResource("Gradient_lh05m")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.84615386, 0.1923077)
+
 [sub_resource type="Gradient" id="Gradient_r66jn"]
 offsets = PackedFloat32Array(0.23278688, 0.9213115)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
@@ -29,8 +39,8 @@ linear_accel_max = 96.06999
 radial_accel_min = -100.0
 radial_accel_max = 99.99999
 damping_max = 100.00001
-scale_min = 5.0
-scale_max = 7.0
+scale_min = 0.099999994
+scale_max = 0.19999999
 scale_over_velocity_max = 1000.0
 color = Color(0.81960785, 1, 1, 0.84313726)
 color_ramp = SubResource("GradientTexture1D_h4atg")
@@ -42,6 +52,7 @@ collision_mode = 2
 z_index = 5
 emitting = false
 amount = 100
+texture = SubResource("GradientTexture2D_r30oh")
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0

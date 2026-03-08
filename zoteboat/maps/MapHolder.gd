@@ -21,6 +21,7 @@ var is_transition: bool = false
 
 var audio_path: String
 
+var last_location: String
 
 
 func _ready() -> void:
@@ -73,6 +74,8 @@ func _change_2d_scene_internal(new_scene, new_location_group, delete, keep_runni
 	player.visible = true
 	player.ui_holder.visible = true
 	player.global_position = Vector2(-100000, -100000)
+	
+	last_location = new_location_group
 	
 	if player.death_shell != null && player.death_shell.is_inside_tree():
 		player.death_shell.queue_free()

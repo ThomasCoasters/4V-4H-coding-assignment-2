@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func start(dialogue_name: String = "none"):
-	if !Global.player.is_on_floor() && !(dialogue_name == "dash_unlock" || dialogue_name == "walljump_unlock" || dialogue_name == "doublejump_unlock"):
+	if !Global.player.is_on_floor() && !(dialogue_name == "dash_unlock" || dialogue_name == "walljump_unlock" || dialogue_name == "doublejump_unlock" || dialogue_name == "pob_beaten" || dialogue_name == "lantern_unlock"):
 		return
 	
 	Global.player.can_move = false

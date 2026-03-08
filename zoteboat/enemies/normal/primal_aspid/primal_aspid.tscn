@@ -273,7 +273,6 @@ event = &"move_toward"
 delay_in_seconds = "0.0"
 
 [node name="move_towards" type="Area2D" parent="." unique_id=1231447191]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="move_towards" unique_id=2096637928]

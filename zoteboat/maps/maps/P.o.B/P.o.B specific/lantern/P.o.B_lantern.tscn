@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ci75uct7ky0sj"]
+
+[ext_resource type="Texture2D" uid="uid://bxusewx4w2oyj" path="res://maps/maps/P.o.B/P.o.B specific/lantern/wp_globe_upright0000.png" id="1_u5kdr"]
+
+[sub_resource type="Gradient" id="Gradient_lh05m"]
+offsets = PackedFloat32Array(0, 0.63380283)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u5kdr"]
+gradient = SubResource("Gradient_lh05m")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Lantern" type="Node2D" unique_id=1398118702]
+
+[node name="WpGlobeUpright0000" type="Sprite2D" parent="." unique_id=1080417865]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_u5kdr")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1299679493]
+position = Vector2(0, -25)
+texture = SubResource("GradientTexture2D_u5kdr")
+texture_scale = 10.0

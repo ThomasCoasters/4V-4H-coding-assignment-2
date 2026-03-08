@@ -4,21 +4,20 @@ const save_location = "user://ZoteBoatSave.json"
 
 var DEFAULT_SAVE: Dictionary = {
 	"max_health": 5,
-	#"max_health": 1,
+	"heal_health": 1,
 	
 	"has_dash": false,
 	"has_double_jump": false,
 	"has_wall_cling": false,
+	"has_lantern": false,
 	
-	"heal_health": 1,
+	"mist_completed": false,
 	
-	"starting_room": "res://maps/maps/pre-dash/kingspass_for_losers.tscn",
-	#"starting_room": "res://maps/maps/Circus/Circus_1.tscn",
-	#"starting_room": "res://maps/maps/P.o.B/room_5.tscn",
+	#"starting_room": "res://maps/maps/pre-dash/kingspass_for_losers.tscn",
+	"starting_room": "res://maps/maps/mist/mist_start.tscn",
 	
-	"starting_location": "start_1,-1",
-	#"starting_location": "bench",
-	#"starting_location": "top_P.o.B",
+	#"starting_location": "start_1,-1",
+	"starting_location": "spawn",
 	
 	"rumble": 2,
 	"screen_shake": 2,

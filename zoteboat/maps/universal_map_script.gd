@@ -13,8 +13,35 @@ const ZOTE_SHELL = preload("uid://bfxn25erf4tm3")
 @export var area_text_show: bool = false
 @export var area_text: String
 
+@export var dark_room: bool = false
+
+
+var bg: Sprite2D = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if dark_room:
+		bg = Sprite2D.new()
+		bg.texture = preload("res://Game/MISC/black_pixel.png")
+		bg.scale = Vector2(10000, 10000) # very large
+		bg.z_index = -1000
+		add_child(bg)
+		
+		bg.top_level = true
+		
+		var darkness: DirectionalLight2D = DirectionalLight2D.new()
+		darkness.blend_mode = Light2D.BLEND_MODE_SUB
+		add_child(darkness)
+		
+		if Global.player.has_lantern:
+			Global.player.point_light_2d.texture_scale = 19.0
+		else:
+			Global.player.point_light_2d.texture_scale = 3.0
+		Global.player.point_light_2d.enabled = true
+	
+	if !dark_room && Global.player.has_lantern:
+		Global.player.point_light_2d.enabled = false
+	
 	Global.map = self
 	
 	var map_path = scene_file_path
@@ -81,6 +108,9 @@ func _ready() -> void:
 		Global.Name_text.remove_text(0.25)
 
 
+func _process(_delta):
+	if dark_room && bg:
+		bg.global_position = Global.player.Camera.global_position
 
 
 func _on_enemy_killed(enemy: Node2D):

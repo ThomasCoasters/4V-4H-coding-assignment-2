@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ccgjvsy6qh2cs"]
+
+[ext_resource type="Script" uid="uid://bpbng4hko37ew" path="res://maps/maps/mist/specific scenes/random holder/random_warp_randomiser.gd" id="1_a2cn8"]
+
+[node name="RandomWarpRandomiser" type="Node2D" unique_id=1714427836]
+script = ExtResource("1_a2cn8")

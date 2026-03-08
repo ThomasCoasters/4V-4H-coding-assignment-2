@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b58l7n1jngj3h"]
+
+[ext_resource type="Script" uid="uid://b8kkrau6oubo7" path="res://maps/maps/mist/specific scenes/random warp zone/random_warp_zone.gd" id="1_r30oh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8t7x"]
+
+[sub_resource type="Gradient" id="Gradient_lh05m"]
+offsets = PackedFloat32Array(0, 0.63380283)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r30oh"]
+gradient = SubResource("Gradient_lh05m")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="RandomWarpZone" type="Area2D" unique_id=1268084640 groups=["map_transitions"]]
+collision_layer = 4
+script = ExtResource("1_r30oh")
+possible_warping = Array[String](["res://maps/maps/mist/mist_random_1.tscn", "res://maps/maps/mist/mist_random_2.tscn"])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=616393642]
+shape = SubResource("RectangleShape2D_h8t7x")
+debug_color = Color(0, 0.53333336, 1, 0.41960785)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=949343260]
+color = Color(1, 0.43529412, 1, 1)
+energy = 0.8
+texture = SubResource("GradientTexture2D_r30oh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
