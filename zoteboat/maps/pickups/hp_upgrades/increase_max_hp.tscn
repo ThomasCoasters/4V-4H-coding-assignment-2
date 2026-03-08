@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wur3k"]
 radius = 18.0
-height = 56.0
+height = 70.0
 
 [node name="increase_max_hp" type="Area2D" unique_id=1162401991 groups=["collectable"]]
 script = ExtResource("1_fjlbp")

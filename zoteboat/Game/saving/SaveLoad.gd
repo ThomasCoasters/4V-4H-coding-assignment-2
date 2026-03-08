@@ -5,6 +5,7 @@ const save_location = "user://ZoteBoatSave.json"
 var DEFAULT_SAVE: Dictionary = {
 	"max_health": 5,
 	"heal_health": 1,
+	"damage": 5,
 	
 	"has_dash": false,
 	"has_double_jump": false,
