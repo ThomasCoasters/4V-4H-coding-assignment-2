@@ -13,11 +13,11 @@ var DEFAULT_SAVE: Dictionary = {
 	
 	"mist_completed": false,
 	
-	"starting_room": "res://maps/maps/pre-dash/kingspass_for_losers.tscn",
-	#"starting_room": "res://maps/maps/mist/mist_start.tscn",
+	#"starting_room": "res://maps/maps/pre-dash/kingspass_for_losers.tscn",
+	"starting_room": "res://maps/maps/mist/mist_start.tscn",
 	
-	"starting_location": "start_1,-1",
-	#"starting_location": "spawn",
+	#"starting_location": "start_1,-1",
+	"starting_location": "spawn",
 	
 	"rumble": 2,
 	"screen_shake": 2,

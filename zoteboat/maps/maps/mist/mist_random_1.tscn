@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://desufiot6ea2v" path="res://enemies/normal/peashooter/peashooter.tscn" id="15_octna"]
 [ext_resource type="PackedScene" uid="uid://e03auo7ekd6c" path="res://enemies/normal/dvd_logo/dvd_enemy.tscn" id="16_icl61"]
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="17_octna"]
+[ext_resource type="Texture2D" uid="uid://ceshetvbee4jv" path="res://maps/maps/P.o.B/P.o.B specific/visuals/thorns/thorn_big.png" id="18_7xsbn"]
+[ext_resource type="Texture2D" uid="uid://63pi7re58a8i" path="res://maps/maps/P.o.B/P.o.B specific/visuals/thorns/thorn_small.png" id="19_1bfu7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("2_rna6g")
@@ -404,6 +406,98 @@ scale = Vector2(9.261911, 0.6868152)
 [node name="HazardRespawn7" parent="." unique_id=1344814415 instance=ExtResource("17_octna")]
 position = Vector2(416, -326)
 scale = Vector2(6.0969167, 0.82874316)
+
+[node name="Node" type="Node2D" parent="." unique_id=1363456544]
+z_index = -1
+
+[node name="ThornBig" type="Sprite2D" parent="Node" unique_id=1658034066]
+position = Vector2(-1185, -953.99994)
+rotation = 1.7066388
+texture = ExtResource("18_7xsbn")
+
+[node name="ThornSmall" type="Sprite2D" parent="Node" unique_id=434302952]
+position = Vector2(-1134, -740)
+rotation = 1.518038
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("19_1bfu7")
+
+[node name="ThornSmall2" type="Sprite2D" parent="Node" unique_id=485182201]
+position = Vector2(-1174, -1208.9999)
+rotation = 2.8468153
+texture = ExtResource("19_1bfu7")
+
+[node name="ThornSmall3" type="Sprite2D" parent="Node" unique_id=304167059]
+position = Vector2(-1188.9999, -1358)
+rotation = 1.820999
+texture = ExtResource("19_1bfu7")
+
+[node name="ThornBig2" type="Sprite2D" parent="Node" unique_id=790360644]
+position = Vector2(-1135, -1541)
+rotation = 1.7049459
+texture = ExtResource("18_7xsbn")
+
+[node name="ThornBig3" type="Sprite2D" parent="Node" unique_id=227004336]
+position = Vector2(-1194, -1744.0001)
+rotation = 2.1702814
+texture = ExtResource("18_7xsbn")
+
+[node name="ThornSmall4" type="Sprite2D" parent="Node" unique_id=889777268]
+position = Vector2(-1156, -1964)
+rotation = -3.1062882
+texture = ExtResource("19_1bfu7")
+
+[node name="ThornSmall5" type="Sprite2D" parent="Node" unique_id=476823827]
+position = Vector2(2077, 200.00002)
+rotation = -1.5607458
+texture = ExtResource("19_1bfu7")
+
+[node name="ThornBig4" type="Sprite2D" parent="Node" unique_id=535215607]
+position = Vector2(2172, 394.99997)
+rotation = -1.3671725
+texture = ExtResource("18_7xsbn")
+
+[node name="ThornSmall8" type="Sprite2D" parent="Node" unique_id=1187164219]
+position = Vector2(2179, -1173)
+texture = ExtResource("19_1bfu7")
+
+[node name="ThornSmall6" type="Sprite2D" parent="Node" unique_id=96699659]
+position = Vector2(2149, -198)
+texture = ExtResource("19_1bfu7")
+
+[node name="ThornBig5" type="Sprite2D" parent="Node" unique_id=1067483980]
+position = Vector2(2163.0002, -453.00003)
+rotation = -1.466587
+texture = ExtResource("18_7xsbn")
+
+[node name="ThornBig6" type="Sprite2D" parent="Node" unique_id=1274489375]
+position = Vector2(2155.9998, -939.99994)
+rotation = 1.6208125
+texture = ExtResource("18_7xsbn")
+flip_v = true
+
+[node name="ThornSmall7" type="Sprite2D" parent="Node" unique_id=303205651]
+position = Vector2(2181, -671)
+rotation = -0.88050634
+texture = ExtResource("19_1bfu7")
+
+[node name="ThornSmall9" type="Sprite2D" parent="Node" unique_id=310690880]
+position = Vector2(2093.0002, -1348)
+rotation = -1.8788038
+texture = ExtResource("19_1bfu7")
+
+[node name="ThornSmall10" type="Sprite2D" parent="Node" unique_id=1528397251]
+position = Vector2(2150, -1287)
+rotation = -1.2828647
+texture = ExtResource("19_1bfu7")
+
+[node name="ThornSmall11" type="Sprite2D" parent="Node" unique_id=853827966]
+position = Vector2(2139, -1696)
+texture = ExtResource("19_1bfu7")
+
+[node name="ThornBig7" type="Sprite2D" parent="Node" unique_id=1181980857]
+position = Vector2(2176.0002, -1926.0001)
+rotation = -1.5887821
+texture = ExtResource("18_7xsbn")
 
 [editable path="SpikesCollision"]
 [editable path="SpikesCollision3"]
