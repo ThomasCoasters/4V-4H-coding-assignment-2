@@ -113,12 +113,6 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1755, -2192, -1701, 461, 1716, 486, 1645, -2171)])
 agent_radius = 50.0
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ycj1n"]
-vertices = PackedVector2Array(-1624, 403, -1684, 403, -1684, 247, -1624, 247, -1240, -269, -1268, -269, -1268, -297, -1240, -297, -116, 311, 168, 247, 265.46875, 247, 269.85156, 403, -152, -109, -152, -45, -180, -73, -180, -237, -216, -45, -440, -73, -632, 403, -408, 311, -500, 279, -660, 403, -884, 311, -664, 279, -632, 538.7031, -660, 538.7969, -1492, 403, -1336, 311, -1492, 247, -1460, 247, -1336, 147, -1428, 215, -376, -425, -216, -425, -216, -393, -440, -237, -468, -265, -152, -393, -152, -361, -88, -361, -88, -329, -56, -329, -56, -297, -24, -297, -24, -233, 8, -233, 8, -169, 40, -169, 40, -109, 76, 183, 76, 119, 136, 119, 136, 215, 168, 215, -88, 183, -116, 147, -88, 119, -216, 119, -372, 147, -372, -13, -824, -13, -824, 151, -728, 151, -728, 215, -664, 215, -500, 183, -408, 183, -884, 115, -948, -13, -948, 115, -1112, -13, -1112, 83, -1176, 83, -1240, -41, -1304, -105, -1176, 147, -1396, 119, -1364, -41, -1332, -105, -1460, 215, -1428, 119, -1396, -41, -1364, -105, -1332, -169, -1304, -169, -1240, -105, -1076, -41, -1076, -105, -788, -105, -788, -265, -760, -265, -760, -233, -696, -233, -696, -201, -532, -201, -532, -265, -824, -429, -824, -269, -1012, -269, -1012, -333, -916, -425, -1204, -333, -1204, -361, -1140, -361, -1140, -393, -1076, -393, -1076, -425, -916, -457, -376, -457, -468, -429)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(14, 13, 16, 17), PackedInt32Array(8, 11, 18, 19), PackedInt32Array(20, 19, 18, 21, 22, 23), PackedInt32Array(24, 25, 21, 18), PackedInt32Array(22, 21, 26, 27), PackedInt32Array(27, 26, 28, 29), PackedInt32Array(30, 27, 29, 31), PackedInt32Array(32, 33, 34, 35, 36), PackedInt32Array(35, 34, 37, 38, 15), PackedInt32Array(38, 39, 40, 15), PackedInt32Array(40, 41, 42, 15), PackedInt32Array(42, 43, 44, 15), PackedInt32Array(44, 45, 46), PackedInt32Array(46, 47, 48, 12), PackedInt32Array(46, 12, 15, 44), PackedInt32Array(49, 50, 51, 52), PackedInt32Array(52, 53, 9, 8), PackedInt32Array(49, 52, 8, 54), PackedInt32Array(54, 8, 55, 56), PackedInt32Array(57, 56, 55, 58), PackedInt32Array(57, 58, 59, 16), PackedInt32Array(17, 16, 59, 60), PackedInt32Array(61, 62, 63), PackedInt32Array(63, 64, 23, 22), PackedInt32Array(20, 65, 66, 19), PackedInt32Array(63, 22, 67, 61), PackedInt32Array(60, 61, 67, 68), PackedInt32Array(67, 69, 68), PackedInt32Array(70, 71, 72, 73), PackedInt32Array(74, 73, 72, 75, 30, 76, 77, 78), PackedInt32Array(29, 79, 31), PackedInt32Array(30, 31, 80, 76), PackedInt32Array(76, 81, 77), PackedInt32Array(77, 82, 78), PackedInt32Array(78, 83, 84, 74), PackedInt32Array(74, 85, 73), PackedInt32Array(86, 87, 88, 60, 68), PackedInt32Array(88, 89, 90, 91), PackedInt32Array(91, 92, 93, 88), PackedInt32Array(94, 95, 36, 35), PackedInt32Array(96, 97, 98, 99, 100), PackedInt32Array(99, 101, 102, 103), PackedInt32Array(103, 104, 105, 99), PackedInt32Array(105, 106, 100, 99), PackedInt32Array(96, 100, 107, 108), PackedInt32Array(109, 96, 108), PackedInt32Array(109, 108, 32, 36), PackedInt32Array(35, 17, 60, 94), PackedInt32Array(93, 94, 60, 88), PackedInt32Array(86, 68, 70, 73)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1743, -522, -1743, 593, 325, 585, 292, -587)])
-agent_radius = 50.0
-
 [sub_resource type="Resource" id="Resource_1bfu7"]
 script = ExtResource("8_e70jn")
 max_health = 15
@@ -169,11 +163,6 @@ tile_set = SubResource("TileSet_7r8rt")
 visible = false
 position = Vector2(607, 129)
 navigation_polygon = SubResource("NavigationPolygon_tiy7y")
-
-[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." unique_id=1783895728]
-visible = false
-position = Vector2(1094, 5499)
-navigation_polygon = SubResource("NavigationPolygon_ycj1n")
 
 [node name="RandomWarpZone" parent="." unique_id=1268084640 instance=ExtResource("3_xctd4")]
 position = Vector2(2261, -1.0000019)

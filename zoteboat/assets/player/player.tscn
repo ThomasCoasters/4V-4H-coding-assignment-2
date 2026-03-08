@@ -437,7 +437,6 @@ has_wall_cling = true
 has_double_jump = true
 has_lantern = true
 Camera = NodePath("Camera")
-max_health = 1
 keep_vertical_momentum_percentage = 0.75
 keep_horizontal_momentum_percentage = 0.9
 afterimage_scene = ExtResource("2_evyxp")
