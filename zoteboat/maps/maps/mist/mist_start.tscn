@@ -101,6 +101,8 @@ agent_radius = 50.0
 [node name="MistStart" type="Node2D" unique_id=1874960603]
 script = ExtResource("1_tat8g")
 audio_path = "res://Game/audio/The Mist.mp3"
+area_text_show = true
+area_text = "The mist"
 dark_room = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1820643946]
