@@ -239,20 +239,23 @@ func _ready() -> void:
 	sword_noises = [sword_1, sword_2, sword_3, sword_4]
 
 func setup(only_saved_stuff: bool = false):
-	max_health = SaveLoad.contents_to_save.max_health
-	heal_health = SaveLoad.contents_to_save.heal_health
-	
 	if use_cheats:
 		SaveLoad.contents_to_save.has_dash = has_dash
 		SaveLoad.contents_to_save.has_wall_cling = has_wall_cling
 		SaveLoad.contents_to_save.has_double_jump = has_double_jump
 		SaveLoad.contents_to_save.has_lantern = has_lantern
+		SaveLoad.contents_to_save.max_health = max_health
+		SaveLoad.contents_to_save.heal_health = heal_health
+		SaveLoad.contents_to_save.damage = attack_damage
 		SaveLoad._save()
 	
 	has_dash = SaveLoad.contents_to_save.has_dash
 	has_wall_cling = SaveLoad.contents_to_save.has_wall_cling
 	has_double_jump = SaveLoad.contents_to_save.has_double_jump
 	has_lantern = SaveLoad.contents_to_save.has_lantern
+	max_health = SaveLoad.contents_to_save.max_health
+	heal_health = SaveLoad.contents_to_save.heal_health
+	attack_damage = SaveLoad.contents_to_save.damage
 	
 	
 	health = max_health

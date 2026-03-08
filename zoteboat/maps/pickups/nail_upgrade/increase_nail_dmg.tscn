@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://curcrv72u4j4f"]
+
+[ext_resource type="Script" uid="uid://dg8nxaps6utpa" path="res://maps/pickups/nail_upgrade/increase_nail_dmg.gd" id="1_7dw0v"]
+[ext_resource type="Texture2D" uid="uid://crxgyirtnlb76" path="res://assets/player/attacks/pogo/nail_sprite.png" id="2_kukt3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wur3k"]
+radius = 18.0
+height = 70.0
+
+[node name="Increase_Nail_Dmg" type="Area2D" unique_id=1162401991 groups=["collectable"]]
+script = ExtResource("1_7dw0v")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=432947211]
+texture = ExtResource("2_kukt3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=661593346]
+shape = SubResource("CapsuleShape2D_wur3k")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
