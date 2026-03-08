@@ -357,7 +357,7 @@ scale = Vector2(11.980855, 5.0205593)
 new_location_group = "bottom"
 
 [node name="RandomWarpZone4" parent="." unique_id=156524770 instance=ExtResource("3_cb2hu")]
-position = Vector2(2812, 423)
+position = Vector2(2811, 439)
 scale = Vector2(11.980855, 5.0205593)
 new_location_group = "top"
 
