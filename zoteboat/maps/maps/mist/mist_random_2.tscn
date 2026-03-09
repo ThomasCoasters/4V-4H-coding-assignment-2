@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://desufiot6ea2v" path="res://enemies/normal/peashooter/peashooter.tscn" id="11_bxdhh"]
 [ext_resource type="PackedScene" uid="uid://cd21npjsi1iei" path="res://enemies/normal/squash/squash.tscn" id="12_6m225"]
 [ext_resource type="PackedScene" uid="uid://pgyl4bclok41" path="res://enemies/normal/crawlid/crawlid.tscn" id="13_f8aif"]
+[ext_resource type="PackedScene" uid="uid://ci75uct7ky0sj" path="res://maps/maps/P.o.B/P.o.B specific/lantern/P.o.B_lantern.tscn" id="14_gkd50"]
 [ext_resource type="PackedScene" uid="uid://e03auo7ekd6c" path="res://enemies/normal/dvd_logo/dvd_enemy.tscn" id="14_xiplg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
@@ -187,9 +188,10 @@ offset_bottom = -1548.0
 own_group = "top"
 metadata/_edit_use_anchors_ = true
 
-[node name="RandomWarpRandomiser" parent="." unique_id=1714427836 node_paths=PackedStringArray("warp_zones") instance=ExtResource("5_ekh5f")]
+[node name="RandomWarpRandomiser" parent="." unique_id=1714427836 node_paths=PackedStringArray("warp_zones", "lanterns") instance=ExtResource("5_ekh5f")]
 position = Vector2(-20, 46)
 warp_zones = [NodePath("../RandomWarpZone"), NodePath("../RandomWarpZone3"), NodePath("../RandomWarpZone4")]
+lanterns = [NodePath("../Lantern"), NodePath("../Lantern2")]
 
 [node name="ENEMYwall" parent="." unique_id=777792070 instance=ExtResource("8_ucmfi")]
 position = Vector2(114, -1361)
@@ -272,3 +274,13 @@ angle = 321.9
 [node name="DvdEnemy10" parent="." unique_id=429542732 instance=ExtResource("14_xiplg")]
 position = Vector2(-697, -1335)
 angle = 36.3
+
+[node name="Lantern" parent="." unique_id=534439044 instance=ExtResource("14_gkd50")]
+z_index = -1
+position = Vector2(-688, -780)
+release_lumafly = true
+
+[node name="Lantern2" parent="." unique_id=223635707 instance=ExtResource("14_gkd50")]
+z_index = -1
+position = Vector2(-258, 115)
+release_lumafly = true

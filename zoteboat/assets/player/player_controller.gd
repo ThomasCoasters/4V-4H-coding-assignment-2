@@ -773,6 +773,7 @@ func start_UP_ATTACK():
 	
 	attack.add_to_group("attacks")
 	attack.body_entered.connect(_on_attack_entered)
+	attack.area_entered.connect(_on_attack_entered)
 	
 	self.add_child(attack)
 	
@@ -796,6 +797,7 @@ func start_DOWN_ATTACK():
 	
 	attack.add_to_group("attacks")
 	attack.body_entered.connect(_on_attack_entered)
+	attack.area_entered.connect(_on_attack_entered)
 	
 	Global.map_holder.add_child(attack)
 	
@@ -821,6 +823,7 @@ func start_NORMAL_ATTACK():
 	
 	attack.add_to_group("attacks")
 	attack.body_entered.connect(_on_attack_entered)
+	attack.area_entered.connect(_on_attack_entered)
 	
 	self.add_child(attack)
 	play_anim("attack", ANIM_PRIORITY.ATTACK)
@@ -844,7 +847,11 @@ func _on_pogo_returned(play_sound: bool = true):
 
 
 func _on_attack_entered(body: Node2D):
-	if !body.is_in_group("enemy") || body.is_in_group("invincible") || body.is_in_group("deactive"):
+	if body.is_in_group("breakable_object"):
+		body.break_object()
+		return
+	
+	if !(body.is_in_group("enemy")) || body.is_in_group("invincible") || body.is_in_group("deactive"):
 		return
 	
 	body.i_frames(ATTACK_LINGER)

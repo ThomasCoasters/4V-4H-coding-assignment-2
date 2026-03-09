@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://dcxottdbm8yu1" path="res://maps/maps/P.o.B/P.o.B specific/visuals/floor/floor_small.png" id="26_br20x"]
 [ext_resource type="Texture2D" uid="uid://vlf2edcekigi" path="res://maps/maps/P.o.B/P.o.B specific/visuals/cap/cap_short_top.png" id="27_70u0b"]
 [ext_resource type="Texture2D" uid="uid://1opwasb601g6" path="res://maps/maps/P.o.B/P.o.B specific/visuals/cap/floor_to_vertical.png" id="28_jq3hp"]
+[ext_resource type="PackedScene" uid="uid://ci75uct7ky0sj" path="res://maps/maps/P.o.B/P.o.B specific/lantern/P.o.B_lantern.tscn" id="29_70u0b"]
 
 [sub_resource type="Resource" id="Resource_bwoi4"]
 script = ExtResource("10_0p8nv")
@@ -124,6 +125,7 @@ sources/0 = SubResource("TileSetAtlasSource_2irex")
 
 [node name="Room1" type="Node2D" unique_id=136216618]
 script = ExtResource("1_fmrpm")
+dark_room = true
 
 [node name="change_stuff" parent="." unique_id=111750805 instance=ExtResource("9_iedhh")]
 visible = false
@@ -599,5 +601,25 @@ position = Vector2(889.99994, 617.85)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("27_70u0b")
 flip_h = true
+
+[node name="Lantern" parent="." unique_id=1227318835 node_paths=PackedStringArray("lumafly_end_zone") instance=ExtResource("29_70u0b")]
+position = Vector2(3161, 594)
+release_lumafly = true
+lumafly_end_zone = NodePath("../WarpZone4")
+
+[node name="Lantern3" parent="." unique_id=1006649409 node_paths=PackedStringArray("lumafly_end_zone") instance=ExtResource("29_70u0b")]
+position = Vector2(1763, 335)
+release_lumafly = true
+lumafly_end_zone = NodePath("../WarpZone4")
+
+[node name="Lantern5" parent="." unique_id=744942028 node_paths=PackedStringArray("lumafly_end_zone") instance=ExtResource("29_70u0b")]
+position = Vector2(793, 582)
+release_lumafly = true
+lumafly_end_zone = NodePath("../WarpZone4")
+
+[node name="Lantern6" parent="." unique_id=90121756 node_paths=PackedStringArray("lumafly_end_zone") instance=ExtResource("29_70u0b")]
+position = Vector2(370, 179)
+release_lumafly = true
+lumafly_end_zone = NodePath("../WarpZone4")
 
 [editable path="spikes/SpikesCollision"]

@@ -118,7 +118,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-2985, -7524, -2992, -5044, 5375, -5050, 5343, -7477)])
 agent_radius = 50.0
 
-[sub_resource type="Curve2D" id="Curve2D_0vtwj"]
+[sub_resource type="Curve2D" id="Curve2D_v1dx4"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 22, -40, 0, 0, 0, 0, 106, -262)
@@ -204,7 +204,7 @@ texture = ExtResource("2_t4ngq")
 3:7/0/terrains_peering_bit/top_left_corner = 0
 3:7/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_kfu0d"]
+[sub_resource type="TileSet" id="TileSet_c8xv1"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -213,11 +213,11 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_x7f2j")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1dx4"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_poo1o"]
 resource_local_to_scene = true
 size = Vector2(78, 88)
 
-[sub_resource type="Curve2D" id="Curve2D_c8xv1"]
+[sub_resource type="Curve2D" id="Curve2D_fq1iu"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 22, -40, 0, 0, 0, 0, 106, -262)
@@ -303,7 +303,7 @@ texture = ExtResource("2_t4ngq")
 3:7/0/terrains_peering_bit/top_left_corner = 0
 3:7/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_poo1o"]
+[sub_resource type="TileSet" id="TileSet_0gurp"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -312,7 +312,7 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_tn18b")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fq1iu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6q7gb"]
 resource_local_to_scene = true
 size = Vector2(78, 88)
 
@@ -554,22 +554,27 @@ flip_h = true
 
 [node name="Lantern" parent="Node2D" unique_id=1398118702 instance=ExtResource("14_qahyb")]
 position = Vector2(646, -206)
+release_lumafly = true
 
 [node name="Lantern4" parent="Node2D" unique_id=703536370 instance=ExtResource("14_qahyb")]
 position = Vector2(4287, -1642)
+release_lumafly = true
 
 [node name="Lantern5" parent="Node2D" unique_id=970709265 instance=ExtResource("14_qahyb")]
 position = Vector2(5518, -352)
+release_lumafly = true
 
 [node name="Lantern6" parent="Node2D" unique_id=372426467 instance=ExtResource("14_qahyb")]
 position = Vector2(2186, 251)
+release_lumafly = true
 
 [node name="Lantern7" parent="Node2D" unique_id=1203558620 instance=ExtResource("14_qahyb")]
 position = Vector2(-57, -1516)
+release_lumafly = true
 
 [node name="moving_platform2" parent="." unique_id=710403595 instance=ExtResource("9_qj8vn")]
 position = Vector2(1218, 199)
-curve = SubResource("Curve2D_0vtwj")
+curve = SubResource("Curve2D_v1dx4")
 speed_scale = 4.0
 move_on_trigger = true
 
@@ -584,7 +589,7 @@ polygon = PackedVector2Array(-64, -32, -64, -12, -53, 6, -27, 19, 0, 43, 28, 19,
 
 [node name="platform" parent="moving_platform2/platform" index="1" unique_id=1995284118]
 enabled = false
-tile_set = SubResource("TileSet_kfu0d")
+tile_set = SubResource("TileSet_c8xv1")
 
 [node name="MovingPlatform" type="Sprite2D" parent="moving_platform2/platform" index="2" unique_id=2001377468]
 position = Vector2(0, 4)
@@ -594,17 +599,18 @@ texture = ExtResource("10_vdj6b")
 [node name="Lantern" parent="moving_platform2/platform" index="3" unique_id=62236614 instance=ExtResource("14_qahyb")]
 z_index = -1
 position = Vector2(0, -107)
+release_lumafly = true
 
 [node name="move_trigger" parent="moving_platform2" index="2" unique_id=1286972824]
 position = Vector2(22, -40)
 
 [node name="CollisionShape2D" parent="moving_platform2/move_trigger" index="0" unique_id=1628162647]
 position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_v1dx4")
+shape = SubResource("RectangleShape2D_poo1o")
 
 [node name="moving_platform3" parent="." unique_id=2092917609 instance=ExtResource("9_qj8vn")]
 position = Vector2(-1194.0002, 42)
-curve = SubResource("Curve2D_c8xv1")
+curve = SubResource("Curve2D_fq1iu")
 speed_scale = 4.0
 move_on_trigger = true
 
@@ -619,7 +625,7 @@ polygon = PackedVector2Array(-64, -32, -64, -12, -53, 6, -27, 19, 0, 43, 28, 19,
 
 [node name="platform" parent="moving_platform3/platform" index="1" unique_id=1995284118]
 enabled = false
-tile_set = SubResource("TileSet_poo1o")
+tile_set = SubResource("TileSet_0gurp")
 
 [node name="MovingPlatform" type="Sprite2D" parent="moving_platform3/platform" index="2" unique_id=1460272155]
 position = Vector2(0, 4)
@@ -629,13 +635,14 @@ texture = ExtResource("10_vdj6b")
 [node name="Lantern" parent="moving_platform3/platform" index="3" unique_id=165215639 instance=ExtResource("14_qahyb")]
 z_index = -1
 position = Vector2(0, -107)
+release_lumafly = true
 
 [node name="move_trigger" parent="moving_platform3" index="2" unique_id=1286972824]
 position = Vector2(22, -40)
 
 [node name="CollisionShape2D" parent="moving_platform3/move_trigger" index="0" unique_id=1628162647]
 position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_fq1iu")
+shape = SubResource("RectangleShape2D_6q7gb")
 
 [node name="ENEMYwall" parent="." unique_id=1858815993 instance=ExtResource("15_jd11c")]
 position = Vector2(656, -1886)
@@ -861,8 +868,9 @@ scale = Vector2(17.28, 1)
 position = Vector2(6160, -460)
 scale = Vector2(13.12, 1)
 
-[node name="RandomWarpRandomiser" parent="." unique_id=1714427836 node_paths=PackedStringArray("warp_zones") instance=ExtResource("24_v1dx4")]
+[node name="RandomWarpRandomiser" parent="." unique_id=1714427836 node_paths=PackedStringArray("warp_zones", "lanterns") instance=ExtResource("24_v1dx4")]
 warp_zones = [NodePath("../RandomWarpZone"), NodePath("../RandomWarpZone2"), NodePath("../RandomWarpZone3"), NodePath("../RandomWarpZone5"), NodePath("../RandomWarpZone4")]
+lanterns = [NodePath("../Node2D/Lantern"), NodePath("../Node2D/Lantern4"), NodePath("../Node2D/Lantern5"), NodePath("../Node2D/Lantern6"), NodePath("../Node2D/Lantern7"), NodePath("../moving_platform2/platform/Lantern"), NodePath("../moving_platform3/platform/Lantern")]
 
 [editable path="SpikesCollision"]
 [editable path="moving_platform2"]

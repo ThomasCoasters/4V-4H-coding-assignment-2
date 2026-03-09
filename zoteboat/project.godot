@@ -57,6 +57,7 @@ invincible=""
 enemy_attack=""
 collectable=""
 map_transitions=""
+breakable_object=""
 
 [input]
 

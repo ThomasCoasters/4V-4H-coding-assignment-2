@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://b3vebb80piqur"]
+
+[ext_resource type="Script" uid="uid://b0qo0b768btdf" path="res://maps/maps/P.o.B/P.o.B specific/lantern/broken/lumafly.gd" id="1_3tuoy"]
+[ext_resource type="PackedScene" uid="uid://cise26jsty1uw" path="res://Game/MISC/afterimage.tscn" id="2_4te2y"]
+
+[sub_resource type="Curve2D" id="Curve2D_50kke"]
+
+[sub_resource type="Gradient" id="Gradient_lh05m"]
+offsets = PackedFloat32Array(0, 0.63380283)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3tuoy"]
+gradient = SubResource("Gradient_lh05m")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_4te2y"]
+offsets = PackedFloat32Array(0, 0.87323946, 0.99436617)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.7372549, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r30oh"]
+gradient = SubResource("Gradient_4te2y")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.84615386, 0.1923077)
+
+[sub_resource type="Animation" id="Animation_3tuoy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4te2y"]
+resource_name = "fly"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(-1.55, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x661w"]
+_data = {
+&"RESET": SubResource("Animation_3tuoy"),
+&"fly": SubResource("Animation_4te2y")
+}
+
+[node name="Lumafly" type="Path2D" unique_id=1705206617]
+curve = SubResource("Curve2D_50kke")
+script = ExtResource("1_3tuoy")
+afterimage_scene = ExtResource("2_4te2y")
+afterimage_min_radius = 0.0
+afterimage_max_radius = 40.0
+afterimage_color = Color(1, 1, 1, 1)
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=320489444]
+
+[node name="PointLight2D" type="PointLight2D" parent="PathFollow2D" unique_id=2043331918]
+texture = SubResource("GradientTexture2D_3tuoy")
+texture_scale = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D" unique_id=1748600473]
+visible = false
+scale = Vector2(0.2, 0.2)
+texture = SubResource("GradientTexture2D_r30oh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=919799410]
+libraries/ = SubResource("AnimationLibrary_x661w")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

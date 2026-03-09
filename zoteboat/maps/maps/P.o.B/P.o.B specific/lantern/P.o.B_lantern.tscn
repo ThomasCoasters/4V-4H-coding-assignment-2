@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://ci75uct7ky0sj"]
 
+[ext_resource type="Script" uid="uid://bycxwpw3k66ox" path="res://maps/maps/P.o.B/P.o.B specific/lantern/p.o.b_lantern.gd" id="1_5pq54"]
 [ext_resource type="Texture2D" uid="uid://bxusewx4w2oyj" path="res://maps/maps/P.o.B/P.o.B specific/lantern/wp_globe_upright0000.png" id="1_u5kdr"]
+[ext_resource type="Texture2D" uid="uid://ocrobkmnsas1" path="res://maps/maps/P.o.B/P.o.B specific/lantern/broken/wp_globe_upright0000 (1).png" id="3_c061r"]
+[ext_resource type="Texture2D" uid="uid://c1nruef7b3dnu" path="res://maps/maps/P.o.B/P.o.B specific/lantern/broken/wp_globe_upright0000 (2).png" id="4_72u5c"]
+[ext_resource type="Texture2D" uid="uid://ubu6h4ecdyak" path="res://maps/maps/P.o.B/P.o.B specific/lantern/broken/wp_globe_upright0000 (3).png" id="5_kkb8q"]
 
 [sub_resource type="Gradient" id="Gradient_lh05m"]
 offsets = PackedFloat32Array(0, 0.63380283)
@@ -11,7 +15,10 @@ gradient = SubResource("Gradient_lh05m")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Lantern" type="Node2D" unique_id=1398118702]
+[node name="Lantern" type="Area2D" unique_id=1227318835 groups=["breakable_object"]]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_5pq54")
 
 [node name="WpGlobeUpright0000" type="Sprite2D" parent="." unique_id=1080417865]
 scale = Vector2(0.5, 0.5)
@@ -21,3 +28,57 @@ texture = ExtResource("1_u5kdr")
 position = Vector2(0, -25)
 texture = SubResource("GradientTexture2D_u5kdr")
 texture_scale = 10.0
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1427743567]
+visible = false
+scale = Vector2(0.5, 0.5)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Node2D" unique_id=1903104150]
+position = Vector2(0, -80)
+collision_layer = 0
+collision_mask = 2
+freeze = true
+
+[node name="WpGlobeUpright0000(1)" type="Sprite2D" parent="Node2D/RigidBody2D" unique_id=1759117127]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_c061r")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/RigidBody2D" unique_id=1315368142]
+position = Vector2(0, 40)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-16, -2, 18, -2, 46, -32, 46, -70, 18, -98, -20, -98, -46, -72, -46, -32)
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="Node2D" unique_id=1873131140]
+position = Vector2(0, 56)
+collision_layer = 0
+collision_mask = 2
+freeze = true
+
+[node name="WpGlobeUpright0000(2)" type="Sprite2D" parent="Node2D/RigidBody2D2" unique_id=1564012414]
+position = Vector2(0, -0.79999924)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_72u5c")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/RigidBody2D2" unique_id=530121549]
+position = Vector2(0, -26.8)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(4, 106, 4, 16, 12, -2, -10, -2, -2, 16, -2, 106)
+
+[node name="RigidBody2D3" type="RigidBody2D" parent="Node2D" unique_id=2146905165]
+position = Vector2(0, 136)
+collision_layer = 0
+collision_mask = 2
+freeze = true
+
+[node name="WpGlobeUpright0000(3)" type="Sprite2D" parent="Node2D/RigidBody2D3" unique_id=693254079]
+position = Vector2(0, 0.40000153)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_kkb8q")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/RigidBody2D3" unique_id=169945399]
+position = Vector2(0, -67.6)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-20, 155.2, 20, 155.2, 10, 134, 2, 108, -8, 134)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=182931298]
+polygon = PackedVector2Array(15, 81, -14, 81, -4, 68, -1, 53, -1, 9, -12, -4, -25, -24, -18, -43, -1, -51, 17, -45, 25, -27, 13, -3, 2, 9, 2, 53, 6, 68)
