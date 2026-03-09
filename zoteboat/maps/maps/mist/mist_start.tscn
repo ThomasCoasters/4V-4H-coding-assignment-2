@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_tat8g"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="3_17wkn"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="4_0hbai"]
+[ext_resource type="PackedScene" uid="uid://ci75uct7ky0sj" path="res://maps/maps/P.o.B/P.o.B specific/lantern/P.o.B_lantern.tscn" id="5_6qic6"]
 [ext_resource type="PackedScene" uid="uid://b58l7n1jngj3h" path="res://maps/maps/mist/specific scenes/random warp zone/random_warp_zone.tscn" id="5_o8s6t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
@@ -128,3 +129,8 @@ position = Vector2(641, -980.00006)
 scale = Vector2(6.5360737, 21.23558)
 new_location_group = "left"
 correct = true
+
+[node name="Lantern" parent="." unique_id=534439044 instance=ExtResource("5_6qic6")]
+z_index = -1
+position = Vector2(126, -940)
+release_lumafly = true

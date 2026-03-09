@@ -844,7 +844,11 @@ func _on_pogo_returned(play_sound: bool = true):
 
 
 func _on_attack_entered(body: Node2D):
-	if !body.is_in_group("enemy") || body.is_in_group("invincible") || body.is_in_group("deactive"):
+	if body.is_in_group("breakable_object"):
+		body.break_object()
+		return
+	
+	if !(body.is_in_group("enemy")) || body.is_in_group("invincible") || body.is_in_group("deactive"):
 		return
 	
 	body.i_frames(ATTACK_LINGER)
