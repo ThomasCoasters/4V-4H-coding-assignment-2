@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b3vebb80piqur"]
 
 [ext_resource type="Script" uid="uid://b0qo0b768btdf" path="res://maps/maps/P.o.B/P.o.B specific/lantern/broken/lumafly.gd" id="1_3tuoy"]
+[ext_resource type="PackedScene" uid="uid://cise26jsty1uw" path="res://Game/MISC/afterimage.tscn" id="2_4te2y"]
 
 [sub_resource type="Curve2D" id="Curve2D_50kke"]
 
@@ -63,6 +64,10 @@ _data = {
 [node name="Lumafly" type="Path2D" unique_id=1705206617]
 curve = SubResource("Curve2D_50kke")
 script = ExtResource("1_3tuoy")
+afterimage_scene = ExtResource("2_4te2y")
+afterimage_min_radius = 0.0
+afterimage_max_radius = 40.0
+afterimage_color = Color(1, 1, 1, 1)
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=320489444]
 
@@ -71,7 +76,8 @@ texture = SubResource("GradientTexture2D_3tuoy")
 texture_scale = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="PathFollow2D" unique_id=1748600473]
-scale = Vector2(0.5, 0.5)
+visible = false
+scale = Vector2(0.2, 0.2)
 texture = SubResource("GradientTexture2D_r30oh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=919799410]
