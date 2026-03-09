@@ -222,9 +222,10 @@ offset_bottom = -1675.0
 own_group = "top"
 metadata/_edit_use_anchors_ = true
 
-[node name="RandomWarpRandomiser" parent="." unique_id=1714427836 node_paths=PackedStringArray("warp_zones") instance=ExtResource("5_rna6g")]
+[node name="RandomWarpRandomiser" parent="." unique_id=1714427836 node_paths=PackedStringArray("warp_zones", "lanterns") instance=ExtResource("5_rna6g")]
 position = Vector2(-264, -26)
 warp_zones = [NodePath("../RandomWarpZone"), NodePath("../RandomWarpZone2"), NodePath("../RandomWarpZone3"), NodePath("../RandomWarpZone4"), NodePath("../RandomWarpZone5")]
+lanterns = [NodePath("../Node/Lantern"), NodePath("../Node/Lantern2"), NodePath("../Node/Lantern3"), NodePath("../Node/Lantern4"), NodePath("../Node/Lantern5")]
 
 [node name="SpikesCollision" parent="." unique_id=417759129 instance=ExtResource("6_xctd4")]
 
@@ -491,18 +492,31 @@ texture = ExtResource("18_7xsbn")
 
 [node name="Lantern" parent="Node" unique_id=534439044 instance=ExtResource("20_1bfu7")]
 position = Vector2(-294, -1740)
+release_lumafly = true
 
 [node name="Lantern2" parent="Node" unique_id=1000831482 instance=ExtResource("20_1bfu7")]
 position = Vector2(-709, -46)
+release_lumafly = true
 
 [node name="Lantern3" parent="Node" unique_id=1079211168 instance=ExtResource("20_1bfu7")]
 position = Vector2(1515, -361)
+release_lumafly = true
 
 [node name="Lantern4" parent="Node" unique_id=1702101693 instance=ExtResource("20_1bfu7")]
 position = Vector2(1400, -1512)
+release_lumafly = true
 
 [node name="Lantern5" parent="Node" unique_id=630162927 instance=ExtResource("20_1bfu7")]
 position = Vector2(622, -1802)
+release_lumafly = true
+
+[node name="Lantern6" parent="Node" unique_id=1227318835 instance=ExtResource("20_1bfu7")]
+position = Vector2(345, 173)
+release_lumafly = true
+
+[node name="HazardRespawn8" parent="." unique_id=1517130446 instance=ExtResource("17_octna")]
+position = Vector2(354, 246)
+scale = Vector2(8.256916, 0.82874316)
 
 [editable path="SpikesCollision"]
 [editable path="SpikesCollision3"]

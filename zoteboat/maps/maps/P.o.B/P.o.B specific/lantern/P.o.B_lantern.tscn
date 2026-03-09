@@ -15,10 +15,9 @@ gradient = SubResource("Gradient_lh05m")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Lantern" type="CharacterBody2D" unique_id=534439044 groups=["breakable_object"]]
+[node name="Lantern" type="Area2D" unique_id=1227318835 groups=["breakable_object"]]
 collision_layer = 8
 collision_mask = 2
-motion_mode = 1
 script = ExtResource("1_5pq54")
 
 [node name="WpGlobeUpright0000" type="Sprite2D" parent="." unique_id=1080417865]
@@ -79,7 +78,7 @@ texture = ExtResource("5_kkb8q")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/RigidBody2D3" unique_id=169945399]
 position = Vector2(0, -67.6)
 scale = Vector2(0.5, 0.5)
-polygon = PackedVector2Array(-28, 164, 32, 164, 10, 134, 2, 108, -8, 134)
+polygon = PackedVector2Array(-20, 155.2, 20, 155.2, 10, 134, 2, 108, -8, 134)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=182931298]
 polygon = PackedVector2Array(15, 81, -14, 81, -4, 68, -1, 53, -1, 9, -12, -4, -25, -24, -18, -43, -1, -51, 17, -45, 25, -27, 13, -3, 2, 9, 2, 53, 6, 68)

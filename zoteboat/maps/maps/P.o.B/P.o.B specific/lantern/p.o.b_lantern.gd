@@ -9,6 +9,7 @@ extends Node2D
 @export_group("lumafly stuff")
 const LUMAFLY = preload("uid://b3vebb80piqur")
 @export var release_lumafly: bool = false
+@export var lumafly_end_zone: Area2D
 
 func break_object():
 	wp_globe_upright_0000.visible = false
@@ -30,17 +31,32 @@ func break_object():
 	
 	
 	if release_lumafly:
-		lumafly_to_location(rigid_body_2d.global_position)
+		var end_location: Vector2 = Vector2.ZERO
+		if lumafly_end_zone:
+			end_location = lumafly_end_zone.global_position
+		
+		lumafly_to_location(global_position + Vector2(0, -80), end_location)
+	
+	await get_tree().create_timer(12.0).timeout
+	
+	var tween := get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(self, "modulate:a", 0.0, 0.7). from(1.0)
+	tween.finished.connect(func():
+		queue_free()
+	)
 
 
-func lumafly_to_location(start_pos):
+func lumafly_to_location(start_pos, end_pos):
 	var lumafly: = LUMAFLY.instantiate()
 	
-	var curve: Curve2D = lumafly.curve
+	var curve: Curve2D = Curve2D.new()
 	
 	curve.add_point(start_pos)
-	curve.add_point(start_pos-Vector2(200, 10))
+	curve.add_point(end_pos)
 	
-	add_child(lumafly)
+	lumafly.curve = curve
 	
-	lumafly.global_position = Vector2.ZERO
+	get_tree().current_scene.add_child(lumafly)

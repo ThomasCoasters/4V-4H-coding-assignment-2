@@ -117,9 +117,9 @@ position = Vector2(1094, 5499)
 navigation_polygon = SubResource("NavigationPolygon_ycj1n")
 
 [node name="SpawnLocation5" parent="." unique_id=1089591050 instance=ExtResource("4_0hbai")]
-offset_left = -19.0
+offset_left = -104.0
 offset_top = -902.0
-offset_right = 11.0
+offset_right = -74.0
 offset_bottom = -872.0
 own_group = "spawn"
 metadata/_edit_use_anchors_ = true
@@ -130,7 +130,14 @@ scale = Vector2(6.5360737, 21.23558)
 new_location_group = "left"
 correct = true
 
-[node name="Lantern" parent="." unique_id=534439044 instance=ExtResource("5_6qic6")]
+[node name="Lantern" parent="." unique_id=534439044 node_paths=PackedStringArray("lumafly_end_zone") instance=ExtResource("5_6qic6")]
 z_index = -1
-position = Vector2(126, -940)
+position = Vector2(-425, -940)
 release_lumafly = true
+lumafly_end_zone = NodePath("../RandomWarpZone")
+
+[node name="Lantern2" parent="." unique_id=1227318835 node_paths=PackedStringArray("lumafly_end_zone") instance=ExtResource("5_6qic6")]
+z_index = -1
+position = Vector2(298, -940)
+release_lumafly = true
+lumafly_end_zone = NodePath("../RandomWarpZone")

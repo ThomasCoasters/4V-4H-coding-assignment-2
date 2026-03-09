@@ -554,18 +554,23 @@ flip_h = true
 
 [node name="Lantern" parent="Node2D" unique_id=1398118702 instance=ExtResource("14_qahyb")]
 position = Vector2(646, -206)
+release_lumafly = true
 
 [node name="Lantern4" parent="Node2D" unique_id=703536370 instance=ExtResource("14_qahyb")]
 position = Vector2(4287, -1642)
+release_lumafly = true
 
 [node name="Lantern5" parent="Node2D" unique_id=970709265 instance=ExtResource("14_qahyb")]
 position = Vector2(5518, -352)
+release_lumafly = true
 
 [node name="Lantern6" parent="Node2D" unique_id=372426467 instance=ExtResource("14_qahyb")]
 position = Vector2(2186, 251)
+release_lumafly = true
 
 [node name="Lantern7" parent="Node2D" unique_id=1203558620 instance=ExtResource("14_qahyb")]
 position = Vector2(-57, -1516)
+release_lumafly = true
 
 [node name="moving_platform2" parent="." unique_id=710403595 instance=ExtResource("9_qj8vn")]
 position = Vector2(1218, 199)
@@ -594,6 +599,7 @@ texture = ExtResource("10_vdj6b")
 [node name="Lantern" parent="moving_platform2/platform" index="3" unique_id=62236614 instance=ExtResource("14_qahyb")]
 z_index = -1
 position = Vector2(0, -107)
+release_lumafly = true
 
 [node name="move_trigger" parent="moving_platform2" index="2" unique_id=1286972824]
 position = Vector2(22, -40)
@@ -629,6 +635,7 @@ texture = ExtResource("10_vdj6b")
 [node name="Lantern" parent="moving_platform3/platform" index="3" unique_id=165215639 instance=ExtResource("14_qahyb")]
 z_index = -1
 position = Vector2(0, -107)
+release_lumafly = true
 
 [node name="move_trigger" parent="moving_platform3" index="2" unique_id=1286972824]
 position = Vector2(22, -40)
@@ -861,8 +868,9 @@ scale = Vector2(17.28, 1)
 position = Vector2(6160, -460)
 scale = Vector2(13.12, 1)
 
-[node name="RandomWarpRandomiser" parent="." unique_id=1714427836 node_paths=PackedStringArray("warp_zones") instance=ExtResource("24_v1dx4")]
+[node name="RandomWarpRandomiser" parent="." unique_id=1714427836 node_paths=PackedStringArray("warp_zones", "lanterns") instance=ExtResource("24_v1dx4")]
 warp_zones = [NodePath("../RandomWarpZone"), NodePath("../RandomWarpZone2"), NodePath("../RandomWarpZone3"), NodePath("../RandomWarpZone5"), NodePath("../RandomWarpZone4")]
+lanterns = [NodePath("../Node2D/Lantern"), NodePath("../Node2D/Lantern4"), NodePath("../Node2D/Lantern5"), NodePath("../Node2D/Lantern6"), NodePath("../Node2D/Lantern7"), NodePath("../moving_platform2/platform/Lantern"), NodePath("../moving_platform3/platform/Lantern")]
 
 [editable path="SpikesCollision"]
 [editable path="moving_platform2"]

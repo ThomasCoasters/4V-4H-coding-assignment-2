@@ -112,33 +112,26 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
-[sub_resource type="Curve2D" id="Curve2D_xomeh"]
+[sub_resource type="Curve2D" id="Curve2D_iuwtc"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 7.8095703, 0.2479248, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 201, 96, 0, 0, 0, 0, -86.19043, 96.247925, 0, 0, 0, 0, -86.19043, 0.2479248, 0, 0, 0, 0, 7.8095703, 0.2479248)
 }
 point_count = 6
 
-[sub_resource type="Curve2D" id="Curve2D_iuwtc"]
+[sub_resource type="Curve2D" id="Curve2D_xsu2j"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 7.8095703, 0.2479248, 0, 0, 0, 0, 197.37476, -0.1244812, 0, 0, 0, 0, 197, 96, 0, 0, 0, 0, -22.625244, 95.87552, 0, 0, 0, 0, -22.625244, 0.8755188, 0, 0, 0, 0, 7.8095703, 0.2479248)
 }
 point_count = 6
 
-[sub_resource type="Curve2D" id="Curve2D_xsu2j"]
+[sub_resource type="Curve2D" id="Curve2D_ghf55"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 113, -9, 0, 0, 0, 0, 112, 86, 0, 0, 0, 0, -81, 87, 0, 0, 0, 0, -81, -9, 0, 0, 0, 0, 1, -8)
 }
 point_count = 6
-
-[sub_resource type="Curve2D" id="Curve2D_ghf55"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 1, -105, 0, 0, 0, 0, 128, -105, 0, 0, 0, 0, 128, 55, 0, 0, 0, 0, 255, 55, 0, 0, 0, 0, 255, 148, 0, 0, 0, 0, -95, 148, 0, 0, 0, 0, -95, -7, 0, 0, 0, 0, 1, -8)
-}
-point_count = 9
 
 [sub_resource type="Curve2D" id="Curve2D_aaiqg"]
 resource_local_to_scene = true
@@ -155,6 +148,13 @@ _data = {
 point_count = 9
 
 [sub_resource type="Curve2D" id="Curve2D_3jewk"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 1, -105, 0, 0, 0, 0, 128, -105, 0, 0, 0, 0, 128, 55, 0, 0, 0, 0, 255, 55, 0, 0, 0, 0, 255, 148, 0, 0, 0, 0, -95, 148, 0, 0, 0, 0, -95, -7, 0, 0, 0, 0, 1, -8)
+}
+point_count = 9
+
+[sub_resource type="Curve2D" id="Curve2D_ecbqx"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1, -8, 0, 0, 0, 0, 113, -9, 0, 0, 0, 0, 112, 86, 0, 0, 0, 0, -81, 87, 0, 0, 0, 0, -81, -9, 0, 0, 0, 0, 1, -8)
@@ -210,7 +210,7 @@ new_location_group = "TopLeft_0,0"
 
 [node name="Path2D" parent="." unique_id=263132585 instance=ExtResource("4_pxt1x")]
 position = Vector2(-1561, 560)
-curve = SubResource("Curve2D_xomeh")
+curve = SubResource("Curve2D_iuwtc")
 
 [node name="hazards" type="Node" parent="." unique_id=1447554648]
 
@@ -310,19 +310,19 @@ dialogue = "heal"
 
 [node name="Path2D3" parent="." unique_id=24820941 instance=ExtResource("4_pxt1x")]
 position = Vector2(-727.37476, 368.12448)
-curve = SubResource("Curve2D_iuwtc")
+curve = SubResource("Curve2D_xsu2j")
 
 [node name="tiktik" parent="." unique_id=1215913850 instance=ExtResource("4_pxt1x")]
 position = Vector2(-1282, 57)
-curve = SubResource("Curve2D_xsu2j")
+curve = SubResource("Curve2D_ghf55")
 
 [node name="tiktik2" parent="." unique_id=731618035 instance=ExtResource("4_pxt1x")]
 position = Vector2(-880, 634)
-curve = SubResource("Curve2D_ghf55")
+curve = SubResource("Curve2D_aaiqg")
 
 [node name="tiktik3" parent="." unique_id=1543124133 instance=ExtResource("4_pxt1x")]
 position = Vector2(-880, 634)
-curve = SubResource("Curve2D_aaiqg")
+curve = SubResource("Curve2D_37o4s")
 
 [node name="PathFollow2D" parent="tiktik3" index="0" unique_id=1178610453]
 position = Vector2(255.28793, 146.8212)
@@ -331,11 +331,11 @@ progress = 602.50256
 
 [node name="tiktik4" parent="." unique_id=1583956725 instance=ExtResource("4_pxt1x")]
 position = Vector2(720, -231)
-curve = SubResource("Curve2D_37o4s")
+curve = SubResource("Curve2D_3jewk")
 
 [node name="tiktik5" parent="." unique_id=1643468536 instance=ExtResource("4_pxt1x")]
 position = Vector2(1602, 187)
-curve = SubResource("Curve2D_3jewk")
+curve = SubResource("Curve2D_ecbqx")
 
 [node name="peashooter" parent="." unique_id=2000873192 instance=ExtResource("9_xpn8k")]
 position = Vector2(1958, 383)
@@ -451,8 +451,10 @@ scale = Vector2(1, 13)
 warp_to = "res://maps/maps/pre-dash/kingspacret.tscn"
 new_location_group = "TopLeft_0,0"
 
-[node name="Lantern" parent="." unique_id=1398118702 instance=ExtResource("18_iuwtc")]
+[node name="Lantern" parent="." unique_id=1398118702 node_paths=PackedStringArray("lumafly_end_zone") instance=ExtResource("18_iuwtc")]
 position = Vector2(-3837, -562)
+release_lumafly = true
+lumafly_end_zone = NodePath("../WarpZone2")
 
 [editable path="hazards/SpikesCollision"]
 [editable path="tiktik3"]

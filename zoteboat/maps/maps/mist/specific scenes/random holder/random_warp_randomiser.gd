@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var warp_zones: Array[Area2D]
+@export var lanterns: Array[Area2D]
 
 var warp_to_location: Dictionary[String, String] = {
 	"left": "right",
@@ -26,3 +27,6 @@ func _ready() -> void:
 		chosen_warp = to_remove_warps.pick_random()
 	
 	chosen_warp.correct = true
+	
+	for lantern: Area2D in lanterns:
+		lantern.lumafly_end_zone = chosen_warp
