@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cwe7ouwe3n24d"
+path="res://.godot/imported/white_palace_saw_loop_2.wav-67cedbf6e18f7f1fc71e21c6f1a683fb.sample"
+
+[deps]
+
+source_file="res://maps/maps/P.o.B/P.o.B specific/saws/white_palace_saw_loop_2.wav"
+dest_files=["res://.godot/imported/white_palace_saw_loop_2.wav-67cedbf6e18f7f1fc71e21c6f1a683fb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
