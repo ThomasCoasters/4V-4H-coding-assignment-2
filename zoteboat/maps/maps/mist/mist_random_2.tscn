@@ -126,7 +126,7 @@ max_health = 25
 respawn_every_room = true
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
-[node name="MistRandom1" type="Node2D" unique_id=1874960603]
+[node name="MistRandom2" type="Node2D" unique_id=1874960603]
 script = ExtResource("1_3w1xt")
 dark_room = true
 
