@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://0cng53ue7yl0"]
 
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_xh4nr"]
+[ext_resource type="PackedScene" uid="uid://ccgjvsy6qh2cs" path="res://maps/maps/mist/specific scenes/random holder/random_warp_randomiser.tscn" id="2_ggyfx"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="2_scesc"]
 [ext_resource type="PackedScene" uid="uid://b58l7n1jngj3h" path="res://maps/maps/mist/specific scenes/random warp zone/random_warp_zone.tscn" id="3_6bjrk"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="4_ds4xe"]
@@ -12,6 +13,16 @@
 [ext_resource type="Texture2D" uid="uid://cr7k4yi42sadj" path="res://maps/maps/P.o.B/P.o.B specific/visuals/cap/moving_connector.png" id="10_3qko1"]
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="11_i63rm"]
 [ext_resource type="PackedScene" uid="uid://bk8vqqi7q7ylb" path="res://maps/map_placables/hazards (spikes)/spikes_collision.tscn" id="12_n0wr4"]
+[ext_resource type="Texture2D" uid="uid://63pi7re58a8i" path="res://maps/maps/P.o.B/P.o.B specific/visuals/thorns/thorn_small.png" id="12_xqe3t"]
+[ext_resource type="Texture2D" uid="uid://ceshetvbee4jv" path="res://maps/maps/P.o.B/P.o.B specific/visuals/thorns/thorn_big.png" id="13_r4bu1"]
+[ext_resource type="PackedScene" uid="uid://desufiot6ea2v" path="res://enemies/normal/peashooter/peashooter.tscn" id="14_sxlwj"]
+[ext_resource type="PackedScene" uid="uid://pgyl4bclok41" path="res://enemies/normal/crawlid/crawlid.tscn" id="15_o8jwm"]
+[ext_resource type="PackedScene" uid="uid://bbn2wfw15yc8n" path="res://enemies/enemy_wall.tscn" id="16_gjawl"]
+[ext_resource type="PackedScene" uid="uid://dd7mbkekqfnpo" path="res://enemies/normal/primal_aspid/primal_aspid.tscn" id="17_5cikp"]
+[ext_resource type="Script" uid="uid://cya84ofqpnfxs" path="res://enemies/stats.gd" id="18_3h7mw"]
+[ext_resource type="PackedScene" uid="uid://dilsa6aexb0cd" path="res://enemies/normal/grimmkin/bullet_version/grimmkin_bullets.tscn" id="19_xqe3t"]
+[ext_resource type="PackedScene" uid="uid://xjvy8yhq3hu6" path="res://enemies/normal/grimmkin/circle_version/grimmkin_circle.tscn" id="20_r4bu1"]
+[ext_resource type="PackedScene" uid="uid://e03auo7ekd6c" path="res://enemies/normal/dvd_logo/dvd_enemy.tscn" id="21_q58ns"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("2_scesc")
@@ -106,7 +117,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-2281, -8705, -2256, -4790, -292, -4792, -311, -8722)])
 agent_radius = 50.0
 
-[sub_resource type="Curve2D" id="Curve2D_ggyfx"]
+[sub_resource type="Curve2D" id="Curve2D_q58ns"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 22, -40, 0, 0, 0, 0, 106, -262)
@@ -192,7 +203,7 @@ texture = ExtResource("2_scesc")
 3:7/0/terrains_peering_bit/top_left_corner = 0
 3:7/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_o8jwm"]
+[sub_resource type="TileSet" id="TileSet_x2qg1"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -201,11 +212,11 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_sxlwj")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjawl"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7ws5"]
 resource_local_to_scene = true
 size = Vector2(78, 88)
 
-[sub_resource type="Curve2D" id="Curve2D_3cx87"]
+[sub_resource type="Curve2D" id="Curve2D_24qa1"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 22, -40, 0, 0, 0, 0, 106, -262)
@@ -291,7 +302,7 @@ texture = ExtResource("2_scesc")
 3:7/0/terrains_peering_bit/top_left_corner = 0
 3:7/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_3h7mw"]
+[sub_resource type="TileSet" id="TileSet_bb7gg"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -300,11 +311,11 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_5cikp")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqe3t"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_alxgl"]
 resource_local_to_scene = true
 size = Vector2(78, 88)
 
-[sub_resource type="Curve2D" id="Curve2D_n0wr4"]
+[sub_resource type="Curve2D" id="Curve2D_02mgy"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 22, -40, 0, 0, 0, 0, 106, -262)
@@ -390,7 +401,7 @@ texture = ExtResource("2_scesc")
 3:7/0/terrains_peering_bit/top_left_corner = 0
 3:7/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_p7c1j"]
+[sub_resource type="TileSet" id="TileSet_bbxnb"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -399,13 +410,41 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_gedko")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qko1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0nrk"]
 resource_local_to_scene = true
 size = Vector2(78, 88)
+
+[sub_resource type="Resource" id="Resource_x2qg1"]
+script = ExtResource("18_3h7mw")
+max_health = 30
+respawn_every_room = true
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="Resource" id="Resource_b7ws5"]
+script = ExtResource("18_3h7mw")
+max_health = 30
+respawn_every_room = true
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="Resource" id="Resource_24qa1"]
+script = ExtResource("18_3h7mw")
+max_health = 30
+respawn_every_room = true
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
+
+[sub_resource type="Resource" id="Resource_bb7gg"]
+script = ExtResource("18_3h7mw")
+max_health = 45
+respawn_every_room = true
+metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
 [node name="MistRandom1" type="Node2D" unique_id=1874960603]
 script = ExtResource("1_xh4nr")
 dark_room = true
+
+[node name="RandomWarpRandomiser" parent="." unique_id=1714427836 node_paths=PackedStringArray("warp_zones", "lanterns") instance=ExtResource("2_ggyfx")]
+warp_zones = [NodePath("../RandomWarpZone"), NodePath("../RandomWarpZone2"), NodePath("../RandomWarpZone3"), NodePath("../RandomWarpZone4")]
+lanterns = [NodePath("../moving_platform2/platform/Lantern"), NodePath("../moving_platform3/platform/Lantern"), NodePath("../moving_platform4/platform/Lantern"), NodePath("../Node2D/Lantern"), NodePath("../Node2D/Lantern2")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1820643946]
 scale = Vector2(2, 2)
@@ -432,6 +471,11 @@ position = Vector2(-145, -3193.0002)
 scale = Vector2(11.980855, 5.0205593)
 new_location_group = "bottom"
 
+[node name="RandomWarpZone4" parent="." unique_id=1565983644 instance=ExtResource("3_6bjrk")]
+position = Vector2(656, 531.00006)
+scale = Vector2(6.3155675, 8.825979)
+new_location_group = "top"
+
 [node name="SpawnLocation5" parent="." unique_id=1089591050 instance=ExtResource("4_ds4xe")]
 offset_left = -996.0
 offset_top = -323.0
@@ -441,10 +485,10 @@ own_group = "left"
 metadata/_edit_use_anchors_ = true
 
 [node name="SpawnLocation6" parent="." unique_id=1087346921 instance=ExtResource("4_ds4xe")]
-offset_left = 620.0
-offset_top = 563.0
-offset_right = 650.0
-offset_bottom = 593.0
+offset_left = 528.0
+offset_top = 565.0
+offset_right = 558.0
+offset_bottom = 595.0
 own_group = "bottom"
 metadata/_edit_use_anchors_ = true
 
@@ -466,7 +510,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="moving_platform2" parent="." unique_id=710403595 instance=ExtResource("5_5b2j6")]
 position = Vector2(-752, 560)
-curve = SubResource("Curve2D_ggyfx")
+curve = SubResource("Curve2D_q58ns")
 speed_scale = 4.0
 move_on_trigger = true
 
@@ -481,7 +525,7 @@ polygon = PackedVector2Array(-64, -32, -64, -12, -53, 6, -27, 19, 0, 43, 28, 19,
 
 [node name="platform" parent="moving_platform2/platform" index="1" unique_id=1995284118]
 enabled = false
-tile_set = SubResource("TileSet_o8jwm")
+tile_set = SubResource("TileSet_x2qg1")
 
 [node name="MovingPlatform" type="Sprite2D" parent="moving_platform2/platform" index="2" unique_id=1974951798]
 position = Vector2(0, 4)
@@ -498,11 +542,11 @@ position = Vector2(22, -40)
 
 [node name="CollisionShape2D" parent="moving_platform2/move_trigger" index="0" unique_id=1628162647]
 position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_gjawl")
+shape = SubResource("RectangleShape2D_b7ws5")
 
 [node name="moving_platform3" parent="." unique_id=28625658 instance=ExtResource("5_5b2j6")]
 position = Vector2(-552, -410)
-curve = SubResource("Curve2D_3cx87")
+curve = SubResource("Curve2D_24qa1")
 speed_scale = 4.0
 move_on_trigger = true
 
@@ -517,7 +561,7 @@ polygon = PackedVector2Array(-64, -32, -64, -12, -53, 6, -27, 19, 0, 43, 28, 19,
 
 [node name="platform" parent="moving_platform3/platform" index="1" unique_id=1995284118]
 enabled = false
-tile_set = SubResource("TileSet_3h7mw")
+tile_set = SubResource("TileSet_bb7gg")
 
 [node name="MovingPlatform" type="Sprite2D" parent="moving_platform3/platform" index="2" unique_id=400586467]
 position = Vector2(0, 4)
@@ -534,11 +578,11 @@ position = Vector2(22, -40)
 
 [node name="CollisionShape2D" parent="moving_platform3/move_trigger" index="0" unique_id=1628162647]
 position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_xqe3t")
+shape = SubResource("RectangleShape2D_alxgl")
 
 [node name="moving_platform4" parent="." unique_id=2128519102 instance=ExtResource("5_5b2j6")]
 position = Vector2(-443, -1303)
-curve = SubResource("Curve2D_n0wr4")
+curve = SubResource("Curve2D_02mgy")
 speed_scale = 4.0
 move_on_trigger = true
 
@@ -553,7 +597,7 @@ polygon = PackedVector2Array(-64, -32, -64, -12, -53, 6, -27, 19, 0, 43, 28, 19,
 
 [node name="platform" parent="moving_platform4/platform" index="1" unique_id=1995284118]
 enabled = false
-tile_set = SubResource("TileSet_p7c1j")
+tile_set = SubResource("TileSet_bbxnb")
 
 [node name="MovingPlatform" type="Sprite2D" parent="moving_platform4/platform" index="2" unique_id=349010376]
 position = Vector2(0, 4)
@@ -570,7 +614,7 @@ position = Vector2(22, -40)
 
 [node name="CollisionShape2D" parent="moving_platform4/move_trigger" index="0" unique_id=1628162647]
 position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_3qko1")
+shape = SubResource("RectangleShape2D_v0nrk")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=2076932481]
 z_index = -1
@@ -683,6 +727,92 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("10_3qko1")
 flip_h = true
 
+[node name="Lantern" parent="Node2D" unique_id=789998600 instance=ExtResource("7_n0wr4")]
+position = Vector2(-951, -2637)
+release_lumafly = true
+
+[node name="Lantern2" parent="Node2D" unique_id=417562768 instance=ExtResource("7_n0wr4")]
+position = Vector2(553, -2638)
+release_lumafly = true
+
+[node name="ThornSmall" type="Sprite2D" parent="Node2D" unique_id=1674490397]
+position = Vector2(395, 296)
+rotation = -1.396031
+texture = ExtResource("12_xqe3t")
+
+[node name="ThornBig" type="Sprite2D" parent="Node2D" unique_id=1662201054]
+position = Vector2(514.99994, 150)
+rotation = -0.09847538
+texture = ExtResource("13_r4bu1")
+
+[node name="ThornSmall2" type="Sprite2D" parent="Node2D" unique_id=718045244]
+position = Vector2(670, 69)
+texture = ExtResource("12_xqe3t")
+
+[node name="ThornBig2" type="Sprite2D" parent="Node2D" unique_id=976320354]
+position = Vector2(650.00006, -225)
+rotation = -1.4706305
+texture = ExtResource("13_r4bu1")
+
+[node name="ThornSmall3" type="Sprite2D" parent="Node2D" unique_id=618025983]
+position = Vector2(673, -518)
+rotation = -1.0948958
+texture = ExtResource("12_xqe3t")
+
+[node name="ThornBig3" type="Sprite2D" parent="Node2D" unique_id=327466653]
+position = Vector2(589.00006, -818)
+rotation = -1.5683051
+texture = ExtResource("13_r4bu1")
+
+[node name="ThornBig4" type="Sprite2D" parent="Node2D" unique_id=2049916580]
+position = Vector2(475.00006, -1086)
+rotation = -2.2068505
+texture = ExtResource("13_r4bu1")
+flip_h = true
+
+[node name="ThornBig5" type="Sprite2D" parent="Node2D" unique_id=100927927]
+position = Vector2(-957.99994, -776)
+rotation = 2.6757545
+texture = ExtResource("13_r4bu1")
+
+[node name="ThornSmall4" type="Sprite2D" parent="Node2D" unique_id=229075470]
+position = Vector2(-918.99994, -893.99994)
+rotation = 3.0870702
+texture = ExtResource("12_xqe3t")
+
+[node name="ThornBig7" type="Sprite2D" parent="Node2D" unique_id=1416268154]
+position = Vector2(-652.0001, -1176)
+rotation = 1.998775
+texture = ExtResource("13_r4bu1")
+
+[node name="ThornBig6" type="Sprite2D" parent="Node2D" unique_id=313452206]
+position = Vector2(-727.00006, -1015)
+rotation = 2.1445732
+texture = ExtResource("13_r4bu1")
+flip_h = true
+
+[node name="ThornSmall5" type="Sprite2D" parent="Node2D" unique_id=535123978]
+position = Vector2(-705.00006, -1412.0001)
+rotation = 1.5984864
+texture = ExtResource("12_xqe3t")
+
+[node name="ThornBig8" type="Sprite2D" parent="Node2D" unique_id=1627046700]
+position = Vector2(-829, -1540)
+rotation = 0.89717424
+texture = ExtResource("13_r4bu1")
+flip_h = true
+
+[node name="ThornBig9" type="Sprite2D" parent="Node2D" unique_id=1493171068]
+position = Vector2(-1019.00006, -1809.0001)
+rotation = 0.70939344
+texture = ExtResource("13_r4bu1")
+flip_h = true
+
+[node name="ThornSmall6" type="Sprite2D" parent="Node2D" unique_id=1376125368]
+position = Vector2(-1092.0001, -1740.0001)
+rotation = 1.4865139
+texture = ExtResource("12_xqe3t")
+
 [node name="Node" type="Node" parent="." unique_id=663232202]
 
 [node name="HazardRespawn" parent="Node" unique_id=631066099 instance=ExtResource("11_i63rm")]
@@ -726,7 +856,94 @@ polygon = PackedVector2Array(-1102, -664, -922, -719, -582, -1077, -586, -1393, 
 [node name="SpikesCollision3" parent="Node" unique_id=2053470437 instance=ExtResource("12_n0wr4")]
 
 [node name="EDIT THIS" parent="Node/SpikesCollision3/StaticBody2D" parent_id_path=PackedInt32Array(2053470437, 1580090474) index="0" unique_id=1846142658]
-polygon = PackedVector2Array(292, 285, 296, 214, 632, 20, 625, -571, 354, -1328, 767, -1328, 766, 433, 453, 420, 455, 374, 366, 345)
+polygon = PackedVector2Array(292, 285, 296, 214, 632, 20, 625, -571, 367, -1278, 767, -1328, 755, 392, 455, 374, 366, 345)
+
+[node name="peashooter" parent="." unique_id=38372218 instance=ExtResource("14_sxlwj")]
+position = Vector2(-1056, -1982)
+
+[node name="peashooter2" parent="." unique_id=463486779 instance=ExtResource("14_sxlwj")]
+position = Vector2(-1062, -2586)
+
+[node name="peashooter3" parent="." unique_id=457362503 instance=ExtResource("14_sxlwj")]
+position = Vector2(646, -2589)
+face_left = true
+
+[node name="Crawlid" parent="." unique_id=697434248 instance=ExtResource("15_o8jwm")]
+position = Vector2(-565, -2773)
+
+[node name="Crawlid2" parent="." unique_id=560150751 instance=ExtResource("15_o8jwm")]
+position = Vector2(308, -2774)
+
+[node name="Crawlid3" parent="." unique_id=120143353 instance=ExtResource("15_o8jwm")]
+position = Vector2(220, -854)
+
+[node name="peashooter4" parent="." unique_id=895632628 instance=ExtResource("14_sxlwj")]
+position = Vector2(-180, -1243)
+
+[node name="Crawlid4" parent="." unique_id=728490713 instance=ExtResource("15_o8jwm")]
+position = Vector2(-286, -163)
+
+[node name="Crawlid5" parent="." unique_id=322544340 instance=ExtResource("15_o8jwm")]
+position = Vector2(214, -501)
+
+[node name="peashooter5" parent="." unique_id=45383623 instance=ExtResource("14_sxlwj")]
+position = Vector2(392, -125)
+face_left = true
+
+[node name="Crawlid6" parent="." unique_id=595666041 instance=ExtResource("15_o8jwm")]
+position = Vector2(188, 524)
+
+[node name="ENEMYwall" parent="." unique_id=693772199 instance=ExtResource("16_gjawl")]
+position = Vector2(-158, 720)
+scale = Vector2(107.24, 1)
+
+[node name="primal_aspid" parent="." unique_id=538415371 instance=ExtResource("17_5cikp")]
+position = Vector2(-59, -1077)
+stats = SubResource("Resource_x2qg1")
+
+[node name="grimmkin_bullets" parent="." unique_id=833850574 instance=ExtResource("19_xqe3t")]
+position = Vector2(-344, 91)
+stats = SubResource("Resource_b7ws5")
+
+[node name="grimmkin_bullets2" parent="." unique_id=472331090 instance=ExtResource("19_xqe3t")]
+position = Vector2(201, -2371)
+stats = SubResource("Resource_24qa1")
+
+[node name="grimmkin_circle" parent="." unique_id=771256697 instance=ExtResource("20_r4bu1")]
+position = Vector2(-657, -2143)
+stats = SubResource("Resource_bb7gg")
+
+[node name="DvdEnemy" parent="." unique_id=1523520622 instance=ExtResource("21_q58ns")]
+position = Vector2(-804, 217)
+angle = 200.8
+
+[node name="DvdEnemy2" parent="." unique_id=1727587811 instance=ExtResource("21_q58ns")]
+position = Vector2(196, 90)
+angle = 221.5
+
+[node name="DvdEnemy3" parent="." unique_id=1243169030 instance=ExtResource("21_q58ns")]
+position = Vector2(21, -847)
+angle = 318.5
+
+[node name="DvdEnemy4" parent="." unique_id=1643881920 instance=ExtResource("21_q58ns")]
+position = Vector2(-484, -1011)
+angle = 49.5
+
+[node name="DvdEnemy5" parent="." unique_id=2138666027 instance=ExtResource("21_q58ns")]
+position = Vector2(196, -2028)
+angle = 133.3
+
+[node name="DvdEnemy6" parent="." unique_id=2145916222 instance=ExtResource("21_q58ns")]
+position = Vector2(-738, -1905)
+angle = 216.3
+
+[node name="DvdEnemy7" parent="." unique_id=1895546594 instance=ExtResource("21_q58ns")]
+position = Vector2(198, -2589)
+angle = 319.0
+
+[node name="DvdEnemy8" parent="." unique_id=1420278818 instance=ExtResource("21_q58ns")]
+position = Vector2(-595, -2619)
+angle = 225.0
 
 [editable path="moving_platform2"]
 [editable path="moving_platform3"]
