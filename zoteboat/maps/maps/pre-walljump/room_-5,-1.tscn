@@ -316,6 +316,7 @@ new_location_group = "Bottom_-5,0"
 [node name="WarpZone7" parent="." unique_id=1311799436 instance=ExtResource("3_8tbqc")]
 position = Vector2(95, 430)
 scale = Vector2(10, 1)
+warp_to = "res://maps/maps/pre-walljump/room_-5,-2.tscn"
 new_location_group = "Top_-5,-2"
 
 [node name="SpawnLocation6" parent="." unique_id=462484462 instance=ExtResource("4_b75nu")]

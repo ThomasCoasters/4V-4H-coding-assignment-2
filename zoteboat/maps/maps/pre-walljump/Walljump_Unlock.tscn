@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://bphn8epnh3s0w" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_04.png" id="9_nc6c4"]
 [ext_resource type="Texture2D" uid="uid://dkc7cs323rr88" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_01.png" id="10_5ncuq"]
 [ext_resource type="PackedScene" uid="uid://xg0g0rjlglsa" path="res://maps/map_placables/moving_platforms/moving_platforms.tscn" id="11_nc6c4"]
+[ext_resource type="Texture2D" uid="uid://dpfe1kk1wg2jd" path="res://maps/map_placables/hazards (spikes)/crystals/crystal_spike_trans.png" id="16_ld5ny"]
+[ext_resource type="Texture2D" uid="uid://diaaxlmqg75dv" path="res://maps/map_placables/hazards (spikes)/crystals/crystal_spike_big.png" id="17_5x0gu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("4_b8lcr")
@@ -103,7 +105,7 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
-[sub_resource type="Curve2D" id="Curve2D_nc6c4"]
+[sub_resource type="Curve2D" id="Curve2D_uryrr"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, -288, 0, 0, 0, 0, 0, -576, 0, 0, 0, 0, -320, -288, 0, 0, 0, 0, 0, 0)
@@ -189,7 +191,7 @@ texture = ExtResource("4_b8lcr")
 3:7/0/terrains_peering_bit/top_left_corner = 0
 3:7/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_5ncuq"]
+[sub_resource type="TileSet" id="TileSet_kum4g"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -198,11 +200,11 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_ld5ny")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ld5ny"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfua1"]
 resource_local_to_scene = true
 size = Vector2(128, 8)
 
-[sub_resource type="Curve2D" id="Curve2D_5x0gu"]
+[sub_resource type="Curve2D" id="Curve2D_hfa2y"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, -288, 0, 0, 0, 0, 0, -576, 0, 0, 0, 0, -320, -288, 0, 0, 0, 0, 0, 0)
@@ -288,7 +290,7 @@ texture = ExtResource("4_b8lcr")
 3:7/0/terrains_peering_bit/top_left_corner = 0
 3:7/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_uryrr"]
+[sub_resource type="TileSet" id="TileSet_3eur7"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -297,7 +299,7 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_qfua1")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kum4g"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5b2e"]
 resource_local_to_scene = true
 size = Vector2(128, 8)
 
@@ -315,13 +317,13 @@ tile_set = SubResource("TileSet_7r8rt")
 position = Vector2(-22, 5302)
 
 [node name="EDIT THIS" parent="hazards/SpikesCollision2/StaticBody2D" parent_id_path=PackedInt32Array(417759129, 1580090474) index="0" unique_id=1846142658]
-polygon = PackedVector2Array(-10, -822, 949, -822, 950, -768, 881, -769, 825, -782, 771, -772, 720, -759, 679, -748, 660, -755, 643, -766, 574, -753, 541, -760, 491, -738, 432, -723, 384, -731, 348, -747, 295, -746, 219, -632, 160, -584, 94, -499, 90, -453, 103, -416, 110, -368, 103, -318, 77, -262, 76, -197, 27, -98, 21, -72, 8, -46, -10, -31)
+polygon = PackedVector2Array(-10, -822, 949, -822, 970, -758, 932, -717, 932, -757, 917, -769, 865, -726, 870, -772, 825, -782, 771, -772, 720, -759, 679, -748, 660, -755, 643, -766, 574, -753, 541, -760, 491, -738, 432, -723, 384, -731, 348, -747, 295, -746, 219, -632, 160, -584, 94, -499, 90, -453, 103, -416, 110, -368, 103, -318, 77, -262, 76, -197, 27, -98, 21, -72, 8, -46, -10, -31)
 
 [node name="SpikesCollision" parent="hazards" unique_id=829689903 instance=ExtResource("6_e38l6")]
 position = Vector2(910, 5301)
 
 [node name="EDIT THIS" parent="hazards/SpikesCollision/StaticBody2D" parent_id_path=PackedInt32Array(829689903, 1580090474) index="0" unique_id=1846142658]
-polygon = PackedVector2Array(-41, -438, 18, -437, 18, 7, 19, 72, -4, 39, -33, -24, -51, -57, -61, -83, -65, -105, -55.957764, -174.22302, -69, -234, -69, -285, -51, -358)
+polygon = PackedVector2Array(-102, -437, 18, -437, 18, 7, 19, 72, -4, 39, -33, -24, -51, -57, -61, -83, -65, -105, -55.957764, -174.22302, -69, -234, -69, -285, -51, -358, -66, -388, -112, -379, -97, -417)
 
 [node name="SpikesCollision3" parent="hazards" unique_id=1405857002 instance=ExtResource("6_e38l6")]
 position = Vector2(-22, 6393)
@@ -538,7 +540,7 @@ position = Vector2(448, 5222)
 
 [node name="moving_platform" parent="." unique_id=710403595 instance=ExtResource("11_nc6c4")]
 position = Vector2(448, 6304)
-curve = SubResource("Curve2D_nc6c4")
+curve = SubResource("Curve2D_uryrr")
 loop = true
 speed = 175
 
@@ -547,15 +549,15 @@ polygon = PackedVector2Array(-96, -32, -96, 32, -64, 32, -64, 64, 64, 64, 64, 32
 
 [node name="platform" parent="moving_platform/platform" parent_id_path=PackedInt32Array(710403595, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray("AAABAAAAAAACAAYAAAABAP//AAACAAUAAAAAAAAAAAACAAYAAAAAAP//AAACAAUAAAD//wAAAAACAAYAAAD/////AAACAAUAAAD+/wAAAAACAAYAAAD+////AAACAAUAAAD9/wAAAAABAAcAAAD9////AAABAAUAAAACAAAAAAADAAcAAAACAP//AAADAAUAAAABAAEAAAADAAcAAAAAAAEAAAACAAcAAAD//wEAAAACAAcAAAD+/wEAAAABAAcAAAA=")
-tile_set = SubResource("TileSet_5ncuq")
+tile_set = SubResource("TileSet_kum4g")
 
 [node name="CollisionShape2D" parent="moving_platform/move_trigger" parent_id_path=PackedInt32Array(710403595, 1286972824) index="0" unique_id=1628162647]
-shape = SubResource("RectangleShape2D_ld5ny")
+shape = SubResource("RectangleShape2D_qfua1")
 
 [node name="moving_platform2" parent="." unique_id=1528980995 instance=ExtResource("11_nc6c4")]
 position = Vector2(448, 5728)
 rotation = 3.1415927
-curve = SubResource("Curve2D_5x0gu")
+curve = SubResource("Curve2D_hfa2y")
 loop = true
 speed = 175
 
@@ -564,14 +566,76 @@ polygon = PackedVector2Array(-96, -32, -96, 32, 96, 32, 96, -32, 63.99997, -32, 
 
 [node name="platform" parent="moving_platform2/platform" parent_id_path=PackedInt32Array(1528980995, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray("AAABAAAAAAACAAcAAAABAP//AAACAAYAAAAAAAAAAAACAAcAAAAAAP//AAACAAYAAAD//wAAAAACAAcAAAD/////AAACAAYAAAD+/wAAAAACAAcAAAD+////AAACAAYAAAD9/wAAAAABAAcAAAD9////AAABAAUAAAACAAAAAAADAAcAAAACAP//AAADAAUAAAABAP7/AAADAAUAAAAAAP7/AAACAAUAAAD///7/AAACAAUAAAD+//7/AAABAAUAAAA=")
-tile_set = SubResource("TileSet_uryrr")
+tile_set = SubResource("TileSet_3eur7")
 
 [node name="CollisionShape2D" parent="moving_platform2/move_trigger" parent_id_path=PackedInt32Array(1528980995, 1286972824) index="0" unique_id=1628162647]
-shape = SubResource("RectangleShape2D_kum4g")
+shape = SubResource("RectangleShape2D_m5b2e")
 
 [node name="HazardRespawn" parent="." unique_id=486447841 instance=ExtResource("7_1oieh")]
 position = Vector2(934.00006, 4793)
 scale = Vector2(12.240002, 1)
+
+[node name="CrystalSpikeTrans" type="Sprite2D" parent="." unique_id=27398722]
+z_index = -2
+position = Vector2(1024.9996, 4633.0005)
+rotation = -1.3089969
+texture = ExtResource("16_ld5ny")
+
+[node name="CrystalSpikeTrans2" type="Sprite2D" parent="." unique_id=2127590442]
+z_index = -2
+position = Vector2(881, 4747.9995)
+rotation = -0.2617994
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_ld5ny")
+
+[node name="CrystalSpikeTrans3" type="Sprite2D" parent="." unique_id=132087102]
+z_index = -2
+position = Vector2(923.9998, 4586)
+rotation = -2.6179938
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_ld5ny")
+
+[node name="CrystalSpikeBig" type="Sprite2D" parent="." unique_id=191365065]
+z_index = -1
+position = Vector2(885, 4555)
+rotation = 3.403392
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("17_5x0gu")
+
+[node name="CrystalSpikeBig2" type="Sprite2D" parent="." unique_id=1503597348]
+z_index = -1
+position = Vector2(848.00006, 4909.9995)
+rotation = 3.6651917
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("17_5x0gu")
+
+[node name="CrystalSpikeTrans4" type="Sprite2D" parent="." unique_id=1101790270]
+z_index = -2
+position = Vector2(806.00024, 4926.0005)
+rotation = -2.3561945
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_ld5ny")
+
+[node name="CrystalSpikeTrans5" type="Sprite2D" parent="." unique_id=1349259456]
+z_index = -2
+position = Vector2(819.00024, 4532.0005)
+rotation = -1.8325958
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_ld5ny")
+
+[node name="CrystalSpikeTrans6" type="Sprite2D" parent="." unique_id=1074320302]
+z_index = -2
+position = Vector2(1004.9999, 4766)
+rotation = 0.5235988
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_ld5ny")
+
+[node name="CrystalSpikeTrans7" type="Sprite2D" parent="." unique_id=1469977891]
+z_index = -2
+position = Vector2(981, 4580)
+rotation = 3.6651917
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_ld5ny")
 
 [editable path="hazards/SpikesCollision2"]
 [editable path="hazards/SpikesCollision"]
