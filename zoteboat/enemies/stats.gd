@@ -11,6 +11,8 @@ signal health_changed(current_health: int, max_health: int)
 
 @export var attack_damage: int = 1
 
+@export var unkillable: bool = false
+
 var health: int = 0: set = _on_health_set
 
 func _init() -> void:
@@ -22,5 +24,5 @@ func setup_stats() -> void:
 func _on_health_set(new_value: int) -> void:
 	health = clamp(new_value, 0, max_health)
 	health_changed.emit(health, max_health)
-	if health <= 0:
+	if health <= 0 && !unkillable:
 		health_depleted.emit()

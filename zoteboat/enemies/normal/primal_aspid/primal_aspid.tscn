@@ -16,7 +16,7 @@ max_health = 30
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kmhe3"]
-radius = 463.0097
+radius = 559.1511
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v8ve2"]
 radius = 148.12157

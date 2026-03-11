@@ -15,6 +15,7 @@ signal killed(node: Node2D)
 
 @onready var state_chart: StateChart = $StateChart
 @onready var attack_cooldown: Timer = $"attack cooldown"
+@export var no_moving: bool = false
 
 @export_group("attacking")
 @export_range(0.0, 5.0, 0.01) var attack_cooldown_time: float = 0.6
@@ -95,6 +96,9 @@ func _physics_process(_delta: float) -> void:
 	
 	update_facing()
 	$Sprite2D.flip_h = facing_dir == 1
+	
+	if no_moving:
+		return
 	
 	var current_pos: Vector2 = self.global_transform.origin
 	var next_path_pos: Vector2 = nav_agent.get_next_path_position()
