@@ -240,8 +240,8 @@ script = ExtResource("3_uqrww")
 camera_pos = NodePath("../Camera pos")
 wave_holder = NodePath("../wave holder")
 doors = NodePath("../doors")
-arena_audio_path = "res://Game/audio/grey needle.mp3"
-after_audio_path = "res://Game/audio/carousel.ogg"
+arena_audio_path = "res://Game/audio/attack of the killer wasp.mp3"
+after_audio_path = "res://Game/audio/Queen's Gardens.mp3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area arena/area arena trigger" unique_id=788480687]
 position = Vector2(217, 782)

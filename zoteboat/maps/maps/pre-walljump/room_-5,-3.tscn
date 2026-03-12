@@ -95,6 +95,7 @@ sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
 [node name="Room -5,-3" type="Node2D" unique_id=1874960603]
 script = ExtResource("1_lilcg")
+audio_path = "res://Game/audio/Queen's Gardens.mp3"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1820643946]
 scale = Vector2(2, 2)
