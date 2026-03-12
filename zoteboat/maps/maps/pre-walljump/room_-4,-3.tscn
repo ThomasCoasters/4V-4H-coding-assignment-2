@@ -4,6 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="2_81v7e"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="3_xbkfk"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="4_kn4fg"]
+[ext_resource type="Texture2D" uid="uid://xxtc7d1wxhpc" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_08.png" id="5_pkfe1"]
+[ext_resource type="Texture2D" uid="uid://dh7qw5v6ek0np" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_06.png" id="6_jwar3"]
+[ext_resource type="Texture2D" uid="uid://nsiaod6h7uju" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_02.png" id="7_mdd71"]
+[ext_resource type="Texture2D" uid="uid://3jeol1eyq3pv" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_05.png" id="8_h4hg2"]
+[ext_resource type="Texture2D" uid="uid://dfl24itmoxo3v" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_03.png" id="9_4l13b"]
+[ext_resource type="Texture2D" uid="uid://br12kedawt3ol" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_07.png" id="10_ib8se"]
+[ext_resource type="Texture2D" uid="uid://dak6k11jwevub" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_0_0004_a.png" id="11_qeqst"]
+[ext_resource type="Texture2D" uid="uid://bx8mrcyw6nyew" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_0_0001_d.png" id="12_mdd71"]
+[ext_resource type="Texture2D" uid="uid://bbec6ibr3nejj" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_0_0002_c.png" id="12_wpwau"]
+[ext_resource type="Texture2D" uid="uid://bxnqidbk2uon5" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_0_0003_b.png" id="13_h4hg2"]
+[ext_resource type="Texture2D" uid="uid://d3645p4piuruj" path="res://maps/map_placables/hazards (spikes)/vines/fungd_spikes_0_0000_e.png" id="13_tqqwx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("2_81v7e")
@@ -103,6 +114,261 @@ tile_set = SubResource("TileSet_7r8rt")
 [node name="hazards" type="Node" parent="." unique_id=1364841774]
 
 [node name="visuals" type="Node" parent="." unique_id=891181790]
+
+[node name="FungdSpikes08" type="Sprite2D" parent="visuals" unique_id=1197281014]
+z_index = -1
+position = Vector2(1156.0001, 5681.0005)
+rotation = -2.8797934
+texture = ExtResource("5_pkfe1")
+
+[node name="FungdSpikes09" type="Sprite2D" parent="visuals" unique_id=274733232]
+z_index = -1
+position = Vector2(1524.9999, 5651)
+rotation = 0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("5_pkfe1")
+flip_v = true
+
+[node name="FungdSpikes10" type="Sprite2D" parent="visuals" unique_id=1385396225]
+z_index = -1
+position = Vector2(172, 5668)
+rotation = 3.1415925
+texture = ExtResource("5_pkfe1")
+flip_h = true
+
+[node name="FungdSpikes06" type="Sprite2D" parent="visuals" unique_id=1742819115]
+z_index = -1
+position = Vector2(1331, 5686)
+rotation = -3.1415925
+texture = ExtResource("6_jwar3")
+
+[node name="FungdSpikes02" type="Sprite2D" parent="visuals" unique_id=1791598645]
+z_index = -1
+position = Vector2(1153, 5705)
+rotation = 3.1415925
+texture = ExtResource("7_mdd71")
+
+[node name="FungdSpikes05" type="Sprite2D" parent="visuals" unique_id=1783511319]
+z_index = -1
+position = Vector2(841.00006, 5658)
+rotation = -1.8325958
+texture = ExtResource("8_h4hg2")
+
+[node name="FungdSpikes03" type="Sprite2D" parent="visuals" unique_id=1019998979]
+z_index = -1
+position = Vector2(729, 5664)
+rotation = -3.1415925
+texture = ExtResource("9_4l13b")
+
+[node name="FungdSpikes07" type="Sprite2D" parent="visuals" unique_id=1181518837]
+z_index = -1
+position = Vector2(494, 5656)
+rotation = 0.5235988
+texture = ExtResource("10_ib8se")
+flip_h = true
+flip_v = true
+
+[node name="FungdSpikes00004A" type="Sprite2D" parent="visuals" unique_id=420015086]
+modulate = Color(1, 1, 1, 0.6862745)
+z_index = 5
+position = Vector2(492.99988, 5547.9995)
+rotation = -0.5235988
+texture = ExtResource("11_qeqst")
+
+[node name="FungdSpikes00002C" type="Sprite2D" parent="visuals" unique_id=1931720948]
+modulate = Color(1, 1, 1, 0.6862745)
+z_index = 5
+position = Vector2(713, 5536)
+texture = ExtResource("12_wpwau")
+
+[node name="FungdSpikes00000E" type="Sprite2D" parent="visuals" unique_id=890384140]
+modulate = Color(1, 1, 1, 0.6862745)
+z_index = 5
+position = Vector2(540, 5613)
+rotation = -1.5707964
+texture = ExtResource("13_tqqwx")
+
+[node name="FungdSpikes00004A2" type="Sprite2D" parent="visuals" unique_id=1284264168]
+modulate = Color(1, 1, 1, 0.6862745)
+z_index = 5
+position = Vector2(645, 5576)
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("11_qeqst")
+
+[node name="FungdSpikes00002C2" type="Sprite2D" parent="visuals" unique_id=219633679]
+modulate = Color(1, 1, 1, 0.6862745)
+z_index = 5
+position = Vector2(538, 5475)
+rotation = -2.0943952
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_wpwau")
+
+[node name="FungdSpikes00002C3" type="Sprite2D" parent="visuals" unique_id=1917168337]
+modulate = Color(1, 1, 1, 0.6862745)
+z_index = 5
+position = Vector2(700.00024, 5404.0005)
+rotation = 2.094395
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_wpwau")
+flip_h = true
+
+[node name="FungdSpikes00000E2" type="Sprite2D" parent="visuals" unique_id=1730060773]
+position = Vector2(1635, 5581)
+rotation = 1.5707964
+texture = ExtResource("13_tqqwx")
+
+[node name="FungdSpikes00001D" type="Sprite2D" parent="visuals" unique_id=668571600]
+position = Vector2(1209, 5582)
+rotation = -1.5707964
+texture = ExtResource("12_mdd71")
+
+[node name="FungdSpikes00002C4" type="Sprite2D" parent="visuals" unique_id=150827932]
+position = Vector2(928, 5470)
+rotation = 3.1415925
+texture = ExtResource("12_wpwau")
+
+[node name="FungdSpikes00004A3" type="Sprite2D" parent="visuals" unique_id=536987706]
+position = Vector2(1032, 5431.0005)
+rotation = -2.6179938
+texture = ExtResource("11_qeqst")
+
+[node name="FungdSpikes00002C5" type="Sprite2D" parent="visuals" unique_id=882990696]
+position = Vector2(207, 5510)
+rotation = -3.1415925
+texture = ExtResource("12_wpwau")
+
+[node name="FungdSpikes00002C6" type="Sprite2D" parent="visuals" unique_id=1947975994]
+position = Vector2(410, 5481)
+rotation = -2.8797934
+texture = ExtResource("12_wpwau")
+
+[node name="FungdSpikes00003B" type="Sprite2D" parent="visuals" unique_id=507806863]
+position = Vector2(1469, 5303)
+rotation = 1.5707964
+texture = ExtResource("13_h4hg2")
+
+[node name="FungdSpikes00003B2" type="Sprite2D" parent="visuals" unique_id=189567991]
+position = Vector2(261, 5283)
+texture = ExtResource("13_h4hg2")
+
+[node name="FungdSpikes00004A5" type="Sprite2D" parent="visuals" unique_id=1749645360]
+position = Vector2(1755, 5026)
+rotation = 1.5707964
+texture = ExtResource("11_qeqst")
+
+[node name="FungdSpikes00001D2" type="Sprite2D" parent="visuals" unique_id=2131241069]
+position = Vector2(1522.9999, 4999)
+rotation = 2.0943952
+texture = ExtResource("12_mdd71")
+
+[node name="FungdSpikes00004A6" type="Sprite2D" parent="visuals" unique_id=2116772948]
+position = Vector2(599, 4887)
+rotation = 0.5235988
+texture = ExtResource("11_qeqst")
+
+[node name="FungdSpikes00002C7" type="Sprite2D" parent="visuals" unique_id=1152397058]
+modulate = Color(1, 1, 1, 0.6862745)
+z_index = 5
+position = Vector2(486, 5351)
+rotation = -1.5707964
+texture = ExtResource("12_wpwau")
+
+[node name="FungdSpikes00004A4" type="Sprite2D" parent="visuals" unique_id=1239613567]
+modulate = Color(1, 1, 1, 0.6862745)
+z_index = 5
+position = Vector2(695.99976, 5327.0005)
+rotation = 2.0943952
+texture = ExtResource("11_qeqst")
+
+[node name="FungdSpikes00004A7" type="Sprite2D" parent="visuals" unique_id=430998159]
+position = Vector2(215.99997, 5705.0005)
+rotation = 0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("11_qeqst")
+
+[node name="FungdSpikes00001D3" type="Sprite2D" parent="visuals" unique_id=76656425]
+position = Vector2(1151.0002, 5357.9995)
+rotation = -1.3089969
+texture = ExtResource("12_mdd71")
+
+[node name="FungdSpikes00002C8" type="Sprite2D" parent="visuals" unique_id=1454384868]
+position = Vector2(226, 6174)
+rotation = -3.1415925
+texture = ExtResource("12_wpwau")
+
+[node name="FungdSpikes00003B3" type="Sprite2D" parent="visuals" unique_id=1041265488]
+position = Vector2(1619.0002, 6269)
+rotation = 1.3089969
+texture = ExtResource("13_h4hg2")
+
+[node name="FungdSpikes00004A8" type="Sprite2D" parent="visuals" unique_id=877248803]
+position = Vector2(1319, 6096)
+rotation = -2.3561943
+texture = ExtResource("11_qeqst")
+
+[node name="FungdSpikes00001D4" type="Sprite2D" parent="visuals" unique_id=19477910]
+position = Vector2(403.00006, 6191)
+rotation = -1.8325958
+texture = ExtResource("12_mdd71")
+
+[node name="FungdSpikes00002C9" type="Sprite2D" parent="visuals" unique_id=893717794]
+position = Vector2(1188.9999, 6152)
+rotation = 2.6179938
+texture = ExtResource("12_wpwau")
+
+[node name="FungdSpikes00004A9" type="Sprite2D" parent="visuals" unique_id=1358140706]
+position = Vector2(759, 6098.0005)
+rotation = -2.3561945
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("11_qeqst")
+
+[node name="FungdSpikes00002C10" type="Sprite2D" parent="visuals" unique_id=220172587]
+position = Vector2(1864, 5686)
+rotation = 0.5235988
+texture = ExtResource("12_wpwau")
+
+[node name="FungdSpikes00004A10" type="Sprite2D" parent="visuals" unique_id=1171559989]
+modulate = Color(1, 1, 1, 0.5882353)
+z_index = 5
+position = Vector2(592, 5048)
+rotation = -1.5707964
+texture = ExtResource("11_qeqst")
+
+[node name="FungdSpikes00003B4" type="Sprite2D" parent="visuals" unique_id=1190708662]
+modulate = Color(1, 1, 1, 0.5882353)
+z_index = 5
+position = Vector2(957, 5088)
+rotation = 1.5707964
+texture = ExtResource("13_h4hg2")
+
+[node name="FungdSpikes00004A11" type="Sprite2D" parent="visuals" unique_id=243041841]
+modulate = Color(1, 1, 1, 0.5882353)
+z_index = 5
+position = Vector2(818, 5051)
+rotation = -0.2617992
+texture = ExtResource("11_qeqst")
+
+[node name="FungdSpikes00002C11" type="Sprite2D" parent="visuals" unique_id=1749388983]
+modulate = Color(1, 1, 1, 0.5882353)
+z_index = 5
+position = Vector2(992, 5164)
+rotation = 2.0943952
+texture = ExtResource("12_wpwau")
+
+[node name="FungdSpikes00004A12" type="Sprite2D" parent="visuals" unique_id=357492842]
+modulate = Color(1, 1, 1, 0.5882353)
+z_index = 5
+position = Vector2(529, 5188)
+rotation = -2.6179938
+texture = ExtResource("11_qeqst")
+
+[node name="FungdSpikes00002C12" type="Sprite2D" parent="visuals" unique_id=1189719948]
+modulate = Color(1, 1, 1, 0.5882353)
+z_index = 5
+position = Vector2(1165, 5026.9995)
+rotation = 1.3089969
+texture = ExtResource("12_wpwau")
 
 [node name="WarpZone3" parent="." unique_id=1268084640 instance=ExtResource("3_xbkfk")]
 position = Vector2(962, 6065)
