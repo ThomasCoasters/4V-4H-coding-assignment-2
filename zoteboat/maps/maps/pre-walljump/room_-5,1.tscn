@@ -207,10 +207,15 @@ key = "start_attacking"
 value = true
 metadata/_custom_type_script = "uid://domk3qfwgxh7i"
 
-[sub_resource type="Resource" id="Resource_mo4rv"]
+[sub_resource type="Resource" id="Resource_6khr4"]
 script = ExtResource("5_fu331")
 key = "angle"
 value = 50.0
+
+[sub_resource type="Resource" id="Resource_mo4rv"]
+script = ExtResource("5_fu331")
+key = "angle"
+value = 2300.0
 
 [sub_resource type="Resource" id="Resource_yuwko"]
 script = ExtResource("5_fu331")
@@ -218,7 +223,7 @@ key = "face_left"
 value = true
 metadata/_custom_type_script = "uid://domk3qfwgxh7i"
 
-[sub_resource type="Curve2D" id="Curve2D_01bkl"]
+[sub_resource type="Curve2D" id="Curve2D_6khr4"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -288)
@@ -304,7 +309,7 @@ texture = ExtResource("2_6khr4")
 3:7/0/terrains_peering_bit/top_left_corner = 0
 3:7/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_nc2q7"]
+[sub_resource type="TileSet" id="TileSet_a00wb"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -313,11 +318,11 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_fu331")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_moyme"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01bkl"]
 resource_local_to_scene = true
 size = Vector2(128, 8)
 
-[sub_resource type="Curve2D" id="Curve2D_d0qt4"]
+[sub_resource type="Curve2D" id="Curve2D_fu331"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -288)
@@ -403,7 +408,7 @@ texture = ExtResource("2_6khr4")
 3:7/0/terrains_peering_bit/top_left_corner = 0
 3:7/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_nplx0"]
+[sub_resource type="TileSet" id="TileSet_nc2q7"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -412,7 +417,7 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bvoyf")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpe2e"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moyme"]
 resource_local_to_scene = true
 size = Vector2(128, 8)
 
@@ -503,7 +508,7 @@ position = Vector2(815, 281)
 [node name="extra" type="Node2D" parent="area arena/wave holder/phase3/dvd" unique_id=231031185]
 visible = false
 script = ExtResource("4_01bkl")
-extras = Array[ExtResource("5_fu331")]([SubResource("Resource_mo4rv")])
+extras = Array[ExtResource("5_fu331")]([SubResource("Resource_6khr4")])
 
 [node name="dvd2" type="Node2D" parent="area arena/wave holder/phase3" unique_id=76754786]
 position = Vector2(1873, 283)
@@ -524,7 +529,7 @@ extras = Array[ExtResource("5_fu331")]([SubResource("Resource_psvay")])
 [node name="phase4" type="Node" parent="area arena/wave holder" unique_id=973329150]
 
 [node name="peashooter2" type="Node2D" parent="area arena/wave holder/phase4" unique_id=852866345]
-position = Vector2(1729, 456)
+position = Vector2(1694, 456)
 
 [node name="extra" type="Node2D" parent="area arena/wave holder/phase4/peashooter2" unique_id=1176077815]
 visible = false
@@ -532,28 +537,20 @@ script = ExtResource("4_01bkl")
 extras = Array[ExtResource("5_fu331")]([SubResource("Resource_yuwko")])
 
 [node name="peashooter3" type="Node2D" parent="area arena/wave holder/phase4" unique_id=206551884]
-position = Vector2(960, 445)
+position = Vector2(1002, 445)
 
 [node name="squash" type="Node2D" parent="area arena/wave holder/phase4" unique_id=2114069256]
-position = Vector2(1342, 182)
+position = Vector2(1455, 182)
 
 [node name="squash2" type="Node2D" parent="area arena/wave holder/phase4" unique_id=1620588802]
-position = Vector2(1344, 440)
+position = Vector2(1188, 195)
 
 [node name="phase5" type="Node" parent="area arena/wave holder" unique_id=46241050]
 
 [node name="primal" type="Node2D" parent="area arena/wave holder/phase5" unique_id=473975956]
-position = Vector2(815, 281)
+position = Vector2(1342, 148)
 
 [node name="extra" type="Node2D" parent="area arena/wave holder/phase5/primal" unique_id=1232010680]
-visible = false
-script = ExtResource("4_01bkl")
-extras = Array[ExtResource("5_fu331")]([SubResource("Resource_psvay")])
-
-[node name="primal2" type="Node2D" parent="area arena/wave holder/phase5" unique_id=777970868]
-position = Vector2(1873, 283)
-
-[node name="extra" type="Node2D" parent="area arena/wave holder/phase5/primal2" unique_id=533287731]
 visible = false
 script = ExtResource("4_01bkl")
 extras = Array[ExtResource("5_fu331")]([SubResource("Resource_psvay")])
@@ -639,31 +636,31 @@ texture = ExtResource("10_6khr4")
 
 [node name="moving_platform" parent="." unique_id=710403595 instance=ExtResource("11_a00wb")]
 position = Vector2(1024, 512)
-curve = SubResource("Curve2D_01bkl")
+curve = SubResource("Curve2D_6khr4")
 
 [node name="CHANGE THIS TO FIT THE PLATFORM" parent="moving_platform/platform" parent_id_path=PackedInt32Array(710403595, 247959146) index="0" unique_id=334858337]
-polygon = PackedVector2Array(-64, -32, -64, 32, 96, 32, 96, -32)
+polygon = PackedVector2Array(-64, -32, -64, 576, 96, 576, 96, -32)
 
 [node name="platform" parent="moving_platform/platform" parent_id_path=PackedInt32Array(710403595, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray("AAABAAAAAAACAAYAAAABAP//AAACAAUAAAAAAAAAAAACAAYAAAAAAP//AAACAAUAAAD//wAAAAACAAYAAAD/////AAACAAUAAAD+/wAAAAABAAYAAAD+////AAABAAUAAAACAAAAAAADAAYAAAACAP//AAADAAUAAAACAAUAAAADAAYAAAACAAQAAAADAAYAAAACAAMAAAADAAYAAAACAAIAAAADAAYAAAACAAEAAAADAAYAAAABAAUAAAACAAYAAAABAAQAAAACAAYAAAABAAMAAAACAAYAAAABAAIAAAACAAYAAAABAAEAAAACAAYAAAAAAAUAAAACAAYAAAAAAAQAAAACAAYAAAAAAAMAAAACAAYAAAAAAAIAAAACAAYAAAAAAAEAAAACAAYAAAD//wUAAAACAAYAAAD//wQAAAACAAYAAAD//wMAAAACAAYAAAD//wIAAAACAAYAAAD//wEAAAACAAYAAAD+/wUAAAABAAYAAAD+/wQAAAABAAYAAAD+/wMAAAABAAYAAAD+/wIAAAABAAYAAAD+/wEAAAABAAYAAAACABEAAAADAAcAAAACABAAAAADAAYAAAACAA8AAAADAAYAAAACAA4AAAADAAYAAAACAA0AAAADAAYAAAACAAwAAAADAAYAAAACAAsAAAADAAYAAAACAAoAAAADAAYAAAACAAkAAAADAAYAAAACAAgAAAADAAYAAAACAAcAAAADAAYAAAACAAYAAAADAAYAAAABABEAAAACAAcAAAABABAAAAACAAYAAAABAA8AAAACAAYAAAABAA4AAAACAAYAAAABAA0AAAACAAYAAAABAAwAAAACAAYAAAABAAsAAAACAAYAAAABAAoAAAACAAYAAAABAAkAAAACAAYAAAABAAgAAAACAAYAAAABAAcAAAACAAYAAAABAAYAAAACAAYAAAAAABEAAAACAAcAAAAAABAAAAACAAYAAAAAAA8AAAACAAYAAAAAAA4AAAACAAYAAAAAAA0AAAACAAYAAAAAAAwAAAACAAYAAAAAAAsAAAACAAYAAAAAAAoAAAACAAYAAAAAAAkAAAACAAYAAAAAAAgAAAACAAYAAAAAAAcAAAACAAYAAAAAAAYAAAACAAYAAAD//xEAAAACAAcAAAD//xAAAAACAAYAAAD//w8AAAACAAYAAAD//w4AAAACAAYAAAD//w0AAAACAAYAAAD//wwAAAACAAYAAAD//wsAAAACAAYAAAD//woAAAACAAYAAAD//wkAAAACAAYAAAD//wgAAAACAAYAAAD//wcAAAACAAYAAAD//wYAAAACAAYAAAD+/xEAAAABAAcAAAD+/xAAAAABAAYAAAD+/w8AAAABAAYAAAD+/w4AAAABAAYAAAD+/w0AAAABAAYAAAD+/wwAAAABAAYAAAD+/wsAAAABAAYAAAD+/woAAAABAAYAAAD+/wkAAAABAAYAAAD+/wgAAAABAAYAAAD+/wcAAAABAAYAAAD+/wYAAAABAAYAAAA=")
-tile_set = SubResource("TileSet_nc2q7")
+tile_set = SubResource("TileSet_a00wb")
 
 [node name="CollisionShape2D" parent="moving_platform/move_trigger" parent_id_path=PackedInt32Array(710403595, 1286972824) index="0" unique_id=1628162647]
-shape = SubResource("RectangleShape2D_moyme")
+shape = SubResource("RectangleShape2D_01bkl")
 
 [node name="moving_platform2" parent="." unique_id=2066933531 instance=ExtResource("11_a00wb")]
 position = Vector2(1664, 512)
-curve = SubResource("Curve2D_d0qt4")
+curve = SubResource("Curve2D_fu331")
 
 [node name="CHANGE THIS TO FIT THE PLATFORM" parent="moving_platform2/platform" parent_id_path=PackedInt32Array(2066933531, 247959146) index="0" unique_id=334858337]
-polygon = PackedVector2Array(-96, -32, -96, 32, 64, 32, 64, -32)
+polygon = PackedVector2Array(-96, -32, -96, 576, 64, 576, 64, -32)
 
 [node name="platform" parent="moving_platform2/platform" parent_id_path=PackedInt32Array(2066933531, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray("AAABAAAAAAADAAYAAAABAP//AAADAAUAAAAAAAAAAAACAAYAAAAAAP//AAACAAUAAAD//wAAAAACAAYAAAD/////AAACAAUAAAD+/wAAAAACAAYAAAD+////AAACAAUAAAD9/wAAAAABAAYAAAD9////AAABAAUAAAABAAUAAAADAAYAAAABAAQAAAADAAYAAAABAAMAAAADAAYAAAABAAIAAAADAAYAAAABAAEAAAADAAYAAAAAAAUAAAACAAYAAAAAAAQAAAACAAYAAAAAAAMAAAACAAYAAAAAAAIAAAACAAYAAAAAAAEAAAACAAYAAAD//wUAAAACAAYAAAD//wQAAAACAAYAAAD//wMAAAACAAYAAAD//wIAAAACAAYAAAD//wEAAAACAAYAAAD+/wUAAAACAAYAAAD+/wQAAAACAAYAAAD+/wMAAAACAAYAAAD+/wIAAAACAAYAAAD+/wEAAAACAAYAAAD9/wUAAAABAAYAAAD9/wQAAAABAAYAAAD9/wMAAAABAAYAAAD9/wIAAAABAAYAAAD9/wEAAAABAAYAAAABABEAAAADAAcAAAABABAAAAADAAYAAAABAA8AAAADAAYAAAABAA4AAAADAAYAAAABAA0AAAADAAYAAAABAAwAAAADAAYAAAABAAsAAAADAAYAAAABAAoAAAADAAYAAAABAAkAAAADAAYAAAABAAgAAAADAAYAAAABAAcAAAADAAYAAAABAAYAAAADAAYAAAAAABEAAAACAAcAAAAAABAAAAACAAYAAAAAAA8AAAACAAYAAAAAAA4AAAACAAYAAAAAAA0AAAACAAYAAAAAAAwAAAACAAYAAAAAAAsAAAACAAYAAAAAAAoAAAACAAYAAAAAAAkAAAACAAYAAAAAAAgAAAACAAYAAAAAAAcAAAACAAYAAAAAAAYAAAACAAYAAAD//xEAAAACAAcAAAD//xAAAAACAAYAAAD//w8AAAACAAYAAAD//w4AAAACAAYAAAD//w0AAAACAAYAAAD//wwAAAACAAYAAAD//wsAAAACAAYAAAD//woAAAACAAYAAAD//wkAAAACAAYAAAD//wgAAAACAAYAAAD//wcAAAACAAYAAAD//wYAAAACAAYAAAD+/xEAAAACAAcAAAD+/xAAAAACAAYAAAD+/w8AAAACAAYAAAD+/w4AAAACAAYAAAD+/w0AAAACAAYAAAD+/wwAAAACAAYAAAD+/wsAAAACAAYAAAD+/woAAAACAAYAAAD+/wkAAAACAAYAAAD+/wgAAAACAAYAAAD+/wcAAAACAAYAAAD+/wYAAAACAAYAAAD9/xEAAAABAAcAAAD9/xAAAAABAAYAAAD9/w8AAAABAAYAAAD9/w4AAAABAAYAAAD9/w0AAAABAAYAAAD9/wwAAAABAAYAAAD9/wsAAAABAAYAAAD9/woAAAABAAYAAAD9/wkAAAABAAYAAAD9/wgAAAABAAYAAAD9/wcAAAABAAYAAAD9/wYAAAABAAYAAAA=")
-tile_set = SubResource("TileSet_nplx0")
+tile_set = SubResource("TileSet_nc2q7")
 
 [node name="CollisionShape2D" parent="moving_platform2/move_trigger" parent_id_path=PackedInt32Array(2066933531, 1286972824) index="0" unique_id=1628162647]
-shape = SubResource("RectangleShape2D_qpe2e")
+shape = SubResource("RectangleShape2D_moyme")
 
 [connection signal="body_entered" from="area arena/area arena trigger" to="area arena/area arena trigger" method="_on_body_entered"]
 

@@ -25,7 +25,7 @@ offset_bottom = 1207.0
 color = Color(0, 0, 0, 0.58431375)
 
 [node name="welcome" parent="dialogue_manager" unique_id=45030735 instance=ExtResource("2_mfygf")]
-messages = ["1;Hello, stranger welcome to these strange lands.;1", "1;I would like to explain what is going on but there is sadly not enough time now..;1", "1;Let's continue talking on the other side of this wall!!;1", "1;All the previous strangers told me that they jump by pressing Z on an keyboard and A or cross on controller. And you jump higher by holding it.;1"]
+messages = ["1;Hello, stranger welcome to these strange lands.;1", "1;I would like to explain what is going on but there is sadly not enough time now.;1", "1;Let's continue talking on the other side of this wall!;1", "1;All the previous strangers told me that they jump by pressing Z on an keyboard and A or cross on controller. And you jump higher by holding it.;1"]
 
 [node name="scary_bug" parent="dialogue_manager" unique_id=1796485007 instance=ExtResource("2_mfygf")]
 messages = ["1;Stranger, you see these things they are really scary.;1", "1;Can you please remove them with your fine looking sword that looks like it has a craving of \"Life Ender\" on it.;1", "1;From all the countless sad creatures that came here before you I leared you can attack using X on keyboard and X or cube on controller.;1"]
@@ -53,3 +53,9 @@ messages = ["1;Well done, you beat Path of Bah! Now your heal will heal you DOUB
 
 [node name="lantern_unlock" parent="dialogue_manager" unique_id=499669594 instance=ExtResource("2_mfygf")]
 messages = ["1;You got the Lumafly Lantern!  It will be activated in dark rooms.;1"]
+
+[node name="lantern_tip" parent="dialogue_manager" unique_id=1221617387 instance=ExtResource("2_mfygf")]
+messages = ["1;Heya, how are ya!;1", "1;Not a talker am I right, well I just lost my lantern maybe ya could use that.;1", "1;I lost it after that HUGE drop after I met that weird guy calling me a stranger!;1", "1;Maybe you can find it if you need it, I don't so no need to worry about me. Not like some weird moth will kill me ain't I right?;1", "1;Good luck on you adventures friend, and remember I lost my lantern inside that HUGE drop!;1"]
+
+[node name="lantern_tip_repeat" parent="dialogue_manager" unique_id=2145738077 instance=ExtResource("2_mfygf")]
+messages = ["1;Good luck on you adventures friend, and remember I lost my lantern inside that HUGE drop!;1"]

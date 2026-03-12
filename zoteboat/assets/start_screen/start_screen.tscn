@@ -481,7 +481,7 @@ text = "Invisible Motion: Off"
 
 [node name="perma_death" type="Button" parent="variants" unique_id=1947878565]
 layout_mode = 2
-focus_neighbor_top = NodePath("../exit_variant")
+focus_neighbor_top = NodePath("../invis")
 focus_neighbor_bottom = NodePath("../unkillable")
 theme_override_fonts/font = ExtResource("4_w4mux")
 theme_override_font_sizes/font_size = 35
