@@ -15,10 +15,10 @@ max_health = 15
 metadata/_custom_type_script = "uid://cya84ofqpnfxs"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kmhe3"]
-radius = 559.3943
+radius = 393.50858
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v8ve2"]
-radius = 148.12157
+radius = 164.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kmhe3"]
 atlas = ExtResource("3_kmhe3")
@@ -229,7 +229,7 @@ animations = [{
 size = Vector2(42, 38)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sqio4"]
-radius = 560.0036
+radius = 560.04376
 
 [node name="aspid" type="CharacterBody2D" unique_id=1840179216 node_paths=PackedStringArray("nav_agent") groups=["enemy"]]
 collision_layer = 8
@@ -240,14 +240,12 @@ retreat_speed_mult = 1.5
 nav_agent = NodePath("NavigationAgent2D")
 
 [node name="attack_and_stop" type="Area2D" parent="." unique_id=1057572691]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_and_stop" unique_id=626536485]
 shape = SubResource("CircleShape2D_kmhe3")
 
 [node name="retreat" type="Area2D" parent="." unique_id=242152573]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="retreat" unique_id=435365181]
