@@ -107,6 +107,8 @@ script = ExtResource("1_yxpay")
 [node name="WarpZone3" parent="." unique_id=1623170445 instance=ExtResource("2_adc5v")]
 position = Vector2(546, 6081)
 scale = Vector2(13, 1)
+warp_to = "res://maps/maps/pre-walljump/room_-3,-3.tscn"
+new_location_group = "Top_-3,-3"
 
 [node name="SpawnLocation3" parent="." unique_id=705366616 instance=ExtResource("3_aj8xy")]
 offset_left = 369.0

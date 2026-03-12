@@ -245,6 +245,8 @@ new_location_group = "Bottom_-5,-1"
 [node name="WarpZone6" parent="." unique_id=631049134 instance=ExtResource("5_2b8jt")]
 position = Vector2(-960, 6048)
 scale = Vector2(10, 1)
+warp_to = "res://maps/maps/pre-walljump/room_-5,-3.tscn"
+new_location_group = "Top_-5,-3"
 
 [node name="SpawnLocation3" parent="." unique_id=705366616 instance=ExtResource("4_6t4bg")]
 offset_left = 1040.0
