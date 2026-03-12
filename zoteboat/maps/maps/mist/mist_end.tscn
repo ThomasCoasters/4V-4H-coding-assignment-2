@@ -3,8 +3,11 @@
 [ext_resource type="Script" uid="uid://h474lfj76jl5" path="res://maps/universal_map_script.gd" id="1_gmd5t"]
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="2_uhdtl"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="3_dyc3s"]
-[ext_resource type="PackedScene" path="res://maps/maps/mist/specific scenes/random warp zone/random_warp_zone.tscn" id="4_ph5in"]
 [ext_resource type="PackedScene" uid="uid://m7ubfq1qdyfv" path="res://maps/pickups/double jump/unlock_double_jump.tscn" id="5_uhdtl"]
+[ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="5_wlbct"]
+[ext_resource type="Texture2D" uid="uid://bp3nuhhu33iyt" path="res://maps/maps/P.o.B/P.o.B specific/visuals/dirt_like/straight.png" id="6_wrw42"]
+[ext_resource type="Texture2D" uid="uid://c61oeij228qm0" path="res://maps/maps/P.o.B/P.o.B specific/visuals/dirt_like/side_curved.png" id="7_lbj4s"]
+[ext_resource type="Texture2D" uid="uid://cv8uf38vwjbkv" path="res://maps/maps/P.o.B/P.o.B specific/visuals/dirt_like/bottom_big1.png" id="8_crfa3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("2_uhdtl")
@@ -121,11 +124,39 @@ offset_bottom = -872.0
 own_group = "spawn"
 metadata/_edit_use_anchors_ = true
 
-[node name="RandomWarpZone" parent="." unique_id=1268084640 instance=ExtResource("4_ph5in")]
-position = Vector2(641, -980.00006)
-scale = Vector2(6.5360737, 21.23558)
-new_location_group = "left"
-correct = true
-
 [node name="UnlockDoubleJump" parent="." unique_id=1324372839 instance=ExtResource("5_uhdtl")]
 position = Vector2(-97, -1082)
+
+[node name="SpawnLocation6" parent="." unique_id=1036971678 instance=ExtResource("3_dyc3s")]
+offset_left = -821.0
+offset_top = -901.0
+offset_right = -791.0
+offset_bottom = -871.0
+own_group = "Left_mist_start"
+metadata/_edit_use_anchors_ = true
+
+[node name="WarpZone5" parent="." unique_id=1268084640 instance=ExtResource("5_wlbct")]
+position = Vector2(-877, -994.00006)
+scale = Vector2(1, 13)
+warp_to = "res://maps/maps/pre-walljump/room_-3,-4.tscn"
+new_location_group = "Right_-3,-4"
+
+[node name="Straight" type="Sprite2D" parent="." unique_id=289191865]
+position = Vector2(551, -987)
+rotation = -1.0715609
+texture = ExtResource("6_wrw42")
+
+[node name="SideCurved2" type="Sprite2D" parent="." unique_id=1785224814]
+position = Vector2(623, -846)
+texture = ExtResource("7_lbj4s")
+flip_h = true
+
+[node name="BottomBig1" type="Sprite2D" parent="." unique_id=967979094]
+position = Vector2(677.99994, -941)
+rotation = 0.63368505
+texture = ExtResource("8_crfa3")
+
+[node name="SideCurved" type="Sprite2D" parent="." unique_id=338429795]
+position = Vector2(664, -1097)
+texture = ExtResource("7_lbj4s")
+flip_h = true
