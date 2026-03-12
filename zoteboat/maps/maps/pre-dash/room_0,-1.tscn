@@ -96,6 +96,7 @@ sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
 [node name="Room 0,-1" type="Node2D" unique_id=1874960603]
 script = ExtResource("1_4itya")
+audio_path = "res://Game/audio/silkantuary.mp3"
 
 [node name="SpawnLocation" parent="." unique_id=1340382980 instance=ExtResource("3_eanu5")]
 offset_left = 661.0

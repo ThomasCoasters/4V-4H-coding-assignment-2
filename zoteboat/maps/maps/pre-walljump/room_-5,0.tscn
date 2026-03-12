@@ -119,6 +119,7 @@ point_count = 2
 
 [node name="Room -5,0" type="Node2D" unique_id=1874960603]
 script = ExtResource("1_w6xuk")
+audio_path = "res://Game/audio/Greenpath.mp3"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1820643946]
 scale = Vector2(2, 2)

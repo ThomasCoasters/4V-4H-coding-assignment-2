@@ -172,6 +172,7 @@ size = Vector2(128, 398)
 
 [node name="Dash_Unlock" type="Node2D" unique_id=1874960603]
 script = ExtResource("1_dc0nh")
+audio_path = "res://Game/audio/The Slab.mp3"
 dark_room = true
 
 [node name="SpawnLocation2" parent="." unique_id=1545312283 instance=ExtResource("3_tyh2w")]
