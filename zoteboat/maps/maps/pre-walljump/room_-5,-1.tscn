@@ -293,13 +293,6 @@ position = Vector2(-719, -214)
 rotation = 1.3089969
 texture = ExtResource("5_x0owv")
 
-[node name="FungdSpikes00004A" type="Sprite2D" parent="visuals" unique_id=2004421334]
-modulate = Color(1, 1, 1, 0.6862745)
-z_index = 5
-position = Vector2(760.00006, -901.0001)
-rotation = 1.8325958
-texture = ExtResource("17_26gnb")
-
 [node name="FungdSpikes00000E" type="Sprite2D" parent="visuals" unique_id=231784270]
 z_index = 5
 position = Vector2(825, -554)
@@ -307,17 +300,16 @@ texture = ExtResource("18_aj3mh")
 
 [node name="FungdSpikes00002C" type="Sprite2D" parent="visuals" unique_id=1352247021]
 z_index = 5
-position = Vector2(777.00006, -1084.0001)
+position = Vector2(773.00006, -1063.0001)
 rotation = 2.0943952
 texture = ExtResource("19_k3pm5")
 flip_h = true
 
-[node name="FungdSpikes00004A2" type="Sprite2D" parent="visuals" unique_id=1939404465]
-modulate = Color(1, 1, 1, 0.5882353)
+[node name="FungdSpikes00004A" type="Sprite2D" parent="visuals" unique_id=2004421334]
+modulate = Color(1, 1, 1, 0.8627451)
 z_index = 5
-position = Vector2(755, -839.99994)
-rotation = 1.5707964
-scale = Vector2(0.4, 0.4)
+position = Vector2(742, -860.00006)
+rotation = 1.8325958
 texture = ExtResource("17_26gnb")
 
 [node name="WarpZone3" parent="." unique_id=1268084640 instance=ExtResource("3_8tbqc")]
@@ -510,6 +502,15 @@ curve = SubResource("Curve2D_yi5su")
 position = Vector2(-88, 206.7015)
 rotation = -1.5707964
 progress = 1166.2986
+
+[node name="SpawnLocation10" parent="." unique_id=728682845 instance=ExtResource("4_b75nu")]
+z_index = 2
+offset_left = 729.0
+offset_top = -1101.0
+offset_right = 759.0
+offset_bottom = -1071.0
+own_group = "Right_upper_-5,-1"
+metadata/_edit_use_anchors_ = true
 
 [editable path="hazards/SpikesCollision"]
 [editable path="hazards/SpikesCollision2"]

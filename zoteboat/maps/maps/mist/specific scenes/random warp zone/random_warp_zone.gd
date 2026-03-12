@@ -29,6 +29,7 @@ func _on_body_entered(body: Node2D) -> void:
 		warp_to = "res://maps/maps/mist/mist_end.tscn"
 		new_location_group = "spawn"
 		SaveLoad.contents_to_save.mist_completed = true
+		SaveLoad._save()
 	
 	else:
 		Global.player.mist_correct += 1
