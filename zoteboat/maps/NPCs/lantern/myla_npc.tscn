@@ -3,6 +3,14 @@
 [ext_resource type="Script" uid="uid://cmejcc0bame1d" path="res://maps/NPCs/lantern/myla_npc.gd" id="1_8bso1"]
 [ext_resource type="Texture2D" uid="uid://d3su21dvn1lpl" path="res://maps/NPCs/lantern/PC _ Computer - Hollow Knight - Non-Playable Characters - Myla.png" id="2_8bso1"]
 [ext_resource type="Texture2D" uid="uid://cgfxqd5vya7vs" path="res://maps/NPCs/Interact fleurs - atlas0 #40637.png" id="3_up4dq"]
+[ext_resource type="AudioStream" uid="uid://cwen8agrk4ltv" path="res://maps/NPCs/lantern/audio/Miner_01.wav" id="4_r0m0c"]
+[ext_resource type="AudioStream" uid="uid://xag1n46vw4i2" path="res://maps/NPCs/lantern/audio/Miner_02.wav" id="5_wa88s"]
+[ext_resource type="AudioStream" uid="uid://dah8s7bojx80a" path="res://maps/NPCs/lantern/audio/Miner_03.wav" id="6_c5rue"]
+[ext_resource type="AudioStream" uid="uid://clf24vpugsr7f" path="res://maps/NPCs/lantern/audio/Miner_04.wav" id="7_ikx2s"]
+[ext_resource type="AudioStream" uid="uid://b4mvv4ybgqnm7" path="res://maps/NPCs/lantern/audio/Miner_05.wav" id="8_xltih"]
+[ext_resource type="AudioStream" uid="uid://d3qd6rmvxef2f" path="res://maps/NPCs/lantern/audio/Miner_idle_hum.wav" id="9_25b1l"]
+[ext_resource type="AudioStream" uid="uid://d02gsx1cj7y1l" path="res://maps/NPCs/lantern/audio/myla_pickaxe_1.wav" id="10_lbhlc"]
+[ext_resource type="AudioStream" uid="uid://bxdflqu44tfnv" path="res://maps/NPCs/lantern/audio/myla_pickaxe_2.wav" id="11_flbc5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4kixq"]
 atlas = ExtResource("2_8bso1")
@@ -255,10 +263,8 @@ script = ExtResource("1_8bso1")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=435831442]
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_iwijn")
-animation = &"talk(end)"
+animation = &"idle"
 autoplay = "idle"
-frame = 3
-frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=671020390]
 collision_layer = 0
@@ -278,6 +284,44 @@ position = Vector2(-13, -22)
 energy = 0.9
 texture = SubResource("GradientTexture2D_8bso1")
 texture_scale = 5.0
+
+[node name="audio" type="Control" parent="." unique_id=2101570551]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Miner01" type="AudioStreamPlayer" parent="audio" unique_id=1771645951]
+stream = ExtResource("4_r0m0c")
+bus = &"SFX"
+
+[node name="Miner02" type="AudioStreamPlayer" parent="audio" unique_id=89688426]
+stream = ExtResource("5_wa88s")
+bus = &"SFX"
+
+[node name="Miner03" type="AudioStreamPlayer" parent="audio" unique_id=890187327]
+stream = ExtResource("6_c5rue")
+bus = &"SFX"
+
+[node name="Miner04" type="AudioStreamPlayer" parent="audio" unique_id=519647118]
+stream = ExtResource("7_ikx2s")
+bus = &"SFX"
+
+[node name="Miner05" type="AudioStreamPlayer" parent="audio" unique_id=153357993]
+stream = ExtResource("8_xltih")
+bus = &"SFX"
+
+[node name="MinerIdleHum" type="AudioStreamPlayer" parent="audio" unique_id=1105688005]
+stream = ExtResource("9_25b1l")
+bus = &"SFX"
+
+[node name="MylaPickaxe1" type="AudioStreamPlayer" parent="audio" unique_id=23606567]
+stream = ExtResource("10_lbhlc")
+bus = &"SFX"
+
+[node name="MylaPickaxe2" type="AudioStreamPlayer" parent="audio" unique_id=20839454]
+stream = ExtResource("11_flbc5")
+bus = &"SFX"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
