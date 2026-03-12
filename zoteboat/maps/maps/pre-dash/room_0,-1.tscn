@@ -149,7 +149,7 @@ scale = Vector2(44.84, 1)
 position = Vector2(1456, 4957)
 scale = Vector2(1, 13)
 warp_to = "res://maps/maps/pre-dash/lantern.tscn"
-new_location_group = "Left_1,-1"
+new_location_group = "Left_Dash_Unlock"
 
 [node name="SpawnLocation4" parent="." unique_id=1577411942 instance=ExtResource("3_eanu5")]
 offset_left = 1313.0

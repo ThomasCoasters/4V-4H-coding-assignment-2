@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b8o8aamm2dksl" path="res://maps/secrets assets/tober car/car.png" id="5_byeok"]
 [ext_resource type="PackedScene" uid="uid://b60o5r2c5plrs" path="res://maps/map_placables/change value/change_player_value.tscn" id="6_byeok"]
 [ext_resource type="Script" uid="uid://domk3qfwgxh7i" path="res://maps/enemy arena/keyValue.gd" id="7_tyu4n"]
+[ext_resource type="PackedScene" uid="uid://curcrv72u4j4f" path="res://maps/pickups/nail_upgrade/increase_nail_dmg.tscn" id="8_brbk7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("2_1dfxa")
@@ -95,7 +96,7 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
-[sub_resource type="Curve2D" id="Curve2D_tyu4n"]
+[sub_resource type="Curve2D" id="Curve2D_h4c0h"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1100, -10, 0, 0, 0, 0, -1663, -11)
@@ -181,7 +182,7 @@ texture = ExtResource("2_1dfxa")
 3:7/0/terrains_peering_bit/top_left_corner = 0
 3:7/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_h4c0h"]
+[sub_resource type="TileSet" id="TileSet_6h0w5"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -196,7 +197,7 @@ key = "health"
 value = 0
 metadata/_custom_type_script = "uid://domk3qfwgxh7i"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6h0w5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5aur6"]
 resource_local_to_scene = true
 size = Vector2(1690, 936)
 
@@ -219,7 +220,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="moving_platform" parent="." unique_id=710403595 instance=ExtResource("4_bqybx")]
 position = Vector2(-556, -1059)
-curve = SubResource("Curve2D_tyu4n")
+curve = SubResource("Curve2D_h4c0h")
 move_on_trigger = true
 enable_custom_sprite = true
 normal_sprite = ExtResource("5_byeok")
@@ -232,7 +233,7 @@ position = Vector2(1100, -10)
 position = Vector2(1100, -10)
 
 [node name="platform" parent="moving_platform/platform" index="1" unique_id=1995284118]
-tile_set = SubResource("TileSet_h4c0h")
+tile_set = SubResource("TileSet_6h0w5")
 
 [node name="change_stuff" parent="moving_platform/platform" index="2" unique_id=111750805 instance=ExtResource("6_byeok")]
 scale = Vector2(17.940304, -16.689077)
@@ -243,6 +244,9 @@ position = Vector2(1100, -10)
 
 [node name="CollisionShape2D" parent="moving_platform/move_trigger" index="0" unique_id=1628162647]
 position = Vector2(-1036, -265)
-shape = SubResource("RectangleShape2D_6h0w5")
+shape = SubResource("RectangleShape2D_5aur6")
+
+[node name="Increase_Nail_Dmg" parent="." unique_id=1162401991 instance=ExtResource("8_brbk7")]
+position = Vector2(-1122, -948)
 
 [editable path="moving_platform"]
