@@ -416,12 +416,12 @@ script = ExtResource("8_8ca2v")
 expression = "jumps_amount > 0"
 metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
-[sub_resource type="Gradient" id="Gradient_lh05m"]
+[sub_resource type="Gradient" id="Gradient_evyxp"]
 offsets = PackedFloat32Array(0, 0.63380283)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_r30oh"]
-gradient = SubResource("Gradient_lh05m")
+gradient = SubResource("Gradient_evyxp")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -431,6 +431,7 @@ collision_mask = 6
 floor_max_angle = 1.5358897
 platform_floor_layers = 4278190082
 script = ExtResource("1_d2shb")
+use_cheats = true
 has_dash = true
 has_wall_cling = true
 has_double_jump = true

@@ -27,6 +27,7 @@ func _on_body_entered(body: Node2D) -> void:
 func collect(body):
 	has_lantern = true
 	body.has_lantern = true
+	body.point_light_2d.texture_scale = 19.0
 	
 	SaveLoad.contents_to_save.has_lantern = has_lantern
 	SaveLoad.contents_to_save.starting_room = Global.map.scene_file_path
