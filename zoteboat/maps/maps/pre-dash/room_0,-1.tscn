@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://sb0mxc1t8jsw" path="res://assets/temp assest/Dungeon Tile Set.png" id="4_xiw3t"]
 [ext_resource type="PackedScene" uid="uid://dccm81k18vutf" path="res://maps/benches/bench.tscn" id="5_tub5p"]
 [ext_resource type="PackedScene" uid="uid://b60o5r2c5plrs" path="res://maps/map_placables/change value/change_player_value.tscn" id="6_65e4e"]
+[ext_resource type="Texture2D" uid="uid://dpfe1kk1wg2jd" path="res://maps/map_placables/hazards (spikes)/crystals/crystal_spike_trans.png" id="7_aafrr"]
+[ext_resource type="Texture2D" uid="uid://2yojjp72teqj" path="res://maps/map_placables/hazards (spikes)/crystals/crystal_spike_small.png" id="8_nx13s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("4_xiw3t")
@@ -124,17 +126,17 @@ warp_to = "res://maps/maps/pre-dash/room_-1,-1.tscn"
 new_location_group = "Right_-1,-1"
 
 [node name="SpawnLocation2" parent="." unique_id=1545312283 instance=ExtResource("3_eanu5")]
-offset_left = 1.0
+offset_left = -79.0
 offset_top = 5922.0
-offset_right = 31.0
+offset_right = -49.0
 offset_bottom = 5952.0
 own_group = "Left_0,-1"
 metadata/_edit_use_anchors_ = true
 
 [node name="SpawnLocation3" parent="." unique_id=705366616 instance=ExtResource("3_eanu5")]
-offset_left = 1313.0
+offset_left = 1393.0
 offset_top = 5922.0
-offset_right = 1343.0
+offset_right = 1423.0
 offset_bottom = 5952.0
 own_group = "Right_0,-1"
 metadata/_edit_use_anchors_ = true
@@ -153,9 +155,69 @@ warp_to = "res://maps/maps/pre-dash/lantern.tscn"
 new_location_group = "Left_Dash_Unlock"
 
 [node name="SpawnLocation4" parent="." unique_id=1577411942 instance=ExtResource("3_eanu5")]
-offset_left = 1313.0
-offset_top = 5053.0
-offset_right = 1343.0
-offset_bottom = 5083.0
+offset_left = 1393.0
+offset_top = 5058.0
+offset_right = 1423.0
+offset_bottom = 5088.0
 own_group = "Right_top_0,-1"
 metadata/_edit_use_anchors_ = true
+
+[node name="CrystalSpikeTrans" type="Sprite2D" parent="." unique_id=1693540324]
+z_index = -2
+position = Vector2(1047.0002, 4969)
+rotation = -2.3561945
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_aafrr")
+
+[node name="CrystalSpikeTrans2" type="Sprite2D" parent="." unique_id=337728318]
+z_index = -2
+position = Vector2(1207, 5002)
+rotation = -2.8797934
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_aafrr")
+
+[node name="CrystalSpikeTrans4" type="Sprite2D" parent="." unique_id=75142250]
+z_index = -2
+position = Vector2(1276.0001, 5049)
+rotation = -0.2617994
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_aafrr")
+
+[node name="CrystalSpikeTrans5" type="Sprite2D" parent="." unique_id=231365351]
+z_index = -2
+position = Vector2(1377.9999, 4957)
+rotation = -2.0943952
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_aafrr")
+
+[node name="CrystalSpikeTrans7" type="Sprite2D" parent="." unique_id=2131455996]
+z_index = -2
+position = Vector2(1431, 5041)
+rotation = -0.7853982
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_aafrr")
+
+[node name="CrystalSpikeSmall" type="Sprite2D" parent="." unique_id=1638149272]
+z_index = -3
+position = Vector2(1376, 5057)
+rotation = -0.5235988
+texture = ExtResource("8_nx13s")
+
+[node name="CrystalSpikeSmall2" type="Sprite2D" parent="." unique_id=305127415]
+z_index = -3
+position = Vector2(1254.9999, 4994)
+rotation = -2.8797934
+texture = ExtResource("8_nx13s")
+
+[node name="CrystalSpikeTrans3" type="Sprite2D" parent="." unique_id=22484688]
+z_index = -2
+position = Vector2(1055.0002, 5088.0005)
+rotation = -0.7853982
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_aafrr")
+
+[node name="CrystalSpikeSmall3" type="Sprite2D" parent="." unique_id=1664730006]
+z_index = -3
+position = Vector2(1117.0001, 5087.0005)
+rotation = -0.7853982
+texture = ExtResource("8_nx13s")
