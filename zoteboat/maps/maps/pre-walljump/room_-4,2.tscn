@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://brl6223ut1jct" path="res://maps/map_placables/hazards (spikes)/crystals/mines_stomper_02.png" id="14_d8ovn"]
 [ext_resource type="PackedScene" uid="uid://djdjlun3b8jss" path="res://maps/map_placables/respawns/hazard_respawn.tscn" id="15_u61mu"]
 [ext_resource type="Texture2D" uid="uid://crccqyjrhcbdi" path="res://Game/MISC/Screenshot 2026-03-08 205211.png" id="16_hym2r"]
+[ext_resource type="PackedScene" uid="uid://b60o5r2c5plrs" path="res://maps/map_placables/change value/change_player_value.tscn" id="20_sjn1e"]
+[ext_resource type="Script" uid="uid://domk3qfwgxh7i" path="res://maps/enemy arena/keyValue.gd" id="21_0dahp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk4vp"]
 texture = ExtResource("2_gqxyg")
@@ -107,67 +109,10 @@ terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 sources/0 = SubResource("TileSetAtlasSource_bk4vp")
 
-[sub_resource type="Curve2D" id="Curve2D_7la4s"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 288, 0)
-}
-point_count = 2
-
-[sub_resource type="TileSet" id="TileSet_u61mu"]
-resource_local_to_scene = true
-physics_layer_0/collision_layer = 0
-physics_layer_0/collision_mask = 0
-terrain_set_0/mode = 0
-terrain_set_0/terrain_0/name = "test ground"
-terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hym2r"]
-resource_local_to_scene = true
-size = Vector2(160, 8)
-
-[sub_resource type="Curve2D" id="Curve2D_d8ovn"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1614, 0)
-}
-point_count = 2
-
-[sub_resource type="TileSet" id="TileSet_4sod1"]
-resource_local_to_scene = true
-physics_layer_0/collision_layer = 0
-physics_layer_0/collision_mask = 0
-terrain_set_0/mode = 0
-terrain_set_0/terrain_0/name = "test ground"
-terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xkeox"]
-resource_local_to_scene = true
-size = Vector2(160, 8)
-
-[sub_resource type="Curve2D" id="Curve2D_stshi"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -480)
-}
-point_count = 2
-
-[sub_resource type="TileSet" id="TileSet_sjn1e"]
-resource_local_to_scene = true
-physics_layer_0/collision_layer = 0
-physics_layer_0/collision_mask = 0
-terrain_set_0/mode = 0
-terrain_set_0/terrain_0/name = "test ground"
-terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dahp"]
-resource_local_to_scene = true
-size = Vector2(160, 8)
-
 [sub_resource type="Curve2D" id="Curve2D_xdxuk"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 268)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 288, 0)
 }
 point_count = 2
 
@@ -181,12 +126,12 @@ terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghvud"]
 resource_local_to_scene = true
-size = Vector2(128, 378)
+size = Vector2(160, 8)
 
 [sub_resource type="Curve2D" id="Curve2D_qf46q"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 268)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1614, 0)
 }
 point_count = 2
 
@@ -200,12 +145,12 @@ terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kvorq"]
 resource_local_to_scene = true
-size = Vector2(128, 417)
+size = Vector2(160, 8)
 
 [sub_resource type="Curve2D" id="Curve2D_0atyj"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 268)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -480)
 }
 point_count = 2
 
@@ -219,7 +164,7 @@ terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7hrk"]
 resource_local_to_scene = true
-size = Vector2(128, 415)
+size = Vector2(160, 8)
 
 [sub_resource type="Curve2D" id="Curve2D_pdrr2"]
 resource_local_to_scene = true
@@ -238,7 +183,7 @@ terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdmod"]
 resource_local_to_scene = true
-size = Vector2(128, 398)
+size = Vector2(128, 378)
 
 [sub_resource type="Curve2D" id="Curve2D_fh1le"]
 resource_local_to_scene = true
@@ -257,7 +202,7 @@ terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ns83"]
 resource_local_to_scene = true
-size = Vector2(128, 407)
+size = Vector2(128, 417)
 
 [sub_resource type="Curve2D" id="Curve2D_kmn07"]
 resource_local_to_scene = true
@@ -276,7 +221,7 @@ terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r2d2r"]
 resource_local_to_scene = true
-size = Vector2(128, 412)
+size = Vector2(128, 415)
 
 [sub_resource type="Curve2D" id="Curve2D_3s244"]
 resource_local_to_scene = true
@@ -295,12 +240,12 @@ terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdo3v"]
 resource_local_to_scene = true
-size = Vector2(128, 421)
+size = Vector2(128, 398)
 
 [sub_resource type="Curve2D" id="Curve2D_mcyi0"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 928)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 268)
 }
 point_count = 2
 
@@ -314,12 +259,12 @@ terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sq053"]
 resource_local_to_scene = true
-size = Vector2(128, 8)
+size = Vector2(128, 407)
 
 [sub_resource type="Curve2D" id="Curve2D_su2t2"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 128, 0, 0, 0, 0, 0, 928)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 268)
 }
 point_count = 2
 
@@ -333,16 +278,73 @@ terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2v8uq"]
 resource_local_to_scene = true
+size = Vector2(128, 412)
+
+[sub_resource type="Curve2D" id="Curve2D_uar6v"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 268)
+}
+point_count = 2
+
+[sub_resource type="TileSet" id="TileSet_b5rkg"]
+resource_local_to_scene = true
+physics_layer_0/collision_layer = 0
+physics_layer_0/collision_mask = 0
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "test ground"
+terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_weevx"]
+resource_local_to_scene = true
+size = Vector2(128, 421)
+
+[sub_resource type="Curve2D" id="Curve2D_7g7th"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 928)
+}
+point_count = 2
+
+[sub_resource type="TileSet" id="TileSet_01kq2"]
+resource_local_to_scene = true
+physics_layer_0/collision_layer = 0
+physics_layer_0/collision_mask = 0
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "test ground"
+terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wk01k"]
+resource_local_to_scene = true
 size = Vector2(128, 8)
 
-[sub_resource type="Curve2D" id="Curve2D_u61mu"]
+[sub_resource type="Curve2D" id="Curve2D_8jd03"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 128, 0, 0, 0, 0, 0, 928)
+}
+point_count = 2
+
+[sub_resource type="TileSet" id="TileSet_r5k1g"]
+resource_local_to_scene = true
+physics_layer_0/collision_layer = 0
+physics_layer_0/collision_mask = 0
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "test ground"
+terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5pdi"]
+resource_local_to_scene = true
+size = Vector2(128, 8)
+
+[sub_resource type="Curve2D" id="Curve2D_tgy2l"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -448, 0)
 }
 point_count = 2
 
-[sub_resource type="TileSet" id="TileSet_d8ovn"]
+[sub_resource type="TileSet" id="TileSet_1soqb"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -350,18 +352,18 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4sod1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ua8fd"]
 resource_local_to_scene = true
 size = Vector2(128, 8)
 
-[sub_resource type="Curve2D" id="Curve2D_hym2r"]
+[sub_resource type="Curve2D" id="Curve2D_33way"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 448, 0)
 }
 point_count = 2
 
-[sub_resource type="TileSet" id="TileSet_xkeox"]
+[sub_resource type="TileSet" id="TileSet_yr87x"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -369,18 +371,18 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_stshi"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ug8s"]
 resource_local_to_scene = true
 size = Vector2(128, 8)
 
-[sub_resource type="Curve2D" id="Curve2D_4sod1"]
+[sub_resource type="Curve2D" id="Curve2D_044wr"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -303, 0)
 }
 point_count = 2
 
-[sub_resource type="TileSet" id="TileSet_stshi"]
+[sub_resource type="TileSet" id="TileSet_2s114"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -388,18 +390,18 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjn1e"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4f6g"]
 resource_local_to_scene = true
 size = Vector2(160, 11)
 
-[sub_resource type="Curve2D" id="Curve2D_xkeox"]
+[sub_resource type="Curve2D" id="Curve2D_r0wrx"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 286, -160.62695)
 }
 point_count = 2
 
-[sub_resource type="TileSet" id="TileSet_0dahp"]
+[sub_resource type="TileSet" id="TileSet_j1860"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -407,18 +409,18 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xdxuk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_27c51"]
 resource_local_to_scene = true
 size = Vector2(160, 8)
 
-[sub_resource type="Curve2D" id="Curve2D_lk26l"]
+[sub_resource type="Curve2D" id="Curve2D_irwwy"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -480)
 }
 point_count = 2
 
-[sub_resource type="TileSet" id="TileSet_qf46q"]
+[sub_resource type="TileSet" id="TileSet_6vy25"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
@@ -426,9 +428,15 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "test ground"
 terrain_set_0/terrain_0/color = Color(0.09411765, 1, 0.8784314, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ymox"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cuy2s"]
 resource_local_to_scene = true
 size = Vector2(160, 8)
+
+[sub_resource type="Resource" id="Resource_bwoi4"]
+script = ExtResource("21_0dahp")
+key = "health"
+value = 999
+metadata/_custom_type_script = "uid://domk3qfwgxh7i"
 
 [node name="Room -4,2" type="Node2D" unique_id=1874960603]
 script = ExtResource("1_iarf6")
@@ -2785,7 +2793,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="moving_platform" parent="." unique_id=710403595 instance=ExtResource("6_l357e")]
 position = Vector2(672, 96)
-curve = SubResource("Curve2D_7la4s")
+curve = SubResource("Curve2D_xdxuk")
 speed_scale = 9.0
 move_on_trigger = true
 
@@ -2794,7 +2802,7 @@ polygon = PackedVector2Array(-65, -32, -65, -27, 17, -4, 99, -20, 99, -32)
 
 [node name="platform" parent="moving_platform/platform" parent_id_path=PackedInt32Array(710403595, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_u61mu")
+tile_set = SubResource("TileSet_lk26l")
 
 [node name="MineCrystal08" type="Sprite2D" parent="moving_platform/platform" parent_id_path=PackedInt32Array(710403595, 247959146) index="2" unique_id=161808390]
 position = Vector2(16, 5.9999924)
@@ -2809,11 +2817,11 @@ polygon = PackedVector2Array(-68, -28, 100, -19, 103, -14, 105, -9, 93, -12, 91,
 
 [node name="CollisionShape2D" parent="moving_platform/move_trigger" parent_id_path=PackedInt32Array(710403595, 1286972824) index="0" unique_id=1628162647]
 position = Vector2(16, -36)
-shape = SubResource("RectangleShape2D_hym2r")
+shape = SubResource("RectangleShape2D_ghvud")
 
 [node name="moving_platform3" parent="." unique_id=444824907 instance=ExtResource("6_l357e")]
 position = Vector2(1520, -544)
-curve = SubResource("Curve2D_d8ovn")
+curve = SubResource("Curve2D_qf46q")
 speed_scale = 0.3
 move_on_trigger = true
 
@@ -2822,7 +2830,7 @@ polygon = PackedVector2Array(-65, -32, -65, -27, 17, -4, 99, -20, 99, -32)
 
 [node name="platform" parent="moving_platform3/platform" parent_id_path=PackedInt32Array(444824907, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_4sod1")
+tile_set = SubResource("TileSet_8ymox")
 
 [node name="MineCrystal08" type="Sprite2D" parent="moving_platform3/platform" parent_id_path=PackedInt32Array(444824907, 247959146) index="2" unique_id=907230127]
 position = Vector2(16, 5.9999924)
@@ -2837,11 +2845,11 @@ polygon = PackedVector2Array(-64, -26, 95, -19, 93, -12, 91, -10, 95, -3, 95, 6,
 
 [node name="CollisionShape2D" parent="moving_platform3/move_trigger" parent_id_path=PackedInt32Array(444824907, 1286972824) index="0" unique_id=1628162647]
 position = Vector2(16, -36)
-shape = SubResource("RectangleShape2D_xkeox")
+shape = SubResource("RectangleShape2D_kvorq")
 
 [node name="moving_platform4" parent="." unique_id=33020563 instance=ExtResource("6_l357e")]
 position = Vector2(-500, -224)
-curve = SubResource("Curve2D_stshi")
+curve = SubResource("Curve2D_0atyj")
 speed_scale = 7.0
 per_side_wait_time = 1.5
 move_on_trigger = true
@@ -2851,7 +2859,7 @@ polygon = PackedVector2Array(-65, -32, -65, -27, 17, -4, 99, -20, 99, -32)
 
 [node name="platform" parent="moving_platform4/platform" parent_id_path=PackedInt32Array(33020563, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_sjn1e")
+tile_set = SubResource("TileSet_narcw")
 
 [node name="MineCrystal08" type="Sprite2D" parent="moving_platform4/platform" parent_id_path=PackedInt32Array(33020563, 247959146) index="2" unique_id=310878935]
 position = Vector2(16, 5.9999924)
@@ -2861,12 +2869,12 @@ texture = ExtResource("10_0684n")
 
 [node name="CollisionShape2D" parent="moving_platform4/move_trigger" parent_id_path=PackedInt32Array(33020563, 1286972824) index="0" unique_id=1628162647]
 position = Vector2(16, -36)
-shape = SubResource("RectangleShape2D_0dahp")
+shape = SubResource("RectangleShape2D_b7hrk")
 
 [node name="moving_platform2" parent="." unique_id=1451190952 instance=ExtResource("6_l357e")]
 z_index = -1
 position = Vector2(-48, -1540)
-curve = SubResource("Curve2D_xdxuk")
+curve = SubResource("Curve2D_pdrr2")
 speed_scale = 4.5
 move_on_trigger = true
 normal_sprite = ExtResource("13_1fnl2")
@@ -2878,7 +2886,7 @@ polygon = PackedVector2Array(-68, -210, -68, 86, 71, 86, 71, -210)
 
 [node name="platform" parent="moving_platform2/platform" parent_id_path=PackedInt32Array(1451190952, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_lk26l")
+tile_set = SubResource("TileSet_iu77j")
 
 [node name="MinesStomper01" type="Sprite2D" parent="moving_platform2/platform" parent_id_path=PackedInt32Array(1451190952, 247959146) index="2" unique_id=1940330134]
 z_index = -1
@@ -2888,12 +2896,12 @@ texture = ExtResource("13_1fnl2")
 
 [node name="CollisionShape2D" parent="moving_platform2/move_trigger" parent_id_path=PackedInt32Array(1451190952, 1286972824) index="0" unique_id=1628162647]
 position = Vector2(0, 200)
-shape = SubResource("RectangleShape2D_ghvud")
+shape = SubResource("RectangleShape2D_kdmod")
 
 [node name="moving_platform5" parent="." unique_id=1138657486 instance=ExtResource("6_l357e")]
 z_index = -1
 position = Vector2(320, -1540)
-curve = SubResource("Curve2D_qf46q")
+curve = SubResource("Curve2D_fh1le")
 speed_scale = 4.5
 move_on_trigger = true
 normal_sprite = ExtResource("13_1fnl2")
@@ -2905,7 +2913,7 @@ polygon = PackedVector2Array(-68, -210, -68, 86, 71, 86, 71, -210)
 
 [node name="platform" parent="moving_platform5/platform" parent_id_path=PackedInt32Array(1138657486, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_8ymox")
+tile_set = SubResource("TileSet_yn04x")
 
 [node name="MinesStomper01" type="Sprite2D" parent="moving_platform5/platform" parent_id_path=PackedInt32Array(1138657486, 247959146) index="2" unique_id=348140966]
 z_index = -1
@@ -2915,12 +2923,12 @@ texture = ExtResource("13_1fnl2")
 
 [node name="CollisionShape2D" parent="moving_platform5/move_trigger" parent_id_path=PackedInt32Array(1138657486, 1286972824) index="0" unique_id=1628162647]
 position = Vector2(0, 168.5)
-shape = SubResource("RectangleShape2D_kvorq")
+shape = SubResource("RectangleShape2D_6ns83")
 
 [node name="moving_platform6" parent="." unique_id=518907768 instance=ExtResource("6_l357e")]
 z_index = -1
 position = Vector2(489, -1540)
-curve = SubResource("Curve2D_0atyj")
+curve = SubResource("Curve2D_kmn07")
 speed_scale = 4.5
 move_on_trigger = true
 normal_sprite = ExtResource("13_1fnl2")
@@ -2932,7 +2940,7 @@ polygon = PackedVector2Array(-68, -210, -68, 86, 71, 86, 71, -210)
 
 [node name="platform" parent="moving_platform6/platform" parent_id_path=PackedInt32Array(518907768, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_narcw")
+tile_set = SubResource("TileSet_1f0ae")
 
 [node name="MinesStomper01" type="Sprite2D" parent="moving_platform6/platform" parent_id_path=PackedInt32Array(518907768, 247959146) index="2" unique_id=1556112594]
 z_index = -1
@@ -2942,12 +2950,12 @@ texture = ExtResource("13_1fnl2")
 
 [node name="CollisionShape2D" parent="moving_platform6/move_trigger" parent_id_path=PackedInt32Array(518907768, 1286972824) index="0" unique_id=1628162647]
 position = Vector2(0, 167.5)
-shape = SubResource("RectangleShape2D_b7hrk")
+shape = SubResource("RectangleShape2D_r2d2r")
 
 [node name="moving_platform7" parent="." unique_id=267613864 instance=ExtResource("6_l357e")]
 z_index = -1
 position = Vector2(658, -1540)
-curve = SubResource("Curve2D_pdrr2")
+curve = SubResource("Curve2D_3s244")
 speed_scale = 4.5
 move_on_trigger = true
 normal_sprite = ExtResource("13_1fnl2")
@@ -2959,7 +2967,7 @@ polygon = PackedVector2Array(-68, -210, -68, 86, 71, 86, 71, -210)
 
 [node name="platform" parent="moving_platform7/platform" parent_id_path=PackedInt32Array(267613864, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_iu77j")
+tile_set = SubResource("TileSet_w230b")
 
 [node name="MinesStomper01" type="Sprite2D" parent="moving_platform7/platform" parent_id_path=PackedInt32Array(267613864, 247959146) index="2" unique_id=1666982759]
 z_index = -1
@@ -2969,12 +2977,12 @@ texture = ExtResource("13_1fnl2")
 
 [node name="CollisionShape2D" parent="moving_platform7/move_trigger" parent_id_path=PackedInt32Array(267613864, 1286972824) index="0" unique_id=1628162647]
 position = Vector2(0, 159)
-shape = SubResource("RectangleShape2D_kdmod")
+shape = SubResource("RectangleShape2D_mdo3v")
 
 [node name="moving_platform8" parent="." unique_id=1966903922 instance=ExtResource("6_l357e")]
 z_index = -1
 position = Vector2(827, -1540)
-curve = SubResource("Curve2D_fh1le")
+curve = SubResource("Curve2D_mcyi0")
 speed_scale = 4.5
 move_on_trigger = true
 normal_sprite = ExtResource("13_1fnl2")
@@ -2986,7 +2994,7 @@ polygon = PackedVector2Array(-68, -210, -68, 86, 71, 86, 71, -210)
 
 [node name="platform" parent="moving_platform8/platform" parent_id_path=PackedInt32Array(1966903922, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_yn04x")
+tile_set = SubResource("TileSet_7box6")
 
 [node name="MinesStomper01" type="Sprite2D" parent="moving_platform8/platform" parent_id_path=PackedInt32Array(1966903922, 247959146) index="2" unique_id=797910754]
 z_index = -1
@@ -2996,12 +3004,12 @@ texture = ExtResource("13_1fnl2")
 
 [node name="CollisionShape2D" parent="moving_platform8/move_trigger" parent_id_path=PackedInt32Array(1966903922, 1286972824) index="0" unique_id=1628162647]
 position = Vector2(0, 163.5)
-shape = SubResource("RectangleShape2D_6ns83")
+shape = SubResource("RectangleShape2D_sq053")
 
 [node name="moving_platform10" parent="." unique_id=152051951 instance=ExtResource("6_l357e")]
 z_index = -1
 position = Vector2(996, -1540)
-curve = SubResource("Curve2D_kmn07")
+curve = SubResource("Curve2D_su2t2")
 speed_scale = 4.5
 move_on_trigger = true
 normal_sprite = ExtResource("13_1fnl2")
@@ -3013,7 +3021,7 @@ polygon = PackedVector2Array(-68, -210, -68, 86, 71, 86, 71, -210)
 
 [node name="platform" parent="moving_platform10/platform" parent_id_path=PackedInt32Array(152051951, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_1f0ae")
+tile_set = SubResource("TileSet_sqdu3")
 
 [node name="MinesStomper01" type="Sprite2D" parent="moving_platform10/platform" parent_id_path=PackedInt32Array(152051951, 247959146) index="2" unique_id=1595845281]
 z_index = -1
@@ -3023,7 +3031,7 @@ texture = ExtResource("13_1fnl2")
 
 [node name="CollisionShape2D" parent="moving_platform10/move_trigger" parent_id_path=PackedInt32Array(152051951, 1286972824) index="0" unique_id=1628162647]
 position = Vector2(0, 166)
-shape = SubResource("RectangleShape2D_r2d2r")
+shape = SubResource("RectangleShape2D_2v8uq")
 
 [node name="AnimationPlayer" parent="moving_platform10" index="3" unique_id=1396996021]
 root_node = NodePath("../../moving_platform10")
@@ -3031,7 +3039,7 @@ root_node = NodePath("../../moving_platform10")
 [node name="moving_platform9" parent="." unique_id=1063160896 instance=ExtResource("6_l357e")]
 z_index = -1
 position = Vector2(1165, -1540)
-curve = SubResource("Curve2D_3s244")
+curve = SubResource("Curve2D_uar6v")
 speed_scale = 4.5
 move_on_trigger = true
 normal_sprite = ExtResource("13_1fnl2")
@@ -3043,7 +3051,7 @@ polygon = PackedVector2Array(-68, -210, -68, 86, 71, 86, 71, -210)
 
 [node name="platform" parent="moving_platform9/platform" parent_id_path=PackedInt32Array(1063160896, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_w230b")
+tile_set = SubResource("TileSet_b5rkg")
 
 [node name="MinesStomper01" type="Sprite2D" parent="moving_platform9/platform" parent_id_path=PackedInt32Array(1063160896, 247959146) index="2" unique_id=1245209298]
 z_index = -1
@@ -3053,30 +3061,30 @@ texture = ExtResource("13_1fnl2")
 
 [node name="CollisionShape2D" parent="moving_platform9/move_trigger" parent_id_path=PackedInt32Array(1063160896, 1286972824) index="0" unique_id=1628162647]
 position = Vector2(0, 170.5)
-shape = SubResource("RectangleShape2D_mdo3v")
+shape = SubResource("RectangleShape2D_weevx")
 
 [node name="moving_platform11" parent="." unique_id=238540615 instance=ExtResource("6_l357e")]
 z_index = -1
 position = Vector2(1792, -2272)
-curve = SubResource("Curve2D_mcyi0")
+curve = SubResource("Curve2D_7g7th")
 speed_scale = 1.5
 per_side_wait_time = 0.5
 
 [node name="platform" parent="moving_platform11/platform" parent_id_path=PackedInt32Array(238540615, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_7box6")
+tile_set = SubResource("TileSet_01kq2")
 
 [node name="shawblade" parent="moving_platform11/platform" parent_id_path=PackedInt32Array(238540615, 247959146) index="2" unique_id=1544766891 instance=ExtResource("14_7la4s")]
 scale = Vector2(0.75, 0.75)
 
 [node name="CollisionShape2D" parent="moving_platform11/move_trigger" parent_id_path=PackedInt32Array(238540615, 1286972824) index="0" unique_id=1628162647]
-shape = SubResource("RectangleShape2D_sq053")
+shape = SubResource("RectangleShape2D_wk01k")
 
 [node name="moving_platform12" parent="." unique_id=337996132 instance=ExtResource("6_l357e")]
 z_index = -1
 position = Vector2(1504, -1344)
 rotation = 3.1415927
-curve = SubResource("Curve2D_su2t2")
+curve = SubResource("Curve2D_8jd03")
 speed_scale = 1.5
 per_side_wait_time = 0.5
 
@@ -3088,7 +3096,7 @@ position = Vector2(0, 128)
 
 [node name="platform" parent="moving_platform12/platform" index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_sqdu3")
+tile_set = SubResource("TileSet_r5k1g")
 
 [node name="shawblade" parent="moving_platform12/platform" index="2" unique_id=1304445958 instance=ExtResource("14_7la4s")]
 scale = Vector2(0.75, 0.75)
@@ -3097,47 +3105,47 @@ scale = Vector2(0.75, 0.75)
 position = Vector2(0, 128)
 
 [node name="CollisionShape2D" parent="moving_platform12/move_trigger" index="0" unique_id=1628162647]
-shape = SubResource("RectangleShape2D_2v8uq")
+shape = SubResource("RectangleShape2D_p5pdi")
 
 [node name="moving_platform13" parent="." unique_id=738240435 instance=ExtResource("6_l357e")]
 z_index = -1
 position = Vector2(1760, -1728)
 scale = Vector2(0.5, 0.5)
-curve = SubResource("Curve2D_u61mu")
+curve = SubResource("Curve2D_tgy2l")
 speed_scale = 1.5
 per_side_wait_time = 0.5
 
 [node name="platform" parent="moving_platform13/platform" parent_id_path=PackedInt32Array(738240435, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_d8ovn")
+tile_set = SubResource("TileSet_1soqb")
 
 [node name="shawblade" parent="moving_platform13/platform" parent_id_path=PackedInt32Array(738240435, 247959146) index="2" unique_id=581026395 instance=ExtResource("14_7la4s")]
 scale = Vector2(0.75, 0.75)
 
 [node name="CollisionShape2D" parent="moving_platform13/move_trigger" parent_id_path=PackedInt32Array(738240435, 1286972824) index="0" unique_id=1628162647]
-shape = SubResource("RectangleShape2D_4sod1")
+shape = SubResource("RectangleShape2D_ua8fd")
 
 [node name="moving_platform14" parent="." unique_id=215707137 instance=ExtResource("6_l357e")]
 z_index = -1
 position = Vector2(1536, -2080)
 scale = Vector2(0.5, 0.5)
-curve = SubResource("Curve2D_hym2r")
+curve = SubResource("Curve2D_33way")
 speed_scale = 1.5
 per_side_wait_time = 0.5
 
 [node name="platform" parent="moving_platform14/platform" parent_id_path=PackedInt32Array(215707137, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_xkeox")
+tile_set = SubResource("TileSet_yr87x")
 
 [node name="shawblade" parent="moving_platform14/platform" parent_id_path=PackedInt32Array(215707137, 247959146) index="2" unique_id=748578115 instance=ExtResource("14_7la4s")]
 scale = Vector2(0.75, 0.75)
 
 [node name="CollisionShape2D" parent="moving_platform14/move_trigger" parent_id_path=PackedInt32Array(215707137, 1286972824) index="0" unique_id=1628162647]
-shape = SubResource("RectangleShape2D_stshi")
+shape = SubResource("RectangleShape2D_7ug8s")
 
 [node name="moving_platform15" parent="." unique_id=114234960 instance=ExtResource("6_l357e")]
 position = Vector2(1103, -2272)
-curve = SubResource("Curve2D_4sod1")
+curve = SubResource("Curve2D_044wr")
 speed_scale = 7.0
 move_on_trigger = true
 
@@ -3146,7 +3154,7 @@ polygon = PackedVector2Array(-65, -32, -65, -27, 17, -4, 99, -20, 99, -32)
 
 [node name="platform" parent="moving_platform15/platform" parent_id_path=PackedInt32Array(114234960, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_stshi")
+tile_set = SubResource("TileSet_2s114")
 
 [node name="MineCrystal08" type="Sprite2D" parent="moving_platform15/platform" parent_id_path=PackedInt32Array(114234960, 247959146) index="2" unique_id=997382044]
 position = Vector2(16, 5.9999924)
@@ -3161,11 +3169,11 @@ polygon = PackedVector2Array(-60, -20, 96, -14, 93, -12, 91, -10, 81, -2, 76, 0,
 
 [node name="CollisionShape2D" parent="moving_platform15/move_trigger" parent_id_path=PackedInt32Array(114234960, 1286972824) index="0" unique_id=1628162647]
 position = Vector2(16, -37.5)
-shape = SubResource("RectangleShape2D_sjn1e")
+shape = SubResource("RectangleShape2D_q4f6g")
 
 [node name="moving_platform16" parent="." unique_id=1133244491 instance=ExtResource("6_l357e")]
 position = Vector2(-286, -3052.373)
-curve = SubResource("Curve2D_xkeox")
+curve = SubResource("Curve2D_r0wrx")
 speed_scale = 7.0
 move_on_trigger = true
 
@@ -3174,7 +3182,7 @@ polygon = PackedVector2Array(-65, -32, -65, -27, 17, -4, 99, -20, 99, -32)
 
 [node name="platform" parent="moving_platform16/platform" parent_id_path=PackedInt32Array(1133244491, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_0dahp")
+tile_set = SubResource("TileSet_j1860")
 
 [node name="MineCrystal08" type="Sprite2D" parent="moving_platform16/platform" parent_id_path=PackedInt32Array(1133244491, 247959146) index="2" unique_id=1709762595]
 position = Vector2(16, 5.9999924)
@@ -3184,11 +3192,11 @@ texture = ExtResource("10_0684n")
 
 [node name="CollisionShape2D" parent="moving_platform16/move_trigger" parent_id_path=PackedInt32Array(1133244491, 1286972824) index="0" unique_id=1628162647]
 position = Vector2(16, -36)
-shape = SubResource("RectangleShape2D_xdxuk")
+shape = SubResource("RectangleShape2D_27c51")
 
 [node name="moving_platform21" parent="." unique_id=467203325 instance=ExtResource("6_l357e")]
 position = Vector2(-500.23474, -1728)
-curve = SubResource("Curve2D_lk26l")
+curve = SubResource("Curve2D_irwwy")
 speed_scale = 7.0
 per_side_wait_time = 1.5
 move_on_trigger = true
@@ -3198,7 +3206,7 @@ polygon = PackedVector2Array(-65, -32, -65, -27, 17, -4, 99, -20, 99, -32)
 
 [node name="platform" parent="moving_platform21/platform" parent_id_path=PackedInt32Array(467203325, 247959146) index="1" unique_id=1995284118]
 tile_map_data = PackedByteArray()
-tile_set = SubResource("TileSet_qf46q")
+tile_set = SubResource("TileSet_6vy25")
 
 [node name="MineCrystal08" type="Sprite2D" parent="moving_platform21/platform" parent_id_path=PackedInt32Array(467203325, 247959146) index="2" unique_id=1110045527]
 position = Vector2(16, 5.9999924)
@@ -3208,13 +3216,23 @@ texture = ExtResource("10_0684n")
 
 [node name="CollisionShape2D" parent="moving_platform21/move_trigger" parent_id_path=PackedInt32Array(467203325, 1286972824) index="0" unique_id=1628162647]
 position = Vector2(16, -36)
-shape = SubResource("RectangleShape2D_8ymox")
+shape = SubResource("RectangleShape2D_cuy2s")
 
 [node name="Screenshot20260308205211" type="Sprite2D" parent="." unique_id=489761807]
 z_index = -4096
 position = Vector2(618.0001, -1952.9999)
 scale = Vector2(51.77778, 108.66668)
 texture = ExtResource("16_hym2r")
+
+[node name="change_stuff" parent="." unique_id=111750805 instance=ExtResource("20_sjn1e")]
+position = Vector2(105.00006, -1361.0001)
+scale = Vector2(3.8991208, 12.457152)
+changed_stuff = Array[ExtResource("21_0dahp")]([SubResource("Resource_bwoi4")])
+
+[node name="change_stuff2" parent="." unique_id=1402697180 instance=ExtResource("20_sjn1e")]
+position = Vector2(1575.0001, -1361.0001)
+scale = Vector2(3.8991208, 12.457152)
+changed_stuff = Array[ExtResource("21_0dahp")]([SubResource("Resource_bwoi4")])
 
 [editable path="hazards/SpikesCollision"]
 [editable path="hazards/SpikesCollision2"]

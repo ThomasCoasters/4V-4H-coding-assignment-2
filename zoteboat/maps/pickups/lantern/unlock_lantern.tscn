@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://tstrwf8jyfow" path="res://maps/pickups/lantern/Lumafly_Lantern0000.png" id="2_l768k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kd1ss"]
-radius = 21.023796
+radius = 28.0
 
 [sub_resource type="Gradient" id="Gradient_lh05m"]
 offsets = PackedFloat32Array(0, 0.63380283)
@@ -19,16 +19,15 @@ fill_from = Vector2(0.5, 0.5)
 script = ExtResource("1_j8tg3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=514351988]
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_l768k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=215316743]
 shape = SubResource("CircleShape2D_kd1ss")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=591130755]
-enabled = false
 energy = 0.7
 texture = SubResource("GradientTexture2D_j8tg3")
-texture_scale = 14.0
+texture_scale = 7.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
