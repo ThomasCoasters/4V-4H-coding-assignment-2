@@ -101,6 +101,7 @@ agent_radius = 50.0
 
 [node name="Dash_Unlock" type="Node2D" unique_id=1874960603]
 script = ExtResource("1_o16pk")
+audio_path = "res://Game/audio/silkantuary.mp3"
 
 [node name="WarpZone3" parent="." unique_id=1623170445 instance=ExtResource("2_1bkf7")]
 position = Vector2(1456, 5826)
