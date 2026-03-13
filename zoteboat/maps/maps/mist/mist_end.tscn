@@ -117,10 +117,10 @@ position = Vector2(1094, 5499)
 navigation_polygon = SubResource("NavigationPolygon_ycj1n")
 
 [node name="SpawnLocation5" parent="." unique_id=1089591050 instance=ExtResource("3_dyc3s")]
-offset_left = -19.0
-offset_top = -902.0
-offset_right = 11.0
-offset_bottom = -872.0
+offset_left = -14.0
+offset_top = -894.0
+offset_right = 16.0
+offset_bottom = -864.0
 own_group = "spawn"
 metadata/_edit_use_anchors_ = true
 
@@ -139,7 +139,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-877, -994.00006)
 scale = Vector2(1, 13)
 warp_to = "res://maps/maps/pre-walljump/room_-3,-4.tscn"
-new_location_group = "Right_-3,-4"
+new_location_group = "Right_-4,-4"
 
 [node name="Straight" type="Sprite2D" parent="." unique_id=289191865]
 position = Vector2(551, -987)
