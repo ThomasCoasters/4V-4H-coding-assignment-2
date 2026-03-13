@@ -108,7 +108,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 
 func _on_move_trigger_body_entered(body: Node2D) -> void:
-	if !move_on_trigger || !body.is_in_group("player"):
+	if !move_on_trigger || !(body.is_in_group("player") || body.is_in_group("enemy")):
 		return
 	in_trigger = true
 	
