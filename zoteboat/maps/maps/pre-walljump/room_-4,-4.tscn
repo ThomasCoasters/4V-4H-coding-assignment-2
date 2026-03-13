@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://domk3qfwgxh7i" path="res://maps/enemy arena/keyValue.gd" id="5_mwhae"]
 [ext_resource type="PackedScene" uid="uid://cdw42gptmfjdm" path="res://maps/warp_zone/warping/Warp_Zone.tscn" id="6_fs4kc"]
 [ext_resource type="PackedScene" uid="uid://clob4nu8siv5p" path="res://maps/warp_zone/warping/spawn_location.tscn" id="7_04erq"]
-[ext_resource type="PackedScene" uid="uid://dccm81k18vutf" path="res://maps/benches/bench.tscn" id="8_uqrww"]
 [ext_resource type="PackedScene" uid="uid://xg0g0rjlglsa" path="res://maps/map_placables/moving_platforms/moving_platforms.tscn" id="9_q1ro1"]
 [ext_resource type="Script" path="res://maps/maps/mist/specific scenes/entry.gd" id="10_q1ro1"]
 
@@ -915,9 +914,6 @@ offset_right = 1359.0
 offset_bottom = -14.0
 own_group = "Top_-4,-4"
 metadata/_edit_use_anchors_ = true
-
-[node name="Bench" parent="." unique_id=1729237278 instance=ExtResource("8_uqrww")]
-position = Vector2(982, 2203)
 
 [node name="moving_platform" parent="." unique_id=710403595 instance=ExtResource("9_q1ro1")]
 position = Vector2(1344, 2784)
