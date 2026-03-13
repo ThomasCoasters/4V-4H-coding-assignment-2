@@ -156,7 +156,6 @@ _data = {
 point_count = 10
 
 [node name="Room -5,-1" type="Node2D" unique_id=1874960603]
-z_index = 5
 script = ExtResource("1_lumia")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1820643946]
@@ -315,8 +314,8 @@ texture = ExtResource("17_26gnb")
 [node name="WarpZone3" parent="." unique_id=1268084640 instance=ExtResource("3_8tbqc")]
 position = Vector2(818, -897)
 scale = Vector2(1, 8)
-warp_to = "res://maps/maps/pre-walljump/room_-3,0.tscn"
-new_location_group = "Secret_2"
+warp_to = "res://maps/maps/pre-walljump/secret_2.tscn"
+new_location_group = "left_bottom_secret_2"
 
 [node name="WarpZone4" parent="." unique_id=1157491430 instance=ExtResource("3_8tbqc")]
 position = Vector2(-752, 129)
